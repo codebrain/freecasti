@@ -1,0 +1,654 @@
+{
+  "kind": "system_summary",
+  "folder": "C:\\m7\\sysex\\system",
+  "series_count": 8,
+  "dump_count": 61,
+  "message_length": 77,
+  "header": "70 08 02 00",
+  "series": [
+    {
+      "parameter": "audio format",
+      "folder": "C:\\m7\\sysex\\system\\audio format",
+      "dump_count": 2,
+      "changing_offsets": [
+        15,
+        72,
+        73,
+        74,
+        75
+      ],
+      "best_encoding": {
+        "encoding": "raw_u8",
+        "offsets": [
+          15
+        ],
+        "score": 1.0,
+        "matched": 2,
+        "total": 2,
+        "scale": null,
+        "offset": null,
+        "mapping": [
+          {
+            "label": "Analog",
+            "encoded": 0,
+            "raw_bytes": [
+              "00"
+            ]
+          },
+          {
+            "label": "Digital",
+            "encoded": 1,
+            "raw_bytes": [
+              "01"
+            ]
+          }
+        ],
+        "notes": "enum table: 2 distinct labels each map to a unique encoded value",
+        "r_squared": null,
+        "exact": false,
+        "monotonic_score": 1.0
+      }
+    },
+    {
+      "parameter": "audio routing",
+      "folder": "C:\\m7\\sysex\\system\\audio routing",
+      "dump_count": 3,
+      "changing_offsets": [
+        13,
+        73,
+        74
+      ],
+      "best_encoding": {
+        "encoding": "raw_u8",
+        "offsets": [
+          13
+        ],
+        "score": 1.0,
+        "matched": 3,
+        "total": 3,
+        "scale": null,
+        "offset": null,
+        "mapping": [
+          {
+            "label": "Mono L",
+            "encoded": 1,
+            "raw_bytes": [
+              "01"
+            ]
+          },
+          {
+            "label": "Mono R",
+            "encoded": 2,
+            "raw_bytes": [
+              "02"
+            ]
+          },
+          {
+            "label": "Stereo",
+            "encoded": 0,
+            "raw_bytes": [
+              "00"
+            ]
+          }
+        ],
+        "notes": "enum table: 3 distinct labels each map to a unique encoded value",
+        "r_squared": null,
+        "exact": false,
+        "monotonic_score": 1.0
+      }
+    },
+    {
+      "parameter": "display level",
+      "folder": "C:\\m7\\sysex\\system\\display level",
+      "dump_count": 5,
+      "changing_offsets": [
+        21,
+        25,
+        72,
+        73,
+        74,
+        75
+      ],
+      "best_encoding": {
+        "encoding": "raw_u8",
+        "offsets": [
+          21
+        ],
+        "score": 1.0,
+        "matched": 3,
+        "total": 3,
+        "scale": 1.0,
+        "offset": 0.0,
+        "mapping": [
+          {
+            "label": 1.0,
+            "encoded": 1,
+            "raw_bytes": [
+              "01"
+            ]
+          },
+          {
+            "label": 2.0,
+            "encoded": 2,
+            "raw_bytes": [
+              "02"
+            ]
+          },
+          {
+            "label": 3.0,
+            "encoded": 3,
+            "raw_bytes": [
+              "03"
+            ]
+          }
+        ],
+        "notes": "label = encoded * 1; from agreeing extreme<->adjacent edge slopes",
+        "r_squared": null,
+        "exact": true,
+        "monotonic_score": 1.0
+      }
+    },
+    {
+      "parameter": "dry gain",
+      "folder": "C:\\m7\\sysex\\system\\dry gain",
+      "dump_count": 9,
+      "changing_offsets": [
+        10,
+        11,
+        72,
+        73,
+        74,
+        75
+      ],
+      "best_encoding": {
+        "encoding": "nibble_hilo",
+        "offsets": [
+          10,
+          11
+        ],
+        "score": 1.0,
+        "matched": 7,
+        "total": 7,
+        "scale": 0.5,
+        "offset": -60.5,
+        "mapping": [
+          {
+            "label": -60.0,
+            "encoded": 1,
+            "raw_bytes": [
+              "00",
+              "01"
+            ]
+          },
+          {
+            "label": -59.5,
+            "encoded": 2,
+            "raw_bytes": [
+              "00",
+              "02"
+            ]
+          },
+          {
+            "label": -59.0,
+            "encoded": 3,
+            "raw_bytes": [
+              "00",
+              "03"
+            ]
+          },
+          {
+            "label": -45.5,
+            "encoded": 30,
+            "raw_bytes": [
+              "01",
+              "0E"
+            ]
+          },
+          {
+            "label": -30.5,
+            "encoded": 60,
+            "raw_bytes": [
+              "03",
+              "0C"
+            ]
+          },
+          {
+            "label": -1.0,
+            "encoded": 119,
+            "raw_bytes": [
+              "07",
+              "07"
+            ]
+          },
+          {
+            "label": -0.5,
+            "encoded": 120,
+            "raw_bytes": [
+              "07",
+              "08"
+            ]
+          }
+        ],
+        "notes": "label = encoded * 0.5 + (-60.5); from agreeing extreme<->adjacent edge slopes",
+        "r_squared": null,
+        "exact": true,
+        "monotonic_score": 1.0
+      }
+    },
+    {
+      "parameter": "midi bank",
+      "folder": "C:\\m7\\sysex\\system\\midi bank",
+      "dump_count": 14,
+      "changing_offsets": [
+        25,
+        72,
+        73,
+        74,
+        75
+      ],
+      "best_encoding": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "score": 1.0,
+        "matched": 14,
+        "total": 14,
+        "scale": null,
+        "offset": null,
+        "mapping": [
+          {
+            "label": "Ambience",
+            "encoded": 4,
+            "raw_bytes": [
+              "04"
+            ]
+          },
+          {
+            "label": "Chambers",
+            "encoded": 3,
+            "raw_bytes": [
+              "03"
+            ]
+          },
+          {
+            "label": "Edit",
+            "encoded": 11,
+            "raw_bytes": [
+              "0B"
+            ]
+          },
+          {
+            "label": "Favs",
+            "encoded": 13,
+            "raw_bytes": [
+              "0D"
+            ]
+          },
+          {
+            "label": "Halls",
+            "encoded": 0,
+            "raw_bytes": [
+              "00"
+            ]
+          },
+          {
+            "label": "Halls 2",
+            "encoded": 6,
+            "raw_bytes": [
+              "06"
+            ]
+          },
+          {
+            "label": "NonLin",
+            "encoded": 10,
+            "raw_bytes": [
+              "0A"
+            ]
+          },
+          {
+            "label": "Plates",
+            "encoded": 1,
+            "raw_bytes": [
+              "01"
+            ]
+          },
+          {
+            "label": "Plates 2",
+            "encoded": 7,
+            "raw_bytes": [
+              "07"
+            ]
+          },
+          {
+            "label": "Regs",
+            "encoded": 12,
+            "raw_bytes": [
+              "0C"
+            ]
+          },
+          {
+            "label": "Rooms",
+            "encoded": 2,
+            "raw_bytes": [
+              "02"
+            ]
+          },
+          {
+            "label": "Rooms 2",
+            "encoded": 8,
+            "raw_bytes": [
+              "08"
+            ]
+          },
+          {
+            "label": "Spaces",
+            "encoded": 5,
+            "raw_bytes": [
+              "05"
+            ]
+          },
+          {
+            "label": "Spaces 2",
+            "encoded": 9,
+            "raw_bytes": [
+              "09"
+            ]
+          }
+        ],
+        "notes": "enum table: 14 distinct labels each map to a unique encoded value",
+        "r_squared": null,
+        "exact": false,
+        "monotonic_score": 1.0
+      }
+    },
+    {
+      "parameter": "midi channel",
+      "folder": "C:\\m7\\sysex\\system\\midi channel",
+      "dump_count": 17,
+      "changing_offsets": [
+        22,
+        23,
+        72,
+        73,
+        74,
+        75
+      ],
+      "best_encoding": {
+        "encoding": "nibble_hilo",
+        "offsets": [
+          22,
+          23
+        ],
+        "score": 1.0,
+        "matched": 16,
+        "total": 16,
+        "scale": 1.0,
+        "offset": 1.0,
+        "mapping": [
+          {
+            "label": 1.0,
+            "encoded": 0,
+            "raw_bytes": [
+              "00",
+              "00"
+            ]
+          },
+          {
+            "label": 2.0,
+            "encoded": 1,
+            "raw_bytes": [
+              "00",
+              "01"
+            ]
+          },
+          {
+            "label": 3.0,
+            "encoded": 2,
+            "raw_bytes": [
+              "00",
+              "02"
+            ]
+          },
+          {
+            "label": 4.0,
+            "encoded": 3,
+            "raw_bytes": [
+              "00",
+              "03"
+            ]
+          },
+          {
+            "label": 5.0,
+            "encoded": 4,
+            "raw_bytes": [
+              "00",
+              "04"
+            ]
+          },
+          {
+            "label": 6.0,
+            "encoded": 5,
+            "raw_bytes": [
+              "00",
+              "05"
+            ]
+          },
+          {
+            "label": 7.0,
+            "encoded": 6,
+            "raw_bytes": [
+              "00",
+              "06"
+            ]
+          },
+          {
+            "label": 8.0,
+            "encoded": 7,
+            "raw_bytes": [
+              "00",
+              "07"
+            ]
+          },
+          {
+            "label": 9.0,
+            "encoded": 8,
+            "raw_bytes": [
+              "00",
+              "08"
+            ]
+          },
+          {
+            "label": 10.0,
+            "encoded": 9,
+            "raw_bytes": [
+              "00",
+              "09"
+            ]
+          },
+          {
+            "label": 11.0,
+            "encoded": 10,
+            "raw_bytes": [
+              "00",
+              "0A"
+            ]
+          },
+          {
+            "label": 12.0,
+            "encoded": 11,
+            "raw_bytes": [
+              "00",
+              "0B"
+            ]
+          },
+          {
+            "label": 13.0,
+            "encoded": 12,
+            "raw_bytes": [
+              "00",
+              "0C"
+            ]
+          },
+          {
+            "label": 14.0,
+            "encoded": 13,
+            "raw_bytes": [
+              "00",
+              "0D"
+            ]
+          },
+          {
+            "label": 15.0,
+            "encoded": 14,
+            "raw_bytes": [
+              "00",
+              "0E"
+            ]
+          },
+          {
+            "label": 16.0,
+            "encoded": 15,
+            "raw_bytes": [
+              "00",
+              "0F"
+            ]
+          }
+        ],
+        "notes": "label = encoded + (1); from agreeing extreme<->adjacent edge slopes",
+        "r_squared": null,
+        "exact": true,
+        "monotonic_score": 1.0
+      }
+    },
+    {
+      "parameter": "output level",
+      "folder": "C:\\m7\\sysex\\system\\output level",
+      "dump_count": 3,
+      "changing_offsets": [
+        17,
+        72,
+        73,
+        74,
+        75
+      ],
+      "best_encoding": {
+        "encoding": "raw_u8",
+        "offsets": [
+          17
+        ],
+        "score": 1.0,
+        "matched": 3,
+        "total": 3,
+        "scale": 8.0,
+        "offset": 8.0,
+        "mapping": [
+          {
+            "label": 8.0,
+            "encoded": 0,
+            "raw_bytes": [
+              "00"
+            ]
+          },
+          {
+            "label": 16.0,
+            "encoded": 1,
+            "raw_bytes": [
+              "01"
+            ]
+          },
+          {
+            "label": 24.0,
+            "encoded": 2,
+            "raw_bytes": [
+              "02"
+            ]
+          }
+        ],
+        "notes": "label = encoded * 8 + (8); from agreeing extreme<->adjacent edge slopes",
+        "r_squared": null,
+        "exact": true,
+        "monotonic_score": 1.0
+      }
+    },
+    {
+      "parameter": "wet gain",
+      "folder": "C:\\m7\\sysex\\system\\wet gain",
+      "dump_count": 8,
+      "changing_offsets": [
+        8,
+        9,
+        72,
+        73,
+        74,
+        75
+      ],
+      "best_encoding": {
+        "encoding": "nibble_hilo",
+        "offsets": [
+          8,
+          9
+        ],
+        "score": 1.0,
+        "matched": 6,
+        "total": 6,
+        "scale": 0.5,
+        "offset": -60.5,
+        "mapping": [
+          {
+            "label": -60.0,
+            "encoded": 1,
+            "raw_bytes": [
+              "00",
+              "01"
+            ]
+          },
+          {
+            "label": -59.5,
+            "encoded": 2,
+            "raw_bytes": [
+              "00",
+              "02"
+            ]
+          },
+          {
+            "label": -53.0,
+            "encoded": 15,
+            "raw_bytes": [
+              "00",
+              "0F"
+            ]
+          },
+          {
+            "label": -41.5,
+            "encoded": 38,
+            "raw_bytes": [
+              "02",
+              "06"
+            ]
+          },
+          {
+            "label": -1.0,
+            "encoded": 119,
+            "raw_bytes": [
+              "07",
+              "07"
+            ]
+          },
+          {
+            "label": -0.5,
+            "encoded": 120,
+            "raw_bytes": [
+              "07",
+              "08"
+            ]
+          }
+        ],
+        "notes": "label = encoded * 0.5 + (-60.5); from agreeing extreme<->adjacent edge slopes",
+        "r_squared": null,
+        "exact": true,
+        "monotonic_score": 1.0
+      }
+    }
+  ]
+}

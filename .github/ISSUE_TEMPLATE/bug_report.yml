@@ -1,0 +1,52 @@
+name: Bug report
+description: Something is broken in the tooling, generated spec, or web UI
+title: "[bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please search [existing issues](https://github.com/codebrain/freecasti/issues) first.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: What did you expect, and what actually happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Commands, files, browser/OS versions, M7 firmware if relevant
+      placeholder: |
+        1. python run.py
+        2. cd web-ui && npm run dev
+        3. ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Python analyzer / export
+        - Generated specification
+        - Web UI (Freecasti)
+        - SysEx captures / corpus
+        - CI / GitHub Actions
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Paste relevant terminal output or attach screenshots
+    validations:
+      required: false

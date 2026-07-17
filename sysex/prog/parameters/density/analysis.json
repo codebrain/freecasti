@@ -1,0 +1,698 @@
+{
+  "parameter": "density",
+  "folder": "C:\\m7\\sysex\\prog\\parameters\\density",
+  "dump_count": 7,
+  "message_length": 157,
+  "unit": null,
+  "unit_display": null,
+  "frame": {
+    "manufacturer_id": "00 62 63",
+    "manufacturer_id_match": true,
+    "header": "70 08 01 00",
+    "header_match": true,
+    "name_offset": 8,
+    "name_length": 80,
+    "data_offset": 88,
+    "checksum_offsets": [
+      152,
+      153,
+      154,
+      155
+    ],
+    "nibble_payload": true,
+    "notes": "Payload bytes after the ASCII program name are nibble-sized (0x00-0x0F). The final four nibbles before F7 are a CRC-16/ARC over offsets 8-151, packed high-nibble-first."
+  },
+  "changing_offsets": [
+    109,
+    147,
+    152,
+    153,
+    154,
+    155
+  ],
+  "changing_regions": [
+    {
+      "start": 109,
+      "end": 109,
+      "length": 1,
+      "offsets": [
+        109
+      ]
+    },
+    {
+      "start": 147,
+      "end": 147,
+      "length": 1,
+      "offsets": [
+        147
+      ]
+    },
+    {
+      "start": 152,
+      "end": 155,
+      "length": 4,
+      "offsets": [
+        152,
+        153,
+        154,
+        155
+      ]
+    }
+  ],
+  "classification": {
+    "parameter_candidate_offsets": [
+      109,
+      147
+    ],
+    "checksum_candidate_offsets": [
+      152,
+      153,
+      154,
+      155
+    ],
+    "header_or_name_offsets": [],
+    "secondary_offsets": [
+      147
+    ]
+  },
+  "sampling": {
+    "convention": "Wherever possible, each series includes the usable extremes, the adjacent-to-extreme settings, and a sparse sample of values in between (optional discrete off). Mids are samples only - not every intermediate value. Extremes are treated as authoritative range bounds.",
+    "roles_by_file": {
+      "low.syx": "extreme_low",
+      "high.syx": "extreme_high",
+      "1.syx": "adjacent_low",
+      "9.syx": "adjacent_high",
+      "2.syx": "mid",
+      "3.syx": "mid",
+      "4.syx": "mid"
+    },
+    "files_by_role": {
+      "off": [],
+      "extreme_low": [
+        "low.syx"
+      ],
+      "adjacent_low": [
+        "1.syx"
+      ],
+      "mid": [
+        "2.syx",
+        "3.syx",
+        "4.syx"
+      ],
+      "adjacent_high": [
+        "9.syx"
+      ],
+      "extreme_high": [
+        "high.syx"
+      ]
+    },
+    "coverage": {
+      "has_extreme_low": true,
+      "has_extreme_high": true,
+      "has_adjacent_low": true,
+      "has_adjacent_high": true,
+      "mid_count": 3,
+      "mids_are_sparse_sample": true,
+      "complete_edge_pair": true
+    },
+    "edge_steps": {
+      "points": {
+        "extreme_low": {
+          "file": "low.syx",
+          "encoded": 0,
+          "raw_bytes": [
+            "00"
+          ],
+          "endpoint": "low"
+        },
+        "adjacent_low": {
+          "file": "1.syx",
+          "encoded": 1,
+          "raw_bytes": [
+            "01"
+          ],
+          "label": 1,
+          "label_display": "1"
+        },
+        "adjacent_high": {
+          "file": "9.syx",
+          "encoded": 9,
+          "raw_bytes": [
+            "09"
+          ],
+          "label": 9,
+          "label_display": "9"
+        },
+        "extreme_high": {
+          "file": "high.syx",
+          "encoded": 10,
+          "raw_bytes": [
+            "0A"
+          ],
+          "endpoint": "high"
+        }
+      },
+      "low_edge": {
+        "delta_encoded": 1,
+        "extreme_file": "low.syx",
+        "adjacent_file": "1.syx"
+      },
+      "high_edge": {
+        "delta_encoded": -1,
+        "extreme_file": "high.syx",
+        "adjacent_file": "9.syx"
+      }
+    }
+  },
+  "value_range": {
+    "convention": "Wherever possible, each series includes the usable extremes, the adjacent-to-extreme settings, and a sparse sample of values in between (optional discrete off). Mids are samples only - not every intermediate value. Extremes are treated as authoritative range bounds.",
+    "low": {
+      "file": "low.syx",
+      "endpoint": "low",
+      "encoded_value": 0,
+      "raw_bytes": [
+        "00"
+      ],
+      "inferred_label": 0,
+      "inferred_label_display": "0"
+    },
+    "high": {
+      "file": "high.syx",
+      "endpoint": "high",
+      "encoded_value": 10,
+      "raw_bytes": [
+        "0A"
+      ],
+      "inferred_label": 10,
+      "inferred_label_display": "10"
+    },
+    "min": 0,
+    "max": 10,
+    "summary": "Observed range 0 ... 10",
+    "edge_steps": {
+      "points": {
+        "extreme_low": {
+          "file": "low.syx",
+          "encoded": 0,
+          "raw_bytes": [
+            "00"
+          ],
+          "endpoint": "low"
+        },
+        "adjacent_low": {
+          "file": "1.syx",
+          "encoded": 1,
+          "raw_bytes": [
+            "01"
+          ],
+          "label": 1,
+          "label_display": "1"
+        },
+        "adjacent_high": {
+          "file": "9.syx",
+          "encoded": 9,
+          "raw_bytes": [
+            "09"
+          ],
+          "label": 9,
+          "label_display": "9"
+        },
+        "extreme_high": {
+          "file": "high.syx",
+          "encoded": 10,
+          "raw_bytes": [
+            "0A"
+          ],
+          "endpoint": "high"
+        }
+      },
+      "low_edge": {
+        "delta_encoded": 1,
+        "extreme_file": "low.syx",
+        "adjacent_file": "1.syx"
+      },
+      "high_edge": {
+        "delta_encoded": -1,
+        "extreme_file": "high.syx",
+        "adjacent_file": "9.syx"
+      }
+    }
+  },
+  "official": {
+    "matched": true,
+    "role": "hint",
+    "id": "density",
+    "name": "Density",
+    "folder_hint": "density",
+    "notes": "Manual UI: Low 1 - 9 High. Captured hardware series also show 0...10.",
+    "description": "Sets how the echo density builds up over time.",
+    "description_source": "Bricasti M7 Owner's Manual \u2014 Reverb Parameters",
+    "description_url": "https://www.bricasti.com/images/M7.pdf",
+    "description_sources": null,
+    "expected": {
+      "manual_min": 1,
+      "manual_max": 9,
+      "compare_min": 0,
+      "compare_max": 10,
+      "unit": null,
+      "has_off": false,
+      "display": "integer",
+      "balance_side_max": null
+    },
+    "warnings": [],
+    "notes_from_check": [
+      "Observed min 0 is below printed manual 1 (unit/firmware variance; dump is authoritative)",
+      "Observed max 10 is above printed manual 9 (unit/firmware variance; dump is authoritative)"
+    ],
+    "sources": [
+      "Bricasti M7 Owner's Manual (program parameter control ranges)",
+      "Bricasti MIDI App Notes / V2 addendum (dump types only)"
+    ],
+    "disclaimer": "Hint only from published manuals / controllers - not authoritative. Firmware and unit variation are common (e.g. Early Select may be 0...31 on some M7s while the manual prints 0...20). Dump-derived extremes and encodings always win; catalog checks are soft guidance for capture planning.",
+    "agreement": "differs_from_hint"
+  },
+  "encoding_hypotheses": [
+    {
+      "encoding": "raw_u8",
+      "offsets": [
+        109
+      ],
+      "score": 1.0,
+      "matched": 5,
+      "total": 5,
+      "scale": 1.0,
+      "offset": 0.0,
+      "mapping": [
+        {
+          "label": 1.0,
+          "encoded": 1,
+          "raw_bytes": [
+            "01"
+          ]
+        },
+        {
+          "label": 2.0,
+          "encoded": 2,
+          "raw_bytes": [
+            "02"
+          ]
+        },
+        {
+          "label": 3.0,
+          "encoded": 3,
+          "raw_bytes": [
+            "03"
+          ]
+        },
+        {
+          "label": 4.0,
+          "encoded": 4,
+          "raw_bytes": [
+            "04"
+          ]
+        },
+        {
+          "label": 9.0,
+          "encoded": 9,
+          "raw_bytes": [
+            "09"
+          ]
+        }
+      ],
+      "notes": "label = encoded * 1; from agreeing extreme<->adjacent edge slopes",
+      "r_squared": null,
+      "exact": true,
+      "monotonic_score": 1.0
+    },
+    {
+      "encoding": "raw_u8",
+      "offsets": [
+        147
+      ],
+      "score": 1.0,
+      "matched": 0,
+      "total": 5,
+      "scale": null,
+      "offset": null,
+      "mapping": [
+        {
+          "label": 1.0,
+          "encoded": 8,
+          "raw_bytes": [
+            "08"
+          ]
+        },
+        {
+          "label": 2.0,
+          "encoded": 9,
+          "raw_bytes": [
+            "09"
+          ]
+        },
+        {
+          "label": 3.0,
+          "encoded": 10,
+          "raw_bytes": [
+            "0A"
+          ]
+        },
+        {
+          "label": 4.0,
+          "encoded": 12,
+          "raw_bytes": [
+            "0C"
+          ]
+        },
+        {
+          "label": 9.0,
+          "encoded": 13,
+          "raw_bytes": [
+            "0D"
+          ]
+        }
+      ],
+      "notes": "table/index candidate (monotonic 100%); extreme<->adjacent slopes disagree (low dlabel/denc=1, high=5); least-squares hint only (not used for endpoint unit conversion): label ~= 1.36047*encoded + -10.3488 (r^2=0.8205)",
+      "r_squared": 0.8204866938384081,
+      "exact": false,
+      "monotonic_score": 1.0
+    }
+  ],
+  "best_encoding": {
+    "encoding": "raw_u8",
+    "offsets": [
+      109
+    ],
+    "score": 1.0,
+    "matched": 5,
+    "total": 5,
+    "scale": 1.0,
+    "offset": 0.0,
+    "mapping": [
+      {
+        "label": 1.0,
+        "encoded": 1,
+        "raw_bytes": [
+          "01"
+        ]
+      },
+      {
+        "label": 2.0,
+        "encoded": 2,
+        "raw_bytes": [
+          "02"
+        ]
+      },
+      {
+        "label": 3.0,
+        "encoded": 3,
+        "raw_bytes": [
+          "03"
+        ]
+      },
+      {
+        "label": 4.0,
+        "encoded": 4,
+        "raw_bytes": [
+          "04"
+        ]
+      },
+      {
+        "label": 9.0,
+        "encoded": 9,
+        "raw_bytes": [
+          "09"
+        ]
+      }
+    ],
+    "notes": "label = encoded * 1; from agreeing extreme<->adjacent edge slopes",
+    "r_squared": null,
+    "exact": true,
+    "monotonic_score": 1.0
+  },
+  "hypothesis": {
+    "summary": "Parameter 'density' appears at SysEx offset(s) [109]. using encoding 'raw_u8'. (label = encoded * 1). Observed range 0 ... 10. Offsets [152, 153, 154, 155] also change and are treated as checksum nibbles. Additional non-checksum offsets [147] also change (possible edit counter, UI state, or mirrored field). All post-name payload bytes are nibble-sized (0x00-0x0F).",
+    "confidence": "high",
+    "match_rate": 1.0,
+    "how_to_set": {
+      "offsets": [
+        109
+      ],
+      "encoding": "raw_u8",
+      "scale": 1.0,
+      "offset": 0.0,
+      "encode_steps": [
+        "encoded = desired_label",
+        "byte[offset0] = encoded & 0x0F  # M7 payload nibbles are 0x00-0x0F",
+        "recompute trailing checksum: CRC-16/ARC over bytes[8:152], pack as four high-nibble-first SysEx bytes at offsets 152-155"
+      ],
+      "notes": "label = encoded * 1; from agreeing extreme<->adjacent edge slopes"
+    }
+  },
+  "dumps": [
+    {
+      "file": "low.syx",
+      "label": {
+        "kind": "endpoint",
+        "value": "low",
+        "unit": null,
+        "unit_display": null,
+        "stem": "low",
+        "endpoint": "low",
+        "raw_label": "low",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "extreme_low",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "109": "00",
+        "147": "07",
+        "152": "05",
+        "153": "08",
+        "154": "03",
+        "155": "05"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          109
+        ],
+        "raw_bytes": [
+          "00"
+        ],
+        "encoded_value": 0,
+        "inferred_label": 0
+      }
+    },
+    {
+      "file": "1.syx",
+      "label": {
+        "kind": "number",
+        "value": 1,
+        "unit": null,
+        "unit_display": null,
+        "stem": "1",
+        "endpoint": null,
+        "raw_label": "1",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "adjacent_low",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "109": "01",
+        "147": "08",
+        "152": "01",
+        "153": "08",
+        "154": "0A",
+        "155": "03"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          109
+        ],
+        "raw_bytes": [
+          "01"
+        ],
+        "encoded_value": 1,
+        "inferred_label": 1
+      }
+    },
+    {
+      "file": "2.syx",
+      "label": {
+        "kind": "number",
+        "value": 2,
+        "unit": null,
+        "unit_display": null,
+        "stem": "2",
+        "endpoint": null,
+        "raw_label": "2",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "mid",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "109": "02",
+        "147": "09",
+        "152": "01",
+        "153": "0A",
+        "154": "0D",
+        "155": "08"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          109
+        ],
+        "raw_bytes": [
+          "02"
+        ],
+        "encoded_value": 2,
+        "inferred_label": 2
+      }
+    },
+    {
+      "file": "3.syx",
+      "label": {
+        "kind": "number",
+        "value": 3,
+        "unit": null,
+        "unit_display": null,
+        "stem": "3",
+        "endpoint": null,
+        "raw_label": "3",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "mid",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "109": "03",
+        "147": "0A",
+        "152": "05",
+        "153": "0B",
+        "154": "05",
+        "155": "0E"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          109
+        ],
+        "raw_bytes": [
+          "03"
+        ],
+        "encoded_value": 3,
+        "inferred_label": 3
+      }
+    },
+    {
+      "file": "4.syx",
+      "label": {
+        "kind": "number",
+        "value": 4,
+        "unit": null,
+        "unit_display": null,
+        "stem": "4",
+        "endpoint": null,
+        "raw_label": "4",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "mid",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "109": "04",
+        "147": "0C",
+        "152": "0D",
+        "153": "0E",
+        "154": "09",
+        "155": "0B"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          109
+        ],
+        "raw_bytes": [
+          "04"
+        ],
+        "encoded_value": 4,
+        "inferred_label": 4
+      }
+    },
+    {
+      "file": "9.syx",
+      "label": {
+        "kind": "number",
+        "value": 9,
+        "unit": null,
+        "unit_display": null,
+        "stem": "9",
+        "endpoint": null,
+        "raw_label": "9",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "adjacent_high",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "109": "09",
+        "147": "0D",
+        "152": "09",
+        "153": "06",
+        "154": "07",
+        "155": "09"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          109
+        ],
+        "raw_bytes": [
+          "09"
+        ],
+        "encoded_value": 9,
+        "inferred_label": 9
+      }
+    },
+    {
+      "file": "high.syx",
+      "label": {
+        "kind": "endpoint",
+        "value": "high",
+        "unit": null,
+        "unit_display": null,
+        "stem": "high",
+        "endpoint": "high",
+        "raw_label": "high",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "extreme_high",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "109": "0A",
+        "147": "0D",
+        "152": "05",
+        "153": "04",
+        "154": "03",
+        "155": "0F"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          109
+        ],
+        "raw_bytes": [
+          "0A"
+        ],
+        "encoded_value": 10,
+        "inferred_label": 10
+      }
+    }
+  ]
+}

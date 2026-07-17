@@ -1,0 +1,5099 @@
+{
+  "format": "bricasti-m7-program-dump",
+  "version": 1,
+  "kaitai_id": "m7_program_dump",
+  "title": "Bricasti M7 program-dump SysEx",
+  "message_length": 157,
+  "file_extension": "syx",
+  "disclaimer": "Reverse-engineered from labeled captures in this repository. Not an official Bricasti specification. Dump-derived encodings and offsets are authoritative for this corpus.",
+  "kaitai_doc_extra": "Sound-parameter value maps (affine scales / sparse tables) live alongside this layout in the companion .spec.json and in specification/prog/parameters/.",
+  "frame": {
+    "sysex_start": 240,
+    "manufacturer_id": [
+      0,
+      98,
+      99
+    ],
+    "program_dump_header": [
+      112,
+      8,
+      1,
+      0
+    ],
+    "program_name": {
+      "offset": 8,
+      "length": 80,
+      "encoding": "ascii_space_padded"
+    },
+    "sysex_end": 247
+  },
+  "checksum": {
+    "offsets": [
+      152,
+      153,
+      154,
+      155
+    ],
+    "algorithm": "CRC-16/ARC",
+    "also_known_as": [
+      "CRC-16/IBM",
+      "CRC-16/ANSI"
+    ],
+    "poly": "0x8005",
+    "init": "0x0000",
+    "refin": true,
+    "refout": true,
+    "xorout": "0x0000",
+    "cover_start": 8,
+    "cover_end_exclusive": 152,
+    "pack": "u16_be_high_nibble_first",
+    "doc": "CRC-16/ARC over raw SysEx bytes [8, checksum_start), packed as four high-nibble-first MIDI data bytes. Manufacturer ID and header are not covered."
+  },
+  "encodings": {
+    "raw_u8": "Single SysEx data byte used as an unsigned integer.",
+    "nibble_hilo": "Two MIDI data bytes (each 0x00-0x0F); value = (hi<<4)|lo.",
+    "ascii_space_padded": "ASCII text, space-padded on the right to a fixed width.",
+    "crc16_arc_u16_be_nibbles": "CRC-16/ARC packed as four high-nibble-first SysEx bytes."
+  },
+  "fields": [
+    {
+      "id": "sysex_start",
+      "label": "SysEx start (F0)",
+      "offsets": [
+        0
+      ],
+      "start": 0,
+      "end": 0,
+      "size": 1,
+      "status": "frame",
+      "role": "SysEx start (F0)",
+      "encoding": null,
+      "kind": "frame",
+      "contents": [
+        240
+      ]
+    },
+    {
+      "id": "manufacturer_id",
+      "label": "manufacturer ID",
+      "offsets": [
+        1,
+        2,
+        3
+      ],
+      "start": 1,
+      "end": 3,
+      "size": 3,
+      "status": "frame",
+      "role": "Manufacturer ID (00 62 63)",
+      "encoding": null,
+      "kind": "frame",
+      "contents": [
+        0,
+        98,
+        99
+      ]
+    },
+    {
+      "id": "program_dump_header",
+      "label": "program-dump header",
+      "offsets": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "start": 4,
+      "end": 7,
+      "size": 4,
+      "status": "frame",
+      "role": "Program-dump header (70 08 01 00)",
+      "encoding": null,
+      "kind": "frame",
+      "contents": [
+        112,
+        8,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "program_name",
+      "label": "program name (ASCII)",
+      "offsets": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87
+      ],
+      "start": 8,
+      "end": 87,
+      "size": 80,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "encoding": "ascii_space_padded",
+      "kind": "string"
+    },
+    {
+      "id": "bank_index",
+      "label": "bank index",
+      "offsets": [
+        88,
+        89
+      ],
+      "start": 88,
+      "end": 89,
+      "size": 2,
+      "status": "known",
+      "role": "Bank index (`nibble_hilo`) from sysex/_presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/_edit/)",
+      "encoding": "nibble_hilo",
+      "kind": "meta",
+      "value_map": {
+        "enum_id": "bank_index_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "halls",
+            "label": "Halls"
+          },
+          {
+            "encoded": 1,
+            "name": "plates",
+            "label": "Plates"
+          },
+          {
+            "encoded": 2,
+            "name": "rooms",
+            "label": "Rooms"
+          },
+          {
+            "encoded": 3,
+            "name": "chambers",
+            "label": "Chambers"
+          },
+          {
+            "encoded": 4,
+            "name": "ambience",
+            "label": "Ambience"
+          },
+          {
+            "encoded": 5,
+            "name": "spaces",
+            "label": "Spaces"
+          },
+          {
+            "encoded": 6,
+            "name": "halls_2",
+            "label": "Halls 2"
+          },
+          {
+            "encoded": 7,
+            "name": "plates_2",
+            "label": "Plates 2"
+          },
+          {
+            "encoded": 8,
+            "name": "rooms_2",
+            "label": "Rooms 2"
+          },
+          {
+            "encoded": 9,
+            "name": "spaces_2",
+            "label": "Spaces 2"
+          },
+          {
+            "encoded": 10,
+            "name": "nonlin",
+            "label": "NonLin"
+          },
+          {
+            "encoded": 11,
+            "name": "edit",
+            "label": "Edit"
+          },
+          {
+            "encoded": 118,
+            "name": "edit_receive",
+            "label": "Edit (receive)"
+          },
+          {
+            "encoded": 119,
+            "name": "favorites",
+            "label": "Favorites"
+          },
+          {
+            "encoded": 120,
+            "name": "registers",
+            "label": "Registers"
+          }
+        ]
+      }
+    },
+    {
+      "id": "program_slot",
+      "label": "program slot",
+      "offsets": [
+        90,
+        91
+      ],
+      "start": 90,
+      "end": 91,
+      "size": 2,
+      "status": "known",
+      "role": "Program slot within bank (`nibble_hilo`) from sysex/_presets/ (not a global program number)",
+      "encoding": "nibble_hilo",
+      "kind": "meta"
+    },
+    {
+      "id": "secondary_edit_ui",
+      "label": "secondary (edit/UI)",
+      "offsets": [
+        92
+      ],
+      "start": 92,
+      "end": 92,
+      "size": 1,
+      "status": "secondary",
+      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders) (moved in independent series: early rolloff)",
+      "encoding": null,
+      "kind": "secondary"
+    },
+    {
+      "id": "fixed_field_always_8",
+      "label": "fixed field (always 8)",
+      "offsets": [
+        93,
+        94
+      ],
+      "start": 93,
+      "end": 94,
+      "size": 2,
+      "status": "known",
+      "role": "Fixed field (always `00 08` / encoded 8 in this corpus) \u2014 likely structure/version; not a sound parameter",
+      "encoding": "nibble_hilo",
+      "kind": "meta"
+    },
+    {
+      "id": "reserved_always_0",
+      "label": "reserved (always 0)",
+      "offsets": [
+        95,
+        96
+      ],
+      "start": 95,
+      "end": 96,
+      "size": 2,
+      "status": "known",
+      "role": "Reserved (always `00 00` in this corpus)",
+      "encoding": null,
+      "kind": "meta"
+    },
+    {
+      "id": "algorithm_family_flag",
+      "label": "algorithm/family flag",
+      "offsets": [
+        97
+      ],
+      "start": 97,
+      "end": 97,
+      "size": 1,
+      "status": "known",
+      "role": "Algorithm/family flag from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). Mirrored at 145 as 0 when 97=3 and 1 when 97=4 \u2014 not a clean V1/V2 bit",
+      "encoding": "raw_u8",
+      "kind": "meta"
+    },
+    {
+      "id": "edit_generation_counter",
+      "label": "edit/generation counter",
+      "offsets": [
+        98,
+        99
+      ],
+      "start": 98,
+      "end": 99,
+      "size": 2,
+      "status": "secondary",
+      "role": "Edit/generation counter (`nibble_hilo`) \u2014 constant within each parameter series, advances across capture sessions; not a sound parameter (same neighborhood as 146-147) (moved in independent series: _corpus)",
+      "encoding": "nibble_hilo",
+      "kind": "secondary"
+    },
+    {
+      "id": "reverb_time",
+      "label": "reverb time",
+      "offsets": [
+        100,
+        101
+      ],
+      "start": 100,
+      "end": 101,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `reverb time` (from independent series sysex/reverb time/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "encoding": "nibble_hilo",
+      "parameter": "reverb time",
+      "unit": "s",
+      "description": "Mid-frequency reverb time. Sets the reverb time of the mid frequencies when the signal stops.",
+      "kind": "table",
+      "encoding_notes": "table/index candidate (monotonic 100%); extreme<->adjacent slopes disagree (low dlabel/denc=0.05, high=1); least-squares hint only (not used for endpoint unit conversion): label ~= 0.184881*encoded + -2.60411 (r^2=0.8241)",
+      "confidence": "medium",
+      "value_map": {
+        "enum_id": "reverb_time_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_0_2",
+            "label": "0.2"
+          },
+          {
+            "encoded": 1,
+            "name": "v_0_25",
+            "label": "0.25"
+          },
+          {
+            "encoded": 2,
+            "name": "v_0_3",
+            "label": "0.3"
+          },
+          {
+            "encoded": 3,
+            "name": "v_0_35",
+            "label": "0.35"
+          },
+          {
+            "encoded": 4,
+            "name": "v_0_4",
+            "label": "0.4"
+          },
+          {
+            "encoded": 5,
+            "name": "v_0_45",
+            "label": "0.45"
+          },
+          {
+            "encoded": 6,
+            "name": "v_0_5",
+            "label": "0.5"
+          },
+          {
+            "encoded": 7,
+            "name": "v_0_55",
+            "label": "0.55"
+          },
+          {
+            "encoded": 8,
+            "name": "v_0_6",
+            "label": "0.6"
+          },
+          {
+            "encoded": 9,
+            "name": "v_0_65",
+            "label": "0.65"
+          },
+          {
+            "encoded": 10,
+            "name": "v_0_7",
+            "label": "0.7"
+          },
+          {
+            "encoded": 11,
+            "name": "v_0_75",
+            "label": "0.75"
+          },
+          {
+            "encoded": 12,
+            "name": "v_0_8",
+            "label": "0.8"
+          },
+          {
+            "encoded": 13,
+            "name": "v_0_85",
+            "label": "0.85"
+          },
+          {
+            "encoded": 14,
+            "name": "v_0_9",
+            "label": "0.9"
+          },
+          {
+            "encoded": 15,
+            "name": "v_0_95",
+            "label": "0.95"
+          },
+          {
+            "encoded": 16,
+            "name": "v_1",
+            "label": "1"
+          },
+          {
+            "encoded": 17,
+            "name": "v_1_05",
+            "label": "1.05"
+          },
+          {
+            "encoded": 18,
+            "name": "v_1_1",
+            "label": "1.1"
+          },
+          {
+            "encoded": 19,
+            "name": "v_1_15",
+            "label": "1.15"
+          },
+          {
+            "encoded": 20,
+            "name": "v_1_2",
+            "label": "1.2"
+          },
+          {
+            "encoded": 21,
+            "name": "v_1_25",
+            "label": "1.25"
+          },
+          {
+            "encoded": 22,
+            "name": "v_1_3",
+            "label": "1.3"
+          },
+          {
+            "encoded": 23,
+            "name": "v_1_35",
+            "label": "1.35"
+          },
+          {
+            "encoded": 24,
+            "name": "v_1_4",
+            "label": "1.4"
+          },
+          {
+            "encoded": 25,
+            "name": "v_1_45",
+            "label": "1.45"
+          },
+          {
+            "encoded": 26,
+            "name": "v_1_5",
+            "label": "1.5"
+          },
+          {
+            "encoded": 27,
+            "name": "v_1_55",
+            "label": "1.55"
+          },
+          {
+            "encoded": 28,
+            "name": "v_1_6",
+            "label": "1.6"
+          },
+          {
+            "encoded": 29,
+            "name": "v_1_65",
+            "label": "1.65"
+          },
+          {
+            "encoded": 30,
+            "name": "v_1_7",
+            "label": "1.7"
+          },
+          {
+            "encoded": 31,
+            "name": "v_1_75",
+            "label": "1.75"
+          },
+          {
+            "encoded": 32,
+            "name": "v_1_8",
+            "label": "1.8"
+          },
+          {
+            "encoded": 33,
+            "name": "v_1_85",
+            "label": "1.85"
+          },
+          {
+            "encoded": 34,
+            "name": "v_1_9",
+            "label": "1.9"
+          },
+          {
+            "encoded": 35,
+            "name": "v_1_95",
+            "label": "1.95"
+          },
+          {
+            "encoded": 36,
+            "name": "v_2",
+            "label": "2"
+          },
+          {
+            "encoded": 37,
+            "name": "v_2_05",
+            "label": "2.05"
+          },
+          {
+            "encoded": 38,
+            "name": "v_2_1",
+            "label": "2.1"
+          },
+          {
+            "encoded": 39,
+            "name": "v_2_15",
+            "label": "2.15"
+          },
+          {
+            "encoded": 40,
+            "name": "v_2_2",
+            "label": "2.2"
+          },
+          {
+            "encoded": 41,
+            "name": "v_2_25",
+            "label": "2.25"
+          },
+          {
+            "encoded": 42,
+            "name": "v_2_3",
+            "label": "2.3"
+          },
+          {
+            "encoded": 43,
+            "name": "v_2_35",
+            "label": "2.35"
+          },
+          {
+            "encoded": 44,
+            "name": "v_2_4",
+            "label": "2.4"
+          },
+          {
+            "encoded": 45,
+            "name": "v_2_45",
+            "label": "2.45"
+          },
+          {
+            "encoded": 46,
+            "name": "v_2_5",
+            "label": "2.5"
+          },
+          {
+            "encoded": 47,
+            "name": "v_2_55",
+            "label": "2.55"
+          },
+          {
+            "encoded": 48,
+            "name": "v_2_6",
+            "label": "2.6"
+          },
+          {
+            "encoded": 49,
+            "name": "v_2_65",
+            "label": "2.65"
+          },
+          {
+            "encoded": 50,
+            "name": "v_2_7",
+            "label": "2.7"
+          },
+          {
+            "encoded": 51,
+            "name": "v_2_75",
+            "label": "2.75"
+          },
+          {
+            "encoded": 52,
+            "name": "v_2_8",
+            "label": "2.8"
+          },
+          {
+            "encoded": 53,
+            "name": "v_2_85",
+            "label": "2.85"
+          },
+          {
+            "encoded": 54,
+            "name": "v_2_9",
+            "label": "2.9"
+          },
+          {
+            "encoded": 55,
+            "name": "v_2_95",
+            "label": "2.95"
+          },
+          {
+            "encoded": 56,
+            "name": "v_3",
+            "label": "3"
+          },
+          {
+            "encoded": 57,
+            "name": "v_3_1",
+            "label": "3.1"
+          },
+          {
+            "encoded": 58,
+            "name": "v_3_2",
+            "label": "3.2"
+          },
+          {
+            "encoded": 59,
+            "name": "v_3_3",
+            "label": "3.3"
+          },
+          {
+            "encoded": 60,
+            "name": "v_3_4",
+            "label": "3.4"
+          },
+          {
+            "encoded": 61,
+            "name": "v_3_5",
+            "label": "3.5"
+          },
+          {
+            "encoded": 62,
+            "name": "v_3_6",
+            "label": "3.6"
+          },
+          {
+            "encoded": 63,
+            "name": "v_3_7",
+            "label": "3.7"
+          },
+          {
+            "encoded": 64,
+            "name": "v_3_8",
+            "label": "3.8"
+          },
+          {
+            "encoded": 65,
+            "name": "v_3_9",
+            "label": "3.9"
+          },
+          {
+            "encoded": 66,
+            "name": "v_4_0",
+            "label": "4.0"
+          },
+          {
+            "encoded": 67,
+            "name": "v_4_1",
+            "label": "4.1"
+          },
+          {
+            "encoded": 68,
+            "name": "v_4_2",
+            "label": "4.2"
+          },
+          {
+            "encoded": 69,
+            "name": "v_4_3",
+            "label": "4.3"
+          },
+          {
+            "encoded": 70,
+            "name": "v_4_4",
+            "label": "4.4"
+          },
+          {
+            "encoded": 71,
+            "name": "v_4_5",
+            "label": "4.5"
+          },
+          {
+            "encoded": 72,
+            "name": "v_4_6",
+            "label": "4.6"
+          },
+          {
+            "encoded": 73,
+            "name": "v_4_7",
+            "label": "4.7"
+          },
+          {
+            "encoded": 74,
+            "name": "v_4_8",
+            "label": "4.8"
+          },
+          {
+            "encoded": 75,
+            "name": "v_4_9",
+            "label": "4.9"
+          },
+          {
+            "encoded": 76,
+            "name": "v_5",
+            "label": "5"
+          },
+          {
+            "encoded": 77,
+            "name": "v_5_1",
+            "label": "5.1"
+          },
+          {
+            "encoded": 78,
+            "name": "v_5_2",
+            "label": "5.2"
+          },
+          {
+            "encoded": 79,
+            "name": "v_5_3",
+            "label": "5.3"
+          },
+          {
+            "encoded": 80,
+            "name": "v_5_4",
+            "label": "5.4"
+          },
+          {
+            "encoded": 81,
+            "name": "v_5_5",
+            "label": "5.5"
+          },
+          {
+            "encoded": 82,
+            "name": "v_5_6",
+            "label": "5.6"
+          },
+          {
+            "encoded": 83,
+            "name": "v_5_7",
+            "label": "5.7"
+          },
+          {
+            "encoded": 84,
+            "name": "v_5_8",
+            "label": "5.8"
+          },
+          {
+            "encoded": 85,
+            "name": "v_5_9",
+            "label": "5.9"
+          },
+          {
+            "encoded": 86,
+            "name": "v_6",
+            "label": "6"
+          },
+          {
+            "encoded": 87,
+            "name": "v_6_2",
+            "label": "6.2"
+          },
+          {
+            "encoded": 88,
+            "name": "v_6_4",
+            "label": "6.4"
+          },
+          {
+            "encoded": 89,
+            "name": "v_6_6",
+            "label": "6.6"
+          },
+          {
+            "encoded": 90,
+            "name": "v_6_8",
+            "label": "6.8"
+          },
+          {
+            "encoded": 91,
+            "name": "v_7",
+            "label": "7"
+          },
+          {
+            "encoded": 92,
+            "name": "v_7_2",
+            "label": "7.2"
+          },
+          {
+            "encoded": 93,
+            "name": "v_7_4",
+            "label": "7.4"
+          },
+          {
+            "encoded": 94,
+            "name": "v_7_6",
+            "label": "7.6"
+          },
+          {
+            "encoded": 95,
+            "name": "v_7_8",
+            "label": "7.8"
+          },
+          {
+            "encoded": 96,
+            "name": "v_8",
+            "label": "8"
+          },
+          {
+            "encoded": 97,
+            "name": "v_8_2",
+            "label": "8.2"
+          },
+          {
+            "encoded": 98,
+            "name": "v_8_4",
+            "label": "8.4"
+          },
+          {
+            "encoded": 99,
+            "name": "v_8_6",
+            "label": "8.6"
+          },
+          {
+            "encoded": 100,
+            "name": "v_8_8",
+            "label": "8.8"
+          },
+          {
+            "encoded": 101,
+            "name": "v_9",
+            "label": "9"
+          },
+          {
+            "encoded": 102,
+            "name": "v_9_2",
+            "label": "9.2"
+          },
+          {
+            "encoded": 103,
+            "name": "v_9_4",
+            "label": "9.4"
+          },
+          {
+            "encoded": 104,
+            "name": "v_9_6",
+            "label": "9.6"
+          },
+          {
+            "encoded": 105,
+            "name": "v_9_8",
+            "label": "9.8"
+          },
+          {
+            "encoded": 106,
+            "name": "v_10",
+            "label": "10"
+          },
+          {
+            "encoded": 107,
+            "name": "v_10_5",
+            "label": "10.5"
+          },
+          {
+            "encoded": 108,
+            "name": "v_11",
+            "label": "11"
+          },
+          {
+            "encoded": 109,
+            "name": "v_11_5",
+            "label": "11.5"
+          },
+          {
+            "encoded": 110,
+            "name": "v_12",
+            "label": "12"
+          },
+          {
+            "encoded": 111,
+            "name": "v_12_5",
+            "label": "12.5"
+          },
+          {
+            "encoded": 112,
+            "name": "v_13",
+            "label": "13"
+          },
+          {
+            "encoded": 113,
+            "name": "v_13_5",
+            "label": "13.5"
+          },
+          {
+            "encoded": 114,
+            "name": "v_14",
+            "label": "14"
+          },
+          {
+            "encoded": 115,
+            "name": "v_14_5",
+            "label": "14.5"
+          },
+          {
+            "encoded": 116,
+            "name": "v_15",
+            "label": "15"
+          },
+          {
+            "encoded": 117,
+            "name": "v_15_5",
+            "label": "15.5"
+          },
+          {
+            "encoded": 118,
+            "name": "v_16",
+            "label": "16"
+          },
+          {
+            "encoded": 119,
+            "name": "v_16_5",
+            "label": "16.5"
+          },
+          {
+            "encoded": 120,
+            "name": "v_17",
+            "label": "17"
+          },
+          {
+            "encoded": 121,
+            "name": "v_17_5",
+            "label": "17.5"
+          },
+          {
+            "encoded": 122,
+            "name": "v_18",
+            "label": "18"
+          },
+          {
+            "encoded": 123,
+            "name": "v_18_5",
+            "label": "18.5"
+          },
+          {
+            "encoded": 124,
+            "name": "v_19",
+            "label": "19"
+          },
+          {
+            "encoded": 125,
+            "name": "v_19_5",
+            "label": "19.5"
+          },
+          {
+            "encoded": 126,
+            "name": "v_20",
+            "label": "20"
+          },
+          {
+            "encoded": 127,
+            "name": "v_21",
+            "label": "21"
+          },
+          {
+            "encoded": 128,
+            "name": "v_22",
+            "label": "22"
+          },
+          {
+            "encoded": 129,
+            "name": "v_23",
+            "label": "23"
+          },
+          {
+            "encoded": 130,
+            "name": "v_24",
+            "label": "24"
+          },
+          {
+            "encoded": 131,
+            "name": "v_25",
+            "label": "25"
+          },
+          {
+            "encoded": 132,
+            "name": "v_26",
+            "label": "26"
+          },
+          {
+            "encoded": 133,
+            "name": "v_27",
+            "label": "27"
+          },
+          {
+            "encoded": 134,
+            "name": "v_28",
+            "label": "28"
+          },
+          {
+            "encoded": 135,
+            "name": "v_29",
+            "label": "29"
+          },
+          {
+            "encoded": 136,
+            "name": "v_30",
+            "label": "30"
+          }
+        ]
+      }
+    },
+    {
+      "id": "size",
+      "label": "size",
+      "offsets": [
+        102,
+        103
+      ],
+      "start": 102,
+      "end": 103,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `size` (from independent series sysex/size/) (nibble_hilo, label = encoded * 1)",
+      "encoding": "nibble_hilo",
+      "parameter": "size",
+      "description": "Adjusts the apparent size of the late reverberant field.",
+      "kind": "affine",
+      "scale": 1.0,
+      "offset": 0.0,
+      "encoding_notes": "label = encoded * 1; from agreeing extreme<->adjacent edge slopes",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "size_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "small",
+            "label": "Small"
+          },
+          {
+            "encoded": 1,
+            "name": "v_1",
+            "label": "1"
+          },
+          {
+            "encoded": 2,
+            "name": "v_2",
+            "label": "2"
+          },
+          {
+            "encoded": 3,
+            "name": "v_3",
+            "label": "3"
+          },
+          {
+            "encoded": 4,
+            "name": "v_4",
+            "label": "4"
+          },
+          {
+            "encoded": 5,
+            "name": "v_5",
+            "label": "5"
+          },
+          {
+            "encoded": 6,
+            "name": "v_6",
+            "label": "6"
+          },
+          {
+            "encoded": 7,
+            "name": "v_7",
+            "label": "7"
+          },
+          {
+            "encoded": 8,
+            "name": "v_8",
+            "label": "8"
+          },
+          {
+            "encoded": 9,
+            "name": "v_9",
+            "label": "9"
+          },
+          {
+            "encoded": 10,
+            "name": "v_10",
+            "label": "10"
+          },
+          {
+            "encoded": 11,
+            "name": "v_11",
+            "label": "11"
+          },
+          {
+            "encoded": 12,
+            "name": "v_12",
+            "label": "12"
+          },
+          {
+            "encoded": 13,
+            "name": "v_13",
+            "label": "13"
+          },
+          {
+            "encoded": 14,
+            "name": "v_14",
+            "label": "14"
+          },
+          {
+            "encoded": 15,
+            "name": "v_15",
+            "label": "15"
+          },
+          {
+            "encoded": 16,
+            "name": "v_16",
+            "label": "16"
+          },
+          {
+            "encoded": 17,
+            "name": "v_17",
+            "label": "17"
+          },
+          {
+            "encoded": 18,
+            "name": "v_18",
+            "label": "18"
+          },
+          {
+            "encoded": 19,
+            "name": "v_19",
+            "label": "19"
+          },
+          {
+            "encoded": 20,
+            "name": "v_20",
+            "label": "20"
+          },
+          {
+            "encoded": 21,
+            "name": "v_21",
+            "label": "21"
+          },
+          {
+            "encoded": 22,
+            "name": "v_22",
+            "label": "22"
+          },
+          {
+            "encoded": 23,
+            "name": "v_23",
+            "label": "23"
+          },
+          {
+            "encoded": 24,
+            "name": "v_24",
+            "label": "24"
+          },
+          {
+            "encoded": 25,
+            "name": "v_25",
+            "label": "25"
+          },
+          {
+            "encoded": 26,
+            "name": "v_26",
+            "label": "26"
+          },
+          {
+            "encoded": 27,
+            "name": "v_27",
+            "label": "27"
+          },
+          {
+            "encoded": 28,
+            "name": "v_28",
+            "label": "28"
+          },
+          {
+            "encoded": 29,
+            "name": "v_29",
+            "label": "29"
+          },
+          {
+            "encoded": 30,
+            "name": "large",
+            "label": "Large"
+          }
+        ]
+      }
+    },
+    {
+      "id": "predelay",
+      "label": "predelay",
+      "offsets": [
+        104,
+        105
+      ],
+      "start": 104,
+      "end": 105,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `predelay` (from independent series sysex/predelay/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "encoding": "nibble_hilo",
+      "parameter": "predelay",
+      "unit": "ms",
+      "description": "Sets the amount of time which elapses between the input signal and the onset of reverberation.",
+      "kind": "table",
+      "encoding_notes": "table/index candidate (monotonic 100%); extreme<->adjacent slopes disagree (low dlabel/denc=2, high=8); least-squares hint only (not used for endpoint unit conversion): label ~= 5.55892*encoded + -23.4291 (r^2=0.9458)",
+      "confidence": "medium",
+      "value_map": {
+        "enum_id": "predelay_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_0_ms",
+            "label": "0 ms"
+          },
+          {
+            "encoded": 1,
+            "name": "v_2_ms",
+            "label": "2 ms"
+          },
+          {
+            "encoded": 2,
+            "name": "v_4_ms",
+            "label": "4 ms"
+          },
+          {
+            "encoded": 3,
+            "name": "v_6_ms",
+            "label": "6 ms"
+          },
+          {
+            "encoded": 4,
+            "name": "v_8_ms",
+            "label": "8 ms"
+          },
+          {
+            "encoded": 5,
+            "name": "v_10_ms",
+            "label": "10 ms"
+          },
+          {
+            "encoded": 6,
+            "name": "v_12_ms",
+            "label": "12 ms"
+          },
+          {
+            "encoded": 7,
+            "name": "v_14_ms",
+            "label": "14 ms"
+          },
+          {
+            "encoded": 8,
+            "name": "v_16_ms",
+            "label": "16 ms"
+          },
+          {
+            "encoded": 9,
+            "name": "v_18_ms",
+            "label": "18 ms"
+          },
+          {
+            "encoded": 10,
+            "name": "v_20_ms",
+            "label": "20 ms"
+          },
+          {
+            "encoded": 11,
+            "name": "v_22_ms",
+            "label": "22 ms"
+          },
+          {
+            "encoded": 12,
+            "name": "v_24_ms",
+            "label": "24 ms"
+          },
+          {
+            "encoded": 13,
+            "name": "v_26_ms",
+            "label": "26 ms"
+          },
+          {
+            "encoded": 14,
+            "name": "v_28_ms",
+            "label": "28 ms"
+          },
+          {
+            "encoded": 15,
+            "name": "v_30_ms",
+            "label": "30 ms"
+          },
+          {
+            "encoded": 16,
+            "name": "v_32_ms",
+            "label": "32 ms"
+          },
+          {
+            "encoded": 17,
+            "name": "v_34_ms",
+            "label": "34 ms"
+          },
+          {
+            "encoded": 18,
+            "name": "v_36_ms",
+            "label": "36 ms"
+          },
+          {
+            "encoded": 19,
+            "name": "v_38_ms",
+            "label": "38 ms"
+          },
+          {
+            "encoded": 20,
+            "name": "v_40_ms",
+            "label": "40 ms"
+          },
+          {
+            "encoded": 21,
+            "name": "v_44_ms",
+            "label": "44 ms"
+          },
+          {
+            "encoded": 22,
+            "name": "v_48_ms",
+            "label": "48 ms"
+          },
+          {
+            "encoded": 23,
+            "name": "v_52_ms",
+            "label": "52 ms"
+          },
+          {
+            "encoded": 24,
+            "name": "v_56_ms",
+            "label": "56 ms"
+          },
+          {
+            "encoded": 25,
+            "name": "v_60_ms",
+            "label": "60 ms"
+          },
+          {
+            "encoded": 26,
+            "name": "v_64_ms",
+            "label": "64 ms"
+          },
+          {
+            "encoded": 27,
+            "name": "v_68_ms",
+            "label": "68 ms"
+          },
+          {
+            "encoded": 28,
+            "name": "v_72_ms",
+            "label": "72 ms"
+          },
+          {
+            "encoded": 29,
+            "name": "v_76_ms",
+            "label": "76 ms"
+          },
+          {
+            "encoded": 30,
+            "name": "v_80_ms",
+            "label": "80 ms"
+          },
+          {
+            "encoded": 31,
+            "name": "v_84_ms",
+            "label": "84 ms"
+          },
+          {
+            "encoded": 32,
+            "name": "v_88_ms",
+            "label": "88 ms"
+          },
+          {
+            "encoded": 33,
+            "name": "v_92_ms",
+            "label": "92 ms"
+          },
+          {
+            "encoded": 34,
+            "name": "v_96_ms",
+            "label": "96 ms"
+          },
+          {
+            "encoded": 35,
+            "name": "v_100_ms",
+            "label": "100 ms"
+          },
+          {
+            "encoded": 36,
+            "name": "v_108_ms",
+            "label": "108 ms"
+          },
+          {
+            "encoded": 37,
+            "name": "v_116_ms",
+            "label": "116 ms"
+          },
+          {
+            "encoded": 38,
+            "name": "v_124_ms",
+            "label": "124 ms"
+          },
+          {
+            "encoded": 39,
+            "name": "v_132_ms",
+            "label": "132 ms"
+          },
+          {
+            "encoded": 40,
+            "name": "v_140_ms",
+            "label": "140 ms"
+          },
+          {
+            "encoded": 41,
+            "name": "v_148_ms",
+            "label": "148 ms"
+          },
+          {
+            "encoded": 42,
+            "name": "v_156_ms",
+            "label": "156 ms"
+          },
+          {
+            "encoded": 43,
+            "name": "v_164_ms",
+            "label": "164 ms"
+          },
+          {
+            "encoded": 44,
+            "name": "v_172_ms",
+            "label": "172 ms"
+          },
+          {
+            "encoded": 45,
+            "name": "v_180_ms",
+            "label": "180 ms"
+          },
+          {
+            "encoded": 46,
+            "name": "v_188_ms",
+            "label": "188 ms"
+          },
+          {
+            "encoded": 47,
+            "name": "v_196_ms",
+            "label": "196 ms"
+          },
+          {
+            "encoded": 48,
+            "name": "v_204_ms",
+            "label": "204 ms"
+          },
+          {
+            "encoded": 49,
+            "name": "v_212_ms",
+            "label": "212 ms"
+          },
+          {
+            "encoded": 50,
+            "name": "v_220_ms",
+            "label": "220 ms"
+          },
+          {
+            "encoded": 51,
+            "name": "v_228_ms",
+            "label": "228 ms"
+          },
+          {
+            "encoded": 52,
+            "name": "v_236_ms",
+            "label": "236 ms"
+          },
+          {
+            "encoded": 53,
+            "name": "v_244_ms",
+            "label": "244 ms"
+          },
+          {
+            "encoded": 54,
+            "name": "v_252_ms",
+            "label": "252 ms"
+          },
+          {
+            "encoded": 55,
+            "name": "v_260_ms",
+            "label": "260 ms"
+          },
+          {
+            "encoded": 56,
+            "name": "v_268_ms",
+            "label": "268 ms"
+          },
+          {
+            "encoded": 57,
+            "name": "v_276_ms",
+            "label": "276 ms"
+          },
+          {
+            "encoded": 58,
+            "name": "v_284_ms",
+            "label": "284 ms"
+          },
+          {
+            "encoded": 59,
+            "name": "v_292_ms",
+            "label": "292 ms"
+          },
+          {
+            "encoded": 60,
+            "name": "v_300_ms",
+            "label": "300 ms"
+          },
+          {
+            "encoded": 61,
+            "name": "v_308_ms",
+            "label": "308 ms"
+          },
+          {
+            "encoded": 62,
+            "name": "v_316_ms",
+            "label": "316 ms"
+          },
+          {
+            "encoded": 63,
+            "name": "v_324_ms",
+            "label": "324 ms"
+          },
+          {
+            "encoded": 64,
+            "name": "v_332_ms",
+            "label": "332 ms"
+          },
+          {
+            "encoded": 65,
+            "name": "v_340_ms",
+            "label": "340 ms"
+          },
+          {
+            "encoded": 66,
+            "name": "v_348_ms",
+            "label": "348 ms"
+          },
+          {
+            "encoded": 67,
+            "name": "v_356_ms",
+            "label": "356 ms"
+          },
+          {
+            "encoded": 68,
+            "name": "v_364_ms",
+            "label": "364 ms"
+          },
+          {
+            "encoded": 69,
+            "name": "v_372_ms",
+            "label": "372 ms"
+          },
+          {
+            "encoded": 70,
+            "name": "v_380_ms",
+            "label": "380 ms"
+          },
+          {
+            "encoded": 71,
+            "name": "v_388_ms",
+            "label": "388 ms"
+          },
+          {
+            "encoded": 72,
+            "name": "v_396_ms",
+            "label": "396 ms"
+          },
+          {
+            "encoded": 73,
+            "name": "v_404_ms",
+            "label": "404 ms"
+          },
+          {
+            "encoded": 74,
+            "name": "v_412_ms",
+            "label": "412 ms"
+          },
+          {
+            "encoded": 75,
+            "name": "v_420_ms",
+            "label": "420 ms"
+          },
+          {
+            "encoded": 76,
+            "name": "v_428_ms",
+            "label": "428 ms"
+          },
+          {
+            "encoded": 77,
+            "name": "v_436_ms",
+            "label": "436 ms"
+          },
+          {
+            "encoded": 78,
+            "name": "v_444_ms",
+            "label": "444 ms"
+          },
+          {
+            "encoded": 79,
+            "name": "v_452_ms",
+            "label": "452 ms"
+          },
+          {
+            "encoded": 80,
+            "name": "v_460_ms",
+            "label": "460 ms"
+          },
+          {
+            "encoded": 81,
+            "name": "v_468_ms",
+            "label": "468 ms"
+          },
+          {
+            "encoded": 82,
+            "name": "v_476_ms",
+            "label": "476 ms"
+          },
+          {
+            "encoded": 83,
+            "name": "v_484_ms",
+            "label": "484 ms"
+          },
+          {
+            "encoded": 84,
+            "name": "v_492_ms",
+            "label": "492 ms"
+          },
+          {
+            "encoded": 85,
+            "name": "v_500_ms",
+            "label": "500 ms"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reserved_padding",
+      "label": "reserved padding",
+      "offsets": [
+        106
+      ],
+      "start": 106,
+      "end": 106,
+      "size": 1,
+      "status": "known",
+      "role": "Reserved padding (always 0) between predelay and diffusion",
+      "encoding": null,
+      "kind": "meta"
+    },
+    {
+      "id": "diffusion",
+      "label": "diffusion",
+      "offsets": [
+        107
+      ],
+      "start": 107,
+      "end": 107,
+      "size": 1,
+      "status": "known",
+      "role": "Parameter `diffusion` (from independent series sysex/diffusion/) (raw_u8, label = encoded * 1)",
+      "encoding": "raw_u8",
+      "parameter": "diffusion",
+      "description": "Sets initial diffusion of the reverb. Displayed and controlled as a percentage change from the initial value defined by the preset.",
+      "kind": "affine",
+      "scale": 1.0,
+      "offset": 0.0,
+      "encoding_notes": "label = encoded * 1; from agreeing extreme<->adjacent edge slopes",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "diffusion_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "low",
+            "label": "Low"
+          },
+          {
+            "encoded": 1,
+            "name": "v_1",
+            "label": "1"
+          },
+          {
+            "encoded": 2,
+            "name": "v_2",
+            "label": "2"
+          },
+          {
+            "encoded": 3,
+            "name": "v_3",
+            "label": "3"
+          },
+          {
+            "encoded": 4,
+            "name": "v_4",
+            "label": "4"
+          },
+          {
+            "encoded": 5,
+            "name": "v_5",
+            "label": "5"
+          },
+          {
+            "encoded": 6,
+            "name": "v_6",
+            "label": "6"
+          },
+          {
+            "encoded": 7,
+            "name": "v_7",
+            "label": "7"
+          },
+          {
+            "encoded": 8,
+            "name": "v_8",
+            "label": "8"
+          },
+          {
+            "encoded": 9,
+            "name": "v_9",
+            "label": "9"
+          },
+          {
+            "encoded": 10,
+            "name": "high",
+            "label": "High"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reserved_padding_108",
+      "label": "reserved padding",
+      "offsets": [
+        108
+      ],
+      "start": 108,
+      "end": 108,
+      "size": 1,
+      "status": "known",
+      "role": "Reserved padding (always 0) between diffusion and density",
+      "encoding": null,
+      "kind": "meta"
+    },
+    {
+      "id": "density",
+      "label": "density",
+      "offsets": [
+        109
+      ],
+      "start": 109,
+      "end": 109,
+      "size": 1,
+      "status": "known",
+      "role": "Parameter `density` (from independent series sysex/density/) (raw_u8, label = encoded * 1)",
+      "encoding": "raw_u8",
+      "parameter": "density",
+      "description": "Sets how the echo density builds up over time.",
+      "kind": "affine",
+      "scale": 1.0,
+      "offset": 0.0,
+      "encoding_notes": "label = encoded * 1; from agreeing extreme<->adjacent edge slopes",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "density_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "low",
+            "label": "Low"
+          },
+          {
+            "encoded": 1,
+            "name": "v_1",
+            "label": "1"
+          },
+          {
+            "encoded": 2,
+            "name": "v_2",
+            "label": "2"
+          },
+          {
+            "encoded": 3,
+            "name": "v_3",
+            "label": "3"
+          },
+          {
+            "encoded": 4,
+            "name": "v_4",
+            "label": "4"
+          },
+          {
+            "encoded": 5,
+            "name": "v_5",
+            "label": "5"
+          },
+          {
+            "encoded": 6,
+            "name": "v_6",
+            "label": "6"
+          },
+          {
+            "encoded": 7,
+            "name": "v_7",
+            "label": "7"
+          },
+          {
+            "encoded": 8,
+            "name": "v_8",
+            "label": "8"
+          },
+          {
+            "encoded": 9,
+            "name": "v_9",
+            "label": "9"
+          },
+          {
+            "encoded": 10,
+            "name": "high",
+            "label": "High"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reserved_padding_110",
+      "label": "reserved padding",
+      "offsets": [
+        110
+      ],
+      "start": 110,
+      "end": 110,
+      "size": 1,
+      "status": "known",
+      "role": "Reserved padding (always 0) between density and modulation",
+      "encoding": null,
+      "kind": "meta"
+    },
+    {
+      "id": "modulation",
+      "label": "modulation",
+      "offsets": [
+        111
+      ],
+      "start": 111,
+      "end": 111,
+      "size": 1,
+      "status": "known",
+      "role": "Parameter `modulation` (from independent series sysex/modulation/) (raw_u8, label = encoded + (-1))",
+      "encoding": "raw_u8",
+      "parameter": "modulation",
+      "description": "Controls the amount of modulation and pitch variation in the later part of the reverberant field.",
+      "kind": "affine",
+      "scale": 1.0,
+      "offset": -1.0,
+      "encoding_notes": "label = encoded + (-1); from agreeing extreme<->adjacent edge slopes",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "modulation_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "off",
+            "label": "off"
+          },
+          {
+            "encoded": 1,
+            "name": "v_0",
+            "label": "0"
+          },
+          {
+            "encoded": 2,
+            "name": "v_1",
+            "label": "1"
+          },
+          {
+            "encoded": 3,
+            "name": "v_2",
+            "label": "2"
+          },
+          {
+            "encoded": 4,
+            "name": "v_3",
+            "label": "3"
+          },
+          {
+            "encoded": 5,
+            "name": "v_4",
+            "label": "4"
+          },
+          {
+            "encoded": 6,
+            "name": "v_5",
+            "label": "5"
+          },
+          {
+            "encoded": 7,
+            "name": "v_6",
+            "label": "6"
+          },
+          {
+            "encoded": 8,
+            "name": "v_7",
+            "label": "7"
+          },
+          {
+            "encoded": 9,
+            "name": "v_8",
+            "label": "8"
+          },
+          {
+            "encoded": 10,
+            "name": "v_9",
+            "label": "9"
+          },
+          {
+            "encoded": 11,
+            "name": "v_10",
+            "label": "10"
+          }
+        ]
+      }
+    },
+    {
+      "id": "rolloff",
+      "label": "rolloff",
+      "offsets": [
+        112,
+        113
+      ],
+      "start": 112,
+      "end": 113,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `rolloff` (from independent series sysex/rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "encoding": "nibble_hilo",
+      "parameter": "rolloff",
+      "unit": "hz",
+      "description": "Low pass filter applied to the overall output of the reverb.",
+      "kind": "table",
+      "encoding_notes": "table/index candidate (monotonic 100%); extreme<->adjacent slopes disagree (low dlabel/denc=40, high=400); least-squares hint only (not used for endpoint unit conversion): label ~= 322.724*encoded + -1858.51 (r^2=0.9534)",
+      "confidence": "medium",
+      "value_map": {
+        "enum_id": "rolloff_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_80_hz",
+            "label": "80 Hz"
+          },
+          {
+            "encoded": 1,
+            "name": "v_120_hz",
+            "label": "120 Hz"
+          },
+          {
+            "encoded": 2,
+            "name": "v_160_hz",
+            "label": "160 Hz"
+          },
+          {
+            "encoded": 3,
+            "name": "v_200_hz",
+            "label": "200 Hz"
+          },
+          {
+            "encoded": 4,
+            "name": "v_240_hz",
+            "label": "240 Hz"
+          },
+          {
+            "encoded": 5,
+            "name": "v_280_hz",
+            "label": "280 Hz"
+          },
+          {
+            "encoded": 6,
+            "name": "v_320_hz",
+            "label": "320 Hz"
+          },
+          {
+            "encoded": 7,
+            "name": "v_360_hz",
+            "label": "360 Hz"
+          },
+          {
+            "encoded": 8,
+            "name": "v_400_hz",
+            "label": "400 Hz"
+          },
+          {
+            "encoded": 9,
+            "name": "v_480_hz",
+            "label": "480 Hz"
+          },
+          {
+            "encoded": 10,
+            "name": "v_560_hz",
+            "label": "560 Hz"
+          },
+          {
+            "encoded": 11,
+            "name": "v_640_hz",
+            "label": "640 Hz"
+          },
+          {
+            "encoded": 12,
+            "name": "v_720_hz",
+            "label": "720 Hz"
+          },
+          {
+            "encoded": 13,
+            "name": "v_800_hz",
+            "label": "800 Hz"
+          },
+          {
+            "encoded": 14,
+            "name": "v_1000_hz",
+            "label": "1000 Hz"
+          },
+          {
+            "encoded": 15,
+            "name": "v_1200_hz",
+            "label": "1200 Hz"
+          },
+          {
+            "encoded": 16,
+            "name": "v_1400_hz",
+            "label": "1400 Hz"
+          },
+          {
+            "encoded": 17,
+            "name": "v_1600_hz",
+            "label": "1600 Hz"
+          },
+          {
+            "encoded": 18,
+            "name": "v_1800_hz",
+            "label": "1800 Hz"
+          },
+          {
+            "encoded": 19,
+            "name": "v_2000_hz",
+            "label": "2000 Hz"
+          },
+          {
+            "encoded": 20,
+            "name": "v_2400_hz",
+            "label": "2400 Hz"
+          },
+          {
+            "encoded": 21,
+            "name": "v_2800_hz",
+            "label": "2800 Hz"
+          },
+          {
+            "encoded": 22,
+            "name": "v_3200_hz",
+            "label": "3200 Hz"
+          },
+          {
+            "encoded": 23,
+            "name": "v_3600_hz",
+            "label": "3600 Hz"
+          },
+          {
+            "encoded": 24,
+            "name": "v_4000_hz",
+            "label": "4000 Hz"
+          },
+          {
+            "encoded": 25,
+            "name": "v_4400_hz",
+            "label": "4400 Hz"
+          },
+          {
+            "encoded": 26,
+            "name": "v_4800_hz",
+            "label": "4800 Hz"
+          },
+          {
+            "encoded": 27,
+            "name": "v_5200_hz",
+            "label": "5200 Hz"
+          },
+          {
+            "encoded": 28,
+            "name": "v_5600_hz",
+            "label": "5600 Hz"
+          },
+          {
+            "encoded": 29,
+            "name": "v_6000_hz",
+            "label": "6000 Hz"
+          },
+          {
+            "encoded": 30,
+            "name": "v_6400_hz",
+            "label": "6400 Hz"
+          },
+          {
+            "encoded": 31,
+            "name": "v_6800_hz",
+            "label": "6800 Hz"
+          },
+          {
+            "encoded": 32,
+            "name": "v_7200_hz",
+            "label": "7200 Hz"
+          },
+          {
+            "encoded": 33,
+            "name": "v_7600_hz",
+            "label": "7600 Hz"
+          },
+          {
+            "encoded": 34,
+            "name": "v_8000_hz",
+            "label": "8000 Hz"
+          },
+          {
+            "encoded": 35,
+            "name": "v_8400_hz",
+            "label": "8400 Hz"
+          },
+          {
+            "encoded": 36,
+            "name": "v_8800_hz",
+            "label": "8800 Hz"
+          },
+          {
+            "encoded": 37,
+            "name": "v_9200_hz",
+            "label": "9200 Hz"
+          },
+          {
+            "encoded": 38,
+            "name": "v_9600_hz",
+            "label": "9600 Hz"
+          },
+          {
+            "encoded": 39,
+            "name": "v_10000_hz",
+            "label": "10000 Hz"
+          },
+          {
+            "encoded": 40,
+            "name": "v_10400_hz",
+            "label": "10400 Hz"
+          },
+          {
+            "encoded": 41,
+            "name": "v_10800_hz",
+            "label": "10800 Hz"
+          },
+          {
+            "encoded": 42,
+            "name": "v_11200_hz",
+            "label": "11200 Hz"
+          },
+          {
+            "encoded": 43,
+            "name": "v_11600_hz",
+            "label": "11600 Hz"
+          },
+          {
+            "encoded": 44,
+            "name": "v_12000_hz",
+            "label": "12000 Hz"
+          },
+          {
+            "encoded": 45,
+            "name": "v_12400_hz",
+            "label": "12400 Hz"
+          },
+          {
+            "encoded": 46,
+            "name": "v_12800_hz",
+            "label": "12800 Hz"
+          },
+          {
+            "encoded": 47,
+            "name": "v_13200_hz",
+            "label": "13200 Hz"
+          },
+          {
+            "encoded": 48,
+            "name": "v_13600_hz",
+            "label": "13600 Hz"
+          },
+          {
+            "encoded": 49,
+            "name": "v_14000_hz",
+            "label": "14000 Hz"
+          },
+          {
+            "encoded": 50,
+            "name": "v_14400_hz",
+            "label": "14400 Hz"
+          },
+          {
+            "encoded": 51,
+            "name": "v_14800_hz",
+            "label": "14800 Hz"
+          },
+          {
+            "encoded": 52,
+            "name": "v_15200_hz",
+            "label": "15200 Hz"
+          },
+          {
+            "encoded": 53,
+            "name": "v_15600_hz",
+            "label": "15600 Hz"
+          },
+          {
+            "encoded": 54,
+            "name": "v_16000_hz",
+            "label": "16000 Hz"
+          },
+          {
+            "encoded": 55,
+            "name": "v_16400_hz",
+            "label": "16400 Hz"
+          },
+          {
+            "encoded": 56,
+            "name": "v_16800_hz",
+            "label": "16800 Hz"
+          },
+          {
+            "encoded": 57,
+            "name": "v_17200_hz",
+            "label": "17200 Hz"
+          },
+          {
+            "encoded": 58,
+            "name": "v_17600_hz",
+            "label": "17600 Hz"
+          },
+          {
+            "encoded": 59,
+            "name": "v_18000_hz",
+            "label": "18000 Hz"
+          },
+          {
+            "encoded": 60,
+            "name": "v_18400_hz",
+            "label": "18400 Hz"
+          },
+          {
+            "encoded": 61,
+            "name": "v_18800_hz",
+            "label": "18800 Hz"
+          },
+          {
+            "encoded": 62,
+            "name": "v_19200_hz",
+            "label": "19200 Hz"
+          },
+          {
+            "encoded": 63,
+            "name": "v_19600_hz",
+            "label": "19600 Hz"
+          },
+          {
+            "encoded": 64,
+            "name": "v_20000_hz",
+            "label": "20000 Hz"
+          },
+          {
+            "encoded": 65,
+            "name": "v_20400_hz",
+            "label": "20400 Hz"
+          },
+          {
+            "encoded": 66,
+            "name": "v_20800_hz",
+            "label": "20800 Hz"
+          },
+          {
+            "encoded": 67,
+            "name": "v_21200_hz",
+            "label": "21200 Hz"
+          },
+          {
+            "encoded": 68,
+            "name": "v_21600_hz",
+            "label": "21600 Hz"
+          },
+          {
+            "encoded": 69,
+            "name": "v_22000_hz",
+            "label": "22000 Hz"
+          },
+          {
+            "encoded": 70,
+            "name": "full",
+            "label": "Full"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hf_rt_multiply",
+      "label": "hf rt multiply",
+      "offsets": [
+        114,
+        115
+      ],
+      "start": 114,
+      "end": 115,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `hf rt multiply` (from independent series sysex/hf rt multiply/) (nibble_hilo, label = encoded * 0.05 + (0.2))",
+      "encoding": "nibble_hilo",
+      "parameter": "hf rt multiply",
+      "description": "Sets the high-frequency reverb time above the crossover frequency set by HF RT Crossover. Displayed and controlled as a scaling of Reverb Time.",
+      "kind": "affine",
+      "scale": 0.05,
+      "offset": 0.2,
+      "encoding_notes": "label = encoded * 0.05 + (0.2); from agreeing extreme<->adjacent edge slopes",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "hf_rt_multiply_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_0_2",
+            "label": "0.2"
+          },
+          {
+            "encoded": 1,
+            "name": "v_0_25",
+            "label": "0.25"
+          },
+          {
+            "encoded": 2,
+            "name": "v_0_3",
+            "label": "0.3"
+          },
+          {
+            "encoded": 3,
+            "name": "v_0_35",
+            "label": "0.35"
+          },
+          {
+            "encoded": 4,
+            "name": "v_0_4",
+            "label": "0.4"
+          },
+          {
+            "encoded": 5,
+            "name": "v_0_45",
+            "label": "0.45"
+          },
+          {
+            "encoded": 6,
+            "name": "v_0_5",
+            "label": "0.5"
+          },
+          {
+            "encoded": 7,
+            "name": "v_0_55",
+            "label": "0.55"
+          },
+          {
+            "encoded": 8,
+            "name": "v_0_6",
+            "label": "0.6"
+          },
+          {
+            "encoded": 9,
+            "name": "v_0_65",
+            "label": "0.65"
+          },
+          {
+            "encoded": 10,
+            "name": "v_0_7",
+            "label": "0.7"
+          },
+          {
+            "encoded": 11,
+            "name": "v_0_75",
+            "label": "0.75"
+          },
+          {
+            "encoded": 12,
+            "name": "v_0_8",
+            "label": "0.8"
+          },
+          {
+            "encoded": 13,
+            "name": "v_0_85",
+            "label": "0.85"
+          },
+          {
+            "encoded": 14,
+            "name": "v_0_9",
+            "label": "0.9"
+          },
+          {
+            "encoded": 15,
+            "name": "v_0_95",
+            "label": "0.95"
+          },
+          {
+            "encoded": 16,
+            "name": "v_1",
+            "label": "1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hf_rt_crossover",
+      "label": "hf rt crossover",
+      "offsets": [
+        116,
+        117
+      ],
+      "start": 116,
+      "end": 117,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `hf rt crossover` (from independent series sysex/hf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "encoding": "nibble_hilo",
+      "parameter": "hf rt crossover",
+      "unit": "hz",
+      "description": "Sets the crossover frequency used by HF RT Multiply.",
+      "kind": "table",
+      "encoding_notes": "table/index candidate (monotonic 100%); extreme<->adjacent slopes disagree (low dlabel/denc=40, high=800); least-squares hint only (not used for endpoint unit conversion): label ~= 423.787*encoded + -1799.96 (r^2=0.8975)",
+      "confidence": "medium",
+      "value_map": {
+        "enum_id": "hf_rt_crossover_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_200_hz",
+            "label": "200 Hz"
+          },
+          {
+            "encoded": 1,
+            "name": "v_240_hz",
+            "label": "240 Hz"
+          },
+          {
+            "encoded": 2,
+            "name": "v_280_hz",
+            "label": "280 Hz"
+          },
+          {
+            "encoded": 3,
+            "name": "v_320_hz",
+            "label": "320 Hz"
+          },
+          {
+            "encoded": 4,
+            "name": "v_360_hz",
+            "label": "360 Hz"
+          },
+          {
+            "encoded": 5,
+            "name": "v_400_hz",
+            "label": "400 Hz"
+          },
+          {
+            "encoded": 6,
+            "name": "v_480_hz",
+            "label": "480 Hz"
+          },
+          {
+            "encoded": 7,
+            "name": "v_560_hz",
+            "label": "560 Hz"
+          },
+          {
+            "encoded": 8,
+            "name": "v_640_hz",
+            "label": "640 Hz"
+          },
+          {
+            "encoded": 9,
+            "name": "v_720_hz",
+            "label": "720 Hz"
+          },
+          {
+            "encoded": 10,
+            "name": "v_800_hz",
+            "label": "800 Hz"
+          },
+          {
+            "encoded": 11,
+            "name": "v_1000_hz",
+            "label": "1000 Hz"
+          },
+          {
+            "encoded": 12,
+            "name": "v_1200_hz",
+            "label": "1200 Hz"
+          },
+          {
+            "encoded": 13,
+            "name": "v_1400_hz",
+            "label": "1400 Hz"
+          },
+          {
+            "encoded": 14,
+            "name": "v_1600_hz",
+            "label": "1600 Hz"
+          },
+          {
+            "encoded": 15,
+            "name": "v_1800_hz",
+            "label": "1800 Hz"
+          },
+          {
+            "encoded": 16,
+            "name": "v_2000_hz",
+            "label": "2000 Hz"
+          },
+          {
+            "encoded": 17,
+            "name": "v_2400_hz",
+            "label": "2400 Hz"
+          },
+          {
+            "encoded": 18,
+            "name": "v_2800_hz",
+            "label": "2800 Hz"
+          },
+          {
+            "encoded": 19,
+            "name": "v_3200_hz",
+            "label": "3200 Hz"
+          },
+          {
+            "encoded": 20,
+            "name": "v_3600_hz",
+            "label": "3600 Hz"
+          },
+          {
+            "encoded": 21,
+            "name": "v_4000_hz",
+            "label": "4000 Hz"
+          },
+          {
+            "encoded": 22,
+            "name": "v_4800_hz",
+            "label": "4800 Hz"
+          },
+          {
+            "encoded": 23,
+            "name": "v_5600_hz",
+            "label": "5600 Hz"
+          },
+          {
+            "encoded": 24,
+            "name": "v_6400_hz",
+            "label": "6400 Hz"
+          },
+          {
+            "encoded": 25,
+            "name": "v_7200_hz",
+            "label": "7200 Hz"
+          },
+          {
+            "encoded": 26,
+            "name": "v_8000_hz",
+            "label": "8000 Hz"
+          },
+          {
+            "encoded": 27,
+            "name": "v_8800_hz",
+            "label": "8800 Hz"
+          },
+          {
+            "encoded": 28,
+            "name": "v_9600_hz",
+            "label": "9600 Hz"
+          },
+          {
+            "encoded": 29,
+            "name": "v_10400_hz",
+            "label": "10400 Hz"
+          },
+          {
+            "encoded": 30,
+            "name": "v_11200_hz",
+            "label": "11200 Hz"
+          },
+          {
+            "encoded": 31,
+            "name": "v_12000_hz",
+            "label": "12000 Hz"
+          },
+          {
+            "encoded": 32,
+            "name": "v_12800_hz",
+            "label": "12800 Hz"
+          },
+          {
+            "encoded": 33,
+            "name": "v_13600_hz",
+            "label": "13600 Hz"
+          },
+          {
+            "encoded": 34,
+            "name": "v_14400_hz",
+            "label": "14400 Hz"
+          },
+          {
+            "encoded": 35,
+            "name": "v_15200_hz",
+            "label": "15200 Hz"
+          },
+          {
+            "encoded": 36,
+            "name": "v_16000_hz",
+            "label": "16000 Hz"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lf_rt_multiply",
+      "label": "lf rt multiply",
+      "offsets": [
+        118,
+        119
+      ],
+      "start": 118,
+      "end": 119,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `lf rt multiply` (from independent series sysex/lf rt multiply/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "encoding": "nibble_hilo",
+      "parameter": "lf rt multiply",
+      "description": "Sets the low-frequency reverb time below the crossover frequency set by LF RT Crossover. Displayed and controlled as a scaling of Reverb Time.",
+      "kind": "table",
+      "encoding_notes": "table/index candidate (monotonic 100%); extreme<->adjacent slopes disagree (low dlabel/denc=0.05, high=0.1); least-squares hint only (not used for endpoint unit conversion): label ~= 0.065962*encoded + 0.12727 (r^2=0.9915)",
+      "confidence": "medium",
+      "value_map": {
+        "enum_id": "lf_rt_multiply_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_0_2",
+            "label": "0.2"
+          },
+          {
+            "encoded": 1,
+            "name": "v_0_25",
+            "label": "0.25"
+          },
+          {
+            "encoded": 2,
+            "name": "v_0_3",
+            "label": "0.3"
+          },
+          {
+            "encoded": 3,
+            "name": "v_0_35",
+            "label": "0.35"
+          },
+          {
+            "encoded": 4,
+            "name": "v_0_4",
+            "label": "0.4"
+          },
+          {
+            "encoded": 5,
+            "name": "v_0_45",
+            "label": "0.45"
+          },
+          {
+            "encoded": 6,
+            "name": "v_0_5",
+            "label": "0.5"
+          },
+          {
+            "encoded": 7,
+            "name": "v_0_55",
+            "label": "0.55"
+          },
+          {
+            "encoded": 8,
+            "name": "v_0_6",
+            "label": "0.6"
+          },
+          {
+            "encoded": 9,
+            "name": "v_0_65",
+            "label": "0.65"
+          },
+          {
+            "encoded": 10,
+            "name": "v_0_7",
+            "label": "0.7"
+          },
+          {
+            "encoded": 11,
+            "name": "v_0_75",
+            "label": "0.75"
+          },
+          {
+            "encoded": 12,
+            "name": "v_0_8",
+            "label": "0.8"
+          },
+          {
+            "encoded": 13,
+            "name": "v_0_85",
+            "label": "0.85"
+          },
+          {
+            "encoded": 14,
+            "name": "v_0_9",
+            "label": "0.9"
+          },
+          {
+            "encoded": 15,
+            "name": "v_0_95",
+            "label": "0.95"
+          },
+          {
+            "encoded": 16,
+            "name": "v_1",
+            "label": "1"
+          },
+          {
+            "encoded": 17,
+            "name": "v_1_05",
+            "label": "1.05"
+          },
+          {
+            "encoded": 18,
+            "name": "v_1_1",
+            "label": "1.1"
+          },
+          {
+            "encoded": 19,
+            "name": "v_1_15",
+            "label": "1.15"
+          },
+          {
+            "encoded": 20,
+            "name": "v_1_2",
+            "label": "1.2"
+          },
+          {
+            "encoded": 21,
+            "name": "v_1_25",
+            "label": "1.25"
+          },
+          {
+            "encoded": 22,
+            "name": "v_1_3",
+            "label": "1.3"
+          },
+          {
+            "encoded": 23,
+            "name": "v_1_35",
+            "label": "1.35"
+          },
+          {
+            "encoded": 24,
+            "name": "v_1_4",
+            "label": "1.4"
+          },
+          {
+            "encoded": 25,
+            "name": "v_1_45",
+            "label": "1.45"
+          },
+          {
+            "encoded": 26,
+            "name": "v_1_5",
+            "label": "1.5"
+          },
+          {
+            "encoded": 27,
+            "name": "v_1_55",
+            "label": "1.55"
+          },
+          {
+            "encoded": 28,
+            "name": "v_1_6",
+            "label": "1.6"
+          },
+          {
+            "encoded": 29,
+            "name": "v_1_65",
+            "label": "1.65"
+          },
+          {
+            "encoded": 30,
+            "name": "v_1_7",
+            "label": "1.7"
+          },
+          {
+            "encoded": 31,
+            "name": "v_1_75",
+            "label": "1.75"
+          },
+          {
+            "encoded": 32,
+            "name": "v_1_8",
+            "label": "1.8"
+          },
+          {
+            "encoded": 33,
+            "name": "v_1_85",
+            "label": "1.85"
+          },
+          {
+            "encoded": 34,
+            "name": "v_1_9",
+            "label": "1.9"
+          },
+          {
+            "encoded": 35,
+            "name": "v_1_95",
+            "label": "1.95"
+          },
+          {
+            "encoded": 36,
+            "name": "v_2",
+            "label": "2"
+          },
+          {
+            "encoded": 37,
+            "name": "v_2_1",
+            "label": "2.1"
+          },
+          {
+            "encoded": 38,
+            "name": "v_2_2",
+            "label": "2.2"
+          },
+          {
+            "encoded": 39,
+            "name": "v_2_3",
+            "label": "2.3"
+          },
+          {
+            "encoded": 40,
+            "name": "v_2_4",
+            "label": "2.4"
+          },
+          {
+            "encoded": 41,
+            "name": "v_2_5",
+            "label": "2.5"
+          },
+          {
+            "encoded": 42,
+            "name": "v_2_6",
+            "label": "2.6"
+          },
+          {
+            "encoded": 43,
+            "name": "v_2_7",
+            "label": "2.7"
+          },
+          {
+            "encoded": 44,
+            "name": "v_2_8",
+            "label": "2.8"
+          },
+          {
+            "encoded": 45,
+            "name": "v_2_9",
+            "label": "2.9"
+          },
+          {
+            "encoded": 46,
+            "name": "v_3_0",
+            "label": "3.0"
+          },
+          {
+            "encoded": 47,
+            "name": "v_3_1",
+            "label": "3.1"
+          },
+          {
+            "encoded": 48,
+            "name": "v_3_2",
+            "label": "3.2"
+          },
+          {
+            "encoded": 49,
+            "name": "v_3_3",
+            "label": "3.3"
+          },
+          {
+            "encoded": 50,
+            "name": "v_3_4",
+            "label": "3.4"
+          },
+          {
+            "encoded": 51,
+            "name": "v_3_5",
+            "label": "3.5"
+          },
+          {
+            "encoded": 52,
+            "name": "v_3_6",
+            "label": "3.6"
+          },
+          {
+            "encoded": 53,
+            "name": "v_3_7",
+            "label": "3.7"
+          },
+          {
+            "encoded": 54,
+            "name": "v_3_8",
+            "label": "3.8"
+          },
+          {
+            "encoded": 55,
+            "name": "v_3_9",
+            "label": "3.9"
+          },
+          {
+            "encoded": 56,
+            "name": "v_4",
+            "label": "4"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lf_rt_crossover",
+      "label": "lf rt crossover",
+      "offsets": [
+        120,
+        121
+      ],
+      "start": 120,
+      "end": 121,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `lf rt crossover` (from independent series sysex/lf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "encoding": "nibble_hilo",
+      "parameter": "lf rt crossover",
+      "unit": "hz",
+      "description": "Sets the crossover frequency used by LF RT Multiply.",
+      "kind": "table",
+      "encoding_notes": "table/index candidate (monotonic 100%); extreme<->adjacent slopes disagree (low dlabel/denc=40, high=400); least-squares hint only (not used for endpoint unit conversion): label ~= 183.53*encoded + -413.243 (r^2=0.9309)",
+      "confidence": "medium",
+      "value_map": {
+        "enum_id": "lf_rt_crossover_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_80_hz",
+            "label": "80 Hz"
+          },
+          {
+            "encoded": 1,
+            "name": "v_120_hz",
+            "label": "120 Hz"
+          },
+          {
+            "encoded": 2,
+            "name": "v_160_hz",
+            "label": "160 Hz"
+          },
+          {
+            "encoded": 3,
+            "name": "v_200_hz",
+            "label": "200 Hz"
+          },
+          {
+            "encoded": 4,
+            "name": "v_240_hz",
+            "label": "240 Hz"
+          },
+          {
+            "encoded": 5,
+            "name": "v_280_hz",
+            "label": "280 Hz"
+          },
+          {
+            "encoded": 6,
+            "name": "v_320_hz",
+            "label": "320 Hz"
+          },
+          {
+            "encoded": 7,
+            "name": "v_360_hz",
+            "label": "360 Hz"
+          },
+          {
+            "encoded": 8,
+            "name": "v_400_hz",
+            "label": "400 Hz"
+          },
+          {
+            "encoded": 9,
+            "name": "v_480_hz",
+            "label": "480 Hz"
+          },
+          {
+            "encoded": 10,
+            "name": "v_560_hz",
+            "label": "560 Hz"
+          },
+          {
+            "encoded": 11,
+            "name": "v_640_hz",
+            "label": "640 Hz"
+          },
+          {
+            "encoded": 12,
+            "name": "v_720_hz",
+            "label": "720 Hz"
+          },
+          {
+            "encoded": 13,
+            "name": "v_800_hz",
+            "label": "800 Hz"
+          },
+          {
+            "encoded": 14,
+            "name": "v_1000_hz",
+            "label": "1000 Hz"
+          },
+          {
+            "encoded": 15,
+            "name": "v_1200_hz",
+            "label": "1200 Hz"
+          },
+          {
+            "encoded": 16,
+            "name": "v_1400_hz",
+            "label": "1400 Hz"
+          },
+          {
+            "encoded": 17,
+            "name": "v_1600_hz",
+            "label": "1600 Hz"
+          },
+          {
+            "encoded": 18,
+            "name": "v_1800_hz",
+            "label": "1800 Hz"
+          },
+          {
+            "encoded": 19,
+            "name": "v_2000_hz",
+            "label": "2000 Hz"
+          },
+          {
+            "encoded": 20,
+            "name": "v_2400_hz",
+            "label": "2400 Hz"
+          },
+          {
+            "encoded": 21,
+            "name": "v_2800_hz",
+            "label": "2800 Hz"
+          },
+          {
+            "encoded": 22,
+            "name": "v_3200_hz",
+            "label": "3200 Hz"
+          },
+          {
+            "encoded": 23,
+            "name": "v_3600_hz",
+            "label": "3600 Hz"
+          },
+          {
+            "encoded": 24,
+            "name": "v_4000_hz",
+            "label": "4000 Hz"
+          },
+          {
+            "encoded": 25,
+            "name": "v_4400_hz",
+            "label": "4400 Hz"
+          },
+          {
+            "encoded": 26,
+            "name": "v_4800_hz",
+            "label": "4800 Hz"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vlf_cut",
+      "label": "vlf cut",
+      "offsets": [
+        122,
+        123
+      ],
+      "start": 122,
+      "end": 123,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `vlf cut` (from independent series sysex/vlf cut/) (nibble_hilo, label = encoded + (-20))",
+      "encoding": "nibble_hilo",
+      "parameter": "vlf cut",
+      "unit": "db",
+      "description": "Cuts the very low frequency content of the initial part of both the early and late reverberant fields.",
+      "kind": "affine",
+      "scale": 1.0,
+      "offset": -20.0,
+      "encoding_notes": "label = encoded + (-20); from agreeing extreme<->adjacent edge slopes",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "vlf_cut_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_20_db",
+            "label": "-20 dB"
+          },
+          {
+            "encoded": 1,
+            "name": "v_19_db",
+            "label": "-19 dB"
+          },
+          {
+            "encoded": 2,
+            "name": "v_18_db",
+            "label": "-18 dB"
+          },
+          {
+            "encoded": 3,
+            "name": "v_17_db",
+            "label": "-17 dB"
+          },
+          {
+            "encoded": 4,
+            "name": "v_16_db",
+            "label": "-16 dB"
+          },
+          {
+            "encoded": 5,
+            "name": "v_15_db",
+            "label": "-15 dB"
+          },
+          {
+            "encoded": 6,
+            "name": "v_14_db",
+            "label": "-14 dB"
+          },
+          {
+            "encoded": 7,
+            "name": "v_13_db",
+            "label": "-13 dB"
+          },
+          {
+            "encoded": 8,
+            "name": "v_12_db",
+            "label": "-12 dB"
+          },
+          {
+            "encoded": 9,
+            "name": "v_11_db",
+            "label": "-11 dB"
+          },
+          {
+            "encoded": 10,
+            "name": "v_10_db",
+            "label": "-10 dB"
+          },
+          {
+            "encoded": 11,
+            "name": "v_9_db",
+            "label": "-9 dB"
+          },
+          {
+            "encoded": 12,
+            "name": "v_8_db",
+            "label": "-8 dB"
+          },
+          {
+            "encoded": 13,
+            "name": "v_7_db",
+            "label": "-7 dB"
+          },
+          {
+            "encoded": 14,
+            "name": "v_6_db",
+            "label": "-6 dB"
+          },
+          {
+            "encoded": 15,
+            "name": "v_5_db",
+            "label": "-5 dB"
+          },
+          {
+            "encoded": 16,
+            "name": "v_4_db",
+            "label": "-4 dB"
+          },
+          {
+            "encoded": 17,
+            "name": "v_3_db",
+            "label": "-3 dB"
+          },
+          {
+            "encoded": 18,
+            "name": "v_2_db",
+            "label": "-2 dB"
+          },
+          {
+            "encoded": 19,
+            "name": "v_1_db",
+            "label": "-1 dB"
+          },
+          {
+            "encoded": 20,
+            "name": "v_0_db",
+            "label": "0 dB"
+          }
+        ]
+      }
+    },
+    {
+      "id": "early_to_reverb_mix",
+      "label": "early to reverb mix",
+      "offsets": [
+        124,
+        125
+      ],
+      "start": 124,
+      "end": 125,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `early to reverb mix` (from independent series sysex/early to reverb mix/) (nibble_hilo, label = encoded * 1)",
+      "encoding": "nibble_hilo",
+      "parameter": "early to reverb mix",
+      "description": "Sets the balance between the early and later parts of the reverberant fields.",
+      "kind": "affine",
+      "scale": 1.0,
+      "offset": 0.0,
+      "encoding_notes": "label = encoded * 1; from agreeing extreme<->adjacent edge slopes",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "early_to_reverb_mix_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_0_20",
+            "label": "0/20"
+          },
+          {
+            "encoded": 1,
+            "name": "v_1_20",
+            "label": "1/20"
+          },
+          {
+            "encoded": 2,
+            "name": "v_2_20",
+            "label": "2/20"
+          },
+          {
+            "encoded": 3,
+            "name": "v_3_20",
+            "label": "3/20"
+          },
+          {
+            "encoded": 4,
+            "name": "v_4_20",
+            "label": "4/20"
+          },
+          {
+            "encoded": 5,
+            "name": "v_5_20",
+            "label": "5/20"
+          },
+          {
+            "encoded": 6,
+            "name": "v_6_20",
+            "label": "6/20"
+          },
+          {
+            "encoded": 7,
+            "name": "v_7_20",
+            "label": "7/20"
+          },
+          {
+            "encoded": 8,
+            "name": "v_8_20",
+            "label": "8/20"
+          },
+          {
+            "encoded": 9,
+            "name": "v_9_20",
+            "label": "9/20"
+          },
+          {
+            "encoded": 10,
+            "name": "v_10_20",
+            "label": "10/20"
+          },
+          {
+            "encoded": 11,
+            "name": "v_11_20",
+            "label": "11/20"
+          },
+          {
+            "encoded": 12,
+            "name": "v_12_20",
+            "label": "12/20"
+          },
+          {
+            "encoded": 13,
+            "name": "v_13_20",
+            "label": "13/20"
+          },
+          {
+            "encoded": 14,
+            "name": "v_14_20",
+            "label": "14/20"
+          },
+          {
+            "encoded": 15,
+            "name": "v_15_20",
+            "label": "15/20"
+          },
+          {
+            "encoded": 16,
+            "name": "v_16_20",
+            "label": "16/20"
+          },
+          {
+            "encoded": 17,
+            "name": "v_17_20",
+            "label": "17/20"
+          },
+          {
+            "encoded": 18,
+            "name": "v_18_20",
+            "label": "18/20"
+          },
+          {
+            "encoded": 19,
+            "name": "v_19_20",
+            "label": "19/20"
+          },
+          {
+            "encoded": 20,
+            "name": "v_20_20",
+            "label": "20/20"
+          },
+          {
+            "encoded": 21,
+            "name": "v_20_19",
+            "label": "20/19"
+          },
+          {
+            "encoded": 22,
+            "name": "v_20_18",
+            "label": "20/18"
+          },
+          {
+            "encoded": 23,
+            "name": "v_20_17",
+            "label": "20/17"
+          },
+          {
+            "encoded": 24,
+            "name": "v_20_16",
+            "label": "20/16"
+          },
+          {
+            "encoded": 25,
+            "name": "v_20_15",
+            "label": "20/15"
+          },
+          {
+            "encoded": 26,
+            "name": "v_20_14",
+            "label": "20/14"
+          },
+          {
+            "encoded": 27,
+            "name": "v_20_13",
+            "label": "20/13"
+          },
+          {
+            "encoded": 28,
+            "name": "v_20_12",
+            "label": "20/12"
+          },
+          {
+            "encoded": 29,
+            "name": "v_20_11",
+            "label": "20/11"
+          },
+          {
+            "encoded": 30,
+            "name": "v_20_10",
+            "label": "20/10"
+          },
+          {
+            "encoded": 31,
+            "name": "v_20_9",
+            "label": "20/9"
+          },
+          {
+            "encoded": 32,
+            "name": "v_20_8",
+            "label": "20/8"
+          },
+          {
+            "encoded": 33,
+            "name": "v_20_7",
+            "label": "20/7"
+          },
+          {
+            "encoded": 34,
+            "name": "v_20_6",
+            "label": "20/6"
+          },
+          {
+            "encoded": 35,
+            "name": "v_20_5",
+            "label": "20/5"
+          },
+          {
+            "encoded": 36,
+            "name": "v_20_4",
+            "label": "20/4"
+          },
+          {
+            "encoded": 37,
+            "name": "v_20_3",
+            "label": "20/3"
+          },
+          {
+            "encoded": 38,
+            "name": "v_20_2",
+            "label": "20/2"
+          },
+          {
+            "encoded": 39,
+            "name": "v_20_1",
+            "label": "20/1"
+          },
+          {
+            "encoded": 40,
+            "name": "v_20_0",
+            "label": "20/0"
+          }
+        ]
+      }
+    },
+    {
+      "id": "early_rolloff",
+      "label": "early rolloff",
+      "offsets": [
+        126,
+        127
+      ],
+      "start": 126,
+      "end": 127,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `early rolloff` (from independent series sysex/early rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "encoding": "nibble_hilo",
+      "parameter": "early rolloff",
+      "unit": "hz",
+      "description": "Sets the rolloff frequency point of the low pass filter for the early part of the reverberant field.",
+      "kind": "table",
+      "encoding_notes": "table/index candidate (monotonic 100%); extreme<->adjacent slopes disagree (low dlabel/denc=40, high=400); least-squares hint only (not used for endpoint unit conversion): label ~= 321.537*encoded + -980.481 (r^2=0.9882)",
+      "confidence": "medium",
+      "value_map": {
+        "enum_id": "early_rolloff_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_80_hz",
+            "label": "80 Hz"
+          },
+          {
+            "encoded": 1,
+            "name": "v_120_hz",
+            "label": "120 Hz"
+          },
+          {
+            "encoded": 2,
+            "name": "v_160_hz",
+            "label": "160 Hz"
+          },
+          {
+            "encoded": 3,
+            "name": "v_200_hz",
+            "label": "200 Hz"
+          },
+          {
+            "encoded": 4,
+            "name": "v_240_hz",
+            "label": "240 Hz"
+          },
+          {
+            "encoded": 5,
+            "name": "v_280_hz",
+            "label": "280 Hz"
+          },
+          {
+            "encoded": 6,
+            "name": "v_320_hz",
+            "label": "320 Hz"
+          },
+          {
+            "encoded": 7,
+            "name": "v_360_hz",
+            "label": "360 Hz"
+          },
+          {
+            "encoded": 8,
+            "name": "v_400_hz",
+            "label": "400 Hz"
+          },
+          {
+            "encoded": 9,
+            "name": "v_480_hz",
+            "label": "480 Hz"
+          },
+          {
+            "encoded": 10,
+            "name": "v_560_hz",
+            "label": "560 Hz"
+          },
+          {
+            "encoded": 11,
+            "name": "v_640_hz",
+            "label": "640 Hz"
+          },
+          {
+            "encoded": 12,
+            "name": "v_720_hz",
+            "label": "720 Hz"
+          },
+          {
+            "encoded": 13,
+            "name": "v_800_hz",
+            "label": "800 Hz"
+          },
+          {
+            "encoded": 14,
+            "name": "v_1000_hz",
+            "label": "1000 Hz"
+          },
+          {
+            "encoded": 15,
+            "name": "v_1200_hz",
+            "label": "1200 Hz"
+          },
+          {
+            "encoded": 16,
+            "name": "v_1400_hz",
+            "label": "1400 Hz"
+          },
+          {
+            "encoded": 17,
+            "name": "v_1600_hz",
+            "label": "1600 Hz"
+          },
+          {
+            "encoded": 18,
+            "name": "v_1800_hz",
+            "label": "1800 Hz"
+          },
+          {
+            "encoded": 19,
+            "name": "v_2000_hz",
+            "label": "2000 Hz"
+          },
+          {
+            "encoded": 20,
+            "name": "v_2400_hz",
+            "label": "2400 Hz"
+          },
+          {
+            "encoded": 21,
+            "name": "v_2800_hz",
+            "label": "2800 Hz"
+          },
+          {
+            "encoded": 22,
+            "name": "v_3200_hz",
+            "label": "3200 Hz"
+          },
+          {
+            "encoded": 23,
+            "name": "v_3600_hz",
+            "label": "3600 Hz"
+          },
+          {
+            "encoded": 24,
+            "name": "v_4000_hz",
+            "label": "4000 Hz"
+          },
+          {
+            "encoded": 25,
+            "name": "v_4400_hz",
+            "label": "4400 Hz"
+          },
+          {
+            "encoded": 26,
+            "name": "v_4800_hz",
+            "label": "4800 Hz"
+          },
+          {
+            "encoded": 27,
+            "name": "v_5200_hz",
+            "label": "5200 Hz"
+          },
+          {
+            "encoded": 28,
+            "name": "v_5600_hz",
+            "label": "5600 Hz"
+          },
+          {
+            "encoded": 29,
+            "name": "v_6000_hz",
+            "label": "6000 Hz"
+          },
+          {
+            "encoded": 30,
+            "name": "v_6400_hz",
+            "label": "6400 Hz"
+          },
+          {
+            "encoded": 31,
+            "name": "v_6800_hz",
+            "label": "6800 Hz"
+          },
+          {
+            "encoded": 32,
+            "name": "v_7200_hz",
+            "label": "7200 Hz"
+          },
+          {
+            "encoded": 33,
+            "name": "v_7600_hz",
+            "label": "7600 Hz"
+          },
+          {
+            "encoded": 34,
+            "name": "v_8000_hz",
+            "label": "8000 Hz"
+          },
+          {
+            "encoded": 35,
+            "name": "v_8400_hz",
+            "label": "8400 Hz"
+          },
+          {
+            "encoded": 36,
+            "name": "v_8800_hz",
+            "label": "8800 Hz"
+          },
+          {
+            "encoded": 37,
+            "name": "v_9200_hz",
+            "label": "9200 Hz"
+          },
+          {
+            "encoded": 38,
+            "name": "v_9600_hz",
+            "label": "9600 Hz"
+          },
+          {
+            "encoded": 39,
+            "name": "v_10000_hz",
+            "label": "10000 Hz"
+          },
+          {
+            "encoded": 40,
+            "name": "v_10400_hz",
+            "label": "10400 Hz"
+          },
+          {
+            "encoded": 41,
+            "name": "v_10800_hz",
+            "label": "10800 Hz"
+          },
+          {
+            "encoded": 42,
+            "name": "v_11200_hz",
+            "label": "11200 Hz"
+          },
+          {
+            "encoded": 43,
+            "name": "v_11600_hz",
+            "label": "11600 Hz"
+          },
+          {
+            "encoded": 44,
+            "name": "v_12000_hz",
+            "label": "12000 Hz"
+          },
+          {
+            "encoded": 45,
+            "name": "v_12400_hz",
+            "label": "12400 Hz"
+          },
+          {
+            "encoded": 46,
+            "name": "v_12800_hz",
+            "label": "12800 Hz"
+          },
+          {
+            "encoded": 47,
+            "name": "v_13200_hz",
+            "label": "13200 Hz"
+          },
+          {
+            "encoded": 48,
+            "name": "v_13600_hz",
+            "label": "13600 Hz"
+          },
+          {
+            "encoded": 49,
+            "name": "v_14000_hz",
+            "label": "14000 Hz"
+          },
+          {
+            "encoded": 50,
+            "name": "v_14400_hz",
+            "label": "14400 Hz"
+          },
+          {
+            "encoded": 51,
+            "name": "v_14800_hz",
+            "label": "14800 Hz"
+          },
+          {
+            "encoded": 52,
+            "name": "v_15200_hz",
+            "label": "15200 Hz"
+          },
+          {
+            "encoded": 53,
+            "name": "v_15600_hz",
+            "label": "15600 Hz"
+          },
+          {
+            "encoded": 54,
+            "name": "v_16000_hz",
+            "label": "16000 Hz"
+          },
+          {
+            "encoded": 55,
+            "name": "v_16400_hz",
+            "label": "16400 Hz"
+          },
+          {
+            "encoded": 56,
+            "name": "v_16800_hz",
+            "label": "16800 Hz"
+          },
+          {
+            "encoded": 57,
+            "name": "v_17200_hz",
+            "label": "17200 Hz"
+          },
+          {
+            "encoded": 58,
+            "name": "v_17600_hz",
+            "label": "17600 Hz"
+          },
+          {
+            "encoded": 59,
+            "name": "v_18000_hz",
+            "label": "18000 Hz"
+          },
+          {
+            "encoded": 60,
+            "name": "v_18400_hz",
+            "label": "18400 Hz"
+          },
+          {
+            "encoded": 61,
+            "name": "v_18800_hz",
+            "label": "18800 Hz"
+          },
+          {
+            "encoded": 62,
+            "name": "v_19200_hz",
+            "label": "19200 Hz"
+          },
+          {
+            "encoded": 63,
+            "name": "v_19600_hz",
+            "label": "19600 Hz"
+          },
+          {
+            "encoded": 64,
+            "name": "v_20000_hz",
+            "label": "20000 Hz"
+          },
+          {
+            "encoded": 65,
+            "name": "v_20400_hz",
+            "label": "20400 Hz"
+          },
+          {
+            "encoded": 66,
+            "name": "v_20800_hz",
+            "label": "20800 Hz"
+          },
+          {
+            "encoded": 67,
+            "name": "v_21200_hz",
+            "label": "21200 Hz"
+          },
+          {
+            "encoded": 68,
+            "name": "v_21600_hz",
+            "label": "21600 Hz"
+          },
+          {
+            "encoded": 69,
+            "name": "v_22000_hz",
+            "label": "22000 Hz"
+          },
+          {
+            "encoded": 70,
+            "name": "full",
+            "label": "Full"
+          }
+        ]
+      }
+    },
+    {
+      "id": "early_select",
+      "label": "early select",
+      "offsets": [
+        128,
+        129
+      ],
+      "start": 128,
+      "end": 129,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `early select` (from independent series sysex/early select/) (nibble_hilo, label = encoded * 1)",
+      "encoding": "nibble_hilo",
+      "parameter": "early select",
+      "description": "Controls the build up and decay characteristics of the early part of the reverberant field. The V2 addendum expands the selection beyond the printed 0\u201320 to 0\u201331 with larger, more spread-out early variants for a slower early reverb build-up (available on both V1 and V2 algorithm presets).",
+      "kind": "affine",
+      "scale": 1.0,
+      "offset": 0.0,
+      "encoding_notes": "label = encoded * 1; from agreeing extreme<->adjacent edge slopes",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "early_select_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_0",
+            "label": "0"
+          },
+          {
+            "encoded": 1,
+            "name": "v_1",
+            "label": "1"
+          },
+          {
+            "encoded": 2,
+            "name": "v_2",
+            "label": "2"
+          },
+          {
+            "encoded": 3,
+            "name": "v_3",
+            "label": "3"
+          },
+          {
+            "encoded": 4,
+            "name": "v_4",
+            "label": "4"
+          },
+          {
+            "encoded": 5,
+            "name": "v_5",
+            "label": "5"
+          },
+          {
+            "encoded": 6,
+            "name": "v_6",
+            "label": "6"
+          },
+          {
+            "encoded": 7,
+            "name": "v_7",
+            "label": "7"
+          },
+          {
+            "encoded": 8,
+            "name": "v_8",
+            "label": "8"
+          },
+          {
+            "encoded": 9,
+            "name": "v_9",
+            "label": "9"
+          },
+          {
+            "encoded": 10,
+            "name": "v_10",
+            "label": "10"
+          },
+          {
+            "encoded": 11,
+            "name": "v_11",
+            "label": "11"
+          },
+          {
+            "encoded": 12,
+            "name": "v_12",
+            "label": "12"
+          },
+          {
+            "encoded": 13,
+            "name": "v_13",
+            "label": "13"
+          },
+          {
+            "encoded": 14,
+            "name": "v_14",
+            "label": "14"
+          },
+          {
+            "encoded": 15,
+            "name": "v_15",
+            "label": "15"
+          },
+          {
+            "encoded": 16,
+            "name": "v_16",
+            "label": "16"
+          },
+          {
+            "encoded": 17,
+            "name": "v_17",
+            "label": "17"
+          },
+          {
+            "encoded": 18,
+            "name": "v_18",
+            "label": "18"
+          },
+          {
+            "encoded": 19,
+            "name": "v_19",
+            "label": "19"
+          },
+          {
+            "encoded": 20,
+            "name": "v_20",
+            "label": "20"
+          },
+          {
+            "encoded": 21,
+            "name": "v_21",
+            "label": "21"
+          },
+          {
+            "encoded": 22,
+            "name": "v_22",
+            "label": "22"
+          },
+          {
+            "encoded": 23,
+            "name": "v_23",
+            "label": "23"
+          },
+          {
+            "encoded": 24,
+            "name": "v_24",
+            "label": "24"
+          },
+          {
+            "encoded": 25,
+            "name": "v_25",
+            "label": "25"
+          },
+          {
+            "encoded": 26,
+            "name": "v_26",
+            "label": "26"
+          },
+          {
+            "encoded": 27,
+            "name": "v_27",
+            "label": "27"
+          },
+          {
+            "encoded": 28,
+            "name": "v_28",
+            "label": "28"
+          },
+          {
+            "encoded": 29,
+            "name": "v_29",
+            "label": "29"
+          },
+          {
+            "encoded": 30,
+            "name": "v_30",
+            "label": "30"
+          },
+          {
+            "encoded": 31,
+            "name": "v_31",
+            "label": "31"
+          }
+        ]
+      }
+    },
+    {
+      "id": "engine_bank_class_flag",
+      "label": "engine/bank-class flag",
+      "offsets": [
+        130
+      ],
+      "start": 130,
+      "end": 130,
+      "size": 1,
+      "status": "known",
+      "role": "Engine/bank-class flag: 0 on classic banks (Halls\u2026Spaces), 1 on `* 2` banks (Halls 2\u2026Spaces 2), 2 on NonLin. Parameter-series dumps also show 1 because they were captured from Large Church (Halls 2)",
+      "encoding": "raw_u8",
+      "kind": "meta"
+    },
+    {
+      "id": "fixed_always_02_00",
+      "label": "fixed (always 02 00)",
+      "offsets": [
+        131,
+        132
+      ],
+      "start": 131,
+      "end": 132,
+      "size": 2,
+      "status": "known",
+      "role": "Fixed companion to offset 130 (always `02 00` in this corpus)",
+      "encoding": null,
+      "kind": "meta"
+    },
+    {
+      "id": "delay_level",
+      "label": "delay level",
+      "offsets": [
+        133
+      ],
+      "start": 133,
+      "end": 133,
+      "size": 1,
+      "status": "known",
+      "role": "Parameter `delay level` (from independent series sysex/delay level/) (raw_u8, label = encoded + (-21))",
+      "encoding": "raw_u8",
+      "parameter": "delay level",
+      "unit": "db",
+      "description": "Level of the delayed input injected into the start of the late reverb (not the early reverb). The delayed sound is the original input signal, delayed, diffused, and band-limited by Rolloff.",
+      "kind": "affine",
+      "scale": 1.0,
+      "offset": -21.0,
+      "encoding_notes": "label = encoded + (-21); from agreeing extreme<->adjacent edge slopes",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "delay_level_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "off",
+            "label": "off"
+          },
+          {
+            "encoded": 1,
+            "name": "v_20_db",
+            "label": "-20 dB"
+          },
+          {
+            "encoded": 2,
+            "name": "v_19_db",
+            "label": "-19 dB"
+          },
+          {
+            "encoded": 3,
+            "name": "v_18_db",
+            "label": "-18 dB"
+          },
+          {
+            "encoded": 4,
+            "name": "v_17_db",
+            "label": "-17 dB"
+          },
+          {
+            "encoded": 5,
+            "name": "v_16_db",
+            "label": "-16 dB"
+          },
+          {
+            "encoded": 6,
+            "name": "v_15_db",
+            "label": "-15 dB"
+          },
+          {
+            "encoded": 7,
+            "name": "v_14_db",
+            "label": "-14 dB"
+          },
+          {
+            "encoded": 8,
+            "name": "v_13_db",
+            "label": "-13 dB"
+          },
+          {
+            "encoded": 9,
+            "name": "v_12_db",
+            "label": "-12 dB"
+          },
+          {
+            "encoded": 10,
+            "name": "v_11_db",
+            "label": "-11 dB"
+          },
+          {
+            "encoded": 11,
+            "name": "v_10_db",
+            "label": "-10 dB"
+          },
+          {
+            "encoded": 12,
+            "name": "v_9_db",
+            "label": "-9 dB"
+          },
+          {
+            "encoded": 13,
+            "name": "v_8_db",
+            "label": "-8 dB"
+          },
+          {
+            "encoded": 14,
+            "name": "v_7_db",
+            "label": "-7 dB"
+          },
+          {
+            "encoded": 15,
+            "name": "v_6_db",
+            "label": "-6 dB"
+          }
+        ]
+      }
+    },
+    {
+      "id": "delay_time",
+      "label": "delay time",
+      "offsets": [
+        134,
+        135
+      ],
+      "start": 134,
+      "end": 135,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `delay time` (from independent series sysex/delay time/) (nibble_hilo, label = encoded * 8 + (100))",
+      "encoding": "nibble_hilo",
+      "parameter": "delay time",
+      "unit": "ms",
+      "description": "Delay time for a diffused set of eight voices spread in time (controlled as a single delay). Adds coloration and a late swell to the late reverb.",
+      "kind": "affine",
+      "scale": 8.0,
+      "offset": 100.0,
+      "encoding_notes": "label = encoded * 8 + (100); from agreeing extreme<->adjacent edge slopes",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "delay_time_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_100_msec",
+            "label": "100 mSec"
+          },
+          {
+            "encoded": 1,
+            "name": "v_108_msec",
+            "label": "108 mSec"
+          },
+          {
+            "encoded": 2,
+            "name": "v_116_msec",
+            "label": "116 mSec"
+          },
+          {
+            "encoded": 3,
+            "name": "v_124_msec",
+            "label": "124 mSec"
+          },
+          {
+            "encoded": 4,
+            "name": "v_132_msec",
+            "label": "132 mSec"
+          },
+          {
+            "encoded": 5,
+            "name": "v_140_msec",
+            "label": "140 mSec"
+          },
+          {
+            "encoded": 6,
+            "name": "v_148_msec",
+            "label": "148 mSec"
+          },
+          {
+            "encoded": 7,
+            "name": "v_156_msec",
+            "label": "156 mSec"
+          },
+          {
+            "encoded": 8,
+            "name": "v_164_msec",
+            "label": "164 mSec"
+          },
+          {
+            "encoded": 9,
+            "name": "v_172_msec",
+            "label": "172 mSec"
+          },
+          {
+            "encoded": 10,
+            "name": "v_180_msec",
+            "label": "180 mSec"
+          },
+          {
+            "encoded": 11,
+            "name": "v_188_msec",
+            "label": "188 mSec"
+          },
+          {
+            "encoded": 12,
+            "name": "v_196_msec",
+            "label": "196 mSec"
+          },
+          {
+            "encoded": 13,
+            "name": "v_204_msec",
+            "label": "204 mSec"
+          },
+          {
+            "encoded": 14,
+            "name": "v_212_msec",
+            "label": "212 mSec"
+          },
+          {
+            "encoded": 15,
+            "name": "v_220_msec",
+            "label": "220 mSec"
+          },
+          {
+            "encoded": 16,
+            "name": "v_228_msec",
+            "label": "228 mSec"
+          },
+          {
+            "encoded": 17,
+            "name": "v_236_msec",
+            "label": "236 mSec"
+          },
+          {
+            "encoded": 18,
+            "name": "v_244_msec",
+            "label": "244 mSec"
+          },
+          {
+            "encoded": 19,
+            "name": "v_252_msec",
+            "label": "252 mSec"
+          },
+          {
+            "encoded": 20,
+            "name": "v_260_msec",
+            "label": "260 mSec"
+          },
+          {
+            "encoded": 21,
+            "name": "v_268_msec",
+            "label": "268 mSec"
+          },
+          {
+            "encoded": 22,
+            "name": "v_276_msec",
+            "label": "276 mSec"
+          },
+          {
+            "encoded": 23,
+            "name": "v_284_msec",
+            "label": "284 mSec"
+          },
+          {
+            "encoded": 24,
+            "name": "v_292_msec",
+            "label": "292 mSec"
+          },
+          {
+            "encoded": 25,
+            "name": "v_300_msec",
+            "label": "300 mSec"
+          },
+          {
+            "encoded": 26,
+            "name": "v_308_msec",
+            "label": "308 mSec"
+          },
+          {
+            "encoded": 27,
+            "name": "v_316_msec",
+            "label": "316 mSec"
+          },
+          {
+            "encoded": 28,
+            "name": "v_324_msec",
+            "label": "324 mSec"
+          },
+          {
+            "encoded": 29,
+            "name": "v_332_msec",
+            "label": "332 mSec"
+          },
+          {
+            "encoded": 30,
+            "name": "v_340_msec",
+            "label": "340 mSec"
+          },
+          {
+            "encoded": 31,
+            "name": "v_348_msec",
+            "label": "348 mSec"
+          },
+          {
+            "encoded": 32,
+            "name": "v_356_msec",
+            "label": "356 mSec"
+          },
+          {
+            "encoded": 33,
+            "name": "v_364_msec",
+            "label": "364 mSec"
+          },
+          {
+            "encoded": 34,
+            "name": "v_372_msec",
+            "label": "372 mSec"
+          },
+          {
+            "encoded": 35,
+            "name": "v_380_msec",
+            "label": "380 mSec"
+          },
+          {
+            "encoded": 36,
+            "name": "v_388_msec",
+            "label": "388 mSec"
+          },
+          {
+            "encoded": 37,
+            "name": "v_396_msec",
+            "label": "396 mSec"
+          },
+          {
+            "encoded": 38,
+            "name": "v_404_msec",
+            "label": "404 mSec"
+          },
+          {
+            "encoded": 39,
+            "name": "v_412_msec",
+            "label": "412 mSec"
+          },
+          {
+            "encoded": 40,
+            "name": "v_420_msec",
+            "label": "420 mSec"
+          },
+          {
+            "encoded": 41,
+            "name": "v_428_msec",
+            "label": "428 mSec"
+          },
+          {
+            "encoded": 42,
+            "name": "v_436_msec",
+            "label": "436 mSec"
+          },
+          {
+            "encoded": 43,
+            "name": "v_444_msec",
+            "label": "444 mSec"
+          },
+          {
+            "encoded": 44,
+            "name": "v_452_msec",
+            "label": "452 mSec"
+          },
+          {
+            "encoded": 45,
+            "name": "v_460_msec",
+            "label": "460 mSec"
+          },
+          {
+            "encoded": 46,
+            "name": "v_468_msec",
+            "label": "468 mSec"
+          },
+          {
+            "encoded": 47,
+            "name": "v_476_msec",
+            "label": "476 mSec"
+          },
+          {
+            "encoded": 48,
+            "name": "v_484_msec",
+            "label": "484 mSec"
+          },
+          {
+            "encoded": 49,
+            "name": "v_492_msec",
+            "label": "492 mSec"
+          },
+          {
+            "encoded": 50,
+            "name": "v_500_msec",
+            "label": "500 mSec"
+          },
+          {
+            "encoded": 51,
+            "name": "v_508_msec",
+            "label": "508 mSec"
+          },
+          {
+            "encoded": 52,
+            "name": "v_516_msec",
+            "label": "516 mSec"
+          },
+          {
+            "encoded": 53,
+            "name": "v_524_msec",
+            "label": "524 mSec"
+          },
+          {
+            "encoded": 54,
+            "name": "v_532_msec",
+            "label": "532 mSec"
+          },
+          {
+            "encoded": 55,
+            "name": "v_540_msec",
+            "label": "540 mSec"
+          },
+          {
+            "encoded": 56,
+            "name": "v_548_msec",
+            "label": "548 mSec"
+          },
+          {
+            "encoded": 57,
+            "name": "v_556_msec",
+            "label": "556 mSec"
+          },
+          {
+            "encoded": 58,
+            "name": "v_564_msec",
+            "label": "564 mSec"
+          },
+          {
+            "encoded": 59,
+            "name": "v_572_msec",
+            "label": "572 mSec"
+          },
+          {
+            "encoded": 60,
+            "name": "v_580_msec",
+            "label": "580 mSec"
+          },
+          {
+            "encoded": 61,
+            "name": "v_588_msec",
+            "label": "588 mSec"
+          },
+          {
+            "encoded": 62,
+            "name": "v_596_msec",
+            "label": "596 mSec"
+          },
+          {
+            "encoded": 63,
+            "name": "v_604_msec",
+            "label": "604 mSec"
+          },
+          {
+            "encoded": 64,
+            "name": "v_612_msec",
+            "label": "612 mSec"
+          },
+          {
+            "encoded": 65,
+            "name": "v_620_msec",
+            "label": "620 mSec"
+          },
+          {
+            "encoded": 66,
+            "name": "v_628_msec",
+            "label": "628 mSec"
+          },
+          {
+            "encoded": 67,
+            "name": "v_636_msec",
+            "label": "636 mSec"
+          },
+          {
+            "encoded": 68,
+            "name": "v_644_msec",
+            "label": "644 mSec"
+          },
+          {
+            "encoded": 69,
+            "name": "v_652_msec",
+            "label": "652 mSec"
+          },
+          {
+            "encoded": 70,
+            "name": "v_660_msec",
+            "label": "660 mSec"
+          },
+          {
+            "encoded": 71,
+            "name": "v_668_msec",
+            "label": "668 mSec"
+          },
+          {
+            "encoded": 72,
+            "name": "v_676_msec",
+            "label": "676 mSec"
+          },
+          {
+            "encoded": 73,
+            "name": "v_684_msec",
+            "label": "684 mSec"
+          },
+          {
+            "encoded": 74,
+            "name": "v_692_msec",
+            "label": "692 mSec"
+          },
+          {
+            "encoded": 75,
+            "name": "v_700_msec",
+            "label": "700 mSec"
+          },
+          {
+            "encoded": 76,
+            "name": "v_708_msec",
+            "label": "708 mSec"
+          },
+          {
+            "encoded": 77,
+            "name": "v_716_msec",
+            "label": "716 mSec"
+          },
+          {
+            "encoded": 78,
+            "name": "v_724_msec",
+            "label": "724 mSec"
+          },
+          {
+            "encoded": 79,
+            "name": "v_732_msec",
+            "label": "732 mSec"
+          },
+          {
+            "encoded": 80,
+            "name": "v_740_msec",
+            "label": "740 mSec"
+          },
+          {
+            "encoded": 81,
+            "name": "v_748_msec",
+            "label": "748 mSec"
+          },
+          {
+            "encoded": 82,
+            "name": "v_756_msec",
+            "label": "756 mSec"
+          },
+          {
+            "encoded": 83,
+            "name": "v_764_msec",
+            "label": "764 mSec"
+          },
+          {
+            "encoded": 84,
+            "name": "v_772_msec",
+            "label": "772 mSec"
+          },
+          {
+            "encoded": 85,
+            "name": "v_780_msec",
+            "label": "780 mSec"
+          },
+          {
+            "encoded": 86,
+            "name": "v_788_msec",
+            "label": "788 mSec"
+          },
+          {
+            "encoded": 87,
+            "name": "v_796_msec",
+            "label": "796 mSec"
+          },
+          {
+            "encoded": 88,
+            "name": "v_804_msec",
+            "label": "804 mSec"
+          },
+          {
+            "encoded": 89,
+            "name": "v_812_msec",
+            "label": "812 mSec"
+          },
+          {
+            "encoded": 90,
+            "name": "v_820_msec",
+            "label": "820 mSec"
+          },
+          {
+            "encoded": 91,
+            "name": "v_828_msec",
+            "label": "828 mSec"
+          },
+          {
+            "encoded": 92,
+            "name": "v_836_msec",
+            "label": "836 mSec"
+          },
+          {
+            "encoded": 93,
+            "name": "v_844_msec",
+            "label": "844 mSec"
+          },
+          {
+            "encoded": 94,
+            "name": "v_852_msec",
+            "label": "852 mSec"
+          },
+          {
+            "encoded": 95,
+            "name": "v_860_msec",
+            "label": "860 mSec"
+          },
+          {
+            "encoded": 96,
+            "name": "v_868_msec",
+            "label": "868 mSec"
+          },
+          {
+            "encoded": 97,
+            "name": "v_876_msec",
+            "label": "876 mSec"
+          },
+          {
+            "encoded": 98,
+            "name": "v_884_msec",
+            "label": "884 mSec"
+          },
+          {
+            "encoded": 99,
+            "name": "v_892_msec",
+            "label": "892 mSec"
+          },
+          {
+            "encoded": 100,
+            "name": "v_900_msec",
+            "label": "900 mSec"
+          },
+          {
+            "encoded": 101,
+            "name": "v_908_msec",
+            "label": "908 mSec"
+          },
+          {
+            "encoded": 102,
+            "name": "v_916_msec",
+            "label": "916 mSec"
+          },
+          {
+            "encoded": 103,
+            "name": "v_924_msec",
+            "label": "924 mSec"
+          },
+          {
+            "encoded": 104,
+            "name": "v_932_msec",
+            "label": "932 mSec"
+          },
+          {
+            "encoded": 105,
+            "name": "v_940_msec",
+            "label": "940 mSec"
+          },
+          {
+            "encoded": 106,
+            "name": "v_948_msec",
+            "label": "948 mSec"
+          },
+          {
+            "encoded": 107,
+            "name": "v_956_msec",
+            "label": "956 mSec"
+          },
+          {
+            "encoded": 108,
+            "name": "v_964_msec",
+            "label": "964 mSec"
+          },
+          {
+            "encoded": 109,
+            "name": "v_972_msec",
+            "label": "972 mSec"
+          },
+          {
+            "encoded": 110,
+            "name": "v_980_msec",
+            "label": "980 mSec"
+          },
+          {
+            "encoded": 111,
+            "name": "v_988_msec",
+            "label": "988 mSec"
+          },
+          {
+            "encoded": 112,
+            "name": "v_996_msec",
+            "label": "996 mSec"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reserved_always_0_136",
+      "label": "reserved (always 0)",
+      "offsets": [
+        136
+      ],
+      "start": 136,
+      "end": 136,
+      "size": 1,
+      "status": "known",
+      "role": "Reserved (always 0) between delay time and bank-index mirror",
+      "encoding": null,
+      "kind": "meta"
+    },
+    {
+      "id": "bank_index_mirror",
+      "label": "bank index mirror",
+      "offsets": [
+        137
+      ],
+      "start": 137,
+      "end": 137,
+      "size": 1,
+      "status": "known",
+      "role": "Bank index mirror (equals offset 89) from sysex/_presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
+      "encoding": "raw_u8",
+      "kind": "meta"
+    },
+    {
+      "id": "reserved_always_0_138",
+      "label": "reserved (always 0)",
+      "offsets": [
+        138
+      ],
+      "start": 138,
+      "end": 138,
+      "size": 1,
+      "status": "known",
+      "role": "Reserved (always 0) between bank-index mirror and delay modulation",
+      "encoding": null,
+      "kind": "meta"
+    },
+    {
+      "id": "delay_modulation",
+      "label": "delay modulation",
+      "offsets": [
+        139
+      ],
+      "start": 139,
+      "end": 139,
+      "size": 1,
+      "status": "known",
+      "role": "Parameter `delay modulation` (from independent series sysex/delay modulation/) (raw_u8, label = encoded + (-1))",
+      "encoding": "raw_u8",
+      "parameter": "delay modulation",
+      "description": "Modulates the delay voices only (not the reverb), similar in character to reverb Modulation: low settings are slower and more shallow; higher settings are more random and deeper.",
+      "kind": "affine",
+      "scale": 1.0,
+      "offset": -1.0,
+      "encoding_notes": "label = encoded + (-1); from agreeing extreme<->adjacent edge slopes",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "delay_modulation_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "off",
+            "label": "off"
+          },
+          {
+            "encoded": 1,
+            "name": "v_0",
+            "label": "0"
+          },
+          {
+            "encoded": 2,
+            "name": "v_1",
+            "label": "1"
+          },
+          {
+            "encoded": 3,
+            "name": "v_2",
+            "label": "2"
+          },
+          {
+            "encoded": 4,
+            "name": "v_3",
+            "label": "3"
+          },
+          {
+            "encoded": 5,
+            "name": "v_4",
+            "label": "4"
+          },
+          {
+            "encoded": 6,
+            "name": "v_5",
+            "label": "5"
+          },
+          {
+            "encoded": 7,
+            "name": "v_6",
+            "label": "6"
+          },
+          {
+            "encoded": 8,
+            "name": "v_7",
+            "label": "7"
+          },
+          {
+            "encoded": 9,
+            "name": "v_8",
+            "label": "8"
+          },
+          {
+            "encoded": 10,
+            "name": "v_9",
+            "label": "9"
+          },
+          {
+            "encoded": 11,
+            "name": "v_10",
+            "label": "10"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reserved_always_0_140",
+      "label": "reserved (always 0)",
+      "offsets": [
+        140,
+        141,
+        142,
+        143,
+        144
+      ],
+      "start": 140,
+      "end": 144,
+      "size": 5,
+      "status": "known",
+      "role": "Reserved block (always 0 in this corpus)",
+      "encoding": null,
+      "kind": "meta"
+    },
+    {
+      "id": "family_flag_mirror",
+      "label": "family-flag mirror",
+      "offsets": [
+        145
+      ],
+      "start": 145,
+      "end": 145,
+      "size": 1,
+      "status": "known",
+      "role": "Mirror of algorithm/family flag at 97 (145=0 when 97=3; 145=1 when 97=4 in this corpus)",
+      "encoding": "raw_u8",
+      "kind": "meta"
+    },
+    {
+      "id": "secondary_edit_ui_146",
+      "label": "secondary (edit/UI)",
+      "offsets": [
+        146
+      ],
+      "start": 146,
+      "end": 146,
+      "size": 1,
+      "status": "secondary",
+      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders) (moved in independent series: delay modulation, diffusion, early select, hf rt crossover, hf rt multiply, lf rt multiply, rolloff, vlf cut)",
+      "encoding": null,
+      "kind": "secondary"
+    },
+    {
+      "id": "secondary_edit_ui_147",
+      "label": "secondary (edit/UI)",
+      "offsets": [
+        147
+      ],
+      "start": 147,
+      "end": 147,
+      "size": 1,
+      "status": "secondary",
+      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders) (moved in independent series: delay level, delay modulation, delay time, density, diffusion, early rolloff, early select, early to reverb mix, hf rt crossover, hf rt multiply, lf rt crossover, lf rt multiply, modulation, predelay, reverb time, rolloff, size, vlf cut)",
+      "encoding": null,
+      "kind": "secondary"
+    },
+    {
+      "id": "reserved_always_0_148",
+      "label": "reserved (always 0)",
+      "offsets": [
+        148,
+        149,
+        150,
+        151
+      ],
+      "start": 148,
+      "end": 151,
+      "size": 4,
+      "status": "known",
+      "role": "Reserved (always 0) immediately before checksum nibbles",
+      "encoding": null,
+      "kind": "meta"
+    },
+    {
+      "id": "checksum",
+      "label": "checksum (CRC-16/ARC)",
+      "offsets": [
+        152,
+        153,
+        154,
+        155
+      ],
+      "start": 152,
+      "end": 155,
+      "size": 4,
+      "status": "checksum",
+      "role": "Checksum: CRC-16/ARC over offsets 8-151 (name + payload), packed as four high-nibble-first SysEx bytes (per-dump; recompute after edits - do not copy across parameter series)",
+      "encoding": "crc16_arc_u16_be_nibbles",
+      "kind": "checksum"
+    },
+    {
+      "id": "sysex_end",
+      "label": "SysEx end (F7)",
+      "offsets": [
+        156
+      ],
+      "start": 156,
+      "end": 156,
+      "size": 1,
+      "status": "frame",
+      "role": "SysEx end (F7)",
+      "encoding": null,
+      "kind": "frame",
+      "contents": [
+        247
+      ]
+    }
+  ],
+  "sources": {
+    "byte_map_regions": 44,
+    "parameter_series": 18,
+    "has_presets": true
+  }
+}

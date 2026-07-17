@@ -1,0 +1,28 @@
+[project]
+name = "m7-sysex"
+version = "0.1.0"
+description = "Reverse-engineer Bricasti M7 MIDI SysEx program and system dumps (parameters, presets, I/O settings)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+dependencies = []
+
+[project.optional-dependencies]
+sheet = ["pymupdf"]
+dev = ["pytest", "kaitaistruct"]
+
+[project.scripts]
+m7-sysex = "m7_sysex.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: corpus-wide or expensive Kaitai checks (skipped in default runs)",
+]
+addopts = ["-m", "not slow"]

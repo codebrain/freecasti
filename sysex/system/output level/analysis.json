@@ -1,0 +1,376 @@
+{
+  "kind": "system",
+  "parameter": "output level",
+  "folder": "C:\\m7\\sysex\\system\\output level",
+  "dump_count": 3,
+  "message_length": 77,
+  "unit": null,
+  "unit_display": null,
+  "frame": {
+    "manufacturer_id": "00 62 63",
+    "manufacturer_id_match": true,
+    "header": "70 08 02 00",
+    "header_match": true,
+    "payload_offset": 8,
+    "payload_end": 72,
+    "checksum_offsets": [
+      72,
+      73,
+      74,
+      75
+    ],
+    "nibble_payload": true,
+    "notes": "Payload bytes 8-71 are nibble-sized (0x00-0x0F). The final four nibbles before F7 are a CRC-16/ARC over offsets 8-71, packed high-nibble-first. No 80-byte ASCII name field."
+  },
+  "changing_offsets": [
+    17,
+    72,
+    73,
+    74,
+    75
+  ],
+  "changing_regions": [
+    {
+      "start": 17,
+      "end": 17,
+      "length": 1,
+      "offsets": [
+        17
+      ]
+    },
+    {
+      "start": 72,
+      "end": 75,
+      "length": 4,
+      "offsets": [
+        72,
+        73,
+        74,
+        75
+      ]
+    }
+  ],
+  "classification": {
+    "parameter_candidate_offsets": [
+      17
+    ],
+    "checksum_candidate_offsets": [
+      72,
+      73,
+      74,
+      75
+    ],
+    "header_or_name_offsets": [],
+    "secondary_offsets": []
+  },
+  "sampling": {
+    "convention": "Wherever possible, each series includes the usable extremes, the adjacent-to-extreme settings, and a sparse sample of values in between (optional discrete off). Mids are samples only - not every intermediate value. Extremes are treated as authoritative range bounds.",
+    "roles_by_file": {
+      "8.syx": "extreme_low",
+      "24.syx": "extreme_high",
+      "16.syx": "adjacent_low"
+    },
+    "files_by_role": {
+      "off": [],
+      "extreme_low": [
+        "8.syx"
+      ],
+      "adjacent_low": [
+        "16.syx"
+      ],
+      "mid": [],
+      "adjacent_high": [],
+      "extreme_high": [
+        "24.syx"
+      ]
+    },
+    "coverage": {
+      "has_extreme_low": true,
+      "has_extreme_high": true,
+      "has_adjacent_low": true,
+      "has_adjacent_high": false,
+      "mid_count": 0,
+      "mids_are_sparse_sample": true,
+      "complete_edge_pair": false
+    },
+    "edge_steps": {
+      "points": {
+        "extreme_low": {
+          "file": "8.syx",
+          "encoded": 0,
+          "raw_bytes": [
+            "00"
+          ],
+          "label": 8,
+          "label_display": "8"
+        },
+        "adjacent_low": {
+          "file": "16.syx",
+          "encoded": 1,
+          "raw_bytes": [
+            "01"
+          ],
+          "label": 16,
+          "label_display": "16"
+        },
+        "extreme_high": {
+          "file": "24.syx",
+          "encoded": 2,
+          "raw_bytes": [
+            "02"
+          ],
+          "label": 24,
+          "label_display": "24"
+        }
+      },
+      "low_edge": {
+        "delta_label": 8.0,
+        "delta_encoded": 1,
+        "label_per_encoded": 8.0,
+        "extreme_file": "8.syx",
+        "adjacent_file": "16.syx",
+        "extreme_label": 8,
+        "adjacent_label": 16
+      }
+    }
+  },
+  "value_range": {
+    "convention": "Wherever possible, each series includes the usable extremes, the adjacent-to-extreme settings, and a sparse sample of values in between (optional discrete off). Mids are samples only - not every intermediate value. Extremes are treated as authoritative range bounds.",
+    "min": 8,
+    "max": 24,
+    "extreme_low_file": "8.syx",
+    "extreme_high_file": "24.syx",
+    "range_authority": "capture_extremes",
+    "summary": "Range 8 ... 24 (capture extremes)",
+    "edge_steps": {
+      "points": {
+        "extreme_low": {
+          "file": "8.syx",
+          "encoded": 0,
+          "raw_bytes": [
+            "00"
+          ],
+          "label": 8,
+          "label_display": "8"
+        },
+        "adjacent_low": {
+          "file": "16.syx",
+          "encoded": 1,
+          "raw_bytes": [
+            "01"
+          ],
+          "label": 16,
+          "label_display": "16"
+        },
+        "extreme_high": {
+          "file": "24.syx",
+          "encoded": 2,
+          "raw_bytes": [
+            "02"
+          ],
+          "label": 24,
+          "label_display": "24"
+        }
+      },
+      "low_edge": {
+        "delta_label": 8.0,
+        "delta_encoded": 1,
+        "label_per_encoded": 8.0,
+        "extreme_file": "8.syx",
+        "adjacent_file": "16.syx",
+        "extreme_label": 8,
+        "adjacent_label": 16
+      }
+    }
+  },
+  "encoding_hypotheses": [
+    {
+      "encoding": "raw_u8",
+      "offsets": [
+        17
+      ],
+      "score": 1.0,
+      "matched": 3,
+      "total": 3,
+      "scale": 8.0,
+      "offset": 8.0,
+      "mapping": [
+        {
+          "label": 8.0,
+          "encoded": 0,
+          "raw_bytes": [
+            "00"
+          ]
+        },
+        {
+          "label": 16.0,
+          "encoded": 1,
+          "raw_bytes": [
+            "01"
+          ]
+        },
+        {
+          "label": 24.0,
+          "encoded": 2,
+          "raw_bytes": [
+            "02"
+          ]
+        }
+      ],
+      "notes": "label = encoded * 8 + (8); from agreeing extreme<->adjacent edge slopes",
+      "r_squared": null,
+      "exact": true,
+      "monotonic_score": 1.0
+    }
+  ],
+  "best_encoding": {
+    "encoding": "raw_u8",
+    "offsets": [
+      17
+    ],
+    "score": 1.0,
+    "matched": 3,
+    "total": 3,
+    "scale": 8.0,
+    "offset": 8.0,
+    "mapping": [
+      {
+        "label": 8.0,
+        "encoded": 0,
+        "raw_bytes": [
+          "00"
+        ]
+      },
+      {
+        "label": 16.0,
+        "encoded": 1,
+        "raw_bytes": [
+          "01"
+        ]
+      },
+      {
+        "label": 24.0,
+        "encoded": 2,
+        "raw_bytes": [
+          "02"
+        ]
+      }
+    ],
+    "notes": "label = encoded * 8 + (8); from agreeing extreme<->adjacent edge slopes",
+    "r_squared": null,
+    "exact": true,
+    "monotonic_score": 1.0
+  },
+  "hypothesis": {
+    "summary": "Parameter 'output level' appears at SysEx offset(s) [17]. using encoding 'raw_u8'. (label = encoded * 8 + (8)). Range 8 ... 24 (capture extremes). Offsets [72, 73, 74, 75] also change and are treated as checksum nibbles. Payload bytes 8-71 are nibble-sized (0x00-0x0F).",
+    "confidence": "high",
+    "match_rate": 1.0,
+    "how_to_set": {
+      "offsets": [
+        17
+      ],
+      "encoding": "raw_u8",
+      "scale": 8.0,
+      "offset": 8.0,
+      "encode_steps": [
+        "encoded = round((desired_label - (8)) / 8.0)",
+        "byte[offset0] = encoded & 0x0F  # M7 payload nibbles are 0x00-0x0F",
+        "recompute trailing checksum: CRC-16/ARC over bytes[8:72], pack as four high-nibble-first SysEx bytes at offsets 72-75"
+      ],
+      "notes": "label = encoded * 8 + (8); from agreeing extreme<->adjacent edge slopes"
+    }
+  },
+  "duplicate_byte_notes": null,
+  "dumps": [
+    {
+      "file": "8.syx",
+      "label": {
+        "kind": "number",
+        "value": 8,
+        "unit": null,
+        "unit_display": null,
+        "stem": "8",
+        "endpoint": null,
+        "raw_label": "8"
+      },
+      "sampling_role": "extreme_low",
+      "changing_bytes": {
+        "17": "00",
+        "72": "0C",
+        "73": "0C",
+        "74": "08",
+        "75": "05"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          17
+        ],
+        "raw_bytes": [
+          "00"
+        ],
+        "encoded_value": 0
+      }
+    },
+    {
+      "file": "16.syx",
+      "label": {
+        "kind": "number",
+        "value": 16,
+        "unit": null,
+        "unit_display": null,
+        "stem": "16",
+        "endpoint": null,
+        "raw_label": "16"
+      },
+      "sampling_role": "adjacent_low",
+      "changing_bytes": {
+        "17": "01",
+        "72": "07",
+        "73": "07",
+        "74": "02",
+        "75": "0E"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          17
+        ],
+        "raw_bytes": [
+          "01"
+        ],
+        "encoded_value": 1
+      }
+    },
+    {
+      "file": "24.syx",
+      "label": {
+        "kind": "number",
+        "value": 24,
+        "unit": null,
+        "unit_display": null,
+        "stem": "24",
+        "endpoint": null,
+        "raw_label": "24"
+      },
+      "sampling_role": "extreme_high",
+      "changing_bytes": {
+        "17": "02",
+        "72": "0F",
+        "73": "0B",
+        "74": "0D",
+        "75": "00"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          17
+        ],
+        "raw_bytes": [
+          "02"
+        ],
+        "encoded_value": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+/** Program parameter column order (must match Python export). */
+export const PROG_PARAM_ORDER = [
+  "reverb time",
+  "size",
+  "predelay",
+  "diffusion",
+  "density",
+  "modulation",
+  "early select",
+  "early to reverb mix",
+  "delay time",
+  "delay level",
+  "delay modulation",
+  "rolloff",
+  "early rolloff",
+  "vlf cut",
+  "lf rt crossover",
+  "lf rt multiply",
+  "hf rt crossover",
+  "hf rt multiply",
+] as const;

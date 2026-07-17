@@ -1,0 +1,1125 @@
+{
+  "parameter": "size",
+  "folder": "C:\\m7\\sysex\\prog\\parameters\\size",
+  "dump_count": 8,
+  "message_length": 157,
+  "unit": null,
+  "unit_display": null,
+  "frame": {
+    "manufacturer_id": "00 62 63",
+    "manufacturer_id_match": true,
+    "header": "70 08 01 00",
+    "header_match": true,
+    "name_offset": 8,
+    "name_length": 80,
+    "data_offset": 88,
+    "checksum_offsets": [
+      152,
+      153,
+      154,
+      155
+    ],
+    "nibble_payload": true,
+    "notes": "Payload bytes after the ASCII program name are nibble-sized (0x00-0x0F). The final four nibbles before F7 are a CRC-16/ARC over offsets 8-151, packed high-nibble-first."
+  },
+  "changing_offsets": [
+    102,
+    103,
+    147,
+    152,
+    153,
+    154,
+    155
+  ],
+  "changing_regions": [
+    {
+      "start": 102,
+      "end": 103,
+      "length": 2,
+      "offsets": [
+        102,
+        103
+      ]
+    },
+    {
+      "start": 147,
+      "end": 147,
+      "length": 1,
+      "offsets": [
+        147
+      ]
+    },
+    {
+      "start": 152,
+      "end": 155,
+      "length": 4,
+      "offsets": [
+        152,
+        153,
+        154,
+        155
+      ]
+    }
+  ],
+  "classification": {
+    "parameter_candidate_offsets": [
+      102,
+      103,
+      147
+    ],
+    "checksum_candidate_offsets": [
+      152,
+      153,
+      154,
+      155
+    ],
+    "header_or_name_offsets": [],
+    "secondary_offsets": [
+      147
+    ]
+  },
+  "sampling": {
+    "convention": "Wherever possible, each series includes the usable extremes, the adjacent-to-extreme settings, and a sparse sample of values in between (optional discrete off). Mids are samples only - not every intermediate value. Extremes are treated as authoritative range bounds.",
+    "roles_by_file": {
+      "small.syx": "extreme_low",
+      "large.syx": "extreme_high",
+      "1.syx": "adjacent_low",
+      "29.syx": "adjacent_high",
+      "2.syx": "mid",
+      "7.syx": "mid",
+      "15.syx": "mid",
+      "28.syx": "mid"
+    },
+    "files_by_role": {
+      "off": [],
+      "extreme_low": [
+        "small.syx"
+      ],
+      "adjacent_low": [
+        "1.syx"
+      ],
+      "mid": [
+        "2.syx",
+        "7.syx",
+        "15.syx",
+        "28.syx"
+      ],
+      "adjacent_high": [
+        "29.syx"
+      ],
+      "extreme_high": [
+        "large.syx"
+      ]
+    },
+    "coverage": {
+      "has_extreme_low": true,
+      "has_extreme_high": true,
+      "has_adjacent_low": true,
+      "has_adjacent_high": true,
+      "mid_count": 4,
+      "mids_are_sparse_sample": true,
+      "complete_edge_pair": true
+    },
+    "edge_steps": {
+      "points": {
+        "extreme_low": {
+          "file": "small.syx",
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ],
+          "endpoint": "low"
+        },
+        "adjacent_low": {
+          "file": "1.syx",
+          "encoded": 1,
+          "raw_bytes": [
+            "00",
+            "01"
+          ],
+          "label": 1,
+          "label_display": "1"
+        },
+        "adjacent_high": {
+          "file": "29.syx",
+          "encoded": 29,
+          "raw_bytes": [
+            "01",
+            "0D"
+          ],
+          "label": 29,
+          "label_display": "29"
+        },
+        "extreme_high": {
+          "file": "large.syx",
+          "encoded": 30,
+          "raw_bytes": [
+            "01",
+            "0E"
+          ],
+          "endpoint": "high"
+        }
+      },
+      "low_edge": {
+        "delta_encoded": 1,
+        "extreme_file": "small.syx",
+        "adjacent_file": "1.syx"
+      },
+      "high_edge": {
+        "delta_encoded": -1,
+        "extreme_file": "large.syx",
+        "adjacent_file": "29.syx"
+      }
+    }
+  },
+  "value_range": {
+    "convention": "Wherever possible, each series includes the usable extremes, the adjacent-to-extreme settings, and a sparse sample of values in between (optional discrete off). Mids are samples only - not every intermediate value. Extremes are treated as authoritative range bounds.",
+    "low": {
+      "file": "small.syx",
+      "endpoint": "low",
+      "encoded_value": 0,
+      "raw_bytes": [
+        "00",
+        "00"
+      ],
+      "inferred_label": 0,
+      "inferred_label_display": "0"
+    },
+    "high": {
+      "file": "large.syx",
+      "endpoint": "high",
+      "encoded_value": 30,
+      "raw_bytes": [
+        "01",
+        "0E"
+      ],
+      "inferred_label": 30,
+      "inferred_label_display": "30"
+    },
+    "min": 0,
+    "max": 30,
+    "summary": "Observed range 0 ... 30",
+    "edge_steps": {
+      "points": {
+        "extreme_low": {
+          "file": "small.syx",
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ],
+          "endpoint": "low"
+        },
+        "adjacent_low": {
+          "file": "1.syx",
+          "encoded": 1,
+          "raw_bytes": [
+            "00",
+            "01"
+          ],
+          "label": 1,
+          "label_display": "1"
+        },
+        "adjacent_high": {
+          "file": "29.syx",
+          "encoded": 29,
+          "raw_bytes": [
+            "01",
+            "0D"
+          ],
+          "label": 29,
+          "label_display": "29"
+        },
+        "extreme_high": {
+          "file": "large.syx",
+          "encoded": 30,
+          "raw_bytes": [
+            "01",
+            "0E"
+          ],
+          "endpoint": "high"
+        }
+      },
+      "low_edge": {
+        "delta_encoded": 1,
+        "extreme_file": "small.syx",
+        "adjacent_file": "1.syx"
+      },
+      "high_edge": {
+        "delta_encoded": -1,
+        "extreme_file": "large.syx",
+        "adjacent_file": "29.syx"
+      }
+    }
+  },
+  "official": {
+    "matched": true,
+    "role": "hint",
+    "id": "size",
+    "name": "Size",
+    "folder_hint": "size",
+    "notes": "Manual UI: Small 1 - 24 Large. This unit uses Small / numbered / Large endpoints (may exceed 24).",
+    "description": "Adjusts the apparent size of the late reverberant field.",
+    "description_source": "Bricasti M7 Owner's Manual \u2014 Reverb Parameters",
+    "description_url": "https://www.bricasti.com/images/M7.pdf",
+    "description_sources": null,
+    "expected": {
+      "manual_min": 1,
+      "manual_max": 24,
+      "compare_min": 0,
+      "compare_max": 30,
+      "unit": null,
+      "has_off": false,
+      "display": "integer",
+      "balance_side_max": null
+    },
+    "warnings": [],
+    "notes_from_check": [
+      "Observed min 0 is below printed manual 1 (unit/firmware variance; dump is authoritative)",
+      "Observed max 30 is above printed manual 24 (unit/firmware variance; dump is authoritative)"
+    ],
+    "sources": [
+      "Bricasti M7 Owner's Manual (program parameter control ranges)",
+      "Bricasti MIDI App Notes / V2 addendum (dump types only)"
+    ],
+    "disclaimer": "Hint only from published manuals / controllers - not authoritative. Firmware and unit variation are common (e.g. Early Select may be 0...31 on some M7s while the manual prints 0...20). Dump-derived extremes and encodings always win; catalog checks are soft guidance for capture planning.",
+    "agreement": "differs_from_hint"
+  },
+  "encoding_hypotheses": [
+    {
+      "encoding": "nibble_hilo",
+      "offsets": [
+        102,
+        103
+      ],
+      "score": 1.0,
+      "matched": 6,
+      "total": 6,
+      "scale": 1.0,
+      "offset": 0.0,
+      "mapping": [
+        {
+          "label": 1.0,
+          "encoded": 1,
+          "raw_bytes": [
+            "00",
+            "01"
+          ]
+        },
+        {
+          "label": 2.0,
+          "encoded": 2,
+          "raw_bytes": [
+            "00",
+            "02"
+          ]
+        },
+        {
+          "label": 7.0,
+          "encoded": 7,
+          "raw_bytes": [
+            "00",
+            "07"
+          ]
+        },
+        {
+          "label": 15.0,
+          "encoded": 15,
+          "raw_bytes": [
+            "00",
+            "0F"
+          ]
+        },
+        {
+          "label": 28.0,
+          "encoded": 28,
+          "raw_bytes": [
+            "01",
+            "0C"
+          ]
+        },
+        {
+          "label": 29.0,
+          "encoded": 29,
+          "raw_bytes": [
+            "01",
+            "0D"
+          ]
+        }
+      ],
+      "notes": "label = encoded * 1; from agreeing extreme<->adjacent edge slopes",
+      "r_squared": null,
+      "exact": true,
+      "monotonic_score": 1.0
+    },
+    {
+      "encoding": "midi14_be",
+      "offsets": [
+        102,
+        103
+      ],
+      "score": 1.0,
+      "matched": 0,
+      "total": 6,
+      "scale": null,
+      "offset": null,
+      "mapping": [
+        {
+          "label": 1.0,
+          "encoded": 1,
+          "raw_bytes": [
+            "00",
+            "01"
+          ]
+        },
+        {
+          "label": 2.0,
+          "encoded": 2,
+          "raw_bytes": [
+            "00",
+            "02"
+          ]
+        },
+        {
+          "label": 7.0,
+          "encoded": 7,
+          "raw_bytes": [
+            "00",
+            "07"
+          ]
+        },
+        {
+          "label": 15.0,
+          "encoded": 15,
+          "raw_bytes": [
+            "00",
+            "0F"
+          ]
+        },
+        {
+          "label": 28.0,
+          "encoded": 140,
+          "raw_bytes": [
+            "01",
+            "0C"
+          ]
+        },
+        {
+          "label": 29.0,
+          "encoded": 141,
+          "raw_bytes": [
+            "01",
+            "0D"
+          ]
+        }
+      ],
+      "notes": "table/index candidate (monotonic 100%); least-squares hint only (not used for endpoint unit conversion): label ~= 0.169993*encoded + 4.99705 (r^2=0.8911)",
+      "r_squared": 0.8910502995847567,
+      "exact": false,
+      "monotonic_score": 1.0
+    },
+    {
+      "encoding": "raw_u8",
+      "offsets": [
+        147
+      ],
+      "score": 0.3333333333333333,
+      "matched": 2,
+      "total": 6,
+      "scale": 1.0,
+      "offset": -1.0,
+      "mapping": [
+        {
+          "label": 1.0,
+          "encoded": 2,
+          "raw_bytes": [
+            "02"
+          ]
+        },
+        {
+          "label": 2.0,
+          "encoded": 3,
+          "raw_bytes": [
+            "03"
+          ]
+        },
+        {
+          "label": 7.0,
+          "encoded": 4,
+          "raw_bytes": [
+            "04"
+          ]
+        },
+        {
+          "label": 15.0,
+          "encoded": 5,
+          "raw_bytes": [
+            "05"
+          ]
+        },
+        {
+          "label": 28.0,
+          "encoded": 5,
+          "raw_bytes": [
+            "05"
+          ]
+        },
+        {
+          "label": 29.0,
+          "encoded": 6,
+          "raw_bytes": [
+            "06"
+          ]
+        }
+      ],
+      "notes": "label = encoded + (-1); from agreeing extreme<->adjacent edge slopes; least-squares hint only (not used for endpoint unit conversion): label ~= 7.69231*encoded + -18.3846 (r^2=0.8183)",
+      "r_squared": 0.8183306055646481,
+      "exact": true,
+      "monotonic_score": 0.9333333333333333
+    },
+    {
+      "encoding": "nibble_lohi",
+      "offsets": [
+        102,
+        103
+      ],
+      "score": 0.6666666666666666,
+      "matched": 4,
+      "total": 6,
+      "scale": 0.0625,
+      "offset": 0.0,
+      "mapping": [
+        {
+          "label": 1.0,
+          "encoded": 16,
+          "raw_bytes": [
+            "00",
+            "01"
+          ]
+        },
+        {
+          "label": 2.0,
+          "encoded": 32,
+          "raw_bytes": [
+            "00",
+            "02"
+          ]
+        },
+        {
+          "label": 7.0,
+          "encoded": 112,
+          "raw_bytes": [
+            "00",
+            "07"
+          ]
+        },
+        {
+          "label": 15.0,
+          "encoded": 240,
+          "raw_bytes": [
+            "00",
+            "0F"
+          ]
+        },
+        {
+          "label": 28.0,
+          "encoded": 193,
+          "raw_bytes": [
+            "01",
+            "0C"
+          ]
+        },
+        {
+          "label": 29.0,
+          "encoded": 209,
+          "raw_bytes": [
+            "01",
+            "0D"
+          ]
+        }
+      ],
+      "notes": "label = encoded * 0.0625; from agreeing extreme<->adjacent edge slopes; least-squares hint only (not used for endpoint unit conversion): label ~= 0.110032*encoded + -1.04101 (r^2=0.6979)",
+      "r_squared": 0.6978868693278379,
+      "exact": true,
+      "monotonic_score": 0.8666666666666667
+    },
+    {
+      "encoding": "midi14_le",
+      "offsets": [
+        102,
+        103
+      ],
+      "score": 0.6666666666666666,
+      "matched": 4,
+      "total": 6,
+      "scale": 0.0078125,
+      "offset": 0.0,
+      "mapping": [
+        {
+          "label": 1.0,
+          "encoded": 128,
+          "raw_bytes": [
+            "00",
+            "01"
+          ]
+        },
+        {
+          "label": 2.0,
+          "encoded": 256,
+          "raw_bytes": [
+            "00",
+            "02"
+          ]
+        },
+        {
+          "label": 7.0,
+          "encoded": 896,
+          "raw_bytes": [
+            "00",
+            "07"
+          ]
+        },
+        {
+          "label": 15.0,
+          "encoded": 1920,
+          "raw_bytes": [
+            "00",
+            "0F"
+          ]
+        },
+        {
+          "label": 28.0,
+          "encoded": 1537,
+          "raw_bytes": [
+            "01",
+            "0C"
+          ]
+        },
+        {
+          "label": 29.0,
+          "encoded": 1665,
+          "raw_bytes": [
+            "01",
+            "0D"
+          ]
+        }
+      ],
+      "notes": "label = encoded * 0.0078125; from agreeing extreme<->adjacent edge slopes; least-squares hint only (not used for endpoint unit conversion): label ~= 0.0137537*encoded + -1.0085 (r^2=0.6942)",
+      "r_squared": 0.6942209617064261,
+      "exact": true,
+      "monotonic_score": 0.8666666666666667
+    },
+    {
+      "encoding": "raw_u8",
+      "offsets": [
+        103
+      ],
+      "score": 0.6666666666666666,
+      "matched": 4,
+      "total": 6,
+      "scale": 1.0,
+      "offset": 0.0,
+      "mapping": [
+        {
+          "label": 1.0,
+          "encoded": 1,
+          "raw_bytes": [
+            "01"
+          ]
+        },
+        {
+          "label": 2.0,
+          "encoded": 2,
+          "raw_bytes": [
+            "02"
+          ]
+        },
+        {
+          "label": 7.0,
+          "encoded": 7,
+          "raw_bytes": [
+            "07"
+          ]
+        },
+        {
+          "label": 15.0,
+          "encoded": 15,
+          "raw_bytes": [
+            "0F"
+          ]
+        },
+        {
+          "label": 28.0,
+          "encoded": 12,
+          "raw_bytes": [
+            "0C"
+          ]
+        },
+        {
+          "label": 29.0,
+          "encoded": 13,
+          "raw_bytes": [
+            "0D"
+          ]
+        }
+      ],
+      "notes": "label = encoded * 1; from agreeing extreme<->adjacent edge slopes; least-squares hint only (not used for endpoint unit conversion): label ~= 1.76046*encoded + -1.0038 (r^2=0.6937)",
+      "r_squared": 0.693694684896044,
+      "exact": true,
+      "monotonic_score": 0.8666666666666667
+    },
+    {
+      "encoding": "raw_u8",
+      "offsets": [
+        102
+      ],
+      "score": 0.16666666666666666,
+      "matched": 1,
+      "total": 6,
+      "scale": 1.0,
+      "offset": 1.0,
+      "mapping": [
+        {
+          "label": 1.0,
+          "encoded": 0,
+          "raw_bytes": [
+            "00"
+          ]
+        },
+        {
+          "label": 2.0,
+          "encoded": 0,
+          "raw_bytes": [
+            "00"
+          ]
+        },
+        {
+          "label": 7.0,
+          "encoded": 0,
+          "raw_bytes": [
+            "00"
+          ]
+        },
+        {
+          "label": 15.0,
+          "encoded": 0,
+          "raw_bytes": [
+            "00"
+          ]
+        },
+        {
+          "label": 28.0,
+          "encoded": 1,
+          "raw_bytes": [
+            "01"
+          ]
+        },
+        {
+          "label": 29.0,
+          "encoded": 1,
+          "raw_bytes": [
+            "01"
+          ]
+        }
+      ],
+      "notes": "label = encoded + (1); least-squares hint only (not used for endpoint unit conversion): label ~= 22.25*encoded + 6.25 (r^2=0.8427)",
+      "r_squared": 0.842659574468085,
+      "exact": true,
+      "monotonic_score": 0.5333333333333333
+    }
+  ],
+  "best_encoding": {
+    "encoding": "nibble_hilo",
+    "offsets": [
+      102,
+      103
+    ],
+    "score": 1.0,
+    "matched": 6,
+    "total": 6,
+    "scale": 1.0,
+    "offset": 0.0,
+    "mapping": [
+      {
+        "label": 1.0,
+        "encoded": 1,
+        "raw_bytes": [
+          "00",
+          "01"
+        ]
+      },
+      {
+        "label": 2.0,
+        "encoded": 2,
+        "raw_bytes": [
+          "00",
+          "02"
+        ]
+      },
+      {
+        "label": 7.0,
+        "encoded": 7,
+        "raw_bytes": [
+          "00",
+          "07"
+        ]
+      },
+      {
+        "label": 15.0,
+        "encoded": 15,
+        "raw_bytes": [
+          "00",
+          "0F"
+        ]
+      },
+      {
+        "label": 28.0,
+        "encoded": 28,
+        "raw_bytes": [
+          "01",
+          "0C"
+        ]
+      },
+      {
+        "label": 29.0,
+        "encoded": 29,
+        "raw_bytes": [
+          "01",
+          "0D"
+        ]
+      }
+    ],
+    "notes": "label = encoded * 1; from agreeing extreme<->adjacent edge slopes",
+    "r_squared": null,
+    "exact": true,
+    "monotonic_score": 1.0
+  },
+  "hypothesis": {
+    "summary": "Parameter 'size' appears at SysEx offset(s) [102, 103]. using encoding 'nibble_hilo'. (label = encoded * 1). Observed range 0 ... 30. Offsets [152, 153, 154, 155] also change and are treated as checksum nibbles. Additional non-checksum offsets [147] also change (possible edit counter, UI state, or mirrored field). All post-name payload bytes are nibble-sized (0x00-0x0F).",
+    "confidence": "high",
+    "match_rate": 1.0,
+    "how_to_set": {
+      "offsets": [
+        102,
+        103
+      ],
+      "encoding": "nibble_hilo",
+      "scale": 1.0,
+      "offset": 0.0,
+      "encode_steps": [
+        "encoded = desired_label",
+        "byte[offset0] = (encoded >> 4) & 0x0F",
+        "byte[offset1] = encoded & 0x0F",
+        "recompute trailing checksum: CRC-16/ARC over bytes[8:152], pack as four high-nibble-first SysEx bytes at offsets 152-155"
+      ],
+      "notes": "label = encoded * 1; from agreeing extreme<->adjacent edge slopes"
+    }
+  },
+  "dumps": [
+    {
+      "file": "small.syx",
+      "label": {
+        "kind": "endpoint",
+        "value": "low",
+        "unit": null,
+        "unit_display": null,
+        "stem": "small",
+        "endpoint": "low",
+        "raw_label": "small",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "extreme_low",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "102": "00",
+        "103": "00",
+        "147": "01",
+        "152": "0D",
+        "153": "0D",
+        "154": "07",
+        "155": "06"
+      },
+      "decoded_parameter": {
+        "encoding": "nibble_hilo",
+        "offsets": [
+          102,
+          103
+        ],
+        "raw_bytes": [
+          "00",
+          "00"
+        ],
+        "encoded_value": 0,
+        "inferred_label": 0
+      }
+    },
+    {
+      "file": "1.syx",
+      "label": {
+        "kind": "number",
+        "value": 1,
+        "unit": null,
+        "unit_display": null,
+        "stem": "1",
+        "endpoint": null,
+        "raw_label": "1",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "adjacent_low",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "102": "00",
+        "103": "01",
+        "147": "02",
+        "152": "03",
+        "153": "00",
+        "154": "01",
+        "155": "0E"
+      },
+      "decoded_parameter": {
+        "encoding": "nibble_hilo",
+        "offsets": [
+          102,
+          103
+        ],
+        "raw_bytes": [
+          "00",
+          "01"
+        ],
+        "encoded_value": 1,
+        "inferred_label": 1
+      }
+    },
+    {
+      "file": "2.syx",
+      "label": {
+        "kind": "number",
+        "value": 2,
+        "unit": null,
+        "unit_display": null,
+        "stem": "2",
+        "endpoint": null,
+        "raw_label": "2",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "mid",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "102": "00",
+        "103": "02",
+        "147": "03",
+        "152": "08",
+        "153": "07",
+        "154": "05",
+        "155": "04"
+      },
+      "decoded_parameter": {
+        "encoding": "nibble_hilo",
+        "offsets": [
+          102,
+          103
+        ],
+        "raw_bytes": [
+          "00",
+          "02"
+        ],
+        "encoded_value": 2,
+        "inferred_label": 2
+      }
+    },
+    {
+      "file": "7.syx",
+      "label": {
+        "kind": "number",
+        "value": 7,
+        "unit": null,
+        "unit_display": null,
+        "stem": "7",
+        "endpoint": null,
+        "raw_label": "7",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "mid",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "102": "00",
+        "103": "07",
+        "147": "04",
+        "152": "0D",
+        "153": "0E",
+        "154": "07",
+        "155": "08"
+      },
+      "decoded_parameter": {
+        "encoding": "nibble_hilo",
+        "offsets": [
+          102,
+          103
+        ],
+        "raw_bytes": [
+          "00",
+          "07"
+        ],
+        "encoded_value": 7,
+        "inferred_label": 7
+      }
+    },
+    {
+      "file": "15.syx",
+      "label": {
+        "kind": "number",
+        "value": 15,
+        "unit": null,
+        "unit_display": null,
+        "stem": "15",
+        "endpoint": null,
+        "raw_label": "15",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "mid",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "102": "00",
+        "103": "0F",
+        "147": "05",
+        "152": "0F",
+        "153": "07",
+        "154": "02",
+        "155": "0F"
+      },
+      "decoded_parameter": {
+        "encoding": "nibble_hilo",
+        "offsets": [
+          102,
+          103
+        ],
+        "raw_bytes": [
+          "00",
+          "0F"
+        ],
+        "encoded_value": 15,
+        "inferred_label": 15
+      }
+    },
+    {
+      "file": "28.syx",
+      "label": {
+        "kind": "number",
+        "value": 28,
+        "unit": null,
+        "unit_display": null,
+        "stem": "28",
+        "endpoint": null,
+        "raw_label": "28",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "mid",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "102": "01",
+        "103": "0C",
+        "147": "05",
+        "152": "05",
+        "153": "0D",
+        "154": "0B",
+        "155": "04"
+      },
+      "decoded_parameter": {
+        "encoding": "nibble_hilo",
+        "offsets": [
+          102,
+          103
+        ],
+        "raw_bytes": [
+          "01",
+          "0C"
+        ],
+        "encoded_value": 28,
+        "inferred_label": 28
+      }
+    },
+    {
+      "file": "29.syx",
+      "label": {
+        "kind": "number",
+        "value": 29,
+        "unit": null,
+        "unit_display": null,
+        "stem": "29",
+        "endpoint": null,
+        "raw_label": "29",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "adjacent_high",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "102": "01",
+        "103": "0D",
+        "147": "06",
+        "152": "0B",
+        "153": "00",
+        "154": "0D",
+        "155": "0C"
+      },
+      "decoded_parameter": {
+        "encoding": "nibble_hilo",
+        "offsets": [
+          102,
+          103
+        ],
+        "raw_bytes": [
+          "01",
+          "0D"
+        ],
+        "encoded_value": 29,
+        "inferred_label": 29
+      }
+    },
+    {
+      "file": "large.syx",
+      "label": {
+        "kind": "endpoint",
+        "value": "high",
+        "unit": null,
+        "unit_display": null,
+        "stem": "large",
+        "endpoint": "high",
+        "raw_label": "large",
+        "pair": null,
+        "balance_side_max": null
+      },
+      "sampling_role": "extreme_high",
+      "program_name": "Large Church",
+      "changing_bytes": {
+        "102": "01",
+        "103": "0E",
+        "147": "07",
+        "152": "00",
+        "153": "07",
+        "154": "09",
+        "155": "06"
+      },
+      "decoded_parameter": {
+        "encoding": "nibble_hilo",
+        "offsets": [
+          102,
+          103
+        ],
+        "raw_bytes": [
+          "01",
+          "0E"
+        ],
+        "encoded_value": 30,
+        "inferred_label": 30
+      }
+    }
+  ]
+}

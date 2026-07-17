@@ -1,0 +1,241 @@
+{
+  "kind": "system",
+  "parameter": "audio format",
+  "folder": "C:\\m7\\sysex\\system\\audio format",
+  "dump_count": 2,
+  "message_length": 77,
+  "unit": null,
+  "unit_display": null,
+  "frame": {
+    "manufacturer_id": "00 62 63",
+    "manufacturer_id_match": true,
+    "header": "70 08 02 00",
+    "header_match": true,
+    "payload_offset": 8,
+    "payload_end": 72,
+    "checksum_offsets": [
+      72,
+      73,
+      74,
+      75
+    ],
+    "nibble_payload": true,
+    "notes": "Payload bytes 8-71 are nibble-sized (0x00-0x0F). The final four nibbles before F7 are a CRC-16/ARC over offsets 8-71, packed high-nibble-first. No 80-byte ASCII name field."
+  },
+  "changing_offsets": [
+    15,
+    72,
+    73,
+    74,
+    75
+  ],
+  "changing_regions": [
+    {
+      "start": 15,
+      "end": 15,
+      "length": 1,
+      "offsets": [
+        15
+      ]
+    },
+    {
+      "start": 72,
+      "end": 75,
+      "length": 4,
+      "offsets": [
+        72,
+        73,
+        74,
+        75
+      ]
+    }
+  ],
+  "classification": {
+    "parameter_candidate_offsets": [
+      15
+    ],
+    "checksum_candidate_offsets": [
+      72,
+      73,
+      74,
+      75
+    ],
+    "header_or_name_offsets": [],
+    "secondary_offsets": []
+  },
+  "sampling": {
+    "convention": "Wherever possible, each series includes the usable extremes, the adjacent-to-extreme settings, and a sparse sample of values in between (optional discrete off). Mids are samples only - not every intermediate value. Extremes are treated as authoritative range bounds.",
+    "roles_by_file": {
+      "Analog.syx": "mid",
+      "Digital.syx": "mid"
+    },
+    "files_by_role": {
+      "off": [],
+      "extreme_low": [],
+      "adjacent_low": [],
+      "mid": [
+        "Analog.syx",
+        "Digital.syx"
+      ],
+      "adjacent_high": [],
+      "extreme_high": []
+    },
+    "coverage": {
+      "has_extreme_low": false,
+      "has_extreme_high": false,
+      "has_adjacent_low": false,
+      "has_adjacent_high": false,
+      "mid_count": 2,
+      "mids_are_sparse_sample": true,
+      "complete_edge_pair": false
+    },
+    "edge_steps": {
+      "points": {}
+    }
+  },
+  "value_range": null,
+  "encoding_hypotheses": [
+    {
+      "encoding": "raw_u8",
+      "offsets": [
+        15
+      ],
+      "score": 1.0,
+      "matched": 2,
+      "total": 2,
+      "scale": null,
+      "offset": null,
+      "mapping": [
+        {
+          "label": "Analog",
+          "encoded": 0,
+          "raw_bytes": [
+            "00"
+          ]
+        },
+        {
+          "label": "Digital",
+          "encoded": 1,
+          "raw_bytes": [
+            "01"
+          ]
+        }
+      ],
+      "notes": "enum table: 2 distinct labels each map to a unique encoded value",
+      "r_squared": null,
+      "exact": false,
+      "monotonic_score": 1.0
+    }
+  ],
+  "best_encoding": {
+    "encoding": "raw_u8",
+    "offsets": [
+      15
+    ],
+    "score": 1.0,
+    "matched": 2,
+    "total": 2,
+    "scale": null,
+    "offset": null,
+    "mapping": [
+      {
+        "label": "Analog",
+        "encoded": 0,
+        "raw_bytes": [
+          "00"
+        ]
+      },
+      {
+        "label": "Digital",
+        "encoded": 1,
+        "raw_bytes": [
+          "01"
+        ]
+      }
+    ],
+    "notes": "enum table: 2 distinct labels each map to a unique encoded value",
+    "r_squared": null,
+    "exact": false,
+    "monotonic_score": 1.0
+  },
+  "hypothesis": {
+    "summary": "Parameter 'audio format' appears at SysEx offset(s) [15] as an enum table using encoding 'raw_u8' (enum table: 2 distinct labels each map to a unique encoded value). Offsets [72, 73, 74, 75] also change and are treated as checksum nibbles. Payload bytes 8-71 are nibble-sized (0x00-0x0F).",
+    "confidence": "high",
+    "match_rate": 1.0,
+    "how_to_set": {
+      "offsets": [
+        15
+      ],
+      "encoding": "raw_u8",
+      "encode_steps": [
+        "encoded = lookup desired label in the capture encoding map (enum table)",
+        "byte[offset0] = encoded & 0x0F  # M7 payload nibbles are 0x00-0x0F",
+        "recompute trailing checksum: CRC-16/ARC over bytes[8:72], pack as four high-nibble-first SysEx bytes at offsets 72-75"
+      ],
+      "notes": "enum table: 2 distinct labels each map to a unique encoded value"
+    }
+  },
+  "duplicate_byte_notes": null,
+  "dumps": [
+    {
+      "file": "Analog.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Analog",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Analog",
+        "endpoint": null,
+        "raw_label": "Analog"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "15": "00",
+        "72": "0A",
+        "73": "0A",
+        "74": "02",
+        "75": "07"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          15
+        ],
+        "raw_bytes": [
+          "00"
+        ],
+        "encoded_value": 0
+      }
+    },
+    {
+      "file": "Digital.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Digital",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Digital",
+        "endpoint": null,
+        "raw_label": "Digital"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "15": "01",
+        "72": "0E",
+        "73": "09",
+        "74": "01",
+        "75": "08"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          15
+        ],
+        "raw_bytes": [
+          "01"
+        ],
+        "encoded_value": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,2291 @@
+{
+  "message_length": 157,
+  "independence_note": "Each sysex/<parameter>/ folder is an independent dump stream. Byte values are never compared across folders; only per-folder conclusions are merged into this layout map. sysex/_presets/ is a separate preset-identity series (bank/program/name). Additional reserved/meta roles come from a corpus scan of all dumps.",
+  "counts": {
+    "known_or_frame": 152,
+    "secondary": 5,
+    "unknown": 0,
+    "total": 157
+  },
+  "bytes": [
+    {
+      "offset": 0,
+      "hex": "F0",
+      "hex_source": "frame constant",
+      "status": "frame",
+      "role": "SysEx start (F0)",
+      "parameters": []
+    },
+    {
+      "offset": 1,
+      "hex": "00",
+      "hex_source": "frame constant",
+      "status": "frame",
+      "role": "Manufacturer ID (00 62 63)",
+      "parameters": []
+    },
+    {
+      "offset": 2,
+      "hex": "62",
+      "hex_source": "frame constant",
+      "status": "frame",
+      "role": "Manufacturer ID (00 62 63)",
+      "parameters": []
+    },
+    {
+      "offset": 3,
+      "hex": "63",
+      "hex_source": "frame constant",
+      "status": "frame",
+      "role": "Manufacturer ID (00 62 63)",
+      "parameters": []
+    },
+    {
+      "offset": 4,
+      "hex": "70",
+      "hex_source": "frame constant",
+      "status": "frame",
+      "role": "Program-dump header (70 08 01 00)",
+      "parameters": []
+    },
+    {
+      "offset": 5,
+      "hex": "08",
+      "hex_source": "frame constant",
+      "status": "frame",
+      "role": "Program-dump header (70 08 01 00)",
+      "parameters": []
+    },
+    {
+      "offset": 6,
+      "hex": "01",
+      "hex_source": "frame constant",
+      "status": "frame",
+      "role": "Program-dump header (70 08 01 00)",
+      "parameters": []
+    },
+    {
+      "offset": 7,
+      "hex": "00",
+      "hex_source": "frame constant",
+      "status": "frame",
+      "role": "Program-dump header (70 08 01 00)",
+      "parameters": []
+    },
+    {
+      "offset": 8,
+      "hex": "42",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": "B"
+    },
+    {
+      "offset": 9,
+      "hex": "61",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": "a"
+    },
+    {
+      "offset": 10,
+      "hex": "73",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": "s"
+    },
+    {
+      "offset": 11,
+      "hex": "73",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": "s"
+    },
+    {
+      "offset": 12,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 13,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 14,
+      "hex": "58",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": "X"
+    },
+    {
+      "offset": 15,
+      "hex": "58",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": "X"
+    },
+    {
+      "offset": 16,
+      "hex": "4C",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": "L"
+    },
+    {
+      "offset": 17,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 18,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 19,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 20,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 21,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 22,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 23,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 24,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 25,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 26,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 27,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 28,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 29,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 30,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 31,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 32,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 33,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 34,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 35,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 36,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 37,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 38,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 39,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 40,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 41,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 42,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 43,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 44,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 45,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 46,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 47,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 48,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 49,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 50,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 51,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 52,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 53,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 54,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 55,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 56,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 57,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 58,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 59,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 60,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 61,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 62,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 63,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 64,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 65,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 66,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 67,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 68,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 69,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 70,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 71,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 72,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 73,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 74,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 75,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 76,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 77,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 78,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 79,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 80,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 81,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 82,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 83,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 84,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 85,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 86,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 87,
+      "hex": "20",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "ascii": " "
+    },
+    {
+      "offset": 88,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Bank index (`nibble_hilo`) from sysex/_presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/_edit/)",
+      "parameters": [
+        "_presets"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 89,
+      "hex": "04",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Bank index (`nibble_hilo`) from sysex/_presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/_edit/)",
+      "parameters": [
+        "_presets"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 90,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Program slot within bank (`nibble_hilo`) from sysex/_presets/ (not a global program number)",
+      "parameters": [
+        "_presets"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 91,
+      "hex": "0D",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Program slot within bank (`nibble_hilo`) from sysex/_presets/ (not a global program number)",
+      "parameters": [
+        "_presets"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 92,
+      "hex": null,
+      "hex_source": null,
+      "status": "secondary",
+      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders)",
+      "parameters": [
+        "early rolloff"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 93,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Fixed field (always `00 08` / encoded 8 in this corpus) \u2014 likely structure/version; not a sound parameter",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 94,
+      "hex": "08",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Fixed field (always `00 08` / encoded 8 in this corpus) \u2014 likely structure/version; not a sound parameter",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 95,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved (always `00 00` in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 96,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved (always `00 00` in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 97,
+      "hex": "04",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Algorithm/family flag from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). Mirrored at 145 as 0 when 97=3 and 1 when 97=4 \u2014 not a clean V1/V2 bit",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium",
+      "encoding": "raw_u8"
+    },
+    {
+      "offset": 98,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "secondary",
+      "role": "Edit/generation counter (`nibble_hilo`) \u2014 constant within each parameter series, advances across capture sessions; not a sound parameter (same neighborhood as 146-147)",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 99,
+      "hex": "01",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "secondary",
+      "role": "Edit/generation counter (`nibble_hilo`) \u2014 constant within each parameter series, advances across capture sessions; not a sound parameter (same neighborhood as 146-147)",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 100,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\reverb time\\0.25s.syx",
+      "status": "known",
+      "role": "Parameter `reverb time` (from independent series sysex/reverb time/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "reverb time"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 101,
+      "hex": "01",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\reverb time\\0.25s.syx",
+      "status": "known",
+      "role": "Parameter `reverb time` (from independent series sysex/reverb time/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "reverb time"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 102,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\size\\1.syx",
+      "status": "known",
+      "role": "Parameter `size` (from independent series sysex/size/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "size"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 103,
+      "hex": "01",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\size\\1.syx",
+      "status": "known",
+      "role": "Parameter `size` (from independent series sysex/size/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "size"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 104,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\predelay\\0ms.syx",
+      "status": "known",
+      "role": "Parameter `predelay` (from independent series sysex/predelay/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "predelay"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 105,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\predelay\\0ms.syx",
+      "status": "known",
+      "role": "Parameter `predelay` (from independent series sysex/predelay/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "predelay"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 106,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved padding (always 0) between predelay and diffusion",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 107,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\diffusion\\low.syx",
+      "status": "known",
+      "role": "Parameter `diffusion` (from independent series sysex/diffusion/) (raw_u8, label = encoded * 1)",
+      "parameters": [
+        "diffusion"
+      ],
+      "confidence": "high",
+      "encoding": "raw_u8"
+    },
+    {
+      "offset": 108,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved padding (always 0) between diffusion and density",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 109,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\density\\low.syx",
+      "status": "known",
+      "role": "Parameter `density` (from independent series sysex/density/) (raw_u8, label = encoded * 1)",
+      "parameters": [
+        "density"
+      ],
+      "confidence": "high",
+      "encoding": "raw_u8"
+    },
+    {
+      "offset": 110,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved padding (always 0) between density and modulation",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 111,
+      "hex": "01",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\modulation\\low.syx",
+      "status": "known",
+      "role": "Parameter `modulation` (from independent series sysex/modulation/) (raw_u8, label = encoded + (-1))",
+      "parameters": [
+        "modulation"
+      ],
+      "confidence": "high",
+      "encoding": "raw_u8"
+    },
+    {
+      "offset": 112,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\rolloff\\120hz.syx",
+      "status": "known",
+      "role": "Parameter `rolloff` (from independent series sysex/rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "rolloff"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 113,
+      "hex": "01",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\rolloff\\120hz.syx",
+      "status": "known",
+      "role": "Parameter `rolloff` (from independent series sysex/rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "rolloff"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 114,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\hf rt multiply\\0.2.syx",
+      "status": "known",
+      "role": "Parameter `hf rt multiply` (from independent series sysex/hf rt multiply/) (nibble_hilo, label = encoded * 0.05 + (0.2))",
+      "parameters": [
+        "hf rt multiply"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 115,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\hf rt multiply\\0.2.syx",
+      "status": "known",
+      "role": "Parameter `hf rt multiply` (from independent series sysex/hf rt multiply/) (nibble_hilo, label = encoded * 0.05 + (0.2))",
+      "parameters": [
+        "hf rt multiply"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 116,
+      "hex": "01",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\hf rt crossover\\11200hz.syx",
+      "status": "known",
+      "role": "Parameter `hf rt crossover` (from independent series sysex/hf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "hf rt crossover"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 117,
+      "hex": "0E",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\hf rt crossover\\11200hz.syx",
+      "status": "known",
+      "role": "Parameter `hf rt crossover` (from independent series sysex/hf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "hf rt crossover"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 118,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\lf rt multiply\\0.2.syx",
+      "status": "known",
+      "role": "Parameter `lf rt multiply` (from independent series sysex/lf rt multiply/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "lf rt multiply"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 119,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\lf rt multiply\\0.2.syx",
+      "status": "known",
+      "role": "Parameter `lf rt multiply` (from independent series sysex/lf rt multiply/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "lf rt multiply"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 120,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\lf rt crossover\\120hz.syx",
+      "status": "known",
+      "role": "Parameter `lf rt crossover` (from independent series sysex/lf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "lf rt crossover"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 121,
+      "hex": "01",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\lf rt crossover\\120hz.syx",
+      "status": "known",
+      "role": "Parameter `lf rt crossover` (from independent series sysex/lf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "lf rt crossover"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 122,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\vlf cut\\-10db.syx",
+      "status": "known",
+      "role": "Parameter `vlf cut` (from independent series sysex/vlf cut/) (nibble_hilo, label = encoded + (-20))",
+      "parameters": [
+        "vlf cut"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 123,
+      "hex": "0A",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\vlf cut\\-10db.syx",
+      "status": "known",
+      "role": "Parameter `vlf cut` (from independent series sysex/vlf cut/) (nibble_hilo, label = encoded + (-20))",
+      "parameters": [
+        "vlf cut"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 124,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\early to reverb mix\\0.20.syx",
+      "status": "known",
+      "role": "Parameter `early to reverb mix` (from independent series sysex/early to reverb mix/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "early to reverb mix"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 125,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\early to reverb mix\\0.20.syx",
+      "status": "known",
+      "role": "Parameter `early to reverb mix` (from independent series sysex/early to reverb mix/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "early to reverb mix"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 126,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\early rolloff\\120hz.syx",
+      "status": "known",
+      "role": "Parameter `early rolloff` (from independent series sysex/early rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "early rolloff"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 127,
+      "hex": "01",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\early rolloff\\120hz.syx",
+      "status": "known",
+      "role": "Parameter `early rolloff` (from independent series sysex/early rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "early rolloff"
+      ],
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 128,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\early select\\0.syx",
+      "status": "known",
+      "role": "Parameter `early select` (from independent series sysex/early select/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "early select"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 129,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\early select\\0.syx",
+      "status": "known",
+      "role": "Parameter `early select` (from independent series sysex/early select/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "early select"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 130,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Engine/bank-class flag: 0 on classic banks (Halls\u2026Spaces), 1 on `* 2` banks (Halls 2\u2026Spaces 2), 2 on NonLin. Parameter-series dumps also show 1 because they were captured from Large Church (Halls 2)",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium",
+      "encoding": "raw_u8"
+    },
+    {
+      "offset": 131,
+      "hex": "02",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Fixed companion to offset 130 (always `02 00` in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 132,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Fixed companion to offset 130 (always `02 00` in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 133,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\delay level\\off.syx",
+      "status": "known",
+      "role": "Parameter `delay level` (from independent series sysex/delay level/) (raw_u8, label = encoded + (-21))",
+      "parameters": [
+        "delay level"
+      ],
+      "confidence": "high",
+      "encoding": "raw_u8"
+    },
+    {
+      "offset": 134,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\delay time\\100ms.syx",
+      "status": "known",
+      "role": "Parameter `delay time` (from independent series sysex/delay time/) (nibble_hilo, label = encoded * 8 + (100))",
+      "parameters": [
+        "delay time"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 135,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\delay time\\100ms.syx",
+      "status": "known",
+      "role": "Parameter `delay time` (from independent series sysex/delay time/) (nibble_hilo, label = encoded * 8 + (100))",
+      "parameters": [
+        "delay time"
+      ],
+      "confidence": "high",
+      "encoding": "nibble_hilo"
+    },
+    {
+      "offset": 136,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved (always 0) between delay time and bank-index mirror",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 137,
+      "hex": "04",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Bank index mirror (equals offset 89) from sysex/_presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
+      "parameters": [
+        "_presets"
+      ],
+      "confidence": "high",
+      "encoding": "raw_u8"
+    },
+    {
+      "offset": 138,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved (always 0) between bank-index mirror and delay modulation",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 139,
+      "hex": "01",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\delay modulation\\low.syx",
+      "status": "known",
+      "role": "Parameter `delay modulation` (from independent series sysex/delay modulation/) (raw_u8, label = encoded + (-1))",
+      "parameters": [
+        "delay modulation"
+      ],
+      "confidence": "high",
+      "encoding": "raw_u8"
+    },
+    {
+      "offset": 140,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved block (always 0 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 141,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved block (always 0 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 142,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved block (always 0 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 143,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved block (always 0 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 144,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved block (always 0 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 145,
+      "hex": "01",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Mirror of algorithm/family flag at 97 (145=0 when 97=3; 145=1 when 97=4 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium",
+      "encoding": "raw_u8"
+    },
+    {
+      "offset": 146,
+      "hex": null,
+      "hex_source": null,
+      "status": "secondary",
+      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders)",
+      "parameters": [
+        "delay modulation",
+        "diffusion",
+        "early select",
+        "hf rt crossover",
+        "hf rt multiply",
+        "lf rt multiply",
+        "rolloff",
+        "vlf cut"
+      ],
+      "confidence": "high"
+    },
+    {
+      "offset": 147,
+      "hex": null,
+      "hex_source": null,
+      "status": "secondary",
+      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders)",
+      "parameters": [
+        "delay level",
+        "delay modulation",
+        "delay time",
+        "density",
+        "diffusion",
+        "early rolloff",
+        "early select",
+        "early to reverb mix",
+        "hf rt crossover",
+        "hf rt multiply",
+        "lf rt crossover",
+        "lf rt multiply",
+        "modulation",
+        "predelay",
+        "reverb time",
+        "rolloff",
+        "size",
+        "vlf cut"
+      ],
+      "confidence": "high"
+    },
+    {
+      "offset": 148,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved (always 0) immediately before checksum nibbles",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 149,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved (always 0) immediately before checksum nibbles",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 150,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved (always 0) immediately before checksum nibbles",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 151,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Reserved (always 0) immediately before checksum nibbles",
+      "parameters": [
+        "_corpus"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "offset": 152,
+      "hex": null,
+      "hex_source": null,
+      "status": "checksum",
+      "role": "Checksum: CRC-16/ARC over offsets 8-151 (name + payload), packed as four high-nibble-first SysEx bytes (per-dump; recompute after edits - do not copy across parameter series)",
+      "parameters": []
+    },
+    {
+      "offset": 153,
+      "hex": null,
+      "hex_source": null,
+      "status": "checksum",
+      "role": "Checksum: CRC-16/ARC over offsets 8-151 (name + payload), packed as four high-nibble-first SysEx bytes (per-dump; recompute after edits - do not copy across parameter series)",
+      "parameters": []
+    },
+    {
+      "offset": 154,
+      "hex": null,
+      "hex_source": null,
+      "status": "checksum",
+      "role": "Checksum: CRC-16/ARC over offsets 8-151 (name + payload), packed as four high-nibble-first SysEx bytes (per-dump; recompute after edits - do not copy across parameter series)",
+      "parameters": []
+    },
+    {
+      "offset": 155,
+      "hex": null,
+      "hex_source": null,
+      "status": "checksum",
+      "role": "Checksum: CRC-16/ARC over offsets 8-151 (name + payload), packed as four high-nibble-first SysEx bytes (per-dump; recompute after edits - do not copy across parameter series)",
+      "parameters": []
+    },
+    {
+      "offset": 156,
+      "hex": "F7",
+      "hex_source": "frame constant",
+      "status": "frame",
+      "role": "SysEx end (F7)",
+      "parameters": []
+    }
+  ],
+  "regions": [
+    {
+      "start": 0,
+      "end": 0,
+      "offsets": "0",
+      "length": 1,
+      "example_hex": "F0",
+      "status": "frame",
+      "role": "SysEx start (F0)",
+      "parameters": []
+    },
+    {
+      "start": 1,
+      "end": 3,
+      "offsets": "1-3",
+      "length": 3,
+      "example_hex": "00 62 63",
+      "status": "frame",
+      "role": "Manufacturer ID (00 62 63)",
+      "parameters": []
+    },
+    {
+      "start": 4,
+      "end": 7,
+      "offsets": "4-7",
+      "length": 4,
+      "example_hex": "70 08 01 00",
+      "status": "frame",
+      "role": "Program-dump header (70 08 01 00)",
+      "parameters": []
+    },
+    {
+      "start": 8,
+      "end": 87,
+      "offsets": "8-87",
+      "length": 80,
+      "example_hex": "42 61 73 73 20 20 58 58 ...",
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": []
+    },
+    {
+      "start": 88,
+      "end": 89,
+      "offsets": "88-89",
+      "length": 2,
+      "example_hex": "00 04",
+      "status": "known",
+      "role": "Bank index (`nibble_hilo`) from sysex/_presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/_edit/)",
+      "parameters": [
+        "_presets"
+      ]
+    },
+    {
+      "start": 90,
+      "end": 91,
+      "offsets": "90-91",
+      "length": 2,
+      "example_hex": "00 0D",
+      "status": "known",
+      "role": "Program slot within bank (`nibble_hilo`) from sysex/_presets/ (not a global program number)",
+      "parameters": [
+        "_presets"
+      ]
+    },
+    {
+      "start": 92,
+      "end": 92,
+      "offsets": "92",
+      "length": 1,
+      "example_hex": null,
+      "status": "secondary",
+      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders) (moved in independent series: early rolloff)",
+      "parameters": [
+        "early rolloff"
+      ]
+    },
+    {
+      "start": 93,
+      "end": 94,
+      "offsets": "93-94",
+      "length": 2,
+      "example_hex": "00 08",
+      "status": "known",
+      "role": "Fixed field (always `00 08` / encoded 8 in this corpus) \u2014 likely structure/version; not a sound parameter",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 95,
+      "end": 96,
+      "offsets": "95-96",
+      "length": 2,
+      "example_hex": "00 00",
+      "status": "known",
+      "role": "Reserved (always `00 00` in this corpus)",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 97,
+      "end": 97,
+      "offsets": "97",
+      "length": 1,
+      "example_hex": "04",
+      "status": "known",
+      "role": "Algorithm/family flag from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). Mirrored at 145 as 0 when 97=3 and 1 when 97=4 \u2014 not a clean V1/V2 bit",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 98,
+      "end": 99,
+      "offsets": "98-99",
+      "length": 2,
+      "example_hex": "00 01",
+      "status": "secondary",
+      "role": "Edit/generation counter (`nibble_hilo`) \u2014 constant within each parameter series, advances across capture sessions; not a sound parameter (same neighborhood as 146-147) (moved in independent series: _corpus)",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 100,
+      "end": 101,
+      "offsets": "100-101",
+      "length": 2,
+      "example_hex": "00 01",
+      "status": "known",
+      "role": "Parameter `reverb time` (from independent series sysex/reverb time/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "reverb time"
+      ]
+    },
+    {
+      "start": 102,
+      "end": 103,
+      "offsets": "102-103",
+      "length": 2,
+      "example_hex": "00 01",
+      "status": "known",
+      "role": "Parameter `size` (from independent series sysex/size/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "size"
+      ]
+    },
+    {
+      "start": 104,
+      "end": 105,
+      "offsets": "104-105",
+      "length": 2,
+      "example_hex": "00 00",
+      "status": "known",
+      "role": "Parameter `predelay` (from independent series sysex/predelay/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "predelay"
+      ]
+    },
+    {
+      "start": 106,
+      "end": 106,
+      "offsets": "106",
+      "length": 1,
+      "example_hex": "00",
+      "status": "known",
+      "role": "Reserved padding (always 0) between predelay and diffusion",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 107,
+      "end": 107,
+      "offsets": "107",
+      "length": 1,
+      "example_hex": "00",
+      "status": "known",
+      "role": "Parameter `diffusion` (from independent series sysex/diffusion/) (raw_u8, label = encoded * 1)",
+      "parameters": [
+        "diffusion"
+      ]
+    },
+    {
+      "start": 108,
+      "end": 108,
+      "offsets": "108",
+      "length": 1,
+      "example_hex": "00",
+      "status": "known",
+      "role": "Reserved padding (always 0) between diffusion and density",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 109,
+      "end": 109,
+      "offsets": "109",
+      "length": 1,
+      "example_hex": "00",
+      "status": "known",
+      "role": "Parameter `density` (from independent series sysex/density/) (raw_u8, label = encoded * 1)",
+      "parameters": [
+        "density"
+      ]
+    },
+    {
+      "start": 110,
+      "end": 110,
+      "offsets": "110",
+      "length": 1,
+      "example_hex": "00",
+      "status": "known",
+      "role": "Reserved padding (always 0) between density and modulation",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 111,
+      "end": 111,
+      "offsets": "111",
+      "length": 1,
+      "example_hex": "01",
+      "status": "known",
+      "role": "Parameter `modulation` (from independent series sysex/modulation/) (raw_u8, label = encoded + (-1))",
+      "parameters": [
+        "modulation"
+      ]
+    },
+    {
+      "start": 112,
+      "end": 113,
+      "offsets": "112-113",
+      "length": 2,
+      "example_hex": "00 01",
+      "status": "known",
+      "role": "Parameter `rolloff` (from independent series sysex/rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "rolloff"
+      ]
+    },
+    {
+      "start": 114,
+      "end": 115,
+      "offsets": "114-115",
+      "length": 2,
+      "example_hex": "00 00",
+      "status": "known",
+      "role": "Parameter `hf rt multiply` (from independent series sysex/hf rt multiply/) (nibble_hilo, label = encoded * 0.05 + (0.2))",
+      "parameters": [
+        "hf rt multiply"
+      ]
+    },
+    {
+      "start": 116,
+      "end": 117,
+      "offsets": "116-117",
+      "length": 2,
+      "example_hex": "01 0E",
+      "status": "known",
+      "role": "Parameter `hf rt crossover` (from independent series sysex/hf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "hf rt crossover"
+      ]
+    },
+    {
+      "start": 118,
+      "end": 119,
+      "offsets": "118-119",
+      "length": 2,
+      "example_hex": "00 00",
+      "status": "known",
+      "role": "Parameter `lf rt multiply` (from independent series sysex/lf rt multiply/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "lf rt multiply"
+      ]
+    },
+    {
+      "start": 120,
+      "end": 121,
+      "offsets": "120-121",
+      "length": 2,
+      "example_hex": "00 01",
+      "status": "known",
+      "role": "Parameter `lf rt crossover` (from independent series sysex/lf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "lf rt crossover"
+      ]
+    },
+    {
+      "start": 122,
+      "end": 123,
+      "offsets": "122-123",
+      "length": 2,
+      "example_hex": "00 0A",
+      "status": "known",
+      "role": "Parameter `vlf cut` (from independent series sysex/vlf cut/) (nibble_hilo, label = encoded + (-20))",
+      "parameters": [
+        "vlf cut"
+      ]
+    },
+    {
+      "start": 124,
+      "end": 125,
+      "offsets": "124-125",
+      "length": 2,
+      "example_hex": "00 00",
+      "status": "known",
+      "role": "Parameter `early to reverb mix` (from independent series sysex/early to reverb mix/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "early to reverb mix"
+      ]
+    },
+    {
+      "start": 126,
+      "end": 127,
+      "offsets": "126-127",
+      "length": 2,
+      "example_hex": "00 01",
+      "status": "known",
+      "role": "Parameter `early rolloff` (from independent series sysex/early rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "early rolloff"
+      ]
+    },
+    {
+      "start": 128,
+      "end": 129,
+      "offsets": "128-129",
+      "length": 2,
+      "example_hex": "00 00",
+      "status": "known",
+      "role": "Parameter `early select` (from independent series sysex/early select/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "early select"
+      ]
+    },
+    {
+      "start": 130,
+      "end": 130,
+      "offsets": "130",
+      "length": 1,
+      "example_hex": "00",
+      "status": "known",
+      "role": "Engine/bank-class flag: 0 on classic banks (Halls\u2026Spaces), 1 on `* 2` banks (Halls 2\u2026Spaces 2), 2 on NonLin. Parameter-series dumps also show 1 because they were captured from Large Church (Halls 2)",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 131,
+      "end": 132,
+      "offsets": "131-132",
+      "length": 2,
+      "example_hex": "02 00",
+      "status": "known",
+      "role": "Fixed companion to offset 130 (always `02 00` in this corpus)",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 133,
+      "end": 133,
+      "offsets": "133",
+      "length": 1,
+      "example_hex": "00",
+      "status": "known",
+      "role": "Parameter `delay level` (from independent series sysex/delay level/) (raw_u8, label = encoded + (-21))",
+      "parameters": [
+        "delay level"
+      ]
+    },
+    {
+      "start": 134,
+      "end": 135,
+      "offsets": "134-135",
+      "length": 2,
+      "example_hex": "00 00",
+      "status": "known",
+      "role": "Parameter `delay time` (from independent series sysex/delay time/) (nibble_hilo, label = encoded * 8 + (100))",
+      "parameters": [
+        "delay time"
+      ]
+    },
+    {
+      "start": 136,
+      "end": 136,
+      "offsets": "136",
+      "length": 1,
+      "example_hex": "00",
+      "status": "known",
+      "role": "Reserved (always 0) between delay time and bank-index mirror",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 137,
+      "end": 137,
+      "offsets": "137",
+      "length": 1,
+      "example_hex": "04",
+      "status": "known",
+      "role": "Bank index mirror (equals offset 89) from sysex/_presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
+      "parameters": [
+        "_presets"
+      ]
+    },
+    {
+      "start": 138,
+      "end": 138,
+      "offsets": "138",
+      "length": 1,
+      "example_hex": "00",
+      "status": "known",
+      "role": "Reserved (always 0) between bank-index mirror and delay modulation",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 139,
+      "end": 139,
+      "offsets": "139",
+      "length": 1,
+      "example_hex": "01",
+      "status": "known",
+      "role": "Parameter `delay modulation` (from independent series sysex/delay modulation/) (raw_u8, label = encoded + (-1))",
+      "parameters": [
+        "delay modulation"
+      ]
+    },
+    {
+      "start": 140,
+      "end": 144,
+      "offsets": "140-144",
+      "length": 5,
+      "example_hex": "00 00 00 00 00",
+      "status": "known",
+      "role": "Reserved block (always 0 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 145,
+      "end": 145,
+      "offsets": "145",
+      "length": 1,
+      "example_hex": "01",
+      "status": "known",
+      "role": "Mirror of algorithm/family flag at 97 (145=0 when 97=3; 145=1 when 97=4 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 146,
+      "end": 146,
+      "offsets": "146",
+      "length": 1,
+      "example_hex": null,
+      "status": "secondary",
+      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders) (moved in independent series: delay modulation, diffusion, early select, hf rt crossover, hf rt multiply, lf rt multiply, rolloff, vlf cut)",
+      "parameters": [
+        "delay modulation",
+        "diffusion",
+        "early select",
+        "hf rt crossover",
+        "hf rt multiply",
+        "lf rt multiply",
+        "rolloff",
+        "vlf cut"
+      ]
+    },
+    {
+      "start": 147,
+      "end": 147,
+      "offsets": "147",
+      "length": 1,
+      "example_hex": null,
+      "status": "secondary",
+      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders) (moved in independent series: delay level, delay modulation, delay time, density, diffusion, early rolloff, early select, early to reverb mix, hf rt crossover, hf rt multiply, lf rt crossover, lf rt multiply, modulation, predelay, reverb time, rolloff, size, vlf cut)",
+      "parameters": [
+        "delay level",
+        "delay modulation",
+        "delay time",
+        "density",
+        "diffusion",
+        "early rolloff",
+        "early select",
+        "early to reverb mix",
+        "hf rt crossover",
+        "hf rt multiply",
+        "lf rt crossover",
+        "lf rt multiply",
+        "modulation",
+        "predelay",
+        "reverb time",
+        "rolloff",
+        "size",
+        "vlf cut"
+      ]
+    },
+    {
+      "start": 148,
+      "end": 151,
+      "offsets": "148-151",
+      "length": 4,
+      "example_hex": "00 00 00 00",
+      "status": "known",
+      "role": "Reserved (always 0) immediately before checksum nibbles",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 152,
+      "end": 155,
+      "offsets": "152-155",
+      "length": 4,
+      "example_hex": null,
+      "status": "checksum",
+      "role": "Checksum: CRC-16/ARC over offsets 8-151 (name + payload), packed as four high-nibble-first SysEx bytes (per-dump; recompute after edits - do not copy across parameter series)",
+      "parameters": []
+    },
+    {
+      "start": 156,
+      "end": 156,
+      "offsets": "156",
+      "length": 1,
+      "example_hex": "F7",
+      "status": "frame",
+      "role": "SysEx end (F7)",
+      "parameters": []
+    }
+  ],
+  "corpus_layout_claims": [
+    {
+      "offsets": [
+        93,
+        94
+      ],
+      "status": "known",
+      "label": "fixed field (always 8)",
+      "confidence": "medium"
+    },
+    {
+      "offsets": [
+        95,
+        96
+      ],
+      "status": "known",
+      "label": "reserved (always 0)",
+      "confidence": "medium"
+    },
+    {
+      "offsets": [
+        97
+      ],
+      "status": "known",
+      "label": "algorithm/family flag",
+      "confidence": "medium"
+    },
+    {
+      "offsets": [
+        98,
+        99
+      ],
+      "status": "secondary",
+      "label": "edit/generation counter",
+      "confidence": "medium"
+    },
+    {
+      "offsets": [
+        106
+      ],
+      "status": "known",
+      "label": "reserved padding",
+      "confidence": "medium"
+    },
+    {
+      "offsets": [
+        108
+      ],
+      "status": "known",
+      "label": "reserved padding",
+      "confidence": "medium"
+    },
+    {
+      "offsets": [
+        110
+      ],
+      "status": "known",
+      "label": "reserved padding",
+      "confidence": "medium"
+    },
+    {
+      "offsets": [
+        130
+      ],
+      "status": "known",
+      "label": "engine/bank-class flag",
+      "confidence": "medium"
+    },
+    {
+      "offsets": [
+        131,
+        132
+      ],
+      "status": "known",
+      "label": "fixed (always 02 00)",
+      "confidence": "medium"
+    },
+    {
+      "offsets": [
+        136
+      ],
+      "status": "known",
+      "label": "reserved (always 0)",
+      "confidence": "medium"
+    },
+    {
+      "offsets": [
+        138
+      ],
+      "status": "known",
+      "label": "reserved (always 0)",
+      "confidence": "medium"
+    },
+    {
+      "offsets": [
+        140,
+        141,
+        142,
+        143,
+        144
+      ],
+      "status": "known",
+      "label": "reserved (always 0)",
+      "confidence": "medium"
+    },
+    {
+      "offsets": [
+        145
+      ],
+      "status": "known",
+      "label": "family-flag mirror",
+      "confidence": "medium"
+    },
+    {
+      "offsets": [
+        148,
+        149,
+        150,
+        151
+      ],
+      "status": "known",
+      "label": "reserved (always 0)",
+      "confidence": "medium"
+    }
+  ],
+  "names": {
+    "present": true,
+    "confidence": "high",
+    "bank_map": {
+      "Halls": 0,
+      "Plates": 1,
+      "Rooms": 2,
+      "Chambers": 3,
+      "Ambience": 4,
+      "Spaces": 5,
+      "Halls 2": 6,
+      "Plates 2": 7,
+      "Rooms 2": 8,
+      "Spaces 2": 9,
+      "NonLin": 10
+    }
+  }
+}

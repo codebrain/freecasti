@@ -1,0 +1,275 @@
+{
+  "kind": "system",
+  "parameter": "audio routing",
+  "folder": "C:\\m7\\sysex\\system\\audio routing",
+  "dump_count": 3,
+  "message_length": 77,
+  "unit": null,
+  "unit_display": null,
+  "frame": {
+    "manufacturer_id": "00 62 63",
+    "manufacturer_id_match": true,
+    "header": "70 08 02 00",
+    "header_match": true,
+    "payload_offset": 8,
+    "payload_end": 72,
+    "checksum_offsets": [
+      72,
+      73,
+      74,
+      75
+    ],
+    "nibble_payload": true,
+    "notes": "Payload bytes 8-71 are nibble-sized (0x00-0x0F). The final four nibbles before F7 are a CRC-16/ARC over offsets 8-71, packed high-nibble-first. No 80-byte ASCII name field."
+  },
+  "changing_offsets": [
+    13,
+    73,
+    74
+  ],
+  "changing_regions": [
+    {
+      "start": 13,
+      "end": 13,
+      "length": 1,
+      "offsets": [
+        13
+      ]
+    },
+    {
+      "start": 73,
+      "end": 74,
+      "length": 2,
+      "offsets": [
+        73,
+        74
+      ]
+    }
+  ],
+  "classification": {
+    "parameter_candidate_offsets": [
+      13
+    ],
+    "checksum_candidate_offsets": [
+      73,
+      74
+    ],
+    "header_or_name_offsets": [],
+    "secondary_offsets": []
+  },
+  "sampling": {
+    "convention": "Wherever possible, each series includes the usable extremes, the adjacent-to-extreme settings, and a sparse sample of values in between (optional discrete off). Mids are samples only - not every intermediate value. Extremes are treated as authoritative range bounds.",
+    "roles_by_file": {
+      "Mono L.syx": "mid",
+      "Mono R.syx": "mid",
+      "Stereo.syx": "mid"
+    },
+    "files_by_role": {
+      "off": [],
+      "extreme_low": [],
+      "adjacent_low": [],
+      "mid": [
+        "Mono L.syx",
+        "Mono R.syx",
+        "Stereo.syx"
+      ],
+      "adjacent_high": [],
+      "extreme_high": []
+    },
+    "coverage": {
+      "has_extreme_low": false,
+      "has_extreme_high": false,
+      "has_adjacent_low": false,
+      "has_adjacent_high": false,
+      "mid_count": 3,
+      "mids_are_sparse_sample": true,
+      "complete_edge_pair": false
+    },
+    "edge_steps": {
+      "points": {}
+    }
+  },
+  "value_range": null,
+  "encoding_hypotheses": [
+    {
+      "encoding": "raw_u8",
+      "offsets": [
+        13
+      ],
+      "score": 1.0,
+      "matched": 3,
+      "total": 3,
+      "scale": null,
+      "offset": null,
+      "mapping": [
+        {
+          "label": "Mono L",
+          "encoded": 1,
+          "raw_bytes": [
+            "01"
+          ]
+        },
+        {
+          "label": "Mono R",
+          "encoded": 2,
+          "raw_bytes": [
+            "02"
+          ]
+        },
+        {
+          "label": "Stereo",
+          "encoded": 0,
+          "raw_bytes": [
+            "00"
+          ]
+        }
+      ],
+      "notes": "enum table: 3 distinct labels each map to a unique encoded value",
+      "r_squared": null,
+      "exact": false,
+      "monotonic_score": 1.0
+    }
+  ],
+  "best_encoding": {
+    "encoding": "raw_u8",
+    "offsets": [
+      13
+    ],
+    "score": 1.0,
+    "matched": 3,
+    "total": 3,
+    "scale": null,
+    "offset": null,
+    "mapping": [
+      {
+        "label": "Mono L",
+        "encoded": 1,
+        "raw_bytes": [
+          "01"
+        ]
+      },
+      {
+        "label": "Mono R",
+        "encoded": 2,
+        "raw_bytes": [
+          "02"
+        ]
+      },
+      {
+        "label": "Stereo",
+        "encoded": 0,
+        "raw_bytes": [
+          "00"
+        ]
+      }
+    ],
+    "notes": "enum table: 3 distinct labels each map to a unique encoded value",
+    "r_squared": null,
+    "exact": false,
+    "monotonic_score": 1.0
+  },
+  "hypothesis": {
+    "summary": "Parameter 'audio routing' appears at SysEx offset(s) [13] as an enum table using encoding 'raw_u8' (enum table: 3 distinct labels each map to a unique encoded value). Offsets [73, 74] also change and are treated as checksum nibbles. Payload bytes 8-71 are nibble-sized (0x00-0x0F).",
+    "confidence": "high",
+    "match_rate": 1.0,
+    "how_to_set": {
+      "offsets": [
+        13
+      ],
+      "encoding": "raw_u8",
+      "encode_steps": [
+        "encoded = lookup desired label in the capture encoding map (enum table)",
+        "byte[offset0] = encoded & 0x0F  # M7 payload nibbles are 0x00-0x0F",
+        "recompute trailing checksum: CRC-16/ARC over bytes[8:72], pack as four high-nibble-first SysEx bytes at offsets 72-75"
+      ],
+      "notes": "enum table: 3 distinct labels each map to a unique encoded value"
+    }
+  },
+  "duplicate_byte_notes": null,
+  "dumps": [
+    {
+      "file": "Mono L.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Mono L",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Mono L",
+        "endpoint": null,
+        "raw_label": "Mono L"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "13": "01",
+        "73": "08",
+        "74": "04"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          13
+        ],
+        "raw_bytes": [
+          "01"
+        ],
+        "encoded_value": 1
+      }
+    },
+    {
+      "file": "Mono R.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Mono R",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Mono R",
+        "endpoint": null,
+        "raw_label": "Mono R"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "13": "02",
+        "73": "0B",
+        "74": "0B"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          13
+        ],
+        "raw_bytes": [
+          "02"
+        ],
+        "encoded_value": 2
+      }
+    },
+    {
+      "file": "Stereo.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Stereo",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Stereo",
+        "endpoint": null,
+        "raw_label": "Stereo"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "13": "00",
+        "73": "09",
+        "74": "01"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          13
+        ],
+        "raw_bytes": [
+          "00"
+        ],
+        "encoded_value": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or discussion
+    url: https://github.com/codebrain/freecasti/issues/new?template=question.yml
+    about: Ask about captures, the spec, or the web UI
+  - name: Security issue
+    url: https://github.com/codebrain/freecasti/security/advisories/new
+    about: Report a vulnerability privately (do not use public issues)

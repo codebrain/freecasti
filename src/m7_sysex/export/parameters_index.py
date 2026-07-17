@@ -1,0 +1,175 @@
+"""Generated parameters/README.md index pages."""
+
+from __future__ import annotations
+
+from typing import Any
+
+
+def _sysex_summary(result: dict[str, Any] | None) -> str:
+    if not result:
+        return "—"
+    best = result.get("best_encoding") or {}
+    offsets = best.get("offsets") or []
+    if len(offsets) == 1:
+        off_txt = str(offsets[0])
+    elif len(offsets) >= 2:
+        off_txt = f"{offsets[0]}-{offsets[-1]}"
+    else:
+        off_txt = "?"
+    encoding = best.get("encoding") or "?"
+    conf = (result.get("hypothesis") or {}).get("confidence") or "?"
+    return f"`{off_txt}` · `{encoding}` · {conf}"
+
+
+def _parameter_link(name: str, slug: str, *, has_page: bool) -> str:
+    if has_page:
+        return f"[{name}]({slug}.md)"
+    return name
+
+
+def render_parameters_readme(
+    *,
+    nav: str,
+    title: str,
+    intro: str,
+    rows: list[dict[str, Any]],
+    today: str,
+    footer: str = "",
+) -> str:
+    """Build a parameters index with Name, SysEx summary, and Description columns."""
+    lines = [
+        nav,
+        f"# {title}",
+        "",
+        intro,
+        "",
+        "| Parameter | SysEx (offsets · encoding · confidence) | Description |",
+        "|-----------|----------------------------------------|-------------|",
+    ]
+    for row in rows:
+        link = _parameter_link(
+            row["name"], row["slug"], has_page=row.get("has_page", True)
+        )
+        desc = str(row["description"]).replace("|", "\\|").replace("\n", " ")
+        lines.append(
+            f"| {link} | {row.get('sysex', '—')} | {desc} |"
+        )
+    lines.extend(["", f"_Last exported: {today}_", ""])
+    if footer:
+        lines.extend([footer.rstrip(), ""])
+    return "\n".join(lines)
+
+
+def build_prog_parameters_readme(
+    results: list[dict[str, Any]],
+    *,
+    today: str,
+    sheet_decoders: list[dict[str, Any]] | None = None,
+) -> str:
+    from ..catalog import PROGRAM_PARAMETERS, lookup_parameter
+    from .nav import _page_nav, parameter_slug
+
+    by_folder = {r["parameter"]: r for r in results}
+    page_folders = set(by_folder)
+    if sheet_decoders:
+        for dec in sheet_decoders:
+            pname = dec.get("parameter")
+            if pname and dec.get("source") == "preset_sheet":
+                page_folders.add(pname)
+
+    rows: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for entry in PROGRAM_PARAMETERS:
+        folder = entry["folder_hint"]
+        seen.add(folder)
+        result = by_folder.get(folder)
+        rows.append(
+            {
+                "name": entry["name"],
+                "slug": parameter_slug(folder),
+                "sysex": _sysex_summary(result),
+                "description": entry["description"],
+                "has_page": folder in page_folders,
+            }
+        )
+
+    for result in sorted(results, key=lambda r: r["parameter"]):
+        folder = result["parameter"]
+        if folder in seen:
+            continue
+        catalog = lookup_parameter(folder)
+        desc = (catalog or {}).get("description") or (
+            f"Capture series under `sysex/prog/parameters/{folder}/`."
+        )
+        rows.append(
+            {
+                "name": (catalog or {}).get("name") or folder.title(),
+                "slug": parameter_slug(folder),
+                "sysex": _sysex_summary(result),
+                "description": desc,
+                "has_page": True,
+            }
+        )
+
+    intro = (
+        "All **program sound parameters** on the Bricasti M7, in front-panel menu order. "
+        "Descriptions are from the owner's manual and V2 addendum (hint only — dumps on "
+        "your unit are authoritative). Each row links to a capture-series page with full "
+        "encoding tables when available."
+    )
+    footer = (
+        "Printed ranges and UI labels may differ from this unit's captures "
+        "(for example Early Select 0–31 vs manual 0–20). "
+        "See [parameter-catalog.md](../../../docs/parameter-catalog.md) for capture hints, "
+        "[encoding sources](../../../docs/encoding-sources.md) for witness types, "
+        "and [../README.md](../README.md) for the program-dump overview."
+    )
+    return render_parameters_readme(
+        nav=_page_nav(depth=1, current="Parameters"),
+        title="Program parameters",
+        intro=intro,
+        rows=rows,
+        today=today,
+        footer=footer,
+    )
+
+
+def build_system_parameters_readme(
+    results: list[dict[str, Any]],
+    *,
+    today: str,
+) -> str:
+    from ..system.catalog import SYSTEM_PARAMETERS
+    from .nav import _system_page_nav, parameter_slug
+
+    by_folder = {r["parameter"]: r for r in results}
+    rows: list[dict[str, Any]] = []
+    for entry in SYSTEM_PARAMETERS:
+        folder = entry["folder_hint"]
+        result = by_folder.get(folder)
+        rows.append(
+            {
+                "name": entry["name"],
+                "slug": parameter_slug(folder),
+                "sysex": _sysex_summary(result),
+                "description": entry.get("description") or entry.get("notes", ""),
+                "has_page": folder in by_folder,
+            }
+        )
+
+    intro = (
+        "**System / I/O settings** captured while holding **SYSTEM** on the M7 — not "
+        "program sound parameters. Each row links to a capture-series page with dump "
+        "tables and encoding fits."
+    )
+    footer = (
+        "See [../README.md](../README.md) for frame layout and byte-map coverage."
+    )
+    return render_parameters_readme(
+        nav=_system_page_nav(depth=1, current="Parameters"),
+        title="System parameters",
+        intro=intro,
+        rows=rows,
+        today=today,
+        footer=footer,
+    )

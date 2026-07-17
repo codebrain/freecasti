@@ -1,0 +1,60 @@
+name: SysEx capture
+description: Contribute labeled hardware dumps for parameters, presets, or system settings
+title: "[capture]: "
+labels: ["capture"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        See [docs/capture-guide.md](https://github.com/codebrain/freecasti/blob/main/docs/capture-guide.md)
+        and [CONTRIBUTING.md](https://github.com/codebrain/freecasti/blob/main/CONTRIBUTING.md).
+
+  - type: dropdown
+    id: capture_type
+    attributes:
+      label: Capture type
+      options:
+        - Program parameter series
+        - Factory preset dump
+        - System setting series
+        - EDIT buffer / other PROG dump
+    validations:
+      required: true
+
+  - type: input
+    id: parameter
+    attributes:
+      label: Parameter or preset name
+      placeholder: e.g. predelay, Halls.Large Hall, wet gain
+    validations:
+      required: true
+
+  - type: textarea
+    id: files
+    attributes:
+      label: Files included
+      description: List dump filenames and the values they represent
+      placeholder: |
+        off.syx — off
+        120hz.syx — 120 Hz
+        high.syx — maximum
+    validations:
+      required: true
+
+  - type: input
+    id: hardware
+    attributes:
+      label: Hardware / firmware (if known)
+      placeholder: M7, firmware version, MIDI path used
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: pr
+    attributes:
+      label: Submission
+      options:
+        - label: I will attach .syx files in a pull request (preferred)
+          required: false
+        - label: I have run `python run.py` and included regenerated outputs
+          required: false

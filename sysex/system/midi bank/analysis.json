@@ -1,0 +1,793 @@
+{
+  "kind": "system",
+  "parameter": "midi bank",
+  "folder": "C:\\m7\\sysex\\system\\midi bank",
+  "dump_count": 14,
+  "message_length": 77,
+  "unit": null,
+  "unit_display": null,
+  "frame": {
+    "manufacturer_id": "00 62 63",
+    "manufacturer_id_match": true,
+    "header": "70 08 02 00",
+    "header_match": true,
+    "payload_offset": 8,
+    "payload_end": 72,
+    "checksum_offsets": [
+      72,
+      73,
+      74,
+      75
+    ],
+    "nibble_payload": true,
+    "notes": "Payload bytes 8-71 are nibble-sized (0x00-0x0F). The final four nibbles before F7 are a CRC-16/ARC over offsets 8-71, packed high-nibble-first. No 80-byte ASCII name field."
+  },
+  "changing_offsets": [
+    25,
+    72,
+    73,
+    74,
+    75
+  ],
+  "changing_regions": [
+    {
+      "start": 25,
+      "end": 25,
+      "length": 1,
+      "offsets": [
+        25
+      ]
+    },
+    {
+      "start": 72,
+      "end": 75,
+      "length": 4,
+      "offsets": [
+        72,
+        73,
+        74,
+        75
+      ]
+    }
+  ],
+  "classification": {
+    "parameter_candidate_offsets": [
+      25
+    ],
+    "checksum_candidate_offsets": [
+      72,
+      73,
+      74,
+      75
+    ],
+    "header_or_name_offsets": [],
+    "secondary_offsets": []
+  },
+  "sampling": {
+    "convention": "Wherever possible, each series includes the usable extremes, the adjacent-to-extreme settings, and a sparse sample of values in between (optional discrete off). Mids are samples only - not every intermediate value. Extremes are treated as authoritative range bounds.",
+    "roles_by_file": {
+      "Ambience.syx": "mid",
+      "Chambers.syx": "mid",
+      "Edit.syx": "mid",
+      "Favs.syx": "mid",
+      "Halls.syx": "mid",
+      "Halls 2.syx": "mid",
+      "NonLin.syx": "mid",
+      "Plates.syx": "mid",
+      "Plates 2.syx": "mid",
+      "Regs.syx": "mid",
+      "Rooms.syx": "mid",
+      "Rooms 2.syx": "mid",
+      "Spaces.syx": "mid",
+      "Spaces 2.syx": "mid"
+    },
+    "files_by_role": {
+      "off": [],
+      "extreme_low": [],
+      "adjacent_low": [],
+      "mid": [
+        "Ambience.syx",
+        "Chambers.syx",
+        "Edit.syx",
+        "Favs.syx",
+        "Halls.syx",
+        "Halls 2.syx",
+        "NonLin.syx",
+        "Plates.syx",
+        "Plates 2.syx",
+        "Regs.syx",
+        "Rooms.syx",
+        "Rooms 2.syx",
+        "Spaces.syx",
+        "Spaces 2.syx"
+      ],
+      "adjacent_high": [],
+      "extreme_high": []
+    },
+    "coverage": {
+      "has_extreme_low": false,
+      "has_extreme_high": false,
+      "has_adjacent_low": false,
+      "has_adjacent_high": false,
+      "mid_count": 14,
+      "mids_are_sparse_sample": true,
+      "complete_edge_pair": false
+    },
+    "edge_steps": {
+      "points": {}
+    }
+  },
+  "value_range": null,
+  "encoding_hypotheses": [
+    {
+      "encoding": "raw_u8",
+      "offsets": [
+        25
+      ],
+      "score": 1.0,
+      "matched": 14,
+      "total": 14,
+      "scale": null,
+      "offset": null,
+      "mapping": [
+        {
+          "label": "Ambience",
+          "encoded": 4,
+          "raw_bytes": [
+            "04"
+          ]
+        },
+        {
+          "label": "Chambers",
+          "encoded": 3,
+          "raw_bytes": [
+            "03"
+          ]
+        },
+        {
+          "label": "Edit",
+          "encoded": 11,
+          "raw_bytes": [
+            "0B"
+          ]
+        },
+        {
+          "label": "Favs",
+          "encoded": 13,
+          "raw_bytes": [
+            "0D"
+          ]
+        },
+        {
+          "label": "Halls",
+          "encoded": 0,
+          "raw_bytes": [
+            "00"
+          ]
+        },
+        {
+          "label": "Halls 2",
+          "encoded": 6,
+          "raw_bytes": [
+            "06"
+          ]
+        },
+        {
+          "label": "NonLin",
+          "encoded": 10,
+          "raw_bytes": [
+            "0A"
+          ]
+        },
+        {
+          "label": "Plates",
+          "encoded": 1,
+          "raw_bytes": [
+            "01"
+          ]
+        },
+        {
+          "label": "Plates 2",
+          "encoded": 7,
+          "raw_bytes": [
+            "07"
+          ]
+        },
+        {
+          "label": "Regs",
+          "encoded": 12,
+          "raw_bytes": [
+            "0C"
+          ]
+        },
+        {
+          "label": "Rooms",
+          "encoded": 2,
+          "raw_bytes": [
+            "02"
+          ]
+        },
+        {
+          "label": "Rooms 2",
+          "encoded": 8,
+          "raw_bytes": [
+            "08"
+          ]
+        },
+        {
+          "label": "Spaces",
+          "encoded": 5,
+          "raw_bytes": [
+            "05"
+          ]
+        },
+        {
+          "label": "Spaces 2",
+          "encoded": 9,
+          "raw_bytes": [
+            "09"
+          ]
+        }
+      ],
+      "notes": "enum table: 14 distinct labels each map to a unique encoded value",
+      "r_squared": null,
+      "exact": false,
+      "monotonic_score": 1.0
+    }
+  ],
+  "best_encoding": {
+    "encoding": "raw_u8",
+    "offsets": [
+      25
+    ],
+    "score": 1.0,
+    "matched": 14,
+    "total": 14,
+    "scale": null,
+    "offset": null,
+    "mapping": [
+      {
+        "label": "Ambience",
+        "encoded": 4,
+        "raw_bytes": [
+          "04"
+        ]
+      },
+      {
+        "label": "Chambers",
+        "encoded": 3,
+        "raw_bytes": [
+          "03"
+        ]
+      },
+      {
+        "label": "Edit",
+        "encoded": 11,
+        "raw_bytes": [
+          "0B"
+        ]
+      },
+      {
+        "label": "Favs",
+        "encoded": 13,
+        "raw_bytes": [
+          "0D"
+        ]
+      },
+      {
+        "label": "Halls",
+        "encoded": 0,
+        "raw_bytes": [
+          "00"
+        ]
+      },
+      {
+        "label": "Halls 2",
+        "encoded": 6,
+        "raw_bytes": [
+          "06"
+        ]
+      },
+      {
+        "label": "NonLin",
+        "encoded": 10,
+        "raw_bytes": [
+          "0A"
+        ]
+      },
+      {
+        "label": "Plates",
+        "encoded": 1,
+        "raw_bytes": [
+          "01"
+        ]
+      },
+      {
+        "label": "Plates 2",
+        "encoded": 7,
+        "raw_bytes": [
+          "07"
+        ]
+      },
+      {
+        "label": "Regs",
+        "encoded": 12,
+        "raw_bytes": [
+          "0C"
+        ]
+      },
+      {
+        "label": "Rooms",
+        "encoded": 2,
+        "raw_bytes": [
+          "02"
+        ]
+      },
+      {
+        "label": "Rooms 2",
+        "encoded": 8,
+        "raw_bytes": [
+          "08"
+        ]
+      },
+      {
+        "label": "Spaces",
+        "encoded": 5,
+        "raw_bytes": [
+          "05"
+        ]
+      },
+      {
+        "label": "Spaces 2",
+        "encoded": 9,
+        "raw_bytes": [
+          "09"
+        ]
+      }
+    ],
+    "notes": "enum table: 14 distinct labels each map to a unique encoded value",
+    "r_squared": null,
+    "exact": false,
+    "monotonic_score": 1.0
+  },
+  "hypothesis": {
+    "summary": "Parameter 'midi bank' appears at SysEx offset(s) [25] as an enum table using encoding 'raw_u8' (enum table: 14 distinct labels each map to a unique encoded value). Offsets [72, 73, 74, 75] also change and are treated as checksum nibbles. Payload bytes 8-71 are nibble-sized (0x00-0x0F).",
+    "confidence": "high",
+    "match_rate": 1.0,
+    "how_to_set": {
+      "offsets": [
+        25
+      ],
+      "encoding": "raw_u8",
+      "encode_steps": [
+        "encoded = lookup desired label in the capture encoding map (enum table)",
+        "byte[offset0] = encoded & 0x0F  # M7 payload nibbles are 0x00-0x0F",
+        "recompute trailing checksum: CRC-16/ARC over bytes[8:72], pack as four high-nibble-first SysEx bytes at offsets 72-75"
+      ],
+      "notes": "enum table: 14 distinct labels each map to a unique encoded value"
+    }
+  },
+  "duplicate_byte_notes": null,
+  "dumps": [
+    {
+      "file": "Ambience.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Ambience",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Ambience",
+        "endpoint": null,
+        "raw_label": "Ambience"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "04",
+        "72": "09",
+        "73": "08",
+        "74": "0B",
+        "75": "04"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "04"
+        ],
+        "encoded_value": 4
+      }
+    },
+    {
+      "file": "Chambers.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Chambers",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Chambers",
+        "endpoint": null,
+        "raw_label": "Chambers"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "03",
+        "72": "01",
+        "73": "0D",
+        "74": "0B",
+        "75": "02"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "03"
+        ],
+        "encoded_value": 3
+      }
+    },
+    {
+      "file": "Edit.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Edit",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Edit",
+        "endpoint": null,
+        "raw_label": "Edit"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "0B",
+        "72": "07",
+        "73": "0E",
+        "74": "0D",
+        "75": "06"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "0B"
+        ],
+        "encoded_value": 11
+      }
+    },
+    {
+      "file": "Favs.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Favs",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Favs",
+        "endpoint": null,
+        "raw_label": "Favs"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "0D",
+        "72": "05",
+        "73": "07",
+        "74": "0B",
+        "75": "0D"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "0D"
+        ],
+        "encoded_value": 13
+      }
+    },
+    {
+      "file": "Halls.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Halls",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Halls",
+        "endpoint": null,
+        "raw_label": "Halls"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "00",
+        "72": "0A",
+        "73": "09",
+        "74": "00",
+        "75": "06"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "00"
+        ],
+        "encoded_value": 0
+      }
+    },
+    {
+      "file": "Halls 2.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Halls 2",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Halls 2",
+        "endpoint": null,
+        "raw_label": "Halls 2"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "06",
+        "72": "08",
+        "73": "00",
+        "74": "06",
+        "75": "0D"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "06"
+        ],
+        "encoded_value": 6
+      }
+    },
+    {
+      "file": "NonLin.syx",
+      "label": {
+        "kind": "enum",
+        "value": "NonLin",
+        "unit": null,
+        "unit_display": null,
+        "stem": "NonLin",
+        "endpoint": null,
+        "raw_label": "NonLin"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "0A",
+        "72": "0D",
+        "73": "02",
+        "74": "0B",
+        "75": "0B"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "0A"
+        ],
+        "encoded_value": 10
+      }
+    },
+    {
+      "file": "Plates.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Plates",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Plates",
+        "endpoint": null,
+        "raw_label": "Plates"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "01",
+        "72": "00",
+        "73": "05",
+        "74": "06",
+        "75": "0B"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "01"
+        ],
+        "encoded_value": 1
+      }
+    },
+    {
+      "file": "Plates 2.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Plates 2",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Plates 2",
+        "endpoint": null,
+        "raw_label": "Plates 2"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "07",
+        "72": "02",
+        "73": "0C",
+        "74": "00",
+        "75": "00"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "07"
+        ],
+        "encoded_value": 7
+      }
+    },
+    {
+      "file": "Regs.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Regs",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Regs",
+        "endpoint": null,
+        "raw_label": "Regs"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "0C",
+        "72": "0F",
+        "73": "0B",
+        "74": "0D",
+        "75": "00"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "0C"
+        ],
+        "encoded_value": 12
+      }
+    },
+    {
+      "file": "Rooms.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Rooms",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Rooms",
+        "endpoint": null,
+        "raw_label": "Rooms"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "02",
+        "72": "0B",
+        "73": "01",
+        "74": "0D",
+        "75": "0F"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "02"
+        ],
+        "encoded_value": 2
+      }
+    },
+    {
+      "file": "Rooms 2.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Rooms 2",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Rooms 2",
+        "endpoint": null,
+        "raw_label": "Rooms 2"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "08",
+        "72": "0C",
+        "73": "0A",
+        "74": "06",
+        "75": "02"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "08"
+        ],
+        "encoded_value": 8
+      }
+    },
+    {
+      "file": "Spaces.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Spaces",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Spaces",
+        "endpoint": null,
+        "raw_label": "Spaces"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "05",
+        "72": "03",
+        "73": "04",
+        "74": "0D",
+        "75": "09"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "05"
+        ],
+        "encoded_value": 5
+      }
+    },
+    {
+      "file": "Spaces 2.syx",
+      "label": {
+        "kind": "enum",
+        "value": "Spaces 2",
+        "unit": null,
+        "unit_display": null,
+        "stem": "Spaces 2",
+        "endpoint": null,
+        "raw_label": "Spaces 2"
+      },
+      "sampling_role": "mid",
+      "changing_bytes": {
+        "25": "09",
+        "72": "06",
+        "73": "06",
+        "74": "00",
+        "75": "0F"
+      },
+      "decoded_parameter": {
+        "encoding": "raw_u8",
+        "offsets": [
+          25
+        ],
+        "raw_bytes": [
+          "09"
+        ],
+        "encoded_value": 9
+      }
+    }
+  ]
+}

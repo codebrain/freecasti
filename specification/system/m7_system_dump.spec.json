@@ -1,0 +1,1944 @@
+{
+  "format": "bricasti-m7-system-dump",
+  "version": 1,
+  "kaitai_id": "m7_system_dump",
+  "title": "Bricasti M7 system-dump SysEx",
+  "message_length": 77,
+  "file_extension": "syx",
+  "disclaimer": "Reverse-engineered from labeled system captures in this repository. Not an official Bricasti specification.",
+  "kaitai_doc_extra": "System-parameter encodings are documented in specification/system/parameters/.",
+  "frame": {
+    "sysex_start": 240,
+    "manufacturer_id": [
+      0,
+      98,
+      99
+    ],
+    "system_dump_header": [
+      112,
+      8,
+      2,
+      0
+    ],
+    "sysex_end": 247
+  },
+  "checksum": {
+    "offsets": [
+      72,
+      73,
+      74,
+      75
+    ],
+    "algorithm": "CRC-16/ARC",
+    "cover_start": 8,
+    "cover_end_exclusive": 72,
+    "pack": "u16_be_high_nibble_first"
+  },
+  "encodings": {
+    "raw_u8": "Single SysEx data byte used as an unsigned integer.",
+    "nibble_hilo": "Two MIDI data bytes (each 0x00-0x0F); value = (hi<<4)|lo.",
+    "crc16_arc_u16_be_nibbles": "CRC-16/ARC packed as four high-nibble-first SysEx bytes."
+  },
+  "fields": [
+    {
+      "id": "sysex_start",
+      "label": "SysEx start (F0)",
+      "offsets": [
+        0
+      ],
+      "start": 0,
+      "end": 0,
+      "size": 1,
+      "status": "frame",
+      "role": "SysEx start (F0)",
+      "encoding": null,
+      "series_root": "sysex/system",
+      "kind": "frame",
+      "contents": [
+        240
+      ]
+    },
+    {
+      "id": "manufacturer_id",
+      "label": "manufacturer ID",
+      "offsets": [
+        1,
+        2,
+        3
+      ],
+      "start": 1,
+      "end": 3,
+      "size": 3,
+      "status": "frame",
+      "role": "Manufacturer ID (00 62 63)",
+      "encoding": null,
+      "series_root": "sysex/system",
+      "kind": "frame",
+      "contents": [
+        0,
+        98,
+        99
+      ]
+    },
+    {
+      "id": "system_dump_header",
+      "label": "system-dump header",
+      "offsets": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "start": 4,
+      "end": 7,
+      "size": 4,
+      "status": "frame",
+      "role": "System-dump header (70 08 02 00)",
+      "encoding": null,
+      "series_root": "sysex/system",
+      "kind": "frame",
+      "contents": [
+        112,
+        8,
+        2,
+        0
+      ]
+    },
+    {
+      "id": "wet_gain",
+      "label": "wet gain",
+      "offsets": [
+        8,
+        9
+      ],
+      "start": 8,
+      "end": 9,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `wet gain` (from sysex/system/wet gain/) (nibble_hilo)",
+      "encoding": "nibble_hilo",
+      "series_root": "sysex/system",
+      "parameter": "wet gain",
+      "description": "Part of the M7\u2019s internal mixing: sets the level of the processed (reverb) signal. Off, then \u221260 dB to 0 dB (Full) in 0.5 dB steps. Normally 0 dB (Full) with Dry Gain Off for a full-wet sidechain setup. Set Off to bypass processing for I/O test and measurement. Allow headroom when balancing with Dry Gain \u2014 the mix can add gain and the reverb process itself can add up to about 10 dB.",
+      "encoding_notes": "Off and Full are discrete endpoints; numbered settings use 0.5 dB steps (label = encoded \u00d7 0.5 \u2212 60.5 dB for encoded 1\u2026121).",
+      "kind": "affine",
+      "scale": 0.5,
+      "offset": -60.5,
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "wet_gain_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "off",
+            "label": "off"
+          },
+          {
+            "encoded": 1,
+            "name": "v_60_db",
+            "label": "-60 dB"
+          },
+          {
+            "encoded": 2,
+            "name": "v_59_5_db",
+            "label": "-59.5 dB"
+          },
+          {
+            "encoded": 3,
+            "name": "v_59_db",
+            "label": "-59 dB"
+          },
+          {
+            "encoded": 4,
+            "name": "v_58_5_db",
+            "label": "-58.5 dB"
+          },
+          {
+            "encoded": 5,
+            "name": "v_58_db",
+            "label": "-58 dB"
+          },
+          {
+            "encoded": 6,
+            "name": "v_57_5_db",
+            "label": "-57.5 dB"
+          },
+          {
+            "encoded": 7,
+            "name": "v_57_db",
+            "label": "-57 dB"
+          },
+          {
+            "encoded": 8,
+            "name": "v_56_5_db",
+            "label": "-56.5 dB"
+          },
+          {
+            "encoded": 9,
+            "name": "v_56_db",
+            "label": "-56 dB"
+          },
+          {
+            "encoded": 10,
+            "name": "v_55_5_db",
+            "label": "-55.5 dB"
+          },
+          {
+            "encoded": 11,
+            "name": "v_55_db",
+            "label": "-55 dB"
+          },
+          {
+            "encoded": 12,
+            "name": "v_54_5_db",
+            "label": "-54.5 dB"
+          },
+          {
+            "encoded": 13,
+            "name": "v_54_db",
+            "label": "-54 dB"
+          },
+          {
+            "encoded": 14,
+            "name": "v_53_5_db",
+            "label": "-53.5 dB"
+          },
+          {
+            "encoded": 15,
+            "name": "v_53_db",
+            "label": "-53 dB"
+          },
+          {
+            "encoded": 16,
+            "name": "v_52_5_db",
+            "label": "-52.5 dB"
+          },
+          {
+            "encoded": 17,
+            "name": "v_52_db",
+            "label": "-52 dB"
+          },
+          {
+            "encoded": 18,
+            "name": "v_51_5_db",
+            "label": "-51.5 dB"
+          },
+          {
+            "encoded": 19,
+            "name": "v_51_db",
+            "label": "-51 dB"
+          },
+          {
+            "encoded": 20,
+            "name": "v_50_5_db",
+            "label": "-50.5 dB"
+          },
+          {
+            "encoded": 21,
+            "name": "v_50_db",
+            "label": "-50 dB"
+          },
+          {
+            "encoded": 22,
+            "name": "v_49_5_db",
+            "label": "-49.5 dB"
+          },
+          {
+            "encoded": 23,
+            "name": "v_49_db",
+            "label": "-49 dB"
+          },
+          {
+            "encoded": 24,
+            "name": "v_48_5_db",
+            "label": "-48.5 dB"
+          },
+          {
+            "encoded": 25,
+            "name": "v_48_db",
+            "label": "-48 dB"
+          },
+          {
+            "encoded": 26,
+            "name": "v_47_5_db",
+            "label": "-47.5 dB"
+          },
+          {
+            "encoded": 27,
+            "name": "v_47_db",
+            "label": "-47 dB"
+          },
+          {
+            "encoded": 28,
+            "name": "v_46_5_db",
+            "label": "-46.5 dB"
+          },
+          {
+            "encoded": 29,
+            "name": "v_46_db",
+            "label": "-46 dB"
+          },
+          {
+            "encoded": 30,
+            "name": "v_45_5_db",
+            "label": "-45.5 dB"
+          },
+          {
+            "encoded": 31,
+            "name": "v_45_db",
+            "label": "-45 dB"
+          },
+          {
+            "encoded": 32,
+            "name": "v_44_5_db",
+            "label": "-44.5 dB"
+          },
+          {
+            "encoded": 33,
+            "name": "v_44_db",
+            "label": "-44 dB"
+          },
+          {
+            "encoded": 34,
+            "name": "v_43_5_db",
+            "label": "-43.5 dB"
+          },
+          {
+            "encoded": 35,
+            "name": "v_43_db",
+            "label": "-43 dB"
+          },
+          {
+            "encoded": 36,
+            "name": "v_42_5_db",
+            "label": "-42.5 dB"
+          },
+          {
+            "encoded": 37,
+            "name": "v_42_db",
+            "label": "-42 dB"
+          },
+          {
+            "encoded": 38,
+            "name": "v_41_5_db",
+            "label": "-41.5 dB"
+          },
+          {
+            "encoded": 39,
+            "name": "v_41_db",
+            "label": "-41 dB"
+          },
+          {
+            "encoded": 40,
+            "name": "v_40_5_db",
+            "label": "-40.5 dB"
+          },
+          {
+            "encoded": 41,
+            "name": "v_40_db",
+            "label": "-40 dB"
+          },
+          {
+            "encoded": 42,
+            "name": "v_39_5_db",
+            "label": "-39.5 dB"
+          },
+          {
+            "encoded": 43,
+            "name": "v_39_db",
+            "label": "-39 dB"
+          },
+          {
+            "encoded": 44,
+            "name": "v_38_5_db",
+            "label": "-38.5 dB"
+          },
+          {
+            "encoded": 45,
+            "name": "v_38_db",
+            "label": "-38 dB"
+          },
+          {
+            "encoded": 46,
+            "name": "v_37_5_db",
+            "label": "-37.5 dB"
+          },
+          {
+            "encoded": 47,
+            "name": "v_37_db",
+            "label": "-37 dB"
+          },
+          {
+            "encoded": 48,
+            "name": "v_36_5_db",
+            "label": "-36.5 dB"
+          },
+          {
+            "encoded": 49,
+            "name": "v_36_db",
+            "label": "-36 dB"
+          },
+          {
+            "encoded": 50,
+            "name": "v_35_5_db",
+            "label": "-35.5 dB"
+          },
+          {
+            "encoded": 51,
+            "name": "v_35_db",
+            "label": "-35 dB"
+          },
+          {
+            "encoded": 52,
+            "name": "v_34_5_db",
+            "label": "-34.5 dB"
+          },
+          {
+            "encoded": 53,
+            "name": "v_34_db",
+            "label": "-34 dB"
+          },
+          {
+            "encoded": 54,
+            "name": "v_33_5_db",
+            "label": "-33.5 dB"
+          },
+          {
+            "encoded": 55,
+            "name": "v_33_db",
+            "label": "-33 dB"
+          },
+          {
+            "encoded": 56,
+            "name": "v_32_5_db",
+            "label": "-32.5 dB"
+          },
+          {
+            "encoded": 57,
+            "name": "v_32_db",
+            "label": "-32 dB"
+          },
+          {
+            "encoded": 58,
+            "name": "v_31_5_db",
+            "label": "-31.5 dB"
+          },
+          {
+            "encoded": 59,
+            "name": "v_31_db",
+            "label": "-31 dB"
+          },
+          {
+            "encoded": 60,
+            "name": "v_30_5_db",
+            "label": "-30.5 dB"
+          },
+          {
+            "encoded": 61,
+            "name": "v_30_db",
+            "label": "-30 dB"
+          },
+          {
+            "encoded": 62,
+            "name": "v_29_5_db",
+            "label": "-29.5 dB"
+          },
+          {
+            "encoded": 63,
+            "name": "v_29_db",
+            "label": "-29 dB"
+          },
+          {
+            "encoded": 64,
+            "name": "v_28_5_db",
+            "label": "-28.5 dB"
+          },
+          {
+            "encoded": 65,
+            "name": "v_28_db",
+            "label": "-28 dB"
+          },
+          {
+            "encoded": 66,
+            "name": "v_27_5_db",
+            "label": "-27.5 dB"
+          },
+          {
+            "encoded": 67,
+            "name": "v_27_db",
+            "label": "-27 dB"
+          },
+          {
+            "encoded": 68,
+            "name": "v_26_5_db",
+            "label": "-26.5 dB"
+          },
+          {
+            "encoded": 69,
+            "name": "v_26_db",
+            "label": "-26 dB"
+          },
+          {
+            "encoded": 70,
+            "name": "v_25_5_db",
+            "label": "-25.5 dB"
+          },
+          {
+            "encoded": 71,
+            "name": "v_25_db",
+            "label": "-25 dB"
+          },
+          {
+            "encoded": 72,
+            "name": "v_24_5_db",
+            "label": "-24.5 dB"
+          },
+          {
+            "encoded": 73,
+            "name": "v_24_db",
+            "label": "-24 dB"
+          },
+          {
+            "encoded": 74,
+            "name": "v_23_5_db",
+            "label": "-23.5 dB"
+          },
+          {
+            "encoded": 75,
+            "name": "v_23_db",
+            "label": "-23 dB"
+          },
+          {
+            "encoded": 76,
+            "name": "v_22_5_db",
+            "label": "-22.5 dB"
+          },
+          {
+            "encoded": 77,
+            "name": "v_22_db",
+            "label": "-22 dB"
+          },
+          {
+            "encoded": 78,
+            "name": "v_21_5_db",
+            "label": "-21.5 dB"
+          },
+          {
+            "encoded": 79,
+            "name": "v_21_db",
+            "label": "-21 dB"
+          },
+          {
+            "encoded": 80,
+            "name": "v_20_5_db",
+            "label": "-20.5 dB"
+          },
+          {
+            "encoded": 81,
+            "name": "v_20_db",
+            "label": "-20 dB"
+          },
+          {
+            "encoded": 82,
+            "name": "v_19_5_db",
+            "label": "-19.5 dB"
+          },
+          {
+            "encoded": 83,
+            "name": "v_19_db",
+            "label": "-19 dB"
+          },
+          {
+            "encoded": 84,
+            "name": "v_18_5_db",
+            "label": "-18.5 dB"
+          },
+          {
+            "encoded": 85,
+            "name": "v_18_db",
+            "label": "-18 dB"
+          },
+          {
+            "encoded": 86,
+            "name": "v_17_5_db",
+            "label": "-17.5 dB"
+          },
+          {
+            "encoded": 87,
+            "name": "v_17_db",
+            "label": "-17 dB"
+          },
+          {
+            "encoded": 88,
+            "name": "v_16_5_db",
+            "label": "-16.5 dB"
+          },
+          {
+            "encoded": 89,
+            "name": "v_16_db",
+            "label": "-16 dB"
+          },
+          {
+            "encoded": 90,
+            "name": "v_15_5_db",
+            "label": "-15.5 dB"
+          },
+          {
+            "encoded": 91,
+            "name": "v_15_db",
+            "label": "-15 dB"
+          },
+          {
+            "encoded": 92,
+            "name": "v_14_5_db",
+            "label": "-14.5 dB"
+          },
+          {
+            "encoded": 93,
+            "name": "v_14_db",
+            "label": "-14 dB"
+          },
+          {
+            "encoded": 94,
+            "name": "v_13_5_db",
+            "label": "-13.5 dB"
+          },
+          {
+            "encoded": 95,
+            "name": "v_13_db",
+            "label": "-13 dB"
+          },
+          {
+            "encoded": 96,
+            "name": "v_12_5_db",
+            "label": "-12.5 dB"
+          },
+          {
+            "encoded": 97,
+            "name": "v_12_db",
+            "label": "-12 dB"
+          },
+          {
+            "encoded": 98,
+            "name": "v_11_5_db",
+            "label": "-11.5 dB"
+          },
+          {
+            "encoded": 99,
+            "name": "v_11_db",
+            "label": "-11 dB"
+          },
+          {
+            "encoded": 100,
+            "name": "v_10_5_db",
+            "label": "-10.5 dB"
+          },
+          {
+            "encoded": 101,
+            "name": "v_10_db",
+            "label": "-10 dB"
+          },
+          {
+            "encoded": 102,
+            "name": "v_9_5_db",
+            "label": "-9.5 dB"
+          },
+          {
+            "encoded": 103,
+            "name": "v_9_db",
+            "label": "-9 dB"
+          },
+          {
+            "encoded": 104,
+            "name": "v_8_5_db",
+            "label": "-8.5 dB"
+          },
+          {
+            "encoded": 105,
+            "name": "v_8_db",
+            "label": "-8 dB"
+          },
+          {
+            "encoded": 106,
+            "name": "v_7_5_db",
+            "label": "-7.5 dB"
+          },
+          {
+            "encoded": 107,
+            "name": "v_7_db",
+            "label": "-7 dB"
+          },
+          {
+            "encoded": 108,
+            "name": "v_6_5_db",
+            "label": "-6.5 dB"
+          },
+          {
+            "encoded": 109,
+            "name": "v_6_db",
+            "label": "-6 dB"
+          },
+          {
+            "encoded": 110,
+            "name": "v_5_5_db",
+            "label": "-5.5 dB"
+          },
+          {
+            "encoded": 111,
+            "name": "v_5_db",
+            "label": "-5 dB"
+          },
+          {
+            "encoded": 112,
+            "name": "v_4_5_db",
+            "label": "-4.5 dB"
+          },
+          {
+            "encoded": 113,
+            "name": "v_4_db",
+            "label": "-4 dB"
+          },
+          {
+            "encoded": 114,
+            "name": "v_3_5_db",
+            "label": "-3.5 dB"
+          },
+          {
+            "encoded": 115,
+            "name": "v_3_db",
+            "label": "-3 dB"
+          },
+          {
+            "encoded": 116,
+            "name": "v_2_5_db",
+            "label": "-2.5 dB"
+          },
+          {
+            "encoded": 117,
+            "name": "v_2_db",
+            "label": "-2 dB"
+          },
+          {
+            "encoded": 118,
+            "name": "v_1_5_db",
+            "label": "-1.5 dB"
+          },
+          {
+            "encoded": 119,
+            "name": "v_1_db",
+            "label": "-1 dB"
+          },
+          {
+            "encoded": 120,
+            "name": "v_0_5_db",
+            "label": "-0.5 dB"
+          },
+          {
+            "encoded": 121,
+            "name": "full",
+            "label": "full"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dry_gain",
+      "label": "dry gain",
+      "offsets": [
+        10,
+        11
+      ],
+      "start": 10,
+      "end": 11,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `dry gain` (from sysex/system/dry gain/) (nibble_hilo)",
+      "encoding": "nibble_hilo",
+      "series_root": "sysex/system",
+      "parameter": "dry gain",
+      "description": "Part of the M7\u2019s internal mixing: sets the level of the dry (direct) source path. Used with Wet Gain to balance dry and processed audio. Normally Off when the M7 is used as a full-wet sidechain with an external mixer; set to 0 dB (Full) with Wet Gain Off for unity dry pass-through (mastering or I/O test). Allow headroom \u2014 combining dry and wet can increase level. When using an external mixer, keep Dry Off to avoid out-of-phase dry from converter and signal-path delay.",
+      "encoding_notes": "Off and Full are discrete endpoints; numbered settings use 0.5 dB steps (label = encoded \u00d7 0.5 \u2212 60.5 dB for encoded 1\u2026121).",
+      "kind": "affine",
+      "scale": 0.5,
+      "offset": -60.5,
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "dry_gain_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "off",
+            "label": "off"
+          },
+          {
+            "encoded": 1,
+            "name": "v_60_db",
+            "label": "-60 dB"
+          },
+          {
+            "encoded": 2,
+            "name": "v_59_5_db",
+            "label": "-59.5 dB"
+          },
+          {
+            "encoded": 3,
+            "name": "v_59_db",
+            "label": "-59 dB"
+          },
+          {
+            "encoded": 4,
+            "name": "v_58_5_db",
+            "label": "-58.5 dB"
+          },
+          {
+            "encoded": 5,
+            "name": "v_58_db",
+            "label": "-58 dB"
+          },
+          {
+            "encoded": 6,
+            "name": "v_57_5_db",
+            "label": "-57.5 dB"
+          },
+          {
+            "encoded": 7,
+            "name": "v_57_db",
+            "label": "-57 dB"
+          },
+          {
+            "encoded": 8,
+            "name": "v_56_5_db",
+            "label": "-56.5 dB"
+          },
+          {
+            "encoded": 9,
+            "name": "v_56_db",
+            "label": "-56 dB"
+          },
+          {
+            "encoded": 10,
+            "name": "v_55_5_db",
+            "label": "-55.5 dB"
+          },
+          {
+            "encoded": 11,
+            "name": "v_55_db",
+            "label": "-55 dB"
+          },
+          {
+            "encoded": 12,
+            "name": "v_54_5_db",
+            "label": "-54.5 dB"
+          },
+          {
+            "encoded": 13,
+            "name": "v_54_db",
+            "label": "-54 dB"
+          },
+          {
+            "encoded": 14,
+            "name": "v_53_5_db",
+            "label": "-53.5 dB"
+          },
+          {
+            "encoded": 15,
+            "name": "v_53_db",
+            "label": "-53 dB"
+          },
+          {
+            "encoded": 16,
+            "name": "v_52_5_db",
+            "label": "-52.5 dB"
+          },
+          {
+            "encoded": 17,
+            "name": "v_52_db",
+            "label": "-52 dB"
+          },
+          {
+            "encoded": 18,
+            "name": "v_51_5_db",
+            "label": "-51.5 dB"
+          },
+          {
+            "encoded": 19,
+            "name": "v_51_db",
+            "label": "-51 dB"
+          },
+          {
+            "encoded": 20,
+            "name": "v_50_5_db",
+            "label": "-50.5 dB"
+          },
+          {
+            "encoded": 21,
+            "name": "v_50_db",
+            "label": "-50 dB"
+          },
+          {
+            "encoded": 22,
+            "name": "v_49_5_db",
+            "label": "-49.5 dB"
+          },
+          {
+            "encoded": 23,
+            "name": "v_49_db",
+            "label": "-49 dB"
+          },
+          {
+            "encoded": 24,
+            "name": "v_48_5_db",
+            "label": "-48.5 dB"
+          },
+          {
+            "encoded": 25,
+            "name": "v_48_db",
+            "label": "-48 dB"
+          },
+          {
+            "encoded": 26,
+            "name": "v_47_5_db",
+            "label": "-47.5 dB"
+          },
+          {
+            "encoded": 27,
+            "name": "v_47_db",
+            "label": "-47 dB"
+          },
+          {
+            "encoded": 28,
+            "name": "v_46_5_db",
+            "label": "-46.5 dB"
+          },
+          {
+            "encoded": 29,
+            "name": "v_46_db",
+            "label": "-46 dB"
+          },
+          {
+            "encoded": 30,
+            "name": "v_45_5_db",
+            "label": "-45.5 dB"
+          },
+          {
+            "encoded": 31,
+            "name": "v_45_db",
+            "label": "-45 dB"
+          },
+          {
+            "encoded": 32,
+            "name": "v_44_5_db",
+            "label": "-44.5 dB"
+          },
+          {
+            "encoded": 33,
+            "name": "v_44_db",
+            "label": "-44 dB"
+          },
+          {
+            "encoded": 34,
+            "name": "v_43_5_db",
+            "label": "-43.5 dB"
+          },
+          {
+            "encoded": 35,
+            "name": "v_43_db",
+            "label": "-43 dB"
+          },
+          {
+            "encoded": 36,
+            "name": "v_42_5_db",
+            "label": "-42.5 dB"
+          },
+          {
+            "encoded": 37,
+            "name": "v_42_db",
+            "label": "-42 dB"
+          },
+          {
+            "encoded": 38,
+            "name": "v_41_5_db",
+            "label": "-41.5 dB"
+          },
+          {
+            "encoded": 39,
+            "name": "v_41_db",
+            "label": "-41 dB"
+          },
+          {
+            "encoded": 40,
+            "name": "v_40_5_db",
+            "label": "-40.5 dB"
+          },
+          {
+            "encoded": 41,
+            "name": "v_40_db",
+            "label": "-40 dB"
+          },
+          {
+            "encoded": 42,
+            "name": "v_39_5_db",
+            "label": "-39.5 dB"
+          },
+          {
+            "encoded": 43,
+            "name": "v_39_db",
+            "label": "-39 dB"
+          },
+          {
+            "encoded": 44,
+            "name": "v_38_5_db",
+            "label": "-38.5 dB"
+          },
+          {
+            "encoded": 45,
+            "name": "v_38_db",
+            "label": "-38 dB"
+          },
+          {
+            "encoded": 46,
+            "name": "v_37_5_db",
+            "label": "-37.5 dB"
+          },
+          {
+            "encoded": 47,
+            "name": "v_37_db",
+            "label": "-37 dB"
+          },
+          {
+            "encoded": 48,
+            "name": "v_36_5_db",
+            "label": "-36.5 dB"
+          },
+          {
+            "encoded": 49,
+            "name": "v_36_db",
+            "label": "-36 dB"
+          },
+          {
+            "encoded": 50,
+            "name": "v_35_5_db",
+            "label": "-35.5 dB"
+          },
+          {
+            "encoded": 51,
+            "name": "v_35_db",
+            "label": "-35 dB"
+          },
+          {
+            "encoded": 52,
+            "name": "v_34_5_db",
+            "label": "-34.5 dB"
+          },
+          {
+            "encoded": 53,
+            "name": "v_34_db",
+            "label": "-34 dB"
+          },
+          {
+            "encoded": 54,
+            "name": "v_33_5_db",
+            "label": "-33.5 dB"
+          },
+          {
+            "encoded": 55,
+            "name": "v_33_db",
+            "label": "-33 dB"
+          },
+          {
+            "encoded": 56,
+            "name": "v_32_5_db",
+            "label": "-32.5 dB"
+          },
+          {
+            "encoded": 57,
+            "name": "v_32_db",
+            "label": "-32 dB"
+          },
+          {
+            "encoded": 58,
+            "name": "v_31_5_db",
+            "label": "-31.5 dB"
+          },
+          {
+            "encoded": 59,
+            "name": "v_31_db",
+            "label": "-31 dB"
+          },
+          {
+            "encoded": 60,
+            "name": "v_30_5_db",
+            "label": "-30.5 dB"
+          },
+          {
+            "encoded": 61,
+            "name": "v_30_db",
+            "label": "-30 dB"
+          },
+          {
+            "encoded": 62,
+            "name": "v_29_5_db",
+            "label": "-29.5 dB"
+          },
+          {
+            "encoded": 63,
+            "name": "v_29_db",
+            "label": "-29 dB"
+          },
+          {
+            "encoded": 64,
+            "name": "v_28_5_db",
+            "label": "-28.5 dB"
+          },
+          {
+            "encoded": 65,
+            "name": "v_28_db",
+            "label": "-28 dB"
+          },
+          {
+            "encoded": 66,
+            "name": "v_27_5_db",
+            "label": "-27.5 dB"
+          },
+          {
+            "encoded": 67,
+            "name": "v_27_db",
+            "label": "-27 dB"
+          },
+          {
+            "encoded": 68,
+            "name": "v_26_5_db",
+            "label": "-26.5 dB"
+          },
+          {
+            "encoded": 69,
+            "name": "v_26_db",
+            "label": "-26 dB"
+          },
+          {
+            "encoded": 70,
+            "name": "v_25_5_db",
+            "label": "-25.5 dB"
+          },
+          {
+            "encoded": 71,
+            "name": "v_25_db",
+            "label": "-25 dB"
+          },
+          {
+            "encoded": 72,
+            "name": "v_24_5_db",
+            "label": "-24.5 dB"
+          },
+          {
+            "encoded": 73,
+            "name": "v_24_db",
+            "label": "-24 dB"
+          },
+          {
+            "encoded": 74,
+            "name": "v_23_5_db",
+            "label": "-23.5 dB"
+          },
+          {
+            "encoded": 75,
+            "name": "v_23_db",
+            "label": "-23 dB"
+          },
+          {
+            "encoded": 76,
+            "name": "v_22_5_db",
+            "label": "-22.5 dB"
+          },
+          {
+            "encoded": 77,
+            "name": "v_22_db",
+            "label": "-22 dB"
+          },
+          {
+            "encoded": 78,
+            "name": "v_21_5_db",
+            "label": "-21.5 dB"
+          },
+          {
+            "encoded": 79,
+            "name": "v_21_db",
+            "label": "-21 dB"
+          },
+          {
+            "encoded": 80,
+            "name": "v_20_5_db",
+            "label": "-20.5 dB"
+          },
+          {
+            "encoded": 81,
+            "name": "v_20_db",
+            "label": "-20 dB"
+          },
+          {
+            "encoded": 82,
+            "name": "v_19_5_db",
+            "label": "-19.5 dB"
+          },
+          {
+            "encoded": 83,
+            "name": "v_19_db",
+            "label": "-19 dB"
+          },
+          {
+            "encoded": 84,
+            "name": "v_18_5_db",
+            "label": "-18.5 dB"
+          },
+          {
+            "encoded": 85,
+            "name": "v_18_db",
+            "label": "-18 dB"
+          },
+          {
+            "encoded": 86,
+            "name": "v_17_5_db",
+            "label": "-17.5 dB"
+          },
+          {
+            "encoded": 87,
+            "name": "v_17_db",
+            "label": "-17 dB"
+          },
+          {
+            "encoded": 88,
+            "name": "v_16_5_db",
+            "label": "-16.5 dB"
+          },
+          {
+            "encoded": 89,
+            "name": "v_16_db",
+            "label": "-16 dB"
+          },
+          {
+            "encoded": 90,
+            "name": "v_15_5_db",
+            "label": "-15.5 dB"
+          },
+          {
+            "encoded": 91,
+            "name": "v_15_db",
+            "label": "-15 dB"
+          },
+          {
+            "encoded": 92,
+            "name": "v_14_5_db",
+            "label": "-14.5 dB"
+          },
+          {
+            "encoded": 93,
+            "name": "v_14_db",
+            "label": "-14 dB"
+          },
+          {
+            "encoded": 94,
+            "name": "v_13_5_db",
+            "label": "-13.5 dB"
+          },
+          {
+            "encoded": 95,
+            "name": "v_13_db",
+            "label": "-13 dB"
+          },
+          {
+            "encoded": 96,
+            "name": "v_12_5_db",
+            "label": "-12.5 dB"
+          },
+          {
+            "encoded": 97,
+            "name": "v_12_db",
+            "label": "-12 dB"
+          },
+          {
+            "encoded": 98,
+            "name": "v_11_5_db",
+            "label": "-11.5 dB"
+          },
+          {
+            "encoded": 99,
+            "name": "v_11_db",
+            "label": "-11 dB"
+          },
+          {
+            "encoded": 100,
+            "name": "v_10_5_db",
+            "label": "-10.5 dB"
+          },
+          {
+            "encoded": 101,
+            "name": "v_10_db",
+            "label": "-10 dB"
+          },
+          {
+            "encoded": 102,
+            "name": "v_9_5_db",
+            "label": "-9.5 dB"
+          },
+          {
+            "encoded": 103,
+            "name": "v_9_db",
+            "label": "-9 dB"
+          },
+          {
+            "encoded": 104,
+            "name": "v_8_5_db",
+            "label": "-8.5 dB"
+          },
+          {
+            "encoded": 105,
+            "name": "v_8_db",
+            "label": "-8 dB"
+          },
+          {
+            "encoded": 106,
+            "name": "v_7_5_db",
+            "label": "-7.5 dB"
+          },
+          {
+            "encoded": 107,
+            "name": "v_7_db",
+            "label": "-7 dB"
+          },
+          {
+            "encoded": 108,
+            "name": "v_6_5_db",
+            "label": "-6.5 dB"
+          },
+          {
+            "encoded": 109,
+            "name": "v_6_db",
+            "label": "-6 dB"
+          },
+          {
+            "encoded": 110,
+            "name": "v_5_5_db",
+            "label": "-5.5 dB"
+          },
+          {
+            "encoded": 111,
+            "name": "v_5_db",
+            "label": "-5 dB"
+          },
+          {
+            "encoded": 112,
+            "name": "v_4_5_db",
+            "label": "-4.5 dB"
+          },
+          {
+            "encoded": 113,
+            "name": "v_4_db",
+            "label": "-4 dB"
+          },
+          {
+            "encoded": 114,
+            "name": "v_3_5_db",
+            "label": "-3.5 dB"
+          },
+          {
+            "encoded": 115,
+            "name": "v_3_db",
+            "label": "-3 dB"
+          },
+          {
+            "encoded": 116,
+            "name": "v_2_5_db",
+            "label": "-2.5 dB"
+          },
+          {
+            "encoded": 117,
+            "name": "v_2_db",
+            "label": "-2 dB"
+          },
+          {
+            "encoded": 118,
+            "name": "v_1_5_db",
+            "label": "-1.5 dB"
+          },
+          {
+            "encoded": 119,
+            "name": "v_1_db",
+            "label": "-1 dB"
+          },
+          {
+            "encoded": 120,
+            "name": "v_0_5_db",
+            "label": "-0.5 dB"
+          },
+          {
+            "encoded": 121,
+            "name": "full",
+            "label": "full"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fixed_prefix",
+      "label": "fixed prefix",
+      "offsets": [
+        12
+      ],
+      "start": 12,
+      "end": 12,
+      "size": 1,
+      "status": "known",
+      "role": "Fixed header/prefix block (constant in this corpus)",
+      "encoding": null,
+      "series_root": "sysex/system",
+      "kind": "meta"
+    },
+    {
+      "id": "audio_routing",
+      "label": "audio routing",
+      "offsets": [
+        13
+      ],
+      "start": 13,
+      "end": 13,
+      "size": 1,
+      "status": "known",
+      "role": "Parameter `audio routing` (from sysex/system/audio routing/) (raw_u8)",
+      "encoding": "raw_u8",
+      "series_root": "sysex/system",
+      "parameter": "audio routing",
+      "description": "Sets the routing of the processed (wet) audio. Useful for mono-in, stereo-out reverb work where a single input feeds both processing channels. This affects the wet path only \u2014 the dry path stays stereo (use a Y cable for mono internal dry mixing). Choices are Mono L, Mono R, or Stereo.",
+      "encoding_notes": "Primary nibble at offset 13; Stereo=0, Mono L=1, Mono R=2.",
+      "kind": "table",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "audio_routing_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "stereo",
+            "label": "stereo"
+          },
+          {
+            "encoded": 1,
+            "name": "mono_l",
+            "label": "mono l"
+          },
+          {
+            "encoded": 2,
+            "name": "mono_r",
+            "label": "mono r"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fixed_prefix_14",
+      "label": "fixed prefix",
+      "offsets": [
+        14
+      ],
+      "start": 14,
+      "end": 14,
+      "size": 1,
+      "status": "known",
+      "role": "Fixed header/prefix block (constant in this corpus)",
+      "encoding": null,
+      "series_root": "sysex/system",
+      "kind": "meta"
+    },
+    {
+      "id": "audio_format",
+      "label": "audio format",
+      "offsets": [
+        15
+      ],
+      "start": 15,
+      "end": 15,
+      "size": 1,
+      "status": "known",
+      "role": "Parameter `audio format` (from sysex/system/audio format/) (raw_u8)",
+      "encoding": "raw_u8",
+      "series_root": "sysex/system",
+      "parameter": "audio format",
+      "description": "Selects whether the M7 uses its analog or AES digital audio I/O. Analog mode always routes through the analog converters at the optimal internal sample rate for analog performance, regardless of what is connected. Digital mode uses a valid AES input when present, locks to the incoming sample rate and clock, mutes if the digital stream is lost, and switches back seamlessly when it returns.",
+      "encoding_notes": "Primary nibble at offset 15; Analog=0, Digital=1 in this capture set.",
+      "kind": "table",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "audio_format_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "analog",
+            "label": "analog"
+          },
+          {
+            "encoded": 1,
+            "name": "digital",
+            "label": "digital"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fixed_prefix_16",
+      "label": "fixed prefix",
+      "offsets": [
+        16
+      ],
+      "start": 16,
+      "end": 16,
+      "size": 1,
+      "status": "known",
+      "role": "Fixed header/prefix block (constant in this corpus)",
+      "encoding": null,
+      "series_root": "sysex/system",
+      "kind": "meta"
+    },
+    {
+      "id": "output_level",
+      "label": "output level",
+      "offsets": [
+        17
+      ],
+      "start": 17,
+      "end": 17,
+      "size": 1,
+      "status": "known",
+      "role": "Parameter `output level` (from sysex/system/output level/) (raw_u8)",
+      "encoding": "raw_u8",
+      "series_root": "sysex/system",
+      "parameter": "output level",
+      "description": "Sets the analog output level trim in three steps (\u22128 dB, \u221216 dB, and \u221224 dB) to match the input sensitivity of your mixer return or the next device in the chain. Return to factory defaults after level-matching tests \u2014 high settings can distort on hot signals.",
+      "encoding_notes": "Primary byte at offset 17 (raw_u8 values 0, 1, 2 for UI 8/16/24).",
+      "kind": "affine",
+      "scale": 8.0,
+      "offset": 8.0,
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "output_level_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_8_db",
+            "label": "-8 dB"
+          },
+          {
+            "encoded": 1,
+            "name": "v_16_db",
+            "label": "-16 dB"
+          },
+          {
+            "encoded": 2,
+            "name": "v_24_db",
+            "label": "-24 dB"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reserved_always_0",
+      "label": "reserved (always 0)",
+      "offsets": [
+        18
+      ],
+      "start": 18,
+      "end": 18,
+      "size": 1,
+      "status": "known",
+      "role": "Reserved (always 0 in this corpus)",
+      "encoding": null,
+      "series_root": "sysex/system",
+      "kind": "meta"
+    },
+    {
+      "id": "fixed_always_02_00",
+      "label": "fixed (always 02 00)",
+      "offsets": [
+        19,
+        20
+      ],
+      "start": 19,
+      "end": 20,
+      "size": 2,
+      "status": "known",
+      "role": "Fixed field (always `02 00` in this corpus)",
+      "encoding": null,
+      "series_root": "sysex/system",
+      "kind": "meta"
+    },
+    {
+      "id": "display_level",
+      "label": "display level",
+      "offsets": [
+        21
+      ],
+      "start": 21,
+      "end": 21,
+      "size": 1,
+      "status": "known",
+      "role": "Parameter `display level` (from sysex/system/display level/) (raw_u8)",
+      "encoding": "raw_u8",
+      "series_root": "sysex/system",
+      "parameter": "display level",
+      "description": "Sets the brightness of the front-panel display in five steps: Dim, 1, 2, 3, and Bright.",
+      "encoding_notes": "UI dim/1/2/3/bright; display-level captures also move offset 25 (secondary) alongside the primary field at offset 21.",
+      "kind": "affine",
+      "scale": 1.0,
+      "offset": 0.0,
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "display_level_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "dim",
+            "label": "dim"
+          },
+          {
+            "encoded": 1,
+            "name": "v_1",
+            "label": "1"
+          },
+          {
+            "encoded": 2,
+            "name": "v_2",
+            "label": "2"
+          },
+          {
+            "encoded": 3,
+            "name": "v_3",
+            "label": "3"
+          },
+          {
+            "encoded": 4,
+            "name": "bright",
+            "label": "bright"
+          }
+        ]
+      }
+    },
+    {
+      "id": "midi_channel",
+      "label": "midi channel",
+      "offsets": [
+        22,
+        23
+      ],
+      "start": 22,
+      "end": 23,
+      "size": 2,
+      "status": "known",
+      "role": "Parameter `midi channel` (from sysex/system/midi channel/) (nibble_hilo)",
+      "encoding": "nibble_hilo",
+      "series_root": "sysex/system",
+      "parameter": "midi channel",
+      "description": "Selects the MIDI channel the M7 listens on for program change and other control messages (channels 1\u201316, or Omni for all channels). SysEx dumps are channel-less and are not filtered by this setting.",
+      "encoding_notes": "Encoded 0\u201315 maps to channels 1\u201316; omni uses encoded 16.",
+      "kind": "affine",
+      "scale": 1.0,
+      "offset": 1.0,
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "midi_channel_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "v_1",
+            "label": "1"
+          },
+          {
+            "encoded": 1,
+            "name": "v_2",
+            "label": "2"
+          },
+          {
+            "encoded": 2,
+            "name": "v_3",
+            "label": "3"
+          },
+          {
+            "encoded": 3,
+            "name": "v_4",
+            "label": "4"
+          },
+          {
+            "encoded": 4,
+            "name": "v_5",
+            "label": "5"
+          },
+          {
+            "encoded": 5,
+            "name": "v_6",
+            "label": "6"
+          },
+          {
+            "encoded": 6,
+            "name": "v_7",
+            "label": "7"
+          },
+          {
+            "encoded": 7,
+            "name": "v_8",
+            "label": "8"
+          },
+          {
+            "encoded": 8,
+            "name": "v_9",
+            "label": "9"
+          },
+          {
+            "encoded": 9,
+            "name": "v_10",
+            "label": "10"
+          },
+          {
+            "encoded": 10,
+            "name": "v_11",
+            "label": "11"
+          },
+          {
+            "encoded": 11,
+            "name": "v_12",
+            "label": "12"
+          },
+          {
+            "encoded": 12,
+            "name": "v_13",
+            "label": "13"
+          },
+          {
+            "encoded": 13,
+            "name": "v_14",
+            "label": "14"
+          },
+          {
+            "encoded": 14,
+            "name": "v_15",
+            "label": "15"
+          },
+          {
+            "encoded": 15,
+            "name": "v_16",
+            "label": "16"
+          },
+          {
+            "encoded": 16,
+            "name": "omni",
+            "label": "omni"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reserved_padding",
+      "label": "reserved padding",
+      "offsets": [
+        24
+      ],
+      "start": 24,
+      "end": 24,
+      "size": 1,
+      "status": "known",
+      "role": "Reserved / padding (constant in this corpus)",
+      "encoding": null,
+      "series_root": "sysex/system",
+      "kind": "meta"
+    },
+    {
+      "id": "midi_bank",
+      "label": "midi bank",
+      "offsets": [
+        25
+      ],
+      "start": 25,
+      "end": 25,
+      "size": 1,
+      "status": "known",
+      "role": "Parameter `midi bank` (from sysex/system/midi bank/) (raw_u8) (also secondary in: `display level`)",
+      "encoding": "raw_u8",
+      "series_root": "sysex/system",
+      "parameter": "midi bank",
+      "description": "Selects which program bank the M7 uses when receiving MIDI program changes \u2014 factory banks (Halls, Plates, Rooms, and so on), the V2 \u201c2\u201d banks, NonLin, and user register/favorite banks.",
+      "encoding_notes": "Primary nibble at offset 25; each bank name maps to a distinct value 0x00\u20130x0D in this capture set.",
+      "kind": "table",
+      "confidence": "high",
+      "value_map": {
+        "enum_id": "midi_bank_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "halls",
+            "label": "halls"
+          },
+          {
+            "encoded": 1,
+            "name": "plates",
+            "label": "plates"
+          },
+          {
+            "encoded": 2,
+            "name": "rooms",
+            "label": "rooms"
+          },
+          {
+            "encoded": 3,
+            "name": "chambers",
+            "label": "chambers"
+          },
+          {
+            "encoded": 4,
+            "name": "ambience",
+            "label": "ambience"
+          },
+          {
+            "encoded": 5,
+            "name": "spaces",
+            "label": "spaces"
+          },
+          {
+            "encoded": 6,
+            "name": "halls_2",
+            "label": "halls 2"
+          },
+          {
+            "encoded": 7,
+            "name": "plates_2",
+            "label": "plates 2"
+          },
+          {
+            "encoded": 8,
+            "name": "rooms_2",
+            "label": "rooms 2"
+          },
+          {
+            "encoded": 9,
+            "name": "spaces_2",
+            "label": "spaces 2"
+          },
+          {
+            "encoded": 10,
+            "name": "nonlin",
+            "label": "nonlin"
+          },
+          {
+            "encoded": 11,
+            "name": "edit",
+            "label": "edit"
+          },
+          {
+            "encoded": 12,
+            "name": "regs",
+            "label": "regs"
+          },
+          {
+            "encoded": 13,
+            "name": "favs",
+            "label": "favs"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reserved_padding_26",
+      "label": "reserved padding",
+      "offsets": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71
+      ],
+      "start": 26,
+      "end": 71,
+      "size": 46,
+      "status": "known",
+      "role": "Reserved / padding (constant in this corpus)",
+      "encoding": null,
+      "series_root": "sysex/system",
+      "kind": "meta"
+    },
+    {
+      "id": "checksum",
+      "label": "checksum (CRC-16/ARC)",
+      "offsets": [
+        72,
+        73,
+        74,
+        75
+      ],
+      "start": 72,
+      "end": 75,
+      "size": 4,
+      "status": "checksum",
+      "role": "Checksum: CRC-16/ARC over offsets 8-71, packed as four high-nibble-first SysEx bytes",
+      "encoding": "crc16_arc_u16_be_nibbles",
+      "series_root": "sysex/system",
+      "kind": "checksum"
+    },
+    {
+      "id": "sysex_end",
+      "label": "SysEx end (F7)",
+      "offsets": [
+        76
+      ],
+      "start": 76,
+      "end": 76,
+      "size": 1,
+      "status": "frame",
+      "role": "SysEx end (F7)",
+      "encoding": null,
+      "series_root": "sysex/system",
+      "kind": "frame",
+      "contents": [
+        247
+      ]
+    }
+  ],
+  "sources": {
+    "byte_map_regions": 20,
+    "system_series": 8
+  }
+}

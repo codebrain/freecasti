@@ -1,0 +1,31 @@
+Freecasti / m7-sysex
+Copyright 2026 codebrain contributors
+
+This product includes software developed as part of the Freecasti project
+(https://github.com/codebrain/freecasti).
+
+The web UI is distributed under the Apache License 2.0. Third-party
+dependencies (React, Vite, Kaitai Struct compiler, and others) are
+subject to their respective licenses; see `web-ui/package-lock.json`.
+
+Trademarks and non-affiliation
+------------------------------
+
+This project documents an unofficial reverse-engineering of the Bricasti M7
+MIDI SysEx format. Names of hardware, software, and companies appear in the
+specification and documentation only for identification and comparison. We are
+not affiliated with, sponsored by, or endorsed by any of them.
+
+In particular, this project is not affiliated with or endorsed by:
+
+- Bricasti Design, Inc. (Bricasti, M7, and related product names)
+- Future State Studios (Freecasti web UI branding and related product names)
+- Kaitai Struct / Kaitai team (third-party compiler used at build time; see
+  licenses in `web-ui/package-lock.json`)
+
+Other company and product names cited in manuals, capture notes, or cross-check
+sources (for example published preset sheets or third-party controller guides)
+belong to their respective owners and are used here only as reference material.
+
+All trademarks, service marks, and trade names are the property of their
+respective owners.
