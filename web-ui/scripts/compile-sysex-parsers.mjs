@@ -23,6 +23,8 @@ const specs = [
 
 fs.mkdirSync(outDir, { recursive: true });
 
+const BINARY_STREAM_REL = "../../shims/binary-stream.umd.cjs";
+
 function sanitizeParserJs(content) {
   return content
     .replace(
@@ -30,7 +32,8 @@ function sanitizeParserJs(content) {
       "// Generated SysEx parser — edit .ksy specs and run npm run compile-parsers\n\n",
     )
     .replace(/kaitai-struct\/KaitaiStream/g, "m7/binary-stream")
-    .replace(/\bKaitaiStream\b/g, "BinaryStream");
+    .replace(/\bKaitaiStream\b/g, "BinaryStream")
+    .replace(/['"]m7\/binary-stream['"]/g, `'${BINARY_STREAM_REL}'`);
 }
 
 const compiler = new StructCompiler();

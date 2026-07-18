@@ -8,7 +8,7 @@ import {
   PROGRAM_MESSAGE_LENGTH,
   SYSTEM_MESSAGE_LENGTH,
 } from "./frame";
-import type { ProgSerializeState } from "./serialize";
+import { withProgUiIdle } from "@/prog/uiState";
 
 function readProgramName(data: Uint8Array): string {
   const slice = data.subarray(NAME_OFFSET, NAME_OFFSET + NAME_LENGTH);
@@ -44,10 +44,10 @@ export function hydrateProgramFromBytes(
     }
   }
 
-  return {
+  return withProgUiIdle({
     programName: readProgramName(data),
     encoded,
-  };
+  });
 }
 
 export function hydrateSystemFromBytes(

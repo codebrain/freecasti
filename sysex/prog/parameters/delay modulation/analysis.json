@@ -668,7 +668,7 @@
     "monotonic_score": 1.0
   },
   "hypothesis": {
-    "summary": "Parameter 'delay modulation' appears at SysEx offset(s) [139]. using encoding 'raw_u8'. (label = encoded + (-1)). off encoded=0; range 0 ... 10. Offsets [152, 153, 154, 155] also change and are treated as checksum nibbles. Additional non-checksum offsets [146, 147] also change (possible edit counter, UI state, or mirrored field). All post-name payload bytes are nibble-sized (0x00-0x0F).",
+    "summary": "Parameter 'delay modulation' appears at SysEx offset(s) [139]. using encoding 'raw_u8'. (label = encoded + (-1)). off encoded=0; range 0 ... 10. Offsets [152, 153, 154, 155] also change and are treated as checksum nibbles. Additional non-checksum offsets 146\u2013147 (`nibble_hilo` display) also change (edit/UI state, not the parameter word). All post-name payload bytes are nibble-sized (0x00-0x0F).",
     "confidence": "high",
     "match_rate": 1.0,
     "how_to_set": {

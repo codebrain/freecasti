@@ -1,4 +1,4 @@
-[Overview](README.md) | [Parameters](parameters/README.md) | [Program identity](program-identity.md) | [Preset inventory](preset-inventory.md) | [Preset sheet](preset-sheet.md) | [Byte map](byte-map-overview.md) | [Cross-series](cross.md) | [System dumps](../system/README.md)
+[Overview](README.md) | [Bytes](bytes/README.md) | [Program identity](program-identity.md) | [Preset inventory](preset-inventory.md) | [Preset sheet](preset-sheet.md) | [Byte map](byte-map-overview.md) | [Cross-series](cross.md) | [System dumps](../system/README.md)
 
 # Cross-series analysis
 
@@ -20,10 +20,7 @@ _Stable-in-corpus ≠ immutable forever - only unused or fixed in these captures
 
 Offsets that moved as non-primary fields in **two or more** independent series (likely shared edit/UI/state, not a sound parameter):
 
-| Offset | Series count | Seen in |
-|--------|-------------:|---------|
-| 146 | 8 | [delay modulation](parameters/delay-modulation.md), [diffusion](parameters/diffusion.md), [early select](parameters/early-select.md), [hf rt crossover](parameters/hf-rt-crossover.md), [hf rt multiply](parameters/hf-rt-multiply.md), [lf rt multiply](parameters/lf-rt-multiply.md), [rolloff](parameters/rolloff.md), [vlf cut](parameters/vlf-cut.md) |
-| 147 | 18 | [delay level](parameters/delay-level.md), [delay modulation](parameters/delay-modulation.md), [delay time](parameters/delay-time.md), [density](parameters/density.md), [diffusion](parameters/diffusion.md), [early rolloff](parameters/early-rolloff.md), [early select](parameters/early-select.md), [early to reverb mix](parameters/early-to-reverb-mix.md), [hf rt crossover](parameters/hf-rt-crossover.md), [hf rt multiply](parameters/hf-rt-multiply.md), [lf rt crossover](parameters/lf-rt-crossover.md), [lf rt multiply](parameters/lf-rt-multiply.md), [modulation](parameters/modulation.md), [predelay](parameters/predelay.md), [reverb time](parameters/reverb-time.md), [rolloff](parameters/rolloff.md), [size](parameters/size.md), [vlf cut](parameters/vlf-cut.md) |
+_None yet._
 
 ### Primary offset conflicts
 

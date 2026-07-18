@@ -70,6 +70,7 @@ only; message **encoding** uses [`kaitai_encode.py`](../src/m7_sysex/kaitai_enco
 | `tests/test_encoding_table.py` | Encoding-map table export |
 | `tests/test_corpus.py` | Every committed `.syx` under `sysex/prog/` + `sysex/system/` |
 | `tests/test_system.py` | SYSTEM series analysis |
+| `tests/test_menus_analysis.py` | PROG menu-navigation (`sysex/prog/menus/`) UI-state analysis |
 | `tests/test_decode_preset.py` | Full preset decode vs published sheet |
 | `tests/test_analyze.py` | Label parsing, encoding fits, preset validation |
 | `tests/test_edit_dumps.py` | Hold-EDIT buffer dumps (`sysex/prog/edit/`) |

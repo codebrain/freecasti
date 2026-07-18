@@ -23,6 +23,7 @@ describe("parseMidiReceive", () => {
     expect(parsed?.family).toBe("prog");
     if (parsed?.family === "prog") {
       expect(parsed.state.programName.length).toBeGreaterThan(0);
+      expect(parsed.state.ui).toEqual({ mode: "idle" });
       expect(parsed.bankIdx).toBeGreaterThanOrEqual(0);
     }
   });

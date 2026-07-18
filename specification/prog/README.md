@@ -1,4 +1,4 @@
-**Overview** | [Parameters](parameters/README.md) | [Program identity](program-identity.md) | [Preset inventory](preset-inventory.md) | [Preset sheet](preset-sheet.md) | [Byte map](byte-map-overview.md) | [Cross-series](cross.md) | [System dumps](../system/README.md)
+**Overview** | [Bytes](bytes/README.md) | [Program identity](program-identity.md) | [Preset inventory](preset-inventory.md) | [Preset sheet](preset-sheet.md) | [Byte map](byte-map-overview.md) | [Cross-series](cross.md) | [System dumps](../system/README.md)
 
 # M7 program-dump SysEx format
 
@@ -29,8 +29,8 @@ Program-dump layout is **157 bytes** (roles merged from independent per-paramete
 
 | Status | Bytes | Share |
 |--------|------:|------:|
-| Known / frame / checksum | 152 | 97% |
-| Secondary (moved within a series) | 5 | 3% |
+| Known / frame / checksum | 154 | 98% |
+| Secondary (moved within a series) | 3 | 2% |
 | Unknown | 0 | 0% |
 
 Identified parameter fields (each from its own folder):
@@ -40,42 +40,47 @@ Identified parameter fields (each from its own folder):
 - **93-94** - Fixed field (always `00 08` / encoded 8 in this corpus) — likely structure/version; not a sound parameter
 - **95-96** - Reserved (always `00 00` in this corpus)
 - **97** - Algorithm/family flag from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). Mirrored at 145 as 0 when 97=3 and 1 when 97=4 — not a clean V1/V2 bit
-- **100-101** - Parameter [`reverb time`](parameters/reverb-time.md) (from independent series [sysex/reverb time/](parameters/reverb-time.md)) (nibble_hilo, table/index candidate (monotonic 100%))
-- **102-103** - Parameter [`size`](parameters/size.md) (from independent series [sysex/size/](parameters/size.md)) (nibble_hilo, label = encoded * 1)
-- **104-105** - Parameter [`predelay`](parameters/predelay.md) (from independent series [sysex/predelay/](parameters/predelay.md)) (nibble_hilo, table/index candidate (monotonic 100%))
+- **100-101** - Parameter [`reverb time`](bytes/reverb-time.md) (from independent series [sysex/reverb time/](bytes/reverb-time.md)) (nibble_hilo, table/index candidate (monotonic 100%))
+- **102-103** - Parameter [`size`](bytes/size.md) (from independent series [sysex/size/](bytes/size.md)) (nibble_hilo, label = encoded * 1)
+- **104-105** - Parameter [`predelay`](bytes/predelay.md) (from independent series [sysex/predelay/](bytes/predelay.md)) (nibble_hilo, table/index candidate (monotonic 100%))
 - **106** - Reserved padding (always 0) between predelay and diffusion
-- **107** - Parameter [`diffusion`](parameters/diffusion.md) (from independent series [sysex/diffusion/](parameters/diffusion.md)) (raw_u8, label = encoded * 1)
+- **107** - Parameter [`diffusion`](bytes/diffusion.md) (from independent series [sysex/diffusion/](bytes/diffusion.md)) (raw_u8, label = encoded * 1)
 - **108** - Reserved padding (always 0) between diffusion and density
-- **109** - Parameter [`density`](parameters/density.md) (from independent series [sysex/density/](parameters/density.md)) (raw_u8, label = encoded * 1)
+- **109** - Parameter [`density`](bytes/density.md) (from independent series [sysex/density/](bytes/density.md)) (raw_u8, label = encoded * 1)
 - **110** - Reserved padding (always 0) between density and modulation
-- **111** - Parameter [`modulation`](parameters/modulation.md) (from independent series [sysex/modulation/](parameters/modulation.md)) (raw_u8, label = encoded + (-1))
-- **112-113** - Parameter [`rolloff`](parameters/rolloff.md) (from independent series [sysex/rolloff/](parameters/rolloff.md)) (nibble_hilo, table/index candidate (monotonic 100%))
-- **114-115** - Parameter [`hf rt multiply`](parameters/hf-rt-multiply.md) (from independent series [sysex/hf rt multiply/](parameters/hf-rt-multiply.md)) (nibble_hilo, label = encoded * 0.05 + (0.2))
-- **116-117** - Parameter [`hf rt crossover`](parameters/hf-rt-crossover.md) (from independent series [sysex/hf rt crossover/](parameters/hf-rt-crossover.md)) (nibble_hilo, table/index candidate (monotonic 100%))
-- **118-119** - Parameter [`lf rt multiply`](parameters/lf-rt-multiply.md) (from independent series [sysex/lf rt multiply/](parameters/lf-rt-multiply.md)) (nibble_hilo, table/index candidate (monotonic 100%))
-- **120-121** - Parameter [`lf rt crossover`](parameters/lf-rt-crossover.md) (from independent series [sysex/lf rt crossover/](parameters/lf-rt-crossover.md)) (nibble_hilo, table/index candidate (monotonic 100%))
-- **122-123** - Parameter [`vlf cut`](parameters/vlf-cut.md) (from independent series [sysex/vlf cut/](parameters/vlf-cut.md)) (nibble_hilo, label = encoded + (-20))
-- **124-125** - Parameter [`early to reverb mix`](parameters/early-to-reverb-mix.md) (from independent series [sysex/early to reverb mix/](parameters/early-to-reverb-mix.md)) (nibble_hilo, label = encoded * 1)
-- **126-127** - Parameter [`early rolloff`](parameters/early-rolloff.md) (from independent series [sysex/early rolloff/](parameters/early-rolloff.md)) (nibble_hilo, table/index candidate (monotonic 100%))
-- **128-129** - Parameter [`early select`](parameters/early-select.md) (from independent series [sysex/early select/](parameters/early-select.md)) (nibble_hilo, label = encoded * 1)
+- **111** - Parameter [`modulation`](bytes/modulation.md) (from independent series [sysex/modulation/](bytes/modulation.md)) (raw_u8, label = encoded + (-1))
+- **112-113** - Parameter [`rolloff`](bytes/rolloff.md) (from independent series [sysex/rolloff/](bytes/rolloff.md)) (nibble_hilo, table/index candidate (monotonic 100%))
+- **114-115** - Parameter [`hf rt multiply`](bytes/hf-rt-multiply.md) (from independent series [sysex/hf rt multiply/](bytes/hf-rt-multiply.md)) (nibble_hilo, label = encoded * 0.05 + (0.2))
+- **116-117** - Parameter [`hf rt crossover`](bytes/hf-rt-crossover.md) (from independent series [sysex/hf rt crossover/](bytes/hf-rt-crossover.md)) (nibble_hilo, table/index candidate (monotonic 100%))
+- **118-119** - Parameter [`lf rt multiply`](bytes/lf-rt-multiply.md) (from independent series [sysex/lf rt multiply/](bytes/lf-rt-multiply.md)) (nibble_hilo, table/index candidate (monotonic 100%))
+- **120-121** - Parameter [`lf rt crossover`](bytes/lf-rt-crossover.md) (from independent series [sysex/lf rt crossover/](bytes/lf-rt-crossover.md)) (nibble_hilo, table/index candidate (monotonic 100%))
+- **122-123** - Parameter [`vlf cut`](bytes/vlf-cut.md) (from independent series [sysex/vlf cut/](bytes/vlf-cut.md)) (nibble_hilo, label = encoded + (-20))
+- **124-125** - Parameter [`early to reverb mix`](bytes/early-to-reverb-mix.md) (from independent series [sysex/early to reverb mix/](bytes/early-to-reverb-mix.md)) (nibble_hilo, label = encoded * 1)
+- **126-127** - Parameter [`early rolloff`](bytes/early-rolloff.md) (from independent series [sysex/early rolloff/](bytes/early-rolloff.md)) (nibble_hilo, table/index candidate (monotonic 100%))
+- **128-129** - Parameter [`early select`](bytes/early-select.md) (from independent series [sysex/early select/](bytes/early-select.md)) (nibble_hilo, label = encoded * 1)
 - **130** - Engine/bank-class flag: 0 on classic banks (Halls…Spaces), 1 on `* 2` banks (Halls 2…Spaces 2), 2 on NonLin. Parameter-series dumps also show 1 because they were captured from Large Church (Halls 2)
 - **131-132** - Fixed companion to offset 130 (always `02 00` in this corpus)
-- **133** - Parameter [`delay level`](parameters/delay-level.md) (from independent series [sysex/delay level/](parameters/delay-level.md)) (raw_u8, label = encoded + (-21))
-- **134-135** - Parameter [`delay time`](parameters/delay-time.md) (from independent series [sysex/delay time/](parameters/delay-time.md)) (nibble_hilo, label = encoded * 8 + (100))
+- **133** - Parameter [`delay level`](bytes/delay-level.md) (from independent series [sysex/delay level/](bytes/delay-level.md)) (raw_u8, label = encoded + (-21))
+- **134-135** - Parameter [`delay time`](bytes/delay-time.md) (from independent series [sysex/delay time/](bytes/delay-time.md)) (nibble_hilo, label = encoded * 8 + (100))
 - **136** - Reserved (always 0) between delay time and bank-index mirror
 - **137** - Bank index mirror (equals offset 89) from [sysex/_presets/](program-identity.md); on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11
 - **138** - Reserved (always 0) between bank-index mirror and delay modulation
-- **139** - Parameter [`delay modulation`](parameters/delay-modulation.md) (from independent series [sysex/delay modulation/](parameters/delay-modulation.md)) (raw_u8, label = encoded + (-1))
+- **139** - Parameter [`delay modulation`](bytes/delay-modulation.md) (from independent series [sysex/delay modulation/](bytes/delay-modulation.md)) (raw_u8, label = encoded + (-1))
 - **140-144** - Reserved block (always 0 in this corpus)
 - **145** - Mirror of algorithm/family flag at 97 (145=0 when 97=3; 145=1 when 97=4 in this corpus)
+- **146-147** - Display (`nibble_hilo`): high nibble = page/row while browsing (`92=02`) or edit anchor while changing a value (`92=00`); low nibble = position within the menu page, or value-display position while editing. From `sysex/prog/menus/` captures
 - **148-151** - Reserved (always 0) immediately before checksum nibbles
+
+Secondary UI / edit-state fields:
+
+- **98-99** - Selected front-panel menu index (`nibble_hilo`, 0–17) when a parameter menu is open; `00 00` when idle. Hardware menu order matches `PROGRAM_PARAMETERS` in catalog. Offset 92 disambiguates idle vs Reverb Time (both may show index 0) (moved in independent series: _corpus)
 
 ### Parameter reverse-engineering
 
 **18** parameter series analyzed under `sysex/prog/parameters/`.
 
-- **high confidence (11):** [`delay level`](parameters/delay-level.md) @ 133 (`raw_u8`), [`delay modulation`](parameters/delay-modulation.md) @ 139 (`raw_u8`), [`delay time`](parameters/delay-time.md) @ 134-135 (`nibble_hilo`), [`density`](parameters/density.md) @ 109 (`raw_u8`), [`diffusion`](parameters/diffusion.md) @ 107 (`raw_u8`), [`early select`](parameters/early-select.md) @ 128-129 (`nibble_hilo`), [`early to reverb mix`](parameters/early-to-reverb-mix.md) @ 124-125 (`nibble_hilo`), [`hf rt multiply`](parameters/hf-rt-multiply.md) @ 114-115 (`nibble_hilo`), [`modulation`](parameters/modulation.md) @ 111 (`raw_u8`), [`size`](parameters/size.md) @ 102-103 (`nibble_hilo`), [`vlf cut`](parameters/vlf-cut.md) @ 122-123 (`nibble_hilo`)
-- **medium confidence (7):** [`early rolloff`](parameters/early-rolloff.md) @ 126-127 (`nibble_hilo`), [`hf rt crossover`](parameters/hf-rt-crossover.md) @ 116-117 (`nibble_hilo`), [`lf rt crossover`](parameters/lf-rt-crossover.md) @ 120-121 (`nibble_hilo`), [`lf rt multiply`](parameters/lf-rt-multiply.md) @ 118-119 (`nibble_hilo`), [`predelay`](parameters/predelay.md) @ 104-105 (`nibble_hilo`), [`reverb time`](parameters/reverb-time.md) @ 100-101 (`nibble_hilo`), [`rolloff`](parameters/rolloff.md) @ 112-113 (`nibble_hilo`)
+- **high confidence (11):** [`delay level`](bytes/delay-level.md) @ 133 (`raw_u8`), [`delay modulation`](bytes/delay-modulation.md) @ 139 (`raw_u8`), [`delay time`](bytes/delay-time.md) @ 134-135 (`nibble_hilo`), [`density`](bytes/density.md) @ 109 (`raw_u8`), [`diffusion`](bytes/diffusion.md) @ 107 (`raw_u8`), [`early select`](bytes/early-select.md) @ 128-129 (`nibble_hilo`), [`early to reverb mix`](bytes/early-to-reverb-mix.md) @ 124-125 (`nibble_hilo`), [`hf rt multiply`](bytes/hf-rt-multiply.md) @ 114-115 (`nibble_hilo`), [`modulation`](bytes/modulation.md) @ 111 (`raw_u8`), [`size`](bytes/size.md) @ 102-103 (`nibble_hilo`), [`vlf cut`](bytes/vlf-cut.md) @ 122-123 (`nibble_hilo`)
+- **medium confidence (7):** [`early rolloff`](bytes/early-rolloff.md) @ 126-127 (`nibble_hilo`), [`hf rt crossover`](bytes/hf-rt-crossover.md) @ 116-117 (`nibble_hilo`), [`lf rt crossover`](bytes/lf-rt-crossover.md) @ 120-121 (`nibble_hilo`), [`lf rt multiply`](bytes/lf-rt-multiply.md) @ 118-119 (`nibble_hilo`), [`predelay`](bytes/predelay.md) @ 104-105 (`nibble_hilo`), [`reverb time`](bytes/reverb-time.md) @ 100-101 (`nibble_hilo`), [`rolloff`](bytes/rolloff.md) @ 112-113 (`nibble_hilo`)
 
 ### Official program parameters
 
@@ -91,10 +96,12 @@ See also [parameter-catalog.md](../../docs/parameter-catalog.md).
 2. **[program-identity.md](program-identity.md)** / **[presets/](presets/)** - name / bank / slot; bank pages + [presets.json](presets/presets.json).
 3. **[preset-inventory.md](preset-inventory.md)** - capture count vs V2 addendum factory lists.
 4. **[preset-sheet.md](preset-sheet.md)** - errata vs Bricasti's published preset sheet PDF.
-5. **[parameters/README.md](parameters/README.md)** - all parameters with manual descriptions; each series also has dump tables and how-to-set notes under **[parameters/](parameters/)**.
-6. **[byte-map-overview.md](byte-map-overview.md)** / **[byte-map.md](byte-map.md)** - consolidated layout, then full detail.
-7. **[m7_program_dump.ksy](m7_program_dump.ksy)** / **[m7_program_dump.spec.json](m7_program_dump.spec.json)** - Kaitai Struct layout + machine schema for codegen.
-8. **[cross.md](cross.md)** - stable bytes, conflicts, coverage gaps across series.
+5. **[bytes/README.md](bytes/README.md)** - sound parameters and UI/menu fields with manual descriptions; each series also has dump tables and how-to-set notes under **[bytes/](bytes/)**.
+6. **[ui-state.md](ui-state.md)** — full menu browse/edit byte tables.
+7. **[bytes/display.md](bytes/display.md)** — Display (`nibble_hilo` @ 146–147).
+8. **[byte-map-overview.md](byte-map-overview.md)** / **[byte-map.md](byte-map.md)** - consolidated layout, then full detail.
+9. **[m7_program_dump.ksy](m7_program_dump.ksy)** / **[m7_program_dump.spec.json](m7_program_dump.spec.json)** - Kaitai Struct layout + machine schema for codegen.
+10. **[cross.md](cross.md)** - stable bytes, conflicts, coverage gaps across series.
 
 ## Frame layout
 
@@ -121,6 +128,7 @@ F0 | 00 62 63 | 70 08 01 00 | <80-byte name> | <bank> <slot> <params...> | <4 ni
 - All inspected payload bytes at offsets 88-155 stay within `0x00`-`0x0F`. That strongly suggests the M7 packs each binary byte as two MIDI nibbles rather than using classic 7-bit MIDI packing with MSB bitfields.
 - Checksum (152-155): **CRC-16/ARC** over the raw SysEx bytes at offsets 8-151 (name + payload), packed as four high-nibble-first data bytes. Manufacturer ID and header are not covered.
 - Program dumps can include UI / edit-state fields in addition to algorithm parameters (Bricasti documents that a program dump carries the running program, edits, and UI state). Expect a few offsets to move even during a “single parameter” series.
+- Display at **146–147** (`nibble_hilo`): high nibble = page/row, low nibble = column/position. Menu index remains at **98–99**. See [bytes/display.md](bytes/display.md) and [ui-state.md](ui-state.md).
 - **Independence:** each `sysex/prog/parameters/<parameter>/` folder is its own capture stream. Do not assume dumps from different folders share the same values for other parameters. Meta folder `sysex/prog/presets/` holds whole-preset dumps named `<bank>.<preset>` for identity fields.
 - Edit-buffer dumps (hold **EDIT**) share the PROG header/length (157 bytes);
   bank word **88-89 = 11** while mirror **137** keeps the source bank. Keep them
@@ -145,28 +153,28 @@ The analyzer scores both against filename labels.
 
 | Parameter | Offsets | Encoding | Scale / notes | Range | Confidence | Dumps |
 |-----------|---------|----------|---------------|-------|------------|-------|
-| **[delay level](parameters/delay-level.md)** | 133 | `raw_u8` | encoded + (-21) | off encoded=0; range -20 ... -6 dB | high | 6 |
-| **[delay modulation](parameters/delay-modulation.md)** | 139 | `raw_u8` | encoded + (-1) | off encoded=0; range 0 ... 10 | high | 7 |
-| **[delay time](parameters/delay-time.md)** | 134-135 | `nibble_hilo` | encoded * 8 + (100) | Range 100 ... 996 ms (capture extremes) | high | 10 |
-| **[density](parameters/density.md)** | 109 | `raw_u8` | identity | Observed range 0 ... 10 | high | 7 |
-| **[diffusion](parameters/diffusion.md)** | 107 | `raw_u8` | identity | Observed range 0 ... 10 | high | 9 |
-| **[early rolloff](parameters/early-rolloff.md)** | 126-127 | `nibble_hilo` | table/index candidate (monotonic 100%) | Observed range 80 ... 22000 Hz | medium | 7 |
-| **[early select](parameters/early-select.md)** | 128-129 | `nibble_hilo` | identity | Range 0 ... 31 (capture extremes) | high | 8 |
-| **[early to reverb mix](parameters/early-to-reverb-mix.md)** | 124-125 | `nibble_hilo` | identity | Balance path 0/20 ... 20/20 ... 20/0 (positions 0 ... 40; filenames use A.B for '/') | high | 12 |
-| **[hf rt crossover](parameters/hf-rt-crossover.md)** | 116-117 | `nibble_hilo` | table/index candidate (monotonic 100%) | Range 200 ... 16000 Hz (capture extremes) | medium | 10 |
-| **[hf rt multiply](parameters/hf-rt-multiply.md)** | 114-115 | `nibble_hilo` | encoded * 0.05 + (0.2) | Range 0.2 ... 1 (capture extremes) | high | 10 |
-| **[lf rt crossover](parameters/lf-rt-crossover.md)** | 120-121 | `nibble_hilo` | table/index candidate (monotonic 100%) | Range 80 ... 4800 Hz (capture extremes) | medium | 8 |
-| **[lf rt multiply](parameters/lf-rt-multiply.md)** | 118-119 | `nibble_hilo` | table/index candidate (monotonic 100%) | Range 0.2 ... 4 (capture extremes) | medium | 8 |
-| **[modulation](parameters/modulation.md)** | 111 | `raw_u8` | encoded + (-1) | off encoded=0; range 0 ... 10 | high | 7 |
-| **[predelay](parameters/predelay.md)** | 104-105 | `nibble_hilo` | table/index candidate (monotonic 100%) | Range 0 ... 500 ms (capture extremes) | medium | 6 |
-| **[reverb time](parameters/reverb-time.md)** | 100-101 | `nibble_hilo` | table/index candidate (monotonic 100%) | Range 0.2 ... 30 s (capture extremes) | medium | 13 |
-| **[rolloff](parameters/rolloff.md)** | 112-113 | `nibble_hilo` | table/index candidate (monotonic 100%) | Observed range 80 ... 22000 Hz | medium | 12 |
-| **[size](parameters/size.md)** | 102-103 | `nibble_hilo` | identity | Observed range 0 ... 30 | high | 8 |
-| **[vlf cut](parameters/vlf-cut.md)** | 122-123 | `nibble_hilo` | encoded + (-20) | Range -20 ... 0 dB (capture extremes) | high | 9 |
+| **[delay level](bytes/delay-level.md)** | 133 | `raw_u8` | encoded + (-21) | off encoded=0; range -20 ... -6 dB | high | 6 |
+| **[delay modulation](bytes/delay-modulation.md)** | 139 | `raw_u8` | encoded + (-1) | off encoded=0; range 0 ... 10 | high | 7 |
+| **[delay time](bytes/delay-time.md)** | 134-135 | `nibble_hilo` | encoded * 8 + (100) | Range 100 ... 996 ms (capture extremes) | high | 10 |
+| **[density](bytes/density.md)** | 109 | `raw_u8` | identity | Observed range 0 ... 10 | high | 7 |
+| **[diffusion](bytes/diffusion.md)** | 107 | `raw_u8` | identity | Observed range 0 ... 10 | high | 9 |
+| **[early rolloff](bytes/early-rolloff.md)** | 126-127 | `nibble_hilo` | table/index candidate (monotonic 100%) | Observed range 80 ... 22000 Hz | medium | 7 |
+| **[early select](bytes/early-select.md)** | 128-129 | `nibble_hilo` | identity | Range 0 ... 31 (capture extremes) | high | 8 |
+| **[early to reverb mix](bytes/early-to-reverb-mix.md)** | 124-125 | `nibble_hilo` | identity | Balance path 0/20 ... 20/20 ... 20/0 (positions 0 ... 40; filenames use A.B for '/') | high | 12 |
+| **[hf rt crossover](bytes/hf-rt-crossover.md)** | 116-117 | `nibble_hilo` | table/index candidate (monotonic 100%) | Range 200 ... 16000 Hz (capture extremes) | medium | 10 |
+| **[hf rt multiply](bytes/hf-rt-multiply.md)** | 114-115 | `nibble_hilo` | encoded * 0.05 + (0.2) | Range 0.2 ... 1 (capture extremes) | high | 10 |
+| **[lf rt crossover](bytes/lf-rt-crossover.md)** | 120-121 | `nibble_hilo` | table/index candidate (monotonic 100%) | Range 80 ... 4800 Hz (capture extremes) | medium | 8 |
+| **[lf rt multiply](bytes/lf-rt-multiply.md)** | 118-119 | `nibble_hilo` | table/index candidate (monotonic 100%) | Range 0.2 ... 4 (capture extremes) | medium | 8 |
+| **[modulation](bytes/modulation.md)** | 111 | `raw_u8` | encoded + (-1) | off encoded=0; range 0 ... 10 | high | 7 |
+| **[predelay](bytes/predelay.md)** | 104-105 | `nibble_hilo` | table/index candidate (monotonic 100%) | Range 0 ... 500 ms (capture extremes) | medium | 6 |
+| **[reverb time](bytes/reverb-time.md)** | 100-101 | `nibble_hilo` | table/index candidate (monotonic 100%) | Range 0.2 ... 30 s (capture extremes) | medium | 13 |
+| **[rolloff](bytes/rolloff.md)** | 112-113 | `nibble_hilo` | table/index candidate (monotonic 100%) | Observed range 80 ... 22000 Hz | medium | 12 |
+| **[size](bytes/size.md)** | 102-103 | `nibble_hilo` | identity | Observed range 0 ... 30 | high | 8 |
+| **[vlf cut](bytes/vlf-cut.md)** | 122-123 | `nibble_hilo` | encoded + (-20) | Range -20 ... 0 dB (capture extremes) | high | 9 |
 
-## Parameter pages
+## Byte field pages
 
-Index of all parameters with manual descriptions: [parameters/README.md](parameters/README.md).
+Index of documented dump fields: [bytes/README.md](bytes/README.md).
 
 _Last exported: 2026-07-18_
 ## Open questions
@@ -186,7 +194,7 @@ python run.py
 # or: python -m m7_sysex export
 ```
 
-This re-analyzes every folder under `sysex/`, refreshes each `analysis.json`, and regenerates this folder (`README.md`, `parameters/*.md`, program identity, byte map, Kaitai/`spec.json`, cross-series).
+This re-analyzes every folder under `sysex/`, refreshes each `analysis.json`, and regenerates this folder (`README.md`, `bytes/*.md`, program identity, byte map, Kaitai/`spec.json`, cross-series).
 
 Cross-only (uses current analyses / dumps):
 

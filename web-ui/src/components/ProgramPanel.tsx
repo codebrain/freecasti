@@ -3,7 +3,7 @@ import type { ControlDef, ControlGroup } from "@/spec/controls";
 
 import type { ParamChange } from "@/debug/change";
 
-import { applyProgFieldChange } from "@/prog/applyFieldChange";
+import { commitProgIndividualFieldChange } from "@/prog/applyFieldChange";
 import {
   delayControlLabel,
   partitionProgGroups,
@@ -106,27 +106,16 @@ export function ProgramPanel({
 
 
   const setField = (fieldId: string, encoded: number) => {
-
-    const result = applyProgFieldChange(
-
+    const result = commitProgIndividualFieldChange(
       state,
-
       fieldId,
-
       encoded,
-
       controlByField.get(fieldId),
-
       {
-
         isParameterActive,
-
         tempoModeFields,
-
         tempoBpm,
-
       },
-
     );
 
     if (result.kind === "change") {

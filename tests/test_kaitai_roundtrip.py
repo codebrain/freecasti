@@ -8,6 +8,7 @@ from pathlib import Path
 import pytest
 
 from m7_sysex.corpus_layout import is_prog_corpus_dump
+from m7_sysex.paths import prog_full_sweep_root, prog_menus_root
 from m7_sysex.encodings import decode_at_offsets
 from m7_sysex.frame import (
     SYSTEM_MESSAGE_LENGTH,
@@ -45,6 +46,7 @@ PROG_SPEC_PATH = ROOT / "specification" / "prog" / "m7_program_dump.spec.json"
 SYSTEM_SPEC_PATH = ROOT / "specification" / "system" / "m7_system_dump.spec.json"
 
 PROG_DUMPS = sorted(p for p in SYSEX.rglob("*.syx") if is_prog_corpus_dump(p, SYSEX))
+PROG_MENU_DUMPS = sorted(prog_menus_root(SYSEX).glob("*.syx"))
 PRESET_DUMPS = sorted((SYSEX / "prog" / "presets").glob("*.syx"))
 SYSTEM_DUMPS = sorted(
     p for p in (SYSEX / "system").rglob("*.syx") if "_system" not in p.parts
@@ -86,6 +88,44 @@ def test_kaitai_specs_compile(kaitai_prog_parser, kaitai_system_parser):
 @pytest.mark.slow
 def test_fresh_exported_specs_compile(kaitai_fresh_prog_parser, kaitai_fresh_system_parser):
     """Live ``write_*_dump_spec`` output also compiles."""
+
+
+@pytest.mark.slow
+@pytest.mark.parametrize(
+    "path", PROG_MENU_DUMPS, ids=lambda p: f"prog/menus/{p.name}"
+)
+def test_prog_menu_kaitai_roundtrip(path: Path, kaitai_prog_parser):
+    raw = path.read_bytes()
+    assert len(raw) == 157
+    assert verify_program_dump_checksum(raw)
+
+    parsed = kaitai_prog_parser.from_bytes(raw)
+    assert_message_roundtrip(parsed, raw, PROG_FIELDS, path=path)
+    assert_checksum_matches_native(parsed, raw, system=False)
+
+
+@pytest.mark.slow
+def test_prog_menu_ui_bytes_match_analysis(kaitai_prog_parser):
+    from m7_sysex.prog.menus import analyze_menus_folder
+
+    analysis = analyze_menus_folder(prog_menus_root(SYSEX), SYSEX)
+    browse_field = _field("edit_generation_counter")
+    menu_field = _field("selected_menu_index")
+    cursor_field = _field("display")
+
+    for capture in analysis["captures"]:
+        raw = prog_menus_root(SYSEX) / capture["file"]
+        parsed = kaitai_prog_parser.from_bytes(raw.read_bytes())
+        ui = capture["ui"]
+        assert encoded_int_from_field(parsed, browse_field) == ui["92"], capture["file"]
+        assert encoded_int_from_field(parsed, menu_field) == capture["menu_index_encoded"], (
+            capture["file"]
+        )
+        expected_cursor = (ui["146"] << 4) | ui["147"]
+        assert encoded_int_from_field(parsed, cursor_field) == expected_cursor, (
+            capture["file"]
+        )
+        _assert_field_resolves_to_enum(parsed, cursor_field, capture["file"])
 
 
 @pytest.mark.slow
@@ -205,6 +245,24 @@ def test_preset_identity_fields_match_filename(path: Path, kaitai_prog_parser):
     )
     mirror = encoded_int_from_field(parsed, _field("bank_index_mirror"))
     assert mirror == (raw[137] & 0x0F)
+
+
+def test_full_sweep_reverb_time_roundtrips(kaitai_prog_parser):
+    sweep_path = prog_full_sweep_root(SYSEX) / "reverb time.syx"
+    messages = split_sysex_messages(sweep_path.read_bytes())
+    assert len(messages) == 137
+    rt_field = _field("reverb_time")
+    encoded_values: list[int] = []
+
+    for raw in messages:
+        assert len(raw) == 157
+        assert verify_program_dump_checksum(raw)
+        parsed = kaitai_prog_parser.from_bytes(raw)
+        assert_message_roundtrip(parsed, raw, PROG_FIELDS, path=sweep_path)
+        assert_checksum_matches_native(parsed, raw, system=False)
+        encoded_values.append(encoded_int_from_field(parsed, rt_field))
+
+    assert encoded_values == list(range(137))
 
 
 def test_edit_stream_parses_with_edit_bank_index(kaitai_prog_parser):

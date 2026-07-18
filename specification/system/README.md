@@ -1,4 +1,4 @@
-[Program dumps](../prog/README.md) | **System overview** | [Parameters](parameters/README.md)
+[Program dumps](../prog/README.md) | **System overview** | [Bytes](bytes/README.md) | [Byte map](byte-map-overview.md)
 
 # M7 system-dump SysEx format
 
@@ -47,7 +47,7 @@ F0 | 00 62 63 | 70 08 02 00 | <system payload nibbles> | <4 nibble cs> | F7
 
 ## Byte coverage
 
-System layout is **77 bytes**. Full table: [byte-map.md](byte-map.md). Codegen: [m7_system_dump.ksy](m7_system_dump.ksy) / [m7_system_dump.spec.json](m7_system_dump.spec.json).
+System layout is **77 bytes**. Full table: [byte-map.md](byte-map.md) · short overview: [byte-map-overview.md](byte-map-overview.md). Codegen: [m7_system_dump.ksy](m7_system_dump.ksy) / [m7_system_dump.spec.json](m7_system_dump.spec.json).
 
 | Status | Bytes |
 |--------|------:|
@@ -57,16 +57,16 @@ System layout is **77 bytes**. Full table: [byte-map.md](byte-map.md). Codegen: 
 
 ## Series pages
 
-Index with descriptions: [parameters/README.md](parameters/README.md).
+Index with descriptions: [bytes/README.md](bytes/README.md).
 
-- [Audio Format](parameters/audio-format.md) (high)
-- [Audio Routing](parameters/audio-routing.md) (high)
-- [Display Level](parameters/display-level.md) (high)
-- [Dry Gain](parameters/dry-gain.md) (high)
-- [Midi Bank](parameters/midi-bank.md) (high)
-- [Midi Channel](parameters/midi-channel.md) (high)
-- [Output Level](parameters/output-level.md) (high)
-- [Wet Gain](parameters/wet-gain.md) (high)
+- [Audio Format](bytes/audio-format.md) (high)
+- [Audio Routing](bytes/audio-routing.md) (high)
+- [Display Level](bytes/display-level.md) (high)
+- [Dry Gain](bytes/dry-gain.md) (high)
+- [Midi Bank](bytes/midi-bank.md) (high)
+- [Midi Channel](bytes/midi-channel.md) (high)
+- [Output Level](bytes/output-level.md) (high)
+- [Wet Gain](bytes/wet-gain.md) (high)
 
 ## Capture notes
 

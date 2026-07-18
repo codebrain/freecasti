@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 
 const root = __dirname;
-const binaryStreamUmd = path.resolve(root, "src/shims/binary-stream.umd.js");
+const binaryStreamUmd = path.resolve(root, "src/shims/binary-stream.umd.cjs");
 const binaryStreamShim = path.resolve(root, "src/shims/binary-stream.ts");
 
 function sysexParserResolve(): Plugin {
@@ -30,6 +30,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(root, "./src"),
+      "m7/binary-stream": path.resolve(root, "src/shims/binary-stream.umd.cjs"),
       "iconv-lite": path.resolve(root, "src/shims/iconv-lite.ts"),
       zlib: path.resolve(root, "src/shims/zlib.ts"),
     },
@@ -63,7 +64,7 @@ export default defineConfig({
       include: [
         /node_modules/,
         /generated\/sysex-parsers/,
-        /shims\/binary-stream\.umd\.js/,
+        /shims\/binary-stream\.umd\.cjs/,
       ],
     },
   },

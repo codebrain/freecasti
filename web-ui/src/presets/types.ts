@@ -24,6 +24,8 @@ export interface PresetCatalog {
 
 export interface BankInfo {
   name: string;
+  /** UI label; a "v1"/"v2" suffix is added only for algorithms with both versions. */
+  displayName: string;
   bankIndex: number;
   presets: PresetEntry[];
 }

@@ -27,6 +27,8 @@ def test_is_prog_corpus_relative():
     assert is_prog_corpus_relative(Path("prog/presets/Halls.Large Hall.syx"))
     assert not is_prog_corpus_relative(Path("system/midi channel/1.syx"))
     assert not is_prog_corpus_relative(Path("prog/edit/stream.syx"))
+    assert not is_prog_corpus_relative(Path("prog/menus/size.syx"))
+    assert not is_prog_corpus_relative(Path("prog/full sweep/reverb time.syx"))
 
 
 def test_is_prog_corpus_dump_on_disk():

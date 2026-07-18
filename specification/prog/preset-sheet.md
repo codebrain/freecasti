@@ -1,4 +1,4 @@
-[Overview](README.md) | [Parameters](parameters/README.md) | [Program identity](program-identity.md) | [Preset inventory](preset-inventory.md) | **Preset sheet** | [Byte map](byte-map-overview.md) | [Cross-series](cross.md) | [System dumps](../system/README.md)
+[Overview](README.md) | [Bytes](bytes/README.md) | [Program identity](program-identity.md) | [Preset inventory](preset-inventory.md) | **Preset sheet** | [Byte map](byte-map-overview.md) | [Cross-series](cross.md) | [System dumps](../system/README.md)
 
 # Preset sheet errata
 
@@ -12,45 +12,45 @@ The classic PDF covers **V1-era banks only** (Ambience, Chambers, Halls, Plates,
 
 Hard = sheet value disagrees with the SysEx dump beyond tolerance. Soft = modest drift (often print rounding on Hz tables) once hardware UI walks densify the decode maps. SysEx dumps are treated as authoritative when they conflict with the PDF. Dump labels come from the densified encoding map (series captures, `provided` UI walks, and sheet anchors); `~` only when an encoding falls between labeled steps.
 
-See also [program-identity.md](program-identity.md), [presets/](presets/), and [parameters/README.md](parameters/README.md).
+See also [program-identity.md](program-identity.md), [presets/](presets/), and [bytes/README.md](bytes/README.md).
 
 ## Hard discrepancies by parameter
 
 | Parameter | Presets |
 |-----------|--------:|
-| [early select](parameters/early-select.md) | 4 |
-| [hf rt crossover](parameters/hf-rt-crossover.md) | 2 |
-| [diffusion](parameters/diffusion.md) | 1 |
-| [early rolloff](parameters/early-rolloff.md) | 1 |
-| [predelay](parameters/predelay.md) | 1 |
+| [early select](bytes/early-select.md) | 4 |
+| [hf rt crossover](bytes/hf-rt-crossover.md) | 2 |
+| [diffusion](bytes/diffusion.md) | 1 |
+| [early rolloff](bytes/early-rolloff.md) | 1 |
+| [predelay](bytes/predelay.md) | 1 |
 
 ## Soft discrepancies by parameter (table / rounding)
 
 | Parameter | Presets |
 |-----------|--------:|
-| [rolloff](parameters/rolloff.md) | 3 |
+| [rolloff](bytes/rolloff.md) | 3 |
 
 ## Hard discrepancies
 
 | Bank | Preset | Parameter | Encoded | Dump | Sheet | Δ |
 |------|--------|-----------|--------:|------|------:|--:|
-| [Halls](presets/halls/) | [Large & Near](presets/halls/large-and-near.md) | [early select](parameters/early-select.md) | 14 | 14 | 20 | -6 |
-| [Halls](presets/halls/) | [Large Hall](presets/halls/large-hall.md) | [early select](parameters/early-select.md) | 13 | 13 | 17 | -4 |
-| [Halls](presets/halls/) | [Medium & Near](presets/halls/medium-and-near.md) | [hf rt crossover](parameters/hf-rt-crossover.md) | 20 | 3600 Hz | 4800 | -1200 |
-| [Halls](presets/halls/) | [Medium Hall](presets/halls/medium-hall.md) | [hf rt crossover](parameters/hf-rt-crossover.md) | 20 | 3600 Hz | 4800 | -1200 |
-| [Halls](presets/halls/) | [Medium Hall](presets/halls/medium-hall.md) | [early select](parameters/early-select.md) | 17 | 17 | 13 | 4 |
-| [Rooms](presets/rooms/) | [Large Tiled](presets/rooms/large-tiled.md) | [early rolloff](parameters/early-rolloff.md) | 54 | 16000 Hz | 1600 | 14400 |
-| [Spaces](presets/spaces/) | [Bath House](presets/spaces/bath-house.md) | [early select](parameters/early-select.md) | 19 | 19 | 25 | -6 |
-| [Spaces](presets/spaces/) | [Redwood Valley](presets/spaces/redwood-valley.md) | [predelay](parameters/predelay.md) | 50 | 220 ms | 100 | 120 |
-| [Spaces](presets/spaces/) | [Stone Quarry](presets/spaces/stone-quarry.md) | [diffusion](parameters/diffusion.md) | 2 | 2 | 1 | 1 |
+| [Halls](presets/halls/) | [Large & Near](presets/halls/large-and-near.md) | [early select](bytes/early-select.md) | 14 | 14 | 20 | -6 |
+| [Halls](presets/halls/) | [Large Hall](presets/halls/large-hall.md) | [early select](bytes/early-select.md) | 13 | 13 | 17 | -4 |
+| [Halls](presets/halls/) | [Medium & Near](presets/halls/medium-and-near.md) | [hf rt crossover](bytes/hf-rt-crossover.md) | 20 | 3600 Hz | 4800 | -1200 |
+| [Halls](presets/halls/) | [Medium Hall](presets/halls/medium-hall.md) | [hf rt crossover](bytes/hf-rt-crossover.md) | 20 | 3600 Hz | 4800 | -1200 |
+| [Halls](presets/halls/) | [Medium Hall](presets/halls/medium-hall.md) | [early select](bytes/early-select.md) | 17 | 17 | 13 | 4 |
+| [Rooms](presets/rooms/) | [Large Tiled](presets/rooms/large-tiled.md) | [early rolloff](bytes/early-rolloff.md) | 54 | 16000 Hz | 1600 | 14400 |
+| [Spaces](presets/spaces/) | [Bath House](presets/spaces/bath-house.md) | [early select](bytes/early-select.md) | 19 | 19 | 25 | -6 |
+| [Spaces](presets/spaces/) | [Redwood Valley](presets/spaces/redwood-valley.md) | [predelay](bytes/predelay.md) | 50 | 220 ms | 100 | 120 |
+| [Spaces](presets/spaces/) | [Stone Quarry](presets/spaces/stone-quarry.md) | [diffusion](bytes/diffusion.md) | 2 | 2 | 1 | 1 |
 
 ## Soft discrepancies (table / rounding)
 
 | Bank | Preset | Parameter | Encoded | Dump | Sheet | Δ |
 |------|--------|-----------|--------:|------|------:|--:|
-| [Chambers](presets/chambers/) | [Kick Chamber](presets/chambers/kick-chamber.md) | [rolloff](parameters/rolloff.md) | 28 | 5600 Hz | 6400 | -800 |
-| [Plates](presets/plates/) | [Bright Plate](presets/plates/bright-plate.md) | [rolloff](parameters/rolloff.md) | 30 | 6400 Hz | 7600 | -1200 |
-| [Plates](presets/plates/) | [London Plate](presets/plates/london-plate.md) | [rolloff](parameters/rolloff.md) | 25 | 4400 Hz | 5200 | -800 |
+| [Chambers](presets/chambers/) | [Kick Chamber](presets/chambers/kick-chamber.md) | [rolloff](bytes/rolloff.md) | 28 | 5600 Hz | 6400 | -800 |
+| [Plates](presets/plates/) | [Bright Plate](presets/plates/bright-plate.md) | [rolloff](bytes/rolloff.md) | 30 | 6400 Hz | 7600 | -1200 |
+| [Plates](presets/plates/) | [London Plate](presets/plates/london-plate.md) | [rolloff](bytes/rolloff.md) | 25 | 4400 Hz | 5200 | -800 |
 
 ## Dumps not on the sheet
 

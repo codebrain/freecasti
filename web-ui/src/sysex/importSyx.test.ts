@@ -45,7 +45,7 @@ describe("importSyxBytes", () => {
     );
     expect(result.family).toBe("prog");
     expect(result.progState?.encoded).toBeDefined();
-    expect(result.progState?.programName.length).toBeGreaterThan(0);
+    expect(result.progState?.ui).toEqual({ mode: "idle" });
   });
 
   it("imports system dump from skeleton", () => {

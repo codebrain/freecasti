@@ -155,7 +155,9 @@ PROGRAM_PARAMETERS: list[dict[str, Any]] = [
         "description_source": M7_MANUAL_CITE,
         "description_url": M7_MANUAL_URL,
         "notes": (
-            "Manual max 28 kHz; FULL may sit above the last numbered Hz."
+            "Manual max 28 kHz; FULL may sit above the last numbered Hz. "
+            "Filter order (dB/octave) analysis: "
+            "[rolloff-slopes.md](../../../docs/rolloff-slopes.md)."
         ),
         "folder_hint": "rolloff",
     },
@@ -292,7 +294,11 @@ PROGRAM_PARAMETERS: list[dict[str, Any]] = [
         ),
         "description_source": M7_MANUAL_CITE,
         "description_url": M7_MANUAL_URL,
-        "notes": "Non-linear Hz table @ 126-127.",
+        "notes": (
+            "Non-linear Hz table @ 126-127. "
+            "Filter order (dB/octave) analysis: "
+            "[rolloff-slopes.md](../../../docs/rolloff-slopes.md)."
+        ),
         "folder_hint": "early rolloff",
     },
     {

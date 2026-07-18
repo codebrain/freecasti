@@ -19,8 +19,7 @@ doc: |
   as u16_be_high_nibble_first at offsets [152, 153, 154, 155].
   
   Sound-parameter value maps (affine scales / sparse tables) live alongside
-  this layout in the companion .spec.json and in
-  specification/prog/parameters/.
+  this layout in the companion .spec.json and in specification/prog/bytes/.
 seq:
   - id: sysex_start
     doc: |
@@ -53,11 +52,11 @@ seq:
       Program slot within bank (`nibble_hilo`) from sysex/_presets/ (not a
       global program number)
     type: nibble_u8_hilo
-  - id: secondary_edit_ui
+  - id: edit_generation_counter
     doc: |
-      Secondary field that also moved in this parameter's independent series
-      (edit/UI/state - not cross-checked against other folders) (moved in
-      independent series...
+      Menu-browse flag: `00` when no parameter menu is open or while editing a
+      value; `02` while a parameter menu is highlighted (see
+      `sysex/prog/menus/` captures)...
       Secondary/edit-UI field — not a primary sound parameter
     type: u1
   - id: fixed_field_always_8
@@ -75,11 +74,11 @@ seq:
       presets 4, with a few bank-leading exceptions also 3). Mirrored at 145
       as 0 when 97=3 and ...
     type: u1
-  - id: edit_generation_counter
+  - id: selected_menu_index
     doc: |
-      Edit/generation counter (`nibble_hilo`) — constant within each parameter
-      series, advances across capture sessions; not a sound parameter (same
-      neighborhood a...
+      Selected front-panel menu index (`nibble_hilo`, 0–17) when a parameter
+      menu is open; `00 00` when idle. Hardware menu order matches
+      `PROGRAM_PARAMETERS` in c...
       Secondary/edit-UI field — not a primary sound parameter
     type: nibble_u8_hilo
   - id: reverb_time
@@ -257,20 +256,14 @@ seq:
       Mirror of algorithm/family flag at 97 (145=0 when 97=3; 145=1 when 97=4
       in this corpus)
     type: u1
-  - id: secondary_edit_ui_146
+  - id: display
     doc: |
-      Secondary field that also moved in this parameter's independent series
-      (edit/UI/state - not cross-checked against other folders) (moved in
-      independent series...
-      Secondary/edit-UI field — not a primary sound parameter
-    type: u1
-  - id: secondary_edit_ui_147
-    doc: |
-      Secondary field that also moved in this parameter's independent series
-      (edit/UI/state - not cross-checked against other folders) (moved in
-      independent series...
-      Secondary/edit-UI field — not a primary sound parameter
-    type: u1
+      Display (`nibble_hilo`): high nibble = page/row while browsing (`92=02`)
+      or edit anchor while changing a value (`92=00`); low nibble = position
+      within the me...
+      Capture series: sysex/prog/menus/
+      Locked encoding table: 35 known encoded value(s)
+    type: display_encoded
   - id: reserved_always_0_148
     doc: |
       Reserved (always 0) immediately before checksum nibbles
@@ -1124,6 +1117,42 @@ enums:
     9: v_8  # 8
     10: v_9  # 9
     11: v_10  # 10
+  display_values:
+    28: idle_no_menu  # idle (no menu)
+    29: browse_size_1  # browse: size (1)
+    30: browse_predelay_2  # browse: predelay (2)
+    31: browse_diffusion_3  # browse: diffusion (3)
+    32: browse_density_4  # browse: density (4)
+    33: browse_modulation_5  # browse: modulation (5)
+    34: edit_predelay_2___browse_rolloff_6  # edit: predelay (2) / browse: rolloff (6)
+    35: browse_hf_rt_multiply_7  # browse: hf rt multiply (7)
+    36: browse_hf_rt_crossover_8  # browse: hf rt crossover (8)
+    37: browse_lf_rt_multiply_9  # browse: lf rt multiply (9)
+    38: browse_lf_rt_crossover_10  # browse: lf rt crossover (10)
+    39: browse_vlf_cut_11  # browse: vlf cut (11)
+    40: browse_early_to_reverb_mix_12  # browse: early to reverb mix (12)
+    41: edit_diffusion_3___browse_early_rolloff_13  # edit: diffusion (3) / browse: early rolloff (13)
+    42: browse_early_select_14  # browse: early select (14)
+    43: browse_delay_level_15  # browse: delay level (15)
+    44: browse_delay_time_16  # browse: delay time (16)
+    45: browse_delay_modulation_17  # browse: delay modulation (17)
+    46: browse_reverb_time_0  # browse: reverb time (0)
+    55: edit_density_4  # edit: density (4)
+    70: edit_modulation_5  # edit: modulation (5)
+    78: edit_rolloff_6  # edit: rolloff (6)
+    101: edit_hf_rt_multiply_7  # edit: hf rt multiply (7)
+    115: edit_hf_rt_crossover_8  # edit: hf rt crossover (8)
+    124: edit_vlf_cut_11  # edit: vlf cut (11)
+    131: edit_early_to_reverb_mix_12  # edit: early to reverb mix (12)
+    146: edit_early_rolloff_13  # edit: early rolloff (13)
+    156: edit_early_select_14  # edit: early select (14)
+    165: edit_delay_level_15  # edit: delay level (15)
+    176: edit_delay_time_16  # edit: delay time (16)
+    187: edit_delay_modulation_17  # edit: delay modulation (17)
+    191: edit_lf_rt_multiply_9  # edit: lf rt multiply (9)
+    196: edit_reverb_time_0  # edit: reverb time (0)
+    199: edit_lf_rt_crossover_10  # edit: lf rt crossover (10)
+    210: edit_size_1  # edit: size (1)
 
 types:
   bank_index_encoded:
@@ -1377,6 +1406,24 @@ types:
       value:
         value: (hi_nibble << 4) | lo_nibble
         enum: delay_time_values
+
+  display_encoded:
+    doc: |
+      Two SysEx data bytes (each 0x00-0x0F); decoded value is a
+      member of display_values.
+    seq:
+      - id: hi_nibble
+        type: u1
+        valid:
+          max: 15
+      - id: lo_nibble
+        type: u1
+        valid:
+          max: 15
+    instances:
+      value:
+        value: (hi_nibble << 4) | lo_nibble
+        enum: display_values
 
   nibble_u8_hilo:
     doc: |

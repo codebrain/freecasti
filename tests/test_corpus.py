@@ -87,8 +87,8 @@ def test_corpus_layout_constant_claims_hold():
 def test_corpus_layout_claims_cover_expected_offsets():
     claimed = sorted(o for spec in CORPUS_LAYOUT_CLAIMS for o in spec["offsets"])
     assert claimed == [
-        93, 94, 95, 96, 97, 98, 99, 106, 108, 110, 130, 131, 132,
-        136, 138, 140, 141, 142, 143, 144, 145, 148, 149, 150, 151,
+        92, 93, 94, 95, 96, 97, 98, 99, 106, 108, 110, 130, 131, 132,
+        136, 138, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151,
     ]
 
 

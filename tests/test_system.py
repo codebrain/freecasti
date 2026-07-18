@@ -23,7 +23,7 @@ SYSTEM_DUMPS = sorted(SYSTEM.rglob("*.syx"))
 
 
 def test_system_corpus_is_present():
-    assert len(SYSTEM_DUMPS) == 61
+    assert len(SYSTEM_DUMPS) == 73
 
 
 @pytest.mark.parametrize("path", SYSTEM_DUMPS, ids=lambda p: p.relative_to(SYSTEM).as_posix())

@@ -960,7 +960,7 @@ def render_sheet_markdown(result: dict[str, Any], *, today: str) -> str:
         "falls between labeled steps.",
         "",
         "See also [program-identity.md](program-identity.md), "
-        "[presets/](presets/), and [parameters/README.md](parameters/README.md).",
+        "[presets/](presets/), and [bytes/README.md](bytes/README.md).",
         "",
     ]
 

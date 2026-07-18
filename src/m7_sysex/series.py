@@ -387,9 +387,11 @@ def build_hypothesis(
     if param_offsets:
         secondary = [i for i in param_offsets if i not in offsets]
         if secondary:
+            from .prog.display import describe_secondary_offsets
+
             summary_parts.append(
-                f"Additional non-checksum offsets {secondary} also change "
-                "(possible edit counter, UI state, or mirrored field)"
+                f"Additional non-checksum offsets {describe_secondary_offsets(secondary)} "
+                "also change (edit/UI state, not the parameter word)"
             )
 
     if nibble_payload:

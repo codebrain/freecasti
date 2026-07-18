@@ -1,5 +1,12 @@
 import type { PresetCatalog, BankInfo, PresetEntry } from "./types";
 
+const NONLIN_BANK = "NonLin";
+
+/** Strip a trailing " 2" (v2 marker) so "Halls 2" and "Halls" share a base. */
+function baseBankName(name: string): string {
+  return name.replace(/\s*2$/, "").trim();
+}
+
 export function groupPresetsByBank(catalog: PresetCatalog): BankInfo[] {
   const byBank = new Map<string, PresetEntry[]>();
   for (const preset of catalog.presets) {
@@ -8,16 +15,39 @@ export function groupPresetsByBank(catalog: PresetCatalog): BankInfo[] {
     byBank.set(preset.bank, list);
   }
 
-  const banks: BankInfo[] = [];
+  const grouped: Array<{ name: string; base: string; bankIndex: number; presets: PresetEntry[] }> = [];
   for (const [, presets] of byBank) {
     presets.sort((a, b) => a.program_slot - b.program_slot);
-    banks.push({
-      name: presets[0].bank,
+    const name = presets[0].bank;
+    grouped.push({
+      name,
+      base: baseBankName(name),
       bankIndex: presets[0].bank_index,
       presets,
     });
   }
-  banks.sort((a, b) => a.bankIndex - b.bankIndex);
+
+  // Only algorithms that exist in more than one version get a v1/v2 suffix;
+  // single-version algorithms (Ambience, Chambers, NonLin, …) keep their name.
+  const versionCounts = new Map<string, number>();
+  for (const bank of grouped) {
+    versionCounts.set(bank.base, (versionCounts.get(bank.base) ?? 0) + 1);
+  }
+
+  const banks: BankInfo[] = grouped.map((bank) => {
+    const multiVersion = (versionCounts.get(bank.base) ?? 0) > 1;
+    const displayName = multiVersion
+      ? `${bank.base} ${bank.bankIndex <= 5 ? "v1" : "v2"}`
+      : bank.base;
+    return { name: bank.name, displayName, bankIndex: bank.bankIndex, presets: bank.presets };
+  });
+
+  banks.sort((a, b) => {
+    const aNon = a.name === NONLIN_BANK;
+    const bNon = b.name === NONLIN_BANK;
+    if (aNon !== bNon) return aNon ? 1 : -1;
+    return a.displayName.localeCompare(b.displayName);
+  });
   return banks;
 }
 

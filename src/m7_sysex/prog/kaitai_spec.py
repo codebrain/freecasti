@@ -41,6 +41,7 @@ def build_program_dump_spec(
     results: list[dict[str, Any]] | None = None,
     *,
     names: dict[str, Any] | None = None,
+    menus_analysis: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Build an ordered field schema for the 157-byte program dump."""
     from .byte_map import _overview_label
@@ -66,7 +67,7 @@ def build_program_dump_spec(
         params = [
             p
             for p in (region.get("parameters") or [])
-            if p not in {"_presets", "_corpus"}
+            if p not in {"_presets", "_corpus", "_menus"}
         ]
         label, encoding = _overview_label(region, byte_map)
         if not encoding and 0 <= start < len(bytes_):
@@ -142,10 +143,15 @@ def build_program_dump_spec(
         elif start == length - 1 and size == 1:
             field["contents"] = [SYSEX_END]
             field["id"] = _force_id("sysex_end", used_ids, field_id)
+        elif start == 146 and size == 2:
+            field["id"] = _force_id("display", used_ids, field_id)
 
         fields.append(field)
 
     attach_parameter_value_maps(fields, results)
+    from ..kaitai_value_maps import attach_display_value_map
+
+    attach_display_value_map(fields, menus_analysis)
 
     covered = 0
     for f in fields:
@@ -175,7 +181,7 @@ def build_program_dump_spec(
         "kaitai_doc_extra": (
             "Sound-parameter value maps (affine scales / sparse tables) live "
             "alongside this layout in the companion .spec.json and in "
-            "specification/prog/parameters/."
+            "specification/prog/bytes/."
         ),
         "frame": {
             "sysex_start": SYSEX_START,
@@ -235,6 +241,7 @@ def write_program_dump_spec(
     results: list[dict[str, Any]] | None = None,
     *,
     names: dict[str, Any] | None = None,
+    menus_analysis: dict[str, Any] | None = None,
 ) -> tuple[Path, Path, dict[str, Any]]:
     """Write ``.spec.json`` and ``.ksy`` under ``output_dir``.
 
@@ -242,7 +249,9 @@ def write_program_dump_spec(
     """
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
-    spec = build_program_dump_spec(byte_map, results, names=names)
+    spec = build_program_dump_spec(
+        byte_map, results, names=names, menus_analysis=menus_analysis
+    )
     json_path = output_dir / SPEC_JSON_NAME
     ksy_path = output_dir / KAITAI_NAME
     json_path.write_text(

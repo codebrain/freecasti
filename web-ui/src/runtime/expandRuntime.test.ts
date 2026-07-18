@@ -16,6 +16,7 @@ describe("expandRuntime", () => {
     expect(bundle.presets.presets.length).toBeGreaterThan(100);
     expect(bundle.templates.prog.length).toBe(157);
     expect(bundle.templates.system.length).toBe(77);
+    expect(bundle.progUi?.menu_order.length).toBe(18);
   });
 
   it("matches loadRuntimeFixture helper", () => {

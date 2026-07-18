@@ -10,6 +10,7 @@ import pytest
 from m7_sysex.export.web_ui import (
     _compact_preset_catalog,
     _compact_runtime_spec,
+    _load_prog_ui_state,
     _load_serialize_skeletons,
     _runtime_bundle,
     sync_web_ui_assets,
@@ -43,6 +44,7 @@ def test_sync_web_ui_assets_writes_runtime_assets(repo_root: Path) -> None:
         system_spec,
         presets_full,
         serialize_skeletons=_load_serialize_skeletons(spec),
+        prog_ui=_load_prog_ui_state(repo_root),
     )
     assert runtime == expected
 

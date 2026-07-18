@@ -22,6 +22,22 @@ const catalog: PresetCatalog = {
       encoded: [],
     },
     {
+      bank: "Halls 2",
+      preset: "Concert A",
+      name_field: "Concert A",
+      bank_index: 6,
+      program_slot: 0,
+      encoded: [],
+    },
+    {
+      bank: "Ambience",
+      preset: "Small Ambience",
+      name_field: "Small Ambience",
+      bank_index: 4,
+      program_slot: 0,
+      encoded: [],
+    },
+    {
       bank: "NonLin",
       preset: "Shimmer",
       name_field: "Shimmer",
@@ -33,10 +49,26 @@ const catalog: PresetCatalog = {
 };
 
 describe("groupPresetsByBank", () => {
-  it("sorts banks by bank index and presets by slot", () => {
+  it("sorts banks by name with NonLin last and presets by slot", () => {
     const banks = groupPresetsByBank(catalog);
-    expect(banks.map((b) => b.name)).toEqual(["Halls", "NonLin"]);
-    expect(banks[0].presets.map((p) => p.program_slot)).toEqual([0, 1]);
+    expect(banks.map((b) => b.name)).toEqual([
+      "Ambience",
+      "Halls",
+      "Halls 2",
+      "NonLin",
+    ]);
+    const halls = banks.find((b) => b.name === "Halls")!;
+    expect(halls.presets.map((p) => p.program_slot)).toEqual([0, 1]);
+  });
+
+  it("suffixes only algorithms that exist in more than one version", () => {
+    const banks = groupPresetsByBank(catalog);
+    expect(banks.map((b) => b.displayName)).toEqual([
+      "Ambience",
+      "Halls v1",
+      "Halls v2",
+      "NonLin",
+    ]);
   });
 });
 
@@ -56,7 +88,7 @@ describe("presetSelectorStateFromProg", () => {
         bank_index: 0,
         program_slot: 1,
       }),
-    ).toEqual({ bankIdx: 0, presetSlot: 1 });
+    ).toEqual({ bankIdx: 1, presetSlot: 1 });
   });
 
   it("resolves NonLin bank index to the correct list row", () => {
@@ -65,7 +97,7 @@ describe("presetSelectorStateFromProg", () => {
         bank_index: 10,
         program_slot: 3,
       }),
-    ).toEqual({ bankIdx: 1, presetSlot: 3 });
+    ).toEqual({ bankIdx: 3, presetSlot: 3 });
   });
 });
 
@@ -74,7 +106,7 @@ describe("resolveProgramBankIndex", () => {
 
   it("prefers the UI bank list index over stale encoded bank_index", () => {
     const nonLinIdx = banks.findIndex((b) => b.name === "NonLin");
-    expect(nonLinIdx).toBe(1);
+    expect(nonLinIdx).toBe(3);
     expect(
       resolveProgramBankIndex(banks, nonLinIdx, { bank_index: 0, program_slot: 0 }),
     ).toBe(10);

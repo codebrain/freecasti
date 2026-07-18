@@ -1,3 +1,5 @@
+import { HighlightedHex } from "@/components/HighlightedHex";
+
 interface HexDumpProps {
   data: Uint8Array;
   highlightOffsets?: Iterable<number>;
@@ -9,26 +11,11 @@ export function HexDump({
   highlightOffsets = [],
   className = "",
 }: HexDumpProps) {
-  const highlight = new Set(highlightOffsets);
-
   return (
-    <div
-      className={`font-led text-xs leading-relaxed break-all overflow-visible ${className}`}
-    >
-      {Array.from(data, (byte, index) => (
-        <span key={index}>
-          {index > 0 && " "}
-          <span
-            className={
-              highlight.has(index)
-                ? "rounded-sm bg-red-600/80 px-0.5 text-white"
-                : undefined
-            }
-          >
-            {byte.toString(16).toUpperCase().padStart(2, "0")}
-          </span>
-        </span>
-      ))}
-    </div>
+    <HighlightedHex
+      data={data}
+      highlightOffsets={highlightOffsets}
+      className={`overflow-visible opacity-90 ${className}`}
+    />
   );
 }

@@ -50,7 +50,7 @@ When a capture exceeds the printed range, keep the dump labels — update
 `observed_*` in `catalog.py` if the wider span is confirmed on this unit.
 
 Full dump tables and how-to-set notes:
-[../specification/prog/parameters/](../specification/prog/parameters/).
+[../specification/prog/bytes/](../specification/prog/bytes/).
 
 ## Program identity (not a sound parameter)
 
@@ -83,7 +83,7 @@ defaults without affecting sound. Details: [manual-notes.md](manual-notes.md).
 ## System settings (not program parameters)
 
 Captured while holding **SYSTEM** on the M7. Full tables:
-[../specification/system/parameters/](../specification/system/parameters/).
+[../specification/system/bytes/](../specification/system/bytes/).
 
 | Setting | Offsets | Notes |
 |---------|---------|-------|
@@ -94,7 +94,7 @@ Captured while holding **SYSTEM** on the M7. Full tables:
 | Output Level | 17 | Analog out trim: −8 / −16 / −24 dB (`raw_u8`; three steps only) |
 | Display Level | 21 | Dim / 1 / 2 / 3 / Bright (`raw_u8`; offset 25 also moves in this series) |
 | MIDI Channel | 22–23 | Channels 1–16 or Omni (`nibble_hilo`) |
-| MIDI Bank | 25 | Program-change bank select (`raw_u8`); in [midi-bank.md](../specification/system/parameters/midi-bank.md), `m7_system_dump.ksy`, and the web UI (offset 25 also moves in display-level captures) |
+| MIDI Bank | 25 | Program-change bank select (`raw_u8`); in [midi-bank.md](../specification/system/bytes/midi-bank.md), `m7_system_dump.ksy`, and the web UI (offset 25 also moves in display-level captures) |
 
 User-facing descriptions (from the owner’s manual / MIDI notes) live in
 `src/m7_sysex/system/catalog.py` and appear in the machine spec and web UI

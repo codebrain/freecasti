@@ -306,3 +306,45 @@ def test_cross_untouched_series_wording():
     assert "## Encoding map" in md
     assert "**Summary:**" not in md
     assert "bytes[8:152]" not in md or result.get("kind") != "system"
+
+
+def test_sorted_dumps_orders_by_encoded_value():
+    from m7_sysex.analyze import analyze_parameter_folder
+    from m7_sysex.encoding_map_rows import dump_encoded_value, sorted_dumps
+
+    root = Path(__file__).resolve().parents[1]
+    result = analyze_parameter_folder(
+        root / "sysex" / "prog" / "parameters" / "delay level"
+    )
+    best = result["best_encoding"]
+    shuffled = {**result, "dumps": list(reversed(result["dumps"]))}
+    encs = [dump_encoded_value(d, best) for d in sorted_dumps(shuffled, best)]
+    assert encs == sorted(encs)
+
+
+def test_encoding_map_table_uses_encoding_header_for_prog_nibble_hilo():
+    from m7_sysex.analyze import analyze_parameter_folder
+    from m7_sysex.export import _encoding_map_table, _full_encoding_rows
+
+    root = Path(__file__).resolve().parents[1]
+    result = analyze_parameter_folder(
+        root / "sysex" / "prog" / "parameters" / "predelay"
+    )
+    best = result["best_encoding"]
+    densified = _full_encoding_rows(result, best, sysex_root=root / "sysex")
+    assert densified is not None
+    md = _encoding_map_table(result, best, densified)
+    assert "| `nibble_hilo` | Offset 104 | Offset 105 |" in md.splitlines()[2]
+
+
+def test_encoding_map_table_uses_encoding_header_for_system_nibble_hilo():
+    from m7_sysex.export import _encoding_map_table, _full_encoding_rows
+    from m7_sysex.system.analyze import analyze_system_series_folder
+
+    root = Path(__file__).resolve().parents[1]
+    result = analyze_system_series_folder(root / "sysex" / "system" / "wet gain")
+    best = result["best_encoding"]
+    densified = _full_encoding_rows(result, best, sysex_root=root / "sysex")
+    assert densified is not None
+    md = _encoding_map_table(result, best, densified)
+    assert "| `nibble_hilo` | Offset 8 | Offset 9 |" in md.splitlines()[2]

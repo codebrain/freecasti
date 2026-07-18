@@ -1,4 +1,4 @@
-[Overview](README.md) | [Parameters](parameters/README.md) | [Program identity](program-identity.md) | **Preset inventory** | [Preset sheet](preset-sheet.md) | [Byte map](byte-map-overview.md) | [Cross-series](cross.md) | [System dumps](../system/README.md)
+[Overview](README.md) | [Bytes](bytes/README.md) | [Program identity](program-identity.md) | **Preset inventory** | [Preset sheet](preset-sheet.md) | [Byte map](byte-map-overview.md) | [Cross-series](cross.md) | [System dumps](../system/README.md)
 # Preset inventory
 
 _Generated 2026-07-18. Compares `sysex/prog/presets/` captures to the [V2 addendum](https://www.bricasti.com/images/M7_V2_Manual_Addendum_Upgrade.pdf) factory lists and common marketing totals (222 = 134 V1 + 88 V2-tier positions)._

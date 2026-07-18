@@ -11,6 +11,7 @@ import {
   verifySystemDumpChecksum,
 } from "@/sysex/frame";
 import { loadSerializeSkeletons } from "@/test/serializeSkeletons";
+import { loadRuntimeFixture } from "@/test/runtimeFixtures";
 
 const repo = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -76,6 +77,52 @@ describe("serialize", () => {
     );
     const name = new TextDecoder("ascii").decode(out.subarray(8, 88));
     expect(name.startsWith("My Patch")).toBe(true);
+    expect(verifyProgramDumpChecksum(out)).toBe(true);
+  });
+
+  it("patches UI bytes for single-parameter edit", () => {
+    const spec = loadSpec();
+    const template = loadTemplate();
+    const runtime = loadRuntimeFixture();
+    const progUi = runtime.progUi!;
+    const sizeField = spec.fields.find((f) => f.parameter === "size")!;
+    const out = buildProgramDump(
+      {
+        programName: "UI",
+        encoded: {
+          [sizeField.id]: 5,
+          bank_index: 0,
+          program_slot: 0,
+          bank_index_mirror: 0,
+        },
+        ui: { mode: "edit", parameter: "size" },
+      },
+      spec.fields,
+      template,
+      progUi,
+    );
+    expect(out[92]).toBe(2);
+    expect(out[99]).toBe(1);
+    expect(verifyProgramDumpChecksum(out)).toBe(true);
+  });
+
+  it("patches idle UI bytes after preset-style state", () => {
+    const spec = loadSpec();
+    const template = loadTemplate();
+    const runtime = loadRuntimeFixture();
+    const out = buildProgramDump(
+      {
+        programName: "Preset",
+        encoded: { bank_index: 0, program_slot: 0, bank_index_mirror: 0 },
+        ui: { mode: "idle" },
+      },
+      spec.fields,
+      template,
+      runtime.progUi,
+    );
+    expect(out[92]).toBe(0);
+    expect(out[146]).toBe(1);
+    expect(out[147]).toBe(12);
     expect(verifyProgramDumpChecksum(out)).toBe(true);
   });
 });

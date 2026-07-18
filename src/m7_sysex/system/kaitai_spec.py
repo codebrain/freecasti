@@ -150,7 +150,7 @@ def build_system_dump_spec(
         ),
         "kaitai_doc_extra": (
             "System-parameter encodings are documented in "
-            "specification/system/parameters/."
+            "specification/system/bytes/."
         ),
         "frame": {
             "sysex_start": SYSEX_START,

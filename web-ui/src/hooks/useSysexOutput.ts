@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import type { DumpSpec } from "@/spec/types";
 import type { ProgSerializeState } from "@/sysex/serialize";
+import type { ProgUiRuntime } from "@/prog/uiState";
 import { computeSysexOutput } from "@/sysex/computeSysexOutput";
 
 export type ActiveTab = "prog" | "system";
@@ -15,6 +16,7 @@ export function useSysexOutput(
   sysSpec: DumpSpec | null,
   progTemplate: Uint8Array | null,
   sysTemplate: Uint8Array | null,
+  progUi?: ProgUiRuntime | null,
 ) {
   return useMemo(
     () =>
@@ -26,6 +28,7 @@ export function useSysexOutput(
         sysSpec,
         progTemplate,
         sysTemplate,
+        progUi,
       ),
     [
       progState,
@@ -35,6 +38,7 @@ export function useSysexOutput(
       sysSpec,
       progTemplate,
       sysTemplate,
+      progUi,
     ],
   );
 }

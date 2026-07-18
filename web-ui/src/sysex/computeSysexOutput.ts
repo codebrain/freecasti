@@ -1,4 +1,5 @@
 import type { DumpSpec } from "@/spec/types";
+import type { ProgUiRuntime } from "@/prog/uiState";
 import { buildProgramDump, buildSystemDump } from "@/sysex/serialize";
 import type { ProgSerializeState } from "@/sysex/serialize";
 import {
@@ -24,10 +25,11 @@ export function computeSysexOutput(
   sysSpec: DumpSpec | null,
   progTemplate: Uint8Array | null,
   sysTemplate: Uint8Array | null,
+  progUi?: ProgUiRuntime | null,
 ): SysexOutput {
   const progBytes =
     progState && progSpec && progTemplate
-      ? buildProgramDump(progState, progSpec.fields, progTemplate)
+      ? buildProgramDump(progState, progSpec.fields, progTemplate, progUi)
       : null;
   const sysBytes =
     sysState && sysSpec && sysTemplate

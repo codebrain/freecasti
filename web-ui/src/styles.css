@@ -380,3 +380,9 @@
 .lux-btn:not(:disabled):active {
   transform: translateY(0);
 }
+
+@media (min-width: 1024px) {
+  .debug-panel-open {
+    padding-right: var(--debug-panel-width, 22rem);
+  }
+}

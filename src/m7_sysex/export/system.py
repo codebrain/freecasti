@@ -7,14 +7,18 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
-from ..system.byte_map import render_system_byte_map_markdown
+from ..system.byte_map import (
+    render_system_byte_map_markdown,
+    render_system_byte_map_overview_markdown,
+)
 from ..system.kaitai_spec import write_system_dump_spec
 from .nav import (
+    SYSTEM_BYTES_DIR,
     _system_page_nav,
-    parameter_page_path,
     parameter_slug,
     resolve_export_dir,
     system_export_dir,
+    system_parameter_page_path,
 )
 from .open_items import SYSTEM_OPEN_ITEMS, render_open_items_section
 from .prog import (
@@ -82,7 +86,10 @@ def export_system_format(
     system_dir = system_export_dir(output_root)
     if system_dir.exists():
         shutil.rmtree(system_dir)
-    params_dir = system_dir / "parameters"
+    legacy_params = system_dir / "parameters"
+    if legacy_params.is_dir():
+        shutil.rmtree(legacy_params)
+    params_dir = system_dir / SYSTEM_BYTES_DIR
     params_dir.mkdir(parents=True)
 
     sorted_results = sorted(system_results, key=lambda r: r["parameter"])
@@ -110,7 +117,7 @@ def export_system_format(
             today=today,
             sysex_root=Path(sorted_results[0]["folder"]).parent.parent,
         )
-        parameter_page_path(system_dir, result["parameter"]).write_text(
+        system_parameter_page_path(system_dir, result["parameter"]).write_text(
             page, encoding="utf-8"
         )
 
@@ -122,11 +129,18 @@ def export_system_format(
     )
 
     if byte_map:
+        overview_body = _promote_h1(
+            render_system_byte_map_overview_markdown(byte_map)
+        )
+        (system_dir / "byte-map-overview.md").write_text(
+            _system_page_nav(depth=0, current="Byte map")
+            + overview_body
+            + f"\n\n_Last exported: {today}_\n",
+            encoding="utf-8",
+        )
         body = _promote_h1(render_system_byte_map_markdown(byte_map))
         (system_dir / "byte-map.md").write_text(
-            _system_page_nav(depth=0, current="Byte map")
-            + body
-            + f"\n\n_Last exported: {today}_\n",
+            _system_page_nav(depth=0) + body + f"\n\n_Last exported: {today}_\n",
             encoding="utf-8",
         )
         write_system_dump_spec(system_dir, byte_map, sorted_results)
@@ -172,7 +186,8 @@ def _render_system_overview(
             [
                 "\n## Byte coverage\n\n",
                 f"System layout is **{counts['total']} bytes**. "
-                "Full table: [byte-map.md](byte-map.md). "
+                "Full table: [byte-map.md](byte-map.md) · "
+                "short overview: [byte-map-overview.md](byte-map-overview.md). "
                 "Codegen: [m7_system_dump.ksy](m7_system_dump.ksy) / "
                 "[m7_system_dump.spec.json](m7_system_dump.spec.json).\n\n",
                 f"| Status | Bytes |\n|--------|------:|\n",
@@ -184,13 +199,13 @@ def _render_system_overview(
 
     parts.append(
         "\n## Series pages\n\n"
-        "Index with descriptions: [parameters/README.md](parameters/README.md).\n\n"
+        "Index with descriptions: [bytes/README.md](bytes/README.md).\n\n"
     )
     for result in results:
         name = result["parameter"]
         slug = parameter_slug(name)
         conf = (result.get("hypothesis") or {}).get("confidence") or "?"
-        parts.append(f"- [{name.title()}](parameters/{slug}.md) ({conf})\n")
+        parts.append(f"- [{name.title()}](bytes/{slug}.md) ({conf})\n")
 
     parts.append(
         "\n## Capture notes\n\n"

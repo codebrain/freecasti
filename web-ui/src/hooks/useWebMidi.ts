@@ -1,6 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import {
+  classifyRxAgainstPendingTx,
+  pendingTxEchoFromBytes,
+  type PendingTxEcho,
+} from "@/midi/txEcho";
 import { createSysexSendThrottle } from "@/midi/sysexThrottle";
+import { readStoredSendOnChangeThrottleMs } from "@/midi/sendOnChangeThrottle";
 import { MIDI_ERROR_DISMISS_MS } from "@/midi/midiErrorToast";
 import {
   createMidiLogEntry,
@@ -22,6 +28,8 @@ interface WebMidiState {
   setSelectedInputId: (id: string) => void;
   sendOnChange: boolean;
   setSendOnChange: (on: boolean) => void;
+  sendOnChangeThrottleMs: number;
+  setSendOnChangeThrottleMs: (ms: number) => void;
   lastSendAt: number | null;
   lastError: string | null;
   sendBytes: (bytes: Uint8Array) => void;
@@ -32,6 +40,7 @@ const LS_ENABLED = "m7.midi.enabled";
 const LS_OUTPUT = "m7.midi.output";
 const LS_INPUT = "m7.midi.input";
 const LS_SEND_ON_CHANGE = "m7.midi.sendOnChange";
+const LS_SEND_ON_CHANGE_THROTTLE_MS = "m7.midi.sendOnChangeThrottleMs";
 
 export function useWebMidi(
   onReceive?: (data: Uint8Array) => void,
@@ -70,19 +79,36 @@ export function useWebMidi(
       return false;
     }
   });
+  const [sendOnChangeThrottleMs, setSendOnChangeThrottleMsState] = useState(
+    readStoredSendOnChangeThrottleMs,
+  );
   const [lastSendAt, setLastSendAt] = useState<number | null>(null);
   const [lastError, setLastError] = useState<string | null>(null);
   const [midiLog, setMidiLog] = useState<MidiLogEntry[]>([]);
   const onReceiveRef = useRef(onReceive);
   onReceiveRef.current = onReceive;
+  const pendingTxEchoRef = useRef<PendingTxEcho | null>(null);
   const throttleRef = useRef<ReturnType<typeof createSysexSendThrottle> | null>(null);
 
-  const pushMidiLog = useCallback((direction: "tx" | "rx", bytes: Uint8Array) => {
-    if (!isMidiSysex(bytes)) return;
-    setMidiLog((prev) =>
-      prependMidiLog(prev, createMidiLogEntry(direction, bytes)),
-    );
-  }, []);
+  const pushMidiLog = useCallback(
+    (
+      direction: "tx" | "rx",
+      bytes: Uint8Array,
+      options: {
+        echoValidation?: "match" | "mismatch";
+        echoDiffCount?: number;
+      } = {},
+    ) => {
+      if (!isMidiSysex(bytes)) return;
+      setMidiLog((prev) =>
+        prependMidiLog(
+          prev,
+          createMidiLogEntry(direction, bytes, options),
+        ),
+      );
+    },
+    [],
+  );
 
   const sendImmediate = useCallback(
     (bytes: Uint8Array) => {
@@ -97,6 +123,7 @@ export function useWebMidi(
       }
       try {
         output.send(bytes);
+        pendingTxEchoRef.current = pendingTxEchoFromBytes(bytes);
         pushMidiLog("tx", bytes);
         setLastSendAt(Date.now());
         setLastError(null);
@@ -109,9 +136,12 @@ export function useWebMidi(
 
   useEffect(() => {
     throttleRef.current?.dispose();
-    throttleRef.current = createSysexSendThrottle(sendImmediate);
+    throttleRef.current = createSysexSendThrottle(
+      sendImmediate,
+      sendOnChangeThrottleMs,
+    );
     return () => throttleRef.current?.dispose();
-  }, [sendImmediate]);
+  }, [sendImmediate, sendOnChangeThrottleMs]);
 
   const refreshPorts = useCallback((midi: MIDIAccess) => {
     setOutputs(Array.from(midi.outputs.values()));
@@ -128,6 +158,7 @@ export function useWebMidi(
     if (!on) {
       throttleRef.current?.dispose();
       throttleRef.current = null;
+      pendingTxEchoRef.current = null;
       setMidiLog([]);
       setAccess(null);
       setOutputs([]);
@@ -169,6 +200,18 @@ export function useWebMidi(
     const handler = (ev: MIDIMessageEvent) => {
       if (!ev.data) return;
       const data = new Uint8Array(ev.data);
+      const classification = classifyRxAgainstPendingTx(
+        data,
+        pendingTxEchoRef.current,
+      );
+      if (classification.kind === "echo") {
+        pendingTxEchoRef.current = null;
+        pushMidiLog("rx", data, {
+          echoValidation: classification.validation,
+          echoDiffCount: classification.diffCount,
+        });
+        return;
+      }
       pushMidiLog("rx", data);
       onReceiveRef.current?.(data);
     };
@@ -205,6 +248,15 @@ export function useWebMidi(
     }
   }, []);
 
+  const setSendOnChangeThrottleMs = useCallback((ms: number) => {
+    setSendOnChangeThrottleMsState(ms);
+    try {
+      localStorage.setItem(LS_SEND_ON_CHANGE_THROTTLE_MS, String(ms));
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
   const sendBytes = useCallback((bytes: Uint8Array) => {
     throttleRef.current?.enqueue(bytes);
   }, []);
@@ -222,6 +274,8 @@ export function useWebMidi(
     setSelectedInputId: setSelectedInputIdPersist,
     sendOnChange,
     setSendOnChange,
+    sendOnChangeThrottleMs,
+    setSendOnChangeThrottleMs,
     lastSendAt,
     lastError,
     sendBytes,

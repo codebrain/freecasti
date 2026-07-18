@@ -110,7 +110,7 @@ python -m pytest tests -q -o addopts=
 - Kaitai Python returns bare `int` for out-of-enum `u1` values on read; on write,
   `field_wire_bytes` emits that integer as a single byte.
 - Building a message **from scratch** without parsing a template still requires
-  valid values for structural/meta fields (bank index, slot, edit counters, etc.).
+  valid values for structural/meta fields (bank index, slot, display, etc.).
 
 ## Web UI (TypeScript)
 

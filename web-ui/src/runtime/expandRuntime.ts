@@ -1,5 +1,6 @@
 import { expandPresetCatalog, isCompactPresetCatalog } from "@/presets/compact";
 import type { PresetCatalog } from "@/presets/types";
+import type { ProgUiRuntime } from "@/prog/uiState";
 import { expandCompactSpec, isCompactSpec } from "@/spec/compact";
 import type { DumpSpec } from "@/spec/types";
 
@@ -11,6 +12,7 @@ export interface RuntimeBundle {
     prog: Uint8Array;
     system: Uint8Array;
   };
+  progUi: ProgUiRuntime | null;
 }
 
 export function expandSpec(raw: unknown): DumpSpec {
@@ -37,6 +39,7 @@ export function expandRuntimeBundle(raw: {
   system: unknown;
   presets: unknown;
   tpl: { p: string; s: string };
+  prog_ui?: unknown;
 }): RuntimeBundle {
   return {
     prog: expandSpec(raw.prog),
@@ -46,5 +49,6 @@ export function expandRuntimeBundle(raw: {
       prog: decodeBase64Template(raw.tpl.p),
       system: decodeBase64Template(raw.tpl.s),
     },
+    progUi: (raw.prog_ui as ProgUiRuntime | undefined) ?? null,
   };
 }

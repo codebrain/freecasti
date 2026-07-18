@@ -156,46 +156,7 @@
     151
   ],
   "variable_offset_count": 52,
-  "recurrent_secondary": [
-    {
-      "offset": 146,
-      "series_count": 8,
-      "series": [
-        "delay modulation",
-        "diffusion",
-        "early select",
-        "hf rt crossover",
-        "hf rt multiply",
-        "lf rt multiply",
-        "rolloff",
-        "vlf cut"
-      ]
-    },
-    {
-      "offset": 147,
-      "series_count": 18,
-      "series": [
-        "delay level",
-        "delay modulation",
-        "delay time",
-        "density",
-        "diffusion",
-        "early rolloff",
-        "early select",
-        "early to reverb mix",
-        "hf rt crossover",
-        "hf rt multiply",
-        "lf rt crossover",
-        "lf rt multiply",
-        "modulation",
-        "predelay",
-        "reverb time",
-        "rolloff",
-        "size",
-        "vlf cut"
-      ]
-    }
-  ],
+  "recurrent_secondary": [],
   "primary_conflicts": [],
   "coverage_gaps": [
     88,

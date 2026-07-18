@@ -3,6 +3,10 @@ import { PadlockIcon } from "@/components/PadlockIcon";
 
 interface ParamLabelProps {
   label: string;
+  /** Parameter description shown when hovering the title. */
+  description?: string;
+  /** Hide description tooltip while true (e.g. dial drag). */
+  tooltipSuppressed?: boolean;
   locked?: boolean;
   onToggleLock?: () => void;
   tempoMode?: boolean;
@@ -43,6 +47,8 @@ function MetronomeIcon({ active }: { active: boolean }) {
 
 export function ParamLabel({
   label,
+  description,
+  tooltipSuppressed = false,
   locked = false,
   onToggleLock,
   tempoMode = false,
@@ -73,7 +79,9 @@ export function ParamLabel({
         disabled ? "cursor-not-allowed" : ""
       }`.trim()}
     >
-      <span>{label}</span>
+      <ControlTooltip description={description} suppressed={tooltipSuppressed}>
+        <span>{label}</span>
+      </ControlTooltip>
       {showIcons && (
         <div className="flex items-center justify-center gap-1.5">
           {onToggleTempoMode && (

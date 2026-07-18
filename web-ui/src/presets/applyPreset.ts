@@ -1,4 +1,5 @@
 import type { ProgSerializeState } from "@/sysex/serialize";
+import { withProgUiIdle } from "@/prog/uiState";
 import type { PresetEntry } from "./types";
 
 export function applyPreset(
@@ -18,10 +19,10 @@ export function applyPreset(
     }
   }
 
-  return {
+  return withProgUiIdle({
     programName: entry.name_field,
     encoded,
-  };
+  });
 }
 
 /** Copy locked encoded fields from `previous` onto `next`. */
@@ -39,7 +40,7 @@ export function mergeLockedProgFields(
       encoded[fieldId] = value;
     }
   }
-  return { ...next, encoded };
+  return withProgUiIdle({ ...next, encoded });
 }
 
 /** Apply a factory preset but keep locked parameter values from `previous`. */

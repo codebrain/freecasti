@@ -28,7 +28,7 @@ The **77-byte system-dump format is fully annotated** as well — see
 
 | Area | Status |
 |------|--------|
-| Frame (start, mfr ID, header, name, end) | Solved; validated on **379** PROG corpus dumps + **61** SYSTEM dumps (**440** total) |
+| Frame (start, mfr ID, header, name, end) | Solved; validated on **379** PROG corpus dumps + **73** SYSTEM dumps (**452** total) |
 | Checksum | **Solved**: CRC-16/ARC over offsets 8–151, packed as 4 high-nibble-first bytes; verified corpus-wide |
 | Sound parameters | **18 / 18 captured and decodable** from dedicated series; tables densified with hardware UI walks (`provided`) and sheet/preset anchors |
 | Program identity | Solved: name @ 8–87, bank @ 88–89 (mirror 137), slot @ 90–91 |
@@ -38,7 +38,7 @@ The **77-byte system-dump format is fully annotated** as well — see
 | Hardware UI walks | **15** parameters in [provided_labels.json](docs/reference/provided_labels.json) (14 program + output level) |
 | Machine byte spec | PROG + SYSTEM Kaitai `.ksy` and `.spec.json` (regenerated each export) |
 | SYSTEM settings | **8** settings captured; **77-byte map fully annotated** (no unknown bytes) — [system/](specification/system/) |
-| Tests | **222** pytest tests (default run; more with `-m slow`), corpus-wide PROG + SYSTEM validation |
+| Tests | **253** pytest tests (default run; more with `-m slow`), corpus-wide PROG + SYSTEM validation |
 | Web UI | Static editor in [`web-ui/`](web-ui/) — vitest encode tests; tooltips from manual descriptions in `param-manifest.json` |
 
 Encodings with agreeing edge slopes are closed-form (**high** confidence);
@@ -201,7 +201,9 @@ Authoritative detail: **[specification/prog/](specification/prog/)**
 overview [program-identity.md](specification/prog/program-identity.md)).
 
 All **18 program parameters** have dedicated capture series under
-`sysex/prog/parameters/`. See the [parameter index](specification/prog/README.md)
+`sysex/prog/parameters/`. Field documentation (sound parameters + UI bytes) lives under
+[specification/prog/bytes/](specification/prog/bytes/) — see also the
+[program overview](specification/prog/README.md).
 and [byte-map.md](specification/prog/byte-map.md) for offsets and encodings.
 
 **SYSTEM** dumps (77 bytes, header `70 08 02 00`) are documented separately.

@@ -2,8 +2,8 @@
   "message_length": 157,
   "independence_note": "Each sysex/<parameter>/ folder is an independent dump stream. Byte values are never compared across folders; only per-folder conclusions are merged into this layout map. sysex/_presets/ is a separate preset-identity series (bank/program/name). Additional reserved/meta roles come from a corpus scan of all dumps.",
   "counts": {
-    "known_or_frame": 152,
-    "secondary": 5,
+    "known_or_frame": 154,
+    "secondary": 3,
     "unknown": 0,
     "total": 157
   },
@@ -842,14 +842,16 @@
     },
     {
       "offset": 92,
-      "hex": null,
-      "hex_source": null,
+      "hex": "00",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "secondary",
-      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders)",
+      "role": "Menu-browse flag: `00` when no parameter menu is open or while editing a value; `02` while a parameter menu is highlighted (see `sysex/prog/menus/` captures)",
       "parameters": [
-        "early rolloff"
+        "early rolloff",
+        "_corpus"
       ],
-      "confidence": "medium"
+      "confidence": "high",
+      "encoding": "raw_u8"
     },
     {
       "offset": 93,
@@ -914,11 +916,11 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "secondary",
-      "role": "Edit/generation counter (`nibble_hilo`) \u2014 constant within each parameter series, advances across capture sessions; not a sound parameter (same neighborhood as 146-147)",
+      "role": "Selected front-panel menu index (`nibble_hilo`, 0\u201317) when a parameter menu is open; `00 00` when idle. Hardware menu order matches `PROGRAM_PARAMETERS` in catalog. Offset 92 disambiguates idle vs Reverb Time (both may show index 0)",
       "parameters": [
         "_corpus"
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "encoding": "nibble_hilo"
     },
     {
@@ -926,11 +928,11 @@
       "hex": "01",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "secondary",
-      "role": "Edit/generation counter (`nibble_hilo`) \u2014 constant within each parameter series, advances across capture sessions; not a sound parameter (same neighborhood as 146-147)",
+      "role": "Selected front-panel menu index (`nibble_hilo`, 0\u201317) when a parameter menu is open; `00 00` when idle. Hardware menu order matches `PROGRAM_PARAMETERS` in catalog. Offset 92 disambiguates idle vs Reverb Time (both may show index 0)",
       "parameters": [
         "_corpus"
       ],
-      "confidence": "medium",
+      "confidence": "high",
       "encoding": "nibble_hilo"
     },
     {
@@ -1475,49 +1477,27 @@
     },
     {
       "offset": 146,
-      "hex": null,
-      "hex_source": null,
-      "status": "secondary",
-      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders)",
+      "hex": "03",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Display (`nibble_hilo`): high nibble = page/row while browsing (`92=02`) or edit anchor while changing a value (`92=00`); low nibble = position within the menu page, or value-display position while editing. From `sysex/prog/menus/` captures",
       "parameters": [
-        "delay modulation",
-        "diffusion",
-        "early select",
-        "hf rt crossover",
-        "hf rt multiply",
-        "lf rt multiply",
-        "rolloff",
-        "vlf cut"
+        "_menus"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 147,
-      "hex": null,
-      "hex_source": null,
-      "status": "secondary",
-      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders)",
+      "hex": "0D",
+      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "status": "known",
+      "role": "Display (`nibble_hilo`): high nibble = page/row while browsing (`92=02`) or edit anchor while changing a value (`92=00`); low nibble = position within the menu page, or value-display position while editing. From `sysex/prog/menus/` captures",
       "parameters": [
-        "delay level",
-        "delay modulation",
-        "delay time",
-        "density",
-        "diffusion",
-        "early rolloff",
-        "early select",
-        "early to reverb mix",
-        "hf rt crossover",
-        "hf rt multiply",
-        "lf rt crossover",
-        "lf rt multiply",
-        "modulation",
-        "predelay",
-        "reverb time",
-        "rolloff",
-        "size",
-        "vlf cut"
+        "_menus"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 148,
@@ -1674,11 +1654,12 @@
       "end": 92,
       "offsets": "92",
       "length": 1,
-      "example_hex": null,
+      "example_hex": "00",
       "status": "secondary",
-      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders) (moved in independent series: early rolloff)",
+      "role": "Menu-browse flag: `00` when no parameter menu is open or while editing a value; `02` while a parameter menu is highlighted (see `sysex/prog/menus/` captures) (moved in independent series: early rolloff, _corpus)",
       "parameters": [
-        "early rolloff"
+        "early rolloff",
+        "_corpus"
       ]
     },
     {
@@ -1724,7 +1705,7 @@
       "length": 2,
       "example_hex": "00 01",
       "status": "secondary",
-      "role": "Edit/generation counter (`nibble_hilo`) \u2014 constant within each parameter series, advances across capture sessions; not a sound parameter (same neighborhood as 146-147) (moved in independent series: _corpus)",
+      "role": "Selected front-panel menu index (`nibble_hilo`, 0\u201317) when a parameter menu is open; `00 00` when idle. Hardware menu order matches `PROGRAM_PARAMETERS` in catalog. Offset 92 disambiguates idle vs Reverb Time (both may show index 0) (moved in independent series: _corpus)",
       "parameters": [
         "_corpus"
       ]
@@ -2067,50 +2048,14 @@
     },
     {
       "start": 146,
-      "end": 146,
-      "offsets": "146",
-      "length": 1,
-      "example_hex": null,
-      "status": "secondary",
-      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders) (moved in independent series: delay modulation, diffusion, early select, hf rt crossover, hf rt multiply, lf rt multiply, rolloff, vlf cut)",
-      "parameters": [
-        "delay modulation",
-        "diffusion",
-        "early select",
-        "hf rt crossover",
-        "hf rt multiply",
-        "lf rt multiply",
-        "rolloff",
-        "vlf cut"
-      ]
-    },
-    {
-      "start": 147,
       "end": 147,
-      "offsets": "147",
-      "length": 1,
-      "example_hex": null,
-      "status": "secondary",
-      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders) (moved in independent series: delay level, delay modulation, delay time, density, diffusion, early rolloff, early select, early to reverb mix, hf rt crossover, hf rt multiply, lf rt crossover, lf rt multiply, modulation, predelay, reverb time, rolloff, size, vlf cut)",
+      "offsets": "146-147",
+      "length": 2,
+      "example_hex": "03 0D",
+      "status": "known",
+      "role": "Display (`nibble_hilo`): high nibble = page/row while browsing (`92=02`) or edit anchor while changing a value (`92=00`); low nibble = position within the menu page, or value-display position while editing. From `sysex/prog/menus/` captures",
       "parameters": [
-        "delay level",
-        "delay modulation",
-        "delay time",
-        "density",
-        "diffusion",
-        "early rolloff",
-        "early select",
-        "early to reverb mix",
-        "hf rt crossover",
-        "hf rt multiply",
-        "lf rt crossover",
-        "lf rt multiply",
-        "modulation",
-        "predelay",
-        "reverb time",
-        "rolloff",
-        "size",
-        "vlf cut"
+        "_menus"
       ]
     },
     {
@@ -2149,6 +2094,14 @@
   "corpus_layout_claims": [
     {
       "offsets": [
+        92
+      ],
+      "status": "secondary",
+      "label": "menu browse flag",
+      "confidence": "high"
+    },
+    {
+      "offsets": [
         93,
         94
       ],
@@ -2179,8 +2132,8 @@
         99
       ],
       "status": "secondary",
-      "label": "edit/generation counter",
-      "confidence": "medium"
+      "label": "selected menu index",
+      "confidence": "high"
     },
     {
       "offsets": [
@@ -2258,6 +2211,15 @@
       "status": "known",
       "label": "family-flag mirror",
       "confidence": "medium"
+    },
+    {
+      "offsets": [
+        146,
+        147
+      ],
+      "status": "known",
+      "label": "display",
+      "confidence": "high"
     },
     {
       "offsets": [

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 from datetime import date
 from pathlib import Path
 from typing import Any, Sequence
@@ -11,6 +12,7 @@ from ..catalog import catalog_overview
 from .nav import (
     _page_nav,
     bank_md_link,
+    PROG_BYTES_DIR,
     parameter_md_link,
     parameter_page_path,
     parameter_slug,
@@ -55,6 +57,7 @@ F0 | {mfr} | {header} | <80-byte name> | <bank> <slot> <params...> | <4 nibble c
 - All inspected payload bytes at offsets 88-155 stay within `0x00`-`0x0F`. That strongly suggests the M7 packs each binary byte as two MIDI nibbles rather than using classic 7-bit MIDI packing with MSB bitfields.
 - Checksum (152-155): **CRC-16/ARC** over the raw SysEx bytes at offsets 8-151 (name + payload), packed as four high-nibble-first data bytes. Manufacturer ID and header are not covered.
 - Program dumps can include UI / edit-state fields in addition to algorithm parameters (Bricasti documents that a program dump carries the running program, edits, and UI state). Expect a few offsets to move even during a “single parameter” series.
+- Display at **146–147** (`nibble_hilo`): high nibble = page/row, low nibble = column/position. Menu index remains at **98–99**. See [bytes/display.md](bytes/display.md) and [ui-state.md](ui-state.md).
 - **Independence:** each `sysex/prog/parameters/<parameter>/` folder is its own capture stream. Do not assume dumps from different folders share the same values for other parameters. Meta folder `sysex/prog/presets/` holds whole-preset dumps named `<bank>.<preset>` for identity fields.
 - Edit-buffer dumps (hold **EDIT**) share the PROG header/length (157 bytes);
   bank word **88-89 = 11** while mirror **137** keeps the source bank. Keep them
@@ -90,7 +93,7 @@ python run.py
 # or: python -m m7_sysex export
 ```
 
-This re-analyzes every folder under `sysex/`, refreshes each `analysis.json`, and regenerates this folder (`README.md`, `parameters/*.md`, program identity, byte map, Kaitai/`spec.json`, cross-series).
+This re-analyzes every folder under `sysex/`, refreshes each `analysis.json`, and regenerates this folder (`README.md`, `bytes/*.md`, program identity, byte map, Kaitai/`spec.json`, cross-series).
 
 Cross-only (uses current analyses / dumps):
 
@@ -123,6 +126,7 @@ def export_sysex_format(
     cross: dict[str, Any] | None = None,
     names: dict[str, Any] | None = None,
     sheet_compare: dict[str, Any] | None = None,
+    menus_analysis: dict[str, Any] | None = None,
 ) -> Path:
     """Write ``specification/prog/`` with overview + one page per parameter.
 
@@ -146,7 +150,10 @@ def export_sysex_format(
     output_root = resolve_export_dir(output_path)
     output_dir = prog_export_dir(output_root)
     output_dir.mkdir(parents=True, exist_ok=True)
-    params_dir = output_dir / "parameters"
+    legacy_params = output_dir / "parameters"
+    if legacy_params.is_dir():
+        shutil.rmtree(legacy_params)
+    params_dir = output_dir / PROG_BYTES_DIR
     params_dir.mkdir(parents=True, exist_ok=True)
 
     frame = results[0]["frame"]
@@ -191,6 +198,7 @@ def export_sysex_format(
             sorted_results,
             today=today,
             sheet_decoders=sheet_decoders,
+            menus_analysis=menus_analysis,
         ),
         encoding="utf-8",
     )
@@ -243,13 +251,35 @@ def export_sysex_format(
             encoding="utf-8",
         )
         write_program_dump_spec(
-            output_dir, byte_map, sorted_results, names=names
+            output_dir,
+            byte_map,
+            sorted_results,
+            names=names,
+            menus_analysis=menus_analysis,
         )
 
     if cross:
         body = _promote_h1(render_cross_markdown(cross))
         (output_dir / "cross.md").write_text(
             _page_nav(depth=0) + body + f"\n\n_Last exported: {today}_\n",
+            encoding="utf-8",
+        )
+
+    if menus_analysis:
+        from .ui_state import render_display_parameter_page, render_ui_state_markdown
+
+        ui_body = render_ui_state_markdown(
+            menus_analysis,
+            today=today,
+            nav=_page_nav(depth=0, current="UI state"),
+        )
+        (output_dir / "ui-state.md").write_text(ui_body, encoding="utf-8")
+        parameter_page_path(output_dir, "display").write_text(
+            render_display_parameter_page(
+                menus_analysis,
+                today=today,
+                nav=_page_nav(depth=1),
+            ),
             encoding="utf-8",
         )
 
@@ -294,9 +324,9 @@ def _render_overview_page(
         parts.append(_summary_row(result) + "\n")
 
     parts.append(
-        "\n## Parameter pages\n\n"
-        "Index of all parameters with manual descriptions: "
-        "[parameters/README.md](parameters/README.md).\n"
+        "\n## Byte field pages\n\n"
+        "Index of documented dump fields: "
+        "[bytes/README.md](bytes/README.md).\n"
     )
     parts.append(f"\n_Last exported: {today}_\n")
     parts.append(
@@ -324,7 +354,7 @@ def _render_overview(
         enc = best.get("encoding") or "?"
         slug = parameter_slug(result["parameter"])
         by_conf[conf].append(
-            f"[`{result['parameter']}`](parameters/{slug}.md) @ "
+            f"[`{result['parameter']}`](bytes/{slug}.md) @ "
             f"{_fmt_offsets(offsets)} (`{enc}`)"
         )
 
@@ -435,6 +465,25 @@ def _render_overview(
                 role = _linkify_meaning(region["role"], series_params)
                 lines.append(f"- **{region['offsets']}** - {role}")
             lines.append("")
+
+        secondary_ui = [
+            r
+            for r in byte_map.get("regions") or []
+            if r.get("status") == "secondary"
+            and any(
+                key in (r.get("role") or "").lower()
+                for key in ("menu browse", "menu index")
+            )
+        ]
+        if secondary_ui:
+            lines.append("Secondary UI / edit-state fields:")
+            lines.append("")
+            for region in secondary_ui:
+                role = _linkify_meaning(region["role"], series_params)
+                enc = region.get("encoding")
+                suffix = f" (`{enc}`)" if enc else ""
+                lines.append(f"- **{region['offsets']}** - {role}{suffix}")
+            lines.append("")
     else:
         lines.extend(
             [
@@ -518,15 +567,18 @@ def _render_overview(
             "V2 addendum factory lists.",
             "4. **[preset-sheet.md](preset-sheet.md)** - errata vs Bricasti's "
             "published preset sheet PDF.",
-            "5. **[parameters/README.md](parameters/README.md)** - all parameters with "
-            "manual descriptions; each series also has dump tables and how-to-set notes "
-            "under **[parameters/](parameters/)**.",
-            "6. **[byte-map-overview.md](byte-map-overview.md)** / "
+            "5. **[bytes/README.md](bytes/README.md)** - sound parameters and UI/menu "
+            "fields with manual descriptions; each series also has dump tables and "
+            "how-to-set notes under **[bytes/](bytes/)**.",
+            "6. **[ui-state.md](ui-state.md)** — full menu browse/edit byte tables.",
+            "7. **[bytes/display.md](bytes/display.md)** — "
+            "Display (`nibble_hilo` @ 146–147).",
+            "8. **[byte-map-overview.md](byte-map-overview.md)** / "
             "**[byte-map.md](byte-map.md)** - consolidated layout, then full detail.",
-            "7. **[m7_program_dump.ksy](m7_program_dump.ksy)** / "
+            "9. **[m7_program_dump.ksy](m7_program_dump.ksy)** / "
             "**[m7_program_dump.spec.json](m7_program_dump.spec.json)** - "
             "Kaitai Struct layout + machine schema for codegen.",
-            "8. **[cross.md](cross.md)** - stable bytes, conflicts, coverage "
+            "10. **[cross.md](cross.md)** - stable bytes, conflicts, coverage "
             "gaps across series.",
             "",
         ]
@@ -715,7 +767,7 @@ def _preset_parameters_section(
         row = params.get(p) or {}
         dump_disp = row.get("display", "-")
         encoded = row.get("encoded", "-")
-        link = f"[{p}]({link_prefix}parameters/{parameter_slug(p)}.md)"
+        link = f"[{p}]({link_prefix}{PROG_BYTES_DIR}/{parameter_slug(p)}.md)"
 
         if p not in comparable_set:
             lines.append(
@@ -1201,7 +1253,7 @@ def _render_names_page(
         header = (
             "| Bank | Preset | "
             + " | ".join(
-                f"[{short_name(p)}](parameters/{parameter_slug(p)}.md)"
+                f"[{short_name(p)}]({PROG_BYTES_DIR}/{parameter_slug(p)}.md)"
                 for p in param_names
             )
             + " |"
@@ -1269,7 +1321,7 @@ def _summary_row(result: dict[str, Any]) -> str:
     name = result["parameter"]
     slug = parameter_slug(name)
     return (
-        f"| **[{name}](parameters/{slug}.md)** | {offset_txt} | `{encoding}` | {notes} | "
+        f"| **[{name}]({PROG_BYTES_DIR}/{slug}.md)** | {offset_txt} | `{encoding}` | {notes} | "
         f"{range_txt} | {confidence} | {dumps} |"
     )
 
@@ -1429,7 +1481,8 @@ def _parameter_synopsis(
         lines.append(f"- **Range:** {value_range['summary']}")
     if kind == "system":
         lines.append(
-            "- **Layout:** [system byte map](../byte-map.md)"
+            "- **Layout:** [byte map overview](../byte-map-overview.md) · "
+            "[full map](../byte-map.md)"
         )
     else:
         slug = parameter_slug(result["parameter"])
@@ -1629,9 +1682,11 @@ def _parameter_body(
             for i, step in enumerate(how, start=1):
                 lines.append(f"  {i}. {step}")
         if secondary:
+            from ..prog.display import describe_secondary_offsets
+
             lines.append(
-                f"- **Secondary offsets:** {_fmt_offsets(secondary)} "
-                "(likely edit/UI state, not the parameter word)."
+                f"- **Secondary offsets:** {describe_secondary_offsets(secondary)} "
+                "(edit/UI state, not the parameter word)."
             )
         if checksum:
             cs_range = _checksum_range_desc(result)
@@ -1782,7 +1837,9 @@ def _encoding_map_table(
     from ..preset_inferred import pack_encoded_bytes
 
     primary = list(best["offsets"])
-    headers = ["Encoded"]
+    encoding = best.get("encoding") or "raw_u8"
+    enc_header = f"`{encoding}`" if len(primary) >= 2 else "Encoded"
+    headers = [enc_header]
     for off in primary:
         headers.append(f"Offset {off}")
     headers.extend(["Label", "Source"])
@@ -1794,7 +1851,7 @@ def _encoding_map_table(
         "| " + " | ".join("---" for _ in headers) + " |",
     ]
 
-    for row in densified:
+    for row in sorted(densified, key=lambda r: int(r["encoded"])):
         enc = int(row["encoded"])
         nibbles = pack_encoded_bytes(enc, best["encoding"], len(primary))
         label = _format_encoding_label(result, row)
@@ -1815,6 +1872,9 @@ def _dump_table(
     *,
     include_source: bool = False,
 ) -> str:
+    from ..encoding_map_rows import sorted_dumps
+    from ..prog.display import secondary_dump_columns
+
     primary = list(best["offsets"])
     secondary = result.get("classification", {}).get("secondary_offsets") or []
     checksum = result.get("classification", {}).get("checksum_candidate_offsets") or []
@@ -1827,8 +1887,8 @@ def _dump_table(
         headers.append(f"`{best['encoding']}`")
     elif primary:
         headers.append("Encoded")
-    for off in secondary:
-        headers.append(f"Offset {off}")
+    for header, _ in secondary_dump_columns(secondary):
+        headers.append(header)
     if checksum:
         headers.append(
             f"Checksum {checksum[0]}-{checksum[-1]}"
@@ -1841,7 +1901,9 @@ def _dump_table(
     rows = ["| " + " | ".join(headers) + " |"]
     rows.append("| " + " | ".join("---" for _ in headers) + " |")
 
-    for dump in result.get("dumps") or []:
+    sec_cols = secondary_dump_columns(secondary)
+
+    for dump in sorted_dumps(result, best):
         label = _dump_label_cell(dump, series_unit=series_unit)
         cells = [label]
         changing = dump.get("changing_bytes") or {}
@@ -1852,8 +1914,8 @@ def _dump_table(
             cells.append(str(decoded["encoded_value"]))
         elif primary:
             cells.append("-")
-        for off in secondary:
-            cells.append(f"`{changing.get(str(off), '??')}`")
+        for _, cell_fn in sec_cols:
+            cells.append(cell_fn(changing))
         if checksum:
             cs = " ".join(f"`{changing.get(str(off), '??')}`" for off in checksum)
             cells.append(cs)

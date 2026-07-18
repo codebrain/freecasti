@@ -193,6 +193,8 @@ def _kaitai_seq_entry(field: dict[str, Any]) -> list[str]:
     if field.get("parameter"):
         series_root = field.get("series_root") or "sysex/prog/parameters"
         doc_bits.append(f"Parameter series: {series_root}/{field['parameter']}/")
+    elif field.get("series_root"):
+        doc_bits.append(f"Capture series: {field['series_root']}/")
     value_map = field.get("value_map")
     if value_map:
         count = len(value_map.get("entries") or [])

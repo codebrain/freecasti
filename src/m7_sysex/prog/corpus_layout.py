@@ -24,6 +24,18 @@ __all__ = ["is_prog_corpus_dump", "CORPUS_LAYOUT_CLAIMS", "verify_corpus_constan
 # status: known | secondary
 CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
     {
+        "offsets": [92],
+        "status": "secondary",
+        "role": (
+            "Menu-browse flag: `00` when no parameter menu is open or while "
+            "editing a value; `02` while a parameter menu is highlighted "
+            "(see `sysex/prog/menus/` captures)"
+        ),
+        "encoding": "raw_u8",
+        "confidence": "high",
+        "label": "menu browse flag",
+    },
+    {
         "offsets": [93, 94],
         "status": "known",
         "role": (
@@ -58,13 +70,14 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "offsets": [98, 99],
         "status": "secondary",
         "role": (
-            "Edit/generation counter (`nibble_hilo`) — constant within each "
-            "parameter series, advances across capture sessions; not a sound "
-            "parameter (same neighborhood as 146-147)"
+            "Selected front-panel menu index (`nibble_hilo`, 0–17) when a "
+            "parameter menu is open; `00 00` when idle. Hardware menu order "
+            "matches `PROGRAM_PARAMETERS` in catalog. Offset 92 disambiguates "
+            "idle vs Reverb Time (both may show index 0)"
         ),
         "encoding": "nibble_hilo",
-        "confidence": "medium",
-        "label": "edit/generation counter",
+        "confidence": "high",
+        "label": "selected menu index",
     },
     {
         "offsets": [106],
@@ -147,6 +160,21 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "label": "family-flag mirror",
     },
     {
+        "offsets": [146, 147],
+        "status": "known",
+        "role": (
+            "Display (`nibble_hilo`): high nibble = page/row while browsing "
+            "(`92=02`) or edit anchor while changing a value (`92=00`); low "
+            "nibble = position within the menu page, or value-display position "
+            "while editing. Documented in bytes/display.md from "
+            "`sysex/prog/menus/` captures"
+        ),
+        "encoding": "nibble_hilo",
+        "confidence": "high",
+        "label": "display",
+        "source": "_menus",
+    },
+    {
         "offsets": [148, 149, 150, 151],
         "status": "known",
         "role": "Reserved (always 0) immediately before checksum nibbles",
@@ -188,7 +216,7 @@ def claim_corpus_layout(
             offsets,
             status=spec["status"],
             role=spec["role"],
-            parameter="_corpus",
+            parameter=spec.get("source") or "_corpus",
             confidence=spec.get("confidence") or "medium",
             encoding=spec.get("encoding"),
             example=example,

@@ -8,6 +8,9 @@ from typing import Any
 
 from ..paths import PROG_DIR, SYSTEM_DIR
 
+PROG_BYTES_DIR = "bytes"
+SYSTEM_BYTES_DIR = "bytes"
+
 
 def parameter_slug(name: str) -> str:
     """Filesystem-safe slug for a parameter page filename."""
@@ -22,8 +25,8 @@ def preset_slugs(bank: str, preset: str) -> tuple[str, str]:
 
 
 def parameter_md_link(name: str, *, prefix: str = "") -> str:
-    """Markdown link to a parameter page (``prefix`` is relative path prefix)."""
-    return f"[{name}]({prefix}parameters/{parameter_slug(name)}.md)"
+    """Markdown link to a PROG dump field page under ``bytes/``."""
+    return f"[{name}]({prefix}{PROG_BYTES_DIR}/{parameter_slug(name)}.md)"
 
 
 def bank_md_link(bank: str, *, prefix: str = "") -> str:
@@ -52,7 +55,13 @@ def preset_dir(output_dir: Path, bank: str, preset: str) -> Path:
 
 
 def parameter_page_path(output_dir: Path, name: str) -> Path:
-    return Path(output_dir) / "parameters" / f"{parameter_slug(name)}.md"
+    """PROG dump field page (sound parameters, display, etc.)."""
+    return Path(output_dir) / PROG_BYTES_DIR / f"{parameter_slug(name)}.md"
+
+
+def system_parameter_page_path(output_dir: Path, name: str) -> Path:
+    """SYSTEM dump field page (I/O settings captured under ``sysex/system/``)."""
+    return Path(output_dir) / SYSTEM_BYTES_DIR / f"{parameter_slug(name)}.md"
 
 
 def resolve_export_dir(path: Path) -> Path:
@@ -73,6 +82,7 @@ def system_export_dir(output_root: Path) -> Path:
 
 _LEGACY_ROOT_ARTIFACTS = (
     "README.md",
+    "bytes",
     "parameters",
     "presets",
     "program-identity.md",
@@ -125,11 +135,11 @@ def clear_export_dir(output_dir: Path) -> list[Path]:
 
 
 def _page_nav(*, depth: int, current: str | None = None) -> str:
-    """Relative nav strip. depth=0 at prog root; depth=1 under parameters/."""
+    """Relative nav strip. depth=0 at prog root; depth=1 under bytes/."""
     prefix = "../" * depth
     links = [
         ("Overview", f"{prefix}README.md"),
-        ("Parameters", f"{prefix}parameters/README.md"),
+        ("Bytes", f"{prefix}{PROG_BYTES_DIR}/README.md"),
         ("Program identity", f"{prefix}program-identity.md"),
         ("Preset inventory", f"{prefix}preset-inventory.md"),
         ("Preset sheet", f"{prefix}preset-sheet.md"),
@@ -152,7 +162,8 @@ def _system_page_nav(*, depth: int, current: str | None = None) -> str:
     links = [
         ("Program dumps", f"{prog_prefix}prog/README.md"),
         ("System overview", f"{sys_prefix}README.md" if depth else "README.md"),
-        ("Parameters", f"{sys_prefix}parameters/README.md"),
+        ("Bytes", f"{sys_prefix}{SYSTEM_BYTES_DIR}/README.md"),
+        ("Byte map", f"{sys_prefix}byte-map-overview.md"),
     ]
     parts = []
     for label, href in links:

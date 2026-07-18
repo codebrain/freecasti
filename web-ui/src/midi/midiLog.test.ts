@@ -29,6 +29,22 @@ describe("midiLog", () => {
     expect(summarizeMidiSysex(sys)).toBe("system 77 B");
   });
 
+  it("summarizes echo validation on RX", () => {
+    const prog = new Uint8Array(PROGRAM_MESSAGE_LENGTH);
+    prog[0] = SYSEX_START;
+    prog[6] = 0x01;
+    prog[prog.length - 1] = SYSEX_END;
+    expect(
+      summarizeMidiSysex(prog, { echoValidation: "match" }),
+    ).toContain("echo match");
+    expect(
+      summarizeMidiSysex(prog, {
+        echoValidation: "mismatch",
+        echoDiffCount: 3,
+      }),
+    ).toContain("echo mismatch (3 B)");
+  });
+
   it("keeps only the most recent entries", () => {
     const mk = (n: number) =>
       createMidiLogEntry("tx", new Uint8Array([SYSEX_START, n, SYSEX_END]));

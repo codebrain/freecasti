@@ -1,4 +1,4 @@
-[Overview](README.md) | [Parameters](parameters/README.md) | **Program identity** | [Preset inventory](preset-inventory.md) | [Preset sheet](preset-sheet.md) | [Byte map](byte-map-overview.md) | [Cross-series](cross.md) | [System dumps](../system/README.md)
+[Overview](README.md) | [Bytes](bytes/README.md) | **Program identity** | [Preset inventory](preset-inventory.md) | [Preset sheet](preset-sheet.md) | [Byte map](byte-map-overview.md) | [Cross-series](cross.md) | [System dumps](../system/README.md)
 
 
 # Program identity
@@ -545,7 +545,7 @@ Published-sheet comparison: **[preset-sheet.md](preset-sheet.md)** (8 hard / 3 s
 
 Decoded from each dump using the densified encoding map (series, `provided` UI walks, sheet anchors). Cell values are labeled dump readings; `~` only when a step falls between witnesses. Detail: [presets/](presets/).
 
-| Bank | Preset | [RT](parameters/reverb-time.md) | [Size](parameters/size.md) | [PreDly](parameters/predelay.md) | [Diff](parameters/diffusion.md) | [Dens](parameters/density.md) | [Mod](parameters/modulation.md) | [Roll](parameters/rolloff.md) | [HFmpy](parameters/hf-rt-multiply.md) | [HFxo](parameters/hf-rt-crossover.md) | [LFmpy](parameters/lf-rt-multiply.md) | [LFxo](parameters/lf-rt-crossover.md) | [VLF](parameters/vlf-cut.md) | [E/R](parameters/early-to-reverb-mix.md) | [ERoll](parameters/early-rolloff.md) | [ESel](parameters/early-select.md) | [DlyLvl](parameters/delay-level.md) | [DlyTim](parameters/delay-time.md) | [DlyMod](parameters/delay-modulation.md) |
+| Bank | Preset | [RT](bytes/reverb-time.md) | [Size](bytes/size.md) | [PreDly](bytes/predelay.md) | [Diff](bytes/diffusion.md) | [Dens](bytes/density.md) | [Mod](bytes/modulation.md) | [Roll](bytes/rolloff.md) | [HFmpy](bytes/hf-rt-multiply.md) | [HFxo](bytes/hf-rt-crossover.md) | [LFmpy](bytes/lf-rt-multiply.md) | [LFxo](bytes/lf-rt-crossover.md) | [VLF](bytes/vlf-cut.md) | [E/R](bytes/early-to-reverb-mix.md) | [ERoll](bytes/early-rolloff.md) | [ESel](bytes/early-select.md) | [DlyLvl](bytes/delay-level.md) | [DlyTim](bytes/delay-time.md) | [DlyMod](bytes/delay-modulation.md) |
 |------|--------|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | [Halls](presets/halls/) | [Large Hall](presets/halls/large-hall.md) | 2.2 s | 28 | 10 ms | 7 | 2 | 4 | 5200 Hz | 0.75 | 3200 Hz | 1.2 | 800 Hz | -12 dB | 7/20 | 10800 Hz | 13 | off | 100 ms | off |
 | [Halls](presets/halls/) | [Medium Hall](presets/halls/medium-hall.md) | 1.8 s | 23 | 24 ms | 6 | 3 | 4 | 6000 Hz | 0.75 | 3600 Hz | 1.2 | 800 Hz | -10 dB | 10/20 | 8800 Hz | 17 | off | 100 ms | off |
@@ -774,24 +774,24 @@ Decoded from each dump using the densified encoding map (series, `provided` UI w
 
 | Parameter | Offsets | Encoding | Kind |
 |-----------|---------|----------|------|
-| [reverb time](parameters/reverb-time.md) | 100-101 | `nibble_hilo` | table |
-| [size](parameters/size.md) | 102-103 | `nibble_hilo` | affine |
-| [predelay](parameters/predelay.md) | 104-105 | `nibble_hilo` | table |
-| [diffusion](parameters/diffusion.md) | 107 | `raw_u8` | affine |
-| [density](parameters/density.md) | 109 | `raw_u8` | affine |
-| [modulation](parameters/modulation.md) | 111 | `raw_u8` | affine |
-| [rolloff](parameters/rolloff.md) | 112-113 | `nibble_hilo` | table |
-| [hf rt multiply](parameters/hf-rt-multiply.md) | 114-115 | `nibble_hilo` | affine |
-| [hf rt crossover](parameters/hf-rt-crossover.md) | 116-117 | `nibble_hilo` | table |
-| [lf rt multiply](parameters/lf-rt-multiply.md) | 118-119 | `nibble_hilo` | table |
-| [lf rt crossover](parameters/lf-rt-crossover.md) | 120-121 | `nibble_hilo` | table |
-| [vlf cut](parameters/vlf-cut.md) | 122-123 | `nibble_hilo` | affine |
-| [early to reverb mix](parameters/early-to-reverb-mix.md) | 124-125 | `nibble_hilo` | affine |
-| [early rolloff](parameters/early-rolloff.md) | 126-127 | `nibble_hilo` | table |
-| [early select](parameters/early-select.md) | 128-129 | `nibble_hilo` | affine |
-| [delay level](parameters/delay-level.md) | 133 | `raw_u8` | affine |
-| [delay time](parameters/delay-time.md) | 134-135 | `nibble_hilo` | affine |
-| [delay modulation](parameters/delay-modulation.md) | 139 | `raw_u8` | affine |
+| [reverb time](bytes/reverb-time.md) | 100-101 | `nibble_hilo` | table |
+| [size](bytes/size.md) | 102-103 | `nibble_hilo` | affine |
+| [predelay](bytes/predelay.md) | 104-105 | `nibble_hilo` | table |
+| [diffusion](bytes/diffusion.md) | 107 | `raw_u8` | affine |
+| [density](bytes/density.md) | 109 | `raw_u8` | affine |
+| [modulation](bytes/modulation.md) | 111 | `raw_u8` | affine |
+| [rolloff](bytes/rolloff.md) | 112-113 | `nibble_hilo` | table |
+| [hf rt multiply](bytes/hf-rt-multiply.md) | 114-115 | `nibble_hilo` | affine |
+| [hf rt crossover](bytes/hf-rt-crossover.md) | 116-117 | `nibble_hilo` | table |
+| [lf rt multiply](bytes/lf-rt-multiply.md) | 118-119 | `nibble_hilo` | table |
+| [lf rt crossover](bytes/lf-rt-crossover.md) | 120-121 | `nibble_hilo` | table |
+| [vlf cut](bytes/vlf-cut.md) | 122-123 | `nibble_hilo` | affine |
+| [early to reverb mix](bytes/early-to-reverb-mix.md) | 124-125 | `nibble_hilo` | affine |
+| [early rolloff](bytes/early-rolloff.md) | 126-127 | `nibble_hilo` | table |
+| [early select](bytes/early-select.md) | 128-129 | `nibble_hilo` | affine |
+| [delay level](bytes/delay-level.md) | 133 | `raw_u8` | affine |
+| [delay time](bytes/delay-time.md) | 134-135 | `nibble_hilo` | affine |
+| [delay modulation](bytes/delay-modulation.md) | 139 | `raw_u8` | affine |
 
 
 _Last exported: 2026-07-18_

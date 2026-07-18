@@ -1,5 +1,5 @@
 import "@/styles.css";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { DebugPanel } from "@/components/DebugPanel";
 import { ControlTooltip } from "@/components/ControlTooltip";
 import { AppHeaderBar, AppHeaderToolbar } from "@/components/AppHeaderToolbar";
@@ -9,6 +9,7 @@ import {
   toolbarButtonClass,
   toolbarSelectClass,
 } from "@/components/toolbarButtons";
+import { SendOnChangeControl } from "@/components/SendOnChangeControl";
 import { HelpDialog } from "@/components/HelpDialog";
 import { PresetSelector, PresetSummary } from "@/components/PresetSelector";
 import { SavedPresetsPanel } from "@/components/SavedPresetsPanel";
@@ -50,20 +51,25 @@ import {
   type SavedUserPreset,
 } from "@/presets/userPresets";
 import { useSysexOutput, type ActiveTab } from "@/hooks/useSysexOutput";
+import { useDebugPanelResize } from "@/hooks/useDebugPanelResize";
 import { useWebMidi } from "@/hooks/useWebMidi";
 import {
   loadRuntime,
 } from "@/loadAssets";
 import type { ByteHighlight, ChangeRecord, ParamChange } from "@/debug/change";
-import { buildParamChange, diffByteOffsets } from "@/debug/change";
+import { diffByteOffsets } from "@/debug/change";
 import { useControlKeyboard } from "@/hooks/useControlKeyboard";
 import { LEGAL_DISCLAIMER } from "@/content/legalDisclaimer";
 import { MidiErrorToast } from "@/components/MidiErrorToast";
 import { shouldShowMidiError } from "@/midi/midiErrorToast";
-import type { ControlDef } from "@/spec/controls";
-import { snapControlToTempo, computeTimingDiscrepancies } from "@/tempo/tempo";
+import type { ProgUiRuntime } from "@/prog/uiState";
+import { displayParameterLabel } from "@/spec/labels";
+import { computeTimingDiscrepancies } from "@/tempo/tempo";
 
-import { applyProgFieldChange, applySysFieldChange } from "@/prog/applyFieldChange";
+import {
+  commitProgIndividualFieldChange,
+  applySysFieldChange,
+} from "@/prog/applyFieldChange";
 import { bootstrapAppState } from "@/app/bootstrap";
 import { resolvePresetSlotOnBankChange } from "@/app/bankChange";
 import { parseMidiReceive } from "@/app/midiReceive";
@@ -90,6 +96,7 @@ export function App() {
   const [catalog, setCatalog] = useState<PresetCatalog | null>(null);
   const [progTemplate, setProgTemplate] = useState<Uint8Array | null>(null);
   const [sysTemplate, setSysTemplate] = useState<Uint8Array | null>(null);
+  const [progUi, setProgUi] = useState<ProgUiRuntime | null>(null);
   const [activeTab, setActiveTab] = useState<ActiveTab>(loadActiveTab);
   const [debugOpen, setDebugOpen] = useState(() => {
     try {
@@ -98,6 +105,11 @@ export function App() {
       return false;
     }
   });
+  const {
+    width: debugPanelWidth,
+    isResizing: debugPanelResizing,
+    onResizePointerDown: onDebugPanelResizePointerDown,
+  } = useDebugPanelResize();
   const [helpOpen, setHelpOpen] = useState(false);
   const [abStore, setAbStore] = useState<ProgAbStore | null>(null);
   const [sysState, setSysState] = useState<Record<string, number> | null>(null);
@@ -154,13 +166,13 @@ export function App() {
               side: "a",
               active: abStore.active,
               programName: abStore.a.state.programName,
-              bankName: banks[abStore.a.bankIdx]?.name,
+              bankName: banks[abStore.a.bankIdx]?.displayName,
             }),
             b: abCompareSlotTooltip({
               side: "b",
               active: abStore.active,
               programName: abStore.b.state.programName,
-              bankName: banks[abStore.b.bankIdx]?.name,
+              bankName: banks[abStore.b.bankIdx]?.displayName,
             }),
           }
         : { a: "Compare slot A", b: "Compare slot B" },
@@ -231,6 +243,7 @@ export function App() {
     sysSpec,
     progTemplate,
     sysTemplate,
+    progUi,
   );
   const sysexRef = useRef(sysex);
   sysexRef.current = sysex;
@@ -262,6 +275,10 @@ export function App() {
   const onSelectAb = useCallback(
     (side: AbSide) => {
       setSelectedFieldId(null);
+      setActiveProgState((prev) => {
+        if (prev.ui?.mode !== "browse") return prev;
+        return { ...prev, ui: { mode: "idle" } };
+      });
       if (abStore && abStore.active !== side) {
         recordAction("prog", `switch to slot ${side.toUpperCase()}`);
       }
@@ -269,29 +286,59 @@ export function App() {
         store && store.active !== side ? { ...store, active: side } : store,
       );
     },
-    [abStore, recordAction],
+    [abStore, recordAction, setActiveProgState],
+  );
+
+  const onClearSelection = useCallback(() => {
+    setSelectedFieldId(null);
+    setActiveProgState((prev) => {
+      if (prev.ui?.mode !== "browse") return prev;
+      queueByteDiff("prog");
+      setLastChange({ kind: "action", family: "prog", message: "deselect" });
+      return { ...prev, ui: { mode: "idle" } };
+    });
+  }, [queueByteDiff, setActiveProgState]);
+
+  const onSelectProgField = useCallback(
+    (fieldId: string) => {
+      setSelectedFieldId(fieldId);
+      const control = progControlByField.get(fieldId);
+      if (!control?.parameter || !isProgParamActive(control.parameter)) return;
+      recordAction(
+        "prog",
+        `select ${displayParameterLabel(control.parameter, control.label)}`,
+      );
+      setActiveProgState((prev) => ({
+        ...prev,
+        ui: { mode: "browse", parameter: control.parameter! },
+      }));
+    },
+    [progControlByField, isProgParamActive, setActiveProgState, recordAction],
   );
 
   const onProgStep = useCallback(
     (fieldId: string, encoded: number) => {
-      if (!progState) return;
-      const result = applyProgFieldChange(
-        progState,
-        fieldId,
-        encoded,
-        progControlByField.get(fieldId),
-        {
-          isParameterActive: isProgParamActive,
-          tempoModeFields,
-          tempoBpm,
-        },
-      );
-      if (result.kind !== "change") return;
-      recordParamChange("prog", result.change);
-      setActiveProgState(result.state);
+      const control = progControlByField.get(fieldId);
+      let change: ParamChange | null = null;
+      setActiveProgState((prev) => {
+        const result = commitProgIndividualFieldChange(
+          prev,
+          fieldId,
+          encoded,
+          control,
+          {
+            isParameterActive: isProgParamActive,
+            tempoModeFields,
+            tempoBpm,
+          },
+        );
+        if (result.kind !== "change") return prev;
+        change = result.change;
+        return result.state;
+      });
+      if (change) recordParamChange("prog", change);
     },
     [
-      progState,
       progControlByField,
       isProgParamActive,
       recordParamChange,
@@ -321,13 +368,14 @@ export function App() {
     selectedFieldId,
     activeTab,
     progEncoded: progState?.encoded ?? null,
+    progUiState: progState?.ui ?? null,
     sysEncoded: sysState,
     progControls: progControlByField,
     sysControls: sysControlByField,
     isProgParamActive,
     onProgStep,
     onSysStep,
-    onClearSelection: () => setSelectedFieldId(null),
+    onClearSelection,
     tempoModeFields,
     tempoBpm,
   });
@@ -366,37 +414,72 @@ export function App() {
         }
         return next;
       });
-      if (enabling && control && progState && tempoBpm > 0) {
-        const current = progState.encoded[fieldId];
-        if (current !== undefined) {
-          const snapped = snapControlToTempo(control, current, tempoBpm);
-          if (snapped !== current) {
-            recordParamChange(
-              "prog",
-              buildParamChange(control, current, snapped),
-            );
-            setActiveProgState({
-              ...progState,
-              encoded: { ...progState.encoded, [fieldId]: snapped },
-            });
-          }
-        }
+      if (enabling && control && tempoBpm > 0) {
+        let change: ParamChange | null = null;
+        setActiveProgState((prev) => {
+          const current = prev.encoded[fieldId];
+          if (current === undefined) return prev;
+          const nextTempoFields = new Set(tempoModeFields);
+          nextTempoFields.add(fieldId);
+          const result = commitProgIndividualFieldChange(
+            prev,
+            fieldId,
+            current,
+            control,
+            {
+              isParameterActive: isProgParamActive,
+              tempoModeFields: nextTempoFields,
+              tempoBpm,
+            },
+          );
+          if (result.kind !== "change") return prev;
+          change = result.change;
+          return result.state;
+        });
+        if (change) recordParamChange("prog", change);
       }
     },
-    [progControlByField, progState, tempoBpm, tempoModeFields, recordParamChange, setActiveProgState],
+    [
+      progControlByField,
+      progState,
+      tempoBpm,
+      tempoModeFields,
+      isProgParamActive,
+      recordParamChange,
+      setActiveProgState,
+    ],
   );
 
   useEffect(() => {
     setSelectedFieldId(null);
-  }, [activeTab]);
+    setActiveProgState((prev) => {
+      if (prev.ui?.mode !== "browse") return prev;
+      queueByteDiff("prog");
+      setLastChange({ kind: "action", family: "prog", message: "deselect" });
+      return { ...prev, ui: { mode: "idle" } };
+    });
+  }, [activeTab, queueByteDiff, setActiveProgState]);
 
   useEffect(() => {
     if (!selectedFieldId || activeTab !== "prog") return;
     const control = progControlByField.get(selectedFieldId);
     if (control && !isProgParamActive(control.parameter)) {
       setSelectedFieldId(null);
+      setActiveProgState((prev) => {
+        if (prev.ui?.mode !== "browse") return prev;
+        queueByteDiff("prog");
+        setLastChange({ kind: "action", family: "prog", message: "deselect" });
+        return { ...prev, ui: { mode: "idle" } };
+      });
     }
-  }, [selectedFieldId, activeTab, isProgParamActive, progControlByField]);
+  }, [
+    selectedFieldId,
+    activeTab,
+    isProgParamActive,
+    progControlByField,
+    queueByteDiff,
+    setActiveProgState,
+  ]);
 
   useEffect(() => {
     const pending = pendingDiffRef.current;
@@ -454,7 +537,8 @@ export function App() {
     let cancelled = false;
     (async () => {
       try {
-        const { prog, system: sys, presets, templates } = await loadRuntime();
+        const { prog, system: sys, presets, templates, progUi: ui } =
+          await loadRuntime();
         if (cancelled) return;
 
         setProgSpec(prog);
@@ -462,6 +546,7 @@ export function App() {
         setCatalog(presets);
         setProgTemplate(templates.prog);
         setSysTemplate(templates.system);
+        setProgUi(ui);
 
         const { abStore: restoredAb, sysState: restoredSys } = bootstrapAppState(
           prog,
@@ -691,9 +776,14 @@ export function App() {
 
   return (
     <div
-      className={`min-h-screen px-4 py-8 transition-[padding] duration-300 md:px-6 md:py-12 ${
-        debugOpen ? "lg:pr-[min(22rem,92vw)]" : ""
-      }`}
+      className={`min-h-screen px-4 py-8 md:px-6 md:py-12 ${
+        debugOpen && !debugPanelResizing ? "transition-[padding] duration-300" : ""
+      } ${debugOpen ? "debug-panel-open" : ""}`}
+      style={
+        debugOpen
+          ? ({ "--debug-panel-width": `${debugPanelWidth}px` } as CSSProperties)
+          : undefined
+      }
     >
       <main className="mx-auto max-w-[1240px] rack-chassis">
         <h1 className="sr-only">Freecasti — Bricasti M7 reverb editor</h1>
@@ -765,17 +855,13 @@ export function App() {
                     Send
                   </button>
                 </ControlTooltip>
-                <ControlTooltip description="Automatically send SysEx when you edit — throttled to at most once every 500 ms. Incoming dumps are not echoed back.">
-                  <button
-                    type="button"
-                    className={toolbarButtonClass(midi.sendOnChange, !midi.enabled)}
-                    disabled={!midi.enabled}
-                    onClick={() => midi.setSendOnChange(!midi.sendOnChange)}
-                    aria-pressed={midi.sendOnChange}
-                  >
-                    On change
-                  </button>
-                </ControlTooltip>
+                <SendOnChangeControl
+                  active={midi.sendOnChange}
+                  disabled={!midi.enabled}
+                  throttleMs={midi.sendOnChangeThrottleMs}
+                  onToggle={() => midi.setSendOnChange(!midi.sendOnChange)}
+                  onThrottleMsChange={midi.setSendOnChangeThrottleMs}
+                />
               </div>
             )}
           </div>
@@ -836,7 +922,7 @@ export function App() {
                 <div className="flex h-full min-h-0 flex-col gap-4">
                   <PresetSummary
                     programName={progState.programName}
-                    bankName={banks[bankIdx]?.name}
+                    bankName={banks[bankIdx]?.displayName}
                     activeAb={activeAb}
                     abTooltips={abTooltips}
                     onSelectAb={onSelectAb}
@@ -847,7 +933,7 @@ export function App() {
                     variant="core-only"
                     isParameterActive={isProgParamActive}
                     selectedFieldId={selectedFieldId}
-                    onSelectField={setSelectedFieldId}
+                    onSelectField={onSelectProgField}
                     lockedFieldIds={lockedFieldIds}
                     onToggleFieldLock={toggleFieldLock}
                     tempoBpm={tempoBpm}
@@ -866,7 +952,7 @@ export function App() {
                 variant="rest-only"
                 isParameterActive={isProgParamActive}
                 selectedFieldId={selectedFieldId}
-                onSelectField={setSelectedFieldId}
+                onSelectField={onSelectProgField}
                 lockedFieldIds={lockedFieldIds}
                 onToggleFieldLock={toggleFieldLock}
                 tempoBpm={tempoBpm}
@@ -912,6 +998,8 @@ export function App() {
       <DebugPanel
         open={debugOpen}
         onToggle={() => setDebugOpen((o) => !o)}
+        width={debugPanelWidth}
+        onResizePointerDown={onDebugPanelResizePointerDown}
         activeTab={activeTab}
         progBytes={sysex.progBytes}
         sysBytes={sysex.sysBytes}
@@ -923,6 +1011,13 @@ export function App() {
         timingDiscrepancies={timingDiscrepancies}
         tempoBpm={tempoBpm}
         midiLog={midi.midiLog}
+        dumpSpec={activeTab === "prog" ? progSpec : sysSpec}
+        dumpControls={
+          activeTab === "prog"
+            ? allProgControls(progSpec)
+            : sysControls
+        }
+        progUi={progUi}
       />
     </div>
   );

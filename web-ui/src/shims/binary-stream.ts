@@ -1,11 +1,8 @@
-/**
- * ESM wrapper around the vendored binary stream UMD build.
- */
-// @ts-expect-error UMD build has no types
-import * as streamMod from "./binary-stream.umd.js";
+import BinaryStreamModule from "./binary-stream.umd.cjs";
 
 const BinaryStream =
-  (streamMod as { default?: typeof streamMod }).default ?? streamMod;
+  (BinaryStreamModule as { default?: typeof BinaryStreamModule }).default ??
+  BinaryStreamModule;
 
 export { BinaryStream };
 export default BinaryStream;

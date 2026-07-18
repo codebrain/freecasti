@@ -30,6 +30,7 @@ export function ParamButtonControl({
       {!hideLabel && (
         <ParamLabel
           label={displayLabel}
+          description={control.description}
           locked={locked}
           onToggleLock={onToggleLock}
           disabled={disabled}

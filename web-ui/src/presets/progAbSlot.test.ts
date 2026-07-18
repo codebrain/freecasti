@@ -16,7 +16,20 @@ import {
 } from "./progAbSlot";
 
 const catalog = expandPresetCatalog({
-  banks: ["Halls", "NonLin"],
+  // Index-positioned banks: bank_index 10 (NonLin) matches the real runtime catalog.
+  banks: [
+    "Halls",
+    "Plates",
+    "Rooms",
+    "Chambers",
+    "Ambience",
+    "Spaces",
+    "Halls 2",
+    "Plates 2",
+    "Rooms 2",
+    "Spaces 2",
+    "NonLin",
+  ],
   params: ["reverb time", "size"],
   presets: [
     [0, 0, "Large Hall", 40, 28],

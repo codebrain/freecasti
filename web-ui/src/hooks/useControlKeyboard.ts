@@ -4,12 +4,14 @@ import {
   resolveControlKeyDown,
   shouldClearSelectionOnPointerDown,
 } from "./controlKeyboardAction";
+import type { ProgUiState } from "@/prog/uiState";
 import type { ActiveTab } from "./useSysexOutput";
 
 interface UseControlKeyboardOptions {
   selectedFieldId: string | null;
   activeTab: ActiveTab;
   progEncoded: Record<string, number> | null;
+  progUiState?: ProgUiState | null;
   sysEncoded: Record<string, number> | null;
   progControls: Map<string, ControlDef>;
   sysControls: Map<string, ControlDef>;
@@ -25,6 +27,7 @@ export function useControlKeyboard({
   selectedFieldId,
   activeTab,
   progEncoded,
+  progUiState = null,
   sysEncoded,
   progControls,
   sysControls,
@@ -45,6 +48,7 @@ export function useControlKeyboard({
         selectedFieldId,
         activeTab,
         progEncoded,
+        progUiState,
         sysEncoded,
         progControls,
         sysControls,
@@ -73,6 +77,7 @@ export function useControlKeyboard({
     selectedFieldId,
     activeTab,
     progEncoded,
+    progUiState,
     sysEncoded,
     progControls,
     sysControls,

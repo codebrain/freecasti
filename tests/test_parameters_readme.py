@@ -13,7 +13,7 @@ def test_prog_parameters_readme_lists_all_catalog_entries():
 
     results = analyze_tree(ROOT / "sysex")
     md = build_prog_parameters_readme(results, today="2026-07-17")
-    assert "# Program parameters" in md
+    assert "# Program dump bytes" in md
     assert "## Description" not in md
     assert "| Parameter | SysEx" in md
     for entry in PROGRAM_PARAMETERS:
@@ -39,7 +39,7 @@ def test_system_parameters_readme_lists_descriptions():
 
     results = analyze_system_tree(ROOT / "sysex")
     md = build_system_parameters_readme(results, today="2026-07-17")
-    assert "# System parameters" in md
+    assert "# System dump bytes" in md
     assert "MIDI channel" in md or "MIDI Channel" in md
     assert "front-panel display" in md
     assert "analog output level trim" in md
@@ -61,8 +61,8 @@ def test_export_writes_parameters_readme(tmp_path):
 
     results = analyze_tree(ROOT / "sysex")
     export_sysex_format(results, tmp_path / "sysex-format")
-    readme = tmp_path / "sysex-format" / "prog" / "parameters" / "README.md"
+    readme = tmp_path / "sysex-format" / "prog" / "bytes" / "README.md"
     assert readme.is_file()
     text = readme.read_text(encoding="utf-8")
-    assert "**Parameters**" in text
+    assert "**Bytes**" in text
     assert "Reverb Time" in text

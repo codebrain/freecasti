@@ -20,6 +20,8 @@ from .paths import (
     LEGACY_SYSTEM_DIR,
     PROG_DIR,
     PROG_EDIT_DIR,
+    PROG_FULL_SWEEP_DIR,
+    PROG_MENUS_DIR,
     PROG_PARAMETERS_DIR,
     PROG_PRESETS_DIR,
     SYSTEM_DIR,
@@ -72,7 +74,12 @@ def is_prog_corpus_relative(rel: Path) -> bool:
     if parts[0] == PROG_DIR:
         if len(parts) < 2:
             return False
-        if parts[1] in (PROG_EDIT_DIR, LEGACY_EDIT_DIR):
+        if parts[1] in (
+            PROG_EDIT_DIR,
+            PROG_FULL_SWEEP_DIR,
+            PROG_MENUS_DIR,
+            LEGACY_EDIT_DIR,
+        ):
             return False
         return True
     if parts[0].startswith("_") and parts[0] not in (LEGACY_PRESETS_DIR,):

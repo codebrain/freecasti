@@ -232,6 +232,8 @@ def render_system_byte_map_markdown(byte_map: dict[str, Any]) -> str:
         "",
         f"Every offset in the {byte_map['message_length']}-byte system-dump layout.",
         "",
+        "Short consolidated view: [byte-map-overview.md](byte-map-overview.md).",
+        "",
         "Codegen layout: [m7_system_dump.ksy](m7_system_dump.ksy) · "
         "[m7_system_dump.spec.json](m7_system_dump.spec.json).",
         "",
@@ -247,16 +249,254 @@ def render_system_byte_map_markdown(byte_map: dict[str, Any]) -> str:
         "| Offsets | Len | Example hex | Status | Meaning |",
         "|---------|-----|-------------|--------|---------|",
     ]
+    series_params = _series_parameter_names(byte_map)
     for region in byte_map["regions"]:
         example = region.get("example_hex") or "-"
         if example != "-":
             example = f"`{example}`"
+        meaning = _linkify_meaning(region["role"], series_params)
         lines.append(
             f"| {region['offsets']} | {region['length']} | "
-            f"{example} | {region['status']} | {region['role']} |"
+            f"{example} | {region['status']} | {meaning} |"
         )
     lines.append("")
     return "\n".join(lines)
+
+
+def render_system_byte_map_overview_markdown(byte_map: dict[str, Any]) -> str:
+    """Short consolidated system layout (no per-byte table)."""
+    counts = byte_map["counts"]
+    length = byte_map["message_length"]
+    regions = byte_map.get("regions") or []
+    series_params = _series_parameter_names(byte_map)
+
+    lines: list[str] = [
+        "## Byte map overview",
+        "",
+        f"**{length}**-byte system dump. "
+        f"Known/frame/checksum **{counts['known_or_frame']}** · "
+        f"secondary **{counts['secondary']}** · "
+        f"unknown **{counts['unknown']}**.",
+        "",
+        "Full regions table: [byte-map.md](byte-map.md).",
+        "",
+        "Codegen layout: [m7_system_dump.ksy](m7_system_dump.ksy) "
+        "([Kaitai Struct](https://kaitai.io/)) · "
+        "[m7_system_dump.spec.json](m7_system_dump.spec.json).",
+        "",
+        "Reserved/meta roles (fixed prefix, padding) come from a corpus scan "
+        "of all system `.syx` dumps — medium confidence.",
+        "",
+        "### Layout",
+        "",
+        "| Offsets | Len | Status | Field |",
+        "|---------|----:|--------|-------|",
+    ]
+
+    for region in regions:
+        label, encoding = _overview_label(region, byte_map)
+        status = region["status"]
+        if status == "unknown":
+            status = "UNKNOWN"
+            field = "UNKNOWN"
+        else:
+            linked = _link_field_label(label, series_params)
+            field = linked
+            if encoding:
+                field = f"{linked} (`{encoding}`)"
+        lines.append(
+            f"| {region['offsets']} | {region['length']} | "
+            f"{status} | {field} |"
+        )
+
+    param_rows = _overview_parameter_rows(byte_map)
+    if param_rows:
+        lines.extend(
+            [
+                "",
+                "### Settings (by offset)",
+                "",
+                "| Offsets | Setting | Encoding | Source |",
+                "|---------|---------|----------|--------|",
+            ]
+        )
+        for row in param_rows:
+            param = _link_field_label(row["parameter"], series_params)
+            lines.append(
+                f"| {row['offsets']} | {param} | "
+                f"`{row['encoding']}` | {row['source']} |"
+            )
+
+    unknown = [r for r in regions if r.get("status") == "unknown"]
+    secondary = [r for r in regions if r.get("status") == "secondary"]
+    if unknown:
+        total = sum(int(r["length"]) for r in unknown)
+        lines.extend(
+            [
+                "",
+                "### Unknown",
+                "",
+                f"**{total}** bytes still unmapped "
+                f"({len(unknown)} region{'s' if len(unknown) != 1 else ''}):",
+                "",
+                "| Offsets | Len |",
+                "|---------|----:|",
+            ]
+        )
+        for r in unknown:
+            lines.append(f"| {r['offsets']} | {r['length']} |")
+        lines.append("")
+    if secondary:
+        offs = ", ".join(f"`{r['offsets']}`" for r in secondary)
+        lines.extend(
+            [
+                "",
+                "### Secondary",
+                "",
+                f"Bytes that also move in other capture series: {offs}",
+                "",
+            ]
+        )
+
+    coupled = _coupled_offset_notes(byte_map)
+    if coupled:
+        lines.extend(["", "### Coupled offsets", ""] + coupled + [""])
+
+    return "\n".join(lines)
+
+
+def _series_parameter_names(byte_map: dict[str, Any]) -> set[str]:
+    names: set[str] = set()
+    for cell in byte_map.get("bytes") or []:
+        for p in cell.get("parameters") or []:
+            if p not in {"_corpus"}:
+                names.add(p)
+    for region in byte_map.get("regions") or []:
+        for p in region.get("parameters") or []:
+            if p not in {"_corpus"}:
+                names.add(p)
+    return names
+
+
+def _parameter_page_href(name: str) -> str:
+    from ..export.nav import parameter_slug
+
+    return f"bytes/{parameter_slug(name)}.md"
+
+
+def _link_parameter_name(name: str) -> str:
+    return f"[{name}]({_parameter_page_href(name)})"
+
+
+def _link_field_label(label: str, series_params: set[str]) -> str:
+    if label in series_params:
+        return _link_parameter_name(label)
+    return label
+
+
+def _linkify_meaning(text: str, series_params: set[str]) -> str:
+    import re
+
+    ordered = sorted(series_params, key=len, reverse=True)
+
+    def repl_param_tick(match: re.Match[str]) -> str:
+        name = match.group(1)
+        if name in series_params:
+            return f"Parameter {_link_parameter_name(name)}"
+        return match.group(0)
+
+    text = re.sub(r"Parameter `([^`]+)`", repl_param_tick, text)
+
+    for name in ordered:
+        path = f"sysex/system/{name}/"
+        if path in text:
+            text = text.replace(path, f"[sysex/system/{name}/]({_parameter_page_href(name)})")
+
+    marker = "also secondary in: "
+    if marker in text:
+        head, tail = text.split(marker, 1)
+        closing = ""
+        body = tail
+        if body.endswith(")"):
+            body, closing = body[:-1], ")"
+        parts = [p.strip().strip("`") for p in body.split(",")]
+        linked = []
+        for part in parts:
+            if part in series_params:
+                linked.append(_link_parameter_name(part))
+            else:
+                linked.append(part)
+        text = head + marker + ", ".join(linked) + closing
+
+    return text
+
+
+def _overview_parameter_rows(byte_map: dict[str, Any]) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    for region in byte_map.get("regions") or []:
+        if region.get("status") != "known":
+            continue
+        label, encoding = _overview_label(region, byte_map)
+        if label in {"unknown", "UNKNOWN"}:
+            continue
+        if label.startswith("reserved") or label.startswith("fixed"):
+            continue
+        params = [p for p in (region.get("parameters") or []) if p != "_corpus"]
+        if not params:
+            continue
+        primary = _primary_parameter_for_region(region) or params[0]
+        rows.append(
+            {
+                "offsets": region["offsets"],
+                "parameter": primary,
+                "encoding": encoding or "?",
+                "source": "series",
+            }
+        )
+    return rows
+
+
+def _coupled_offset_notes(byte_map: dict[str, Any]) -> list[str]:
+    """Human notes for bytes claimed by one series but secondary in another."""
+    notes: list[str] = []
+    for cell in byte_map.get("bytes") or []:
+        if cell.get("status") != "known":
+            continue
+        role = cell.get("role") or ""
+        marker = "also secondary in: "
+        if marker not in role:
+            continue
+        primary = _primary_parameter_from_role(role)
+        if not primary:
+            continue
+        tail = role.split(marker, 1)[1].rstrip(")")
+        others = [p.strip().strip("`") for p in tail.split(",")]
+        for other in others:
+            if other and other != primary:
+                notes.append(
+                    f"- Offset **{cell['offset']}** "
+                    f"([{primary}]({_parameter_page_href(primary)})) also moves "
+                    f"when capturing [{other}]({_parameter_page_href(other)})."
+                )
+    return notes
+
+
+def _primary_parameter_from_role(role: str) -> str | None:
+    import re
+
+    match = re.search(r"Parameter `([^`]+)`", role)
+    return match.group(1) if match else None
+
+
+def _primary_parameter_for_region(region: dict[str, Any]) -> str | None:
+    params = [p for p in (region.get("parameters") or []) if p != "_corpus"]
+    if not params:
+        return None
+    role = region.get("role") or ""
+    named = _primary_parameter_from_role(role)
+    if named in params:
+        return named
+    return params[-1]
 
 
 def _overview_label(region: dict[str, Any], byte_map: dict[str, Any]) -> tuple[str, str | None]:
@@ -298,7 +538,7 @@ def _overview_label(region: dict[str, Any], byte_map: dict[str, Any]) -> tuple[s
     if status == "unknown":
         return "UNKNOWN", None
     if params:
-        return params[0], encoding
+        return _primary_parameter_for_region(region) or params[0], encoding
     return role.split("(")[0].strip() or "known", encoding
 
 

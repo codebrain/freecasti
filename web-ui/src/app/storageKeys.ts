@@ -1,5 +1,6 @@
 export const LS_TAB = "m7.tab";
 export const LS_DEBUG = "m7.debug.open";
+export const LS_DEBUG_WIDTH = "m7.debug.width";
 export const LS_PROG = "m7.state.prog";
 export const LS_PROG_AB = "m7.state.progAb";
 export const LS_SYS = "m7.state.sys";

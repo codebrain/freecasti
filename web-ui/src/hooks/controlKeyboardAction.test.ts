@@ -155,6 +155,39 @@ describe("resolveControlKeyDown", () => {
       }),
     ).toEqual({ action: "none" });
   });
+
+  it("steps in browse mode when encoded value would not change", () => {
+    const duplicateStep: ControlDef = {
+      fieldId: "dup",
+      label: "dup",
+      parameter: "size",
+      encoding: "nh",
+      offsets: [102, 103],
+      entries: [
+        { encoded: 1, label: "1" },
+        { encoded: 2, label: "2a" },
+        { encoded: 2, label: "2b" },
+      ],
+      widget: "knob",
+      entryIndex: (enc) => enc,
+    };
+    expect(
+      resolveControlKeyDown({
+        ...baseInput,
+        selectedFieldId: "dup",
+        progEncoded: { dup: 2 },
+        progUiState: { mode: "browse", parameter: "size" },
+        progControls: new Map([["dup", duplicateStep]]),
+        key: "ArrowUp",
+        target: panel,
+      }),
+    ).toEqual({
+      action: "step",
+      family: "prog",
+      fieldId: "dup",
+      encoded: 2,
+    });
+  });
 });
 
 describe("shouldClearSelectionOnPointerDown", () => {

@@ -23,7 +23,8 @@ Official overview:
 | System dump | Hold **SYSTEM** briefly | I/O / system config only — not program parameters |
 
 Program dumps include UI/edit state (Bricasti MIDI notes) — expect offsets **146–147**
-(and sometimes **92** or **98–99**) to move even in single-parameter series.
+as one **`nibble_hilo` display** field (high nibble = page/row, low = column), plus **92**
+and **98–99** for menu browse/edit, even in single-parameter series.
 
 This repo expects **program dumps** for parameter series and `sysex/prog/presets/`.
 EDIT captures go in `sysex/prog/edit/` (excluded from the PROG corpus scan). See
@@ -126,10 +127,10 @@ python run.py
 ```
 
 Open `sysex/prog/parameters/<parameter>/analysis.json` and
-`specification/prog/parameters/<slug>.md`, and check:
+`specification/prog/bytes/<slug>.md`, and check:
 
 1. `changing_offsets` — should be small (parameter + checksum ± maybe one status
-   byte; 146–147 often move as edit/UI state)
+   byte; **146–147** often move together as the `nibble_hilo` display)
 2. `best_encoding` — mapping table from label → encoded value
 3. `hypothesis.confidence` — `high` when a closed-form scale fits; `medium` is
    normal for monotonic tables
@@ -162,6 +163,25 @@ Results land under
 [../specification/prog/preset-sheet.md](../specification/prog/preset-sheet.md) (errata vs the
 [published preset sheet](https://www.bricasti.com/images/preset_sheet.pdf),
 using [reference/preset_sheet.json](reference/preset_sheet.json)).
+
+## PROG menu navigation (`sysex/prog/menus/`)
+
+To decode front-panel **menu highlight** bytes (offsets **92**, **98–99**, **146–147**
+`nibble_hilo` display) without changing sound parameters:
+
+1. Load a stable program; keep parameter values fixed for the whole series.
+2. Dump with **no parameter menu open** → `no menu.syx` (idle baseline).
+3. For each parameter: highlight that menu **only** (do not turn the encoder) →
+   PROG dump → `sysex/prog/menus/<folder_hint>.syx` (lowercase; matches
+   `sysex/prog/parameters/<folder_hint>/`).
+4. Re-run `python run.py`.
+
+The analyzer writes `sysex/prog/menus/analysis.json` and
+`prog_ui_state.json`, and exports [ui-state.md](../specification/prog/ui-state.md).
+
+**SYSTEM menu highlight** does not change SYSTEM dump bytes (confirmed with
+`sysex/system/menus/` captures). Register lock still needs value-change series,
+not menu-navigation dumps.
 
 ## Suggested captures (remaining)
 

@@ -64,6 +64,33 @@ def test_render_kaitai_yaml_has_layout_and_nibble_type():
     assert any(f.get("value_map") for f in spec["fields"] if f.get("parameter"))
 
 
+def test_display_enum_lists_menu_names():
+    from m7_sysex.kaitai_spec import build_program_dump_spec, render_kaitai_yaml
+    from m7_sysex.paths import prog_menus_root
+    from m7_sysex.prog.menus import analyze_menus_folder
+
+    byte_map, results, names = _inputs()
+    menus = analyze_menus_folder(prog_menus_root(ROOT / "sysex"), ROOT / "sysex")
+    spec = build_program_dump_spec(
+        byte_map, results, names=names, menus_analysis=menus
+    )
+    cursor = next(f for f in spec["fields"] if f["id"] == "display")
+    value_map = cursor.get("value_map") or {}
+    entries = value_map.get("entries") or []
+    labels = [str(e["label"]) for e in entries]
+    assert value_map.get("enum_id") == "display_values"
+    assert any("idle (no menu)" in label for label in labels)
+    assert any("browse: reverb time (0)" in label for label in labels)
+    assert any("edit: predelay (2)" in label for label in labels)
+    assert cursor.get("series_root") == "sysex/prog/menus"
+    assert "parameter" not in cursor
+
+    ksy = render_kaitai_yaml(spec)
+    assert "display_values:" in ksy
+    assert "type: display_encoded" in ksy
+    assert "browse: reverb time (0)" in ksy
+
+
 def test_render_kaitai_yaml_keeps_generic_nibble_for_unmapped_fields():
     from m7_sysex.kaitai_spec import build_program_dump_spec, render_kaitai_yaml
 
@@ -171,9 +198,14 @@ def test_committed_prog_specs_match_live_export():
 
     from m7_sysex.kaitai_render import render_kaitai_yaml
     from m7_sysex.kaitai_spec import build_program_dump_spec
+    from m7_sysex.paths import prog_menus_root
+    from m7_sysex.prog.menus import analyze_menus_folder
 
     byte_map, results, names = _inputs()
-    live_spec = build_program_dump_spec(byte_map, results, names=names)
+    menus = analyze_menus_folder(prog_menus_root(ROOT / "sysex"), ROOT / "sysex")
+    live_spec = build_program_dump_spec(
+        byte_map, results, names=names, menus_analysis=menus
+    )
     live_ksy = render_kaitai_yaml(live_spec)
 
     committed_spec = json.loads(

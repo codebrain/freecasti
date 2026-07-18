@@ -54,6 +54,8 @@ export function ParamDialControl({
     <div ref={dialRef} className={`flex flex-col items-center gap-2 ${disabled ? "cursor-not-allowed" : ""}`}>
       <ParamLabel
         label={displayLabel}
+        description={control.description}
+        tooltipSuppressed={dialDragging}
         locked={locked}
         onToggleLock={onToggleLock}
         tempoMode={tempoActive}

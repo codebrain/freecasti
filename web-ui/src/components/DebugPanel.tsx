@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, type PointerEvent as ReactPointerEvent } from "react";
 import type { DebugPanelBodyProps } from "./DebugPanelBody";
 
 const DebugPanelBody = lazy(() =>
@@ -8,9 +8,17 @@ const DebugPanelBody = lazy(() =>
 interface DebugPanelProps extends DebugPanelBodyProps {
   open: boolean;
   onToggle: () => void;
+  width: number;
+  onResizePointerDown: (e: ReactPointerEvent<HTMLDivElement>) => void;
 }
 
-export function DebugPanel({ open, onToggle, ...body }: DebugPanelProps) {
+export function DebugPanel({
+  open,
+  onToggle,
+  width,
+  onResizePointerDown,
+  ...body
+}: DebugPanelProps) {
   return (
     <>
       <div
@@ -21,12 +29,20 @@ export function DebugPanel({ open, onToggle, ...body }: DebugPanelProps) {
         onClick={onToggle}
       />
       <aside
-        className={`fixed inset-y-0 right-0 z-50 flex w-[min(22rem,92vw)] flex-col border-l border-border panel-raised shadow-2xl transition-transform duration-300 ease-out ${
+        className={`fixed inset-y-0 right-0 z-50 flex flex-col border-l border-border panel-raised shadow-2xl transition-transform duration-300 ease-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{ width }}
         aria-hidden={!open}
         aria-label="Debug panel"
       >
+        <div
+          role="separator"
+          aria-orientation="vertical"
+          aria-label="Resize debug panel"
+          className="absolute inset-y-0 -left-1 z-10 w-2 touch-none cursor-ew-resize before:absolute before:inset-y-0 before:left-1/2 before:w-px before:-translate-x-1/2 before:bg-border/60 hover:before:bg-primary/70 active:before:bg-primary"
+          onPointerDown={onResizePointerDown}
+        />
         <header className="flex shrink-0 items-center justify-between gap-3 border-b border-border px-4 py-3">
           <h2 className="label-caps">Debug</h2>
           <button

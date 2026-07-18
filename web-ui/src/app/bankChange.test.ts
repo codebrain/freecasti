@@ -4,6 +4,7 @@ import type { BankInfo } from "@/presets/types";
 
 const bank: BankInfo = {
   name: "Halls",
+  displayName: "Halls v1",
   bankIndex: 0,
   presets: [
     {

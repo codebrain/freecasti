@@ -50,3 +50,11 @@ export function diffByteOffsets(prev: Uint8Array, next: Uint8Array): number[] {
   }
   return offsets;
 }
+
+export function rowTouchesChangedOffsets(
+  row: { offsets: number[] },
+  changedOffsets: Iterable<number>,
+): boolean {
+  const changed = new Set(changedOffsets);
+  return row.offsets.some((offset) => changed.has(offset));
+}

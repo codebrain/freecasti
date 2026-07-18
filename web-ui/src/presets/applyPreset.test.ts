@@ -70,6 +70,7 @@ describe("applyPreset", () => {
     const map = buildParameterToFieldId(spec);
     const state = applyPreset(entry, map);
     expect(state.programName).toBe("Large Hall");
+    expect(state.ui).toEqual({ mode: "idle" });
     expect(state.encoded.bank_index).toBe(0);
     const rtField = map.get("reverb time")!;
     expect(state.encoded[rtField]).toBe(

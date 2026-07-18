@@ -1,12 +1,21 @@
-import { useEffect, useState, type ReactNode } from "react";
-import type { ChangeRecord, ByteHighlight } from "@/debug/change";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import {
+  rowTouchesChangedOffsets,
+  type ByteHighlight,
+  type ChangeRecord,
+} from "@/debug/change";
+import { buildByteBreakdown } from "@/debug/byteBreakdown";
 import type { TimingDiscrepancy } from "@/tempo/tempo";
 import { HexDump } from "@/components/HexDump";
+import { DumpByteTable } from "@/components/DumpByteTable";
 import { downloadSyx, suggestSyxFilename } from "@/sysex/syxIo";
 import { verifyDump } from "@/sysex/verify";
 import { bytesToHex } from "@/sysex/frame";
 import type { ActiveTab } from "@/hooks/useSysexOutput";
 import type { MidiLogEntry } from "@/midi/midiLog";
+import type { ControlDef } from "@/spec/controls";
+import type { DumpSpec } from "@/spec/types";
+import type { ProgUiRuntime } from "@/prog/uiState";
 
 export interface DebugPanelBodyProps {
   activeTab: ActiveTab;
@@ -20,6 +29,9 @@ export interface DebugPanelBodyProps {
   timingDiscrepancies?: TimingDiscrepancy[];
   tempoBpm?: number;
   midiLog?: readonly MidiLogEntry[];
+  dumpSpec?: DumpSpec | null;
+  dumpControls?: ControlDef[];
+  progUi?: ProgUiRuntime | null;
 }
 
 function DebugSection({
@@ -79,7 +91,17 @@ function MidiLogList({ entries }: { entries: readonly MidiLogEntry[] }) {
             {entry.direction === "tx" ? "TX" : "RX"}
           </span>
           <span className="opacity-50"> · {formatMidiLogTime(entry.at)} · </span>
-          <span>{entry.summary}</span>
+          <span
+            className={
+              entry.direction === "rx" && entry.echoValidation === "match"
+                ? "text-green-400"
+                : entry.direction === "rx" && entry.echoValidation === "mismatch"
+                  ? "text-red-400"
+                  : undefined
+            }
+          >
+            {entry.summary}
+          </span>
         </li>
       ))}
     </ul>
@@ -98,15 +120,42 @@ export function DebugPanelBody({
   timingDiscrepancies = [],
   tempoBpm,
   midiLog = [],
+  dumpSpec,
+  dumpControls = [],
+  progUi = null,
 }: DebugPanelBodyProps) {
   const activeBytes = activeTab === "prog" ? progBytes : sysBytes;
   const checksumOk = activeTab === "prog" ? progChecksumOk : sysChecksumOk;
   const activeLabel = activeTab === "prog" ? "Program" : "System";
   const [parseSummary, setParseSummary] = useState<string | null>(null);
   const [parseError, setParseError] = useState<string | null>(null);
+  const [showChangedOnly, setShowChangedOnly] = useState(true);
+  const [ignoreChecksum, setIgnoreChecksum] = useState(false);
 
-  const activeHighlight =
-    byteHighlight?.family === activeTab ? byteHighlight.offsets : [];
+  const activeHighlight = useMemo(() => {
+    const base =
+      byteHighlight?.family === activeTab ? byteHighlight.offsets : [];
+    if (!ignoreChecksum) return base;
+    const checksumOffsets = new Set(
+      activeTab === "prog" ? [152, 153, 154, 155] : [72, 73, 74, 75],
+    );
+    return base.filter((offset) => !checksumOffsets.has(offset));
+  }, [activeTab, byteHighlight, ignoreChecksum]);
+
+  const byteRows = useMemo(() => {
+    if (!activeBytes || !dumpSpec) return [];
+    return buildByteBreakdown(activeBytes, dumpSpec, activeTab, {
+      controls: dumpControls,
+      progUi: activeTab === "prog" ? progUi : null,
+    });
+  }, [activeBytes, activeTab, dumpControls, dumpSpec, progUi]);
+
+  const visibleByteRows = useMemo(() => {
+    if (!showChangedOnly) return byteRows;
+    return byteRows.filter((row) =>
+      rowTouchesChangedOffsets(row, activeHighlight),
+    );
+  }, [activeHighlight, byteRows, showChangedOnly]);
 
   useEffect(() => {
     if (!activeBytes) {
@@ -218,6 +267,44 @@ export function DebugPanelBody({
             <span className="text-xs opacity-50">—</span>
           )}
         </div>
+        {activeBytes && byteRows.length > 0 && (
+          <div className="space-y-2">
+            <label className="flex cursor-pointer items-center gap-2 text-xs opacity-80">
+              <input
+                type="checkbox"
+                className="accent-[color:var(--color-label)]"
+                checked={showChangedOnly}
+                disabled={activeHighlight.length === 0}
+                onChange={(event) => setShowChangedOnly(event.target.checked)}
+              />
+              <span>Changed bytes only</span>
+              {activeHighlight.length > 0 ? (
+                <span className="opacity-50">({activeHighlight.length} B)</span>
+              ) : (
+                <span className="opacity-40">(no recent change)</span>
+              )}
+            </label>
+            <label className="flex cursor-pointer items-center gap-2 text-xs opacity-80">
+              <input
+                type="checkbox"
+                className="accent-[color:var(--color-label)]"
+                checked={ignoreChecksum}
+                onChange={(event) => setIgnoreChecksum(event.target.checked)}
+              />
+              <span>Ignore checksum</span>
+            </label>
+            <DumpByteTable
+              data={activeBytes}
+              rows={visibleByteRows}
+              highlightOffsets={activeHighlight}
+              emptyMessage={
+                showChangedOnly
+                  ? "No table rows include changed bytes"
+                  : "No breakdown available"
+              }
+            />
+          </div>
+        )}
       </DebugSection>
     </div>
   );

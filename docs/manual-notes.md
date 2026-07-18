@@ -26,7 +26,8 @@ From Bricasti MIDI notes (all are **channel-less** SysEx):
 | **System** | Hold **SYSTEM** | I/O, routing, dry/wet, register lock, etc. (not sound parameters) | **`sysex/system/`** — see [../specification/system/](../specification/system/) |
 
 Program dumps explicitly carry UI/edit state — consistent with secondary movers at
-offsets **92**, **98–99**, **146**, **147** in single-parameter series.
+offsets **92**, **98–99**, and **146–147** (`nibble_hilo` display) in
+single-parameter series.
 
 Bricasti MIDI notes say receiving an EDIT dump creates ephemeral bank **118**
 (cleared on power-off). That is distinct from the **send** marker **11** observed
@@ -133,6 +134,8 @@ Requires V2 firmware.
 | HF / LF RT multiply | Scaling of **Reverb Time** | HF: `0.05×enc+0.2` confirmed; LF @ 118–119: 0.05 steps ≤ 2.0×, then 0.1 steps to 4.0× (captured) |
 | Early/Reverb Mix | Two 0–20 ranges (early vs late) | Balance path **0…40** @ 124–125 (`A/B` UI; dumps named `A.B`) |
 | VLF Cut | 0…−18 dB | This unit to **−20** @ 122–123 |
+| Rolloff | LPF on overall late-reverb output; frequency only (no dB/oct) | Measures ≈ **12 dB/oct** (V1); V2 gentler — see [rolloff-slopes.md](rolloff-slopes.md) |
+| Early Rolloff | Separate LPF for the early-reflection field | Measures ≈ **6 dB/oct** one-pole; displayed Hz is not the −3 dB corner — see [rolloff-slopes.md](rolloff-slopes.md) |
 
 ## System settings (SYSTEM menu)
 
@@ -152,9 +155,9 @@ are in `src/m7_sysex/system/catalog.py` and flow into
 | MIDI Bank | MIDI program-change bank select | 25 |
 
 **Offset 25 coupling:** dedicated **midi bank** captures use offset **25** as the
-primary field (`m7_system_dump.ksy`, web UI, [midi-bank.md](../specification/system/parameters/midi-bank.md)).
+primary field (`m7_system_dump.ksy`, web UI, [midi-bank.md](../specification/system/bytes/midi-bank.md)).
 **Display level** captures also move offset **25** as a secondary byte (see
-[display-level.md](../specification/system/parameters/display-level.md)). The
+[display-level.md](../specification/system/bytes/display-level.md)). The
 byte-map export still labels offset 25 as padding until that secondary role is
 fully reconciled.
 

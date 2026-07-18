@@ -271,7 +271,7 @@
     "id": "early_rolloff",
     "name": "Early Rolloff",
     "folder_hint": "early rolloff",
-    "notes": "Non-linear Hz table @ 126-127.",
+    "notes": "Non-linear Hz table @ 126-127. Filter order (dB/octave) analysis: [rolloff-slopes.md](../../../docs/rolloff-slopes.md).",
     "description": "Sets the rolloff frequency point of the low pass filter for the early part of the reverberant field.",
     "description_source": "Bricasti M7 Owner's Manual \u2014 Reverb Parameters",
     "description_url": "https://www.bricasti.com/images/M7.pdf",
@@ -866,7 +866,7 @@
     "monotonic_score": 1.0
   },
   "hypothesis": {
-    "summary": "Parameter 'early rolloff' appears at SysEx offset(s) [126, 127]. using encoding 'nibble_hilo'. (table/index candidate (monotonic 100%); extreme<->adjacent slopes disagree (low dlabel/denc=40, high=400); least-squares hint only (not used for endpoint unit conversion): label ~= 321.537*encoded + -980.481 (r^2=0.9882)). Observed range 80 ... 22000 Hz. Offsets [152, 153, 154, 155] also change and are treated as checksum nibbles. Additional non-checksum offsets [92, 147] also change (possible edit counter, UI state, or mirrored field). All post-name payload bytes are nibble-sized (0x00-0x0F).",
+    "summary": "Parameter 'early rolloff' appears at SysEx offset(s) [126, 127]. using encoding 'nibble_hilo'. (table/index candidate (monotonic 100%); extreme<->adjacent slopes disagree (low dlabel/denc=40, high=400); least-squares hint only (not used for endpoint unit conversion): label ~= 321.537*encoded + -980.481 (r^2=0.9882)). Observed range 80 ... 22000 Hz. Offsets [152, 153, 154, 155] also change and are treated as checksum nibbles. Additional non-checksum offsets 147 (display low nibble), 92 (menu browse flag) also change (edit/UI state, not the parameter word). All post-name payload bytes are nibble-sized (0x00-0x0F).",
     "confidence": "medium",
     "match_rate": 1.0,
     "how_to_set": {

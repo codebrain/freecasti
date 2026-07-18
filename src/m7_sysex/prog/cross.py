@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from ..frame import CHECKSUM_NIBBLE_COUNT, DATA_OFFSET
+from .display import DISPLAY_OFFSETS
 
 
 def cross_analyze(
@@ -83,6 +84,8 @@ def cross_analyze(
             "dump_count": result.get("dump_count"),
         }
         for off in secondary:
+            if off in DISPLAY_OFFSETS:
+                continue
             secondary_hits[off] += 1
         for off in primary:
             primary_claims[off].append(

@@ -12,7 +12,7 @@ def test_preset_sheet_tables_link_names():
     md = render_sheet_markdown(result, today="2026-07-16")
     assert "sysex/prog/presets/" in md
     assert "[Halls](presets/halls/)" in md
-    assert "parameters/" in md
+    assert "bytes/" in md
     assert "## Hard discrepancies by parameter" in md
     assert "## Soft discrepancies by parameter" in md
     assert "| Encoded | Dump | Sheet |" in md
@@ -39,13 +39,14 @@ def test_inventory_tables_link_banks():
     assert "| Halls |" not in md
 
 
-def test_cross_seen_in_links_parameters():
+def test_cross_recurrent_secondary_empty_after_display_documented():
     from m7_sysex.analyze import analyze_tree
     from m7_sysex.cross import cross_analyze, render_cross_markdown
 
     cross = cross_analyze(analyze_tree(ROOT / "sysex"))
     md = render_cross_markdown(cross)
-    assert "[delay modulation](parameters/delay-modulation.md)" in md
+    assert cross["recurrent_secondary"] == []
+    assert "_None yet._" in md
 
 
 def test_encoding_source_formatting():
@@ -363,12 +364,12 @@ def test_all_provided_labels_update_parameter_pages():
         key = name.casefold()
         if key in system_folders:
             result = analyze_system_series_folder(root / "sysex" / "system" / name)
-            page_root = root / "specification" / "system" / "parameters"
+            page_root = root / "specification" / "system" / "bytes"
         else:
             result = analyze_parameter_folder(
                 root / "sysex" / "prog" / "parameters" / name
             )
-            page_root = root / "specification" / "prog" / "parameters"
+            page_root = root / "specification" / "prog" / "bytes"
         densified = _full_encoding_rows(
             result, result["best_encoding"], sysex_root=root / "sysex"
         )

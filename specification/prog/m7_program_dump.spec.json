@@ -6,7 +6,7 @@
   "message_length": 157,
   "file_extension": "syx",
   "disclaimer": "Reverse-engineered from labeled captures in this repository. Not an official Bricasti specification. Dump-derived encodings and offsets are authoritative for this corpus.",
-  "kaitai_doc_extra": "Sound-parameter value maps (affine scales / sparse tables) live alongside this layout in the companion .spec.json and in specification/prog/parameters/.",
+  "kaitai_doc_extra": "Sound-parameter value maps (affine scales / sparse tables) live alongside this layout in the companion .spec.json and in specification/prog/bytes/.",
   "frame": {
     "sysex_start": 240,
     "manufacturer_id": [
@@ -321,8 +321,8 @@
       "kind": "meta"
     },
     {
-      "id": "secondary_edit_ui",
-      "label": "secondary (edit/UI)",
+      "id": "edit_generation_counter",
+      "label": "edit/generation counter",
       "offsets": [
         92
       ],
@@ -330,8 +330,8 @@
       "end": 92,
       "size": 1,
       "status": "secondary",
-      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders) (moved in independent series: early rolloff)",
-      "encoding": null,
+      "role": "Menu-browse flag: `00` when no parameter menu is open or while editing a value; `02` while a parameter menu is highlighted (see `sysex/prog/menus/` captures) (moved in independent series: early rolloff, _corpus)",
+      "encoding": "raw_u8",
       "kind": "secondary"
     },
     {
@@ -379,8 +379,8 @@
       "kind": "meta"
     },
     {
-      "id": "edit_generation_counter",
-      "label": "edit/generation counter",
+      "id": "selected_menu_index",
+      "label": "selected menu index",
       "offsets": [
         98,
         99
@@ -389,7 +389,7 @@
       "end": 99,
       "size": 2,
       "status": "secondary",
-      "role": "Edit/generation counter (`nibble_hilo`) \u2014 constant within each parameter series, advances across capture sessions; not a sound parameter (same neighborhood as 146-147) (moved in independent series: _corpus)",
+      "role": "Selected front-panel menu index (`nibble_hilo`, 0\u201317) when a parameter menu is open; `00 00` when idle. Hardware menu order matches `PROGRAM_PARAMETERS` in catalog. Offset 92 disambiguates idle vs Reverb Time (both may show index 0) (moved in independent series: _corpus)",
       "encoding": "nibble_hilo",
       "kind": "secondary"
     },
@@ -5012,32 +5012,200 @@
       "kind": "meta"
     },
     {
-      "id": "secondary_edit_ui_146",
-      "label": "secondary (edit/UI)",
+      "id": "display",
+      "label": "display",
       "offsets": [
-        146
-      ],
-      "start": 146,
-      "end": 146,
-      "size": 1,
-      "status": "secondary",
-      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders) (moved in independent series: delay modulation, diffusion, early select, hf rt crossover, hf rt multiply, lf rt multiply, rolloff, vlf cut)",
-      "encoding": null,
-      "kind": "secondary"
-    },
-    {
-      "id": "secondary_edit_ui_147",
-      "label": "secondary (edit/UI)",
-      "offsets": [
+        146,
         147
       ],
-      "start": 147,
+      "start": 146,
       "end": 147,
-      "size": 1,
-      "status": "secondary",
-      "role": "Secondary field that also moved in this parameter's independent series (edit/UI/state - not cross-checked against other folders) (moved in independent series: delay level, delay modulation, delay time, density, diffusion, early rolloff, early select, early to reverb mix, hf rt crossover, hf rt multiply, lf rt crossover, lf rt multiply, modulation, predelay, reverb time, rolloff, size, vlf cut)",
-      "encoding": null,
-      "kind": "secondary"
+      "size": 2,
+      "status": "known",
+      "role": "Display (`nibble_hilo`): high nibble = page/row while browsing (`92=02`) or edit anchor while changing a value (`92=00`); low nibble = position within the menu page, or value-display position while editing. From `sysex/prog/menus/` captures",
+      "encoding": "nibble_hilo",
+      "kind": "table",
+      "value_map": {
+        "enum_id": "display_values",
+        "entries": [
+          {
+            "encoded": 28,
+            "name": "idle_no_menu",
+            "label": "idle (no menu)"
+          },
+          {
+            "encoded": 29,
+            "name": "browse_size_1",
+            "label": "browse: size (1)"
+          },
+          {
+            "encoded": 30,
+            "name": "browse_predelay_2",
+            "label": "browse: predelay (2)"
+          },
+          {
+            "encoded": 31,
+            "name": "browse_diffusion_3",
+            "label": "browse: diffusion (3)"
+          },
+          {
+            "encoded": 32,
+            "name": "browse_density_4",
+            "label": "browse: density (4)"
+          },
+          {
+            "encoded": 33,
+            "name": "browse_modulation_5",
+            "label": "browse: modulation (5)"
+          },
+          {
+            "encoded": 34,
+            "name": "edit_predelay_2___browse_rolloff_6",
+            "label": "edit: predelay (2) / browse: rolloff (6)"
+          },
+          {
+            "encoded": 35,
+            "name": "browse_hf_rt_multiply_7",
+            "label": "browse: hf rt multiply (7)"
+          },
+          {
+            "encoded": 36,
+            "name": "browse_hf_rt_crossover_8",
+            "label": "browse: hf rt crossover (8)"
+          },
+          {
+            "encoded": 37,
+            "name": "browse_lf_rt_multiply_9",
+            "label": "browse: lf rt multiply (9)"
+          },
+          {
+            "encoded": 38,
+            "name": "browse_lf_rt_crossover_10",
+            "label": "browse: lf rt crossover (10)"
+          },
+          {
+            "encoded": 39,
+            "name": "browse_vlf_cut_11",
+            "label": "browse: vlf cut (11)"
+          },
+          {
+            "encoded": 40,
+            "name": "browse_early_to_reverb_mix_12",
+            "label": "browse: early to reverb mix (12)"
+          },
+          {
+            "encoded": 41,
+            "name": "edit_diffusion_3___browse_early_rolloff_13",
+            "label": "edit: diffusion (3) / browse: early rolloff (13)"
+          },
+          {
+            "encoded": 42,
+            "name": "browse_early_select_14",
+            "label": "browse: early select (14)"
+          },
+          {
+            "encoded": 43,
+            "name": "browse_delay_level_15",
+            "label": "browse: delay level (15)"
+          },
+          {
+            "encoded": 44,
+            "name": "browse_delay_time_16",
+            "label": "browse: delay time (16)"
+          },
+          {
+            "encoded": 45,
+            "name": "browse_delay_modulation_17",
+            "label": "browse: delay modulation (17)"
+          },
+          {
+            "encoded": 46,
+            "name": "browse_reverb_time_0",
+            "label": "browse: reverb time (0)"
+          },
+          {
+            "encoded": 55,
+            "name": "edit_density_4",
+            "label": "edit: density (4)"
+          },
+          {
+            "encoded": 70,
+            "name": "edit_modulation_5",
+            "label": "edit: modulation (5)"
+          },
+          {
+            "encoded": 78,
+            "name": "edit_rolloff_6",
+            "label": "edit: rolloff (6)"
+          },
+          {
+            "encoded": 101,
+            "name": "edit_hf_rt_multiply_7",
+            "label": "edit: hf rt multiply (7)"
+          },
+          {
+            "encoded": 115,
+            "name": "edit_hf_rt_crossover_8",
+            "label": "edit: hf rt crossover (8)"
+          },
+          {
+            "encoded": 124,
+            "name": "edit_vlf_cut_11",
+            "label": "edit: vlf cut (11)"
+          },
+          {
+            "encoded": 131,
+            "name": "edit_early_to_reverb_mix_12",
+            "label": "edit: early to reverb mix (12)"
+          },
+          {
+            "encoded": 146,
+            "name": "edit_early_rolloff_13",
+            "label": "edit: early rolloff (13)"
+          },
+          {
+            "encoded": 156,
+            "name": "edit_early_select_14",
+            "label": "edit: early select (14)"
+          },
+          {
+            "encoded": 165,
+            "name": "edit_delay_level_15",
+            "label": "edit: delay level (15)"
+          },
+          {
+            "encoded": 176,
+            "name": "edit_delay_time_16",
+            "label": "edit: delay time (16)"
+          },
+          {
+            "encoded": 187,
+            "name": "edit_delay_modulation_17",
+            "label": "edit: delay modulation (17)"
+          },
+          {
+            "encoded": 191,
+            "name": "edit_lf_rt_multiply_9",
+            "label": "edit: lf rt multiply (9)"
+          },
+          {
+            "encoded": 196,
+            "name": "edit_reverb_time_0",
+            "label": "edit: reverb time (0)"
+          },
+          {
+            "encoded": 199,
+            "name": "edit_lf_rt_crossover_10",
+            "label": "edit: lf rt crossover (10)"
+          },
+          {
+            "encoded": 210,
+            "name": "edit_size_1",
+            "label": "edit: size (1)"
+          }
+        ]
+      },
+      "series_root": "sysex/prog/menus"
     },
     {
       "id": "reserved_always_0_148",
@@ -5092,7 +5260,7 @@
     }
   ],
   "sources": {
-    "byte_map_regions": 44,
+    "byte_map_regions": 43,
     "parameter_series": 18,
     "has_presets": true
   }

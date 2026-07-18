@@ -17,20 +17,22 @@ doc: |
   Fixed length 77 bytes. Checksum: CRC-16/ARC over offsets [8, 72), packed as
   u16_be_high_nibble_first at offsets [72, 73, 74, 75].
   
-  System-parameter encodings are documented in
-  specification/system/parameters/.
+  System-parameter encodings are documented in specification/system/bytes/.
 seq:
   - id: sysex_start
     doc: |
       SysEx start (F0)
+      Capture series: sysex/system/
     contents: [0xf0]
   - id: manufacturer_id
     doc: |
       Manufacturer ID (00 62 63)
+      Capture series: sysex/system/
     contents: [0x00, 0x62, 0x63]
   - id: system_dump_header
     doc: |
       System-dump header (70 08 02 00)
+      Capture series: sysex/system/
     contents: [0x70, 0x08, 0x02, 0x00]
   - id: wet_gain
     doc: |
@@ -58,6 +60,7 @@ seq:
   - id: fixed_prefix
     doc: |
       Fixed header/prefix block (constant in this corpus)
+      Capture series: sysex/system/
     type: u1
   - id: audio_routing
     doc: |
@@ -73,6 +76,7 @@ seq:
   - id: fixed_prefix_14
     doc: |
       Fixed header/prefix block (constant in this corpus)
+      Capture series: sysex/system/
     type: u1
   - id: audio_format
     doc: |
@@ -89,6 +93,7 @@ seq:
   - id: fixed_prefix_16
     doc: |
       Fixed header/prefix block (constant in this corpus)
+      Capture series: sysex/system/
     type: u1
   - id: output_level
     doc: |
@@ -103,10 +108,12 @@ seq:
   - id: reserved_always_0
     doc: |
       Reserved (always 0 in this corpus)
+      Capture series: sysex/system/
     type: u1
   - id: fixed_always_02_00
     doc: |
       Fixed field (always `02 00` in this corpus)
+      Capture series: sysex/system/
     size: 2
   - id: display_level
     doc: |
@@ -127,6 +134,7 @@ seq:
   - id: reserved_padding
     doc: |
       Reserved / padding (constant in this corpus)
+      Capture series: sysex/system/
     type: u1
   - id: midi_bank
     doc: |
@@ -140,16 +148,19 @@ seq:
   - id: reserved_padding_26
     doc: |
       Reserved / padding (constant in this corpus)
+      Capture series: sysex/system/
     size: 46
   - id: checksum
     doc: |
       Checksum: CRC-16/ARC over offsets 8-71, packed as four high-nibble-first
       SysEx bytes
+      Capture series: sysex/system/
       CRC-16/ARC over [8, checksum), four high-nibble-first bytes
     size: 4
   - id: sysex_end
     doc: |
       SysEx end (F7)
+      Capture series: sysex/system/
     contents: [0xf7]
 enums:
   wet_gain_values:

@@ -1,7 +1,7 @@
 # Encoding-map sources
 
-Every parameter page under [../specification/prog/parameters/](../specification/prog/parameters/)
-(PROG) or [../specification/system/parameters/](../specification/system/parameters/)
+Every field page under [../specification/prog/bytes/](../specification/prog/bytes/)
+(PROG) or [../specification/system/bytes/](../specification/system/bytes/)
 (SYSTEM) publishes a **full encoding map**: each SysEx-encoded step, the bytes at the
 parameter offsets, the human label the unit (or sheet) shows, and a **Source**
 cell.

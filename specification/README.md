@@ -14,7 +14,7 @@ _Last exported: 2026-07-18_
 
 ## Coverage
 
-- **PROG:** **152** known/frame/checksum · **5** secondary · **0** unknown (of 157 bytes)
+- **PROG:** **154** known/frame/checksum · **3** secondary · **0** unknown (of 157 bytes)
 - **SYSTEM:** **77** known/frame/checksum · **0** secondary · **0** unknown (of 77 bytes)
 
 ## Companion docs

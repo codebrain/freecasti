@@ -104,7 +104,7 @@ export function PresetSelector({
                 >
                   <LedDot active={selected} />
                   <span className="flex min-w-0 flex-1 items-baseline justify-between gap-2 font-medium font-led tracking-wide">
-                    <span className="min-w-0 break-words">{bank.name}</span>
+                    <span className="min-w-0 break-words">{bank.displayName}</span>
                     <span className="shrink-0 tabular-nums opacity-60">{bank.presets.length}</span>
                   </span>
                 </button>
@@ -118,7 +118,7 @@ export function PresetSelector({
             className={`${listPanelClass} preset-list-scroll overflow-y-auto overflow-x-hidden`}
             style={bankListHeight != null ? { height: bankListHeight } : undefined}
             role="listbox"
-            aria-label={`Programs in ${activeBank?.name ?? "bank"}`}
+            aria-label={`Programs in ${activeBank?.displayName ?? "bank"}`}
           >
             {programs.map((preset) => {
               const selected =

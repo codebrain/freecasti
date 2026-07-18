@@ -268,6 +268,7 @@ def build_byte_map(
         example=example,
         example_source=example_source,
     )
+    _normalize_display_region(annotations, sysex_root=sysex_root)
 
     regions = _collapse_regions(annotations)
     known = sum(1 for a in annotations if a["status"] in {"frame", "known", "checksum"})
@@ -426,11 +427,11 @@ def _series_parameter_names(byte_map: dict[str, Any]) -> set[str]:
     names: set[str] = set()
     for cell in byte_map.get("bytes") or []:
         for p in cell.get("parameters") or []:
-            if p not in {"_presets", "_corpus"}:
+            if p not in {"_presets", "_corpus", "_menus"}:
                 names.add(p)
     for region in byte_map.get("regions") or []:
         for p in region.get("parameters") or []:
-            if p not in {"_presets", "_corpus"}:
+            if p not in {"_presets", "_corpus", "_menus"}:
                 names.add(p)
     return names
 
@@ -441,13 +442,14 @@ _IDENTITY_FIELD_HREFS = {
     "program slot": "program-identity.md",
     "program name": "program-identity.md",
     "program name (ASCII)": "program-identity.md",
+    "display": "bytes/display.md",
 }
 
 
 def _parameter_page_href(name: str) -> str:
     from ..export import parameter_slug
 
-    return f"parameters/{parameter_slug(name)}.md"
+    return f"bytes/{parameter_slug(name)}.md"
 
 
 def _link_parameter_name(name: str, *, backticks: bool = False) -> str:
@@ -470,6 +472,8 @@ def _link_field_label(label: str, series_params: set[str]) -> str:
 def _link_source_cell(source: str) -> str:
     if source == "_presets":
         return "[_presets](program-identity.md)"
+    if source == "_menus":
+        return "[_menus](bytes/display.md)"
     if source == "preset×sheet":
         return "[preset×sheet](preset-sheet.md)"
     return source
@@ -637,7 +641,7 @@ def render_byte_map_overview_markdown(byte_map: dict[str, Any]) -> str:
         "([Kaitai Struct](https://kaitai.io/)) · "
         "[m7_program_dump.spec.json](m7_program_dump.spec.json).",
         "",
-        "Reserved/meta roles (padding, family flag, edit counter, engine/bank class) come "
+        "Reserved/meta roles (padding, family flag, display @ 146–147, engine/bank class) come "
         "from a corpus scan of all `.syx` dumps — medium confidence.",
         "",
         "### Layout",
@@ -710,6 +714,9 @@ def render_byte_map_overview_markdown(byte_map: dict[str, Any]) -> str:
                 "",
                 f"Edit/UI state (not a sound parameter): {offs}",
                 "",
+                "See [ui-state.md](ui-state.md) and "
+                "[bytes/display.md](bytes/display.md) for menu captures.",
+                "",
             ]
         )
 
@@ -728,7 +735,7 @@ def _overview_label(
     params = [
         p
         for p in (region.get("parameters") or [])
-        if p not in {"_presets", "_corpus"}
+        if p not in {"_presets", "_corpus", "_menus"}
     ]
     encoding = _region_encoding(region, byte_map)
     start = region.get("start")
@@ -751,6 +758,8 @@ def _overview_label(
     if status == "checksum":
         return "checksum (CRC-16/ARC)", encoding
     if status == "secondary":
+        if "display" in role.lower():
+            return "display", encoding or "nibble_hilo"
         if "edit/generation" in role.lower() or (
             "_corpus" in params_all and "edit" in role.lower()
         ):
@@ -763,6 +772,16 @@ def _overview_label(
     if params:
         return params[0], encoding
     params_all = region.get("parameters") or []
+    if "_menus" in params_all:
+        corpus_label = overview_label_for_offsets(
+            list(range(int(start), int(end) + 1))
+            if start is not None and end is not None
+            else []
+        )
+        if corpus_label:
+            return corpus_label, encoding
+        if "display" in role.lower():
+            return "display", encoding or "nibble_hilo"
     if "_corpus" in params_all:
         corpus_label = overview_label_for_offsets(
             list(range(int(start), int(end) + 1))
@@ -846,6 +865,8 @@ def _overview_parameter_rows(byte_map: dict[str, Any]) -> list[dict[str, str]]:
         source = "series"
         if "preset sheet" in role:
             source = "preset×sheet"
+        elif "_menus" in (region.get("parameters") or []) or label == "display":
+            source = "_menus"
         elif "_corpus" in (region.get("parameters") or []) or label in {
             "algorithm/family flag",
             "family-flag mirror",
@@ -871,6 +892,46 @@ def _overview_parameter_rows(byte_map: dict[str, Any]) -> list[dict[str, str]]:
             }
         )
     return rows
+
+
+def _normalize_display_region(
+    annotations: list[dict[str, Any]],
+    *,
+    sysex_root: Path | None = None,
+) -> None:
+    """Unify offsets 146-147 as one known `nibble_hilo` display field."""
+    if len(annotations) <= 147:
+        return
+    role = (
+        "Display (`nibble_hilo`): high nibble = page/row while browsing "
+        "(`92=02`) or edit anchor while changing a value (`92=00`); low "
+        "nibble = position within the menu page, or value-display position "
+        "while editing. From `sysex/prog/menus/` captures"
+    )
+    example_bytes: bytes | None = None
+    example_source: str | None = None
+    if sysex_root is not None:
+        from ..paths import prog_menus_root
+
+        idle_path = prog_menus_root(sysex_root) / "no menu.syx"
+        if idle_path.is_file():
+            try:
+                from ..frame import parse_sysex
+
+                example_bytes = parse_sysex(idle_path.read_bytes()).raw
+                example_source = str(idle_path)
+            except ValueError:
+                pass
+    for off in (146, 147):
+        cell = annotations[off]
+        cell["status"] = "known"
+        cell["role"] = role
+        cell["encoding"] = "nibble_hilo"
+        cell["confidence"] = "high"
+        cell["parameters"] = ["_menus"]
+        if example_bytes is not None and example_source and off < len(example_bytes):
+            cell["hex"] = f"{example_bytes[off]:02X}"
+            cell["hex_source"] = example_source
 
 
 def _collapse_regions(annotations: list[dict[str, Any]]) -> list[dict[str, Any]]:

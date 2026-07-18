@@ -8,6 +8,7 @@ import shutil
 from pathlib import Path
 
 from m7_sysex.prog.algorithms import PROG_ALGORITHM_CONSTRAINTS
+from m7_sysex.prog.menus import hardware_menu_order
 
 _RUNTIME_FIELD_KEYS = (
     "id",
@@ -24,7 +25,7 @@ _IDENTITY_FIELD_IDS = frozenset(
     {"program_name", "bank_index", "program_slot", "bank_index_mirror"}
 )
 
-# Must match web-ui/src/spec/param-order.ts
+# Preset catalog column order (differs from hardware menu order).
 PROG_PARAM_ORDER = (
     "reverb time",
     "size",
@@ -151,20 +152,32 @@ def _load_serialize_skeletons(spec_root: Path) -> dict[str, str]:
     return {"p": prog["b64"], "s": system["b64"]}
 
 
+def _load_prog_ui_state(repo_root: Path) -> dict | None:
+    path = repo_root / "sysex" / "prog" / "menus" / "prog_ui_state.json"
+    if not path.is_file():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
 def _runtime_bundle(
     prog_spec: dict,
     system_spec: dict,
     presets_full: dict,
     *,
     serialize_skeletons: dict[str, str],
+    prog_ui: dict | None = None,
 ) -> dict:
     """Single browser runtime payload: compact prog/system specs + preset catalog."""
-    return {
+    bundle = {
         "prog": _compact_runtime_spec(prog_spec),
         "system": _compact_runtime_spec(system_spec),
         "presets": _compact_preset_catalog(presets_full),
         "tpl": serialize_skeletons,
     }
+    if prog_ui is not None:
+        bundle["prog_ui"] = prog_ui
+        bundle["menu_order"] = hardware_menu_order()
+    return bundle
 
 
 _LEGACY_PUBLIC_DIRS = ("spec", "presets", "templates")
@@ -200,6 +213,7 @@ def sync_web_ui_assets(repo_root: Path) -> list[Path]:
     presets_full = json.loads(
         (spec_root / "prog" / "presets" / "presets.json").read_text(encoding="utf-8")
     )
+    prog_ui = _load_prog_ui_state(repo_root)
 
     written: list[Path] = []
 
@@ -215,6 +229,7 @@ def sync_web_ui_assets(repo_root: Path) -> list[Path]:
             system_spec,
             presets_full,
             serialize_skeletons=serialize_skeletons,
+            prog_ui=prog_ui,
         ),
     )
 

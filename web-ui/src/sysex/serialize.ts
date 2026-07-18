@@ -1,4 +1,6 @@
 import type { SpecField } from "@/spec/types";
+import type { ProgUiRuntime } from "@/prog/uiState";
+import { applyProgUiBytes, resolveProgUi } from "@/prog/uiState";
 import { encodeAtOffsets } from "./encodings";
 import {
   NAME_LENGTH,
@@ -9,9 +11,12 @@ import {
   writeSystemDumpChecksum,
 } from "./frame";
 
+import type { ProgUiState } from "@/prog/uiState";
+
 export interface ProgSerializeState {
   programName: string;
   encoded: Record<string, number>;
+  ui?: ProgUiState;
 }
 
 export type SysSerializeState = Record<string, number>;
@@ -43,6 +48,7 @@ export function buildProgramDump(
   state: ProgSerializeState,
   fields: SpecField[],
   template: Uint8Array,
+  progUi?: ProgUiRuntime | null,
 ): Uint8Array {
   if (template.length !== PROGRAM_MESSAGE_LENGTH) {
     throw new Error(`program template length ${template.length} != ${PROGRAM_MESSAGE_LENGTH}`);
@@ -64,6 +70,10 @@ export function buildProgramDump(
     if (mirrorField) {
       patchField(buf, mirrorField, bank & 0x0f);
     }
+  }
+
+  if (progUi) {
+    applyProgUiBytes(buf, resolveProgUi(state), progUi);
   }
 
   writeProgramDumpChecksum(buf);

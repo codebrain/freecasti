@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 
 from m7_sysex.corpus_layout import is_prog_corpus_dump
+from m7_sysex.paths import prog_menus_root
 from m7_sysex.frame import (
     SYSTEM_MESSAGE_LENGTH,
     verify_program_dump_checksum,
@@ -25,6 +26,7 @@ PROG_FIELDS = load_spec_fields(ROOT / "specification" / "prog" / "m7_program_dum
 SYSTEM_FIELDS = load_spec_fields(ROOT / "specification" / "system" / "m7_system_dump.spec.json")
 
 PROG_DUMPS = sorted(p for p in SYSEX.rglob("*.syx") if is_prog_corpus_dump(p, SYSEX))
+PROG_MENU_DUMPS = sorted(prog_menus_root(SYSEX).glob("*.syx"))
 SYSTEM_DUMPS = sorted(
     p for p in (SYSEX / "system").rglob("*.syx") if "_system" not in p.parts
 )
@@ -75,6 +77,19 @@ def test_write_program_dump_checksum_matches_serializer(kaitai_prog_parser):
     buf[152:156] = b"\x00\x00\x00\x00"
     write_program_dump_checksum(buf)
     assert bytes(buf) == serialize_parsed_dump(parsed, PROG_FIELDS, system=False)
+
+
+@pytest.mark.slow
+@pytest.mark.parametrize(
+    "path", PROG_MENU_DUMPS, ids=lambda p: f"prog/menus/{p.name}"
+)
+def test_prog_menu_serialize_roundtrip(path: Path, kaitai_prog_parser):
+    raw = path.read_bytes()
+    parsed = kaitai_prog_parser.from_bytes(raw)
+    encoded = serialize_parsed_dump(parsed, PROG_FIELDS, system=False)
+    assert encoded == raw
+    reparsed = kaitai_prog_parser.from_bytes(encoded)
+    assert serialize_parsed_dump(reparsed, PROG_FIELDS, system=False) == encoded
 
 
 @pytest.mark.slow

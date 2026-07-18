@@ -1,4 +1,4 @@
-[Overview](../../README.md) | [Parameters](../../parameters/README.md) | **Program identity** | [Preset inventory](../../preset-inventory.md) | [Preset sheet](../../preset-sheet.md) | [Byte map](../../byte-map-overview.md) | [Cross-series](../../cross.md) | [System dumps](../../../system/README.md)
+[Overview](../../README.md) | [Bytes](../../bytes/README.md) | **Program identity** | [Preset inventory](../../preset-inventory.md) | [Preset sheet](../../preset-sheet.md) | [Byte map](../../byte-map-overview.md) | [Cross-series](../../cross.md) | [System dumps](../../../system/README.md)
 
 
 # Open Space
@@ -25,24 +25,24 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 
 | Parameter | Dump | Encoded | Sheet | Status |
 |-----------|------|--------:|-------|--------|
-| [reverb time](../../parameters/reverb-time.md) | 2.1 s | 38 | — | no sheet row |
-| [size](../../parameters/size.md) | 27 | 27 | — | no sheet row |
-| [predelay](../../parameters/predelay.md) | 180 ms | 45 | — | no sheet row |
-| [diffusion](../../parameters/diffusion.md) | 1 | 1 | — | no sheet row |
-| [density](../../parameters/density.md) | 0 | 0 | — | no sheet row |
-| [modulation](../../parameters/modulation.md) | low | 1 | — | no sheet row |
-| [rolloff](../../parameters/rolloff.md) | 1800 Hz | 18 | — | no sheet row |
-| [hf rt multiply](../../parameters/hf-rt-multiply.md) | 0.7 | 10 | — | no sheet row |
-| [hf rt crossover](../../parameters/hf-rt-crossover.md) | 2000 Hz | 16 | — | no sheet row |
-| [lf rt multiply](../../parameters/lf-rt-multiply.md) | 1 | 16 | — | no sheet row |
-| [lf rt crossover](../../parameters/lf-rt-crossover.md) | 800 Hz | 13 | — | no sheet row |
-| [vlf cut](../../parameters/vlf-cut.md) | -14 dB | 6 | — | no sheet row |
-| [early to reverb mix](../../parameters/early-to-reverb-mix.md) | 20/15 | 25 | — | no sheet row |
-| [early rolloff](../../parameters/early-rolloff.md) | 1800 Hz | 18 | — | no sheet row |
-| [early select](../../parameters/early-select.md) | 24 | 24 | — | no sheet row |
-| [delay level](../../parameters/delay-level.md) | -14 dB | 7 | — | not on sheet |
-| [delay time](../../parameters/delay-time.md) | 500 ms | 50 | — | not on sheet |
-| [delay modulation](../../parameters/delay-modulation.md) | off | 0 | — | not on sheet |
+| [reverb time](../../bytes/reverb-time.md) | 2.1 s | 38 | — | no sheet row |
+| [size](../../bytes/size.md) | 27 | 27 | — | no sheet row |
+| [predelay](../../bytes/predelay.md) | 180 ms | 45 | — | no sheet row |
+| [diffusion](../../bytes/diffusion.md) | 1 | 1 | — | no sheet row |
+| [density](../../bytes/density.md) | 0 | 0 | — | no sheet row |
+| [modulation](../../bytes/modulation.md) | low | 1 | — | no sheet row |
+| [rolloff](../../bytes/rolloff.md) | 1800 Hz | 18 | — | no sheet row |
+| [hf rt multiply](../../bytes/hf-rt-multiply.md) | 0.7 | 10 | — | no sheet row |
+| [hf rt crossover](../../bytes/hf-rt-crossover.md) | 2000 Hz | 16 | — | no sheet row |
+| [lf rt multiply](../../bytes/lf-rt-multiply.md) | 1 | 16 | — | no sheet row |
+| [lf rt crossover](../../bytes/lf-rt-crossover.md) | 800 Hz | 13 | — | no sheet row |
+| [vlf cut](../../bytes/vlf-cut.md) | -14 dB | 6 | — | no sheet row |
+| [early to reverb mix](../../bytes/early-to-reverb-mix.md) | 20/15 | 25 | — | no sheet row |
+| [early rolloff](../../bytes/early-rolloff.md) | 1800 Hz | 18 | — | no sheet row |
+| [early select](../../bytes/early-select.md) | 24 | 24 | — | no sheet row |
+| [delay level](../../bytes/delay-level.md) | -14 dB | 7 | — | not on sheet |
+| [delay time](../../bytes/delay-time.md) | 500 ms | 50 | — | not on sheet |
+| [delay modulation](../../bytes/delay-modulation.md) | off | 0 | — | not on sheet |
 
 ## Other presets in this bank
 

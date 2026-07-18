@@ -47,6 +47,8 @@ def kaitai_fresh_prog_export(kaitai_cache: KaitaiCompileCache, tmp_path_factory)
     from m7_sysex.decode_preset import enrich_names_with_parameters
     from m7_sysex.kaitai_spec import write_program_dump_spec
     from m7_sysex.names import analyze_names_folder, find_names_folder
+    from m7_sysex.paths import prog_menus_root
+    from m7_sysex.prog.menus import analyze_menus_folder
 
     sysex = ROOT / "sysex"
     results = analyze_tree(sysex)
@@ -55,8 +57,11 @@ def kaitai_fresh_prog_export(kaitai_cache: KaitaiCompileCache, tmp_path_factory)
         results,
     )
     byte_map = build_byte_map(results, names=names, sysex_root=sysex)
+    menus_analysis = analyze_menus_folder(prog_menus_root(sysex), sysex)
     out = tmp_path_factory.mktemp("kaitai_fresh_prog")
-    write_program_dump_spec(out, byte_map, results, names=names)
+    write_program_dump_spec(
+        out, byte_map, results, names=names, menus_analysis=menus_analysis
+    )
     return out
 
 

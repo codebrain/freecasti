@@ -5,6 +5,8 @@ import {
   stepControlEncoded,
 } from "@/spec/stepControl";
 import { stepControlTempoEncoded } from "@/tempo/tempo";
+import { isProgBrowseUiForParameter } from "@/prog/applyFieldChange";
+import type { ProgUiState } from "@/prog/uiState";
 import type { ActiveTab } from "./useSysexOutput";
 
 export interface ControlKeyDownInput {
@@ -13,6 +15,7 @@ export interface ControlKeyDownInput {
   selectedFieldId: string | null;
   activeTab: ActiveTab;
   progEncoded: Record<string, number> | null;
+  progUiState?: ProgUiState | null;
   sysEncoded: Record<string, number> | null;
   progControls: Map<string, ControlDef>;
   sysControls: Map<string, ControlDef>;
@@ -35,6 +38,7 @@ export function resolveControlKeyDown(
     selectedFieldId,
     activeTab,
     progEncoded,
+    progUiState = null,
     sysEncoded,
     progControls,
     sysControls,
@@ -76,7 +80,23 @@ export function resolveControlKeyDown(
   if (next === null) {
     next = stepControlEncoded(control, current, delta);
   }
-  if (next === null || next === current) return { action: "none" };
+  if (next === null) return { action: "none" };
+
+  if (
+    activeTab === "prog" &&
+    next === current &&
+    control.parameter &&
+    isProgBrowseUiForParameter(progUiState ?? undefined, control.parameter)
+  ) {
+    return {
+      action: "step",
+      family: "prog",
+      fieldId: selectedFieldId,
+      encoded: next,
+    };
+  }
+
+  if (next === current) return { action: "none" };
 
   return {
     action: "step",

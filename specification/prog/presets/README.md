@@ -1,4 +1,4 @@
-[Overview](../README.md) | [Parameters](../parameters/README.md) | **Program identity** | [Preset inventory](../preset-inventory.md) | [Preset sheet](../preset-sheet.md) | [Byte map](../byte-map-overview.md) | [Cross-series](../cross.md) | [System dumps](../../system/README.md)
+[Overview](../README.md) | [Bytes](../bytes/README.md) | **Program identity** | [Preset inventory](../preset-inventory.md) | [Preset sheet](../preset-sheet.md) | [Byte map](../byte-map-overview.md) | [Cross-series](../cross.md) | [System dumps](../../system/README.md)
 
 
 # Presets

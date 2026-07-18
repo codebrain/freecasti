@@ -304,6 +304,41 @@ def full_encoding_rows(
     return [by_enc[e] for e in sorted(by_enc)]
 
 
+def dump_encoded_value(dump: dict[str, Any], best: dict[str, Any]) -> int | None:
+    """Decoded integer for one capture dump (for table sort keys)."""
+    decoded = dump.get("decoded_parameter") or {}
+    if "encoded_value" in decoded:
+        return int(decoded["encoded_value"])
+    changing = dump.get("changing_bytes") or {}
+    offsets = list(best.get("offsets") or [])
+    if not offsets:
+        return None
+    try:
+        raw = bytes(int(changing[str(off)], 16) for off in offsets)
+    except (KeyError, TypeError, ValueError):
+        return None
+    from .encodings import decode_at_offsets
+
+    try:
+        return decode_at_offsets(raw, offsets, best.get("encoding", "raw_u8")).value
+    except (ValueError, KeyError):
+        return None
+
+
+def sorted_dumps(
+    result: dict[str, Any], best: dict[str, Any]
+) -> list[dict[str, Any]]:
+    """Capture dumps ordered by decoded encoded value (e.g. `nibble_hilo`)."""
+
+    def sort_key(dump: dict[str, Any]) -> tuple:
+        enc = dump_encoded_value(dump, best)
+        if enc is None:
+            return (1, str(dump.get("file") or ""))
+        return (0, enc, str(dump.get("file") or ""))
+
+    return sorted(result.get("dumps") or [], key=sort_key)
+
+
 def format_row_display_label(result: dict[str, Any], row: dict[str, Any]) -> str:
     """Human label for one densified encoding row (balance A/B, units)."""
     from .labels import format_value_with_unit

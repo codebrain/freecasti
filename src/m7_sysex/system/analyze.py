@@ -272,7 +272,7 @@ def analyze_system_tree(sysex_root: Path) -> list[dict[str, Any]]:
 
     results = []
     for child in sorted(p for p in root.iterdir() if p.is_dir()):
-        if child.name.startswith("_"):
+        if child.name.startswith("_") or child.name == "menus":
             continue
         syx = list(child.glob("*.syx")) + list(child.glob("*.SYX"))
         if len(syx) < 2:

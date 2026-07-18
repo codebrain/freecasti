@@ -29,6 +29,7 @@ from .markdown_links import MarkdownLinksError, check_markdown_links
 from .paths import (
     prog_byte_map_path,
     prog_cross_analysis_path,
+    prog_menus_root,
     resolve_sysex_root,
     specification_root,
     system_byte_map_path,
@@ -446,6 +447,22 @@ def _cmd_export(args: argparse.Namespace) -> int:
     except ValueError as exc:
         print(f"warning: cross analysis skipped: {exc}", file=sys.stderr)
 
+    menus_analysis = None
+    menus_root = prog_menus_root(sysex)
+    if menus_root.is_dir() and any(menus_root.glob("*.syx")):
+        try:
+            from .prog.menus import analyze_menus_folder, write_menus_analysis
+
+            menus_analysis = analyze_menus_folder(menus_root, sysex)
+            if not args.no_write_json:
+                written.extend(write_menus_analysis(menus_analysis, menus_root))
+            print(
+                f"[menus] {menus_analysis['capture_count']} UI captures, "
+                f"idle={menus_analysis['idle_stem']!r}"
+            )
+        except ValueError as exc:
+            print(f"warning: menu analysis skipped: {exc}", file=sys.stderr)
+
     sheet_compare = None
     if names is not None:
         try:
@@ -467,6 +484,7 @@ def _cmd_export(args: argparse.Namespace) -> int:
         cross=cross,
         names=names,
         sheet_compare=sheet_compare,
+        menus_analysis=menus_analysis,
     )
     system_doc = export_system_format(
         system_results, out, byte_map=system_byte_map
@@ -483,8 +501,13 @@ def _cmd_export(args: argparse.Namespace) -> int:
     print()
     for path_written in written:
         print(f"overwrote {path_written}")
+    from .export.nav import PROG_BYTES_DIR, SYSTEM_BYTES_DIR
+
     print(f"overwrote {doc}")
-    print(f"overwrote {prog_out / 'parameters'} ({len(results)} parameter pages)")
+    print(
+        f"overwrote {prog_out / PROG_BYTES_DIR} "
+        f"({len(results)} parameter pages)"
+    )
     if (prog_out / "program-identity.md").is_file():
         print(f"overwrote {prog_out / 'program-identity.md'}")
     if (prog_out / "preset-sheet.md").is_file():
@@ -501,6 +524,8 @@ def _cmd_export(args: argparse.Namespace) -> int:
         )
     if (prog_out / "byte-map-overview.md").is_file():
         print(f"overwrote {prog_out / 'byte-map-overview.md'}")
+    if (prog_out / "ui-state.md").is_file():
+        print(f"overwrote {prog_out / 'ui-state.md'}")
     if (prog_out / "byte-map.md").is_file():
         print(f"overwrote {prog_out / 'byte-map.md'}")
     if (prog_out / "m7_program_dump.ksy").is_file():
@@ -513,7 +538,7 @@ def _cmd_export(args: argparse.Namespace) -> int:
         print(f"overwrote {prog_out / 'preset-inventory.md'}")
     if system_doc is not None:
         print(f"overwrote {system_doc}")
-        sys_params = out / "system" / "parameters"
+        sys_params = out / "system" / SYSTEM_BYTES_DIR
         if sys_params.is_dir():
             print(
                 f"overwrote {sys_params} "
@@ -522,6 +547,9 @@ def _cmd_export(args: argparse.Namespace) -> int:
         sys_byte_map = out / "system" / "byte-map.md"
         if sys_byte_map.is_file():
             print(f"overwrote {sys_byte_map}")
+        sys_byte_overview = out / "system" / "byte-map-overview.md"
+        if sys_byte_overview.is_file():
+            print(f"overwrote {sys_byte_overview}")
         if (out / "system" / "m7_system_dump.ksy").is_file():
             print(f"overwrote {out / 'system' / 'm7_system_dump.ksy'}")
     if not args.no_web_ui:
@@ -637,8 +665,8 @@ def _cmd_cross(args: argparse.Namespace) -> int:
         )
         print(f"overwrote {doc}")
         print(
-            f"overwrote {prog_export_dir(out) / 'parameters'} "
-            f"({len(results)} parameter pages)"
+            f"overwrote {prog_export_dir(out) / 'bytes'} "
+            f"({len(results)} field pages)"
         )
         return _finish_doc_generation(sysex)
 

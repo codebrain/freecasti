@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildParamChange, diffByteOffsets, labelForEncoded } from "@/debug/change";
+import { buildParamChange, diffByteOffsets, labelForEncoded, rowTouchesChangedOffsets } from "@/debug/change";
 import { buildSystemControls } from "@/spec/controls";
 import { loadRuntimeFixture } from "@/test/runtimeFixtures";
 
@@ -8,6 +8,14 @@ describe("diffByteOffsets", () => {
     const prev = new Uint8Array([0xf0, 0x00, 0x62, 0x63]);
     const next = new Uint8Array([0xf0, 0x01, 0x62, 0x63]);
     expect(diffByteOffsets(prev, next)).toEqual([1]);
+  });
+});
+
+describe("rowTouchesChangedOffsets", () => {
+  it("matches rows that overlap changed offsets", () => {
+    const row = { offsets: [10, 11, 12] };
+    expect(rowTouchesChangedOffsets(row, [11])).toBe(true);
+    expect(rowTouchesChangedOffsets(row, [20])).toBe(false);
   });
 });
 

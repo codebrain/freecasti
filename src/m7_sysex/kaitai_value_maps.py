@@ -39,6 +39,29 @@ def attach_parameter_value_maps(
             field["value_map"] = build_bank_index_value_map()
 
 
+def attach_display_value_map(
+    fields: list[dict[str, Any]],
+    menus_analysis: dict[str, Any] | None,
+) -> None:
+    """Attach menu-name enum for offsets 146–147 when menu captures exist."""
+    if not menus_analysis:
+        return
+    prog_ui = menus_analysis.get("prog_ui")
+    if not prog_ui:
+        return
+    from .prog.display import build_display_value_map
+
+    value_map = build_display_value_map(prog_ui)
+    for field in fields:
+        if field.get("id") != "display":
+            continue
+        field["value_map"] = value_map
+        field["kind"] = "table"
+        field["series_root"] = "sysex/prog/menus"
+        field.pop("parameter", None)
+        break
+
+
 def build_value_map(
     field_id: str,
     rows: list[dict[str, Any]],

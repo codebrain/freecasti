@@ -1,0 +1,595 @@
+{
+  "kind": "prog_menu_navigation",
+  "folder": "C:\\m7\\sysex\\prog\\menus",
+  "capture_count": 19,
+  "idle_stem": "no menu",
+  "menu_order": [
+    "reverb time",
+    "size",
+    "predelay",
+    "diffusion",
+    "density",
+    "modulation",
+    "rolloff",
+    "hf rt multiply",
+    "hf rt crossover",
+    "lf rt multiply",
+    "lf rt crossover",
+    "vlf cut",
+    "early to reverb mix",
+    "early rolloff",
+    "early select",
+    "delay level",
+    "delay time",
+    "delay modulation"
+  ],
+  "captures": [
+    {
+      "file": "delay level.syx",
+      "stem": "delay level",
+      "parameter": "delay level",
+      "menu_index": 15,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 15,
+        "146": 2,
+        "147": 11
+      },
+      "menu_index_encoded": 15
+    },
+    {
+      "file": "delay modulation.syx",
+      "stem": "delay modulation",
+      "parameter": "delay modulation",
+      "menu_index": 17,
+      "ui": {
+        "92": 2,
+        "98": 1,
+        "99": 1,
+        "146": 2,
+        "147": 13
+      },
+      "menu_index_encoded": 17
+    },
+    {
+      "file": "delay time.syx",
+      "stem": "delay time",
+      "parameter": "delay time",
+      "menu_index": 16,
+      "ui": {
+        "92": 2,
+        "98": 1,
+        "99": 0,
+        "146": 2,
+        "147": 12
+      },
+      "menu_index_encoded": 16
+    },
+    {
+      "file": "density.syx",
+      "stem": "density",
+      "parameter": "density",
+      "menu_index": 4,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 4,
+        "146": 2,
+        "147": 0
+      },
+      "menu_index_encoded": 4
+    },
+    {
+      "file": "diffusion.syx",
+      "stem": "diffusion",
+      "parameter": "diffusion",
+      "menu_index": 3,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 3,
+        "146": 1,
+        "147": 15
+      },
+      "menu_index_encoded": 3
+    },
+    {
+      "file": "early rolloff.syx",
+      "stem": "early rolloff",
+      "parameter": "early rolloff",
+      "menu_index": 13,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 13,
+        "146": 2,
+        "147": 9
+      },
+      "menu_index_encoded": 13
+    },
+    {
+      "file": "early select.syx",
+      "stem": "early select",
+      "parameter": "early select",
+      "menu_index": 14,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 14,
+        "146": 2,
+        "147": 10
+      },
+      "menu_index_encoded": 14
+    },
+    {
+      "file": "early to reverb mix.syx",
+      "stem": "early to reverb mix",
+      "parameter": "early to reverb mix",
+      "menu_index": 12,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 12,
+        "146": 2,
+        "147": 8
+      },
+      "menu_index_encoded": 12
+    },
+    {
+      "file": "hf rt crossover.syx",
+      "stem": "hf rt crossover",
+      "parameter": "hf rt crossover",
+      "menu_index": 8,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 8,
+        "146": 2,
+        "147": 4
+      },
+      "menu_index_encoded": 8
+    },
+    {
+      "file": "hf rt multiply.syx",
+      "stem": "hf rt multiply",
+      "parameter": "hf rt multiply",
+      "menu_index": 7,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 7,
+        "146": 2,
+        "147": 3
+      },
+      "menu_index_encoded": 7
+    },
+    {
+      "file": "lf rt crossover.syx",
+      "stem": "lf rt crossover",
+      "parameter": "lf rt crossover",
+      "menu_index": 10,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 10,
+        "146": 2,
+        "147": 6
+      },
+      "menu_index_encoded": 10
+    },
+    {
+      "file": "lf rt multiply.syx",
+      "stem": "lf rt multiply",
+      "parameter": "lf rt multiply",
+      "menu_index": 9,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 9,
+        "146": 2,
+        "147": 5
+      },
+      "menu_index_encoded": 9
+    },
+    {
+      "file": "modulation.syx",
+      "stem": "modulation",
+      "parameter": "modulation",
+      "menu_index": 5,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 5,
+        "146": 2,
+        "147": 1
+      },
+      "menu_index_encoded": 5
+    },
+    {
+      "file": "no menu.syx",
+      "stem": "no menu",
+      "parameter": null,
+      "menu_index": null,
+      "ui": {
+        "92": 0,
+        "98": 0,
+        "99": 0,
+        "146": 1,
+        "147": 12
+      },
+      "menu_index_encoded": 0
+    },
+    {
+      "file": "predelay.syx",
+      "stem": "predelay",
+      "parameter": "predelay",
+      "menu_index": 2,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 2,
+        "146": 1,
+        "147": 14
+      },
+      "menu_index_encoded": 2
+    },
+    {
+      "file": "reverb time.syx",
+      "stem": "reverb time",
+      "parameter": "reverb time",
+      "menu_index": 0,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 0,
+        "146": 2,
+        "147": 14
+      },
+      "menu_index_encoded": 0
+    },
+    {
+      "file": "rolloff.syx",
+      "stem": "rolloff",
+      "parameter": "rolloff",
+      "menu_index": 6,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 6,
+        "146": 2,
+        "147": 2
+      },
+      "menu_index_encoded": 6
+    },
+    {
+      "file": "size.syx",
+      "stem": "size",
+      "parameter": "size",
+      "menu_index": 1,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 1,
+        "146": 1,
+        "147": 13
+      },
+      "menu_index_encoded": 1
+    },
+    {
+      "file": "vlf cut.syx",
+      "stem": "vlf cut",
+      "parameter": "vlf cut",
+      "menu_index": 11,
+      "ui": {
+        "92": 2,
+        "98": 0,
+        "99": 11,
+        "146": 2,
+        "147": 7
+      },
+      "menu_index_encoded": 11
+    }
+  ],
+  "prog_ui": {
+    "idle": {
+      "92": 0,
+      "98": 0,
+      "99": 0,
+      "146": 1,
+      "147": 12
+    },
+    "menu_order": [
+      "reverb time",
+      "size",
+      "predelay",
+      "diffusion",
+      "density",
+      "modulation",
+      "rolloff",
+      "hf rt multiply",
+      "hf rt crossover",
+      "lf rt multiply",
+      "lf rt crossover",
+      "vlf cut",
+      "early to reverb mix",
+      "early rolloff",
+      "early select",
+      "delay level",
+      "delay time",
+      "delay modulation"
+    ],
+    "by_parameter": {
+      "reverb time": {
+        "index": 0,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 0,
+          "146": 2,
+          "147": 14
+        },
+        "edit": {
+          "92": 0,
+          "146": 12,
+          "147": 4
+        }
+      },
+      "size": {
+        "index": 1,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 1,
+          "146": 1,
+          "147": 13
+        },
+        "edit": {
+          "92": 0,
+          "146": 13,
+          "147": 2
+        }
+      },
+      "predelay": {
+        "index": 2,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 2,
+          "146": 1,
+          "147": 14
+        },
+        "edit": {
+          "92": 0,
+          "146": 2,
+          "147": 2
+        }
+      },
+      "diffusion": {
+        "index": 3,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 3,
+          "146": 1,
+          "147": 15
+        },
+        "edit": {
+          "92": 0,
+          "146": 2,
+          "147": 9
+        }
+      },
+      "density": {
+        "index": 4,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 4,
+          "146": 2,
+          "147": 0
+        },
+        "edit": {
+          "92": 0,
+          "146": 3,
+          "147": 7
+        }
+      },
+      "modulation": {
+        "index": 5,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 5,
+          "146": 2,
+          "147": 1
+        },
+        "edit": {
+          "92": 0,
+          "146": 4,
+          "147": 6
+        }
+      },
+      "rolloff": {
+        "index": 6,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 6,
+          "146": 2,
+          "147": 2
+        },
+        "edit": {
+          "92": 0,
+          "146": 4,
+          "147": 14
+        }
+      },
+      "hf rt multiply": {
+        "index": 7,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 7,
+          "146": 2,
+          "147": 3
+        },
+        "edit": {
+          "92": 0,
+          "146": 6,
+          "147": 5
+        }
+      },
+      "hf rt crossover": {
+        "index": 8,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 8,
+          "146": 2,
+          "147": 4
+        },
+        "edit": {
+          "92": 0,
+          "146": 7,
+          "147": 3
+        }
+      },
+      "lf rt multiply": {
+        "index": 9,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 9,
+          "146": 2,
+          "147": 5
+        },
+        "edit": {
+          "92": 0,
+          "146": 11,
+          "147": 15
+        }
+      },
+      "lf rt crossover": {
+        "index": 10,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 10,
+          "146": 2,
+          "147": 6
+        },
+        "edit": {
+          "92": 0,
+          "146": 12,
+          "147": 7
+        }
+      },
+      "vlf cut": {
+        "index": 11,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 11,
+          "146": 2,
+          "147": 7
+        },
+        "edit": {
+          "92": 0,
+          "146": 7,
+          "147": 12
+        }
+      },
+      "early to reverb mix": {
+        "index": 12,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 12,
+          "146": 2,
+          "147": 8
+        },
+        "edit": {
+          "92": 0,
+          "146": 8,
+          "147": 3
+        }
+      },
+      "early rolloff": {
+        "index": 13,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 13,
+          "146": 2,
+          "147": 9
+        },
+        "edit": {
+          "92": 0,
+          "146": 9,
+          "147": 2
+        }
+      },
+      "early select": {
+        "index": 14,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 14,
+          "146": 2,
+          "147": 10
+        },
+        "edit": {
+          "92": 0,
+          "146": 9,
+          "147": 12
+        }
+      },
+      "delay level": {
+        "index": 15,
+        "browse": {
+          "92": 2,
+          "98": 0,
+          "99": 15,
+          "146": 2,
+          "147": 11
+        },
+        "edit": {
+          "92": 0,
+          "146": 10,
+          "147": 5
+        }
+      },
+      "delay time": {
+        "index": 16,
+        "browse": {
+          "92": 2,
+          "98": 1,
+          "99": 0,
+          "146": 2,
+          "147": 12
+        },
+        "edit": {
+          "92": 0,
+          "146": 11,
+          "147": 0
+        }
+      },
+      "delay modulation": {
+        "index": 17,
+        "browse": {
+          "92": 2,
+          "98": 1,
+          "99": 1,
+          "146": 2,
+          "147": 13
+        },
+        "edit": {
+          "92": 0,
+          "146": 11,
+          "147": 11
+        }
+      }
+    }
+  }
+}
