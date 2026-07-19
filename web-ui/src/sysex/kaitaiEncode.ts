@@ -83,6 +83,17 @@ export function fieldWireBytes(
     return asUint8Array(val);
   }
 
+  // Nested types that wrap raw wire bytes (e.g. register_basis_blob).
+  if (
+    val &&
+    typeof val === "object" &&
+    "data" in val &&
+    ((val as { data: unknown }).data instanceof Uint8Array ||
+      Array.isArray((val as { data: unknown }).data))
+  ) {
+    return asUint8Array((val as { data: unknown }).data);
+  }
+
   if (val && typeof val === "object" && "value" in val) {
     const inner = (val as { value: unknown }).value;
     if (typeof inner === "number") {

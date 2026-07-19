@@ -11,30 +11,45 @@ export interface DialValueMarker {
   index: number;
 }
 
-/** Relative spread of consecutive step deltas that counts as uneven. */
-const UNEVEN_CV_THRESHOLD = 0.12;
+/** Relative difference between adjacent step deltas that counts as a change. */
+const DELTA_REL_TOLERANCE = 0.05;
 
-/** Soft cap so labels stay readable around a dial. */
-const DEFAULT_MAX_MARKERS = 7;
+/** Safety cap so labels stay readable around a dial. */
+const DEFAULT_MAX_MARKERS = 8;
 
-function consecutiveDeltas(values: number[]): number[] {
-  const deltas: number[] = [];
-  for (let i = 1; i < values.length; i++) {
-    deltas.push(Math.abs(values[i]! - values[i - 1]!));
+function deltaChanges(a: number, b: number): boolean {
+  return (
+    Math.abs(b - a) >
+    Math.max(Math.abs(a), Math.abs(b)) * DELTA_REL_TOLERANCE + 1e-9
+  );
+}
+
+/**
+ * Indices where a new step size begins (e.g. reverb time switching from
+ * 0.05 s to 0.1 s steps). The returned index is the shared junction entry.
+ */
+export function incrementBreakpoints(values: number[]): number[] {
+  const out: number[] = [];
+  for (let i = 1; i < values.length - 1; i++) {
+    const prev = values[i]! - values[i - 1]!;
+    const next = values[i + 1]! - values[i]!;
+    if (deltaChanges(prev, next)) out.push(i);
   }
-  return deltas;
+  return out;
 }
 
 /** True when consecutive numeric steps do not share a near-constant gap. */
 export function hasUnevenNumericGaps(values: number[]): boolean {
-  if (values.length < 4) return false;
-  const deltas = consecutiveDeltas(values).filter((d) => d > 0);
-  if (deltas.length < 3) return false;
-  const mean = deltas.reduce((a, b) => a + b, 0) / deltas.length;
-  if (!(mean > 0)) return false;
-  const variance =
-    deltas.reduce((a, d) => a + (d - mean) ** 2, 0) / deltas.length;
-  return Math.sqrt(variance) / mean > UNEVEN_CV_THRESHOLD;
+  if (values.length < 3) return false;
+  return incrementBreakpoints(values).length > 0;
+}
+
+/** Drop a redundant “.0” on whole numbers for compact dial ring text. */
+function compactMarkerNumber(s: string): string {
+  const n = Number(s);
+  if (!Number.isFinite(n)) return s;
+  if (Math.abs(n - Math.round(n)) < 1e-9) return String(Math.round(n));
+  return s;
 }
 
 /**
@@ -47,12 +62,12 @@ export function formatDialMarkerLabel(
 ): string {
   const trimmed = label.trim();
   // Prefer the raw table number when it is already unitless (reverb time, multiply).
-  if (/^-?[\d.]+$/.test(trimmed)) return trimmed;
+  if (/^-?[\d.]+$/.test(trimmed)) return compactMarkerNumber(trimmed);
 
   const formatted = formatValueLabel(label, parameter);
   const withUnit = formatted.match(/^(-?[\d.]+)\s*(.*)$/i);
   if (!withUnit) return formatted;
-  const num = withUnit[1]!;
+  const num = compactMarkerNumber(withUnit[1]!);
   const unit = (withUnit[2] ?? "").trim().toLowerCase();
   if (!unit || unit === "x") return num;
   if (unit === "hz") {
@@ -64,16 +79,26 @@ export function formatDialMarkerLabel(
   return num;
 }
 
+/**
+ * Marker entry indices for a dial with uniform increments:
+ * extremes plus the perfect middle when one exists (odd entry count),
+ * otherwise 4 labels spaced equally around the arc.
+ */
+function uniformMarkerIndices(count: number): number[] {
+  const last = count - 1;
+  if (last < 1) return [];
+  if (count % 2 === 1) return [0, last / 2, last];
+  const indices = [0, Math.round(last / 3), Math.round((2 * last) / 3), last];
+  return [...new Set(indices)];
+}
+
 interface MarkerEntry {
   index: number;
   value: number | null;
   label: string;
 }
 
-function markerEntries(
-  control: ControlDef,
-  labels: string[],
-): MarkerEntry[] {
+function markerEntries(control: ControlDef, labels: string[]): MarkerEntry[] {
   return labels.map((raw, index) => {
     const value = parseEntryNumeric(raw, control.parameter);
     return {
@@ -84,67 +109,49 @@ function markerEntries(
   });
 }
 
-/** True when `value` is a “round” landmark on a typical audio dial. */
-function isLandmarkValue(value: number): boolean {
-  const abs = Math.abs(value);
-  if (abs === 0) return true;
-  // Powers of 10 and simple multiples (1, 2, 5 × 10^n).
-  const exp = Math.floor(Math.log10(abs));
-  const scale = 10 ** exp;
-  const norm = abs / scale;
-  for (const target of [1, 2, 2.5, 5, 10]) {
-    if (Math.abs(norm - target) < 1e-6) return true;
+/**
+ * Contiguous numeric run in the middle of the table, skipping non-numeric
+ * endpoints like `off`, `Small`, or `Full`. Null when the numeric values are
+ * not one contiguous run.
+ */
+function numericCore(
+  entries: MarkerEntry[],
+): { start: number; values: number[] } | null {
+  let start = 0;
+  while (start < entries.length && entries[start]!.value === null) start++;
+  let end = entries.length - 1;
+  while (end >= 0 && entries[end]!.value === null) end--;
+  if (start > end) return null;
+  const values: number[] = [];
+  for (let i = start; i <= end; i++) {
+    const v = entries[i]!.value;
+    if (v === null) return null;
+    values.push(v);
   }
-  // Half-units for small scales (0.5, 1.5, …) when magnitude < 10.
-  if (abs < 10 && Math.abs(abs * 2 - Math.round(abs * 2)) < 1e-6) return true;
-  return false;
-}
-
-function minIndexDistance(index: number, chosen: MarkerEntry[]): number {
-  if (chosen.length === 0) return Infinity;
-  return Math.min(...chosen.map((c) => Math.abs(c.index - index)));
-}
-
-function toMarkers(
-  chosen: MarkerEntry[],
-  labelCount: number,
-): DialValueMarker[] {
-  const denom = Math.max(1, labelCount - 1);
-  return chosen.map((e) => ({
-    index: e.index,
-    pct: e.index / denom,
-    label: e.label,
-  }));
+  return { start, values };
 }
 
 /**
- * Min / mid / max ring markers from an ordered label list (e.g. tempo divisions).
- * Two-step lists stay extremes-only.
+ * Min / mid / max markers from a plain ordered label list (e.g. tempo
+ * divisions), or 4 equally spaced labels when there is no perfect middle.
  */
-export function dialExtremeMarkers(
+export function dialUniformMarkers(
   labels: string[],
 ): Pick<DialValueMarker, "pct" | "label">[] {
   if (labels.length < 2) return [];
   const last = labels.length - 1;
-  const out: Pick<DialValueMarker, "pct" | "label">[] = [
-    { pct: 0, label: labels[0]! },
-  ];
-  if (labels.length >= 3) {
-    const mid = Math.floor(last / 2);
-    out.push({ pct: mid / last, label: labels[mid]! });
-  }
-  out.push({ pct: 1, label: labels[last]! });
-  return out;
-}
-
-function midpointEntry(entries: MarkerEntry[]): MarkerEntry | null {
-  if (entries.length < 3) return null;
-  return entries[Math.floor((entries.length - 1) / 2)] ?? null;
+  return uniformMarkerIndices(labels.length).map((i) => ({
+    pct: i / last,
+    label: labels[i]!,
+  }));
 }
 
 /**
- * Labeled dial markers. Every multi-step dial gets min/mid/max when possible;
- * uneven numeric tables also get additional landmarks.
+ * Labeled dial markers:
+ * - extremes are always labeled;
+ * - uniform-increment dials get the perfect middle when one exists,
+ *   otherwise 4 equally spaced labels;
+ * - changing-increment dials get a label at each step-size breakpoint.
  */
 export function dialValueMarkersForControl(
   control: ControlDef,
@@ -153,72 +160,40 @@ export function dialValueMarkersForControl(
     maxMarkers?: number;
   },
 ): DialValueMarker[] {
-  const labels =
-    options?.labels ?? control.entries.map((e) => e.label);
+  const labels = options?.labels ?? control.entries.map((e) => e.label);
   if (labels.length < 2) return [];
 
-  const maxMarkers = options?.maxMarkers ?? DEFAULT_MAX_MARKERS;
+  const maxMarkers = Math.max(2, options?.maxMarkers ?? DEFAULT_MAX_MARKERS);
   const entries = markerEntries(control, labels);
-  const first = entries[0]!;
-  const last = entries[entries.length - 1]!;
+  const last = entries.length - 1;
+  const core = numericCore(entries);
+  const breakpoints =
+    core && core.values.length >= 3 ? incrementBreakpoints(core.values) : [];
 
-  const numericValues = entries
-    .map((e) => e.value)
-    .filter((v): v is number => v !== null);
-  const uneven =
-    numericValues.length >= 4 &&
-    numericValues.length === entries.length &&
-    hasUnevenNumericGaps(numericValues);
-
-  if (!uneven) {
-    const mid = midpointEntry(entries);
-    return toMarkers(mid ? [first, mid, last] : [first, last], labels.length);
+  let indices: number[];
+  if (breakpoints.length > 0) {
+    const interior = breakpoints
+      .map((i) => i + core!.start)
+      .filter((i) => i !== 0 && i !== last);
+    indices = [0, ...interior, last];
+  } else {
+    indices = uniformMarkerIndices(entries.length);
   }
 
-  const chosen: MarkerEntry[] = [first];
-  const landmarks = entries.filter(
-    (e) =>
-      e.index !== first.index &&
-      e.index !== last.index &&
-      e.value !== null &&
-      isLandmarkValue(e.value),
-  );
-
-  // Prefer landmarks that stay readable around the arc. Use a looser
-  // separation for landmarks than for filler ticks so round values (1, 10, …)
-  // win over nearby non-landmarks.
-  const landmarkSep = Math.max(
-    1,
-    Math.floor((labels.length - 1) / (maxMarkers * 2)),
-  );
-  const fillSep = Math.max(
-    1,
-    Math.floor((labels.length - 1) / (maxMarkers + 1)),
-  );
-  for (const candidate of landmarks) {
-    if (chosen.length >= maxMarkers - 1) break;
-    if (minIndexDistance(candidate.index, chosen) < landmarkSep) continue;
-    if (Math.abs(candidate.index - last.index) < landmarkSep) continue;
-    chosen.push(candidate);
-  }
-
-  // Fill remaining slots with index-even samples snapped to nearest entry.
-  while (chosen.length < maxMarkers - 1) {
-    let best: MarkerEntry | null = null;
-    let bestScore = -1;
-    for (const candidate of entries) {
-      if (candidate.index === last.index) continue;
-      if (chosen.some((c) => c.index === candidate.index)) continue;
-      const dist = minIndexDistance(candidate.index, [...chosen, last]);
-      if (dist <= bestScore) continue;
-      bestScore = dist;
-      best = candidate;
+  if (indices.length > maxMarkers) {
+    const interior = indices.slice(1, -1);
+    const keep = maxMarkers - 2;
+    const sampled = new Set<number>();
+    for (let k = 0; k < keep; k++) {
+      const t = keep === 1 ? 0.5 : k / (keep - 1);
+      sampled.add(interior[Math.round(t * (interior.length - 1))]!);
     }
-    if (!best || bestScore < fillSep * 0.5) break;
-    chosen.push(best);
+    indices = [0, ...sampled, last];
   }
 
-  chosen.push(last);
-  chosen.sort((a, b) => a.index - b.index);
-  return toMarkers(chosen, labels.length);
+  return indices.map((index) => ({
+    index,
+    pct: index / last,
+    label: entries[index]!.label,
+  }));
 }

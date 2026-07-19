@@ -8,7 +8,7 @@ Community reverse-engineered specification from labeled hardware captures in thi
 
 ## Overview
 
-_Snapshot from export on 2026-07-19._
+_Snapshot from export on 2026-07-20._
 
 Each `sysex/prog/parameters/<parameter>/` folder is an **independent** dump stream (only that parameter intentionally varied). Folders are never byte-compared against each other - other parameters may differ between series. Meta folder `sysex/prog/presets/` captures whole presets as `<bank>.<preset>.syx` for program-identity fields.
 
@@ -39,9 +39,9 @@ Identified parameter fields (each from its own folder):
 
 - **88-89** - Bank index (`nibble_hilo`) from [sysex/prog/presets/](program-identity.md) [Halls](presets/halls/)=0, [Plates](presets/plates/)=1, [Rooms](presets/rooms/)=2, [Chambers](presets/chambers/)=3, [Ambience](presets/ambience/)=4, [Spaces](presets/spaces/)=5, [Halls 2](presets/halls-2/)=6, [Plates 2](presets/plates-2/)=7, [Rooms 2](presets/rooms-2/)=8, [Spaces 2](presets/spaces-2/)=9, [NonLin](presets/nonlin/)=10; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/prog/edit/)
 - **90-91** - Program slot within bank (`nibble_hilo`) from [sysex/prog/presets/](program-identity.md) (not a global program number)
-- **93** - Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` when the dump basis is a user register (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus
+- **93** - Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` of the register currently **loaded as the running basis** (see `sysex/prog/edit/registers/`); a store alone does not update it (witnessed `00` after storing to B1 R1 with a factory basis); `00` on factory/parameter-series dumps in this corpus
 - **94** - Structure/version constant (`08` in all witnessed program dumps) — not a sound parameter
-- **95** - Register within bank (`raw_u8`, manual Register `0`–`9`) when the dump basis is a user register; `00` on factory/parameter-series dumps in this corpus
+- **95** - Register within bank (`raw_u8`, manual Register `0`–`9`) of the register currently **loaded as the running basis**; a store alone does not update it (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus
 - **96** - Reserved/unknown (always `00` in witnessed captures)
 - **97** - Algorithm/family flag from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). Mirrored at 145 as 0 when 97=3 and 1 when 97=4 — not a clean V1/V2 bit
 - **100-101** - Parameter [`reverb time`](bytes/reverb-time.md) (from independent series [sysex/prog/parameters/reverb time/](bytes/reverb-time.md)) (nibble_hilo, table/index candidate (monotonic 100%))
@@ -119,7 +119,7 @@ Observed length: **157 bytes** for the captured program dumps.
 | 4-7 | 4 | Header `70 08 01 00` (program-dump family; exact semantics TBD) |
 | 8-21 | 14 | Program name, ASCII, space-padded (14-character editable label per manual) — see [bytes/program-name.md](bytes/program-name.md) |
 | 22-23 | 2 | Program name pad (`0x20` in this corpus; completes the 16-byte wire name window) |
-| 24-87 | 64 | Register basis blob: spaces (`0x20`) on factory dumps; nibble-packed unedited register basis on Reg-backed hold-EDIT dumps |
+| 24-87 | 64 | Register basis blob: spaces (`0x20`) on factory dumps; bit-packed snapshot of the stored register (name, store counter, all 18 parameters) on Reg-backed hold-EDIT dumps — see [bytes/register-basis-blob.md](bytes/register-basis-blob.md) |
 | 88-89 | 2 | Bank index (`nibble_hilo`) — see [program-identity.md](program-identity.md) |
 | 90-91 | 2 | Program slot within bank (`nibble_hilo`) |
 | 92-151 | 60 | Parameter / meta / UI-state payload (nibble pairs, raw bytes, and reserved zeros — see [byte-map.md](byte-map.md)) |
@@ -133,7 +133,7 @@ F0 | 00 62 63 | 70 08 01 00 | <name 8-21> <pad 22-23> <basis blob 24-87> | <bank
 ### Notes
 
 - All inspected payload bytes at offsets 88-155 stay within `0x00`-`0x0F`. That strongly suggests the M7 packs each binary byte as two MIDI nibbles rather than using classic 7-bit MIDI packing with MSB bitfields. Not every payload byte is half of a nibble pair, though: several fields are single `raw_u8` bytes and several offsets are reserved zeros (see [byte-map-overview.md](byte-map-overview.md)).
-- Factory dumps fill offsets 24-87 with spaces, so the whole 8-87 window reads as one long space-padded name there. Reg-backed hold-EDIT captures show 24-87 is really a separate register-basis blob (see `sysex/prog/edit/registers/`).
+- Factory dumps fill offsets 24-87 with spaces, so the whole 8-87 window reads as one long space-padded name there. Reg-backed hold-EDIT captures show 24-87 is really a separate register-basis blob — a fully decoded bit-packed snapshot of the stored register ([bytes/register-basis-blob.md](bytes/register-basis-blob.md), captures under `sysex/prog/edit/registers/`).
 - Checksum (152-155): **CRC-16/ARC** over the raw SysEx bytes at offsets 8-151 (name + payload), packed as four high-nibble-first data bytes. Manufacturer ID and header are not covered.
 - Program dumps can include UI / edit-state fields in addition to algorithm parameters (Bricasti documents that a program dump carries the running program, edits, and UI state). Expect a few offsets to move even during a “single parameter” series.
 - Display at **146–147** (`nibble_hilo`): high nibble = page/row, low nibble = column/position. Menu index remains at **98–99**. See [bytes/display.md](bytes/display.md) and [ui-state.md](ui-state.md).
@@ -184,13 +184,13 @@ The analyzer scores both against filename labels.
 
 Index of documented dump fields: [bytes/README.md](bytes/README.md).
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_
 ## Open questions
 
 1. **Unseen / undocumented values** — documented or otherwise possible values not yet witnessed on the wire are tracked per field in the **Unseen values** section of each [bytes/](bytes/README.md) page
 2. **EDIT receive** path (MIDI-notes bank **118**) — hold-EDIT *sends* use bank **11** (`sysex/prog/edit/`)
 3. Semantics of PROG header bytes `70 08 01 00`
-4. Full map of register basis blob offsets **24–47** / **56–72** (partial: **50–55** = predelay / reverb time / diffusion / density; see `sysex/prog/edit/registers/`)
+4. Register basis blob **24–87** is fully decoded — complete 6-bit name charset, per-register store counter, all 18 parameters incl. the delay block at bits **197–211**; snapshots stored register values; offsets **93/95** track the *loaded* register basis (see `sysex/prog/edit/registers/README.md`)
 5. **Favorites**-based PROG dumps (bank **119**); Halls 2 subtype EDIT outlier; reserved offset **96**
 6. Closed-form mapping for table parameters (see medium-confidence rows in the parameter index)
 

@@ -3,7 +3,7 @@
 
 # Display
 
-_Generated 2026-07-19. Source folder: `sysex/prog/menus/` (19 captures)._
+_Generated 2026-07-20. Source folder: `sysex/prog/menus/` (19 captures)._
 
 ## SysEx summary
 
@@ -92,4 +92,4 @@ The cursor packs two nibbles, so **256** `nibble_hilo` values are possible (0–
 - [Byte map overview](../byte-map-overview.md)
 - [Capture guide](../../../docs/capture-guide.md)
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_

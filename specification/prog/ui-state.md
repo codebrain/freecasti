@@ -79,4 +79,4 @@ When the user turns a control (not just highlighting the menu), captures use `92
 - [Program UI state](ui-state.md) — full menu browse/edit tables
 - [Capture guide](../../docs/capture-guide.md) — how to record menu dumps
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_

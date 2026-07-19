@@ -22,9 +22,11 @@ PROG_OPEN_ITEMS_CORE: list[str] = [
     ),
     "Semantics of PROG header bytes `70 08 01 00`",
     (
-        "Full map of register basis blob offsets **24–47** / **56–72** "
-        "(partial: **50–55** = predelay / reverb time / diffusion / density; "
-        "see `sysex/prog/edit/registers/`)"
+        "Register basis blob **24–87** is fully decoded — complete 6-bit name "
+        "charset, per-register store counter, all 18 parameters incl. the "
+        "delay block at bits **197–211**; snapshots stored register values; "
+        "offsets **93/95** track the *loaded* register basis (see "
+        "`sysex/prog/edit/registers/README.md`)"
     ),
     (
         "**Favorites**-based PROG dumps (bank **119**); Halls 2 subtype EDIT "

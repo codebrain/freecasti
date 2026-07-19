@@ -3,7 +3,7 @@
 
 # Bass  XXL
 
-_Generated 2026-07-19. Bank: [Ambience](README.md) (index **4**). Source: `sysex/prog/presets/Ambience.Bass  XXL.syx`._
+_Generated 2026-07-20. Bank: [Ambience](README.md) (index **4**). Source: `sysex/prog/presets/Ambience.Bass  XXL.syx`._
 
 [All presets](../../README.md) · [Ambience bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -62,4 +62,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - **Bass  XXL** (this page)
 - [Percussion Air](percussion-air.md)
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_

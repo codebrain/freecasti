@@ -36,7 +36,8 @@
     "register_basis_blob": {
       "offset": 24,
       "length": 64,
-      "encoding": "raw_bytes"
+      "encoding": "raw_bytes",
+      "doc": "Factory dumps: 0x20 space pad. Reg-backed hold-EDIT dumps: bit-packed stored-register snapshot decoded by the register_basis_blob type value instances"
     },
     "sysex_end": 247
   },
@@ -246,9 +247,886 @@
       "end": 87,
       "size": 64,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with 0x20; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the stored register (name, store counter, all 18 parameters incl. delay block)",
       "encoding": "raw_bytes",
-      "kind": "meta"
+      "kind": "meta",
+      "type_ref": "register_basis_blob",
+      "blob": {
+        "type_id": "register_basis_blob",
+        "size": 64,
+        "doc": "Bit-packed snapshot of the stored register (Reg-backed hold-EDIT dumps); factory dumps space-pad this region with 0x20 - check is_register_basis before reading instances. The low nibble of each byte forms a 256-bit stream (4 bits per byte, MSB first): 14x6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block at bits 197-211. Field widths are provisional at boundaries where leading bits were always zero in this corpus. Verified against every register capture under sysex/prog/edit/registers/; layout source: REGISTER_BLOB_FIELDS in m7_sysex.prog.register_blob. Docs: specification/prog/bytes/register-basis-blob.md",
+        "char_enum": {
+          "enum_id": "register_name_char",
+          "entries": [
+            {
+              "encoded": 0,
+              "name": "space",
+              "label": "' '"
+            },
+            {
+              "encoded": 1,
+              "name": "ampersand",
+              "label": "'&'"
+            },
+            {
+              "encoded": 2,
+              "name": "digit_0",
+              "label": "'0' (inferred by continuity)"
+            },
+            {
+              "encoded": 3,
+              "name": "digit_1",
+              "label": "'1'"
+            },
+            {
+              "encoded": 4,
+              "name": "digit_2",
+              "label": "'2'"
+            },
+            {
+              "encoded": 5,
+              "name": "digit_3",
+              "label": "'3'"
+            },
+            {
+              "encoded": 6,
+              "name": "digit_4",
+              "label": "'4'"
+            },
+            {
+              "encoded": 7,
+              "name": "digit_5",
+              "label": "'5'"
+            },
+            {
+              "encoded": 8,
+              "name": "digit_6",
+              "label": "'6'"
+            },
+            {
+              "encoded": 9,
+              "name": "digit_7",
+              "label": "'7'"
+            },
+            {
+              "encoded": 10,
+              "name": "digit_8",
+              "label": "'8'"
+            },
+            {
+              "encoded": 11,
+              "name": "digit_9",
+              "label": "'9'"
+            },
+            {
+              "encoded": 12,
+              "name": "upper_a",
+              "label": "'A'"
+            },
+            {
+              "encoded": 13,
+              "name": "upper_b",
+              "label": "'B'"
+            },
+            {
+              "encoded": 14,
+              "name": "upper_c",
+              "label": "'C'"
+            },
+            {
+              "encoded": 15,
+              "name": "upper_d",
+              "label": "'D'"
+            },
+            {
+              "encoded": 16,
+              "name": "upper_e",
+              "label": "'E'"
+            },
+            {
+              "encoded": 17,
+              "name": "upper_f",
+              "label": "'F'"
+            },
+            {
+              "encoded": 18,
+              "name": "upper_g",
+              "label": "'G'"
+            },
+            {
+              "encoded": 19,
+              "name": "upper_h",
+              "label": "'H'"
+            },
+            {
+              "encoded": 20,
+              "name": "upper_i",
+              "label": "'I'"
+            },
+            {
+              "encoded": 21,
+              "name": "upper_j",
+              "label": "'J'"
+            },
+            {
+              "encoded": 22,
+              "name": "upper_k",
+              "label": "'K'"
+            },
+            {
+              "encoded": 23,
+              "name": "upper_l",
+              "label": "'L'"
+            },
+            {
+              "encoded": 24,
+              "name": "upper_m",
+              "label": "'M'"
+            },
+            {
+              "encoded": 25,
+              "name": "upper_n",
+              "label": "'N'"
+            },
+            {
+              "encoded": 26,
+              "name": "upper_o",
+              "label": "'O'"
+            },
+            {
+              "encoded": 27,
+              "name": "upper_p",
+              "label": "'P'"
+            },
+            {
+              "encoded": 28,
+              "name": "upper_q",
+              "label": "'Q'"
+            },
+            {
+              "encoded": 29,
+              "name": "upper_r",
+              "label": "'R'"
+            },
+            {
+              "encoded": 30,
+              "name": "upper_s",
+              "label": "'S'"
+            },
+            {
+              "encoded": 31,
+              "name": "upper_t",
+              "label": "'T'"
+            },
+            {
+              "encoded": 32,
+              "name": "upper_u",
+              "label": "'U'"
+            },
+            {
+              "encoded": 33,
+              "name": "upper_v",
+              "label": "'V'"
+            },
+            {
+              "encoded": 34,
+              "name": "upper_w",
+              "label": "'W'"
+            },
+            {
+              "encoded": 35,
+              "name": "upper_x",
+              "label": "'X'"
+            },
+            {
+              "encoded": 36,
+              "name": "upper_y",
+              "label": "'Y'"
+            },
+            {
+              "encoded": 37,
+              "name": "upper_z",
+              "label": "'Z'"
+            },
+            {
+              "encoded": 38,
+              "name": "lower_a",
+              "label": "'a'"
+            },
+            {
+              "encoded": 39,
+              "name": "lower_b",
+              "label": "'b'"
+            },
+            {
+              "encoded": 40,
+              "name": "lower_c",
+              "label": "'c'"
+            },
+            {
+              "encoded": 41,
+              "name": "lower_d",
+              "label": "'d'"
+            },
+            {
+              "encoded": 42,
+              "name": "lower_e",
+              "label": "'e'"
+            },
+            {
+              "encoded": 43,
+              "name": "lower_f",
+              "label": "'f'"
+            },
+            {
+              "encoded": 44,
+              "name": "lower_g",
+              "label": "'g'"
+            },
+            {
+              "encoded": 45,
+              "name": "lower_h",
+              "label": "'h'"
+            },
+            {
+              "encoded": 46,
+              "name": "lower_i",
+              "label": "'i'"
+            },
+            {
+              "encoded": 47,
+              "name": "lower_j",
+              "label": "'j'"
+            },
+            {
+              "encoded": 48,
+              "name": "lower_k",
+              "label": "'k'"
+            },
+            {
+              "encoded": 49,
+              "name": "lower_l",
+              "label": "'l'"
+            },
+            {
+              "encoded": 50,
+              "name": "lower_m",
+              "label": "'m'"
+            },
+            {
+              "encoded": 51,
+              "name": "lower_n",
+              "label": "'n'"
+            },
+            {
+              "encoded": 52,
+              "name": "lower_o",
+              "label": "'o'"
+            },
+            {
+              "encoded": 53,
+              "name": "lower_p",
+              "label": "'p'"
+            },
+            {
+              "encoded": 54,
+              "name": "lower_q",
+              "label": "'q'"
+            },
+            {
+              "encoded": 55,
+              "name": "lower_r",
+              "label": "'r'"
+            },
+            {
+              "encoded": 56,
+              "name": "lower_s",
+              "label": "'s'"
+            },
+            {
+              "encoded": 57,
+              "name": "lower_t",
+              "label": "'t'"
+            },
+            {
+              "encoded": 58,
+              "name": "lower_u",
+              "label": "'u'"
+            },
+            {
+              "encoded": 59,
+              "name": "lower_v",
+              "label": "'v'"
+            },
+            {
+              "encoded": 60,
+              "name": "lower_w",
+              "label": "'w'"
+            },
+            {
+              "encoded": 61,
+              "name": "lower_x",
+              "label": "'x'"
+            },
+            {
+              "encoded": 62,
+              "name": "lower_y",
+              "label": "'y'"
+            },
+            {
+              "encoded": 63,
+              "name": "lower_z",
+              "label": "'z'"
+            }
+          ]
+        },
+        "charset": " &0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+        "instances": [
+          {
+            "id": "is_register_basis",
+            "value": "((data[0] | data[1] | data[2] | data[3]) & 0xf0) == 0",
+            "doc": "True when 24-87 is a nibble-packed stored-register snapshot; false on factory / parameter-series dumps (space pad 0x20). Check before reading other instances."
+          },
+          {
+            "id": "name_code_00",
+            "value": "((((data[0] & 0x0f) << 4) | (data[1] & 0x0f)) >> 2)",
+            "enum": "register_name_char",
+            "doc": "Register name character 1 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "name_code_01",
+            "value": "(((data[1] & 0x0f) << 4) | (data[2] & 0x0f)) & 0x3f",
+            "enum": "register_name_char",
+            "doc": "Register name character 2 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "name_code_02",
+            "value": "((((data[3] & 0x0f) << 4) | (data[4] & 0x0f)) >> 2)",
+            "enum": "register_name_char",
+            "doc": "Register name character 3 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "name_code_03",
+            "value": "(((data[4] & 0x0f) << 4) | (data[5] & 0x0f)) & 0x3f",
+            "enum": "register_name_char",
+            "doc": "Register name character 4 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "name_code_04",
+            "value": "((((data[6] & 0x0f) << 4) | (data[7] & 0x0f)) >> 2)",
+            "enum": "register_name_char",
+            "doc": "Register name character 5 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "name_code_05",
+            "value": "(((data[7] & 0x0f) << 4) | (data[8] & 0x0f)) & 0x3f",
+            "enum": "register_name_char",
+            "doc": "Register name character 6 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "name_code_06",
+            "value": "((((data[9] & 0x0f) << 4) | (data[10] & 0x0f)) >> 2)",
+            "enum": "register_name_char",
+            "doc": "Register name character 7 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "name_code_07",
+            "value": "(((data[10] & 0x0f) << 4) | (data[11] & 0x0f)) & 0x3f",
+            "enum": "register_name_char",
+            "doc": "Register name character 8 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "name_code_08",
+            "value": "((((data[12] & 0x0f) << 4) | (data[13] & 0x0f)) >> 2)",
+            "enum": "register_name_char",
+            "doc": "Register name character 9 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "name_code_09",
+            "value": "(((data[13] & 0x0f) << 4) | (data[14] & 0x0f)) & 0x3f",
+            "enum": "register_name_char",
+            "doc": "Register name character 10 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "name_code_10",
+            "value": "((((data[15] & 0x0f) << 4) | (data[16] & 0x0f)) >> 2)",
+            "enum": "register_name_char",
+            "doc": "Register name character 11 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "name_code_11",
+            "value": "(((data[16] & 0x0f) << 4) | (data[17] & 0x0f)) & 0x3f",
+            "enum": "register_name_char",
+            "doc": "Register name character 12 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "name_code_12",
+            "value": "((((data[18] & 0x0f) << 4) | (data[19] & 0x0f)) >> 2)",
+            "enum": "register_name_char",
+            "doc": "Register name character 13 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "name_code_13",
+            "value": "(((data[19] & 0x0f) << 4) | (data[20] & 0x0f)) & 0x3f",
+            "enum": "register_name_char",
+            "doc": "Register name character 14 of 14 (6-bit code, space padded; witness: samples/charset-b1s1-renamed.syx)"
+          },
+          {
+            "id": "pad",
+            "value": "(((data[21] & 0x0f) << 8) | ((data[22] & 0x0f) << 4) | (data[23] & 0x0f))",
+            "bit_offset": 84,
+            "bit_width": 12,
+            "doc": "Always 0 in witnessed captures"
+          },
+          {
+            "id": "store_counter",
+            "value": "((((data[24] & 0x0f) << 4) | (data[25] & 0x0f)) >> 3)",
+            "bit_offset": 96,
+            "bit_width": 5,
+            "doc": "Increments each time the register slot is overwritten (wire offsets 48-49). Fullsweep history: 3 for B0 R0-R2, 2 for B0 R3-B1 R1, 1 elsewhere; delay-edit re-store bumped B1 R1 to 3; the rename capture reads 5 (renaming stores twice); the rt5s store to B1 R0 reads 3"
+          },
+          {
+            "id": "store_marker",
+            "value": "(data[25] & 0x0f) & 0x7",
+            "bit_offset": 101,
+            "bit_width": 3,
+            "doc": "Constant 1 in every witnessed register capture"
+          },
+          {
+            "id": "predelay",
+            "value": "(((data[26] & 0x0f) << 4) | (data[27] & 0x0f))",
+            "bit_offset": 104,
+            "bit_width": 8,
+            "enum": "predelay_values",
+            "doc": "Stored predelay (bits 104-111); equals live payload field predelay @ 104-105 unless the register has unstored edits"
+          },
+          {
+            "id": "reverb_time",
+            "value": "(((data[28] & 0x0f) << 4) | (data[29] & 0x0f))",
+            "bit_offset": 112,
+            "bit_width": 8,
+            "enum": "reverb_time_values",
+            "doc": "Stored reverb time (bits 112-119); equals live payload field reverb_time @ 100-101 unless the register has unstored edits"
+          },
+          {
+            "id": "diffusion",
+            "value": "(data[30] & 0x0f)",
+            "bit_offset": 120,
+            "bit_width": 4,
+            "enum": "diffusion_values",
+            "doc": "Stored diffusion (bits 120-123); equals live payload field diffusion @ 107 unless the register has unstored edits"
+          },
+          {
+            "id": "density",
+            "value": "(data[31] & 0x0f)",
+            "bit_offset": 124,
+            "bit_width": 4,
+            "enum": "density_values",
+            "doc": "Stored density (bits 124-127); equals live payload field density @ 109 unless the register has unstored edits"
+          },
+          {
+            "id": "hf_rt_crossover",
+            "value": "((((data[32] & 0x0f) << 4) | (data[33] & 0x0f)) >> 2)",
+            "bit_offset": 128,
+            "bit_width": 6,
+            "enum": "hf_rt_crossover_values",
+            "doc": "Stored hf rt crossover (bits 128-133); equals live payload field hf_rt_crossover @ 116-117 unless the register has unstored edits"
+          },
+          {
+            "id": "lf_rt_multiply",
+            "value": "(((data[33] & 0x0f) << 4) | (data[34] & 0x0f)) & 0x3f",
+            "bit_offset": 134,
+            "bit_width": 6,
+            "enum": "lf_rt_multiply_values",
+            "doc": "Stored lf rt multiply (bits 134-139); equals live payload field lf_rt_multiply @ 118-119 unless the register has unstored edits"
+          },
+          {
+            "id": "modulation",
+            "value": "(data[35] & 0x0f)",
+            "bit_offset": 140,
+            "bit_width": 4,
+            "enum": "modulation_values",
+            "doc": "Stored modulation (bits 140-143); equals live payload field modulation @ 111 unless the register has unstored edits"
+          },
+          {
+            "id": "early_to_reverb_mix",
+            "value": "((((data[36] & 0x0f) << 4) | (data[37] & 0x0f)) >> 2)",
+            "bit_offset": 144,
+            "bit_width": 6,
+            "enum": "early_to_reverb_mix_values",
+            "doc": "Stored early to reverb mix (bits 144-149); equals live payload field early_to_reverb_mix @ 124-125 unless the register has unstored edits"
+          },
+          {
+            "id": "vlf_cut",
+            "value": "((((data[37] & 0x0f) << 4) | (data[38] & 0x0f)) >> 1) & 0x1f",
+            "bit_offset": 150,
+            "bit_width": 5,
+            "enum": "vlf_cut_values",
+            "doc": "Stored vlf cut (bits 150-154); equals live payload field vlf_cut @ 122-123 unless the register has unstored edits"
+          },
+          {
+            "id": "early_select",
+            "value": "(((data[38] & 0x0f) << 4) | (data[39] & 0x0f)) & 0x1f",
+            "bit_offset": 155,
+            "bit_width": 5,
+            "enum": "early_select_values",
+            "doc": "Stored early select (bits 155-159); equals live payload field early_select @ 128-129 unless the register has unstored edits"
+          },
+          {
+            "id": "engine_class",
+            "value": "((data[40] & 0x0f) >> 2)",
+            "bit_offset": 160,
+            "bit_width": 2,
+            "doc": "Stored engine/bank-class flag (bits 160-161); equals live payload field engine_bank_class_flag @ 130 unless the register has unstored edits. 0 classic banks, 1 on `* 2` banks, 2 NonLin (same as payload 130)"
+          },
+          {
+            "id": "early_rolloff",
+            "value": "((((data[40] & 0x0f) << 8) | ((data[41] & 0x0f) << 4) | (data[42] & 0x0f)) >> 3) & 0x7f",
+            "bit_offset": 162,
+            "bit_width": 7,
+            "enum": "early_rolloff_values",
+            "doc": "Stored early rolloff (bits 162-168); equals live payload field early_rolloff @ 126-127 unless the register has unstored edits"
+          },
+          {
+            "id": "rolloff",
+            "value": "(((data[42] & 0x0f) << 4) | (data[43] & 0x0f)) & 0x7f",
+            "bit_offset": 169,
+            "bit_width": 7,
+            "enum": "rolloff_values",
+            "doc": "Stored rolloff (bits 169-175); equals live payload field rolloff @ 112-113 unless the register has unstored edits"
+          },
+          {
+            "id": "size",
+            "value": "((((data[44] & 0x0f) << 4) | (data[45] & 0x0f)) >> 2)",
+            "bit_offset": 176,
+            "bit_width": 6,
+            "enum": "size_values",
+            "doc": "Stored size (bits 176-181); equals live payload field size @ 102-103 unless the register has unstored edits"
+          },
+          {
+            "id": "hf_rt_multiply",
+            "value": "((((data[45] & 0x0f) << 4) | (data[46] & 0x0f)) >> 1) & 0x1f",
+            "bit_offset": 182,
+            "bit_width": 5,
+            "enum": "hf_rt_multiply_values",
+            "doc": "Stored hf rt multiply (bits 182-186); equals live payload field hf_rt_multiply @ 114-115 unless the register has unstored edits"
+          },
+          {
+            "id": "lf_rt_crossover",
+            "value": "(((data[46] & 0x0f) << 4) | (data[47] & 0x0f)) & 0x1f",
+            "bit_offset": 187,
+            "bit_width": 5,
+            "enum": "lf_rt_crossover_values",
+            "doc": "Stored lf rt crossover (bits 187-191); equals live payload field lf_rt_crossover @ 120-121 unless the register has unstored edits"
+          },
+          {
+            "id": "source_bank",
+            "value": "((((data[48] & 0x0f) << 4) | (data[49] & 0x0f)) >> 3)",
+            "bit_offset": 192,
+            "bit_width": 5,
+            "doc": "Stored source factory bank (bits 192-196); equals live payload field bank_index_mirror @ 137 unless the register has unstored edits. Factory bank the register was stored from (same as payload 137)"
+          },
+          {
+            "id": "delay_level",
+            "value": "((((data[49] & 0x0f) << 4) | (data[50] & 0x0f)) >> 3) & 0xf",
+            "bit_offset": 197,
+            "bit_width": 4,
+            "enum": "delay_level_values",
+            "doc": "Stored delay level (bits 197-200); equals live payload field delay_level @ 133 unless the register has unstored edits. V2 delay block; located by samples/charset-b1s1-rt5s-stored.syx (reads 15). Zero when the register was stored without delay"
+          },
+          {
+            "id": "delay_time",
+            "value": "(((data[50] & 0x0f) << 4) | (data[51] & 0x0f)) & 0x7f",
+            "bit_offset": 201,
+            "bit_width": 7,
+            "enum": "delay_time_values",
+            "doc": "Stored delay time (bits 201-207); equals live payload field delay_time @ 134-135 unless the register has unstored edits. V2 delay block; stored capture reads 11"
+          },
+          {
+            "id": "delay_modulation",
+            "value": "(data[52] & 0x0f)",
+            "bit_offset": 208,
+            "bit_width": 4,
+            "enum": "delay_modulation_values",
+            "doc": "Stored delay modulation (bits 208-211); equals live payload field delay_modulation @ 139 unless the register has unstored edits. V2 delay block; stored capture reads 6"
+          },
+          {
+            "id": "tail_is_zero",
+            "value": "((data[53] | data[54] | data[55] | data[56] | data[57] | data[58] | data[59] | data[60] | data[61] | data[62] | data[63]) & 0x0f) == 0",
+            "doc": "Zero tail (bits 212-255); always true in witnessed captures"
+          }
+        ],
+        "fields": [
+          {
+            "id": "name",
+            "label": "register name",
+            "bit_offset": 0,
+            "bit_width": 84,
+            "payload_field": "program_name",
+            "payload_offsets": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21
+            ]
+          },
+          {
+            "id": "pad",
+            "label": "zero pad",
+            "bit_offset": 84,
+            "bit_width": 12,
+            "payload_field": null,
+            "payload_offsets": []
+          },
+          {
+            "id": "store_counter",
+            "label": "store-generation counter",
+            "bit_offset": 96,
+            "bit_width": 5,
+            "payload_field": null,
+            "payload_offsets": []
+          },
+          {
+            "id": "store_marker",
+            "label": "constant 001",
+            "bit_offset": 101,
+            "bit_width": 3,
+            "payload_field": null,
+            "payload_offsets": []
+          },
+          {
+            "id": "predelay",
+            "label": "predelay",
+            "bit_offset": 104,
+            "bit_width": 8,
+            "payload_field": "predelay",
+            "payload_offsets": [
+              104,
+              105
+            ]
+          },
+          {
+            "id": "reverb_time",
+            "label": "reverb time",
+            "bit_offset": 112,
+            "bit_width": 8,
+            "payload_field": "reverb_time",
+            "payload_offsets": [
+              100,
+              101
+            ]
+          },
+          {
+            "id": "diffusion",
+            "label": "diffusion",
+            "bit_offset": 120,
+            "bit_width": 4,
+            "payload_field": "diffusion",
+            "payload_offsets": [
+              107
+            ]
+          },
+          {
+            "id": "density",
+            "label": "density",
+            "bit_offset": 124,
+            "bit_width": 4,
+            "payload_field": "density",
+            "payload_offsets": [
+              109
+            ]
+          },
+          {
+            "id": "hf_rt_crossover",
+            "label": "hf rt crossover",
+            "bit_offset": 128,
+            "bit_width": 6,
+            "payload_field": "hf_rt_crossover",
+            "payload_offsets": [
+              116,
+              117
+            ]
+          },
+          {
+            "id": "lf_rt_multiply",
+            "label": "lf rt multiply",
+            "bit_offset": 134,
+            "bit_width": 6,
+            "payload_field": "lf_rt_multiply",
+            "payload_offsets": [
+              118,
+              119
+            ]
+          },
+          {
+            "id": "modulation",
+            "label": "modulation",
+            "bit_offset": 140,
+            "bit_width": 4,
+            "payload_field": "modulation",
+            "payload_offsets": [
+              111
+            ]
+          },
+          {
+            "id": "early_to_reverb_mix",
+            "label": "early to reverb mix",
+            "bit_offset": 144,
+            "bit_width": 6,
+            "payload_field": "early_to_reverb_mix",
+            "payload_offsets": [
+              124,
+              125
+            ]
+          },
+          {
+            "id": "vlf_cut",
+            "label": "vlf cut",
+            "bit_offset": 150,
+            "bit_width": 5,
+            "payload_field": "vlf_cut",
+            "payload_offsets": [
+              122,
+              123
+            ]
+          },
+          {
+            "id": "early_select",
+            "label": "early select",
+            "bit_offset": 155,
+            "bit_width": 5,
+            "payload_field": "early_select",
+            "payload_offsets": [
+              128,
+              129
+            ]
+          },
+          {
+            "id": "engine_class",
+            "label": "engine/bank-class flag",
+            "bit_offset": 160,
+            "bit_width": 2,
+            "payload_field": "engine_bank_class_flag",
+            "payload_offsets": [
+              130
+            ]
+          },
+          {
+            "id": "early_rolloff",
+            "label": "early rolloff",
+            "bit_offset": 162,
+            "bit_width": 7,
+            "payload_field": "early_rolloff",
+            "payload_offsets": [
+              126,
+              127
+            ]
+          },
+          {
+            "id": "rolloff",
+            "label": "rolloff",
+            "bit_offset": 169,
+            "bit_width": 7,
+            "payload_field": "rolloff",
+            "payload_offsets": [
+              112,
+              113
+            ]
+          },
+          {
+            "id": "size",
+            "label": "size",
+            "bit_offset": 176,
+            "bit_width": 6,
+            "payload_field": "size",
+            "payload_offsets": [
+              102,
+              103
+            ]
+          },
+          {
+            "id": "hf_rt_multiply",
+            "label": "hf rt multiply",
+            "bit_offset": 182,
+            "bit_width": 5,
+            "payload_field": "hf_rt_multiply",
+            "payload_offsets": [
+              114,
+              115
+            ]
+          },
+          {
+            "id": "lf_rt_crossover",
+            "label": "lf rt crossover",
+            "bit_offset": 187,
+            "bit_width": 5,
+            "payload_field": "lf_rt_crossover",
+            "payload_offsets": [
+              120,
+              121
+            ]
+          },
+          {
+            "id": "source_bank",
+            "label": "source factory bank",
+            "bit_offset": 192,
+            "bit_width": 5,
+            "payload_field": "bank_index_mirror",
+            "payload_offsets": [
+              137
+            ]
+          },
+          {
+            "id": "delay_level",
+            "label": "delay level",
+            "bit_offset": 197,
+            "bit_width": 4,
+            "payload_field": "delay_level",
+            "payload_offsets": [
+              133
+            ]
+          },
+          {
+            "id": "delay_time",
+            "label": "delay time",
+            "bit_offset": 201,
+            "bit_width": 7,
+            "payload_field": "delay_time",
+            "payload_offsets": [
+              134,
+              135
+            ]
+          },
+          {
+            "id": "delay_modulation",
+            "label": "delay modulation",
+            "bit_offset": 208,
+            "bit_width": 4,
+            "payload_field": "delay_modulation",
+            "payload_offsets": [
+              139
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "zero tail",
+            "bit_offset": 212,
+            "bit_width": 44,
+            "payload_field": null,
+            "payload_offsets": []
+          }
+        ]
+      }
     },
     {
       "id": "bank_index",
@@ -384,7 +1262,7 @@
       "end": 93,
       "size": 1,
       "status": "known",
-      "role": "Register bank (`raw_u8`, manual Bank): `B0`\u2013`B4` = `00`\u2013`04` when the dump basis is a user register (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus",
+      "role": "Register bank (`raw_u8`, manual Bank): `B0`\u2013`B4` = `00`\u2013`04` of the register currently **loaded as the running basis** (see `sysex/prog/edit/registers/`); a store alone does not update it (witnessed `00` after storing to B1 R1 with a factory basis); `00` on factory/parameter-series dumps in this corpus",
       "encoding": "raw_u8",
       "kind": "meta",
       "value_map": {
@@ -442,7 +1320,7 @@
       "end": 95,
       "size": 1,
       "status": "known",
-      "role": "Register within bank (`raw_u8`, manual Register `0`\u2013`9`) when the dump basis is a user register; `00` on factory/parameter-series dumps in this corpus",
+      "role": "Register within bank (`raw_u8`, manual Register `0`\u2013`9`) of the register currently **loaded as the running basis**; a store alone does not update it (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus",
       "encoding": "raw_u8",
       "kind": "meta",
       "value_map": {

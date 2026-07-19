@@ -34,28 +34,44 @@ export function DumpByteTable({
           </tr>
         </thead>
         <tbody>
-          {rows.map((row) => (
-            <tr
-              key={`${row.start}-${row.end}-${row.label}`}
-              className="border-b border-border/20 align-top"
-            >
-              <td className="py-1 pr-2 whitespace-nowrap opacity-70">
-                {formatOffsetRange(row.start, row.end)}
-              </td>
-              <td className="w-px py-1 pr-2">
-                <HighlightedHex
-                  data={data}
-                  offsets={row.offsets}
-                  highlightOffsets={highlightOffsets}
-                  wrapEvery={8}
-                />
-              </td>
-              <td className="py-1 pr-2 text-[color:var(--color-label)]">
-                {row.label}
-              </td>
-              <td className="py-1 break-words">{row.meaning}</td>
-            </tr>
-          ))}
+          {rows.flatMap((row) => {
+            const rowKey = `${row.start}-${row.end}-${row.label}`;
+            const rendered = [
+              <tr key={rowKey} className="border-b border-border/20 align-top">
+                <td className="py-1 pr-2 whitespace-nowrap opacity-70">
+                  {formatOffsetRange(row.start, row.end)}
+                </td>
+                <td className="w-px py-1 pr-2">
+                  <HighlightedHex
+                    data={data}
+                    offsets={row.offsets}
+                    highlightOffsets={highlightOffsets}
+                    wrapEvery={8}
+                  />
+                </td>
+                <td className="py-1 pr-2 text-[color:var(--color-label)]">
+                  {row.label}
+                </td>
+                <td className="py-1 break-words">{row.meaning}</td>
+              </tr>,
+            ];
+            for (const sub of row.subRows ?? []) {
+              rendered.push(
+                <tr
+                  key={`${rowKey}-${sub.label}`}
+                  className="border-b border-border/10 align-top opacity-80"
+                >
+                  <td className="py-0.5 pr-2" />
+                  <td className="py-0.5 pr-2" />
+                  <td className="py-0.5 pr-2 pl-3 text-[color:var(--color-label)]">
+                    ↳ {sub.label}
+                  </td>
+                  <td className="py-0.5 break-words">{sub.meaning}</td>
+                </tr>,
+              );
+            }
+            return rendered;
+          })}
         </tbody>
       </table>
     </div>

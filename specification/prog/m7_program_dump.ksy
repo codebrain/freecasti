@@ -48,10 +48,10 @@ seq:
     size: 2
   - id: register_basis_blob
     doc: |
-      Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`;
-      Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the
-      register basis ...
-    size: 64
+      Register basis blob: factory dumps space-pad with 0x20; Reg-backed
+      hold-EDIT dumps store a bit-packed snapshot of the stored register
+      (name, store counter, a...
+    type: register_basis_blob
   - id: bank_index
     doc: |
       Bank index (`nibble_hilo`) from sysex/prog/presets/ [Halls=0, Plates=1,
@@ -73,9 +73,9 @@ seq:
     type: u1
   - id: register_bank
     doc: |
-      Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` when the
-      dump basis is a user register (see `sysex/prog/edit/registers/`); `00`
-      on factory/param...
+      Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` of the
+      register currently **loaded as the running basis** (see
+      `sysex/prog/edit/registers/`); a ...
       Locked encoding table: 5 known encoded value(s)
     type: u1
     enum: register_bank_values
@@ -86,9 +86,9 @@ seq:
     type: u1
   - id: register
     doc: |
-      Register within bank (`raw_u8`, manual Register `0`–`9`) when the dump
-      basis is a user register; `00` on factory/parameter-series dumps in this
-      corpus
+      Register within bank (`raw_u8`, manual Register `0`–`9`) of the register
+      currently **loaded as the running basis**; a store alone does not update
+      it (see `sy...
       Locked encoding table: 10 known encoded value(s)
     type: u1
     enum: register_values
@@ -1198,6 +1198,71 @@ enums:
     196: edit_reverb_time_0  # edit: reverb time (0)
     199: edit_lf_rt_crossover_10  # edit: lf rt crossover (10)
     210: edit_size_1  # edit: size (1)
+  register_name_char:
+    0: space  # ' '
+    1: ampersand  # '&'
+    2: digit_0  # '0' (inferred by continuity)
+    3: digit_1  # '1'
+    4: digit_2  # '2'
+    5: digit_3  # '3'
+    6: digit_4  # '4'
+    7: digit_5  # '5'
+    8: digit_6  # '6'
+    9: digit_7  # '7'
+    10: digit_8  # '8'
+    11: digit_9  # '9'
+    12: upper_a  # 'A'
+    13: upper_b  # 'B'
+    14: upper_c  # 'C'
+    15: upper_d  # 'D'
+    16: upper_e  # 'E'
+    17: upper_f  # 'F'
+    18: upper_g  # 'G'
+    19: upper_h  # 'H'
+    20: upper_i  # 'I'
+    21: upper_j  # 'J'
+    22: upper_k  # 'K'
+    23: upper_l  # 'L'
+    24: upper_m  # 'M'
+    25: upper_n  # 'N'
+    26: upper_o  # 'O'
+    27: upper_p  # 'P'
+    28: upper_q  # 'Q'
+    29: upper_r  # 'R'
+    30: upper_s  # 'S'
+    31: upper_t  # 'T'
+    32: upper_u  # 'U'
+    33: upper_v  # 'V'
+    34: upper_w  # 'W'
+    35: upper_x  # 'X'
+    36: upper_y  # 'Y'
+    37: upper_z  # 'Z'
+    38: lower_a  # 'a'
+    39: lower_b  # 'b'
+    40: lower_c  # 'c'
+    41: lower_d  # 'd'
+    42: lower_e  # 'e'
+    43: lower_f  # 'f'
+    44: lower_g  # 'g'
+    45: lower_h  # 'h'
+    46: lower_i  # 'i'
+    47: lower_j  # 'j'
+    48: lower_k  # 'k'
+    49: lower_l  # 'l'
+    50: lower_m  # 'm'
+    51: lower_n  # 'n'
+    52: lower_o  # 'o'
+    53: lower_p  # 'p'
+    54: lower_q  # 'q'
+    55: lower_r  # 'r'
+    56: lower_s  # 's'
+    57: lower_t  # 't'
+    58: lower_u  # 'u'
+    59: lower_v  # 'v'
+    60: lower_w  # 'w'
+    61: lower_x  # 'x'
+    62: lower_y  # 'y'
+    63: lower_z  # 'z'
 
 types:
   bank_index_encoded:
@@ -1486,3 +1551,260 @@ types:
     instances:
       value:
         value: (hi_nibble << 4) | lo_nibble
+
+  register_basis_blob:
+    doc: |
+      Bit-packed snapshot of the stored register (Reg-backed hold-EDIT dumps);
+      factory dumps space-pad this region with 0x20 - check is_register_basis
+      before reading instances. The low nibble of each byte forms a 256-bit
+      stream (4 bits per byte, MSB first): 14x6-bit name, store-generation
+      counter, all 18 parameters incl. the V2 delay block at bits 197-211.
+      Field widths are provisional at boundaries where leading bits were
+      always zero in this corpus. Verified against every register capture
+      under sysex/prog/edit/registers/; layout source: REGISTER_BLOB_FIELDS in
+      m7_sysex.prog.register_blob. Docs:
+      specification/prog/bytes/register-basis-blob.md
+    seq:
+      - id: data
+        size: 64
+        doc: |
+          Raw wire bytes; the low nibble of each byte carries
+          the packed bitstream decoded by the instances below.
+    instances:
+      is_register_basis:
+        doc: |
+          True when 24-87 is a nibble-packed stored-register snapshot; false
+          on factory / parameter-series dumps (space pad 0x20). Check before
+          reading other instances.
+        value: "((data[0] | data[1] | data[2] | data[3]) & 0xf0) == 0"
+      name_code_00:
+        doc: |
+          Register name character 1 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "((((data[0] & 0x0f) << 4) | (data[1] & 0x0f)) >> 2)"
+        enum: register_name_char
+      name_code_01:
+        doc: |
+          Register name character 2 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "(((data[1] & 0x0f) << 4) | (data[2] & 0x0f)) & 0x3f"
+        enum: register_name_char
+      name_code_02:
+        doc: |
+          Register name character 3 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "((((data[3] & 0x0f) << 4) | (data[4] & 0x0f)) >> 2)"
+        enum: register_name_char
+      name_code_03:
+        doc: |
+          Register name character 4 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "(((data[4] & 0x0f) << 4) | (data[5] & 0x0f)) & 0x3f"
+        enum: register_name_char
+      name_code_04:
+        doc: |
+          Register name character 5 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "((((data[6] & 0x0f) << 4) | (data[7] & 0x0f)) >> 2)"
+        enum: register_name_char
+      name_code_05:
+        doc: |
+          Register name character 6 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "(((data[7] & 0x0f) << 4) | (data[8] & 0x0f)) & 0x3f"
+        enum: register_name_char
+      name_code_06:
+        doc: |
+          Register name character 7 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "((((data[9] & 0x0f) << 4) | (data[10] & 0x0f)) >> 2)"
+        enum: register_name_char
+      name_code_07:
+        doc: |
+          Register name character 8 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "(((data[10] & 0x0f) << 4) | (data[11] & 0x0f)) & 0x3f"
+        enum: register_name_char
+      name_code_08:
+        doc: |
+          Register name character 9 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "((((data[12] & 0x0f) << 4) | (data[13] & 0x0f)) >> 2)"
+        enum: register_name_char
+      name_code_09:
+        doc: |
+          Register name character 10 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "(((data[13] & 0x0f) << 4) | (data[14] & 0x0f)) & 0x3f"
+        enum: register_name_char
+      name_code_10:
+        doc: |
+          Register name character 11 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "((((data[15] & 0x0f) << 4) | (data[16] & 0x0f)) >> 2)"
+        enum: register_name_char
+      name_code_11:
+        doc: |
+          Register name character 12 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "(((data[16] & 0x0f) << 4) | (data[17] & 0x0f)) & 0x3f"
+        enum: register_name_char
+      name_code_12:
+        doc: |
+          Register name character 13 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "((((data[18] & 0x0f) << 4) | (data[19] & 0x0f)) >> 2)"
+        enum: register_name_char
+      name_code_13:
+        doc: |
+          Register name character 14 of 14 (6-bit code, space padded;
+          witness: samples/charset-b1s1-renamed.syx)
+        value: "(((data[19] & 0x0f) << 4) | (data[20] & 0x0f)) & 0x3f"
+        enum: register_name_char
+      pad:
+        doc: |
+          Always 0 in witnessed captures
+        value: "(((data[21] & 0x0f) << 8) | ((data[22] & 0x0f) << 4) | (data[23] & 0x0f))"
+      store_counter:
+        doc: |
+          Increments each time the register slot is overwritten (wire
+          offsets 48-49). Fullsweep history: 3 for B0 R0-R2, 2 for B0 R3-B1
+          R1, 1 elsewhere; delay-edit re-store bumped B1 R1 to 3; the rename
+          capture reads 5 (renaming stores twice); the rt5s store to B1 R0
+          reads 3
+        value: "((((data[24] & 0x0f) << 4) | (data[25] & 0x0f)) >> 3)"
+      store_marker:
+        doc: |
+          Constant 1 in every witnessed register capture
+        value: "(data[25] & 0x0f) & 0x7"
+      predelay:
+        doc: |
+          Stored predelay (bits 104-111); equals live payload field predelay
+          @ 104-105 unless the register has unstored edits
+        value: "(((data[26] & 0x0f) << 4) | (data[27] & 0x0f))"
+        enum: predelay_values
+      reverb_time:
+        doc: |
+          Stored reverb time (bits 112-119); equals live payload field
+          reverb_time @ 100-101 unless the register has unstored edits
+        value: "(((data[28] & 0x0f) << 4) | (data[29] & 0x0f))"
+        enum: reverb_time_values
+      diffusion:
+        doc: |
+          Stored diffusion (bits 120-123); equals live payload field
+          diffusion @ 107 unless the register has unstored edits
+        value: "(data[30] & 0x0f)"
+        enum: diffusion_values
+      density:
+        doc: |
+          Stored density (bits 124-127); equals live payload field density @
+          109 unless the register has unstored edits
+        value: "(data[31] & 0x0f)"
+        enum: density_values
+      hf_rt_crossover:
+        doc: |
+          Stored hf rt crossover (bits 128-133); equals live payload field
+          hf_rt_crossover @ 116-117 unless the register has unstored edits
+        value: "((((data[32] & 0x0f) << 4) | (data[33] & 0x0f)) >> 2)"
+        enum: hf_rt_crossover_values
+      lf_rt_multiply:
+        doc: |
+          Stored lf rt multiply (bits 134-139); equals live payload field
+          lf_rt_multiply @ 118-119 unless the register has unstored edits
+        value: "(((data[33] & 0x0f) << 4) | (data[34] & 0x0f)) & 0x3f"
+        enum: lf_rt_multiply_values
+      modulation:
+        doc: |
+          Stored modulation (bits 140-143); equals live payload field
+          modulation @ 111 unless the register has unstored edits
+        value: "(data[35] & 0x0f)"
+        enum: modulation_values
+      early_to_reverb_mix:
+        doc: |
+          Stored early to reverb mix (bits 144-149); equals live payload
+          field early_to_reverb_mix @ 124-125 unless the register has
+          unstored edits
+        value: "((((data[36] & 0x0f) << 4) | (data[37] & 0x0f)) >> 2)"
+        enum: early_to_reverb_mix_values
+      vlf_cut:
+        doc: |
+          Stored vlf cut (bits 150-154); equals live payload field vlf_cut @
+          122-123 unless the register has unstored edits
+        value: "((((data[37] & 0x0f) << 4) | (data[38] & 0x0f)) >> 1) & 0x1f"
+        enum: vlf_cut_values
+      early_select:
+        doc: |
+          Stored early select (bits 155-159); equals live payload field
+          early_select @ 128-129 unless the register has unstored edits
+        value: "(((data[38] & 0x0f) << 4) | (data[39] & 0x0f)) & 0x1f"
+        enum: early_select_values
+      engine_class:
+        doc: |
+          Stored engine/bank-class flag (bits 160-161); equals live payload
+          field engine_bank_class_flag @ 130 unless the register has
+          unstored edits. 0 classic banks, 1 on `* 2` banks, 2 NonLin (same
+          as payload 130)
+        value: "((data[40] & 0x0f) >> 2)"
+      early_rolloff:
+        doc: |
+          Stored early rolloff (bits 162-168); equals live payload field
+          early_rolloff @ 126-127 unless the register has unstored edits
+        value: "((((data[40] & 0x0f) << 8) | ((data[41] & 0x0f) << 4) | (data[42] & 0x0f)) >> 3) & 0x7f"
+        enum: early_rolloff_values
+      rolloff:
+        doc: |
+          Stored rolloff (bits 169-175); equals live payload field rolloff @
+          112-113 unless the register has unstored edits
+        value: "(((data[42] & 0x0f) << 4) | (data[43] & 0x0f)) & 0x7f"
+        enum: rolloff_values
+      size:
+        doc: |
+          Stored size (bits 176-181); equals live payload field size @
+          102-103 unless the register has unstored edits
+        value: "((((data[44] & 0x0f) << 4) | (data[45] & 0x0f)) >> 2)"
+        enum: size_values
+      hf_rt_multiply:
+        doc: |
+          Stored hf rt multiply (bits 182-186); equals live payload field
+          hf_rt_multiply @ 114-115 unless the register has unstored edits
+        value: "((((data[45] & 0x0f) << 4) | (data[46] & 0x0f)) >> 1) & 0x1f"
+        enum: hf_rt_multiply_values
+      lf_rt_crossover:
+        doc: |
+          Stored lf rt crossover (bits 187-191); equals live payload field
+          lf_rt_crossover @ 120-121 unless the register has unstored edits
+        value: "(((data[46] & 0x0f) << 4) | (data[47] & 0x0f)) & 0x1f"
+        enum: lf_rt_crossover_values
+      source_bank:
+        doc: |
+          Stored source factory bank (bits 192-196); equals live payload
+          field bank_index_mirror @ 137 unless the register has unstored
+          edits. Factory bank the register was stored from (same as payload
+          137)
+        value: "((((data[48] & 0x0f) << 4) | (data[49] & 0x0f)) >> 3)"
+      delay_level:
+        doc: |
+          Stored delay level (bits 197-200); equals live payload field
+          delay_level @ 133 unless the register has unstored edits. V2 delay
+          block; located by samples/charset-b1s1-rt5s-stored.syx (reads 15).
+          Zero when the register was stored without delay
+        value: "((((data[49] & 0x0f) << 4) | (data[50] & 0x0f)) >> 3) & 0xf"
+        enum: delay_level_values
+      delay_time:
+        doc: |
+          Stored delay time (bits 201-207); equals live payload field
+          delay_time @ 134-135 unless the register has unstored edits. V2
+          delay block; stored capture reads 11
+        value: "(((data[50] & 0x0f) << 4) | (data[51] & 0x0f)) & 0x7f"
+        enum: delay_time_values
+      delay_modulation:
+        doc: |
+          Stored delay modulation (bits 208-211); equals live payload field
+          delay_modulation @ 139 unless the register has unstored edits. V2
+          delay block; stored capture reads 6
+        value: "(data[52] & 0x0f)"
+        enum: delay_modulation_values
+      tail_is_zero:
+        doc: |
+          Zero tail (bits 212-255); always true in witnessed captures
+        value: "((data[53] | data[54] | data[55] | data[56] | data[57] | data[58] | data[59] | data[60] | data[61] | data[62] | data[63]) & 0x0f) == 0"

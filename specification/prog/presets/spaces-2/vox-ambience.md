@@ -3,7 +3,7 @@
 
 # Vox Ambience
 
-_Generated 2026-07-19. Bank: [Spaces 2](README.md) (index **9**). Source: `sysex/prog/presets/Spaces 2.Vox Ambience.syx`._
+_Generated 2026-07-20. Bank: [Spaces 2](README.md) (index **9**). Source: `sysex/prog/presets/Spaces 2.Vox Ambience.syx`._
 
 [All presets](../../README.md) · [Spaces 2 bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -67,4 +67,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Waving Bloom](waving-bloom.md)
 - [Brick Chamber](brick-chamber.md)
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_

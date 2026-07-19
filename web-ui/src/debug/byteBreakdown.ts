@@ -13,6 +13,16 @@ import {
   SYSEX_START,
 } from "@/sysex/frame";
 import type { ActiveTab } from "@/hooks/useSysexOutput";
+import type { RegBlobLayout } from "@/sysex/registerBasisBlob";
+import {
+  decodeRegisterBasisBlob,
+  payloadValue,
+} from "@/sysex/registerBasisBlob";
+
+export interface ByteBreakdownSubRow {
+  label: string;
+  meaning: string;
+}
 
 export interface ByteBreakdownRow {
   start: number;
@@ -20,6 +30,7 @@ export interface ByteBreakdownRow {
   offsets: number[];
   label: string;
   meaning: string;
+  subRows?: ByteBreakdownSubRow[];
 }
 
 interface Region {
@@ -27,6 +38,7 @@ interface Region {
   end: number;
   label: string;
   meaning: string;
+  subRows?: ByteBreakdownSubRow[];
 }
 
 function range(start: number, end: number): number[] {
@@ -185,11 +197,72 @@ function describeMenuIndex(
   return `${base}; editing ${ui.parameter}`;
 }
 
-function describeRegisterBasisBlob(data: Uint8Array): string {
+function describeRegisterBasisBlob(
+  data: Uint8Array,
+  regBlob?: RegBlobLayout | null,
+): string {
   const blob = data.subarray(24, 88);
   if (blob.every((b) => b === 0x20)) return "factory spaces (0x20)";
-  if (blob.every((b) => b <= 0x0f)) return "nibble-packed register basis";
+  if (blob.every((b) => b <= 0x0f)) {
+    if (regBlob) {
+      const basis = decodeRegisterBasisBlob(data, regBlob);
+      if (basis) {
+        return `stored register snapshot — "${basis.name}", store #${basis.storeCounter}`;
+      }
+    }
+    return "nibble-packed register basis";
+  }
   return "mixed bytes";
+}
+
+function labelForStoredValue(
+  encoded: number,
+  payloadField: SpecField | undefined,
+): string {
+  const entry = payloadField?.value_map?.entries.find(
+    (e) => e.encoded === encoded,
+  );
+  if (entry) {
+    return `${formatValueLabel(entry.label, payloadField?.parameter)} (${encoded})`;
+  }
+  return String(encoded);
+}
+
+export function buildRegisterBasisSubRows(
+  data: Uint8Array,
+  regBlob: RegBlobLayout,
+  fieldsById: Map<string, SpecField>,
+): ByteBreakdownSubRow[] {
+  const basis = decodeRegisterBasisBlob(data, regBlob);
+  if (!basis) return [];
+  const rows: ByteBreakdownSubRow[] = [];
+  for (const field of regBlob.fields) {
+    const bits = `bits ${field.bit}–${field.bit + field.width - 1}`;
+    if (field.id === "name") {
+      rows.push({ label: `name (${bits})`, meaning: `"${basis.name}"` });
+      continue;
+    }
+    if (field.id === "pad" || field.id === "tail") continue;
+    const stored = basis.values[field.id]!;
+    if (field.id === "store_marker") continue;
+    if (field.id === "store_counter") {
+      rows.push({
+        label: `store counter (${bits})`,
+        meaning: `${stored} store${stored === 1 ? "" : "s"} to this register slot`,
+      });
+      continue;
+    }
+    const payloadField = field.payloadField
+      ? fieldsById.get(field.payloadField)
+      : undefined;
+    let meaning = labelForStoredValue(stored, payloadField);
+    const live = payloadValue(data, field);
+    if (live != null && live !== stored) {
+      meaning += ` — unstored edit, live: ${labelForStoredValue(live, payloadField)}`;
+    }
+    rows.push({ label: `${field.label} (${bits})`, meaning });
+  }
+  return rows;
 }
 
 function describeRegisterBank(data: Uint8Array): string {
@@ -205,13 +278,14 @@ function progSupplementaryRegions(
   data: Uint8Array,
   progUi: ProgUiRuntime | null,
   displayField?: SpecField,
+  regBlob?: RegBlobLayout | null,
 ): Region[] {
   return [
     {
       start: 24,
       end: 87,
       label: "register basis blob",
-      meaning: describeRegisterBasisBlob(data),
+      meaning: describeRegisterBasisBlob(data, regBlob),
     },
     {
       start: 92,
@@ -274,7 +348,24 @@ function fieldRegion(
   field: SpecField,
   data: Uint8Array,
   controlByFieldId: Map<string, ControlDef>,
+  blobContext?: {
+    regBlob: RegBlobLayout;
+    fieldsById: Map<string, SpecField>;
+  } | null,
 ): Region {
+  if (field.id === "register_basis_blob" && blobContext) {
+    return {
+      start: field.start,
+      end: field.end,
+      label: field.parameter ?? field.label,
+      meaning: describeRegisterBasisBlob(data, blobContext.regBlob),
+      subRows: buildRegisterBasisSubRows(
+        data,
+        blobContext.regBlob,
+        blobContext.fieldsById,
+      ),
+    };
+  }
   return {
     start: field.start,
     end: field.end,
@@ -322,12 +413,20 @@ export function buildByteBreakdown(
   options: {
     controls?: ControlDef[];
     progUi?: ProgUiRuntime | null;
+    regBlob?: RegBlobLayout | null;
   } = {},
 ): ByteBreakdownRow[] {
   const controlByFieldId = new Map(
     (options.controls ?? []).map((c) => [c.fieldId, c]),
   );
   const progUi = options.progUi ?? null;
+  const blobContext =
+    family === "prog" && options.regBlob
+      ? {
+          regBlob: options.regBlob,
+          fieldsById: new Map(spec.fields.map((f) => [f.id, f])),
+        }
+      : null;
 
   const specFields =
     family === "prog" && progUi
@@ -343,13 +442,18 @@ export function buildByteBreakdown(
   const regions: Region[] = [
     ...frameRegions(family),
     ...specFields.map((field) =>
-      fieldRegion(field, data, controlByFieldId),
+      fieldRegion(field, data, controlByFieldId, blobContext),
     ),
   ];
 
   if (family === "prog") {
     const displayField = spec.fields.find((field) => field.id === "display");
-    for (const region of progSupplementaryRegions(data, progUi, displayField)) {
+    for (const region of progSupplementaryRegions(
+      data,
+      progUi,
+      displayField,
+      options.regBlob,
+    )) {
       if (!regions.some((r) => overlaps(r, region.start, region.end))) {
         regions.push(region);
       }
@@ -374,6 +478,7 @@ export function buildByteBreakdown(
       end: fresh[fresh.length - 1]!,
       label: region.label,
       meaning: region.meaning,
+      ...(region.subRows ? { subRows: region.subRows } : {}),
     });
   }
 

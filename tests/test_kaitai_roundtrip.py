@@ -12,6 +12,7 @@ from m7_sysex.paths import prog_full_sweep_root, prog_menus_root
 from m7_sysex.encodings import decode_at_offsets
 from m7_sysex.frame import (
     SYSTEM_MESSAGE_LENGTH,
+    iter_sysex_messages,
     parse_sysex,
     verify_program_dump_checksum,
     verify_system_dump_checksum,
@@ -279,6 +280,75 @@ def test_edit_stream_parses_with_edit_bank_index(kaitai_prog_parser):
         assert encoded_int_from_field(parsed, bank_field) != encoded_int_from_field(
             parsed, mirror_field
         )
+
+
+REGISTER_ROOT = SYSEX / "prog" / "edit" / "registers"
+REGISTER_FRAMES = [
+    (f"{path.relative_to(REGISTER_ROOT).as_posix()}[{i}]", raw)
+    for path in sorted(REGISTER_ROOT.rglob("*.syx"))
+    for i, raw in enumerate(iter_sysex_messages(path.read_bytes()))
+]
+
+
+def _instance_int(value) -> int:
+    return value.value if isinstance(value, Enum) else int(value)
+
+
+@pytest.mark.slow
+@pytest.mark.parametrize(
+    "label,raw", REGISTER_FRAMES, ids=[l for l, _ in REGISTER_FRAMES]
+)
+def test_register_blob_instances_match_python_decoder(
+    label: str, raw: bytes, kaitai_prog_parser
+):
+    """Compiled Kaitai instances == native Python decoder, field by field."""
+    from m7_sysex.prog.register_blob import (
+        REGISTER_BLOB_FIELDS,
+        decode_register_blob,
+        frame_blob,
+        register_name_codes,
+    )
+
+    parsed = kaitai_prog_parser.from_bytes(raw)
+    blob = parsed.register_basis_blob
+    native_blob = frame_blob(raw)
+    assert bytes(blob.data) == native_blob
+    assert blob.is_register_basis
+    assert blob.tail_is_zero
+
+    basis = decode_register_blob(native_blob)
+    for i, code in enumerate(register_name_codes(native_blob)):
+        assert _instance_int(getattr(blob, f"name_code_{i:02d}")) == code, i
+
+    for field in REGISTER_BLOB_FIELDS:
+        if field.id in ("name", "tail"):
+            continue
+        got = _instance_int(getattr(blob, field.id))
+        assert got == basis.values[field.id], field.id
+
+
+@pytest.mark.slow
+def test_register_blob_stored_capture_resolves_enums(kaitai_prog_parser):
+    """reverb_time enum shows 5.0 s (not just 76) on the stored capture."""
+    raw = (REGISTER_ROOT / "samples" / "charset-b1s1-rt5s-stored.syx").read_bytes()
+    blob = kaitai_prog_parser.from_bytes(raw).register_basis_blob
+    assert isinstance(blob.reverb_time, Enum)
+    assert blob.reverb_time.value == 76
+    assert blob.reverb_time.name == "v_5"  # 5.0 s
+    assert _instance_int(blob.delay_level) == 15
+    assert _instance_int(blob.delay_time) == 11
+    assert _instance_int(blob.delay_modulation) == 6
+    # Name decodes fully in-parser via the register_name_char enum.
+    first = blob.name_code_00
+    assert isinstance(first, Enum) and first.name == "ampersand"
+
+
+@pytest.mark.slow
+def test_register_blob_guard_false_on_factory_dump(kaitai_prog_parser):
+    raw = (SYSEX / "prog" / "presets" / "Halls.Large Hall.syx").read_bytes()
+    blob = kaitai_prog_parser.from_bytes(raw).register_basis_blob
+    assert not blob.is_register_basis
+    assert bytes(blob.data) == b" " * 64
 
 
 def test_midi_bank_series_in_system_kaitai_spec():

@@ -16,6 +16,7 @@ from m7_sysex.export.web_ui import (
     sync_web_ui_assets,
 )
 from m7_sysex.prog.algorithms import PROG_ALGORITHM_CONSTRAINTS
+from m7_sysex.prog.register_blob import runtime_reg_blob
 
 
 @pytest.fixture
@@ -47,6 +48,8 @@ def test_sync_web_ui_assets_writes_runtime_assets(repo_root: Path) -> None:
         prog_ui=_load_prog_ui_state(repo_root),
     )
     assert runtime == expected
+    # Field table -> runtime bundle stays in sync (single source of truth).
+    assert runtime["reg_blob"] == runtime_reg_blob()
 
     public_presets = runtime["presets"]
     assert public_presets == _compact_preset_catalog(presets_full)

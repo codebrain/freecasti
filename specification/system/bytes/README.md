@@ -16,6 +16,6 @@
 | [Wet Gain](wet-gain.md) | `8-9` · `nibble_hilo` · high | Part of the M7’s internal mixing: sets the level of the processed (reverb) signal. Off, then −60 dB to 0 dB (Full) in 0.5 dB steps. Normally 0 dB (Full) with Dry Gain Off for a full-wet sidechain setup. Set Off to bypass processing for I/O test and measurement. Allow headroom when balancing with Dry Gain — the mix can add gain and the reverb process itself can add up to about 10 dB. |
 | [Output Level](output-level.md) | `17` · `raw_u8` · high | Sets the analog output level trim in three steps (−8 dB, −16 dB, and −24 dB) to match the input sensitivity of your mixer return or the next device in the chain. Return to factory defaults after level-matching tests — high settings can distort on hot signals. |
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_
 
 See [../README.md](../README.md) for frame layout and byte-map coverage.

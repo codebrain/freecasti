@@ -3,6 +3,7 @@ import type { PresetCatalog } from "@/presets/types";
 import type { ProgUiRuntime } from "@/prog/uiState";
 import { expandCompactSpec, isCompactSpec } from "@/spec/compact";
 import type { DumpSpec } from "@/spec/types";
+import type { RegBlobLayout } from "@/sysex/registerBasisBlob";
 
 export interface RuntimeBundle {
   prog: DumpSpec;
@@ -13,6 +14,7 @@ export interface RuntimeBundle {
     system: Uint8Array;
   };
   progUi: ProgUiRuntime | null;
+  regBlob: RegBlobLayout | null;
 }
 
 export function expandSpec(raw: unknown): DumpSpec {
@@ -40,6 +42,7 @@ export function expandRuntimeBundle(raw: {
   presets: unknown;
   tpl: { p: string; s: string };
   prog_ui?: unknown;
+  reg_blob?: unknown;
 }): RuntimeBundle {
   return {
     prog: expandSpec(raw.prog),
@@ -50,5 +53,6 @@ export function expandRuntimeBundle(raw: {
       system: decodeBase64Template(raw.tpl.s),
     },
     progUi: (raw.prog_ui as ProgUiRuntime | undefined) ?? null,
+    regBlob: (raw.reg_blob as RegBlobLayout | undefined) ?? null,
   };
 }

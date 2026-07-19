@@ -8,6 +8,8 @@ from ..frame import (
     NAME_OFFSET,
     PROGRAM_NAME_EDITABLE_LENGTH,
     PROGRAM_NAME_LENGTH,
+    REGISTER_BASIS_BLOB_LENGTH,
+    REGISTER_BASIS_BLOB_OFFSET,
 )
 from ..kaitai_value_maps import (
     build_register_bank_value_map,
@@ -184,17 +186,21 @@ def render_register_bank_page(*, today: str, nav: str = "") -> str:
         encoding="raw_u8",
         confidence="high",
         role=(
-            "Manual **Bank** within User Registers (`B0`–`B4` = `00`–`04`); "
-            "`00` on factory/parameter-series dumps"
+            "Manual **Bank** of the register **loaded as the running basis** "
+            "(`B0`–`B4` = `00`–`04`); `00` on factory/parameter-series dumps"
         ),
         description=(
-            "When a **User Register** is the running program basis, offset "
-            "**93** stores the register **Bank** (owner's manual: 5 Banks of "
-            "10 Registers). Witnessed exhaustively as `00`–`04` in "
-            "`fullsweep-rooms-studio-a.syx`. Factory and parameter-series "
-            "dumps keep this at `00`. Distinct from factory **program bank** "
-            "at 88–89 / mirror 137. Pair with [register](register.md) at "
-            "offset 95."
+            "When a **User Register** is loaded as the running program "
+            "basis, offset **93** stores the register **Bank** (owner's "
+            "manual: 5 Banks of 10 Registers). Witnessed exhaustively as "
+            "`00`–`04` in `fullsweep-rooms-studio-a.syx`. A **store alone "
+            "does not update it**: the delay-edit and rename captures "
+            "(stored to B1 R1 while the basis remained the factory program) "
+            "read `00`, while `charset-b1s1-rt5s-stored.syx` reads `01` "
+            "because B1 R0 was the active basis at dump time. Factory and "
+            "parameter-series dumps keep this at `00`. Distinct from factory "
+            "**program bank** at 88–89 / mirror 137. Pair with "
+            "[register](register.md) at offset 95."
         ),
         body_sections=[
             "## Encoding map",
@@ -239,17 +245,18 @@ def render_register_page(*, today: str, nav: str = "") -> str:
         encoding="raw_u8",
         confidence="high",
         role=(
-            "Manual **Register** within a register bank (`0`–`9`); "
-            "`00` on factory/parameter-series dumps"
+            "Manual **Register** of the register **loaded as the running "
+            "basis** (`0`–`9`); `00` on factory/parameter-series dumps"
         ),
         description=(
-            "When a **User Register** is the running program basis, offset "
-            "**95** stores the **Register** number within the bank (owner's "
-            "manual: 10 registers per bank). Witnessed exhaustively as "
-            "`00`–`09` in `fullsweep-rooms-studio-a.syx`. Factory and "
-            "parameter-series dumps keep this at `00`. Distinct from factory "
-            "**program slot** at 90–91. Pair with "
-            "[register bank](register-bank.md) at offset 93."
+            "When a **User Register** is loaded as the running program "
+            "basis, offset **95** stores the **Register** number within the "
+            "bank (owner's manual: 10 registers per bank). Witnessed "
+            "exhaustively as `00`–`09` in `fullsweep-rooms-studio-a.syx`. "
+            "A **store alone does not update it** — see "
+            "[register bank](register-bank.md) for the witness captures. "
+            "Factory and parameter-series dumps keep this at `00`. Distinct "
+            "from factory **program slot** at 90–91."
         ),
         body_sections=[
             "## Encoding map",
@@ -266,6 +273,202 @@ def render_register_page(*, today: str, nav: str = "") -> str:
             "- Filename convention in the corpus: `b0-…/slot-3.syx` means "
             "Bank 0, Register 3.",
             "- Reserved offset **96** stays `00` in witnessed captures.",
+            "",
+        ],
+    )
+
+
+# Blob fields whose payload twin is a sound-parameter page under bytes/.
+_BLOB_PARAM_PAGE_LABELS = {
+    "predelay",
+    "reverb time",
+    "diffusion",
+    "density",
+    "hf rt crossover",
+    "lf rt multiply",
+    "modulation",
+    "early to reverb mix",
+    "vlf cut",
+    "early select",
+    "early rolloff",
+    "rolloff",
+    "size",
+    "hf rt multiply",
+    "lf rt crossover",
+    "delay level",
+    "delay time",
+    "delay modulation",
+}
+
+
+def _blob_payload_cell(field: Any) -> str:
+    """Payload-twin cell for one blob field row (with page link)."""
+    from .nav import parameter_slug
+
+    if not field.payload_offsets:
+        return "—"
+    offs = list(field.payload_offsets)
+    off_txt = f"{offs[0]}–{offs[-1]}" if len(offs) > 1 else str(offs[0])
+    if field.id == "name":
+        return f"[program name](program-name.md) @ {off_txt}"
+    if field.label in _BLOB_PARAM_PAGE_LABELS:
+        return f"[{field.label}]({parameter_slug(field.label)}.md) @ {off_txt}"
+    if field.id == "source_bank":
+        return f"[bank index mirror](../program-identity.md) @ {off_txt}"
+    if field.id == "engine_class":
+        return f"engine/bank-class flag @ {off_txt}"
+    return off_txt
+
+
+def render_register_basis_blob_page(*, today: str, nav: str = "") -> str:
+    from ..prog.register_blob import (
+        BLOB_BIT_LENGTH,
+        INFERRED_CHARSET_CODES,
+        REGISTER_BLOB_FIELDS,
+        REGISTER_NAME_CHARSET,
+    )
+
+    start = REGISTER_BASIS_BLOB_OFFSET
+    end = REGISTER_BASIS_BLOB_OFFSET + REGISTER_BASIS_BLOB_LENGTH - 1
+
+    layout_rows = []
+    for field in REGISTER_BLOB_FIELDS:
+        bits = (
+            f"{field.bit_offset}–{field.bit_end}"
+            if field.bit_width > 1
+            else str(field.bit_offset)
+        )
+        note = field.doc.split(". ")[0] if field.doc else ""
+        layout_rows.append(
+            f"| {bits} | {field.bit_width} | {field.label} | "
+            f"{_blob_payload_cell(field)} | {note} |"
+        )
+
+    charset_rows = []
+    for lo, hi, desc in (
+        (0, 0, "space"),
+        (1, 1, "`&`"),
+        (2, 11, "digits `0`–`9`"),
+        (12, 37, "uppercase `A`–`Z`"),
+        (38, 63, "lowercase `a`–`z`"),
+    ):
+        chars = REGISTER_NAME_CHARSET[lo : hi + 1]
+        code_txt = str(lo) if lo == hi else f"{lo}–{hi}"
+        note = (
+            "code 2 (`0`) inferred by continuity; all others witnessed"
+            if any(c in INFERRED_CHARSET_CODES for c in range(lo, hi + 1))
+            else "witnessed"
+        )
+        charset_rows.append(f"| {code_txt} | `{chars}` | {desc} | {note} |")
+
+    return _page_shell(
+        nav=nav,
+        title="Register basis blob",
+        today=today,
+        source_line=(
+            "Register hold-EDIT captures under "
+            "`sysex/prog/edit/registers/` (fullsweep + witness samples). "
+            "Layout table generated from `REGISTER_BLOB_FIELDS` in "
+            "`m7_sysex.prog.register_blob`."
+        ),
+        offsets=f"{start}–{end}",
+        encoding="nibble_bitstream",
+        confidence="high",
+        role=(
+            "Bit-packed snapshot of the **stored register** (name, store "
+            "counter, all 18 parameters incl. the V2 delay block); factory "
+            "dumps space-pad this region with `0x20`"
+        ),
+        description=(
+            "On Reg-backed hold-EDIT dumps, offsets "
+            f"**{start}–{end}** hold a snapshot of the register as it was "
+            "**stored**. Read the low nibble of each byte (4 bits per byte, "
+            f"MSB first) as a {BLOB_BIT_LENGTH}-bit stream; the fields below "
+            "were verified against every register-basis frame in the corpus "
+            "(each matches the corresponding live payload field unless the "
+            "register has unstored edits). The blob is untouched by live "
+            "edits: payload bytes 100–139 track the edit buffer, the blob "
+            "keeps the stored values (witness: "
+            "`samples/charset-b1s1-rt5s-unstored-edit.syx`, where reverb "
+            "time reads 5.0 s in the payload but the stored 1.0 s here). "
+            "Factory and parameter-series dumps space-pad this region "
+            "(`0x20`), so check for nibble bytes before decoding."
+        ),
+        body_sections=[
+            "## Bit layout",
+            "",
+            "Bits count from the first nibble (offset "
+            f"{start} low nibble = bits 0–3). Field widths are provisional "
+            "at boundaries where the leading bits were always zero in this "
+            "corpus; positions/order are exact.",
+            "",
+            "| Bits | Width | Field | Payload twin | Notes |",
+            "|------|------:|-------|--------------|-------|",
+            *layout_rows,
+            "",
+            "## Name charset (6-bit)",
+            "",
+            "14 characters × 6-bit code, space-padded. Complete 64-entry "
+            "charset, pinned down by `samples/charset-b1s1-renamed.syx` "
+            "(register renamed to `&123456789ABCD`):",
+            "",
+            "| Codes | Characters | Range | Status |",
+            "|-------|------------|-------|--------|",
+            *charset_rows,
+            "",
+            "## Store-generation counter",
+            "",
+            "Bits 96–100 (wire offsets 48–49) increment each time the "
+            "register slot is overwritten. Witness history:",
+            "",
+            "- `fullsweep-rooms-studio-a.syx`: 3 for B0 R0–R2, 2 for "
+            "B0 R3–B1 R1, 1 for all remaining registers — matching the "
+            "corpus capture history exactly (the only non-identity bytes "
+            "that vary inside the fullsweep).",
+            "- `samples/rooms-studio-a-b1s1-delay-edit.syx`: one more store "
+            "to B1 R1 bumped its counter from 2 to 3 with the rest of the "
+            "blob unchanged.",
+            "- `samples/charset-b1s1-renamed.syx`: reads 5 — renaming "
+            "stores twice.",
+            "- `samples/charset-b1s1-rt5s-stored.syx`: targeted B1 R0 and "
+            "reads exactly R0's expected next count, 3.",
+            "",
+            "## Stored snapshot semantics",
+            "",
+            "- **The blob snapshots the stored register values (not the "
+            "factory source), delay block included.** After storing a "
+            "program with reverb time edited to 5.0 s and the delay block "
+            "engaged (`samples/charset-b1s1-rt5s-stored.syx`), the blob's "
+            "reverb-time field reads encoded 76 (5.0 s, not the factory 10) "
+            "and bits 197–211 carry delay level 15 / time 11 / mod 6, "
+            "exactly matching the payload.",
+            "- **Zero delay tail with delay in the payload** "
+            "(`samples/rooms-studio-a-b1s1-delay-edit.syx`) means the store "
+            "happened *before* the delay was dialed in: the delay lived "
+            "only in the edit buffer, not in the stored register.",
+            "- **Register identity at offsets 93/95 = the register "
+            "currently loaded as the running basis** "
+            "([register bank](register-bank.md) / [register](register.md)). "
+            "A store alone does **not** update them: the delay-edit and "
+            "rename captures (stored to B1 R1 while the basis remained the "
+            "factory program) read `0/0`, while "
+            "`charset-b1s1-rt5s-stored.syx` reads `1/0` because B1 R0 was "
+            "the active basis at dump time.",
+            "",
+            "## Witness captures",
+            "",
+            "All under `sysex/prog/edit/registers/`:",
+            "",
+            "- `fullsweep-rooms-studio-a.syx` — 50 registers "
+            "(Banks 0–4 × Registers 0–9), layout + store counter",
+            "- `samples/rooms-studio-a-b1s1-delay-edit.syx` — counter bump; "
+            "delay in payload only (stored before the delay was dialed in)",
+            "- `samples/charset-b1s1-renamed.syx` — name `&123456789ABCD` "
+            "pins charset codes 1–11",
+            "- `samples/charset-b1s1-rt5s-unstored-edit.syx` — unstored "
+            "5.0 s edit: payload diverges from blob",
+            "- `samples/charset-b1s1-rt5s-stored.syx` — stored 5.0 s + "
+            "delay: blob updates; locates the delay block at bits 197–211",
             "",
         ],
     )
@@ -293,6 +496,18 @@ IDENTITY_BYTE_PAGES: tuple[dict[str, Any], ...] = (
             "window."
         ),
         "render": render_program_name_pad_page,
+    },
+    {
+        "name": "Register basis blob",
+        "folder": "register basis blob",
+        "slug": "register-basis-blob",
+        "sysex": "`24-87` · `nibble_bitstream` · high",
+        "description": (
+            "Bit-packed stored-register snapshot (name, store counter, all "
+            "18 parameters incl. delay block); factory dumps space-pad this "
+            "region."
+        ),
+        "render": render_register_basis_blob_page,
     },
     {
         "name": "Register bank",

@@ -3,7 +3,7 @@
 
 # Repro Plate
 
-_Generated 2026-07-19. Bank: [Plates](README.md) (index **1**). Source: `sysex/prog/presets/Plates.Repro Plate.syx`._
+_Generated 2026-07-20. Bank: [Plates](README.md) (index **1**). Source: `sysex/prog/presets/Plates.Repro Plate.syx`._
 
 [All presets](../../README.md) · [Plates bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -71,4 +71,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Vocal Plate B](vocal-plate-b.md)
 - **Repro Plate** (this page)
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_

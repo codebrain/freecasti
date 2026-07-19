@@ -64,6 +64,7 @@ import { LEGAL_DISCLAIMER } from "@/content/legalDisclaimer";
 import { MidiErrorToast } from "@/components/MidiErrorToast";
 import { shouldShowMidiError } from "@/midi/midiErrorToast";
 import type { ProgUiRuntime } from "@/prog/uiState";
+import type { RegBlobLayout } from "@/sysex/registerBasisBlob";
 import { displayParameterLabel } from "@/spec/labels";
 import { computeTimingDiscrepancies } from "@/tempo/tempo";
 
@@ -99,6 +100,7 @@ export function App() {
   const [progTemplate, setProgTemplate] = useState<Uint8Array | null>(null);
   const [sysTemplate, setSysTemplate] = useState<Uint8Array | null>(null);
   const [progUi, setProgUi] = useState<ProgUiRuntime | null>(null);
+  const [regBlob, setRegBlob] = useState<RegBlobLayout | null>(null);
   const [activeTab, setActiveTab] = useState<ActiveTab>(loadActiveTab);
   const [debugOpen, setDebugOpen] = useState(() => {
     try {
@@ -515,8 +517,14 @@ export function App() {
     let cancelled = false;
     (async () => {
       try {
-        const { prog, system: sys, presets, templates, progUi: ui } =
-          await loadRuntime();
+        const {
+          prog,
+          system: sys,
+          presets,
+          templates,
+          progUi: ui,
+          regBlob: blobLayout,
+        } = await loadRuntime();
         if (cancelled) return;
 
         setProgSpec(prog);
@@ -525,6 +533,7 @@ export function App() {
         setProgTemplate(templates.prog);
         setSysTemplate(templates.system);
         setProgUi(ui);
+        setRegBlob(blobLayout);
 
         const { abStore: restoredAb, sysState: restoredSys } = bootstrapAppState(
           prog,
@@ -993,6 +1002,7 @@ export function App() {
         progControls={progControls}
         sysControls={sysControls}
         progUi={progUi}
+        regBlob={regBlob}
       />
     </div>
   );

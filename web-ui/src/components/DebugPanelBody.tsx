@@ -7,6 +7,7 @@ import { detectDumpFamily } from "@/sysex/hydrate";
 import type { ControlDef } from "@/spec/controls";
 import type { DumpSpec } from "@/spec/types";
 import type { ProgUiRuntime } from "@/prog/uiState";
+import type { RegBlobLayout } from "@/sysex/registerBasisBlob";
 
 export interface DebugPanelBodyProps {
   lastChange?: ChangeRecord | null;
@@ -18,6 +19,7 @@ export interface DebugPanelBodyProps {
   progControls?: ControlDef[];
   sysControls?: ControlDef[];
   progUi?: ProgUiRuntime | null;
+  regBlob?: RegBlobLayout | null;
 }
 
 function DebugSection({
@@ -82,6 +84,7 @@ function MidiLogList({
   progControls,
   sysControls,
   progUi,
+  regBlob,
 }: {
   entries: readonly MidiLogEntry[];
   progSpec?: DumpSpec | null;
@@ -89,6 +92,7 @@ function MidiLogList({
   progControls?: ControlDef[];
   sysControls?: ControlDef[];
   progUi?: ProgUiRuntime | null;
+  regBlob?: RegBlobLayout | null;
 }) {
   const latestId = entries[0]?.id ?? null;
   const [expandedId, setExpandedId] = useState<string | null>(latestId);
@@ -169,6 +173,7 @@ function MidiLogList({
                   progControls={progControls}
                   sysControls={sysControls}
                   progUi={progUi}
+                  regBlob={regBlob}
                 />
               </div>
             )}
@@ -189,6 +194,7 @@ export function DebugPanelBody({
   progControls = [],
   sysControls = [],
   progUi = null,
+  regBlob = null,
 }: DebugPanelBodyProps) {
   const inspectorProps = useMemo(
     () => ({
@@ -197,8 +203,9 @@ export function DebugPanelBody({
       progControls,
       sysControls,
       progUi,
+      regBlob,
     }),
-    [progControls, progSpec, progUi, sysControls, sysSpec],
+    [progControls, progSpec, progUi, regBlob, sysControls, sysSpec],
   );
 
   return (

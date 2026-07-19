@@ -3,7 +3,7 @@
 
 # Early Select
 
-_Generated 2026-07-19. Source folder: `sysex/prog/parameters/early select/`._
+_Generated 2026-07-20. Source folder: `sysex/prog/parameters/early select/`._
 
 ## SysEx summary
 

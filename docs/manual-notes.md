@@ -167,10 +167,10 @@ display-level secondary coupling on the same row.
 |-------|--------|
 | **4–7** `70 08 01 00` | Program-dump family; **not** documented in manuals. Hold **EDIT** uses the same header/length |
 | **8–23** | Program name: **16-byte** wire window; **14-character** editable label (manual); offsets **22–23** space-padded in this corpus |
-| **24–87** | Factory: space-padded (`0x20`). Reg-backed hold-EDIT: nibble-packed **register basis blob** (unedited basis copy) |
-| **93** | **`register_bank`** — manual Bank (`raw_u8`, B0–B4 = `00`–`04`); `00` on factory dumps |
+| **24–87** | Factory: space-padded (`0x20`). Reg-backed hold-EDIT: bit-packed **register basis blob** — 6-bit-packed register name + all stored parameter values + source bank + store counter (fully decoded; see the generated [register-basis-blob.md](../specification/prog/bytes/register-basis-blob.md)) |
+| **93** | **`register_bank`** — manual Bank (`raw_u8`, B0–B4 = `00`–`04`) of the register *loaded as the running basis* (a store alone doesn't update it); `00` on factory dumps |
 | **94** | Constant `08` (structure/version) |
-| **95** | **`register`** — manual Register within bank (`0`–`9`); `00` on factory dumps |
+| **95** | **`register`** — manual Register within bank (`0`–`9`) of the *loaded* register basis; `00` on factory dumps |
 | **96** | Reserved/unknown (`00` in witnessed captures) |
 | **EDIT** identity | Program bank **11** @ 88–89; source factory slot @ 90–91; source bank @ mirror **137**; see `sysex/prog/edit/` and `sysex/prog/edit/registers/` |
 | **SYSTEM** layout | 77 bytes, header `70 08 02 00`; **8** settings captured — see [system/](../specification/system/) |
@@ -179,9 +179,20 @@ Register-basis hold-EDIT captures prove the full **5 Banks × 10 Registers**
 inventory (`fullsweep-rooms-studio-a.syx`), plus earlier B0/B1 Large Hall and
 Ambience/NonLin samples under [`sysex/prog/edit/registers/`](../sysex/prog/edit/registers/).
 LCD `display` (146–147) does **not** encode Bank/Register (fullsweep fixed at
-164). Partial blob decode: **50–55** ≈ predelay / reverb time / diffusion /
-density; remainder of **24–47** / **56–72** still open. One Halls 2 capture with
-atypical meta is documented as an outlier, not the primary path.
+164). The blob at **24–87** is now **fully decoded**: reading the low nibble of
+each byte as a 256-bit stream gives the 14-character register name (complete
+64-character 6-bit charset: space, `&`, `0`–`9`, `A`–`Z`, `a`–`z`), a
+per-register **store-generation counter** (bits 96–100, wire
+offsets 48–49), all 15 sound parameters plus engine class and source bank
+(bits 104–196), the V2 delay block (level/time/modulation, bits 197–211),
+and a zero tail. The blob snapshots the **stored register values** (not the
+factory source, and untouched by unstored live edits) — proven by
+`charset-b1s1-rt5s-stored.syx` / `charset-b1s1-rt5s-unstored-edit.syx`.
+Full generated layout table:
+[register-basis-blob.md](../specification/prog/bytes/register-basis-blob.md)
+(capture narrative in the
+[registers README](../sysex/prog/edit/registers/README.md)). One Halls 2
+capture with atypical meta is documented as an outlier, not the primary path.
 
 ## Suggested captures (from manual + gaps)
 
@@ -190,8 +201,9 @@ Remaining optional work:
 
 1. **EDIT receive path** — confirm MIDI-notes bank **118** when loading an EDIT
    dump back into the unit (distinct from send marker 11).
-2. **Favorites**-based PROG dumps (bank **119**); finish mapping register basis
-   blob **24–47** / **56–72**.
+2. **Favorites**-based PROG dumps (bank **119**). (Register blob mapping is
+   complete: offsets **93/95** track the *loaded* register basis, not store
+   targets; the blob snapshots stored values incl. the delay block.)
 3. **SYSTEM** knobs not yet in dedicated series (e.g. register lock) if you
    need to edit them over SysEx.
 

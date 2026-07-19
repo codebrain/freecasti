@@ -5184,6 +5184,7 @@
       "parameters": [],
       "encoding": null,
       "observed_values": [
+        "26",
         "41",
         "42",
         "43",
@@ -5206,7 +5207,7 @@
         "56",
         "57"
       ],
-      "observed_count": 21
+      "observed_count": 22
     },
     {
       "offset": 9,
@@ -5216,6 +5217,7 @@
       "encoding": null,
       "observed_values": [
         "26",
+        "31",
         "44",
         "46",
         "61",
@@ -5234,7 +5236,7 @@
         "74",
         "75"
       ],
-      "observed_count": 18
+      "observed_count": 19
     },
     {
       "offset": 10,
@@ -5244,6 +5246,7 @@
       "encoding": null,
       "observed_values": [
         "20",
+        "32",
         "4D",
         "61",
         "62",
@@ -5268,7 +5271,7 @@
         "79",
         "7A"
       ],
-      "observed_count": 24
+      "observed_count": 25
     },
     {
       "offset": 11,
@@ -5278,6 +5281,7 @@
       "encoding": null,
       "observed_values": [
         "20",
+        "33",
         "43",
         "50",
         "57",
@@ -5303,7 +5307,7 @@
         "79",
         "7A"
       ],
-      "observed_count": 25
+      "observed_count": 26
     },
     {
       "offset": 12,
@@ -5314,6 +5318,7 @@
       "observed_values": [
         "20",
         "26",
+        "34",
         "41",
         "42",
         "43",
@@ -5340,7 +5345,7 @@
         "75",
         "79"
       ],
-      "observed_count": 27
+      "observed_count": 28
     },
     {
       "offset": 13,
@@ -5351,6 +5356,7 @@
       "observed_values": [
         "20",
         "26",
+        "35",
         "41",
         "43",
         "48",
@@ -5375,7 +5381,7 @@
         "73",
         "74"
       ],
-      "observed_count": 25
+      "observed_count": 26
     },
     {
       "offset": 14,
@@ -5386,6 +5392,7 @@
       "observed_values": [
         "20",
         "26",
+        "36",
         "41",
         "42",
         "43",
@@ -5420,7 +5427,7 @@
         "77",
         "79"
       ],
-      "observed_count": 35
+      "observed_count": 36
     },
     {
       "offset": 15,
@@ -5435,6 +5442,7 @@
         "32",
         "33",
         "34",
+        "37",
         "41",
         "42",
         "43",
@@ -5466,7 +5474,7 @@
         "78",
         "79"
       ],
-      "observed_count": 36
+      "observed_count": 37
     },
     {
       "offset": 16,
@@ -5476,6 +5484,7 @@
       "encoding": null,
       "observed_values": [
         "20",
+        "38",
         "41",
         "42",
         "43",
@@ -5506,7 +5515,7 @@
         "75",
         "78"
       ],
-      "observed_count": 30
+      "observed_count": 31
     },
     {
       "offset": 17,
@@ -5516,6 +5525,7 @@
       "encoding": null,
       "observed_values": [
         "20",
+        "39",
         "41",
         "42",
         "43",
@@ -5542,7 +5552,7 @@
         "76",
         "79"
       ],
-      "observed_count": 26
+      "observed_count": 27
     },
     {
       "offset": 18,
@@ -5619,6 +5629,7 @@
         "20",
         "41",
         "42",
+        "43",
         "63",
         "65",
         "68",
@@ -5631,7 +5642,7 @@
         "72",
         "73"
       ],
-      "observed_count": 14
+      "observed_count": 15
     },
     {
       "offset": 21,
@@ -5643,6 +5654,7 @@
         "20",
         "41",
         "42",
+        "44",
         "65",
         "68",
         "6C",
@@ -5651,7 +5663,7 @@
         "74",
         "79"
       ],
-      "observed_count": 10
+      "observed_count": 11
     },
     {
       "offset": 22,
@@ -5678,104 +5690,111 @@
     {
       "offset": 24,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
+        "00",
         "05",
         "06",
         "07",
         "20"
       ],
-      "observed_count": 4
+      "observed_count": 5
     },
     {
       "offset": 25,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
+        "04",
         "07",
         "0B",
         "0E",
         "20"
       ],
-      "observed_count": 4
+      "observed_count": 5
     },
     {
       "offset": 26,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
+        "03",
         "04",
         "06",
         "09",
         "20"
       ],
-      "observed_count": 4
+      "observed_count": 5
     },
     {
       "offset": 27,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
+        "01",
         "0C",
         "0D",
         "0E",
         "20"
       ],
-      "observed_count": 4
+      "observed_count": 5
     },
     {
       "offset": 28,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
+        "00",
         "0A",
         "0E",
         "0F",
         "20"
       ],
-      "observed_count": 4
+      "observed_count": 5
     },
     {
       "offset": 29,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "01",
+        "05",
         "09",
         "0C",
+        "20"
+      ],
+      "observed_count": 5
+    },
+    {
+      "offset": 30,
+      "status": "frame",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "01",
+        "0A",
+        "0B",
         "20"
       ],
       "observed_count": 4
     },
     {
-      "offset": 30,
-      "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
-      "parameters": [],
-      "encoding": null,
-      "observed_values": [
-        "0A",
-        "0B",
-        "20"
-      ],
-      "observed_count": 3
-    },
-    {
       "offset": 31,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5788,35 +5807,37 @@
     {
       "offset": 32,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
         "03",
         "04",
+        "07",
         "20"
       ],
-      "observed_count": 4
+      "observed_count": 5
     },
     {
       "offset": 33,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
+        "02",
         "03",
         "04",
         "20"
       ],
-      "observed_count": 4
+      "observed_count": 5
     },
     {
       "offset": 34,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5830,76 +5851,81 @@
     {
       "offset": 35,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "02",
         "06",
-        "0C",
-        "20"
-      ],
-      "observed_count": 4
-    },
-    {
-      "offset": 36,
-      "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
-      "parameters": [],
-      "encoding": null,
-      "observed_values": [
-        "00",
         "09",
         "0C",
         "20"
       ],
-      "observed_count": 4
+      "observed_count": 5
+    },
+    {
+      "offset": 36,
+      "status": "frame",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "00",
+        "02",
+        "09",
+        "0C",
+        "20"
+      ],
+      "observed_count": 5
     },
     {
       "offset": 37,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
         "07",
+        "08",
         "0E",
         "20"
       ],
-      "observed_count": 4
+      "observed_count": 5
     },
     {
       "offset": 38,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
         "01",
+        "0B",
         "0E",
+        "20"
+      ],
+      "observed_count": 5
+    },
+    {
+      "offset": 39,
+      "status": "frame",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "00",
+        "03",
+        "0A",
         "20"
       ],
       "observed_count": 4
     },
     {
-      "offset": 39,
-      "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
-      "parameters": [],
-      "encoding": null,
-      "observed_values": [
-        "00",
-        "0A",
-        "20"
-      ],
-      "observed_count": 3
-    },
-    {
       "offset": 40,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5912,59 +5938,63 @@
     {
       "offset": 41,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
         "03",
+        "0D",
         "20"
       ],
-      "observed_count": 3
+      "observed_count": 4
     },
     {
       "offset": 42,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
+        "03",
         "0A",
         "20"
       ],
-      "observed_count": 3
+      "observed_count": 4
     },
     {
       "offset": 43,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
         "02",
+        "08",
         "20"
       ],
-      "observed_count": 3
+      "observed_count": 4
     },
     {
       "offset": 44,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
         "0A",
+        "0F",
         "20"
       ],
-      "observed_count": 3
+      "observed_count": 4
     },
     {
       "offset": 45,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5976,7 +6006,7 @@
     {
       "offset": 46,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5988,7 +6018,7 @@
     {
       "offset": 47,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6000,20 +6030,21 @@
     {
       "offset": 48,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
         "01",
+        "02",
         "20"
       ],
-      "observed_count": 3
+      "observed_count": 4
     },
     {
       "offset": 49,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6026,7 +6057,7 @@
     {
       "offset": 50,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6038,7 +6069,7 @@
     {
       "offset": 51,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6053,20 +6084,21 @@
     {
       "offset": 52,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
         "02",
+        "04",
         "20"
       ],
-      "observed_count": 3
+      "observed_count": 4
     },
     {
       "offset": 53,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6082,7 +6114,7 @@
     {
       "offset": 54,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6098,7 +6130,7 @@
     {
       "offset": 55,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6114,7 +6146,7 @@
     {
       "offset": 56,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6129,7 +6161,7 @@
     {
       "offset": 57,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6143,7 +6175,7 @@
     {
       "offset": 58,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6158,7 +6190,7 @@
     {
       "offset": 59,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6173,7 +6205,7 @@
     {
       "offset": 60,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6189,7 +6221,7 @@
     {
       "offset": 61,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6204,7 +6236,7 @@
     {
       "offset": 62,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6219,7 +6251,7 @@
     {
       "offset": 63,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6235,7 +6267,7 @@
     {
       "offset": 64,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6249,7 +6281,7 @@
     {
       "offset": 65,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6264,7 +6296,7 @@
     {
       "offset": 66,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6278,7 +6310,7 @@
     {
       "offset": 67,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6293,7 +6325,7 @@
     {
       "offset": 68,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6309,7 +6341,7 @@
     {
       "offset": 69,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6325,7 +6357,7 @@
     {
       "offset": 70,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6339,7 +6371,7 @@
     {
       "offset": 71,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6354,7 +6386,7 @@
     {
       "offset": 72,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6370,55 +6402,59 @@
     {
       "offset": 73,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
+        "07",
         "20"
       ],
-      "observed_count": 2
+      "observed_count": 3
     },
     {
       "offset": 74,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
+        "08",
         "20"
       ],
-      "observed_count": 2
+      "observed_count": 3
     },
     {
       "offset": 75,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
+        "0B",
         "20"
       ],
-      "observed_count": 2
+      "observed_count": 3
     },
     {
       "offset": 76,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
         "00",
+        "06",
         "20"
       ],
-      "observed_count": 2
+      "observed_count": 3
     },
     {
       "offset": 77,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6430,7 +6466,7 @@
     {
       "offset": 78,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6442,7 +6478,7 @@
     {
       "offset": 79,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6454,7 +6490,7 @@
     {
       "offset": 80,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6466,7 +6502,7 @@
     {
       "offset": 81,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6478,7 +6514,7 @@
     {
       "offset": 82,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6490,7 +6526,7 @@
     {
       "offset": 83,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6502,7 +6538,7 @@
     {
       "offset": 84,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6514,7 +6550,7 @@
     {
       "offset": 85,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6526,7 +6562,7 @@
     {
       "offset": 86,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6538,7 +6574,7 @@
     {
       "offset": 87,
       "status": "frame",
-      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "role": "Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) \u2014 fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6705,7 +6741,7 @@
     {
       "offset": 93,
       "status": "known",
-      "role": "Register bank (`raw_u8`, manual Bank): `B0`\u2013`B4` = `00`\u2013`04` when the dump basis is a user register (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus",
+      "role": "Register bank (`raw_u8`, manual Bank): `B0`\u2013`B4` = `00`\u2013`04` of the register currently **loaded as the running basis** (see `sysex/prog/edit/registers/`); a store alone does not update it (witnessed `00` after storing to B1 R1 with a factory basis); `00` on factory/parameter-series dumps in this corpus",
       "parameters": [
         "_corpus"
       ],
@@ -6767,7 +6803,7 @@
     {
       "offset": 95,
       "status": "known",
-      "role": "Register within bank (`raw_u8`, manual Register `0`\u2013`9`) when the dump basis is a user register; `00` on factory/parameter-series dumps in this corpus",
+      "role": "Register within bank (`raw_u8`, manual Register `0`\u2013`9`) of the register currently **loaded as the running basis**; a store alone does not update it (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus",
       "parameters": [
         "_corpus"
       ],

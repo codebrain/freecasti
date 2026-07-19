@@ -19,7 +19,7 @@ Reserved/meta roles (padding, family flag, display @ 146–147, engine/bank clas
 | 4-7 | 4 | frame | program-dump header |
 | 8-21 | 14 | frame | [program name (ASCII)](bytes/program-name.md) |
 | 22-23 | 2 | frame | [program name pad](bytes/program-name-pad.md) |
-| 24-87 | 64 | frame | register basis blob |
+| 24-87 | 64 | frame | [register basis blob](bytes/register-basis-blob.md) |
 | 88-89 | 2 | known | [bank index](program-identity.md) (`nibble_hilo`) |
 | 90-91 | 2 | known | [program slot](program-identity.md) (`nibble_hilo`) |
 | 92 | 1 | secondary | menu browse flag (`raw_u8`) |
@@ -102,4 +102,4 @@ Edit/UI state (not a sound parameter): `92`, `98-99`
 See [ui-state.md](ui-state.md) and [bytes/display.md](bytes/display.md) for menu captures.
 
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_

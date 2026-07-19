@@ -43,7 +43,7 @@ Observed length: **{message_length} bytes** for the captured program dumps.
 | 4-7 | 4 | Header `{header}` (program-dump family; exact semantics TBD) |
 | 8-21 | 14 | Program name, ASCII, space-padded (14-character editable label per manual) — see [bytes/program-name.md](bytes/program-name.md) |
 | 22-23 | 2 | Program name pad (`0x20` in this corpus; completes the 16-byte wire name window) |
-| 24-87 | 64 | Register basis blob: spaces (`0x20`) on factory dumps; nibble-packed unedited register basis on Reg-backed hold-EDIT dumps |
+| 24-87 | 64 | Register basis blob: spaces (`0x20`) on factory dumps; bit-packed snapshot of the stored register (name, store counter, all 18 parameters) on Reg-backed hold-EDIT dumps — see [bytes/register-basis-blob.md](bytes/register-basis-blob.md) |
 | 88-89 | 2 | Bank index (`nibble_hilo`) — see [program-identity.md](program-identity.md) |
 | 90-91 | 2 | Program slot within bank (`nibble_hilo`) |
 | 92-151 | 60 | Parameter / meta / UI-state payload (nibble pairs, raw bytes, and reserved zeros — see [byte-map.md](byte-map.md)) |
@@ -57,7 +57,7 @@ F0 | {mfr} | {header} | <name 8-21> <pad 22-23> <basis blob 24-87> | <bank> <slo
 ### Notes
 
 - All inspected payload bytes at offsets 88-155 stay within `0x00`-`0x0F`. That strongly suggests the M7 packs each binary byte as two MIDI nibbles rather than using classic 7-bit MIDI packing with MSB bitfields. Not every payload byte is half of a nibble pair, though: several fields are single `raw_u8` bytes and several offsets are reserved zeros (see [byte-map-overview.md](byte-map-overview.md)).
-- Factory dumps fill offsets 24-87 with spaces, so the whole 8-87 window reads as one long space-padded name there. Reg-backed hold-EDIT captures show 24-87 is really a separate register-basis blob (see `sysex/prog/edit/registers/`).
+- Factory dumps fill offsets 24-87 with spaces, so the whole 8-87 window reads as one long space-padded name there. Reg-backed hold-EDIT captures show 24-87 is really a separate register-basis blob — a fully decoded bit-packed snapshot of the stored register ([bytes/register-basis-blob.md](bytes/register-basis-blob.md), captures under `sysex/prog/edit/registers/`).
 - Checksum (152-155): **CRC-16/ARC** over the raw SysEx bytes at offsets 8-151 (name + payload), packed as four high-nibble-first data bytes. Manufacturer ID and header are not covered.
 - Program dumps can include UI / edit-state fields in addition to algorithm parameters (Bricasti documents that a program dump carries the running program, edits, and UI state). Expect a few offsets to move even during a “single parameter” series.
 - Display at **146–147** (`nibble_hilo`): high nibble = page/row, low nibble = column/position. Menu index remains at **98–99**. See [bytes/display.md](bytes/display.md) and [ui-state.md](ui-state.md).

@@ -39,10 +39,11 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "offsets": [93],
         "status": "known",
         "role": (
-            "Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` when "
-            "the dump basis is a user register (see "
-            "`sysex/prog/edit/registers/`); `00` on factory/parameter-series "
-            "dumps in this corpus"
+            "Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` of "
+            "the register currently **loaded as the running basis** (see "
+            "`sysex/prog/edit/registers/`); a store alone does not update it "
+            "(witnessed `00` after storing to B1 R1 with a factory basis); "
+            "`00` on factory/parameter-series dumps in this corpus"
         ),
         "encoding": "raw_u8",
         "confidence": "high",
@@ -63,9 +64,10 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "offsets": [95],
         "status": "known",
         "role": (
-            "Register within bank (`raw_u8`, manual Register `0`–`9`) when the "
-            "dump basis is a user register; `00` on factory/parameter-series "
-            "dumps in this corpus"
+            "Register within bank (`raw_u8`, manual Register `0`–`9`) of the "
+            "register currently **loaded as the running basis**; a store "
+            "alone does not update it (see `sysex/prog/edit/registers/`); "
+            "`00` on factory/parameter-series dumps in this corpus"
         ),
         "encoding": "raw_u8",
         "confidence": "high",

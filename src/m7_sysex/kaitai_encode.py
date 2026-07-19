@@ -47,6 +47,12 @@ def field_wire_bytes(parsed: Any, field: dict[str, Any]) -> bytes:
     if isinstance(val, Enum):
         return bytes([val.value])
 
+    # Nested types that wrap raw wire bytes (e.g. register_basis_blob).
+    if hasattr(val, "data") and isinstance(
+        getattr(val, "data"), (bytes, bytearray)
+    ):
+        return bytes(val.data)
+
     if isinstance(val, bytes):
         return val
 

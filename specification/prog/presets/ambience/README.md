@@ -3,7 +3,7 @@
 
 # Ambience
 
-_Generated 2026-07-19. Bank index **4** (15 captured presets)._
+_Generated 2026-07-20. Bank index **4** (15 captured presets)._
 
 Machine-readable dump list: [presets.json](../presets.json).
 
@@ -52,4 +52,4 @@ Machine-readable dump list: [presets.json](../presets.json).
 
 [All presets](../) · [Program identity](../../program-identity.md)
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_

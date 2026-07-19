@@ -23,13 +23,13 @@ Example hex for a known parameter comes only from that parameter’s own folder.
 | 4-7 | 4 | `70 08 01 00` | frame | Program-dump header (70 08 01 00) |
 | 8-21 | 14 | `42 61 73 73 20 20 58 58 ...` | frame | Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against [sysex/prog/presets/](program-identity.md) filename preset (bank name is not stored here) |
 | 22-23 | 2 | `20 20` | frame | Program name trailing pad (always `0x20` in this corpus; offsets 22–23 complete the 16-byte wire name window) |
-| 24-87 | 64 | `20 20 20 20 20 20 20 20 ...` | frame | Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`) |
+| 24-87 | 64 | `20 20 20 20 20 20 20 20 ...` | frame | Register basis blob: factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a bit-packed snapshot of the **stored register** (low nibbles as a 256-bit stream: 14-char 6-bit name, store-generation counter, all 18 parameters incl. the V2 delay block) — fully decoded in bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`) |
 | 88-89 | 2 | `00 04` | known | Bank index (`nibble_hilo`) from [sysex/prog/presets/](program-identity.md) [Halls](presets/halls/)=0, [Plates](presets/plates/)=1, [Rooms](presets/rooms/)=2, [Chambers](presets/chambers/)=3, [Ambience](presets/ambience/)=4, [Spaces](presets/spaces/)=5, [Halls 2](presets/halls-2/)=6, [Plates 2](presets/plates-2/)=7, [Rooms 2](presets/rooms-2/)=8, [Spaces 2](presets/spaces-2/)=9, [NonLin](presets/nonlin/)=10; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/prog/edit/) |
 | 90-91 | 2 | `00 0D` | known | Program slot within bank (`nibble_hilo`) from [sysex/prog/presets/](program-identity.md) (not a global program number) |
 | 92 | 1 | `00` | secondary | Menu-browse flag: `00` when no parameter menu is open or while editing a value; `02` while a parameter menu is highlighted (see `sysex/prog/menus/` captures) (moved in independent series: [early rolloff](bytes/early-rolloff.md), _corpus) |
-| 93 | 1 | `00` | known | Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` when the dump basis is a user register (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus |
+| 93 | 1 | `00` | known | Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` of the register currently **loaded as the running basis** (see `sysex/prog/edit/registers/`); a store alone does not update it (witnessed `00` after storing to B1 R1 with a factory basis); `00` on factory/parameter-series dumps in this corpus |
 | 94 | 1 | `08` | known | Structure/version constant (`08` in all witnessed program dumps) — not a sound parameter |
-| 95 | 1 | `00` | known | Register within bank (`raw_u8`, manual Register `0`–`9`) when the dump basis is a user register; `00` on factory/parameter-series dumps in this corpus |
+| 95 | 1 | `00` | known | Register within bank (`raw_u8`, manual Register `0`–`9`) of the register currently **loaded as the running basis**; a store alone does not update it (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus |
 | 96 | 1 | `00` | known | Reserved/unknown (always `00` in witnessed captures) |
 | 97 | 1 | `04` | known | Algorithm/family flag from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). Mirrored at 145 as 0 when 97=3 and 1 when 97=4 — not a clean V1/V2 bit |
 | 98-99 | 2 | `00 01` | secondary | Selected front-panel menu index (`nibble_hilo`, 0–17) when a parameter menu is open; `00 00` when idle. Hardware menu order matches `PROGRAM_PARAMETERS` in catalog. Offset 92 disambiguates idle vs Reverb Time (both may show index 0) (moved in independent series: _corpus) |
@@ -67,4 +67,4 @@ Example hex for a known parameter comes only from that parameter’s own folder.
 | 156 | 1 | `F7` | frame | SysEx end (F7) |
 
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_

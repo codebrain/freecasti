@@ -9,7 +9,7 @@ import {
   formatDivisionLabel,
 } from "@/tempo/tempo";
 import { computeDialWheelStepIndex } from "@/controls/dialWheel";
-import { dialValueMarkersForControl, dialExtremeMarkers } from "@/controls/dialValueMarkers";
+import { dialValueMarkersForControl, dialUniformMarkers } from "@/controls/dialValueMarkers";
 import { resolveTypedControlValue } from "@/controls/resolveTypedValue";
 
 interface UseParamDialOptions {
@@ -56,7 +56,7 @@ export function useParamDial({
 
   const valueMarkers = useMemo(() => {
     if (tempoActive) {
-      return dialExtremeMarkers(
+      return dialUniformMarkers(
         tempoSteps.map((s) => formatDivisionLabel(s.division.name)),
       );
     }

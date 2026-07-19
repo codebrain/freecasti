@@ -3,7 +3,7 @@
 
 # Program name
 
-_Generated 2026-07-19. Factory presets under `sysex/prog/presets/` plus register hold-EDIT captures._
+_Generated 2026-07-20. Factory presets under `sysex/prog/presets/` plus register hold-EDIT captures._
 
 ## SysEx summary
 
@@ -33,4 +33,4 @@ Space-padded ASCII. Factory corpus: every preset name fits in **14** significant
 - [Register captures](../../../sysex/prog/edit/registers/README.md) — hold-EDIT register corpus
 - [Owner’s manual notes](../../../docs/manual-notes.md)
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_

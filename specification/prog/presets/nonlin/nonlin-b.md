@@ -3,7 +3,7 @@
 
 # NonLin B
 
-_Generated 2026-07-19. Bank: [NonLin](README.md) (index **10**). Source: `sysex/prog/presets/NonLin.NonLin B.syx`._
+_Generated 2026-07-20. Bank: [NonLin](README.md) (index **10**). Source: `sysex/prog/presets/NonLin.NonLin B.syx`._
 
 [All presets](../../README.md) · [NonLin bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -51,4 +51,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [NonLin C](nonlin-c.md)
 - [NonLin D](nonlin-d.md)
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_

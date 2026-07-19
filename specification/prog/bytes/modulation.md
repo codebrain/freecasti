@@ -3,7 +3,7 @@
 
 # Modulation
 
-_Generated 2026-07-19. Source folder: `sysex/prog/parameters/modulation/`._
+_Generated 2026-07-20. Source folder: `sysex/prog/parameters/modulation/`._
 
 ## SysEx summary
 

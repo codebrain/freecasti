@@ -3,7 +3,7 @@
 
 # Density
 
-_Generated 2026-07-19. Source folder: `sysex/prog/parameters/density/`._
+_Generated 2026-07-20. Source folder: `sysex/prog/parameters/density/`._
 
 ## SysEx summary
 

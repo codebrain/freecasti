@@ -40,6 +40,14 @@ def render_kaitai_yaml(spec: dict[str, Any]) -> str:
     for field in fields:
         lines.extend(_kaitai_seq_entry(field))
 
+    blob_specs = [field["blob"] for field in fields if field.get("blob")]
+    for blob in blob_specs:
+        char_enum = blob.get("char_enum")
+        if char_enum:
+            value_enums.append(
+                (str(char_enum["enum_id"]), list(char_enum["entries"]))
+            )
+
     if value_enums:
         lines.append("enums:")
         for enum_id, entries in value_enums:
@@ -52,6 +60,8 @@ def render_kaitai_yaml(spec: dict[str, Any]) -> str:
             lines.extend(_nibble_encoded_type(field))
     if needs_generic_nibble:
         lines.extend(_generic_nibble_type_lines())
+    for blob in blob_specs:
+        lines.extend(_blob_type_lines(blob))
 
     return "\n".join(lines).rstrip() + "\n"
 
@@ -156,6 +166,37 @@ def _nibble_encoded_type(field: dict[str, Any]) -> list[str]:
     ]
 
 
+def _blob_type_lines(blob: dict[str, Any]) -> list[str]:
+    """Nested type with value instances for the register basis blob."""
+    lines = [f"  {blob['type_id']}:"]
+    if blob.get("doc"):
+        lines.append("    doc: |")
+        for row in _wrap(str(blob["doc"]), 72):
+            lines.append(f"      {row}")
+    lines.extend(
+        [
+            "    seq:",
+            "      - id: data",
+            f"        size: {int(blob['size'])}",
+            "        doc: |",
+            "          Raw wire bytes; the low nibble of each byte carries",
+            "          the packed bitstream decoded by the instances below.",
+            "    instances:",
+        ]
+    )
+    for inst in blob.get("instances") or []:
+        lines.append(f"      {inst['id']}:")
+        if inst.get("doc"):
+            lines.append("        doc: |")
+            for row in _wrap(str(inst["doc"]), 66):
+                lines.append(f"          {row}")
+        lines.append(f"        value: {_yaml_str(str(inst['value']))}")
+        if inst.get("enum"):
+            lines.append(f"        enum: {inst['enum']}")
+    lines.append("")
+    return lines
+
+
 def _generic_nibble_type_lines() -> list[str]:
     return [
         "  nibble_u8_hilo:",
@@ -228,6 +269,10 @@ def _kaitai_seq_entry(field: dict[str, Any]) -> list[str]:
     if contents is not None:
         hexes = ", ".join(f"0x{b:02x}" for b in contents)
         lines.append(f"    contents: [{hexes}]")
+        return lines
+
+    if field.get("type_ref"):
+        lines.append(f"    type: {field['type_ref']}")
         return lines
 
     encoding = field.get("encoding")

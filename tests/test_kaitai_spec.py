@@ -64,6 +64,77 @@ def test_render_kaitai_yaml_has_layout_and_nibble_type():
     assert any(f.get("value_map") for f in spec["fields"] if f.get("parameter"))
 
 
+def test_register_blob_type_stays_in_sync_with_field_table():
+    """Every REGISTER_BLOB_FIELDS entry has a generated Kaitai instance."""
+    import re
+
+    from m7_sysex.kaitai_spec import build_program_dump_spec
+    from m7_sysex.prog.register_blob import (
+        REGISTER_BLOB_FIELDS,
+        REGISTER_NAME_CHARSET,
+        REGISTER_NAME_LENGTH,
+        register_name_char_enum_entries,
+    )
+
+    byte_map, results, names = _inputs()
+    spec = build_program_dump_spec(byte_map, results, names=names)
+    field = next(f for f in spec["fields"] if f["id"] == "register_basis_blob")
+    assert field["type_ref"] == "register_basis_blob"
+    blob = field["blob"]
+    assert blob["type_id"] == "register_basis_blob"
+    assert blob["size"] == 64
+    assert blob["charset"] == REGISTER_NAME_CHARSET
+    assert blob["char_enum"]["enum_id"] == "register_name_char"
+    assert blob["char_enum"]["entries"] == register_name_char_enum_entries()
+
+    instances = {inst["id"]: inst for inst in blob["instances"]}
+    assert "is_register_basis" in instances
+
+    name_codes = [f"name_code_{i:02d}" for i in range(REGISTER_NAME_LENGTH)]
+    assert all(nc in instances for nc in name_codes)
+    assert sum(1 for k in instances if k.startswith("name_code_")) == 14
+    for nc in name_codes:
+        assert instances[nc]["enum"] == "register_name_char"
+
+    by_id = {f["id"]: f for f in spec["fields"]}
+    for bf in REGISTER_BLOB_FIELDS:
+        if bf.id == "name":
+            continue
+        inst_id = "tail_is_zero" if bf.id == "tail" else bf.id
+        assert inst_id in instances, bf.id
+        inst = instances[inst_id]
+        if bf.id == "tail":
+            continue
+        assert inst["bit_offset"] == bf.bit_offset, bf.id
+        assert inst["bit_width"] == bf.bit_width, bf.id
+        # Enums reused from the payload twin whenever it has one.
+        twin = by_id.get(bf.payload_field) if bf.payload_field else None
+        if twin and twin.get("value_map"):
+            assert inst.get("enum") == twin["value_map"]["enum_id"], bf.id
+
+    # JS-safe expressions: shifts stay well under 32 bits.
+    for inst in blob["instances"]:
+        for shift in re.findall(r"<<\s*(\d+)", str(inst["value"])):
+            assert int(shift) <= 8, inst["id"]
+
+
+def test_register_blob_ksy_renders_nested_type_and_enum():
+    from m7_sysex.kaitai_spec import build_program_dump_spec, render_kaitai_yaml
+
+    byte_map, results, names = _inputs()
+    spec = build_program_dump_spec(byte_map, results, names=names)
+    ksy = render_kaitai_yaml(spec)
+    assert "type: register_basis_blob" in ksy
+    assert "  register_basis_blob:" in ksy
+    assert "register_name_char:" in ksy
+    assert "enum: register_name_char" in ksy
+    assert "is_register_basis:" in ksy
+    assert "tail_is_zero:" in ksy
+    assert "0: space" in ksy
+    assert "1: ampersand" in ksy
+    assert "enum: reverb_time_values" in ksy
+
+
 def test_display_enum_lists_menu_names():
     from m7_sysex.kaitai_spec import build_program_dump_spec, render_kaitai_yaml
     from m7_sysex.paths import prog_menus_root

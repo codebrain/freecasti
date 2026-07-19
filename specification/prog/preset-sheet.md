@@ -2,7 +2,7 @@
 
 # Preset sheet errata
 
-_Generated 2026-07-19. Comparing decoded `sysex/prog/presets/` dumps to [Bricasti's published preset sheet](https://www.bricasti.com/images/preset_sheet.pdf) (parsed data: `docs/reference/preset_sheet.json`)._
+_Generated 2026-07-20. Comparing decoded `sysex/prog/presets/` dumps to [Bricasti's published preset sheet](https://www.bricasti.com/images/preset_sheet.pdf) (parsed data: `docs/reference/preset_sheet.json`)._
 
 The classic PDF covers **V1-era banks only** (Ambience, Chambers, Halls, Plates, Rooms, Spaces). V2 banks (Halls 2, Plates 2, Rooms 2, Spaces 2), NonLin, and many later factory presets are **not on the sheet** — see [preset-inventory.md](preset-inventory.md) for the full capture list.
 
@@ -193,4 +193,4 @@ These factory dumps are in `sysex/prog/presets/` but have no row on the classic 
 - Sheet data: `docs/reference/preset_sheet.json` (json)
 - Analysis: `sysex/prog/presets/analysis.json`
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_

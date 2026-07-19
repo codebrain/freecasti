@@ -215,9 +215,12 @@ def build_byte_map(
         ),
         status="frame",
         role=(
-            "Register basis blob (`raw_bytes`): factory dumps space-pad with "
-            "`0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited "
-            "copy of the register basis (see `sysex/prog/edit/registers/`)"
+            "Register basis blob: factory dumps space-pad with `0x20`; "
+            "Reg-backed hold-EDIT dumps store a bit-packed snapshot of the "
+            "**stored register** (low nibbles as a 256-bit stream: 14-char "
+            "6-bit name, store-generation counter, all 18 parameters incl. "
+            "the V2 delay block) — fully decoded in "
+            "bytes/register-basis-blob.md (see `sysex/prog/edit/registers/`)"
         ),
         example=frame_example,
         example_source=str(frame_example_path) if frame_example_path else None,
@@ -490,6 +493,7 @@ _IDENTITY_FIELD_HREFS = {
     "program name pad": "bytes/program-name-pad.md",
     "register bank": "bytes/register-bank.md",
     "register": "bytes/register.md",
+    "register basis blob": "bytes/register-basis-blob.md",
     "display": "bytes/display.md",
 }
 

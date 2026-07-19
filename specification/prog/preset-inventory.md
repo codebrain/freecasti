@@ -1,7 +1,7 @@
 [Overview](README.md) | [Bytes](bytes/README.md) | [Program identity](program-identity.md) | **Preset inventory** | [Preset sheet](preset-sheet.md) | [Byte map](byte-map-overview.md) | [Cross-series](cross.md) | [System dumps](../system/README.md)
 # Preset inventory
 
-_Generated 2026-07-19. Compares `sysex/prog/presets/` captures to the [V2 addendum](https://www.bricasti.com/images/M7_V2_Manual_Addendum_Upgrade.pdf) factory lists and common marketing totals (222 = 134 V1 + 88 V2-tier positions)._
+_Generated 2026-07-20. Compares `sysex/prog/presets/` captures to the [V2 addendum](https://www.bricasti.com/images/M7_V2_Manual_Addendum_Upgrade.pdf) factory lists and common marketing totals (222 = 134 V1 + 88 V2-tier positions)._
 
 ## Corpus counts
 
@@ -78,5 +78,5 @@ Classic-bank PDF sheet only (pre-V2). All `* 2` and NonLin dumps, plus newer V1 
 - Sheet rows: **119** ({'Ambience': 15, 'Chambers': 16, 'Halls': 23, 'Plates': 20, 'Rooms': 30, 'Spaces': 15})
 - Dumps without sheet row: **103**
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_
 

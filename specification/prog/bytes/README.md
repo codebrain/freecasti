@@ -28,9 +28,10 @@ Documented **program dump** payload fields: the 18 front-panel sound parameters 
 | [Display](display.md) | `146-147` · `nibble_hilo` · high | LCD cursor / edit-display position in the program dump (not a sound parameter). Captured under `sysex/prog/menus/`. |
 | [Program name](program-name.md) | `8-21` · `ascii_space_padded` · high | 14-character editable ASCII program/register label (manual); space-padded within offsets 8–21. |
 | [Program name pad](program-name-pad.md) | `22-23` · `raw_bytes` · high | Trailing space pad (`20 20`) completing the 16-byte wire name window. |
+| [Register basis blob](register-basis-blob.md) | `24-87` · `nibble_bitstream` · high | Bit-packed stored-register snapshot (name, store counter, all 18 parameters incl. delay block); factory dumps space-pad this region. |
 | [Register bank](register-bank.md) | `93` · `raw_u8` · high | User Registers Bank (manual B0–B4) when the dump basis is a register; see `sysex/prog/edit/registers/`. |
 | [Register](register.md) | `95` · `raw_u8` · high | User Register number within bank (manual 0–9) when the dump basis is a register. |
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_
 
 Printed ranges and UI labels may differ from this unit's captures (for example Early Select 0–31 vs manual 0–20). See [parameter-catalog.md](../../../docs/parameter-catalog.md) for capture hints, [encoding sources](../../../docs/encoding-sources.md) for witness types, and [../README.md](../README.md) for the program-dump overview.

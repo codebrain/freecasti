@@ -9,6 +9,7 @@ from pathlib import Path
 
 from m7_sysex.prog.algorithms import PROG_ALGORITHM_CONSTRAINTS
 from m7_sysex.prog.menus import hardware_menu_order
+from m7_sysex.prog.register_blob import runtime_reg_blob
 
 _RUNTIME_FIELD_KEYS = (
     "id",
@@ -183,6 +184,7 @@ def _runtime_bundle(
         "system": _compact_runtime_spec(system_spec),
         "presets": _compact_preset_catalog(presets_full),
         "tpl": serialize_skeletons,
+        "reg_blob": runtime_reg_blob(),
     }
     if prog_ui is not None:
         bundle["prog_ui"] = prog_ui

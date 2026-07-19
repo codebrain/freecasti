@@ -175,6 +175,7 @@ def build_program_dump_spec(
     from ..kaitai_value_maps import attach_display_value_map
 
     attach_display_value_map(fields, menus_analysis)
+    _attach_register_blob_type(fields)
 
     covered = 0
     for f in fields:
@@ -231,6 +232,11 @@ def build_program_dump_spec(
                 "offset": REGISTER_BASIS_BLOB_OFFSET,
                 "length": REGISTER_BASIS_BLOB_LENGTH,
                 "encoding": "raw_bytes",
+                "doc": (
+                    "Factory dumps: 0x20 space pad. Reg-backed hold-EDIT "
+                    "dumps: bit-packed stored-register snapshot decoded by "
+                    "the register_basis_blob type value instances"
+                ),
             },
             "sysex_end": SYSEX_END,
         },
@@ -302,6 +308,174 @@ def write_program_dump_spec(
     )
     ksy_path.write_text(render_kaitai_yaml(spec), encoding="utf-8")
     return json_path, ksy_path, spec
+
+
+def _blob_bit_expr(bit_offset: int, bit_width: int) -> str:
+    """Kaitai expression extracting a bitfield from the blob nibble stream.
+
+    The logical stream is the low nibble of each ``data`` byte, MSB first.
+    Expressions stay within 32-bit shifts so compiled JS parsers are safe.
+    """
+    first = bit_offset // 4
+    last = (bit_offset + bit_width - 1) // 4
+    parts: list[str] = []
+    for idx in range(first, last + 1):
+        shift = 4 * (last - idx)
+        term = f"(data[{idx}] & 0x0f)"
+        if shift:
+            term = f"({term} << {shift})"
+        parts.append(term)
+    combined = parts[0] if len(parts) == 1 else "(" + " | ".join(parts) + ")"
+    drop = (last + 1) * 4 - (bit_offset + bit_width)
+    if drop:
+        combined = f"({combined} >> {drop})"
+    lead = bit_offset - first * 4
+    if lead:
+        mask = (1 << bit_width) - 1
+        combined = f"{combined} & 0x{mask:x}"
+    return combined
+
+
+def _attach_register_blob_type(fields: list[dict[str, Any]]) -> None:
+    """Attach the nested register_basis_blob Kaitai type to the blob field.
+
+    Every value instance is generated from ``REGISTER_BLOB_FIELDS`` in
+    ``m7_sysex.prog.register_blob`` (single source of truth). Stored
+    parameters reuse the same enums as their live payload twins.
+    """
+    from .register_blob import (
+        REGISTER_BASIS_BLOB_LENGTH,
+        REGISTER_BLOB_FIELDS,
+        REGISTER_NAME_CHARSET,
+        REGISTER_NAME_CHAR_BITS,
+        REGISTER_NAME_LENGTH,
+        register_name_char_enum_entries,
+    )
+
+    blob_field = next(
+        (f for f in fields if f["id"] == "register_basis_blob"), None
+    )
+    if blob_field is None:
+        return
+    enum_by_payload_id = {
+        f["id"]: f["value_map"]["enum_id"]
+        for f in fields
+        if f.get("value_map")
+    }
+
+    instances: list[dict[str, Any]] = [
+        {
+            "id": "is_register_basis",
+            "value": "((data[0] | data[1] | data[2] | data[3]) & 0xf0) == 0",
+            "doc": (
+                "True when 24-87 is a nibble-packed stored-register "
+                "snapshot; false on factory / parameter-series dumps "
+                "(space pad 0x20). Check before reading other instances."
+            ),
+        }
+    ]
+    for i in range(REGISTER_NAME_LENGTH):
+        instances.append(
+            {
+                "id": f"name_code_{i:02d}",
+                "value": _blob_bit_expr(
+                    i * REGISTER_NAME_CHAR_BITS, REGISTER_NAME_CHAR_BITS
+                ),
+                "enum": "register_name_char",
+                "doc": (
+                    f"Register name character {i + 1} of "
+                    f"{REGISTER_NAME_LENGTH} (6-bit code, space padded; "
+                    "witness: samples/charset-b1s1-renamed.syx)"
+                ),
+            }
+        )
+    tail = None
+    for field in REGISTER_BLOB_FIELDS:
+        if field.id == "name":
+            continue
+        if field.id == "tail":
+            tail = field
+            continue
+        inst: dict[str, Any] = {
+            "id": field.id,
+            "value": _blob_bit_expr(field.bit_offset, field.bit_width),
+            "bit_offset": field.bit_offset,
+            "bit_width": field.bit_width,
+        }
+        doc = field.doc or f"Stored {field.label}"
+        if field.payload_field:
+            offs = list(field.payload_offsets)
+            off_txt = (
+                f"{offs[0]}-{offs[-1]}" if len(offs) > 1 else str(offs[0])
+            )
+            doc = (
+                f"Stored {field.label} (bits {field.bit_offset}-"
+                f"{field.bit_end}); equals live payload field "
+                f"{field.payload_field} @ {off_txt} unless the register "
+                "has unstored edits"
+            )
+            if field.doc:
+                doc += ". " + field.doc
+            enum_id = enum_by_payload_id.get(field.payload_field)
+            if enum_id:
+                inst["enum"] = enum_id
+        inst["doc"] = doc
+        instances.append(inst)
+    if tail is not None:
+        first = tail.bit_offset // 4
+        last = tail.bit_end // 4
+        ored = " | ".join(f"data[{i}]" for i in range(first, last + 1))
+        instances.append(
+            {
+                "id": "tail_is_zero",
+                "value": f"(({ored}) & 0x0f) == 0",
+                "doc": (
+                    f"Zero tail (bits {tail.bit_offset}-{tail.bit_end}); "
+                    "always true in witnessed captures"
+                ),
+            }
+        )
+
+    blob_field["type_ref"] = "register_basis_blob"
+    blob_field["blob"] = {
+        "type_id": "register_basis_blob",
+        "size": REGISTER_BASIS_BLOB_LENGTH,
+        "doc": (
+            "Bit-packed snapshot of the stored register (Reg-backed "
+            "hold-EDIT dumps); factory dumps space-pad this region with "
+            "0x20 - check is_register_basis before reading instances. The "
+            "low nibble of each byte forms a 256-bit stream (4 bits per "
+            "byte, MSB first): 14x6-bit name, store-generation counter, "
+            "all 18 parameters incl. the V2 delay block at bits 197-211. "
+            "Field widths are provisional at boundaries where leading bits "
+            "were always zero in this corpus. Verified against every "
+            "register capture under sysex/prog/edit/registers/; layout "
+            "source: REGISTER_BLOB_FIELDS in m7_sysex.prog.register_blob. "
+            "Docs: specification/prog/bytes/register-basis-blob.md"
+        ),
+        "char_enum": {
+            "enum_id": "register_name_char",
+            "entries": register_name_char_enum_entries(),
+        },
+        "charset": REGISTER_NAME_CHARSET,
+        "instances": instances,
+        "fields": [
+            {
+                "id": f.id,
+                "label": f.label,
+                "bit_offset": f.bit_offset,
+                "bit_width": f.bit_width,
+                "payload_field": f.payload_field,
+                "payload_offsets": list(f.payload_offsets),
+            }
+            for f in REGISTER_BLOB_FIELDS
+        ],
+    }
+    blob_field["role"] = (
+        "Register basis blob: factory dumps space-pad with 0x20; Reg-backed "
+        "hold-EDIT dumps store a bit-packed snapshot of the stored register "
+        "(name, store counter, all 18 parameters incl. delay block)"
+    )
 
 
 def _slug_id(label: str) -> str:

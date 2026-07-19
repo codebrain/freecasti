@@ -3,7 +3,7 @@
 
 # Program name pad
 
-_Generated 2026-07-19. Factory presets under `sysex/prog/presets/` (all dumps) and register fullsweep captures._
+_Generated 2026-07-20. Factory presets under `sysex/prog/presets/` (all dumps) and register fullsweep captures._
 
 ## SysEx summary
 
@@ -29,4 +29,4 @@ Offsets **22–23** are always `0x20` in this corpus. They are not part of the e
 - [Register captures](../../../sysex/prog/edit/registers/README.md) — hold-EDIT register corpus
 - [Owner’s manual notes](../../../docs/manual-notes.md)
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_

@@ -3,19 +3,19 @@
 
 # Register
 
-_Generated 2026-07-19. Register hold-EDIT captures under `sysex/prog/edit/registers/` (including `fullsweep-rooms-studio-a.syx`)._
+_Generated 2026-07-20. Register hold-EDIT captures under `sysex/prog/edit/registers/` (including `fullsweep-rooms-studio-a.syx`)._
 
 ## SysEx summary
 
 - **Offsets:** 95
 - **Encoding:** `raw_u8`
 - **Confidence:** high
-- **Role:** Manual **Register** within a register bank (`0`–`9`); `00` on factory/parameter-series dumps
+- **Role:** Manual **Register** of the register **loaded as the running basis** (`0`–`9`); `00` on factory/parameter-series dumps
 - **Layout:** [byte map overview](../byte-map-overview.md) · [full map](../byte-map.md)
 
 ## Description
 
-When a **User Register** is the running program basis, offset **95** stores the **Register** number within the bank (owner's manual: 10 registers per bank). Witnessed exhaustively as `00`–`09` in `fullsweep-rooms-studio-a.syx`. Factory and parameter-series dumps keep this at `00`. Distinct from factory **program slot** at 90–91. Pair with [register bank](register-bank.md) at offset 93.
+When a **User Register** is loaded as the running program basis, offset **95** stores the **Register** number within the bank (owner's manual: 10 registers per bank). Witnessed exhaustively as `00`–`09` in `fullsweep-rooms-studio-a.syx`. A **store alone does not update it** — see [register bank](register-bank.md) for the witness captures. Factory and parameter-series dumps keep this at `00`. Distinct from factory **program slot** at 90–91.
 
 ## Encoding map
 
@@ -45,4 +45,4 @@ Witness sources: register-basis hold-EDIT dumps (`sysex/prog/edit/registers/`).
 - [Register captures](../../../sysex/prog/edit/registers/README.md) — hold-EDIT register corpus
 - [Owner’s manual notes](../../../docs/manual-notes.md)
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_

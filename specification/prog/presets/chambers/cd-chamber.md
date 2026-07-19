@@ -3,7 +3,7 @@
 
 # CD Chamber
 
-_Generated 2026-07-19. Bank: [Chambers](README.md) (index **3**). Source: `sysex/prog/presets/Chambers.CD Chamber.syx`._
+_Generated 2026-07-20. Bank: [Chambers](README.md) (index **3**). Source: `sysex/prog/presets/Chambers.CD Chamber.syx`._
 
 [All presets](../../README.md) · [Chambers bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -69,4 +69,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Fat Chamber](fat-chamber.md)
 - [Echo Chamber](echo-chamber.md)
 
-_Last exported: 2026-07-19_
+_Last exported: 2026-07-20_
