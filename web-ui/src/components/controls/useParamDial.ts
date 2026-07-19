@@ -6,8 +6,10 @@ import {
   tempoStepIndexForEncoded,
   tempoStepsForControl,
   formatControlTempoValue,
+  formatDivisionLabel,
 } from "@/tempo/tempo";
 import { computeDialWheelStepIndex } from "@/controls/dialWheel";
+import { dialValueMarkersForControl, dialExtremeMarkers } from "@/controls/dialValueMarkers";
 import { resolveTypedControlValue } from "@/controls/resolveTypedValue";
 
 interface UseParamDialOptions {
@@ -51,6 +53,18 @@ export function useParamDial({
     ? tempoStepIndexForEncoded(control, encoded, tempoBpm)
     : idx;
   const stepMax = tempoActive ? Math.max(0, tempoSteps.length - 1) : max;
+
+  const valueMarkers = useMemo(() => {
+    if (tempoActive) {
+      return dialExtremeMarkers(
+        tempoSteps.map((s) => formatDivisionLabel(s.division.name)),
+      );
+    }
+    return dialValueMarkersForControl(control).map(({ pct, label: markerLabel }) => ({
+      pct,
+      label: markerLabel,
+    }));
+  }, [control, tempoActive, tempoSteps]);
 
   const changeEncoded = useCallback(
     (nextEncoded: number) => {
@@ -151,6 +165,7 @@ export function useParamDial({
     stepIdx,
     stepMax,
     max,
+    valueMarkers,
     dialRef,
     dialDragging,
     setDialDragging,

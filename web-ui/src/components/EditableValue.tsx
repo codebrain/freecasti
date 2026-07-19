@@ -57,7 +57,7 @@ export function EditableValue({
   if (disabled && inactive) {
     return (
       <div
-        className={`tabular-nums min-h-[1.25rem] control-value-inactive ${typography} ${className}`.trim()}
+        className={`tabular-nums min-h-[1.25rem] rounded-md border border-transparent px-1 control-value-inactive ${typography} ${className}`.trim()}
       >
         {displayValue}
       </div>
@@ -67,7 +67,7 @@ export function EditableValue({
   if (disabled) {
     return (
       <div
-        className={`tabular-nums min-h-[1.25rem] led-text ${typography} ${className}`.trim()}
+        className={`tabular-nums min-h-[1.25rem] rounded-md border border-transparent px-1 led-text ${typography} ${className}`.trim()}
       >
         {displayValue}
       </div>

@@ -28,4 +28,14 @@ describe("dialTickMarkers", () => {
     expect(activeCount).toBeGreaterThan(0);
     expect(activeCount).toBeLessThan(ticks.length);
   });
+
+  it("omits evenly spaced ticks that sit under value markers", () => {
+    const ticks = dialTickMarkers(10, 25, 0.5, [0, 0.5, 1]);
+    const angles = ticks.map((t) => t.angle);
+    expect(angles).not.toContain(-135);
+    expect(angles).not.toContain(0);
+    expect(angles).not.toContain(135);
+    // 10 even ticks minus endpoints and the two slots nearest mid → 6.
+    expect(ticks.length).toBe(6);
+  });
 });

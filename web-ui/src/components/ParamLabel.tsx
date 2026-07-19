@@ -75,12 +75,14 @@ export function ParamLabel({
 
   return (
     <div
-      className={`flex flex-col items-center gap-1 ${typographyClass} ${disabledClass} ${
+      className={`flex w-full flex-col items-center gap-1 text-center ${typographyClass} ${disabledClass} ${
         disabled ? "cursor-not-allowed" : ""
-      }`.trim()}
+      } ${className}`.trim()}
     >
       <ControlTooltip description={description} suppressed={tooltipSuppressed}>
-        <span>{label}</span>
+        <span className="inline-block max-w-full text-center text-balance">
+          {label}
+        </span>
       </ControlTooltip>
       {showIcons && (
         <div className="flex items-center justify-center gap-1.5">

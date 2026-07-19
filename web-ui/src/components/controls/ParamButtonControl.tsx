@@ -54,7 +54,11 @@ export function ParamButtonControl({
   );
 
   return (
-    <div className={`w-full ${disabled ? "cursor-not-allowed" : ""}`}>
+    <div
+      className={`flex w-full flex-col items-center gap-2 ${
+        disabled ? "cursor-not-allowed" : ""
+      }`}
+    >
       {!hideLabel && (
         <ParamLabel
           label={displayLabel}
@@ -62,10 +66,9 @@ export function ParamButtonControl({
           locked={locked}
           onToggleLock={onToggleLock}
           disabled={disabled}
-          className="mb-2"
         />
       )}
-      <div className="flex w-full justify-center">
+      <div className={`flex w-full justify-center ${hideLabel ? "" : "pt-5"}`}>
         <ControlTooltip description={control.description}>
           {locked ? (
             <LockedValue valueLabel={valueLabel} disabled={disabled} />
@@ -86,7 +89,7 @@ export function ParamButtonControl({
                     role="radio"
                     aria-checked={active}
                     disabled={disabled}
-                    className={`lux-btn rounded-lg border px-3 py-2 text-xs font-led tracking-wide ${
+                    className={`lux-btn inline-flex items-center justify-center rounded-lg border px-3 py-2 text-xs font-led tracking-wide ${
                       simple
                         ? simpleButtonClass(active, disabled)
                         : fullButtonClass(active, disabled)

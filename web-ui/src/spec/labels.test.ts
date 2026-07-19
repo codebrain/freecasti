@@ -11,6 +11,7 @@ describe("displayParameterLabel", () => {
       "Early/Late",
     );
     expect(displayParameterLabel("modulation", "modulation")).toBe("MOD");
+    expect(displayParameterLabel("early rolloff", "early rolloff")).toBe("Early");
     expect(displayParameterLabel("audio routing", "audio routing")).toBe("Routing");
     expect(displayParameterLabel("display level", "display level")).toBe("Display");
   });

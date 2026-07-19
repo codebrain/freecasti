@@ -153,7 +153,7 @@ export function ControlTooltip({
     <>
       <span
         ref={anchorRef}
-        className="inline-flex"
+        className="inline-flex max-w-full justify-center"
         onMouseEnter={() => {
           pointerInsideRef.current = true;
           scheduleShow();

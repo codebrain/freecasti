@@ -30,6 +30,7 @@ export function ParamDialControl({
     stepIdx,
     stepMax,
     max,
+    valueMarkers,
     dialRef,
     dialDragging,
     setDialDragging,
@@ -51,7 +52,10 @@ export function ParamDialControl({
   });
 
   return (
-    <div ref={dialRef} className={`flex flex-col items-center gap-2 ${disabled ? "cursor-not-allowed" : ""}`}>
+    <div
+      ref={dialRef}
+      className={`flex flex-col items-center gap-0.5 ${disabled ? "cursor-not-allowed" : ""}`}
+    >
       <ParamLabel
         label={displayLabel}
         description={control.description}
@@ -64,23 +68,24 @@ export function ParamDialControl({
         className={featured ? "knob-hero-label label-caps" : ""}
       />
       <ControlTooltip description={control.description} suppressed={dialDragging}>
-        <Knob
-          value={tempoActive ? stepIdx : idx}
-          min={0}
-          max={Math.max(0, tempoActive ? stepMax : max)}
-          step={1}
-          size={size}
-          featured={featured}
-          disabled={disabled}
-          locked={locked}
-          selected={selected}
-          onDraggingChange={setDialDragging}
-          displayValue={formattedValue}
-          onValueCommit={commitTypedValue}
-          valueAriaLabel={displayLabel}
-          onChange={handleKnobIndex}
-        />
-      </ControlTooltip>
+          <Knob
+            value={tempoActive ? stepIdx : idx}
+            min={0}
+            max={Math.max(0, tempoActive ? stepMax : max)}
+            step={1}
+            size={size}
+            featured={featured}
+            disabled={disabled}
+            locked={locked}
+            selected={selected}
+            valueMarkers={valueMarkers}
+            onDraggingChange={setDialDragging}
+            displayValue={formattedValue}
+            onValueCommit={commitTypedValue}
+            valueAriaLabel={displayLabel}
+            onChange={handleKnobIndex}
+          />
+        </ControlTooltip>
     </div>
   );
 }

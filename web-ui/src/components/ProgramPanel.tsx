@@ -148,13 +148,17 @@ export function ProgramPanel({
 
     controls: ControlDef[],
 
-    size = 54,
+    size = 48,
 
     options?: { label?: (control: ControlDef) => string; featured?: boolean },
 
   ) => (
 
-    <div className="flex flex-wrap justify-center gap-x-5 gap-y-4">
+    <div
+      className={`flex justify-center gap-x-2.5 gap-y-3 ${
+        controls.length <= 3 ? "flex-nowrap" : "flex-wrap"
+      }`}
+    >
 
       {controls.map((c) => (
 
@@ -224,7 +228,7 @@ export function ProgramPanel({
 
               onChange={(enc) => setField(reverbTime.fieldId, enc)}
 
-              size={132}
+              size={112}
 
               featured
 
@@ -246,7 +250,7 @@ export function ProgramPanel({
 
         )}
 
-        {renderControls(others, 58)}
+        {renderControls(others, 48)}
 
       </div>
 
@@ -262,7 +266,7 @@ export function ProgramPanel({
   ) => (
     <div
       key={group.title}
-      className={`panel-raised flex h-full flex-col rounded-md px-4 py-5 ${
+      className={`panel-raised flex h-full flex-col rounded-md px-3 py-5 ${
         options?.wide && group.subgroups?.length ? "lg:col-span-2" : ""
       }`}
     >
@@ -288,7 +292,7 @@ export function ProgramPanel({
 
               </div>
 
-              {renderControls(sub.controls, 54, {
+              {renderControls(sub.controls, 48, {
 
                 label: (c) => shortSubgroupLabel(sub.title, c.label),
 
@@ -302,7 +306,7 @@ export function ProgramPanel({
 
       ) : (
 
-        renderControls(group.controls, 54, {
+        renderControls(group.controls, 48, {
 
           label:
 

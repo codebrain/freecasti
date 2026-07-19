@@ -1,6 +1,7 @@
 /** UI overrides for parameter names (spec names unchanged on wire). */
 const PARAMETER_DISPLAY_LABELS: Record<string, string> = {
   "early to reverb mix": "Early/Late",
+  "early rolloff": "Early",
   modulation: "MOD",
   "audio routing": "Routing",
   "audio format": "Format",

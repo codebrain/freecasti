@@ -892,7 +892,7 @@ export function App() {
         >
           {activeTab === "prog" ? (
             <>
-              <div className="grid grid-cols-1 gap-6 xl:grid-cols-2 xl:items-stretch">
+              <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] xl:items-stretch">
                 <PresetSelector
                   banks={banks}
                   bankIndex={bankIdx}

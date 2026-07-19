@@ -157,7 +157,7 @@ describe("ParamControl selection", () => {
       onChange,
       frame: container.querySelector("[data-param-control]") as HTMLElement,
       dialHost: container.querySelector(
-        ".flex.flex-col.items-center.gap-2",
+        ".flex.flex-col.items-center.gap-0\\.5",
       ) as HTMLElement,
     };
   }

@@ -11,7 +11,7 @@ import type { ProgSerializeState } from "@/sysex/serialize";
 import { downloadSyx, suggestSyxFilename } from "@/sysex/syxIo";
 import { toolbarButtonClass } from "@/components/toolbarButtons";
 
-const savedBtn = `${toolbarButtonClass(false)} label-caps text-xs`;
+const savedBtn = `${toolbarButtonClass(false)} text-xs`;
 
 interface SavedPresetsPanelProps {
   progState: ProgSerializeState;

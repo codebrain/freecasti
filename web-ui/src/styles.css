@@ -241,6 +241,9 @@
   color: var(--color-label);
   font-size: 0.68rem;
   letter-spacing: 0.24em;
+  /* Offset trailing letter-spacing so uppercase titles look optically centered. */
+  padding-left: 0.24em;
+  text-align: center;
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -249,6 +252,8 @@
   color: oklch(0.55 0.012 85);
   font-size: 0.68rem;
   letter-spacing: 0.22em;
+  padding-left: 0.22em;
+  text-align: center;
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -257,6 +262,8 @@
   color: var(--color-led);
   font-size: 0.78rem;
   letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  text-align: center;
   text-shadow:
     0 0 10px oklch(0.72 0.27 27 / 0.8),
     0 0 28px oklch(0.64 0.245 27 / 0.4);
@@ -266,6 +273,8 @@
   color: oklch(0.55 0.012 85);
   font-size: 0.78rem;
   letter-spacing: 0.28em;
+  padding-left: 0.28em;
+  text-align: center;
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -364,6 +373,10 @@
 }
 
 .lux-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   transition:
     border-color 0.22s var(--ease-lux),
     background 0.22s var(--ease-lux),

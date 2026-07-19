@@ -29,17 +29,36 @@ export function dialTickMarkers(
   stepCount: number,
   maxTicks: number,
   valuePct: number,
+  /** Skip ticks that would sit under labeled value-marker ticks. */
+  avoidPcts: number[] = [],
 ): { angle: number; active: boolean; key: number }[] {
   if (stepCount <= 0) return [];
   const displayTickCount = stepCount === 1 ? 1 : Math.min(stepCount, maxTicks);
-  return Array.from({ length: displayTickCount }, (_, i) => {
+  const tickGap = displayTickCount > 1 ? 1 / (displayTickCount - 1) : 1;
+  // Clear about half a slot around each landmark so major ticks aren't doubled.
+  const minSep = tickGap * 0.55;
+  const ticks: { angle: number; active: boolean; key: number }[] = [];
+  for (let i = 0; i < displayTickCount; i++) {
     const t = displayTickCount > 1 ? i / (displayTickCount - 1) : 0;
-    return {
+    if (
+      avoidPcts.some((pct) => Math.abs(pct - t) <= minSep + 1e-9)
+    ) {
+      continue;
+    }
+    ticks.push({
       angle: -135 + t * 270,
       active: t <= valuePct + 0.0001,
       key: i,
-    };
-  });
+    });
+  }
+  return ticks;
+}
+
+export interface KnobValueMarker {
+  /** 0–1 position along the dial arc. */
+  pct: number;
+  /** Short label drawn outside the tick ring. */
+  label: string;
 }
 
 interface KnobProps {
@@ -62,6 +81,8 @@ interface KnobProps {
   selected?: boolean;
   /** Preset lock — show padlock in place of dial face; tick markers remain. */
   locked?: boolean;
+  /** Labeled landmarks for uneven-gap scales (e.g. reverb time). */
+  valueMarkers?: KnobValueMarker[];
   onDraggingChange?: (dragging: boolean) => void;
 }
 
@@ -91,6 +112,7 @@ function FullKnob({
   disabled = false,
   selected = false,
   locked = false,
+  valueMarkers = [],
   onDraggingChange,
 }: KnobProps) {
   const [dragging, setDragging] = useState(false);
@@ -102,6 +124,7 @@ function FullKnob({
   const angle = -135 + pct * 270;
 
   const interactive = !disabled && !locked;
+  const hasValueMarkers = valueMarkers.length > 0;
 
   useEffect(() => {
     onDraggingChange?.(dragging);
@@ -149,7 +172,7 @@ function FullKnob({
 
   const tickStroke = featured ? 2.4 : 1.6;
   const pointerW = featured ? 4.5 : 3;
-  const pad = featured ? 24 : 12;
+  const pad = hasValueMarkers ? (featured ? 42 : 32) : featured ? 24 : 12;
   const neutralDialFace = disabled
     ? "radial-gradient(circle at 35% 30%, oklch(0.34 0.012 250) 0%, oklch(0.19 0.009 252) 55%, oklch(0.11 0.007 255) 100%)"
     : "radial-gradient(circle at 32% 26%, oklch(0.38 0.018 250) 0%, oklch(0.2 0.011 252) 52%, oklch(0.11 0.008 255) 100%)";
@@ -172,7 +195,8 @@ function FullKnob({
 
   const stepCount = range > 0 ? Math.floor(range / step) + 1 : 1;
   const maxTicks = featured ? 37 : 25;
-  const ticks = dialTickMarkers(stepCount, maxTicks, pct).map((t) => ({
+  const markerPcts = valueMarkers.map((m) => m.pct);
+  const ticks = dialTickMarkers(stepCount, maxTicks, pct, markerPcts).map((t) => ({
     a: t.angle,
     active: !disabled && t.active,
     key: t.key,
@@ -187,12 +211,15 @@ function FullKnob({
   const arcR = radius + (featured ? 9 : 8);
   const arcStart = -135;
   const arcEnd = -135 + pct * 270;
+  const markerLabelR = radius + (featured ? 32 : 24);
+  const markerTickOuter = radius + (featured ? 16 : 11);
+  const markerTickInner = radius + (featured ? 5 : 3);
 
   const resolvedDisplay =
     displayValue ?? (format ? format(value) : value.toFixed(0));
 
   return (
-    <div className="flex flex-col items-center gap-2 select-none">
+    <div className="flex flex-col items-center gap-0.5 select-none">
       {label && (
         <div
           className={`${featured ? "text-[0.72rem] tracking-[0.22em]" : ""} ${
@@ -297,6 +324,59 @@ function FullKnob({
               />
             );
           })}
+          {valueMarkers.map((m) => {
+            const cx = frame / 2;
+            const cy = frame / 2;
+            const a = -135 + m.pct * 270;
+            const rad = (a - 90) * (Math.PI / 180);
+            const active = !disabled && m.pct <= pct + 0.0001;
+            const x1 = cx + Math.cos(rad) * markerTickInner;
+            const y1 = cy + Math.sin(rad) * markerTickInner;
+            const x2 = cx + Math.cos(rad) * markerTickOuter;
+            const y2 = cy + Math.sin(rad) * markerTickOuter;
+            const tx = cx + Math.cos(rad) * markerLabelR;
+            const ty = cy + Math.sin(rad) * markerLabelR;
+            return (
+              <g key={`vm-${m.pct}-${m.label}`}>
+                <line
+                  x1={x1}
+                  y1={y1}
+                  x2={x2}
+                  y2={y2}
+                  stroke={
+                    disabled
+                      ? active
+                        ? disabledTickStroke
+                        : disabledTickStrokeDim
+                      : active
+                        ? "var(--color-led)"
+                        : "var(--color-led-dim)"
+                  }
+                  strokeWidth={featured ? 3 : 2.2}
+                  opacity={disabled ? (active ? 0.65 : 0.4) : active ? 1 : 0.55}
+                />
+                <text
+                  x={tx}
+                  y={ty}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fill={
+                    disabled
+                      ? "var(--color-label)"
+                      : active
+                        ? "var(--color-led)"
+                        : "var(--color-label)"
+                  }
+                  fontSize={featured ? 12 : 10}
+                  fontFamily="var(--font-led), monospace"
+                  opacity={disabled ? 0.45 : active ? 0.95 : 0.7}
+                  style={{ pointerEvents: "none" }}
+                >
+                  {m.label}
+                </text>
+              </g>
+            );
+          })}
         </svg>
         {locked ? (
           <div
@@ -348,7 +428,7 @@ function FullKnob({
             style={{
               transform: `translate(-50%, -50%) rotate(${angle}deg)`,
               width: pointerW,
-              height: size * 0.44,
+              height: size * 0.56,
               transformOrigin: "50% 50%",
               pointerEvents: "none",
             }}
@@ -357,7 +437,7 @@ function FullKnob({
               className="mx-auto rounded-sm"
               style={{
                 width: pointerW,
-                height: size * 0.22,
+                height: size * 0.28,
                 background: disabled
                   ? "oklch(0.55 0.01 252)"
                   : featured
@@ -422,6 +502,7 @@ function SimpleKnob({
   disabled = false,
   selected = false,
   locked = false,
+  valueMarkers = [],
   onDraggingChange,
 }: KnobProps) {
   const [dragging, setDragging] = useState(false);
@@ -432,6 +513,7 @@ function SimpleKnob({
   const pct = range > 0 ? (value - min) / range : 0;
   const angle = -135 + pct * 270;
   const interactive = !disabled && !locked;
+  const hasValueMarkers = valueMarkers.length > 0;
 
   useEffect(() => {
     onDraggingChange?.(dragging);
@@ -497,17 +579,21 @@ function SimpleKnob({
 
   const tickStroke = featured ? 2.4 : 1.6;
   const pointerW = featured ? 4.5 : 3;
-  const pad = featured ? 24 : 12;
+  const pad = hasValueMarkers ? (featured ? 42 : 32) : featured ? 24 : 12;
   const radius = size / 2;
   const frame = size + pad * 2;
   const outerRingR = radius + (featured ? 16 : 11);
   const arcR = radius + (featured ? 9 : 8);
   const arcStart = -135;
   const arcEnd = -135 + pct * 270;
+  const markerLabelR = radius + (featured ? 32 : 24);
+  const markerTickOuter = radius + (featured ? 16 : 11);
+  const markerTickInner = radius + (featured ? 5 : 3);
 
   const stepCount = range > 0 ? Math.floor(range / step) + 1 : 1;
   const maxTicks = featured ? 37 : 25;
-  const ticks = dialTickMarkers(stepCount, maxTicks, pct).map((t) => ({
+  const markerPcts = valueMarkers.map((m) => m.pct);
+  const ticks = dialTickMarkers(stepCount, maxTicks, pct, markerPcts).map((t) => ({
     a: t.angle,
     active: !disabled && t.active,
     key: t.key,
@@ -524,7 +610,7 @@ function SimpleKnob({
     displayValue ?? (format ? format(value) : value.toFixed(0));
 
   return (
-    <div className="flex flex-col items-center gap-2 select-none">
+    <div className="flex flex-col items-center gap-0.5 select-none">
       {label && (
         <div
           className={`${featured ? "text-[0.72rem] tracking-[0.22em]" : ""} ${
@@ -605,6 +691,59 @@ function SimpleKnob({
               />
             );
           })}
+          {valueMarkers.map((m) => {
+            const cx = frame / 2;
+            const cy = frame / 2;
+            const a = -135 + m.pct * 270;
+            const rad = (a - 90) * (Math.PI / 180);
+            const active = !disabled && m.pct <= pct + 0.0001;
+            const x1 = cx + Math.cos(rad) * markerTickInner;
+            const y1 = cy + Math.sin(rad) * markerTickInner;
+            const x2 = cx + Math.cos(rad) * markerTickOuter;
+            const y2 = cy + Math.sin(rad) * markerTickOuter;
+            const tx = cx + Math.cos(rad) * markerLabelR;
+            const ty = cy + Math.sin(rad) * markerLabelR;
+            return (
+              <g key={`vm-${m.pct}-${m.label}`}>
+                <line
+                  x1={x1}
+                  y1={y1}
+                  x2={x2}
+                  y2={y2}
+                  stroke={
+                    disabled
+                      ? active
+                        ? "#8a887f"
+                        : "#4a4b50"
+                      : active
+                        ? "var(--color-led)"
+                        : "var(--color-led-dim)"
+                  }
+                  strokeWidth={featured ? 3 : 2.2}
+                  opacity={disabled ? (active ? 0.65 : 0.4) : active ? 1 : 0.55}
+                />
+                <text
+                  x={tx}
+                  y={ty}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fill={
+                    disabled
+                      ? "var(--color-label)"
+                      : active
+                        ? "var(--color-led)"
+                        : "var(--color-label)"
+                  }
+                  fontSize={featured ? 12 : 10}
+                  fontFamily="var(--font-led), monospace"
+                  opacity={disabled ? 0.45 : active ? 0.95 : 0.7}
+                  style={{ pointerEvents: "none" }}
+                >
+                  {m.label}
+                </text>
+              </g>
+            );
+          })}
         </svg>
         {locked ? (
           <div
@@ -641,7 +780,7 @@ function SimpleKnob({
               style={{
                 transform: `translate(-50%, -50%) rotate(${angle}deg)`,
                 width: pointerW,
-                height: size * 0.44,
+                height: size * 0.56,
                 transformOrigin: "50% 50%",
                 pointerEvents: "none",
               }}
@@ -650,7 +789,7 @@ function SimpleKnob({
                 className="mx-auto rounded-sm"
                 style={{
                   width: pointerW,
-                  height: size * 0.22,
+                  height: size * 0.28,
                   background: pointerColor,
                 }}
               />
