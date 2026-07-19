@@ -26,3 +26,5 @@ markers = [
     "slow: corpus-wide or expensive Kaitai checks (skipped in default runs)",
 ]
 addopts = ["-m", "not slow"]
+# Repo root on sys.path so conftest can import tests.kaitai_support in CI.
+pythonpath = ["."]
