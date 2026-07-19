@@ -42,6 +42,7 @@ def ensure_kaitai_compiler() -> str:
     else:
         candidate = cache_root / "bin" / "kaitai-struct-compiler"
     if candidate.is_file():
+        _ensure_executable(candidate)
         return str(candidate)
 
     zip_path = cache_root.with_suffix(".zip")
@@ -53,7 +54,17 @@ def ensure_kaitai_compiler() -> str:
 
     if not candidate.is_file():
         raise RuntimeError(f"kaitai-struct-compiler not found at {candidate}")
+    _ensure_executable(candidate)
     return str(candidate)
+
+
+def _ensure_executable(path: Path) -> None:
+    """zipfile.extractall drops Unix permission bits; restore the exec bit."""
+    if sys.platform == "win32":
+        return
+    mode = path.stat().st_mode
+    if not mode & 0o111:
+        path.chmod(mode | 0o755)
 
 
 def kaitai_root_class_name(ksy_stem: str) -> str:
