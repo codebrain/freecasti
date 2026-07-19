@@ -1,0 +1,8994 @@
+{
+  "kind": "prog_unseen_values",
+  "message_length": 157,
+  "summary": {
+    "message_length": 157,
+    "parameter_count": 18,
+    "total_documented_unseen_rows": 646,
+    "total_encoded_gaps": 0,
+    "parameters_with_manual_range_gap": 3,
+    "offsets_with_unseen_nibbles": 48,
+    "total_unseen_nibble_slots": 585,
+    "display_witnessed_positions": 35,
+    "display_unwitnessed_nibble_hilo": 221,
+    "display_missing_edit_witness": 0
+  },
+  "parameters": {
+    "delay level": {
+      "offsets": [
+        133
+      ],
+      "encoding": "raw_u8",
+      "documented_unseen": [
+        {
+          "encoded": 3,
+          "label": "-18 dB",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 4,
+          "label": "-17 dB",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 5,
+          "label": "-16 dB",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "-15 dB",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "-14 dB",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "-12 dB",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 10,
+          "label": "-11 dB",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 11,
+          "label": "-10 dB",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 12,
+          "label": "-9 dB",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 13,
+          "label": "-8 dB",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        }
+      ],
+      "documented_unseen_count": 10,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 16,
+      "known_encoded_min": 0,
+      "known_encoded_max": 15,
+      "manual_range_uncaptured": null
+    },
+    "delay modulation": {
+      "offsets": [
+        139
+      ],
+      "encoding": "raw_u8",
+      "documented_unseen": [
+        {
+          "encoded": 4,
+          "label": "3",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 5,
+          "label": "4",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "5",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "6",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "8",
+          "sources": [
+            "preset"
+          ]
+        }
+      ],
+      "documented_unseen_count": 5,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 12,
+      "known_encoded_min": 0,
+      "known_encoded_max": 11,
+      "manual_range_uncaptured": null
+    },
+    "delay time": {
+      "offsets": [
+        134,
+        135
+      ],
+      "encoding": "nibble_hilo",
+      "documented_unseen": [
+        {
+          "encoded": 3,
+          "label": "124 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 4,
+          "label": "132 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 5,
+          "label": "140 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "148 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "156 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "172 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 10,
+          "label": "180 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 11,
+          "label": "188 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 12,
+          "label": "196 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 13,
+          "label": "204 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 14,
+          "label": "212 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 15,
+          "label": "220 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 16,
+          "label": "228 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 17,
+          "label": "236 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 18,
+          "label": "244 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 19,
+          "label": "252 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 20,
+          "label": "260 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 21,
+          "label": "268 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 22,
+          "label": "276 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 24,
+          "label": "292 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 25,
+          "label": "300 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 26,
+          "label": "308 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 27,
+          "label": "316 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 28,
+          "label": "324 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 29,
+          "label": "332 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 30,
+          "label": "340 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 31,
+          "label": "348 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 32,
+          "label": "356 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 33,
+          "label": "364 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 35,
+          "label": "380 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 36,
+          "label": "388 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 37,
+          "label": "396 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 38,
+          "label": "404 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 39,
+          "label": "412 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 40,
+          "label": "420 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 41,
+          "label": "428 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 42,
+          "label": "436 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 43,
+          "label": "444 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 44,
+          "label": "452 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 45,
+          "label": "460 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 46,
+          "label": "468 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 47,
+          "label": "476 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 48,
+          "label": "484 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 50,
+          "label": "500 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 51,
+          "label": "508 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 52,
+          "label": "516 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 53,
+          "label": "524 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 54,
+          "label": "532 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 55,
+          "label": "540 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 56,
+          "label": "548 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 57,
+          "label": "556 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 58,
+          "label": "564 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 59,
+          "label": "572 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 60,
+          "label": "580 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 61,
+          "label": "588 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 62,
+          "label": "596 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 63,
+          "label": "604 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 64,
+          "label": "612 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 65,
+          "label": "620 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 66,
+          "label": "628 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 67,
+          "label": "636 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 68,
+          "label": "644 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 69,
+          "label": "652 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 70,
+          "label": "660 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 71,
+          "label": "668 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 72,
+          "label": "676 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 73,
+          "label": "684 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 74,
+          "label": "692 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 75,
+          "label": "700 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 76,
+          "label": "708 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 77,
+          "label": "716 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 79,
+          "label": "732 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 80,
+          "label": "740 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 81,
+          "label": "748 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 82,
+          "label": "756 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 83,
+          "label": "764 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 84,
+          "label": "772 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 85,
+          "label": "780 mSec",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 86,
+          "label": "788 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 87,
+          "label": "796 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 88,
+          "label": "804 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 89,
+          "label": "812 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 90,
+          "label": "820 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 91,
+          "label": "828 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 92,
+          "label": "836 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 93,
+          "label": "844 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 94,
+          "label": "852 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 95,
+          "label": "860 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 96,
+          "label": "868 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 97,
+          "label": "876 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 98,
+          "label": "884 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 99,
+          "label": "892 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 100,
+          "label": "900 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 101,
+          "label": "908 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 102,
+          "label": "916 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 103,
+          "label": "924 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 104,
+          "label": "932 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 105,
+          "label": "940 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 106,
+          "label": "948 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 107,
+          "label": "956 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 108,
+          "label": "964 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 109,
+          "label": "972 mSec",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 110,
+          "label": "980 mSec",
+          "sources": [
+            "provided"
+          ]
+        }
+      ],
+      "documented_unseen_count": 103,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 113,
+      "known_encoded_min": 0,
+      "known_encoded_max": 112,
+      "manual_range_uncaptured": {
+        "manual_min": 100,
+        "manual_max": 1000,
+        "captured_min": 100,
+        "captured_max": 996,
+        "notes": [
+          "manual ceiling 1000 above captured max 996"
+        ]
+      }
+    },
+    "density": {
+      "offsets": [
+        109
+      ],
+      "encoding": "raw_u8",
+      "documented_unseen": [
+        {
+          "encoded": 5,
+          "label": "5",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "6",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "7",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 8,
+          "label": "8",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        }
+      ],
+      "documented_unseen_count": 4,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 11,
+      "known_encoded_min": 0,
+      "known_encoded_max": 10,
+      "manual_range_uncaptured": null
+    },
+    "diffusion": {
+      "offsets": [
+        107
+      ],
+      "encoding": "raw_u8",
+      "documented_unseen": [
+        {
+          "encoded": 7,
+          "label": "7",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 8,
+          "label": "8",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        }
+      ],
+      "documented_unseen_count": 2,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 11,
+      "known_encoded_min": 0,
+      "known_encoded_max": 10,
+      "manual_range_uncaptured": null
+    },
+    "early rolloff": {
+      "offsets": [
+        126,
+        127
+      ],
+      "encoding": "nibble_hilo",
+      "documented_unseen": [
+        {
+          "encoded": 2,
+          "label": "160 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 3,
+          "label": "200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 4,
+          "label": "240 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "320 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "360 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 8,
+          "label": "400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 10,
+          "label": "560 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 11,
+          "label": "640 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 12,
+          "label": "720 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 13,
+          "label": "800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 14,
+          "label": "1000 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 15,
+          "label": "1200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 16,
+          "label": "1400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 17,
+          "label": "1600 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 18,
+          "label": "1800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 19,
+          "label": "2000 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 20,
+          "label": "2400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 21,
+          "label": "2800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 22,
+          "label": "3200 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 23,
+          "label": "3600 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 24,
+          "label": "4000 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 25,
+          "label": "4400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 26,
+          "label": "4800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 27,
+          "label": "5200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 28,
+          "label": "5600 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 29,
+          "label": "6000 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 30,
+          "label": "6400 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 31,
+          "label": "6800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 32,
+          "label": "7200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 33,
+          "label": "7600 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 34,
+          "label": "8000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 35,
+          "label": "8400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 36,
+          "label": "8800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 37,
+          "label": "9200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 38,
+          "label": "9600 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 39,
+          "label": "10000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 40,
+          "label": "10400 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 41,
+          "label": "10800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 42,
+          "label": "11200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 43,
+          "label": "11600 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 44,
+          "label": "12000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 45,
+          "label": "12400 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 46,
+          "label": "12800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 47,
+          "label": "13200 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 49,
+          "label": "14000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 50,
+          "label": "14400 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 51,
+          "label": "14800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 52,
+          "label": "15200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 53,
+          "label": "15600 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 54,
+          "label": "16000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 55,
+          "label": "16400 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 56,
+          "label": "16800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 57,
+          "label": "17200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 58,
+          "label": "17600 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 59,
+          "label": "18000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 60,
+          "label": "18400 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 61,
+          "label": "18800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 62,
+          "label": "19200 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 63,
+          "label": "19600 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 64,
+          "label": "20000 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 65,
+          "label": "20400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 66,
+          "label": "20800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 67,
+          "label": "21200 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 68,
+          "label": "21600 Hz",
+          "sources": [
+            "provided"
+          ]
+        }
+      ],
+      "documented_unseen_count": 64,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 71,
+      "known_encoded_min": 0,
+      "known_encoded_max": 70,
+      "manual_range_uncaptured": null
+    },
+    "early select": {
+      "offsets": [
+        128,
+        129
+      ],
+      "encoding": "nibble_hilo",
+      "documented_unseen": [
+        {
+          "encoded": 3,
+          "label": "3",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 4,
+          "label": "4",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 5,
+          "label": "5",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "6",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "7",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "9",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 10,
+          "label": "10",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 11,
+          "label": "11",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 12,
+          "label": "12",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 13,
+          "label": "13",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 15,
+          "label": "15",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 16,
+          "label": "16",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 17,
+          "label": "17",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 18,
+          "label": "18",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 19,
+          "label": "19",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 20,
+          "label": "20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 21,
+          "label": "21",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 22,
+          "label": "22",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 23,
+          "label": "23",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 24,
+          "label": "24",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 26,
+          "label": "26",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 27,
+          "label": "27",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 28,
+          "label": "28",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 29,
+          "label": "29",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        }
+      ],
+      "documented_unseen_count": 24,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 32,
+      "known_encoded_min": 0,
+      "known_encoded_max": 31,
+      "manual_range_uncaptured": null
+    },
+    "early to reverb mix": {
+      "offsets": [
+        124,
+        125
+      ],
+      "encoding": "nibble_hilo",
+      "documented_unseen": [
+        {
+          "encoded": 4,
+          "label": "4/20",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 5,
+          "label": "5/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "6/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "7/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 8,
+          "label": "8/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "9/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 10,
+          "label": "10/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 11,
+          "label": "11/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 12,
+          "label": "12/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 13,
+          "label": "13/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 14,
+          "label": "14/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 15,
+          "label": "15/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 16,
+          "label": "16/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 17,
+          "label": "17/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 18,
+          "label": "18/20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 23,
+          "label": "20/17",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 24,
+          "label": "20/16",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 25,
+          "label": "20/15",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 26,
+          "label": "20/14",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 27,
+          "label": "20/13",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 29,
+          "label": "20/11",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 30,
+          "label": "20/10",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 31,
+          "label": "20/9",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 32,
+          "label": "20/8",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 33,
+          "label": "20/7",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 35,
+          "label": "20/5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 36,
+          "label": "20/4",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 37,
+          "label": "20/3",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 38,
+          "label": "20/2",
+          "sources": [
+            "provided"
+          ]
+        }
+      ],
+      "documented_unseen_count": 29,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 41,
+      "known_encoded_min": 0,
+      "known_encoded_max": 40,
+      "manual_range_uncaptured": null
+    },
+    "hf rt crossover": {
+      "offsets": [
+        116,
+        117
+      ],
+      "encoding": "nibble_hilo",
+      "documented_unseen": [
+        {
+          "encoded": 2,
+          "label": "280 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 3,
+          "label": "320 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 4,
+          "label": "360 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 5,
+          "label": "400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "560 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 8,
+          "label": "640 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "720 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 10,
+          "label": "800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 11,
+          "label": "1000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 13,
+          "label": "1400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 14,
+          "label": "1600 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 15,
+          "label": "1800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 16,
+          "label": "2000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 17,
+          "label": "2400 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 18,
+          "label": "2800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 19,
+          "label": "3200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 21,
+          "label": "4000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 22,
+          "label": "4800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 23,
+          "label": "5600 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 25,
+          "label": "7200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 26,
+          "label": "8000 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 27,
+          "label": "8800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 29,
+          "label": "10400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 31,
+          "label": "12000 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 32,
+          "label": "12800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 34,
+          "label": "14400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 35,
+          "label": "15200 Hz",
+          "sources": [
+            "provided"
+          ]
+        }
+      ],
+      "documented_unseen_count": 27,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 37,
+      "known_encoded_min": 0,
+      "known_encoded_max": 36,
+      "manual_range_uncaptured": null
+    },
+    "hf rt multiply": {
+      "offsets": [
+        114,
+        115
+      ],
+      "encoding": "nibble_hilo",
+      "documented_unseen": [
+        {
+          "encoded": 8,
+          "label": "0.6",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "0.65",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 10,
+          "label": "0.7",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 11,
+          "label": "0.75",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 12,
+          "label": "0.8",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 13,
+          "label": "0.85",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 14,
+          "label": "0.9",
+          "sources": [
+            "preset"
+          ]
+        }
+      ],
+      "documented_unseen_count": 7,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 17,
+      "known_encoded_min": 0,
+      "known_encoded_max": 16,
+      "manual_range_uncaptured": null
+    },
+    "lf rt crossover": {
+      "offsets": [
+        120,
+        121
+      ],
+      "encoding": "nibble_hilo",
+      "documented_unseen": [
+        {
+          "encoded": 3,
+          "label": "200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 4,
+          "label": "240 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 5,
+          "label": "280 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "320 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "360 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "480 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 10,
+          "label": "560 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 11,
+          "label": "640 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 13,
+          "label": "800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 14,
+          "label": "1000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 15,
+          "label": "1200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 16,
+          "label": "1400 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 17,
+          "label": "1600 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 18,
+          "label": "1800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 19,
+          "label": "2000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 20,
+          "label": "2400 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 21,
+          "label": "2800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 22,
+          "label": "3200 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 23,
+          "label": "3600 Hz",
+          "sources": [
+            "provided"
+          ]
+        }
+      ],
+      "documented_unseen_count": 19,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 27,
+      "known_encoded_min": 0,
+      "known_encoded_max": 26,
+      "manual_range_uncaptured": null
+    },
+    "lf rt multiply": {
+      "offsets": [
+        118,
+        119
+      ],
+      "encoding": "nibble_hilo",
+      "documented_unseen": [
+        {
+          "encoded": 3,
+          "label": "0.35",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 4,
+          "label": "0.4",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 5,
+          "label": "0.45",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "0.5",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "0.55",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 8,
+          "label": "0.6",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "0.65",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 10,
+          "label": "0.7",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 12,
+          "label": "0.8",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 13,
+          "label": "0.85",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 14,
+          "label": "0.9",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 15,
+          "label": "0.95",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 16,
+          "label": "1",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 17,
+          "label": "1.05",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 18,
+          "label": "1.1",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 19,
+          "label": "1.15",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 20,
+          "label": "1.2",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 21,
+          "label": "1.25",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 22,
+          "label": "1.3",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 23,
+          "label": "1.35",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 24,
+          "label": "1.4",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 25,
+          "label": "1.45",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 26,
+          "label": "1.5",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 27,
+          "label": "1.55",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 28,
+          "label": "1.6",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 29,
+          "label": "1.65",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 30,
+          "label": "1.7",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 31,
+          "label": "1.75",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 32,
+          "label": "1.8",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 33,
+          "label": "1.85",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 34,
+          "label": "1.9",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 35,
+          "label": "1.95",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 36,
+          "label": "2",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 37,
+          "label": "2.1",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 38,
+          "label": "2.2",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 39,
+          "label": "2.3",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 40,
+          "label": "2.4",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 41,
+          "label": "2.5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 43,
+          "label": "2.7",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 44,
+          "label": "2.8",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 45,
+          "label": "2.9",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 46,
+          "label": "3.0",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 47,
+          "label": "3.1",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 49,
+          "label": "3.3",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 50,
+          "label": "3.4",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 51,
+          "label": "3.5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 52,
+          "label": "3.6",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 53,
+          "label": "3.7",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 54,
+          "label": "3.8",
+          "sources": [
+            "provided"
+          ]
+        }
+      ],
+      "documented_unseen_count": 49,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 57,
+      "known_encoded_min": 0,
+      "known_encoded_max": 56,
+      "manual_range_uncaptured": null
+    },
+    "modulation": {
+      "offsets": [
+        111
+      ],
+      "encoding": "raw_u8",
+      "documented_unseen": [
+        {
+          "encoded": 5,
+          "label": "4",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "5",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "6",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 8,
+          "label": "7",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "8",
+          "sources": [
+            "preset"
+          ]
+        }
+      ],
+      "documented_unseen_count": 5,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 12,
+      "known_encoded_min": 0,
+      "known_encoded_max": 11,
+      "manual_range_uncaptured": null
+    },
+    "predelay": {
+      "offsets": [
+        104,
+        105
+      ],
+      "encoding": "nibble_hilo",
+      "documented_unseen": [
+        {
+          "encoded": 3,
+          "label": "6 ms",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 4,
+          "label": "8 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 5,
+          "label": "10 ms",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "12 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "14 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 8,
+          "label": "16 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "18 ms",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 10,
+          "label": "20 ms",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 11,
+          "label": "22 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 12,
+          "label": "24 ms",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 13,
+          "label": "26 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 14,
+          "label": "28 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 15,
+          "label": "30 ms",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 16,
+          "label": "32 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 17,
+          "label": "34 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 18,
+          "label": "36 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 19,
+          "label": "38 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 20,
+          "label": "40 ms",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 21,
+          "label": "44 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 22,
+          "label": "48 ms",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 23,
+          "label": "52 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 24,
+          "label": "56 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 25,
+          "label": "60 ms",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 26,
+          "label": "64 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 27,
+          "label": "68 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 28,
+          "label": "72 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 29,
+          "label": "76 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 30,
+          "label": "80 ms",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 31,
+          "label": "84 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 32,
+          "label": "88 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 33,
+          "label": "92 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 34,
+          "label": "96 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 36,
+          "label": "108 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 37,
+          "label": "116 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 38,
+          "label": "124 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 39,
+          "label": "132 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 40,
+          "label": "140 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 41,
+          "label": "148 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 42,
+          "label": "156 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 43,
+          "label": "164 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 44,
+          "label": "172 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 45,
+          "label": "180 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 46,
+          "label": "188 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 47,
+          "label": "196 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 49,
+          "label": "212 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 50,
+          "label": "220 ms",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 51,
+          "label": "228 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 52,
+          "label": "236 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 53,
+          "label": "244 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 54,
+          "label": "252 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 55,
+          "label": "260 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 56,
+          "label": "268 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 57,
+          "label": "276 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 58,
+          "label": "284 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 59,
+          "label": "292 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 60,
+          "label": "300 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 61,
+          "label": "308 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 62,
+          "label": "316 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 63,
+          "label": "324 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 64,
+          "label": "332 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 65,
+          "label": "340 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 66,
+          "label": "348 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 67,
+          "label": "356 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 68,
+          "label": "364 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 69,
+          "label": "372 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 70,
+          "label": "380 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 71,
+          "label": "388 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 72,
+          "label": "396 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 73,
+          "label": "404 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 74,
+          "label": "412 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 75,
+          "label": "420 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 76,
+          "label": "428 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 77,
+          "label": "436 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 78,
+          "label": "444 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 79,
+          "label": "452 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 80,
+          "label": "460 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 81,
+          "label": "468 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 82,
+          "label": "476 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 83,
+          "label": "484 ms",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 84,
+          "label": "492 ms",
+          "sources": [
+            "provided"
+          ]
+        }
+      ],
+      "documented_unseen_count": 80,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 86,
+      "known_encoded_min": 0,
+      "known_encoded_max": 85,
+      "manual_range_uncaptured": null
+    },
+    "reverb time": {
+      "offsets": [
+        100,
+        101
+      ],
+      "encoding": "nibble_hilo",
+      "documented_unseen": [
+        {
+          "encoded": 3,
+          "label": "0.35",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 4,
+          "label": "0.4",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 5,
+          "label": "0.45",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "0.5",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "0.55",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 8,
+          "label": "0.6",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "0.65",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 10,
+          "label": "0.7",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 11,
+          "label": "0.75",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 13,
+          "label": "0.85",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 14,
+          "label": "0.9",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 15,
+          "label": "0.95",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 16,
+          "label": "1",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 17,
+          "label": "1.05",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 18,
+          "label": "1.1",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 19,
+          "label": "1.15",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 20,
+          "label": "1.2",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 21,
+          "label": "1.25",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 23,
+          "label": "1.35",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 24,
+          "label": "1.4",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 25,
+          "label": "1.45",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 26,
+          "label": "1.5",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 27,
+          "label": "1.55",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 28,
+          "label": "1.6",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 29,
+          "label": "1.65",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 30,
+          "label": "1.7",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 31,
+          "label": "1.75",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 32,
+          "label": "1.8",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 33,
+          "label": "1.85",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 34,
+          "label": "1.9",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 35,
+          "label": "1.95",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 36,
+          "label": "2",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 37,
+          "label": "2.05",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 38,
+          "label": "2.1",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 39,
+          "label": "2.15",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 41,
+          "label": "2.25",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 42,
+          "label": "2.3",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 43,
+          "label": "2.35",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 44,
+          "label": "2.4",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 45,
+          "label": "2.45",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 46,
+          "label": "2.5",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 47,
+          "label": "2.55",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 48,
+          "label": "2.6",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 49,
+          "label": "2.65",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 50,
+          "label": "2.7",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 51,
+          "label": "2.75",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 52,
+          "label": "2.8",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 53,
+          "label": "2.85",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 54,
+          "label": "2.9",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 55,
+          "label": "2.95",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 56,
+          "label": "3",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 57,
+          "label": "3.1",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 58,
+          "label": "3.2",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 59,
+          "label": "3.3",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 60,
+          "label": "3.4",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 62,
+          "label": "3.6",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 63,
+          "label": "3.7",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 64,
+          "label": "3.8",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 65,
+          "label": "3.9",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 66,
+          "label": "4.0",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 67,
+          "label": "4.1",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 68,
+          "label": "4.2",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 69,
+          "label": "4.3",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 70,
+          "label": "4.4",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 71,
+          "label": "4.5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 72,
+          "label": "4.6",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 73,
+          "label": "4.7",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 74,
+          "label": "4.8",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 75,
+          "label": "4.9",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 76,
+          "label": "5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 77,
+          "label": "5.1",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 78,
+          "label": "5.2",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 79,
+          "label": "5.3",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 80,
+          "label": "5.4",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 81,
+          "label": "5.5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 82,
+          "label": "5.6",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 83,
+          "label": "5.7",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 84,
+          "label": "5.8",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 85,
+          "label": "5.9",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 86,
+          "label": "6",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 87,
+          "label": "6.2",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 88,
+          "label": "6.4",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 89,
+          "label": "6.6",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 91,
+          "label": "7",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 92,
+          "label": "7.2",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 93,
+          "label": "7.4",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 94,
+          "label": "7.6",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 95,
+          "label": "7.8",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 96,
+          "label": "8",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 97,
+          "label": "8.2",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 98,
+          "label": "8.4",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 99,
+          "label": "8.6",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 100,
+          "label": "8.8",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 101,
+          "label": "9",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 102,
+          "label": "9.2",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 103,
+          "label": "9.4",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 104,
+          "label": "9.6",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 105,
+          "label": "9.8",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 107,
+          "label": "10.5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 108,
+          "label": "11",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 109,
+          "label": "11.5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 110,
+          "label": "12",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 111,
+          "label": "12.5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 112,
+          "label": "13",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 113,
+          "label": "13.5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 114,
+          "label": "14",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 115,
+          "label": "14.5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 116,
+          "label": "15",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 117,
+          "label": "15.5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 118,
+          "label": "16",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 120,
+          "label": "17",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 121,
+          "label": "17.5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 122,
+          "label": "18",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 123,
+          "label": "18.5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 124,
+          "label": "19",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 125,
+          "label": "19.5",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 126,
+          "label": "20",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 127,
+          "label": "21",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 128,
+          "label": "22",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 130,
+          "label": "24",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 131,
+          "label": "25",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 132,
+          "label": "26",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 133,
+          "label": "27",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 134,
+          "label": "28",
+          "sources": [
+            "provided"
+          ]
+        }
+      ],
+      "documented_unseen_count": 124,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 137,
+      "known_encoded_min": 0,
+      "known_encoded_max": 136,
+      "manual_range_uncaptured": {
+        "manual_min": 0.1,
+        "manual_max": 30.0,
+        "captured_min": 0.2,
+        "captured_max": 30,
+        "notes": [
+          "manual floor 0.1 below captured min 0.2"
+        ]
+      }
+    },
+    "rolloff": {
+      "offsets": [
+        112,
+        113
+      ],
+      "encoding": "nibble_hilo",
+      "documented_unseen": [
+        {
+          "encoded": 4,
+          "label": "240 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 5,
+          "label": "280 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "320 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "360 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 8,
+          "label": "400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "480 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 10,
+          "label": "560 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 11,
+          "label": "640 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 12,
+          "label": "720 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 14,
+          "label": "1000 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 15,
+          "label": "1200 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 16,
+          "label": "1400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 17,
+          "label": "1600 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 18,
+          "label": "1800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 20,
+          "label": "2400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 21,
+          "label": "2800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 23,
+          "label": "3600 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 24,
+          "label": "4000 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 25,
+          "label": "4400 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 26,
+          "label": "4800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 28,
+          "label": "5600 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 29,
+          "label": "6000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 30,
+          "label": "6400 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 32,
+          "label": "7200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 33,
+          "label": "7600 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 34,
+          "label": "8000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 35,
+          "label": "8400 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 36,
+          "label": "8800 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 37,
+          "label": "9200 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 38,
+          "label": "9600 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 39,
+          "label": "10000 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 40,
+          "label": "10400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 41,
+          "label": "10800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 42,
+          "label": "11200 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 43,
+          "label": "11600 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 44,
+          "label": "12000 Hz",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 45,
+          "label": "12400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 46,
+          "label": "12800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 47,
+          "label": "13200 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 48,
+          "label": "13600 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 49,
+          "label": "14000 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 50,
+          "label": "14400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 51,
+          "label": "14800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 52,
+          "label": "15200 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 53,
+          "label": "15600 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 54,
+          "label": "16000 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 55,
+          "label": "16400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 56,
+          "label": "16800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 57,
+          "label": "17200 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 58,
+          "label": "17600 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 59,
+          "label": "18000 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 60,
+          "label": "18400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 61,
+          "label": "18800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 62,
+          "label": "19200 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 63,
+          "label": "19600 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 65,
+          "label": "20400 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 66,
+          "label": "20800 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 67,
+          "label": "21200 Hz",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 68,
+          "label": "21600 Hz",
+          "sources": [
+            "provided"
+          ]
+        }
+      ],
+      "documented_unseen_count": 59,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 71,
+      "known_encoded_min": 0,
+      "known_encoded_max": 70,
+      "manual_range_uncaptured": {
+        "manual_min": 80,
+        "manual_max": 28000,
+        "captured_min": 80,
+        "captured_max": 22000,
+        "notes": [
+          "manual ceiling 28000 above captured max 22000"
+        ]
+      }
+    },
+    "size": {
+      "offsets": [
+        102,
+        103
+      ],
+      "encoding": "nibble_hilo",
+      "documented_unseen": [
+        {
+          "encoded": 3,
+          "label": "3",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 4,
+          "label": "4",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 5,
+          "label": "5",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "6",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 8,
+          "label": "8",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "9",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 10,
+          "label": "10",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 11,
+          "label": "11",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 12,
+          "label": "12",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 13,
+          "label": "13",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 14,
+          "label": "14",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 16,
+          "label": "16",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 17,
+          "label": "17",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 18,
+          "label": "18",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 19,
+          "label": "19",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 20,
+          "label": "20",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 21,
+          "label": "21",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 22,
+          "label": "22",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 23,
+          "label": "23",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 24,
+          "label": "24",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 25,
+          "label": "25",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        },
+        {
+          "encoded": 26,
+          "label": "26",
+          "sources": [
+            "provided"
+          ]
+        },
+        {
+          "encoded": 27,
+          "label": "27",
+          "sources": [
+            "provided",
+            "preset"
+          ]
+        }
+      ],
+      "documented_unseen_count": 23,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 31,
+      "known_encoded_min": 0,
+      "known_encoded_max": 30,
+      "manual_range_uncaptured": null
+    },
+    "vlf cut": {
+      "offsets": [
+        122,
+        123
+      ],
+      "encoding": "nibble_hilo",
+      "documented_unseen": [
+        {
+          "encoded": 4,
+          "label": "-16 dB",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 5,
+          "label": "-15 dB",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 6,
+          "label": "-14 dB",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 7,
+          "label": "-13 dB",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 8,
+          "label": "-12 dB",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 9,
+          "label": "-11 dB",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 11,
+          "label": "-9 dB",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 13,
+          "label": "-7 dB",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 14,
+          "label": "-6 dB",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 15,
+          "label": "-5 dB",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 17,
+          "label": "-3 dB",
+          "sources": [
+            "preset"
+          ]
+        },
+        {
+          "encoded": 18,
+          "label": "-2 dB",
+          "sources": [
+            "preset"
+          ]
+        }
+      ],
+      "documented_unseen_count": 12,
+      "encoded_gaps": [],
+      "encoded_gap_count": 0,
+      "known_encoded_count": 21,
+      "known_encoded_min": 0,
+      "known_encoded_max": 20,
+      "manual_range_uncaptured": null
+    }
+  },
+  "offsets": [
+    {
+      "offset": 0,
+      "status": "frame",
+      "role": "SysEx start (F0)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "F0"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 1,
+      "status": "frame",
+      "role": "Manufacturer ID (00 62 63)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 2,
+      "status": "frame",
+      "role": "Manufacturer ID (00 62 63)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "62"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 3,
+      "status": "frame",
+      "role": "Manufacturer ID (00 62 63)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "63"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 4,
+      "status": "frame",
+      "role": "Program-dump header (70 08 01 00)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "70"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 5,
+      "status": "frame",
+      "role": "Program-dump header (70 08 01 00)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "08"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 6,
+      "status": "frame",
+      "role": "Program-dump header (70 08 01 00)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "01"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 7,
+      "status": "frame",
+      "role": "Program-dump header (70 08 01 00)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 8,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "4A",
+        "4B",
+        "4C",
+        "4D",
+        "4E",
+        "4F",
+        "50",
+        "52",
+        "53",
+        "54",
+        "56",
+        "57"
+      ],
+      "observed_count": 21
+    },
+    {
+      "offset": 9,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "26",
+        "44",
+        "46",
+        "61",
+        "63",
+        "65",
+        "67",
+        "68",
+        "69",
+        "6A",
+        "6C",
+        "6D",
+        "6E",
+        "6F",
+        "70",
+        "72",
+        "74",
+        "75"
+      ],
+      "observed_count": 18
+    },
+    {
+      "offset": 10,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20",
+        "4D",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "6B",
+        "6C",
+        "6E",
+        "6F",
+        "70",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76",
+        "78",
+        "79",
+        "7A"
+      ],
+      "observed_count": 24
+    },
+    {
+      "offset": 11,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20",
+        "43",
+        "50",
+        "57",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "67",
+        "68",
+        "69",
+        "6B",
+        "6C",
+        "6D",
+        "6E",
+        "6F",
+        "70",
+        "72",
+        "73",
+        "74",
+        "76",
+        "77",
+        "79",
+        "7A"
+      ],
+      "observed_count": 25
+    },
+    {
+      "offset": 12,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20",
+        "26",
+        "41",
+        "42",
+        "43",
+        "48",
+        "50",
+        "52",
+        "53",
+        "61",
+        "63",
+        "64",
+        "65",
+        "67",
+        "68",
+        "69",
+        "6B",
+        "6C",
+        "6D",
+        "6E",
+        "6F",
+        "70",
+        "72",
+        "73",
+        "74",
+        "75",
+        "79"
+      ],
+      "observed_count": 27
+    },
+    {
+      "offset": 13,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20",
+        "26",
+        "41",
+        "43",
+        "48",
+        "50",
+        "52",
+        "53",
+        "56",
+        "57",
+        "61",
+        "63",
+        "64",
+        "65",
+        "67",
+        "68",
+        "69",
+        "6C",
+        "6D",
+        "6E",
+        "6F",
+        "70",
+        "72",
+        "73",
+        "74"
+      ],
+      "observed_count": 25
+    },
+    {
+      "offset": 14,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20",
+        "26",
+        "41",
+        "42",
+        "43",
+        "46",
+        "47",
+        "48",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "56",
+        "57",
+        "58",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "6C",
+        "6D",
+        "6F",
+        "70",
+        "72",
+        "73",
+        "74",
+        "75",
+        "77",
+        "79"
+      ],
+      "observed_count": 35
+    },
+    {
+      "offset": 15,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20",
+        "26",
+        "31",
+        "32",
+        "33",
+        "34",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "48",
+        "4B",
+        "50",
+        "52",
+        "54",
+        "58",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "68",
+        "69",
+        "6B",
+        "6C",
+        "6D",
+        "6F",
+        "70",
+        "72",
+        "73",
+        "74",
+        "75",
+        "78",
+        "79"
+      ],
+      "observed_count": 36
+    },
+    {
+      "offset": 16,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20",
+        "41",
+        "42",
+        "43",
+        "44",
+        "48",
+        "4C",
+        "4E",
+        "50",
+        "52",
+        "53",
+        "56",
+        "57",
+        "59",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "68",
+        "69",
+        "6C",
+        "6D",
+        "6E",
+        "6F",
+        "72",
+        "73",
+        "74",
+        "75",
+        "78"
+      ],
+      "observed_count": 30
+    },
+    {
+      "offset": 17,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20",
+        "41",
+        "42",
+        "43",
+        "44",
+        "46",
+        "48",
+        "4E",
+        "53",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "67",
+        "68",
+        "69",
+        "6C",
+        "6D",
+        "6E",
+        "6F",
+        "72",
+        "74",
+        "75",
+        "76",
+        "79"
+      ],
+      "observed_count": 26
+    },
+    {
+      "offset": 18,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20",
+        "41",
+        "42",
+        "43",
+        "48",
+        "52",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "68",
+        "69",
+        "6B",
+        "6C",
+        "6D",
+        "6E",
+        "6F",
+        "70",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76"
+      ],
+      "observed_count": 24
+    },
+    {
+      "offset": 19,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20",
+        "41",
+        "42",
+        "53",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "67",
+        "68",
+        "69",
+        "6B",
+        "6C",
+        "6D",
+        "6E",
+        "6F",
+        "70",
+        "72",
+        "74",
+        "79"
+      ],
+      "observed_count": 21
+    },
+    {
+      "offset": 20,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20",
+        "41",
+        "42",
+        "63",
+        "65",
+        "68",
+        "69",
+        "6B",
+        "6C",
+        "6E",
+        "6F",
+        "70",
+        "72",
+        "73"
+      ],
+      "observed_count": 14
+    },
+    {
+      "offset": 21,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20",
+        "41",
+        "42",
+        "65",
+        "68",
+        "6C",
+        "6D",
+        "72",
+        "74",
+        "79"
+      ],
+      "observed_count": 10
+    },
+    {
+      "offset": 22,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 23,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 24,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 25,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 26,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 27,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 28,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 29,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 30,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 31,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 32,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 33,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 34,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 35,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 36,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 37,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 38,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 39,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 40,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 41,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 42,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 43,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 44,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 45,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 46,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 47,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 48,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 49,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 50,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 51,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 52,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 53,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 54,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 55,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 56,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 57,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 58,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 59,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 60,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 61,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 62,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 63,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 64,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 65,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 66,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 67,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 68,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 69,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 70,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 71,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 72,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 73,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 74,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 75,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 76,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 77,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 78,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 79,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 80,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 81,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 82,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 83,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 84,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 85,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 86,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 87,
+      "status": "frame",
+      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "20"
+      ],
+      "observed_count": 1
+    },
+    {
+      "offset": 88,
+      "status": "known",
+      "role": "Bank index (`nibble_hilo`) from sysex/_presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/_edit/)",
+      "parameters": [
+        "_presets"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 89,
+      "status": "known",
+      "role": "Bank index (`nibble_hilo`) from sysex/_presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/_edit/)",
+      "parameters": [
+        "_presets"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A"
+      ],
+      "observed_count": 11,
+      "unseen_nibble_values": [
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 5
+    },
+    {
+      "offset": 90,
+      "status": "known",
+      "role": "Program slot within bank (`nibble_hilo`) from sysex/_presets/ (not a global program number)",
+      "parameters": [
+        "_presets"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02"
+      ],
+      "observed_count": 3,
+      "unseen_nibble_values": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 13
+    },
+    {
+      "offset": 91,
+      "status": "known",
+      "role": "Program slot within bank (`nibble_hilo`) from sysex/_presets/ (not a global program number)",
+      "parameters": [
+        "_presets"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 92,
+      "status": "secondary",
+      "role": "Menu-browse flag: `00` when no parameter menu is open or while editing a value; `02` while a parameter menu is highlighted (see `sysex/prog/menus/` captures)",
+      "parameters": [
+        "early rolloff",
+        "_corpus"
+      ],
+      "encoding": "raw_u8",
+      "observed_values": [
+        "00",
+        "02"
+      ],
+      "observed_count": 2,
+      "unseen_nibble_values": [
+        "1",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 14
+    },
+    {
+      "offset": 93,
+      "status": "known",
+      "role": "Fixed field (always `00 08` / encoded 8 in this corpus) \u2014 likely structure/version; not a sound parameter",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 94,
+      "status": "known",
+      "role": "Fixed field (always `00 08` / encoded 8 in this corpus) \u2014 likely structure/version; not a sound parameter",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "08"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 95,
+      "status": "known",
+      "role": "Reserved (always `00 00` in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 96,
+      "status": "known",
+      "role": "Reserved (always `00 00` in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 97,
+      "status": "known",
+      "role": "Algorithm/family flag from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). Mirrored at 145 as 0 when 97=3 and 1 when 97=4 \u2014 not a clean V1/V2 bit",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": "raw_u8",
+      "observed_values": [
+        "03",
+        "04"
+      ],
+      "observed_count": 2,
+      "unseen_nibble_values": [
+        "0",
+        "1",
+        "2",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 14
+    },
+    {
+      "offset": 98,
+      "status": "secondary",
+      "role": "Selected front-panel menu index (`nibble_hilo`, 0\u201317) when a parameter menu is open; `00 00` when idle. Hardware menu order matches `PROGRAM_PARAMETERS` in catalog. Offset 92 disambiguates idle vs Reverb Time (both may show index 0)",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01"
+      ],
+      "observed_count": 2,
+      "unseen_nibble_values": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 14
+    },
+    {
+      "offset": 99,
+      "status": "secondary",
+      "role": "Selected front-panel menu index (`nibble_hilo`, 0\u201317) when a parameter menu is open; `00 00` when idle. Hardware menu order matches `PROGRAM_PARAMETERS` in catalog. Offset 92 disambiguates idle vs Reverb Time (both may show index 0)",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 100,
+      "status": "known",
+      "role": "Parameter `reverb time` (from independent series sysex/reverb time/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "reverb time"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "observed_count": 9,
+      "unseen_nibble_values": [
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 7
+    },
+    {
+      "offset": 101,
+      "status": "known",
+      "role": "Parameter `reverb time` (from independent series sysex/reverb time/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "reverb time"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 102,
+      "status": "known",
+      "role": "Parameter `size` (from independent series sysex/size/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "size"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01"
+      ],
+      "observed_count": 2,
+      "unseen_nibble_values": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 14
+    },
+    {
+      "offset": 103,
+      "status": "known",
+      "role": "Parameter `size` (from independent series sysex/size/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "size"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 104,
+      "status": "known",
+      "role": "Parameter `predelay` (from independent series sysex/predelay/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "predelay"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "05"
+      ],
+      "observed_count": 5,
+      "unseen_nibble_values": [
+        "4",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 11
+    },
+    {
+      "offset": 105,
+      "status": "known",
+      "role": "Parameter `predelay` (from independent series sysex/predelay/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "predelay"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "09",
+        "0A",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 13,
+      "unseen_nibble_values": [
+        "7",
+        "8",
+        "B"
+      ],
+      "unseen_nibble_count": 3
+    },
+    {
+      "offset": 106,
+      "status": "known",
+      "role": "Reserved padding (always 0) between predelay and diffusion",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 107,
+      "status": "known",
+      "role": "Parameter `diffusion` (from independent series sysex/diffusion/) (raw_u8, label = encoded * 1)",
+      "parameters": [
+        "diffusion"
+      ],
+      "encoding": "raw_u8",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A"
+      ],
+      "observed_count": 11,
+      "unseen_nibble_values": [
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 5
+    },
+    {
+      "offset": 108,
+      "status": "known",
+      "role": "Reserved padding (always 0) between diffusion and density",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 109,
+      "status": "known",
+      "role": "Parameter `density` (from independent series sysex/density/) (raw_u8, label = encoded * 1)",
+      "parameters": [
+        "density"
+      ],
+      "encoding": "raw_u8",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A"
+      ],
+      "observed_count": 11,
+      "unseen_nibble_values": [
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 5
+    },
+    {
+      "offset": 110,
+      "status": "known",
+      "role": "Reserved padding (always 0) between density and modulation",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 111,
+      "status": "known",
+      "role": "Parameter `modulation` (from independent series sysex/modulation/) (raw_u8, label = encoded + (-1))",
+      "parameters": [
+        "modulation"
+      ],
+      "encoding": "raw_u8",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B"
+      ],
+      "observed_count": 12,
+      "unseen_nibble_values": [
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 4
+    },
+    {
+      "offset": 112,
+      "status": "known",
+      "role": "Parameter `rolloff` (from independent series sysex/rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "rolloff"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "observed_count": 5,
+      "unseen_nibble_values": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 11
+    },
+    {
+      "offset": 113,
+      "status": "known",
+      "role": "Parameter `rolloff` (from independent series sysex/rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "rolloff"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 114,
+      "status": "known",
+      "role": "Parameter `hf rt multiply` (from independent series sysex/hf rt multiply/) (nibble_hilo, label = encoded * 0.05 + (0.2))",
+      "parameters": [
+        "hf rt multiply"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01"
+      ],
+      "observed_count": 2,
+      "unseen_nibble_values": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 14
+    },
+    {
+      "offset": 115,
+      "status": "known",
+      "role": "Parameter `hf rt multiply` (from independent series sysex/hf rt multiply/) (nibble_hilo, label = encoded * 0.05 + (0.2))",
+      "parameters": [
+        "hf rt multiply"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 116,
+      "status": "known",
+      "role": "Parameter `hf rt crossover` (from independent series sysex/hf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "hf rt crossover"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02"
+      ],
+      "observed_count": 3,
+      "unseen_nibble_values": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 13
+    },
+    {
+      "offset": 117,
+      "status": "known",
+      "role": "Parameter `hf rt crossover` (from independent series sysex/hf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "hf rt crossover"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 118,
+      "status": "known",
+      "role": "Parameter `lf rt multiply` (from independent series sysex/lf rt multiply/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "lf rt multiply"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03"
+      ],
+      "observed_count": 4,
+      "unseen_nibble_values": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 12
+    },
+    {
+      "offset": 119,
+      "status": "known",
+      "role": "Parameter `lf rt multiply` (from independent series sysex/lf rt multiply/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "lf rt multiply"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 120,
+      "status": "known",
+      "role": "Parameter `lf rt crossover` (from independent series sysex/lf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "lf rt crossover"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01"
+      ],
+      "observed_count": 2,
+      "unseen_nibble_values": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 14
+    },
+    {
+      "offset": 121,
+      "status": "known",
+      "role": "Parameter `lf rt crossover` (from independent series sysex/lf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "lf rt crossover"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 122,
+      "status": "known",
+      "role": "Parameter `vlf cut` (from independent series sysex/vlf cut/) (nibble_hilo, label = encoded + (-20))",
+      "parameters": [
+        "vlf cut"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01"
+      ],
+      "observed_count": 2,
+      "unseen_nibble_values": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 14
+    },
+    {
+      "offset": 123,
+      "status": "known",
+      "role": "Parameter `vlf cut` (from independent series sysex/vlf cut/) (nibble_hilo, label = encoded + (-20))",
+      "parameters": [
+        "vlf cut"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 124,
+      "status": "known",
+      "role": "Parameter `early to reverb mix` (from independent series sysex/early to reverb mix/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "early to reverb mix"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02"
+      ],
+      "observed_count": 3,
+      "unseen_nibble_values": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 13
+    },
+    {
+      "offset": 125,
+      "status": "known",
+      "role": "Parameter `early to reverb mix` (from independent series sysex/early to reverb mix/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "early to reverb mix"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 126,
+      "status": "known",
+      "role": "Parameter `early rolloff` (from independent series sysex/early rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "early rolloff"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "observed_count": 5,
+      "unseen_nibble_values": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 11
+    },
+    {
+      "offset": 127,
+      "status": "known",
+      "role": "Parameter `early rolloff` (from independent series sysex/early rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "parameters": [
+        "early rolloff"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 128,
+      "status": "known",
+      "role": "Parameter `early select` (from independent series sysex/early select/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "early select"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01"
+      ],
+      "observed_count": 2,
+      "unseen_nibble_values": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 14
+    },
+    {
+      "offset": 129,
+      "status": "known",
+      "role": "Parameter `early select` (from independent series sysex/early select/) (nibble_hilo, label = encoded * 1)",
+      "parameters": [
+        "early select"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 130,
+      "status": "known",
+      "role": "Engine/bank-class flag: 0 on classic banks (Halls\u2026Spaces), 1 on `* 2` banks (Halls 2\u2026Spaces 2), 2 on NonLin. Parameter-series dumps also show 1 because they were captured from Large Church (Halls 2)",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": "raw_u8",
+      "observed_values": [
+        "00",
+        "01",
+        "02"
+      ],
+      "observed_count": 3,
+      "unseen_nibble_values": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 13
+    },
+    {
+      "offset": 131,
+      "status": "known",
+      "role": "Fixed companion to offset 130 (always `02 00` in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "02"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "0",
+        "1",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 132,
+      "status": "known",
+      "role": "Fixed companion to offset 130 (always `02 00` in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 133,
+      "status": "known",
+      "role": "Parameter `delay level` (from independent series sysex/delay level/) (raw_u8, label = encoded + (-21))",
+      "parameters": [
+        "delay level"
+      ],
+      "encoding": "raw_u8",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 15,
+      "unseen_nibble_values": [
+        "C"
+      ],
+      "unseen_nibble_count": 1
+    },
+    {
+      "offset": 134,
+      "status": "known",
+      "role": "Parameter `delay time` (from independent series sysex/delay time/) (nibble_hilo, label = encoded * 8 + (100))",
+      "parameters": [
+        "delay time"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07"
+      ],
+      "observed_count": 8,
+      "unseen_nibble_values": [
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 8
+    },
+    {
+      "offset": 135,
+      "status": "known",
+      "role": "Parameter `delay time` (from independent series sysex/delay time/) (nibble_hilo, label = encoded * 8 + (100))",
+      "parameters": [
+        "delay time"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 136,
+      "status": "known",
+      "role": "Reserved (always 0) between delay time and bank-index mirror",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 137,
+      "status": "known",
+      "role": "Bank index mirror (equals offset 89) from sysex/_presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
+      "parameters": [
+        "_presets"
+      ],
+      "encoding": "raw_u8",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A"
+      ],
+      "observed_count": 11,
+      "unseen_nibble_values": [
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 5
+    },
+    {
+      "offset": 138,
+      "status": "known",
+      "role": "Reserved (always 0) between bank-index mirror and delay modulation",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 139,
+      "status": "known",
+      "role": "Parameter `delay modulation` (from independent series sysex/delay modulation/) (raw_u8, label = encoded + (-1))",
+      "parameters": [
+        "delay modulation"
+      ],
+      "encoding": "raw_u8",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B"
+      ],
+      "observed_count": 12,
+      "unseen_nibble_values": [
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 4
+    },
+    {
+      "offset": 140,
+      "status": "known",
+      "role": "Reserved block (always 0 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 141,
+      "status": "known",
+      "role": "Reserved block (always 0 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 142,
+      "status": "known",
+      "role": "Reserved block (always 0 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 143,
+      "status": "known",
+      "role": "Reserved block (always 0 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 144,
+      "status": "known",
+      "role": "Reserved block (always 0 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 145,
+      "status": "known",
+      "role": "Mirror of algorithm/family flag at 97 (145=0 when 97=3; 145=1 when 97=4 in this corpus)",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": "raw_u8",
+      "observed_values": [
+        "00",
+        "01"
+      ],
+      "observed_count": 2,
+      "unseen_nibble_values": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 14
+    },
+    {
+      "offset": 146,
+      "status": "known",
+      "role": "Display (`nibble_hilo`): high nibble = page/row while browsing (`92=02`) or edit anchor while changing a value (`92=00`); low nibble = position within the menu page, or value-display position while editing. From `sysex/prog/menus/` captures",
+      "parameters": [
+        "_menus"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 147,
+      "status": "known",
+      "role": "Display (`nibble_hilo`): high nibble = page/row while browsing (`92=02`) or edit anchor while changing a value (`92=00`); low nibble = position within the menu page, or value-display position while editing. From `sysex/prog/menus/` captures",
+      "parameters": [
+        "_menus"
+      ],
+      "encoding": "nibble_hilo",
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16,
+      "unseen_nibble_values": [],
+      "unseen_nibble_count": 0
+    },
+    {
+      "offset": 148,
+      "status": "known",
+      "role": "Reserved (always 0) immediately before checksum nibbles",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 149,
+      "status": "known",
+      "role": "Reserved (always 0) immediately before checksum nibbles",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 150,
+      "status": "known",
+      "role": "Reserved (always 0) immediately before checksum nibbles",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 151,
+      "status": "known",
+      "role": "Reserved (always 0) immediately before checksum nibbles",
+      "parameters": [
+        "_corpus"
+      ],
+      "encoding": null,
+      "observed_values": [
+        "00"
+      ],
+      "observed_count": 1,
+      "unseen_nibble_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "unseen_nibble_count": 15
+    },
+    {
+      "offset": 152,
+      "status": "checksum",
+      "role": "Checksum: CRC-16/ARC over offsets 8-151 (name + payload), packed as four high-nibble-first SysEx bytes (per-dump; recompute after edits - do not copy across parameter series)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16
+    },
+    {
+      "offset": 153,
+      "status": "checksum",
+      "role": "Checksum: CRC-16/ARC over offsets 8-151 (name + payload), packed as four high-nibble-first SysEx bytes (per-dump; recompute after edits - do not copy across parameter series)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16
+    },
+    {
+      "offset": 154,
+      "status": "checksum",
+      "role": "Checksum: CRC-16/ARC over offsets 8-151 (name + payload), packed as four high-nibble-first SysEx bytes (per-dump; recompute after edits - do not copy across parameter series)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16
+    },
+    {
+      "offset": 155,
+      "status": "checksum",
+      "role": "Checksum: CRC-16/ARC over offsets 8-151 (name + payload), packed as four high-nibble-first SysEx bytes (per-dump; recompute after edits - do not copy across parameter series)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "0A",
+        "0B",
+        "0C",
+        "0D",
+        "0E",
+        "0F"
+      ],
+      "observed_count": 16
+    },
+    {
+      "offset": 156,
+      "status": "frame",
+      "role": "SysEx end (F7)",
+      "parameters": [],
+      "encoding": null,
+      "observed_values": [
+        "F7"
+      ],
+      "observed_count": 1
+    }
+  ],
+  "display": {
+    "witnessed": [
+      {
+        "label": "idle (no menu)",
+        "mode": "idle",
+        "nibble_hilo": 28,
+        "146": 1,
+        "147": 12
+      },
+      {
+        "label": "browse: reverb time (0)",
+        "mode": "browse",
+        "nibble_hilo": 46,
+        "146": 2,
+        "147": 14
+      },
+      {
+        "label": "edit: reverb time (0)",
+        "mode": "edit",
+        "nibble_hilo": 196,
+        "146": 12,
+        "147": 4
+      },
+      {
+        "label": "browse: size (1)",
+        "mode": "browse",
+        "nibble_hilo": 29,
+        "146": 1,
+        "147": 13
+      },
+      {
+        "label": "edit: size (1)",
+        "mode": "edit",
+        "nibble_hilo": 210,
+        "146": 13,
+        "147": 2
+      },
+      {
+        "label": "browse: predelay (2)",
+        "mode": "browse",
+        "nibble_hilo": 30,
+        "146": 1,
+        "147": 14
+      },
+      {
+        "label": "edit: predelay (2)",
+        "mode": "edit",
+        "nibble_hilo": 34,
+        "146": 2,
+        "147": 2
+      },
+      {
+        "label": "browse: diffusion (3)",
+        "mode": "browse",
+        "nibble_hilo": 31,
+        "146": 1,
+        "147": 15
+      },
+      {
+        "label": "edit: diffusion (3)",
+        "mode": "edit",
+        "nibble_hilo": 41,
+        "146": 2,
+        "147": 9
+      },
+      {
+        "label": "browse: density (4)",
+        "mode": "browse",
+        "nibble_hilo": 32,
+        "146": 2,
+        "147": 0
+      },
+      {
+        "label": "edit: density (4)",
+        "mode": "edit",
+        "nibble_hilo": 55,
+        "146": 3,
+        "147": 7
+      },
+      {
+        "label": "browse: modulation (5)",
+        "mode": "browse",
+        "nibble_hilo": 33,
+        "146": 2,
+        "147": 1
+      },
+      {
+        "label": "edit: modulation (5)",
+        "mode": "edit",
+        "nibble_hilo": 70,
+        "146": 4,
+        "147": 6
+      },
+      {
+        "label": "browse: rolloff (6)",
+        "mode": "browse",
+        "nibble_hilo": 34,
+        "146": 2,
+        "147": 2
+      },
+      {
+        "label": "edit: rolloff (6)",
+        "mode": "edit",
+        "nibble_hilo": 78,
+        "146": 4,
+        "147": 14
+      },
+      {
+        "label": "browse: hf rt multiply (7)",
+        "mode": "browse",
+        "nibble_hilo": 35,
+        "146": 2,
+        "147": 3
+      },
+      {
+        "label": "edit: hf rt multiply (7)",
+        "mode": "edit",
+        "nibble_hilo": 101,
+        "146": 6,
+        "147": 5
+      },
+      {
+        "label": "browse: hf rt crossover (8)",
+        "mode": "browse",
+        "nibble_hilo": 36,
+        "146": 2,
+        "147": 4
+      },
+      {
+        "label": "edit: hf rt crossover (8)",
+        "mode": "edit",
+        "nibble_hilo": 115,
+        "146": 7,
+        "147": 3
+      },
+      {
+        "label": "browse: lf rt multiply (9)",
+        "mode": "browse",
+        "nibble_hilo": 37,
+        "146": 2,
+        "147": 5
+      },
+      {
+        "label": "edit: lf rt multiply (9)",
+        "mode": "edit",
+        "nibble_hilo": 191,
+        "146": 11,
+        "147": 15
+      },
+      {
+        "label": "browse: lf rt crossover (10)",
+        "mode": "browse",
+        "nibble_hilo": 38,
+        "146": 2,
+        "147": 6
+      },
+      {
+        "label": "edit: lf rt crossover (10)",
+        "mode": "edit",
+        "nibble_hilo": 199,
+        "146": 12,
+        "147": 7
+      },
+      {
+        "label": "browse: vlf cut (11)",
+        "mode": "browse",
+        "nibble_hilo": 39,
+        "146": 2,
+        "147": 7
+      },
+      {
+        "label": "edit: vlf cut (11)",
+        "mode": "edit",
+        "nibble_hilo": 124,
+        "146": 7,
+        "147": 12
+      },
+      {
+        "label": "browse: early to reverb mix (12)",
+        "mode": "browse",
+        "nibble_hilo": 40,
+        "146": 2,
+        "147": 8
+      },
+      {
+        "label": "edit: early to reverb mix (12)",
+        "mode": "edit",
+        "nibble_hilo": 131,
+        "146": 8,
+        "147": 3
+      },
+      {
+        "label": "browse: early rolloff (13)",
+        "mode": "browse",
+        "nibble_hilo": 41,
+        "146": 2,
+        "147": 9
+      },
+      {
+        "label": "edit: early rolloff (13)",
+        "mode": "edit",
+        "nibble_hilo": 146,
+        "146": 9,
+        "147": 2
+      },
+      {
+        "label": "browse: early select (14)",
+        "mode": "browse",
+        "nibble_hilo": 42,
+        "146": 2,
+        "147": 10
+      },
+      {
+        "label": "edit: early select (14)",
+        "mode": "edit",
+        "nibble_hilo": 156,
+        "146": 9,
+        "147": 12
+      },
+      {
+        "label": "browse: delay level (15)",
+        "mode": "browse",
+        "nibble_hilo": 43,
+        "146": 2,
+        "147": 11
+      },
+      {
+        "label": "edit: delay level (15)",
+        "mode": "edit",
+        "nibble_hilo": 165,
+        "146": 10,
+        "147": 5
+      },
+      {
+        "label": "browse: delay time (16)",
+        "mode": "browse",
+        "nibble_hilo": 44,
+        "146": 2,
+        "147": 12
+      },
+      {
+        "label": "edit: delay time (16)",
+        "mode": "edit",
+        "nibble_hilo": 176,
+        "146": 11,
+        "147": 0
+      },
+      {
+        "label": "browse: delay modulation (17)",
+        "mode": "browse",
+        "nibble_hilo": 45,
+        "146": 2,
+        "147": 13
+      },
+      {
+        "label": "edit: delay modulation (17)",
+        "mode": "edit",
+        "nibble_hilo": 187,
+        "146": 11,
+        "147": 11
+      }
+    ],
+    "witnessed_nibble_hilo": [
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      55,
+      70,
+      78,
+      101,
+      115,
+      124,
+      131,
+      146,
+      156,
+      165,
+      176,
+      187,
+      191,
+      196,
+      199,
+      210
+    ],
+    "witnessed_count": 35,
+    "unseen_nibble_hilo": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      188,
+      189,
+      190,
+      192,
+      193,
+      194,
+      195,
+      197,
+      198,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225,
+      226,
+      227,
+      228,
+      229,
+      230,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255
+    ],
+    "unseen_nibble_hilo_ranges": "0\u201327, 47\u201354, 56\u201369, 71\u201377, 79\u2013100, 102\u2013114, 116\u2013123, 125\u2013130, 132\u2013145, 147\u2013155, 157\u2013164, 166\u2013175, 177\u2013186, 188\u2013190, 192\u2013195, 197\u2013198, 200\u2013209, 211\u2013255",
+    "missing_edit_witness": [],
+    "unwitnessed_nibble_hilo_count": 221
+  }
+}

@@ -3,7 +3,7 @@
 
 # London Plate
 
-_Generated 2026-07-18. Bank: [Plates](README.md) (index **1**). Source: `sysex/prog/presets/Plates.London Plate.syx`._
+_Generated 2026-07-19. Bank: [Plates](README.md) (index **1**). Source: `sysex/prog/presets/Plates.London Plate.syx`._
 
 [All presets](../../README.md) · [Plates bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -73,4 +73,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Vocal Plate B](vocal-plate-b.md)
 - [Repro Plate](repro-plate.md)
 
-_Last exported: 2026-07-18_
+_Last exported: 2026-07-19_

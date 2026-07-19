@@ -8,7 +8,7 @@ Community reverse-engineered specification from labeled hardware captures in thi
 
 ## Overview
 
-_Snapshot from export on 2026-07-18._
+_Snapshot from export on 2026-07-19._
 
 Each `sysex/prog/parameters/<parameter>/` folder is an **independent** dump stream (only that parameter intentionally varied). Folders are never byte-compared against each other - other parameters may differ between series. Meta folder `sysex/prog/presets/` captures whole presets as `<bank>.<preset>.syx` for program-identity fields.
 
@@ -32,6 +32,8 @@ Program-dump layout is **157 bytes** (roles merged from independent per-paramete
 | Known / frame / checksum | 154 | 98% |
 | Secondary (moved within a series) | 3 | 2% |
 | Unknown | 0 | 0% |
+
+Unseen / undocumented value gaps are documented per field in an **Unseen values** section on each [bytes/](bytes/README.md) page.
 
 Identified parameter fields (each from its own folder):
 
@@ -100,8 +102,9 @@ See also [parameter-catalog.md](../../docs/parameter-catalog.md).
 6. **[ui-state.md](ui-state.md)** — full menu browse/edit byte tables.
 7. **[bytes/display.md](bytes/display.md)** — Display (`nibble_hilo` @ 146–147).
 8. **[byte-map-overview.md](byte-map-overview.md)** / **[byte-map.md](byte-map.md)** - consolidated layout, then full detail.
-9. **[m7_program_dump.ksy](m7_program_dump.ksy)** / **[m7_program_dump.spec.json](m7_program_dump.spec.json)** - Kaitai Struct layout + machine schema for codegen.
-10. **[cross.md](cross.md)** - stable bytes, conflicts, coverage gaps across series.
+9. Each **[bytes/](bytes/README.md)** page ends with an **Unseen values** section — documented/possible values not yet witnessed (encoding rows, wire nibbles, display positions).
+10. **[m7_program_dump.ksy](m7_program_dump.ksy)** / **[m7_program_dump.spec.json](m7_program_dump.spec.json)** - Kaitai Struct layout + machine schema for codegen.
+11. **[cross.md](cross.md)** - stable bytes, conflicts, coverage gaps across series.
 
 ## Frame layout
 
@@ -176,14 +179,15 @@ The analyzer scores both against filename labels.
 
 Index of documented dump fields: [bytes/README.md](bytes/README.md).
 
-_Last exported: 2026-07-18_
+_Last exported: 2026-07-19_
 ## Open questions
 
-1. **EDIT receive** path (MIDI-notes bank **118**) — hold-EDIT *sends* use bank **11** (`sysex/prog/edit/`)
-2. Semantics of PROG header bytes `70 08 01 00` and fixed field 93–94 (`00 08`)
-3. **Offset 25 coupling** — `midi bank` (primary @ 25) and display-level captures also move offset 25 (secondary)
-4. Closed-form mapping for table parameters (see medium-confidence rows in the parameter index)
-5. Optional: register/favorite-based PROG dumps; rarely used SYSTEM knobs (e.g. register lock) not yet in dedicated series
+1. **Unseen / undocumented values** — documented or otherwise possible values not yet witnessed on the wire are tracked per field in the **Unseen values** section of each [bytes/](bytes/README.md) page
+2. **EDIT receive** path (MIDI-notes bank **118**) — hold-EDIT *sends* use bank **11** (`sysex/prog/edit/`)
+3. Semantics of PROG header bytes `70 08 01 00` and fixed field 93–94 (`00 08`)
+4. **Offset 25 coupling** — `midi bank` (primary @ 25) and display-level captures also move offset 25 (secondary)
+5. Closed-form mapping for table parameters (see medium-confidence rows in the parameter index)
+6. Optional: register/favorite-based PROG dumps; rarely used SYSTEM knobs (e.g. register lock) not yet in dedicated series
 
 See [manual-notes.md](../../docs/manual-notes.md) for Bricasti manual/MIDI context (bank table, algorithms, dump types).
 

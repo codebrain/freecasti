@@ -3,7 +3,7 @@
 
 # Alpha Plate
 
-_Generated 2026-07-18. Bank: [Plates 2](README.md) (index **7**). Source: `sysex/prog/presets/Plates 2.Alpha Plate.syx`._
+_Generated 2026-07-19. Bank: [Plates 2](README.md) (index **7**). Source: `sysex/prog/presets/Plates 2.Alpha Plate.syx`._
 
 [All presets](../../README.md) · [Plates 2 bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -61,4 +61,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - **Alpha Plate** (this page)
 - [Vocal Shimmer](vocal-shimmer.md)
 
-_Last exported: 2026-07-18_
+_Last exported: 2026-07-19_

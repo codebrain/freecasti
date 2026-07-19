@@ -26,7 +26,7 @@ export function DumpByteTable({
     <div className="overflow-x-auto">
       <table className="w-full border-collapse text-left text-[0.65rem] leading-snug">
         <thead>
-          <tr className="border-b border-border/50 text-[color:var(--color-label)]">
+          <tr className="border-b border-border/50 bg-white/10 text-[color:var(--color-label)]">
             <th className="py-1 pr-2 font-normal">Off</th>
             <th className="py-1 pr-2 font-normal">Bytes</th>
             <th className="py-1 pr-2 font-normal">Field</th>
@@ -42,11 +42,12 @@ export function DumpByteTable({
               <td className="py-1 pr-2 whitespace-nowrap opacity-70">
                 {formatOffsetRange(row.start, row.end)}
               </td>
-              <td className="py-1 pr-2">
+              <td className="w-px py-1 pr-2">
                 <HighlightedHex
                   data={data}
                   offsets={row.offsets}
                   highlightOffsets={highlightOffsets}
+                  wrapEvery={8}
                 />
               </td>
               <td className="py-1 pr-2 text-[color:var(--color-label)]">

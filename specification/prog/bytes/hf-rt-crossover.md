@@ -3,7 +3,7 @@
 
 # HF RT Crossover
 
-_Generated 2026-07-18. Source folder: `sysex/prog/parameters/hf rt crossover/`._
+_Generated 2026-07-19. Source folder: `sysex/prog/parameters/hf rt crossover/`._
 
 ## SysEx summary
 
@@ -107,6 +107,15 @@ Sparse series used as anchors (plus secondary/checksum bytes that moved with thi
 - **Secondary offsets:** 146–147 (`nibble_hilo` display) (edit/UI state, not the parameter word).
 - **Checksum nibbles:** 152-155 (CRC-16/ARC over offsets 8-151, packed high-nibble-first).
 
+
+## Unseen values
+
+Documented in the spec (encoding map / manual) but not yet witnessed in a committed dump. "Possible" spans every encoded step in this field's range; missing steps are listed as ranges when there are many.
+
+- **Encoding range:** encoded 0–36 (37 steps documented).
+- **Never captured on the wire (27):** encoded 2–5, 7–11, 13–19, 21–23, 25–27, 29, 31–32, 34–35 — see the [encoding map](#encoding-map) above for each label.
+- **Documented gaps (no row at all):** none between documented min/max.
+- **Wire nibbles never observed (`0`–`F`):** offset 116 (high): `3` `4` `5` `6` `7` `8` `9` `A` `B` `C` `D` `E` `F`; offset 117 (low): none
 
 ## Other parameters
 

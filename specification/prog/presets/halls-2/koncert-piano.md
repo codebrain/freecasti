@@ -3,7 +3,7 @@
 
 # Koncert Piano
 
-_Generated 2026-07-18. Bank: [Halls 2](README.md) (index **6**). Source: `sysex/prog/presets/Halls 2.Koncert Piano.syx`._
+_Generated 2026-07-19. Bank: [Halls 2](README.md) (index **6**). Source: `sysex/prog/presets/Halls 2.Koncert Piano.syx`._
 
 [All presets](../../README.md) · [Halls 2 bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -61,4 +61,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Live Hall](live-hall.md)
 - **Koncert Piano** (this page)
 
-_Last exported: 2026-07-18_
+_Last exported: 2026-07-19_

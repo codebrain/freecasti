@@ -1,7 +1,7 @@
 import { detectDumpFamily } from "@/sysex/hydrate";
 import { NAME_LENGTH, NAME_OFFSET, SYSEX_END, SYSEX_START } from "@/sysex/frame";
 
-export type MidiLogDirection = "tx" | "rx";
+export type MidiLogDirection = "tx" | "rx" | "debug";
 
 export type MidiEchoValidation = "match" | "mismatch";
 

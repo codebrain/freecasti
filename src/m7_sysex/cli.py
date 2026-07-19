@@ -30,6 +30,7 @@ from .paths import (
     prog_byte_map_path,
     prog_cross_analysis_path,
     prog_menus_root,
+    prog_unseen_values_path,
     resolve_sysex_root,
     specification_root,
     system_byte_map_path,
@@ -462,6 +463,34 @@ def _cmd_export(args: argparse.Namespace) -> int:
             )
         except ValueError as exc:
             print(f"warning: menu analysis skipped: {exc}", file=sys.stderr)
+
+    if byte_map:
+        try:
+            from .prog.unseen_values import build_unseen_values
+
+            unseen_values = build_unseen_values(
+                results,
+                byte_map,
+                menus_analysis,
+                sysex,
+            )
+            if not args.no_write_json:
+                unseen_path = prog_unseen_values_path(sysex)
+                if unseen_path.exists():
+                    unseen_path.unlink()
+                unseen_path.write_text(
+                    json.dumps(unseen_values, indent=2) + "\n",
+                    encoding="utf-8",
+                )
+                written.append(unseen_path)
+            s = unseen_values.get("summary") or {}
+            print(
+                f"[unseen values] documented_unseen={s.get('total_documented_unseen_rows', 0)} "
+                f"encoded_gaps={s.get('total_encoded_gaps', 0)} "
+                f"offset_nibble_gaps={s.get('offsets_with_unseen_nibbles', 0)}"
+            )
+        except ValueError as exc:
+            print(f"warning: unseen values skipped: {exc}", file=sys.stderr)
 
     sheet_compare = None
     if names is not None:

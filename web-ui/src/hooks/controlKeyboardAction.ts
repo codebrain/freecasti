@@ -117,5 +117,7 @@ export function shouldClearSelectionOnPointerDown(
   ) {
     return true;
   }
-  return (target as Element).closest("[data-param-control]") === null;
+  const element = target as Element;
+  if (element.closest("[data-preserve-selection]") !== null) return false;
+  return element.closest("[data-param-control]") === null;
 }

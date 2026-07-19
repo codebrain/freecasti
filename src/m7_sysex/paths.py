@@ -59,6 +59,10 @@ def prog_cross_analysis_path(sysex_root: Path) -> Path:
     return prog_root(sysex_root) / "cross_analysis.json"
 
 
+def prog_unseen_values_path(sysex_root: Path) -> Path:
+    return prog_root(sysex_root) / "unseen_values.json"
+
+
 def system_byte_map_path(sysex_root: Path) -> Path:
     return system_root(sysex_root) / "byte_map.json"
 

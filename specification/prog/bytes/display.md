@@ -3,7 +3,7 @@
 
 # Display
 
-_Generated 2026-07-18. Source folder: `sysex/prog/menus/` (19 captures)._
+_Generated 2026-07-19. Source folder: `sysex/prog/menus/` (19 captures)._
 
 ## SysEx summary
 
@@ -70,6 +70,13 @@ Typical cursor bytes while turning a control (from parameter series dumps with `
 | 10 | lf rt crossover | `0C` | `07` | 199 |
 | 1 | size | `0D` | `02` | 210 |
 
+## Unseen values
+
+The cursor packs two nibbles, so **256** `nibble_hilo` values are possible (0–255). Only **35** are witnessed in `sysex/prog/menus/` captures; the rest are unseen and shown as ranges below. The first witnessed position is idle (28), so `0–27` are never observed before it.
+
+- **Witnessed positions:** 35 of 256
+- **Unseen positions (221):** 0–27, 47–54, 56–69, 71–77, 79–100, 102–114, 116–123, 125–130, 132–145, 147–155, 157–164, 166–175, 177–186, 188–190, 192–195, 197–198, 200–209, 211–255
+
 ## Interpretation
 
 - **Primary field:** offsets **146–147**, encoding `nibble_hilo`.
@@ -85,4 +92,4 @@ Typical cursor bytes while turning a control (from parameter series dumps with `
 - [Byte map overview](../byte-map-overview.md)
 - [Capture guide](../../../docs/capture-guide.md)
 
-_Last exported: 2026-07-18_
+_Last exported: 2026-07-19_

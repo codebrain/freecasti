@@ -3,7 +3,7 @@
 
 # Pre Delay
 
-_Generated 2026-07-18. Source folder: `sysex/prog/parameters/predelay/`._
+_Generated 2026-07-19. Source folder: `sysex/prog/parameters/predelay/`._
 
 ## SysEx summary
 
@@ -148,6 +148,15 @@ Sparse series used as anchors (plus secondary/checksum bytes that moved with thi
 - **Secondary offsets:** 147 (display low nibble) (edit/UI state, not the parameter word).
 - **Checksum nibbles:** 152-155 (CRC-16/ARC over offsets 8-151, packed high-nibble-first).
 
+
+## Unseen values
+
+Documented in the spec (encoding map / manual) but not yet witnessed in a committed dump. "Possible" spans every encoded step in this field's range; missing steps are listed as ranges when there are many.
+
+- **Encoding range:** encoded 0–85 (86 steps documented).
+- **Never captured on the wire (80):** encoded 3–34, 36–47, 49–84 — see the [encoding map](#encoding-map) above for each label.
+- **Documented gaps (no row at all):** none between documented min/max.
+- **Wire nibbles never observed (`0`–`F`):** offset 104 (high): `4` `6` `7` `8` `9` `A` `B` `C` `D` `E` `F`; offset 105 (low): `7` `8` `B`
 
 ## Other parameters
 

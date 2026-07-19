@@ -33,6 +33,8 @@ interface WebMidiState {
   lastSendAt: number | null;
   lastError: string | null;
   sendBytes: (bytes: Uint8Array) => void;
+  /** Log what would be sent without transmitting (MIDI off / send-on-change off). */
+  logDebugBytes: (bytes: Uint8Array) => void;
   midiLog: readonly MidiLogEntry[];
 }
 
@@ -92,7 +94,7 @@ export function useWebMidi(
 
   const pushMidiLog = useCallback(
     (
-      direction: "tx" | "rx",
+      direction: "tx" | "rx" | "debug",
       bytes: Uint8Array,
       options: {
         echoValidation?: "match" | "mismatch";
@@ -110,14 +112,24 @@ export function useWebMidi(
     [],
   );
 
+  /** Latest enqueue intent; throttle coalesces to one pending payload. */
+  const deliverModeRef = useRef<"tx" | "debug">("tx");
+
   const sendImmediate = useCallback(
     (bytes: Uint8Array) => {
+      const mode = deliverModeRef.current;
+      if (mode === "debug") {
+        pushMidiLog("debug", bytes);
+        return;
+      }
       if (!access) {
+        pushMidiLog("debug", bytes);
         setLastError("MIDI not connected");
         return;
       }
       const output = access.outputs.get(selectedOutputId);
       if (!output) {
+        pushMidiLog("debug", bytes);
         setLastError("No MIDI output selected");
         return;
       }
@@ -128,6 +140,7 @@ export function useWebMidi(
         setLastSendAt(Date.now());
         setLastError(null);
       } catch (err) {
+        pushMidiLog("debug", bytes);
         setLastError(err instanceof Error ? err.message : String(err));
       }
     },
@@ -156,10 +169,7 @@ export function useWebMidi(
       /* ignore */
     }
     if (!on) {
-      throttleRef.current?.dispose();
-      throttleRef.current = null;
       pendingTxEchoRef.current = null;
-      setMidiLog([]);
       setAccess(null);
       setOutputs([]);
       setInputs([]);
@@ -257,9 +267,31 @@ export function useWebMidi(
     }
   }, []);
 
-  const sendBytes = useCallback((bytes: Uint8Array) => {
-    throttleRef.current?.enqueue(bytes);
-  }, []);
+  const enqueueDeliver = useCallback(
+    (bytes: Uint8Array, mode: "tx" | "debug") => {
+      deliverModeRef.current = mode;
+      if (throttleRef.current) {
+        throttleRef.current.enqueue(bytes);
+        return;
+      }
+      sendImmediate(bytes);
+    },
+    [sendImmediate],
+  );
+
+  const sendBytes = useCallback(
+    (bytes: Uint8Array) => {
+      enqueueDeliver(bytes, "tx");
+    },
+    [enqueueDeliver],
+  );
+
+  const logDebugBytes = useCallback(
+    (bytes: Uint8Array) => {
+      enqueueDeliver(bytes, "debug");
+    },
+    [enqueueDeliver],
+  );
 
   return {
     supported,
@@ -279,6 +311,7 @@ export function useWebMidi(
     lastSendAt,
     lastError,
     sendBytes,
+    logDebugBytes,
     midiLog,
   };
 }

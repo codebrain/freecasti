@@ -3,7 +3,7 @@
 
 # Presets
 
-_Generated 2026-07-18. **222** presets from `sysex/prog/presets/`._
+_Generated 2026-07-19. **222** presets from `sysex/prog/presets/`._
 
 See also [program identity](../program-identity.md) for bank/slot fields and the cross-preset summary matrix. Machine-readable data: [presets.json](presets.json).
 
@@ -251,4 +251,4 @@ See also [program identity](../program-identity.md) for bank/slot fields and the
 | [NonLin](nonlin/) | [NonLin C](nonlin/nonlin-c.md) | 2 | ok | [nonlin-c](nonlin/nonlin-c.md) |
 | [NonLin](nonlin/) | [NonLin D](nonlin/nonlin-d.md) | 3 | ok | [nonlin-d](nonlin/nonlin-d.md) |
 
-_Last exported: 2026-07-18_
+_Last exported: 2026-07-19_

@@ -2,7 +2,20 @@
 
 from __future__ import annotations
 
-PROG_OPEN_ITEMS: list[str] = [
+
+def _unseen_values_open_item(*, bytes_link: str) -> str:
+    return (
+        "**Unseen / undocumented values** — documented or otherwise possible "
+        "values not yet witnessed on the wire are tracked per field in the "
+        f"**Unseen values** section of each [bytes/]({bytes_link}) page"
+    )
+
+
+def _prog_open_items_with_unseen_link(bytes_link: str) -> list[str]:
+    return [_unseen_values_open_item(bytes_link=bytes_link), *PROG_OPEN_ITEMS_CORE]
+
+
+PROG_OPEN_ITEMS_CORE: list[str] = [
     (
         "**EDIT receive** path (MIDI-notes bank **118**) — hold-EDIT *sends* use "
         "bank **11** (`sysex/prog/edit/`)"
@@ -22,6 +35,9 @@ PROG_OPEN_ITEMS: list[str] = [
     ),
 ]
 
+# prog/README.md overview links relative to prog/ (``bytes/README.md``).
+PROG_OPEN_ITEMS: list[str] = _prog_open_items_with_unseen_link("bytes/README.md")
+
 SYSTEM_OPEN_ITEMS: list[str] = [
     (
         "**Offset 25 coupling** — `midi bank` primary @ 25; display-level series "
@@ -36,6 +52,7 @@ def render_open_items_markdown(
     title: str = "Open questions",
 ) -> str:
     """Standalone open-questions page covering PROG and SYSTEM items."""
+    prog_items = _prog_open_items_with_unseen_link("prog/bytes/README.md")
     lines = [
         f"# {title}",
         "",
@@ -44,7 +61,7 @@ def render_open_items_markdown(
         "## Program dumps",
         "",
     ]
-    for i, item in enumerate(PROG_OPEN_ITEMS, start=1):
+    for i, item in enumerate(prog_items, start=1):
         lines.append(f"{i}. {item}")
     lines.extend(["", "## System dumps", ""])
     for i, item in enumerate(SYSTEM_OPEN_ITEMS, start=1):

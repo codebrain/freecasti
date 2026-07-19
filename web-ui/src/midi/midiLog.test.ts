@@ -55,4 +55,16 @@ describe("midiLog", () => {
     expect(log[0].bytes[1]).toBe(3);
     expect(log[1].bytes[1]).toBe(2);
   });
+
+  it("defaults to a 10-message history", () => {
+    const mk = (n: number) =>
+      createMidiLogEntry("tx", new Uint8Array([SYSEX_START, n, SYSEX_END]));
+    let log: ReturnType<typeof createMidiLogEntry>[] = [];
+    for (let n = 0; n < 15; n++) {
+      log = prependMidiLog(log, mk(n));
+    }
+    expect(log).toHaveLength(10);
+    expect(log[0].bytes[1]).toBe(14);
+    expect(log[9].bytes[1]).toBe(5);
+  });
 });

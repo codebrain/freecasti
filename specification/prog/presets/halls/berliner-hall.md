@@ -3,7 +3,7 @@
 
 # Berliner Hall
 
-_Generated 2026-07-18. Bank: [Halls](README.md) (index **0**). Source: `sysex/prog/presets/Halls.Berliner Hall.syx`._
+_Generated 2026-07-19. Bank: [Halls](README.md) (index **0**). Source: `sysex/prog/presets/Halls.Berliner Hall.syx`._
 
 [All presets](../../README.md) · [Halls bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -79,4 +79,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Reflect Hall B](reflect-hall-b.md)
 - [Piano Hall](piano-hall.md)
 
-_Last exported: 2026-07-18_
+_Last exported: 2026-07-19_

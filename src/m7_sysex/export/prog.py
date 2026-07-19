@@ -179,12 +179,16 @@ def export_sysex_format(
     folder = Path(results[0]["folder"])
     # ``folder`` is ``sysex/prog/parameters/<name>/`` in the type-first layout.
     sysex_root = folder.parent.parent.parent
+    from ..prog.unseen_values import observed_values_by_offset
+
+    observed = observed_values_by_offset(sysex_root)
     for result in sorted_results:
         page = _render_parameter_page(
             result,
             all_results=sorted_results,
             today=today,
             sysex_root=sysex_root,
+            observed=observed,
         )
         parameter_page_path(output_dir, result["parameter"]).write_text(
             page, encoding="utf-8"
@@ -429,6 +433,10 @@ def _render_overview(
                 f"| Secondary (moved within a series) | {counts['secondary']} | {secondary_pct:.0f}% |",
                 f"| Unknown | {counts['unknown']} | {unknown_pct:.0f}% |",
                 "",
+                "Unseen / undocumented value gaps are documented per field in "
+                "an **Unseen values** section on each [bytes/](bytes/README.md) "
+                "page.",
+                "",
             ]
         )
 
@@ -575,10 +583,13 @@ def _render_overview(
             "Display (`nibble_hilo` @ 146–147).",
             "8. **[byte-map-overview.md](byte-map-overview.md)** / "
             "**[byte-map.md](byte-map.md)** - consolidated layout, then full detail.",
-            "9. **[m7_program_dump.ksy](m7_program_dump.ksy)** / "
+            "9. Each **[bytes/](bytes/README.md)** page ends with an "
+            "**Unseen values** section — documented/possible values not yet "
+            "witnessed (encoding rows, wire nibbles, display positions).",
+            "10. **[m7_program_dump.ksy](m7_program_dump.ksy)** / "
             "**[m7_program_dump.spec.json](m7_program_dump.spec.json)** - "
             "Kaitai Struct layout + machine schema for codegen.",
-            "10. **[cross.md](cross.md)** - stable bytes, conflicts, coverage "
+            "11. **[cross.md](cross.md)** - stable bytes, conflicts, coverage "
             "gaps across series.",
             "",
         ]
@@ -1525,6 +1536,7 @@ def _render_parameter_page(
     all_results: list[dict[str, Any]],
     today: str,
     sysex_root: Path | None = None,
+    observed: dict[int, list[int]] | None = None,
 ) -> str:
     name = result["parameter"]
     display = _parameter_display_name(name, kind="prog")
@@ -1544,10 +1556,11 @@ def _render_parameter_page(
             result.get("official"), parameter=name
         )
     )
+    lines.append(_parameter_body(result, sysex_root=sysex_root))
+    lines.append("")
+    lines.extend(_parameter_unseen_lines(result, sysex_root=sysex_root, observed=observed))
     lines.extend(
         [
-            _parameter_body(result, sysex_root=sysex_root),
-            "",
             "## Other parameters",
             "",
         ]
@@ -1562,6 +1575,24 @@ def _render_parameter_page(
             lines.append(f"- [{other_display}]({slug}.md)")
     lines.append("")
     return "\n".join(lines)
+
+
+def _parameter_unseen_lines(
+    result: dict[str, Any],
+    *,
+    sysex_root: Path | None,
+    observed: dict[int, list[int]] | None,
+) -> list[str]:
+    """`## Unseen values` block for a sound-parameter page (may be empty)."""
+    if sysex_root is None:
+        return []
+    from ..prog.unseen_values import parameter_unseen_gaps
+    from .unseen_values import render_parameter_unseen_section
+
+    gaps = parameter_unseen_gaps(result, sysex_root=sysex_root)
+    if not gaps:
+        return []
+    return render_parameter_unseen_section(gaps, observed=observed)
 
 
 def _parameter_body(

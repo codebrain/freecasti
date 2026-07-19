@@ -225,4 +225,4 @@ Example hex for a known parameter comes only from that parameter’s own folder.
 | 156 | `F7` | frame constant | frame | SysEx end (F7) |
 
 
-_Last exported: 2026-07-18_
+_Last exported: 2026-07-19_

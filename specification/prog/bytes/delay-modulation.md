@@ -3,7 +3,7 @@
 
 # Delay Modulation
 
-_Generated 2026-07-18. Source folder: `sysex/prog/parameters/delay modulation/`._
+_Generated 2026-07-19. Source folder: `sysex/prog/parameters/delay modulation/`._
 
 ## SysEx summary
 
@@ -74,6 +74,20 @@ Sparse series used as anchors (plus secondary/checksum bytes that moved with thi
 - **Secondary offsets:** 146–147 (`nibble_hilo` display) (edit/UI state, not the parameter word).
 - **Checksum nibbles:** 152-155 (CRC-16/ARC over offsets 8-151, packed high-nibble-first).
 
+
+## Unseen values
+
+Documented in the spec (encoding map / manual) but not yet witnessed in a committed dump. "Possible" spans every encoded step in this field's range; missing steps are listed as ranges when there are many.
+
+- **Encoding range:** encoded 0–11 (12 steps documented).
+- **Never captured on the wire (5):**
+  - encoded **4** → 3 (preset)
+  - encoded **5** → 4 (preset)
+  - encoded **6** → 5 (preset)
+  - encoded **7** → 6 (preset)
+  - encoded **9** → 8 (preset)
+- **Documented gaps (no row at all):** none between documented min/max.
+- **Wire nibbles never observed (`0`–`F`):** offset 139: `C` `D` `E` `F`
 
 ## Other parameters
 

@@ -204,4 +204,11 @@ describe("shouldClearSelectionOnPointerDown", () => {
     const inside = { closest: (sel: string) => (sel === "[data-param-control]" ? {} : null) };
     expect(shouldClearSelectionOnPointerDown(inside, true)).toBe(false);
   });
+
+  it("keeps selection when clicking a preserve-selection element", () => {
+    const preserve = {
+      closest: (sel: string) => (sel === "[data-preserve-selection]" ? {} : null),
+    };
+    expect(shouldClearSelectionOnPointerDown(preserve, true)).toBe(false);
+  });
 });

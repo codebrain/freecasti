@@ -3,7 +3,7 @@
 
 # Medium & Dark
 
-_Generated 2026-07-18. Bank: [Ambience](README.md) (index **4**). Source: `sysex/prog/presets/Ambience.Medium & Dark.syx`._
+_Generated 2026-07-19. Bank: [Ambience](README.md) (index **4**). Source: `sysex/prog/presets/Ambience.Medium & Dark.syx`._
 
 [All presets](../../README.md) · [Ambience bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -62,4 +62,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Bass  XXL](bass-xxl.md)
 - [Percussion Air](percussion-air.md)
 
-_Last exported: 2026-07-18_
+_Last exported: 2026-07-19_

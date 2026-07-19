@@ -90,4 +90,31 @@ describe("useWebMidi lastError", () => {
 
     expect(probe.current.lastError).toBeNull();
   });
+
+  it("logs DEBUG when a send cannot reach MIDI", () => {
+    act(() => {
+      probe.current.setEnabled(true);
+      probe.current.sendBytes(new Uint8Array([0xf0, 0xf7]));
+    });
+
+    act(() => {
+      vi.advanceTimersByTime(500);
+    });
+
+    expect(probe.current.midiLog).toHaveLength(1);
+    expect(probe.current.midiLog[0]?.direction).toBe("debug");
+  });
+
+  it("logDebugBytes records DEBUG without an error", () => {
+    act(() => {
+      probe.current.logDebugBytes(new Uint8Array([0xf0, 0xf7]));
+    });
+
+    act(() => {
+      vi.advanceTimersByTime(500);
+    });
+
+    expect(probe.current.lastError).toBeNull();
+    expect(probe.current.midiLog[0]?.direction).toBe("debug");
+  });
 });

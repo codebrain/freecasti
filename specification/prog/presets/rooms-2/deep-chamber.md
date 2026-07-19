@@ -3,7 +3,7 @@
 
 # Deep Chamber
 
-_Generated 2026-07-18. Bank: [Rooms 2](README.md) (index **8**). Source: `sysex/prog/presets/Rooms 2.Deep Chamber.syx`._
+_Generated 2026-07-19. Bank: [Rooms 2](README.md) (index **8**). Source: `sysex/prog/presets/Rooms 2.Deep Chamber.syx`._
 
 [All presets](../../README.md) · [Rooms 2 bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -69,4 +69,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Wide Room](wide-room.md)
 - [Lush Room](lush-room.md)
 
-_Last exported: 2026-07-18_
+_Last exported: 2026-07-19_

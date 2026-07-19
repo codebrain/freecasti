@@ -3,7 +3,7 @@
 
 # Stone Quarry
 
-_Generated 2026-07-18. Bank: [Spaces](README.md) (index **5**). Source: `sysex/prog/presets/Spaces.Stone Quarry.syx`._
+_Generated 2026-07-19. Bank: [Spaces](README.md) (index **5**). Source: `sysex/prog/presets/Spaces.Stone Quarry.syx`._
 
 [All presets](../../README.md) · [Spaces bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -68,4 +68,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Reflect Chapel](reflect-chapel.md)
 - [Reflect Church](reflect-church.md)
 
-_Last exported: 2026-07-18_
+_Last exported: 2026-07-19_

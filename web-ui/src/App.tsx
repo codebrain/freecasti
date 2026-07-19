@@ -56,8 +56,7 @@ import { useWebMidi } from "@/hooks/useWebMidi";
 import {
   loadRuntime,
 } from "@/loadAssets";
-import type { ByteHighlight, ChangeRecord, ParamChange } from "@/debug/change";
-import { diffByteOffsets } from "@/debug/change";
+import type { ChangeRecord, ParamChange } from "@/debug/change";
 import { useControlKeyboard } from "@/hooks/useControlKeyboard";
 import { LEGAL_DISCLAIMER } from "@/content/legalDisclaimer";
 import { MidiErrorToast } from "@/components/MidiErrorToast";
@@ -114,7 +113,6 @@ export function App() {
   const [abStore, setAbStore] = useState<ProgAbStore | null>(null);
   const [sysState, setSysState] = useState<Record<string, number> | null>(null);
   const [lastChange, setLastChange] = useState<ChangeRecord | null>(null);
-  const [byteHighlight, setByteHighlight] = useState<ByteHighlight | null>(null);
   const [selectedFieldId, setSelectedFieldId] = useState<string | null>(null);
   const [lockedFieldIds, setLockedFieldIds] = useState<Set<string>>(loadLockedFields);
   const [tempoBpm, setTempoBpm] = useState(() => {
@@ -128,9 +126,6 @@ export function App() {
   });
   const [tempoModeFields, setTempoModeFields] = useState<Set<string>>(loadTempoModeFields);
   const importRef = useRef<HTMLInputElement>(null);
-  const pendingDiffRef = useRef<{ family: ActiveTab; prev: Uint8Array } | null>(
-    null,
-  );
   const suppressSendOnChangeRef = useRef(false);
   const prevProgStateForSendRef = useRef<ProgSerializeState | null>(null);
   const prevSysStateForSendRef = useRef<Record<string, number> | null>(null);
@@ -142,6 +137,10 @@ export function App() {
   const sysControls = useMemo(
     () => (sysSpec ? buildSystemControls(sysSpec) : []),
     [sysSpec],
+  );
+  const progControls = useMemo(
+    () => (progSpec ? allProgControls(progSpec) : []),
+    [progSpec],
   );
   const paramToField = useMemo(
     () => (progSpec ? buildParameterToFieldId(progSpec) : new Map()),
@@ -245,31 +244,19 @@ export function App() {
     sysTemplate,
     progUi,
   );
-  const sysexRef = useRef(sysex);
-  sysexRef.current = sysex;
-
-  const queueByteDiff = useCallback((family: ActiveTab) => {
-    const prev =
-      family === "prog" ? sysexRef.current.progBytes : sysexRef.current.sysBytes;
-    if (prev) {
-      pendingDiffRef.current = { family, prev: new Uint8Array(prev) };
-    }
-  }, []);
 
   const recordAction = useCallback(
     (family: ActiveTab, message: string) => {
-      queueByteDiff(family);
       setLastChange({ kind: "action", family, message });
     },
-    [queueByteDiff],
+    [],
   );
 
   const recordParamChange = useCallback(
     (family: ActiveTab, change: ParamChange) => {
-      queueByteDiff(family);
       setLastChange({ kind: "param", family, ...change });
     },
-    [queueByteDiff],
+    [],
   );
 
   const onSelectAb = useCallback(
@@ -293,11 +280,10 @@ export function App() {
     setSelectedFieldId(null);
     setActiveProgState((prev) => {
       if (prev.ui?.mode !== "browse") return prev;
-      queueByteDiff("prog");
       setLastChange({ kind: "action", family: "prog", message: "deselect" });
       return { ...prev, ui: { mode: "idle" } };
     });
-  }, [queueByteDiff, setActiveProgState]);
+  }, [setActiveProgState]);
 
   const onSelectProgField = useCallback(
     (fieldId: string) => {
@@ -454,11 +440,10 @@ export function App() {
     setSelectedFieldId(null);
     setActiveProgState((prev) => {
       if (prev.ui?.mode !== "browse") return prev;
-      queueByteDiff("prog");
       setLastChange({ kind: "action", family: "prog", message: "deselect" });
       return { ...prev, ui: { mode: "idle" } };
     });
-  }, [activeTab, queueByteDiff, setActiveProgState]);
+  }, [activeTab, setActiveProgState]);
 
   useEffect(() => {
     if (!selectedFieldId || activeTab !== "prog") return;
@@ -467,7 +452,6 @@ export function App() {
       setSelectedFieldId(null);
       setActiveProgState((prev) => {
         if (prev.ui?.mode !== "browse") return prev;
-        queueByteDiff("prog");
         setLastChange({ kind: "action", family: "prog", message: "deselect" });
         return { ...prev, ui: { mode: "idle" } };
       });
@@ -477,22 +461,8 @@ export function App() {
     activeTab,
     isProgParamActive,
     progControlByField,
-    queueByteDiff,
     setActiveProgState,
   ]);
-
-  useEffect(() => {
-    const pending = pendingDiffRef.current;
-    if (!pending) return;
-    const next =
-      pending.family === "prog" ? sysex.progBytes : sysex.sysBytes;
-    if (!next) return;
-    setByteHighlight({
-      family: pending.family,
-      offsets: diffByteOffsets(pending.prev, next),
-    });
-    pendingDiffRef.current = null;
-  }, [sysex.progBytes, sysex.sysBytes]);
 
   const handleMidiReceive = useCallback(
     (data: Uint8Array) => {
@@ -610,7 +580,6 @@ export function App() {
   }, [debugOpen]);
 
   useEffect(() => {
-    if (!midi.enabled || !midi.sendOnChange) return;
     if (suppressSendOnChangeRef.current) return;
     if (!progState || !sysState) return;
 
@@ -624,16 +593,20 @@ export function App() {
     prevProgStateForSendRef.current = progState;
     prevSysStateForSendRef.current = sysState;
 
+    const transmit = midi.enabled && midi.sendOnChange;
     if (progChanged && sysex.progBytes) {
-      midi.sendBytes(sysex.progBytes);
+      if (transmit) midi.sendBytes(sysex.progBytes);
+      else midi.logDebugBytes(sysex.progBytes);
     }
     if (sysChanged && sysex.sysBytes) {
-      midi.sendBytes(sysex.sysBytes);
+      if (transmit) midi.sendBytes(sysex.sysBytes);
+      else midi.logDebugBytes(sysex.sysBytes);
     }
   }, [
     midi.enabled,
     midi.sendOnChange,
     midi.sendBytes,
+    midi.logDebugBytes,
     progState,
     sysState,
     sysex.progBytes,
@@ -1000,23 +973,14 @@ export function App() {
         onToggle={() => setDebugOpen((o) => !o)}
         width={debugPanelWidth}
         onResizePointerDown={onDebugPanelResizePointerDown}
-        activeTab={activeTab}
-        progBytes={sysex.progBytes}
-        sysBytes={sysex.sysBytes}
-        progChecksumOk={sysex.progChecksumOk}
-        sysChecksumOk={sysex.sysChecksumOk}
         lastChange={lastChange}
-        byteHighlight={byteHighlight}
-        programName={progState.programName}
         timingDiscrepancies={timingDiscrepancies}
         tempoBpm={tempoBpm}
         midiLog={midi.midiLog}
-        dumpSpec={activeTab === "prog" ? progSpec : sysSpec}
-        dumpControls={
-          activeTab === "prog"
-            ? allProgControls(progSpec)
-            : sysControls
-        }
+        progSpec={progSpec}
+        sysSpec={sysSpec}
+        progControls={progControls}
+        sysControls={sysControls}
         progUi={progUi}
       />
     </div>

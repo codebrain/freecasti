@@ -3,7 +3,7 @@
 
 # HF RT Multiply
 
-_Generated 2026-07-18. Source folder: `sysex/prog/parameters/hf rt multiply/`._
+_Generated 2026-07-19. Source folder: `sysex/prog/parameters/hf rt multiply/`._
 
 ## SysEx summary
 
@@ -92,6 +92,22 @@ Sparse series used as anchors (plus secondary/checksum bytes that moved with thi
 - **Secondary offsets:** 146–147 (`nibble_hilo` display) (edit/UI state, not the parameter word).
 - **Checksum nibbles:** 152-155 (CRC-16/ARC over offsets 8-151, packed high-nibble-first).
 
+
+## Unseen values
+
+Documented in the spec (encoding map / manual) but not yet witnessed in a committed dump. "Possible" spans every encoded step in this field's range; missing steps are listed as ranges when there are many.
+
+- **Encoding range:** encoded 0–16 (17 steps documented).
+- **Never captured on the wire (7):**
+  - encoded **8** → 0.6 (preset)
+  - encoded **9** → 0.65 (preset)
+  - encoded **10** → 0.7 (preset)
+  - encoded **11** → 0.75 (preset)
+  - encoded **12** → 0.8 (preset)
+  - encoded **13** → 0.85 (preset)
+  - encoded **14** → 0.9 (preset)
+- **Documented gaps (no row at all):** none between documented min/max.
+- **Wire nibbles never observed (`0`–`F`):** offset 114 (high): `2` `3` `4` `5` `6` `7` `8` `9` `A` `B` `C` `D` `E` `F`; offset 115 (low): none
 
 ## Other parameters
 

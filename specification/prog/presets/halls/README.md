@@ -3,7 +3,7 @@
 
 # Halls
 
-_Generated 2026-07-18. Bank index **0** (32 captured presets)._
+_Generated 2026-07-19. Bank index **0** (32 captured presets)._
 
 Machine-readable dump list: [presets.json](../presets.json).
 
@@ -69,4 +69,4 @@ Machine-readable dump list: [presets.json](../presets.json).
 
 [All presets](../) · [Program identity](../../program-identity.md)
 
-_Last exported: 2026-07-18_
+_Last exported: 2026-07-19_

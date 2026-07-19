@@ -261,9 +261,14 @@ def render_display_parameter_page(
             f"{int(row['cursor'])} |"
         )
 
+    from ..prog.unseen_values import display_unseen
+    from .unseen_values import render_display_unseen_section
+
+    lines.append("")
+    lines.extend(render_display_unseen_section(display_unseen(menus_analysis)))
+
     lines.extend(
         [
-            "",
             "## Interpretation",
             "",
             "- **Primary field:** offsets **146–147**, encoding `nibble_hilo`.",

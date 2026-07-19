@@ -3,7 +3,7 @@
 
 # VLF Cut
 
-_Generated 2026-07-18. Source folder: `sysex/prog/parameters/vlf cut/`._
+_Generated 2026-07-19. Source folder: `sysex/prog/parameters/vlf cut/`._
 
 ## SysEx summary
 
@@ -96,6 +96,27 @@ Sparse series used as anchors (plus secondary/checksum bytes that moved with thi
 - **Secondary offsets:** 146–147 (`nibble_hilo` display) (edit/UI state, not the parameter word).
 - **Checksum nibbles:** 152-155 (CRC-16/ARC over offsets 8-151, packed high-nibble-first).
 
+
+## Unseen values
+
+Documented in the spec (encoding map / manual) but not yet witnessed in a committed dump. "Possible" spans every encoded step in this field's range; missing steps are listed as ranges when there are many.
+
+- **Encoding range:** encoded 0–20 (21 steps documented).
+- **Never captured on the wire (12):**
+  - encoded **4** → -16 dB (preset)
+  - encoded **5** → -15 dB (preset)
+  - encoded **6** → -14 dB (preset)
+  - encoded **7** → -13 dB (preset)
+  - encoded **8** → -12 dB (preset)
+  - encoded **9** → -11 dB (preset)
+  - encoded **11** → -9 dB (preset)
+  - encoded **13** → -7 dB (preset)
+  - encoded **14** → -6 dB (preset)
+  - encoded **15** → -5 dB (preset)
+  - encoded **17** → -3 dB (preset)
+  - encoded **18** → -2 dB (preset)
+- **Documented gaps (no row at all):** none between documented min/max.
+- **Wire nibbles never observed (`0`–`F`):** offset 122 (high): `2` `3` `4` `5` `6` `7` `8` `9` `A` `B` `C` `D` `E` `F`; offset 123 (low): none
 
 ## Other parameters
 
