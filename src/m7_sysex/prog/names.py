@@ -15,6 +15,7 @@ from ..frame import (
     CHECKSUM_NIBBLE_COUNT,
     NAME_LENGTH,
     NAME_OFFSET,
+    PROGRAM_NAME_LENGTH,
     parse_sysex,
 )
 
@@ -65,6 +66,9 @@ NAME_FIELD_ALIASES: dict[str, str] = {
 BANK_WORD_OFFSETS = (88, 89)
 PROGRAM_WORD_OFFSETS = (90, 91)
 BANK_MIRROR_OFFSET = 137
+REGISTER_PAGE_OFFSET = 93
+REGISTER_SLOT_OFFSET = 95
+STRUCTURE_VERSION_OFFSET = 94
 
 
 def bank_map_sorted_by_index(
@@ -95,6 +99,23 @@ def program_slot_from_raw(raw: bytes) -> int:
     from ..encodings import nibble_hilo
 
     return nibble_hilo(raw[PROGRAM_WORD_OFFSETS[0]], raw[PROGRAM_WORD_OFFSETS[1]])
+
+
+def register_page_from_raw(raw: bytes) -> int:
+    """Decode register bank page from offset 93 (`raw_u8`; B0=0 …).
+
+    Factory/parameter-series dumps keep this at 0. Reg-backed hold-EDIT dumps
+    store the user-register page here (see ``sysex/prog/edit/registers/``).
+    """
+    return raw[REGISTER_PAGE_OFFSET]
+
+
+def register_slot_from_raw(raw: bytes) -> int:
+    """Decode register slot within page from offset 95 (`raw_u8`; 0–9).
+
+    Factory dumps keep this at 0. Source factory program slot remains at 90–91.
+    """
+    return raw[REGISTER_SLOT_OFFSET]
 
 
 def expected_bank_index(bank: str) -> int:
@@ -143,7 +164,7 @@ def validate_preset_dump(
     """Validate ``<bank>.<preset>.syx`` against name and bank identity bytes.
 
     Raises ``PresetDumpError`` when the filename stem disagrees with offsets
-    8-87 (program name), 88-89 (bank index), or 137 (bank mirror). Returns an
+    8-87 (factory name region), 88-89 (bank index), or 137 (bank mirror). Returns an
     identity dict on success (same fields used in ``analyze_names_folder``).
     """
     path = Path(path)
@@ -231,11 +252,16 @@ def parse_preset_stem(stem: str) -> tuple[str, str]:
 
 
 def expected_name_bytes(preset: str) -> bytes:
-    """ASCII program-name field for a preset: space-padded to NAME_LENGTH."""
+    """Factory program-name region: ASCII name space-padded to NAME_LENGTH (80).
+
+    Factory/preset dumps fill offsets 8–87 with the name plus trailing spaces.
+    ``check_name_bytes`` is factory-preset only — Reg EDIT dumps put a
+    nibble-packed basis blob at 24–87 and must not be validated this way.
+    """
     encoded = preset.encode("ascii")
-    if len(encoded) > NAME_LENGTH:
+    if len(encoded) > PROGRAM_NAME_LENGTH:
         raise ValueError(
-            f"preset name longer than {NAME_LENGTH} bytes: {preset!r}"
+            f"preset name longer than {PROGRAM_NAME_LENGTH} bytes: {preset!r}"
         )
     return encoded.ljust(NAME_LENGTH, b" ")
 
@@ -243,7 +269,9 @@ def expected_name_bytes(preset: str) -> bytes:
 def check_name_bytes(raw: bytes, preset: str) -> dict[str, Any]:
     """Compare SysEx offsets 8-87 to the space-padded filename preset.
 
-    Returns a dict with match flags and, on failure, the first differing offset.
+    Factory-preset validation only: expects the full 80-byte window
+    (16-char name + space-padded remainder through 87). Reg-backed EDIT dumps
+    reuse 24–87 for a register basis blob and will fail this check by design.
     """
     if len(raw) < NAME_OFFSET + NAME_LENGTH:
         return {
@@ -256,7 +284,11 @@ def check_name_bytes(raw: bytes, preset: str) -> dict[str, Any]:
     alias = NAME_FIELD_ALIASES.get(preset)
     if alias:
         expected_candidates.append(expected_name_bytes(alias))
-    name_field = actual.decode("ascii", errors="replace").rstrip(" ")
+    name_field = (
+        raw[NAME_OFFSET : NAME_OFFSET + PROGRAM_NAME_LENGTH]
+        .decode("ascii", errors="replace")
+        .rstrip(" ")
+    )
     if any(actual == exp for exp in expected_candidates):
         return {
             "name_bytes_match": True,
@@ -334,7 +366,9 @@ def analyze_names_folder(folder: Path) -> dict[str, Any]:
 
     checksum_start = length - 1 - CHECKSUM_NIBBLE_COUNT
     checksum_offsets = list(range(checksum_start, length - 1))
-    name_offsets = list(range(NAME_OFFSET, NAME_OFFSET + NAME_LENGTH))
+    name_offsets = list(range(NAME_OFFSET, NAME_OFFSET + PROGRAM_NAME_LENGTH))
+    # Factory dumps also space-pad 24–87; treat that region as non-sound here.
+    name_region_offsets = list(range(NAME_OFFSET, NAME_OFFSET + NAME_LENGTH))
 
     name_ok = all(d.get("name_bytes_match") for d in dumps)
     name_mismatches = [d for d in dumps if not d.get("name_bytes_match")]
@@ -354,7 +388,7 @@ def analyze_names_folder(folder: Path) -> dict[str, Any]:
         for off in changing
         if off not in identity_offsets
         and off not in checksum_offsets
-        and off not in name_offsets
+        and off not in name_region_offsets
         and off not in (146, 147)
     ]
 
@@ -367,8 +401,9 @@ def analyze_names_folder(folder: Path) -> dict[str, Any]:
 
     matched = sum(1 for d in dumps if d.get("name_bytes_match"))
     summary_parts = [
-        f"Program name bytes at offsets {NAME_OFFSET}-{NAME_OFFSET + NAME_LENGTH - 1} "
-        f"match filename preset (ASCII space-padded) in {matched}/{len(dumps)} dumps.",
+        f"Program name bytes at offsets {NAME_OFFSET}-{NAME_OFFSET + PROGRAM_NAME_LENGTH - 1} "
+        f"(factory dumps also space-pad through {NAME_OFFSET + NAME_LENGTH - 1}) "
+        f"match filename preset in {matched}/{len(dumps)} dumps.",
         f"Bank index at {BANK_WORD_OFFSETS[0]}-{BANK_WORD_OFFSETS[1]} "
         f"(nibble_hilo); mirrored at {BANK_MIRROR_OFFSET}.",
         f"Program slot within bank at {PROGRAM_WORD_OFFSETS[0]}-{PROGRAM_WORD_OFFSETS[1]} "
@@ -393,16 +428,19 @@ def analyze_names_folder(folder: Path) -> dict[str, Any]:
         "fields": {
             "program_name": {
                 "offsets": name_offsets[:1] + [name_offsets[-1]],
-                "offset_range": f"{NAME_OFFSET}-{NAME_OFFSET + NAME_LENGTH - 1}",
+                "offset_range": f"{NAME_OFFSET}-{NAME_OFFSET + PROGRAM_NAME_LENGTH - 1}",
                 "encoding": "ascii_space_padded",
-                "length": NAME_LENGTH,
+                "length": PROGRAM_NAME_LENGTH,
                 "matches_filename_preset": name_ok,
                 "bytes_match_count": matched,
                 "bytes_mismatch_count": len(name_mismatches),
                 "notes": (
-                    "ASCII program name only - bank name is not stored in this field. "
-                    "Each dump's bytes[8:88] are checked against the filename preset "
-                    "half, encoded as ASCII and space-padded to 80 bytes."
+                    "ASCII program name (16-byte window). Bank name is not stored "
+                    "here. Factory preset dumps space-pad the remainder through "
+                    "offset 87; Reg-backed hold-EDIT dumps put a register basis "
+                    "blob at 24–87 instead. Factory validation still checks "
+                    "bytes[8:88] against the filename preset half, space-padded "
+                    "to 80 bytes."
                 ),
             },
             "bank_index": {

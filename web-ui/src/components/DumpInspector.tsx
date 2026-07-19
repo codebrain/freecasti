@@ -8,7 +8,7 @@ import { HexDump } from "@/components/HexDump";
 import { DumpByteTable } from "@/components/DumpByteTable";
 import { downloadSyx, suggestSyxFilename } from "@/sysex/syxIo";
 import { verifyDump } from "@/sysex/verify";
-import { bytesToHex, NAME_LENGTH, NAME_OFFSET } from "@/sysex/frame";
+import { bytesToHex, NAME_OFFSET, PROGRAM_NAME_LENGTH } from "@/sysex/frame";
 import { detectDumpFamily } from "@/sysex/hydrate";
 import type { ControlDef } from "@/spec/controls";
 import type { DumpSpec } from "@/spec/types";
@@ -29,9 +29,9 @@ export interface DumpInspectorProps {
 }
 
 function readProgramName(data: Uint8Array): string | undefined {
-  if (data.length < NAME_OFFSET + NAME_LENGTH) return undefined;
+  if (data.length < NAME_OFFSET + PROGRAM_NAME_LENGTH) return undefined;
   const name = new TextDecoder("ascii")
-    .decode(data.subarray(NAME_OFFSET, NAME_OFFSET + NAME_LENGTH))
+    .decode(data.subarray(NAME_OFFSET, NAME_OFFSET + PROGRAM_NAME_LENGTH))
     .replace(/\s+$/, "");
   return name || undefined;
 }

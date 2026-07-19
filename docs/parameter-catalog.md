@@ -62,10 +62,14 @@ Decoded factory values are also checked against Bricasti’s published sheet
 
 | Field | Offsets | Notes |
 |-------|---------|-------|
-| Program name | 8–87 | ASCII space-padded; must match filename **preset** (80 bytes) |
+| Program name | 8–23 | ASCII space-padded within 16-byte window; factory filename check also requires 24–87 spaces |
+| Register basis blob | 24–87 | Factory: `0x20` spaces. Reg EDIT: nibble-packed unedited basis (`sysex/prog/edit/registers/`) |
 | Bank index | 88–89 | `nibble_hilo` — full table in [manual-notes.md](manual-notes.md) |
-| Program slot | 90–91 | Slot within bank (factory list order) |
-| Bank mirror | 137 | Equals offset 89 |
+| Program slot | 90–91 | Slot within bank (factory list order); on Reg EDIT this stays the *source factory* slot |
+| Register page | 93 | Reg bank page (B0=0 …); `0` on factory dumps |
+| Structure version | 94 | Constant `08` |
+| Register slot | 95 | Reg slot 0–9; `0` on factory dumps |
+| Bank mirror | 137 | Equals offset 89 (source bank on hold-EDIT) |
 | Algorithm/family flag | 97 / 145 | Halls≈3 / most others≈4; not a clean V1/V2 bit — see manual-notes |
 | Engine/bank-class flag | 130 | `0` classic, `1` `* 2`, `2` NonLin |
 
@@ -161,5 +165,6 @@ affine map (`label = a×encoded + b`).
    ([preset-sheet.md](../specification/prog/preset-sheet.md)); dumps win on hard
    disagreements.
 6. Do not treat third-party controller UIs as a source of byte offsets.
-7. Optional: EDIT receive confirmation, register-based PROG dumps, and rarely
-   used SYSTEM knobs (e.g. register lock) per [manual-notes.md](manual-notes.md).
+7. Optional: EDIT receive confirmation, Favorites-based dumps, full register
+   basis-blob map, and rarely used SYSTEM knobs (e.g. register lock) per
+   [manual-notes.md](manual-notes.md).

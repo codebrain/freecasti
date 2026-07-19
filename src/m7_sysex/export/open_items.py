@@ -20,7 +20,16 @@ PROG_OPEN_ITEMS_CORE: list[str] = [
         "**EDIT receive** path (MIDI-notes bank **118**) — hold-EDIT *sends* use "
         "bank **11** (`sysex/prog/edit/`)"
     ),
-    "Semantics of PROG header bytes `70 08 01 00` and fixed field 93–94 (`00 08`)",
+    "Semantics of PROG header bytes `70 08 01 00`",
+    (
+        "Full map of register basis blob offsets **24–47** / **56–72** "
+        "(partial: **50–55** = predelay / reverb time / diffusion / density; "
+        "see `sysex/prog/edit/registers/`)"
+    ),
+    (
+        "**Favorites**-based PROG dumps (bank **119**); confirm Reg pages "
+        "**B2–B4**; Halls 2 subtype EDIT outlier; reserved offset **96**"
+    ),
     (
         "**Offset 25 coupling** — `midi bank` (primary @ 25) and display-level "
         "captures also move offset 25 (secondary)"
@@ -30,8 +39,7 @@ PROG_OPEN_ITEMS_CORE: list[str] = [
         "in the parameter index)"
     ),
     (
-        "Optional: register/favorite-based PROG dumps; rarely used SYSTEM knobs "
-        "(e.g. register lock) not yet in dedicated series"
+        "Rarely used SYSTEM knobs (e.g. register lock) not yet in dedicated series"
     ),
 ]
 

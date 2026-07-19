@@ -20,6 +20,7 @@ describe("PresetSummary", () => {
 
   it("shows preset identity beside the A/B compare controls", () => {
     const onSelectAb = vi.fn();
+    const onSwapAb = vi.fn();
     container = document.createElement("div");
     document.body.appendChild(container);
     root = createRoot(container);
@@ -35,6 +36,7 @@ describe("PresetSummary", () => {
             b: "Switch to slot B — Large Hall · Halls.",
           },
           onSelectAb,
+          onSwapAb,
         }),
       );
     });
@@ -42,12 +44,22 @@ describe("PresetSummary", () => {
     expect(container.textContent).toContain("Large Hall");
     expect(container.textContent).toContain("Halls");
 
-    const buttons = container.querySelectorAll("button");
-    expect(buttons).toHaveLength(2);
+    const sideButtons = container.querySelectorAll<HTMLButtonElement>(
+      'button[aria-label^="Compare slot"]',
+    );
+    expect(sideButtons).toHaveLength(2);
 
     act(() => {
-      buttons[1]?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      sideButtons[1]?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
     expect(onSelectAb).toHaveBeenCalledWith("b");
+
+    const swap = container.querySelector<HTMLButtonElement>(
+      'button[aria-label="Swap slots A and B"]',
+    );
+    act(() => {
+      swap?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+    expect(onSwapAb).toHaveBeenCalledTimes(1);
   });
 });

@@ -5,6 +5,25 @@ interface AbCompareControlsProps {
   active: AbSide;
   tooltips: Record<AbSide, string>;
   onSelect: (side: AbSide) => void;
+  onSwap: () => void;
+}
+
+function SwapIcon() {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      className="h-3.5 w-3.5"
+      aria-hidden
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M2 5.5H12M9.5 3 12 5.5 9.5 8" />
+      <path d="M14 10.5H4M6.5 8 4 10.5 6.5 13" />
+    </svg>
+  );
 }
 
 function sideButtonClass(selected: boolean): string {
@@ -19,6 +38,7 @@ export function AbCompareControls({
   active,
   tooltips,
   onSelect,
+  onSwap,
 }: AbCompareControlsProps) {
   return (
     <div
@@ -26,6 +46,19 @@ export function AbCompareControls({
       role="group"
       aria-label="Compare presets A and B"
     >
+      <ControlTooltip
+        placement="bottom"
+        description="Swap the contents of slots A and B"
+      >
+        <button
+          type="button"
+          className="lux-btn flex items-center justify-center rounded-md border border-[oklch(0.28_0.012_252)] bg-[oklch(0.12_0.009_252)] px-2 py-1.5 text-[color:var(--color-label)] opacity-82 hover:border-[oklch(0.48_0.016_250/0.5)] hover:opacity-100"
+          aria-label="Swap slots A and B"
+          onClick={onSwap}
+        >
+          <SwapIcon />
+        </button>
+      </ControlTooltip>
       {(["a", "b"] as const).map((side) => (
         <ControlTooltip
           key={side}

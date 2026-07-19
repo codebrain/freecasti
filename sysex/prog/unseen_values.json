@@ -5180,7 +5180,7 @@
     {
       "offset": 8,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5211,7 +5211,7 @@
     {
       "offset": 9,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5239,7 +5239,7 @@
     {
       "offset": 10,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5273,7 +5273,7 @@
     {
       "offset": 11,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5308,7 +5308,7 @@
     {
       "offset": 12,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5345,7 +5345,7 @@
     {
       "offset": 13,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5380,7 +5380,7 @@
     {
       "offset": 14,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5425,7 +5425,7 @@
     {
       "offset": 15,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5471,7 +5471,7 @@
     {
       "offset": 16,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5511,7 +5511,7 @@
     {
       "offset": 17,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5547,7 +5547,7 @@
     {
       "offset": 18,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5581,7 +5581,7 @@
     {
       "offset": 19,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5612,7 +5612,7 @@
     {
       "offset": 20,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5636,7 +5636,7 @@
     {
       "offset": 21,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5656,7 +5656,7 @@
     {
       "offset": 22,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5667,7 +5667,7 @@
     {
       "offset": 23,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5678,7 +5678,7 @@
     {
       "offset": 24,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5689,7 +5689,7 @@
     {
       "offset": 25,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5700,7 +5700,7 @@
     {
       "offset": 26,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5711,7 +5711,7 @@
     {
       "offset": 27,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5722,7 +5722,7 @@
     {
       "offset": 28,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5733,7 +5733,7 @@
     {
       "offset": 29,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5744,7 +5744,7 @@
     {
       "offset": 30,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5755,7 +5755,7 @@
     {
       "offset": 31,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5766,7 +5766,7 @@
     {
       "offset": 32,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5777,7 +5777,7 @@
     {
       "offset": 33,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5788,7 +5788,7 @@
     {
       "offset": 34,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5799,7 +5799,7 @@
     {
       "offset": 35,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5810,7 +5810,7 @@
     {
       "offset": 36,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5821,7 +5821,7 @@
     {
       "offset": 37,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5832,7 +5832,7 @@
     {
       "offset": 38,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5843,7 +5843,7 @@
     {
       "offset": 39,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5854,7 +5854,7 @@
     {
       "offset": 40,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5865,7 +5865,7 @@
     {
       "offset": 41,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5876,7 +5876,7 @@
     {
       "offset": 42,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5887,7 +5887,7 @@
     {
       "offset": 43,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5898,7 +5898,7 @@
     {
       "offset": 44,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5909,7 +5909,7 @@
     {
       "offset": 45,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5920,7 +5920,7 @@
     {
       "offset": 46,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5931,7 +5931,7 @@
     {
       "offset": 47,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5942,7 +5942,7 @@
     {
       "offset": 48,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5953,7 +5953,7 @@
     {
       "offset": 49,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5964,7 +5964,7 @@
     {
       "offset": 50,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5975,7 +5975,7 @@
     {
       "offset": 51,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5986,7 +5986,7 @@
     {
       "offset": 52,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5997,7 +5997,7 @@
     {
       "offset": 53,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6008,7 +6008,7 @@
     {
       "offset": 54,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6019,7 +6019,7 @@
     {
       "offset": 55,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6030,7 +6030,7 @@
     {
       "offset": 56,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6041,7 +6041,7 @@
     {
       "offset": 57,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6052,7 +6052,7 @@
     {
       "offset": 58,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6063,7 +6063,7 @@
     {
       "offset": 59,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6074,7 +6074,7 @@
     {
       "offset": 60,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6085,7 +6085,7 @@
     {
       "offset": 61,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6096,7 +6096,7 @@
     {
       "offset": 62,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6107,7 +6107,7 @@
     {
       "offset": 63,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6118,7 +6118,7 @@
     {
       "offset": 64,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6129,7 +6129,7 @@
     {
       "offset": 65,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6140,7 +6140,7 @@
     {
       "offset": 66,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6151,7 +6151,7 @@
     {
       "offset": 67,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6162,7 +6162,7 @@
     {
       "offset": 68,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6173,7 +6173,7 @@
     {
       "offset": 69,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6184,7 +6184,7 @@
     {
       "offset": 70,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6195,7 +6195,7 @@
     {
       "offset": 71,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6206,7 +6206,7 @@
     {
       "offset": 72,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6217,7 +6217,7 @@
     {
       "offset": 73,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6228,7 +6228,7 @@
     {
       "offset": 74,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6239,7 +6239,7 @@
     {
       "offset": 75,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6250,7 +6250,7 @@
     {
       "offset": 76,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6261,7 +6261,7 @@
     {
       "offset": 77,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6272,7 +6272,7 @@
     {
       "offset": 78,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6283,7 +6283,7 @@
     {
       "offset": 79,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6294,7 +6294,7 @@
     {
       "offset": 80,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6305,7 +6305,7 @@
     {
       "offset": 81,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6316,7 +6316,7 @@
     {
       "offset": 82,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6327,7 +6327,7 @@
     {
       "offset": 83,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6338,7 +6338,7 @@
     {
       "offset": 84,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6349,7 +6349,7 @@
     {
       "offset": 85,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6360,7 +6360,7 @@
     {
       "offset": 86,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6371,7 +6371,7 @@
     {
       "offset": 87,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -6537,11 +6537,11 @@
     {
       "offset": 93,
       "status": "known",
-      "role": "Fixed field (always `00 08` / encoded 8 in this corpus) \u2014 likely structure/version; not a sound parameter",
+      "role": "Register bank page (`raw_u8`): `B0`=`00` \u2026 when the dump basis is a user register (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus",
       "parameters": [
         "_corpus"
       ],
-      "encoding": "nibble_hilo",
+      "encoding": "raw_u8",
       "observed_values": [
         "00"
       ],
@@ -6568,11 +6568,11 @@
     {
       "offset": 94,
       "status": "known",
-      "role": "Fixed field (always `00 08` / encoded 8 in this corpus) \u2014 likely structure/version; not a sound parameter",
+      "role": "Structure/version constant (`08` in all witnessed program dumps) \u2014 not a sound parameter",
       "parameters": [
         "_corpus"
       ],
-      "encoding": "nibble_hilo",
+      "encoding": "raw_u8",
       "observed_values": [
         "08"
       ],
@@ -6599,11 +6599,11 @@
     {
       "offset": 95,
       "status": "known",
-      "role": "Reserved (always `00 00` in this corpus)",
+      "role": "Register slot within page (`0`\u2013`9`) when the dump basis is a user register; `00` on factory/parameter-series dumps in this corpus",
       "parameters": [
         "_corpus"
       ],
-      "encoding": null,
+      "encoding": "raw_u8",
       "observed_values": [
         "00"
       ],
@@ -6630,7 +6630,7 @@
     {
       "offset": 96,
       "status": "known",
-      "role": "Reserved (always `00 00` in this corpus)",
+      "role": "Reserved/unknown (always `00` in witnessed captures)",
       "parameters": [
         "_corpus"
       ],

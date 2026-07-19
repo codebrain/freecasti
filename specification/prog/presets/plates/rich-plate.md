@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Plates](README.md) (index **1**). Source: `sysex/p
 | Bank | Plates (index 1) |
 | Program slot | 7 |
 | Name field | `Rich Plate` (matches filename) |
-| Name bytes 8-87 | match filename preset (ASCII space-padded) |
+| Name region 8-87 | match filename preset (ASCII space-padded) |
 | Dump file | `Plates.Rich Plate.syx` |
 
 > **Not on the published sheet:** this factory dump has no row on the classic [preset sheet PDF](../../preset-sheet.md) (likely a later bank addition). Dump values only below.

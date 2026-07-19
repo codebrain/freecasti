@@ -7,7 +7,7 @@ describe("expandCompactSpec", () => {
       n: 10,
       f: [
         { id: "reverb_time", s: 100, e: "nh", p: "reverb time", m: [[40, "2.2 s"]] },
-        { id: "program_name", s: 8, e: "as", z: 80 },
+        { id: "program_name", s: 8, e: "as", z: 16 },
       ],
     };
     expect(isCompactSpec(raw)).toBe(true);
@@ -18,6 +18,6 @@ describe("expandCompactSpec", () => {
       encoded: 40,
       label: "2.2 s",
     });
-    expect(spec.fields[1].end).toBe(87);
+    expect(spec.fields[1].end).toBe(23);
   });
 });

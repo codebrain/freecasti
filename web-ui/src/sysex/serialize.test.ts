@@ -75,8 +75,36 @@ describe("serialize", () => {
       spec.fields,
       template,
     );
-    const name = new TextDecoder("ascii").decode(out.subarray(8, 88));
+    const name = new TextDecoder("ascii").decode(out.subarray(8, 24));
     expect(name.startsWith("My Patch")).toBe(true);
+    expect(verifyProgramDumpChecksum(out)).toBe(true);
+  });
+
+  it("preserves register basis blob when renaming", () => {
+    const spec = loadSpec();
+    const template = loadTemplate();
+    const marker = new Uint8Array(template);
+    for (let i = 24; i < 88; i++) marker[i] = i & 0x0f;
+    const out = buildProgramDump(
+      {
+        programName: "Renamed",
+        encoded: {
+          bank_index: 11,
+          program_slot: 0,
+          bank_index_mirror: 0,
+          register_page: 1,
+          register_slot: 3,
+        },
+      },
+      spec.fields,
+      marker,
+    );
+    expect(new TextDecoder("ascii").decode(out.subarray(8, 24)).startsWith("Renamed")).toBe(
+      true,
+    );
+    expect(Array.from(out.subarray(24, 88))).toEqual(Array.from(marker.subarray(24, 88)));
+    expect(out[93]).toBe(1);
+    expect(out[95]).toBe(3);
     expect(verifyProgramDumpChecksum(out)).toBe(true);
   });
 

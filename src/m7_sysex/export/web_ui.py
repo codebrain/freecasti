@@ -22,7 +22,15 @@ _RUNTIME_FIELD_KEYS = (
     "size",
 )
 _IDENTITY_FIELD_IDS = frozenset(
-    {"program_name", "bank_index", "program_slot", "bank_index_mirror"}
+    {
+        "program_name",
+        "register_basis_blob",
+        "bank_index",
+        "program_slot",
+        "bank_index_mirror",
+        "register_page",
+        "register_slot",
+    }
 )
 
 # Preset catalog column order (differs from hardware menu order).
@@ -52,6 +60,7 @@ _ENCODING_SHORT = {
     "raw_u8": "u8",
     "nibble_lohi": "nl",
     "ascii_space_padded": "as",
+    "raw_bytes": "rb",
 }
 
 

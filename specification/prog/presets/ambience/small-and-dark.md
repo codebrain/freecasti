@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Ambience](README.md) (index **4**). Source: `sysex
 | Bank | Ambience (index 4) |
 | Program slot | 5 |
 | Name field | `Small & Dark` (matches filename) |
-| Name bytes 8-87 | match filename preset (ASCII space-padded) |
+| Name region 8-87 | match filename preset (ASCII space-padded) |
 | Dump file | `Ambience.Small & Dark.syx` |
 
 > **Sheet comparison:** all printable sheet columns match the decoded dump (within tolerance).

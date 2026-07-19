@@ -1,5 +1,46 @@
 import { lazy, Suspense, type PointerEvent as ReactPointerEvent } from "react";
+import { setRenderMode, useSimpleMode } from "@/app/renderMode";
 import type { DebugPanelBodyProps } from "./DebugPanelBody";
+
+/**
+ * Full / Simple rendering toggle, pinned to the bottom of the panel. "Full" uses
+ * the rich oklch UI; "Simple" swaps in a plain-hex palette and lighter controls
+ * for older browsers (e.g. the last Chrome on Windows 7, which can't render
+ * oklch and hides the knobs). The correct default is auto-detected.
+ */
+function RenderingToggle() {
+  const simpleActive = useSimpleMode();
+  return (
+    <footer className="shrink-0 space-y-2 border-t border-border px-4 py-3">
+      <h3 className="label-caps text-[0.65rem] opacity-70">Rendering</h3>
+      <div
+        className="grid grid-cols-2 gap-1 text-xs"
+        role="radiogroup"
+        aria-label="Rendering mode"
+      >
+        {(["full", "simple"] as const).map((mode) => {
+          const active = mode === "simple" ? simpleActive : !simpleActive;
+          return (
+            <button
+              key={mode}
+              type="button"
+              role="radio"
+              aria-checked={active}
+              onClick={() => setRenderMode(mode)}
+              className={`rounded border px-2 py-1 font-led tracking-wide capitalize ${
+                active
+                  ? "border-[color:var(--color-primary)] bg-secondary text-[color:var(--color-led)]"
+                  : "border-border text-[color:var(--color-label)] hover:bg-secondary/40"
+              }`}
+            >
+              {mode}
+            </button>
+          );
+        })}
+      </div>
+    </footer>
+  );
+}
 
 const DebugPanelBody = lazy(() =>
   import("./DebugPanelBody").then((m) => ({ default: m.DebugPanelBody })),
@@ -8,6 +49,7 @@ const DebugPanelBody = lazy(() =>
 interface DebugPanelProps extends DebugPanelBodyProps {
   open: boolean;
   onToggle: () => void;
+  onClearLog?: () => void;
   width: number;
   onResizePointerDown: (e: ReactPointerEvent<HTMLDivElement>) => void;
 }
@@ -15,6 +57,7 @@ interface DebugPanelProps extends DebugPanelBodyProps {
 export function DebugPanel({
   open,
   onToggle,
+  onClearLog,
   width,
   onResizePointerDown,
   ...body
@@ -45,14 +88,26 @@ export function DebugPanel({
         />
         <header className="flex shrink-0 items-center justify-between gap-3 border-b border-border px-4 py-3">
           <h2 className="label-caps">Debug</h2>
-          <button
-            type="button"
-            className="rounded border border-border px-2 py-1 text-xs label-caps hover:bg-secondary/50"
-            onClick={onToggle}
-            aria-label="Close debug panel"
-          >
-            Close
-          </button>
+          <div className="flex items-center gap-2">
+            {onClearLog && (
+              <button
+                type="button"
+                className="rounded border border-border px-2 py-1 text-xs label-caps hover:bg-secondary/50"
+                onClick={onClearLog}
+                aria-label="Clear MIDI log"
+              >
+                Clear
+              </button>
+            )}
+            <button
+              type="button"
+              className="rounded border border-border px-2 py-1 text-xs label-caps hover:bg-secondary/50"
+              onClick={onToggle}
+              aria-label="Close debug panel"
+            >
+              Close
+            </button>
+          </div>
         </header>
         <div className="min-h-0 flex-1 overflow-y-auto">
           {open && (
@@ -67,6 +122,7 @@ export function DebugPanel({
             </Suspense>
           )}
         </div>
+        <RenderingToggle />
       </aside>
       {!open && (
         <button

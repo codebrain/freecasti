@@ -36,6 +36,7 @@ interface WebMidiState {
   /** Log what would be sent without transmitting (MIDI off / send-on-change off). */
   logDebugBytes: (bytes: Uint8Array) => void;
   midiLog: readonly MidiLogEntry[];
+  clearMidiLog: () => void;
 }
 
 const LS_ENABLED = "m7.midi.enabled";
@@ -76,9 +77,10 @@ export function useWebMidi(
   });
   const [sendOnChange, setSendOnChangeState] = useState(() => {
     try {
-      return localStorage.getItem(LS_SEND_ON_CHANGE) === "1";
+      const raw = localStorage.getItem(LS_SEND_ON_CHANGE);
+      return raw === null ? true : raw === "1";
     } catch {
-      return false;
+      return true;
     }
   });
   const [sendOnChangeThrottleMs, setSendOnChangeThrottleMsState] = useState(
@@ -111,6 +113,10 @@ export function useWebMidi(
     },
     [],
   );
+
+  const clearMidiLog = useCallback(() => {
+    setMidiLog([]);
+  }, []);
 
   /** Latest enqueue intent; throttle coalesces to one pending payload. */
   const deliverModeRef = useRef<"tx" | "debug">("tx");
@@ -313,5 +319,6 @@ export function useWebMidi(
     sendBytes,
     logDebugBytes,
     midiLog,
+    clearMidiLog,
   };
 }

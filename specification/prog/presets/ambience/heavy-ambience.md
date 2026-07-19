@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Ambience](README.md) (index **4**). Source: `sysex
 | Bank | Ambience (index 4) |
 | Program slot | 12 |
 | Name field | `Heavy Ambience` (matches filename) |
-| Name bytes 8-87 | match filename preset (ASCII space-padded) |
+| Name region 8-87 | match filename preset (ASCII space-padded) |
 | Dump file | `Ambience.Heavy Ambience.syx` |
 
 > **Not on the published sheet:** this factory dump has no row on the classic [preset sheet PDF](../../preset-sheet.md) (likely a later bank addition). Dump values only below.

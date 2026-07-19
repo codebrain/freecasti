@@ -37,7 +37,8 @@ from m7_sysex.frame import (
 )
 ```
 
-- **Program dump:** cover is offsets `8 .. checksum_start` (80-byte name + payload).
+- **Program dump:** cover is offsets `8 .. checksum_start` (16-byte name +
+  64-byte register basis blob + payload). Checksum cover is unchanged.
 - **System dump:** cover is offsets `8 .. 71` (64 payload nibbles).
 
 After changing any covered byte, call `write_program_dump_checksum(buf)` or

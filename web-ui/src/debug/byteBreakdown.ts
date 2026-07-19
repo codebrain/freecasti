@@ -54,6 +54,13 @@ function decodeFieldMeaning(
     const text = readAscii(data, field.start, field.size ?? field.end - field.start + 1);
     return text || "(blank)";
   }
+  if (field.encoding === "raw_bytes" || field.id === "register_basis_blob") {
+    const length = field.size ?? field.end - field.start + 1;
+    const slice = data.subarray(field.start, field.start + length);
+    if (slice.every((b) => b === 0x20)) return "factory spaces (0x20)";
+    if (slice.every((b) => b <= 0x0f)) return `nibbles (${length} B)`;
+    return `${length} B`;
+  }
   const encoding = field.encoding ?? "raw_u8";
   const encoded = decodeAtOffsets(data, field.offsets, encoding);
   if (control) {
@@ -178,12 +185,30 @@ function describeMenuIndex(
   return `${base}; editing ${ui.parameter}`;
 }
 
+function describeRegisterBasisBlob(data: Uint8Array): string {
+  const blob = data.subarray(24, 88);
+  if (blob.every((b) => b === 0x20)) return "factory spaces (0x20)";
+  if (blob.every((b) => b <= 0x0f)) return "nibble-packed register basis";
+  return "mixed bytes";
+}
+
+function describeRegisterPage(data: Uint8Array): string {
+  const page = data[93]!;
+  return `B${page} (${page})`;
+}
+
 function progSupplementaryRegions(
   data: Uint8Array,
   progUi: ProgUiRuntime | null,
   displayField?: SpecField,
 ): Region[] {
   return [
+    {
+      start: 24,
+      end: 87,
+      label: "register basis blob",
+      meaning: describeRegisterBasisBlob(data),
+    },
     {
       start: 92,
       end: 92,
@@ -192,12 +217,24 @@ function progSupplementaryRegions(
     },
     {
       start: 93,
+      end: 93,
+      label: "register page",
+      meaning: describeRegisterPage(data),
+    },
+    {
+      start: 94,
       end: 94,
       label: "structure version",
-      meaning: `encoded ${(data[93]! << 4) | data[94]!}`,
+      meaning: String(data[94]!),
     },
     {
       start: 95,
+      end: 95,
+      label: "register slot",
+      meaning: String(data[95]!),
+    },
+    {
+      start: 96,
       end: 96,
       label: "reserved",
       meaning: "always 0",

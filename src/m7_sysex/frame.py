@@ -21,17 +21,25 @@ PROGRAM_DUMP_HEADER = bytes((0x70, 0x08, 0x01, 0x00))
 SYSTEM_DUMP_HEADER = bytes((0x70, 0x08, 0x02, 0x00))
 
 NAME_OFFSET = 8
-NAME_LENGTH = 80
-DATA_OFFSET = NAME_OFFSET + NAME_LENGTH  # 88
+# Display name window (ASCII, space-padded within 8–23).
+PROGRAM_NAME_LENGTH = 16
+# Opaque register-basis copy on Reg-backed hold-EDIT dumps; factory dumps
+# fill this region with 0x20 spaces (same as trailing name padding).
+REGISTER_BASIS_BLOB_OFFSET = 24
+REGISTER_BASIS_BLOB_LENGTH = 64
+# Factory preset validation still compares the full 8–87 window (name + spaces).
+NAME_REGION_LENGTH = PROGRAM_NAME_LENGTH + REGISTER_BASIS_BLOB_LENGTH  # 80
+NAME_LENGTH = NAME_REGION_LENGTH  # alias: factory space-padded window
+DATA_OFFSET = NAME_OFFSET + NAME_REGION_LENGTH  # 88
 PROGRAM_MESSAGE_LENGTH = 157
 
-# System dumps: no 80-byte name; payload nibbles start at offset 8.
+# System dumps: no name/blob region; payload nibbles start at offset 8.
 SYSTEM_PAYLOAD_OFFSET = 8
 SYSTEM_MESSAGE_LENGTH = 77
 SYSTEM_CHECKSUM_COVER_START = SYSTEM_PAYLOAD_OFFSET  # 8
 SYSTEM_CHECKSUM_COVER_END = 72  # exclusive (checksum at 72-75)
 
-# Trailing 4 nibbles before F7: CRC-16/ARC over name+payload (offsets 8..151),
+# Trailing 4 nibbles before F7: CRC-16/ARC over name+blob+payload (offsets 8..151),
 # packed high-nibble-first as four SysEx data bytes.
 CHECKSUM_NIBBLE_COUNT = 4
 CHECKSUM_COVER_START = NAME_OFFSET  # 8 - excludes F0, mfr id, and header
@@ -76,7 +84,7 @@ def parse_sysex(data: bytes) -> SysexFrame:
 
     mfr = data[1:4]
     header = data[4:8]
-    name_bytes = data[NAME_OFFSET:DATA_OFFSET]
+    name_bytes = data[NAME_OFFSET : NAME_OFFSET + PROGRAM_NAME_LENGTH]
     payload = data[DATA_OFFSET:-1]  # exclusive of F7
 
     if len(payload) < CHECKSUM_NIBBLE_COUNT:

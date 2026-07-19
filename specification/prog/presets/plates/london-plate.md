@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Plates](README.md) (index **1**). Source: `sysex/p
 | Bank | Plates (index 1) |
 | Program slot | 2 |
 | Name field | `London Plate` (matches filename) |
-| Name bytes 8-87 | match filename preset (ASCII space-padded) |
+| Name region 8-87 | match filename preset (ASCII space-padded) |
 | Dump file | `Plates.London Plate.syx` |
 
 > **Sheet discrepancies (1 soft):** dump values disagree with the [published preset sheet](../../preset-sheet.md). Highlighted in the Status column below. **SysEx dump is authoritative.**

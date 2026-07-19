@@ -5,6 +5,7 @@ const ENCODING_EXPAND: Record<string, string> = {
   nl: "nibble_lohi",
   u8: "raw_u8",
   as: "ascii_space_padded",
+  rb: "raw_bytes",
 };
 
 export interface CompactSpec {
@@ -21,14 +22,16 @@ interface CompactField {
   m?: [number, string][];
 }
 
-function spanBytes(encoding: string): number {
+function spanBytes(encoding: string, size?: number): number {
   switch (encoding) {
     case "nibble_hilo":
     case "nibble_lohi":
       return 2;
     case "raw_u8":
-    case "ascii_space_padded":
       return 1;
+    case "ascii_space_padded":
+    case "raw_bytes":
+      return size ?? 1;
     default:
       return 1;
   }
@@ -36,15 +39,22 @@ function spanBytes(encoding: string): number {
 
 function expandField(raw: CompactField): SpecField {
   const encoding = raw.e ? ENCODING_EXPAND[raw.e] ?? raw.e : null;
+  const sized =
+    encoding === "ascii_space_padded" || encoding === "raw_bytes"
+      ? raw.z
+      : undefined;
   const end =
-    encoding === "ascii_space_padded" && raw.z
-      ? raw.s + raw.z - 1
-      : raw.s + spanBytes(encoding ?? "raw_u8") - 1;
+    sized != null
+      ? raw.s + sized - 1
+      : raw.s + spanBytes(encoding ?? "raw_u8", raw.z) - 1;
   const field: SpecField = {
     id: raw.id,
     label: raw.p ?? raw.id,
     parameter: raw.p,
-    offsets: encoding === "ascii_space_padded" ? [raw.s] : Array.from({ length: end - raw.s + 1 }, (_, i) => raw.s + i),
+    offsets:
+      encoding === "ascii_space_padded" || encoding === "raw_bytes"
+        ? Array.from({ length: end - raw.s + 1 }, (_, i) => raw.s + i)
+        : Array.from({ length: end - raw.s + 1 }, (_, i) => raw.s + i),
     start: raw.s,
     end,
     encoding,

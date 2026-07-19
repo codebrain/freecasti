@@ -1,5 +1,5 @@
 import { detectDumpFamily } from "@/sysex/hydrate";
-import { NAME_LENGTH, NAME_OFFSET, SYSEX_END, SYSEX_START } from "@/sysex/frame";
+import { NAME_OFFSET, PROGRAM_NAME_LENGTH, SYSEX_END, SYSEX_START } from "@/sysex/frame";
 
 export type MidiLogDirection = "tx" | "rx" | "debug";
 
@@ -23,9 +23,9 @@ export function isMidiSysex(data: Uint8Array): boolean {
 }
 
 function readProgramName(data: Uint8Array): string | null {
-  if (data.length < NAME_OFFSET + NAME_LENGTH) return null;
+  if (data.length < NAME_OFFSET + PROGRAM_NAME_LENGTH) return null;
   const name = new TextDecoder("ascii")
-    .decode(data.subarray(NAME_OFFSET, NAME_OFFSET + NAME_LENGTH))
+    .decode(data.subarray(NAME_OFFSET, NAME_OFFSET + PROGRAM_NAME_LENGTH))
     .replace(/\s+$/, "");
   return name || null;
 }

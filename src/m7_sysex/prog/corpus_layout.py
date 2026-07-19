@@ -36,20 +36,43 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "label": "menu browse flag",
     },
     {
-        "offsets": [93, 94],
+        "offsets": [93],
         "status": "known",
         "role": (
-            "Fixed field (always `00 08` / encoded 8 in this corpus) — "
-            "likely structure/version; not a sound parameter"
+            "Register bank page (`raw_u8`): `B0`=`00` … when the dump basis is a "
+            "user register (see `sysex/prog/edit/registers/`); `00` on "
+            "factory/parameter-series dumps in this corpus"
         ),
-        "encoding": "nibble_hilo",
-        "confidence": "medium",
-        "label": "fixed field (always 8)",
+        "encoding": "raw_u8",
+        "confidence": "high",
+        "label": "register page",
     },
     {
-        "offsets": [95, 96],
+        "offsets": [94],
         "status": "known",
-        "role": "Reserved (always `00 00` in this corpus)",
+        "role": (
+            "Structure/version constant (`08` in all witnessed program dumps) — "
+            "not a sound parameter"
+        ),
+        "encoding": "raw_u8",
+        "confidence": "high",
+        "label": "structure version (always 8)",
+    },
+    {
+        "offsets": [95],
+        "status": "known",
+        "role": (
+            "Register slot within page (`0`–`9`) when the dump basis is a user "
+            "register; `00` on factory/parameter-series dumps in this corpus"
+        ),
+        "encoding": "raw_u8",
+        "confidence": "high",
+        "label": "register slot",
+    },
+    {
+        "offsets": [96],
+        "status": "known",
+        "role": "Reserved/unknown (always `00` in witnessed captures)",
         "encoding": None,
         "confidence": "medium",
         "label": "reserved (always 0)",
@@ -205,8 +228,8 @@ def claim_corpus_layout(
             if any(verified.get(o) not in (None, 0) for o in offsets):
                 continue
         if sysex_root is not None and "always 8" in (spec.get("label") or ""):
-            # 93-94 must be 00 08
-            if verified.get(93) not in (None, 0) or verified.get(94) not in (None, 8):
+            # Offset 94 must stay 08 across the factory corpus.
+            if verified.get(94) not in (None, 8):
                 continue
         if sysex_root is not None and "always 02 00" in (spec.get("label") or ""):
             if verified.get(131) not in (None, 2) or verified.get(132) not in (None, 0):

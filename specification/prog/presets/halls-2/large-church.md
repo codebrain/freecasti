@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Halls 2](README.md) (index **6**). Source: `sysex/
 | Bank | Halls 2 (index 6) |
 | Program slot | 6 |
 | Name field | `Large Church` (matches filename) |
-| Name bytes 8-87 | match filename preset (ASCII space-padded) |
+| Name region 8-87 | match filename preset (ASCII space-padded) |
 | Dump file | `Halls 2.Large Church.syx` |
 
 > **Sheet comparison skipped:** not listed as a separate bank on the classic sheet. See [preset-sheet.md](../../preset-sheet.md). Dump values only below.

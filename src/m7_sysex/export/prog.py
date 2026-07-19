@@ -1007,7 +1007,7 @@ def _render_preset_section(
             f"| Program slot | {dump.get('program_slot')} |",
             f"| Name field | `{dump.get('name_field')}` "
             f"{_name_match_label(dump)} |",
-            f"| Name bytes 8-87 | {_name_bytes_label(dump)} |",
+            f"| Name region 8-87 | {_name_bytes_label(dump)} |",
             f"| Dump file | `{dump.get('file')}` |",
             "",
         ]
@@ -1160,8 +1160,9 @@ def _render_names_page(
             [
                 "## Name byte mismatches",
                 "",
-                "SysEx offsets 8-87 must equal the filename preset as ASCII, "
-                "space-padded to 80 bytes.",
+                "For factory presets, SysEx offsets 8-87 must equal the "
+                "filename preset as ASCII, space-padded to 80 bytes "
+                "(display name 8-23; remainder spaces).",
                 "",
                 "| File | Filename preset | Name field | First bad offset |",
                 "|------|-----------------|------------|-----------------:|",

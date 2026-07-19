@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { EditableValue } from "@/components/EditableValue";
 import { PadlockIcon } from "@/components/PadlockIcon";
+import { useSimpleMode } from "@/app/renderMode";
 
 function polar(cx: number, cy: number, r: number, deg: number) {
   const rad = ((deg - 90) * Math.PI) / 180;
@@ -64,7 +65,17 @@ interface KnobProps {
   onDraggingChange?: (dragging: boolean) => void;
 }
 
-export function Knob({
+/**
+ * Rotary dial. Delegates to a compatibility variant in Simple mode so the
+ * control stays visible/usable on browsers without oklch()/Pointer Events.
+ * Splitting into two components keeps hook order stable when the mode toggles.
+ */
+export function Knob(props: KnobProps) {
+  const simple = useSimpleMode();
+  return simple ? <SimpleKnob {...props} /> : <FullKnob {...props} />;
+}
+
+function FullKnob({
   value,
   min,
   max,
@@ -354,13 +365,297 @@ export function Knob({
                     : "oklch(0.95 0.03 60)",
                 boxShadow: disabled
                   ? "none"
-                  : featured
-                    ? "0 0 10px oklch(0.9 0.1 27 / 0.9), 0 0 4px oklch(0.95 0.05 60 / 0.8)"
-                    : "0 0 6px oklch(0.9 0.05 60 / 0.7)",
+                  : "0 0 6px oklch(0.9 0.05 60 / 0.7)",
               }}
             />
           </div>
         </div>
+        )}
+      </div>
+      {onValueCommit ? (
+        <EditableValue
+          displayValue={resolvedDisplay}
+          disabled={!interactive}
+          dimmed={disabled}
+          featured={featured}
+          size={size}
+          ariaLabel={valueAriaLabel ?? label}
+          onCommit={onValueCommit}
+        />
+      ) : (
+        <div
+          className={`tabular-nums min-h-[1.25rem] ${
+            disabled ? "control-value-inactive" : "led-text"
+          } ${
+            featured
+              ? "text-2xl font-medium tracking-wide"
+              : size >= 100
+                ? "text-lg"
+                : "text-sm"
+          }`}
+        >
+          {resolvedDisplay}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Compatibility dial for Simple mode: plain hex/CSS-var colours (no oklch,
+ * gradients, or glows) and plain mouse/touch drag handlers (no Pointer Events
+ * or pointer capture), so it renders and drags on older browsers.
+ */
+function SimpleKnob({
+  value,
+  min,
+  max,
+  step = 1,
+  onChange,
+  size = 68,
+  label,
+  format,
+  displayValue,
+  onValueCommit,
+  valueAriaLabel,
+  featured = false,
+  disabled = false,
+  selected = false,
+  locked = false,
+  onDraggingChange,
+}: KnobProps) {
+  const [dragging, setDragging] = useState(false);
+  const startY = useRef(0);
+  const startVal = useRef(value);
+
+  const range = max - min;
+  const pct = range > 0 ? (value - min) / range : 0;
+  const angle = -135 + pct * 270;
+  const interactive = !disabled && !locked;
+
+  useEffect(() => {
+    onDraggingChange?.(dragging);
+  }, [dragging, onDraggingChange]);
+
+  const applyDrag = useCallback(
+    (clientY: number, fine: boolean) => {
+      const dy = startY.current - clientY;
+      const sensitivity = fine ? 500 : 150;
+      const delta = (dy / sensitivity) * range;
+      let next = startVal.current + delta;
+      next = Math.round(next / step) * step;
+      next = Math.max(min, Math.min(max, next));
+      onChange(next);
+    },
+    [range, step, min, max, onChange],
+  );
+
+  const beginDrag = (clientY: number) => {
+    if (!interactive) return;
+    startY.current = clientY;
+    startVal.current = value;
+    setDragging(true);
+  };
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    beginDrag(e.clientY);
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    const t = e.touches[0];
+    if (t) beginDrag(t.clientY);
+  };
+
+  useEffect(() => {
+    if (!dragging) return;
+    const onMouseMove = (e: MouseEvent) => applyDrag(e.clientY, e.shiftKey);
+    const onTouchMove = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (t) applyDrag(t.clientY, false);
+    };
+    const stop = () => setDragging(false);
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", stop);
+    window.addEventListener("touchmove", onTouchMove);
+    window.addEventListener("touchend", stop);
+    window.addEventListener("touchcancel", stop);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", stop);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", stop);
+      window.removeEventListener("touchcancel", stop);
+    };
+  }, [dragging, applyDrag]);
+
+  const onDoubleClick = () => {
+    if (!interactive) return;
+    const midpoint = min + range / 2;
+    onChange(Math.round(midpoint / step) * step);
+  };
+
+  const tickStroke = featured ? 2.4 : 1.6;
+  const pointerW = featured ? 4.5 : 3;
+  const pad = featured ? 24 : 12;
+  const radius = size / 2;
+  const frame = size + pad * 2;
+  const outerRingR = radius + (featured ? 16 : 11);
+  const arcR = radius + (featured ? 9 : 8);
+  const arcStart = -135;
+  const arcEnd = -135 + pct * 270;
+
+  const stepCount = range > 0 ? Math.floor(range / step) + 1 : 1;
+  const maxTicks = featured ? 37 : 25;
+  const ticks = dialTickMarkers(stepCount, maxTicks, pct).map((t) => ({
+    a: t.angle,
+    active: !disabled && t.active,
+    key: t.key,
+  }));
+
+  const dialFace = disabled
+    ? "#1a1b1f"
+    : featured
+      ? "#33211e"
+      : "#24252b";
+  const pointerColor = disabled ? "#5a5b60" : "var(--color-led)";
+
+  const resolvedDisplay =
+    displayValue ?? (format ? format(value) : value.toFixed(0));
+
+  return (
+    <div className="flex flex-col items-center gap-2 select-none">
+      {label && (
+        <div
+          className={`${featured ? "text-[0.72rem] tracking-[0.22em]" : ""} ${
+            disabled ? "label-caps-muted" : "label-caps"
+          }`}
+        >
+          {label}
+        </div>
+      )}
+      <div
+        className={`relative ${
+          interactive
+            ? "cursor-ns-resize"
+            : locked
+              ? "pointer-events-none"
+              : "cursor-not-allowed pointer-events-none"
+        }`}
+        style={{ width: frame, height: frame, touchAction: "none" }}
+        onMouseDown={onMouseDown}
+        onTouchStart={onTouchStart}
+        onDoubleClick={onDoubleClick}
+      >
+        <svg
+          className="absolute inset-0"
+          width={frame}
+          height={frame}
+          viewBox={`0 0 ${frame} ${frame}`}
+        >
+          {featured && !locked && !disabled && arcEnd > arcStart && (
+            <path
+              d={arcPath(frame / 2, frame / 2, arcR, arcStart, arcEnd)}
+              fill="none"
+              stroke="var(--color-led)"
+              strokeWidth={3.5}
+              strokeLinecap="round"
+              opacity={0.9}
+            />
+          )}
+          {selected && !disabled && (
+            <circle
+              cx={frame / 2}
+              cy={frame / 2}
+              r={outerRingR}
+              fill="none"
+              stroke="var(--color-primary)"
+              strokeWidth={featured ? 2 : 1.75}
+              opacity={0.9}
+            />
+          )}
+          {ticks.map((t) => {
+            const cx = frame / 2;
+            const cy = frame / 2;
+            const rOuter = radius + (featured ? 14 : 10);
+            const rInner = radius + (featured ? 7 : 5);
+            const rad = (t.a - 90) * (Math.PI / 180);
+            const x1 = cx + Math.cos(rad) * rInner;
+            const y1 = cy + Math.sin(rad) * rInner;
+            const x2 = cx + Math.cos(rad) * rOuter;
+            const y2 = cy + Math.sin(rad) * rOuter;
+            return (
+              <line
+                key={t.key}
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke={
+                  disabled
+                    ? t.active
+                      ? "#8a887f"
+                      : "#4a4b50"
+                    : t.active
+                      ? "var(--color-led)"
+                      : "var(--color-led-dim)"
+                }
+                strokeWidth={tickStroke}
+                opacity={disabled ? (t.active ? 0.55 : 0.35) : t.active ? 0.95 : 0.4}
+              />
+            );
+          })}
+        </svg>
+        {locked ? (
+          <div
+            className={`absolute flex items-center justify-center ${
+              disabled
+                ? "text-[color:var(--color-label)] opacity-40"
+                : "text-[color:var(--color-led)]"
+            }`}
+            style={{ top: pad, left: pad, width: size, height: size }}
+          >
+            <PadlockIcon
+              locked
+              className=""
+              style={{
+                width: size * (featured ? 0.38 : 0.36),
+                height: size * (featured ? 0.38 : 0.36),
+              }}
+            />
+          </div>
+        ) : (
+          <div
+            className="absolute rounded-full"
+            style={{
+              top: pad,
+              left: pad,
+              width: size,
+              height: size,
+              background: dialFace,
+              border: "1px solid #3a3c42",
+            }}
+          >
+            <div
+              className="absolute left-1/2 top-1/2"
+              style={{
+                transform: `translate(-50%, -50%) rotate(${angle}deg)`,
+                width: pointerW,
+                height: size * 0.44,
+                transformOrigin: "50% 50%",
+                pointerEvents: "none",
+              }}
+            >
+              <div
+                className="mx-auto rounded-sm"
+                style={{
+                  width: pointerW,
+                  height: size * 0.22,
+                  background: pointerColor,
+                }}
+              />
+            </div>
+          </div>
         )}
       </div>
       {onValueCommit ? (

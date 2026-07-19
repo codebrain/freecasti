@@ -14,9 +14,11 @@ from ..frame import (
     BRICASTI_MFR_ID,
     CHECKSUM_NIBBLE_COUNT,
     DATA_OFFSET,
-    NAME_LENGTH,
     NAME_OFFSET,
     PROGRAM_DUMP_HEADER,
+    PROGRAM_NAME_LENGTH,
+    REGISTER_BASIS_BLOB_LENGTH,
+    REGISTER_BASIS_BLOB_OFFSET,
 )
 
 
@@ -162,7 +164,7 @@ def build_byte_map(
         annotations[i]["hex"] = f"{b:02X}"
         annotations[i]["hex_source"] = "frame constant"
 
-    name_role = "Program name (ASCII, space-padded)"
+    name_role = "Program name (ASCII, space-padded within 16-byte window)"
     if names and (names.get("fields") or {}).get("program_name", {}).get(
         "matches_filename_preset"
     ):
@@ -171,16 +173,33 @@ def build_byte_map(
             "(bank name is not stored here)"
         )
     claim(
-        list(range(NAME_OFFSET, NAME_OFFSET + NAME_LENGTH)),
+        list(range(NAME_OFFSET, NAME_OFFSET + PROGRAM_NAME_LENGTH)),
         status="frame",
         role=name_role,
         example=frame_example,
         example_source=str(frame_example_path) if frame_example_path else None,
     )
     if frame_example is not None:
-        for i in range(NAME_OFFSET, NAME_OFFSET + NAME_LENGTH):
+        for i in range(NAME_OFFSET, NAME_OFFSET + PROGRAM_NAME_LENGTH):
             b = frame_example[i]
             annotations[i]["ascii"] = chr(b) if 32 <= b < 127 else None
+
+    claim(
+        list(
+            range(
+                REGISTER_BASIS_BLOB_OFFSET,
+                REGISTER_BASIS_BLOB_OFFSET + REGISTER_BASIS_BLOB_LENGTH,
+            )
+        ),
+        status="frame",
+        role=(
+            "Register basis blob (`raw_bytes`): factory dumps space-pad with "
+            "`0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited "
+            "copy of the register basis (see `sysex/prog/edit/registers/`)"
+        ),
+        example=frame_example,
+        example_source=str(frame_example_path) if frame_example_path else None,
+    )
 
     checksum_start = length - 1 - CHECKSUM_NIBBLE_COUNT
     claim(
@@ -806,8 +825,14 @@ def _overview_label(
             return "reserved padding", encoding
         if "reserved" in role.lower():
             return "reserved (always 0)", encoding
+        if "structure/version" in role.lower() or "structure version" in role.lower():
+            return "structure version (always 8)", encoding or "raw_u8"
+        if "register bank page" in role.lower() or role.lower().startswith("register page"):
+            return "register page", encoding or "raw_u8"
+        if "register slot" in role.lower():
+            return "register slot", encoding or "raw_u8"
         if "fixed field" in role.lower() or "always `00 08`" in role:
-            return "fixed field (always 8)", encoding
+            return "structure version (always 8)", encoding
         if "fixed companion" in role.lower() or "always `02 00`" in role:
             return "fixed (always 02 00)", encoding
     lowered = role.lower()
@@ -817,6 +842,8 @@ def _overview_label(
         return "bank index", encoding or "nibble_hilo"
     if "program slot" in lowered:
         return "program slot", encoding or "nibble_hilo"
+    if "register basis" in lowered:
+        return "register basis blob", encoding or "raw_bytes"
     if "program name" in lowered:
         return "program name", None
     return role.split("(")[0].strip() or "known", encoding
@@ -830,6 +857,8 @@ def _short_frame_label(role: str) -> str:
         return "manufacturer ID"
     if "header" in lowered:
         return "program-dump header"
+    if "register basis" in lowered:
+        return "register basis blob"
     if "program name" in lowered or "space-padded" in lowered:
         return "program name (ASCII)"
     if "sysEx end" in role or "sysex end" in lowered:

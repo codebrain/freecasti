@@ -7,3 +7,4 @@ export const LS_SYS = "m7.state.sys";
 export const LS_LOCKED = "m7.lockedFields";
 export const LS_TEMPO_BPM = "m7.tempo.bpm";
 export const LS_TEMPO_MODE = "m7.tempo.modeFields";
+export const LS_RENDER_MODE = "m7.renderMode";

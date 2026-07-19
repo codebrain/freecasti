@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Halls](README.md) (index **0**). Source: `sysex/pr
 | Bank | Halls (index 0) |
 | Program slot | 10 |
 | Name field | `Gold Hall` (matches filename) |
-| Name bytes 8-87 | match filename preset (ASCII space-padded) |
+| Name region 8-87 | match filename preset (ASCII space-padded) |
 | Dump file | `Halls.Gold Hall.syx` |
 
 > **Sheet comparison:** all printable sheet columns match the decoded dump (within tolerance).

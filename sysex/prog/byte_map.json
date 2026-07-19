@@ -77,7 +77,7 @@
       "hex": "42",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "B"
     },
@@ -86,7 +86,7 @@
       "hex": "61",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "a"
     },
@@ -95,7 +95,7 @@
       "hex": "73",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "s"
     },
@@ -104,7 +104,7 @@
       "hex": "73",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "s"
     },
@@ -113,7 +113,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -122,7 +122,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -131,7 +131,7 @@
       "hex": "58",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "X"
     },
@@ -140,7 +140,7 @@
       "hex": "58",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "X"
     },
@@ -149,7 +149,7 @@
       "hex": "4C",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "L"
     },
@@ -158,7 +158,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -167,7 +167,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -176,7 +176,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -185,7 +185,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -194,7 +194,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -203,7 +203,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -212,7 +212,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -221,576 +221,512 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 25,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 26,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 27,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 28,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 29,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 30,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 31,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 32,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 33,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 34,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 35,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 36,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 37,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 38,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 39,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 40,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 41,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 42,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 43,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 44,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 45,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 46,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 47,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 48,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 49,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 50,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 51,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 52,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 53,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 54,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 55,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 56,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 57,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 58,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 59,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 60,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 61,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 62,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 63,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 64,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 65,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 66,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 67,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 68,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 69,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 70,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 71,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 72,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 73,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 74,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 75,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 76,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 77,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 78,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 79,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 80,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 81,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 82,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 83,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 84,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 85,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 86,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 87,
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
-      "parameters": [],
-      "ascii": " "
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
+      "parameters": []
     },
     {
       "offset": 88,
@@ -858,42 +794,43 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Fixed field (always `00 08` / encoded 8 in this corpus) \u2014 likely structure/version; not a sound parameter",
+      "role": "Register bank page (`raw_u8`): `B0`=`00` \u2026 when the dump basis is a user register (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus",
       "parameters": [
         "_corpus"
       ],
-      "confidence": "medium",
-      "encoding": "nibble_hilo"
+      "confidence": "high",
+      "encoding": "raw_u8"
     },
     {
       "offset": 94,
       "hex": "08",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Fixed field (always `00 08` / encoded 8 in this corpus) \u2014 likely structure/version; not a sound parameter",
+      "role": "Structure/version constant (`08` in all witnessed program dumps) \u2014 not a sound parameter",
       "parameters": [
         "_corpus"
       ],
-      "confidence": "medium",
-      "encoding": "nibble_hilo"
+      "confidence": "high",
+      "encoding": "raw_u8"
     },
     {
       "offset": 95,
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Reserved (always `00 00` in this corpus)",
+      "role": "Register slot within page (`0`\u2013`9`) when the dump basis is a user register; `00` on factory/parameter-series dumps in this corpus",
       "parameters": [
         "_corpus"
       ],
-      "confidence": "medium"
+      "confidence": "high",
+      "encoding": "raw_u8"
     },
     {
       "offset": 96,
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Reserved (always `00 00` in this corpus)",
+      "role": "Reserved/unknown (always `00` in witnessed captures)",
       "parameters": [
         "_corpus"
       ],
@@ -1617,12 +1554,22 @@
     },
     {
       "start": 8,
-      "end": 87,
-      "offsets": "8-87",
-      "length": 80,
+      "end": 23,
+      "offsets": "8-23",
+      "length": 16,
       "example_hex": "42 61 73 73 20 20 58 58 ...",
       "status": "frame",
-      "role": "Program name (ASCII, space-padded) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "parameters": []
+    },
+    {
+      "start": 24,
+      "end": 87,
+      "offsets": "24-87",
+      "length": 64,
+      "example_hex": "20 20 20 20 20 20 20 20 ...",
+      "status": "frame",
+      "role": "Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`; Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the register basis (see `sysex/prog/edit/registers/`)",
       "parameters": []
     },
     {
@@ -1664,24 +1611,48 @@
     },
     {
       "start": 93,
-      "end": 94,
-      "offsets": "93-94",
-      "length": 2,
-      "example_hex": "00 08",
+      "end": 93,
+      "offsets": "93",
+      "length": 1,
+      "example_hex": "00",
       "status": "known",
-      "role": "Fixed field (always `00 08` / encoded 8 in this corpus) \u2014 likely structure/version; not a sound parameter",
+      "role": "Register bank page (`raw_u8`): `B0`=`00` \u2026 when the dump basis is a user register (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 94,
+      "end": 94,
+      "offsets": "94",
+      "length": 1,
+      "example_hex": "08",
+      "status": "known",
+      "role": "Structure/version constant (`08` in all witnessed program dumps) \u2014 not a sound parameter",
       "parameters": [
         "_corpus"
       ]
     },
     {
       "start": 95,
-      "end": 96,
-      "offsets": "95-96",
-      "length": 2,
-      "example_hex": "00 00",
+      "end": 95,
+      "offsets": "95",
+      "length": 1,
+      "example_hex": "00",
       "status": "known",
-      "role": "Reserved (always `00 00` in this corpus)",
+      "role": "Register slot within page (`0`\u2013`9`) when the dump basis is a user register; `00` on factory/parameter-series dumps in this corpus",
+      "parameters": [
+        "_corpus"
+      ]
+    },
+    {
+      "start": 96,
+      "end": 96,
+      "offsets": "96",
+      "length": 1,
+      "example_hex": "00",
+      "status": "known",
+      "role": "Reserved/unknown (always `00` in witnessed captures)",
       "parameters": [
         "_corpus"
       ]
@@ -2102,16 +2073,30 @@
     },
     {
       "offsets": [
-        93,
-        94
+        93
       ],
       "status": "known",
-      "label": "fixed field (always 8)",
-      "confidence": "medium"
+      "label": "register page",
+      "confidence": "high"
     },
     {
       "offsets": [
-        95,
+        94
+      ],
+      "status": "known",
+      "label": "structure version (always 8)",
+      "confidence": "high"
+    },
+    {
+      "offsets": [
+        95
+      ],
+      "status": "known",
+      "label": "register slot",
+      "confidence": "high"
+    },
+    {
+      "offsets": [
         96
       ],
       "status": "known",

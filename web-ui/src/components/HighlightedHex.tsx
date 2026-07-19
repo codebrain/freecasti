@@ -109,7 +109,7 @@ export function HighlightedHex({
     );
   };
 
-  const containerClass = `font-led text-xs leading-relaxed break-all ${className}`;
+  const baseClass = `font-led text-xs leading-relaxed ${className}`.trim();
 
   if (wrapEvery && wrapEvery > 0) {
     const lines: HexToken[][] = [];
@@ -117,9 +117,9 @@ export function HighlightedHex({
       lines.push(tokens.slice(i, i + wrapEvery));
     }
     return (
-      <span className={containerClass}>
+      <span className={baseClass}>
         {lines.map((line, lineIndex) => (
-          <span key={`line-${lineIndex}`} className="block">
+          <span key={`line-${lineIndex}`} className="block whitespace-nowrap">
             {line.map((token, pos) => renderToken(token, pos > 0))}
           </span>
         ))}
@@ -128,7 +128,7 @@ export function HighlightedHex({
   }
 
   return (
-    <span className={containerClass}>
+    <span className={`${baseClass} break-all`}>
       {tokens.map((token, pos) => renderToken(token, pos > 0))}
     </span>
   );

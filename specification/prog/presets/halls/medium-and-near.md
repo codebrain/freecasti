@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Halls](README.md) (index **0**). Source: `sysex/pr
 | Bank | Halls (index 0) |
 | Program slot | 4 |
 | Name field | `Medium & Near` (matches filename) |
-| Name bytes 8-87 | match filename preset (ASCII space-padded) |
+| Name region 8-87 | match filename preset (ASCII space-padded) |
 | Dump file | `Halls.Medium & Near.syx` |
 
 > **Sheet discrepancies (1 hard):** dump values disagree with the [published preset sheet](../../preset-sheet.md). Highlighted in the Status column below. **SysEx dump is authoritative.**

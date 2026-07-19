@@ -125,6 +125,11 @@ export function selectAbSide(store: ProgAbStore, side: AbSide): ProgAbStore {
   return { ...store, active: side };
 }
 
+/** Swap the underlying data of slots A and B; the active side letter is kept. */
+export function swapAbSlots(store: ProgAbStore): ProgAbStore {
+  return { ...store, a: store.b, b: store.a };
+}
+
 /** Hover tooltip for an A/B compare slot button. */
 export function abCompareSlotTooltip({
   side,

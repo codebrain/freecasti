@@ -21,9 +21,11 @@ from ..frame import (
     BRICASTI_MFR_ID,
     CHECKSUM_COVER_START,
     CHECKSUM_NIBBLE_COUNT,
-    NAME_LENGTH,
     NAME_OFFSET,
     PROGRAM_DUMP_HEADER,
+    PROGRAM_NAME_LENGTH,
+    REGISTER_BASIS_BLOB_LENGTH,
+    REGISTER_BASIS_BLOB_OFFSET,
     SYSEX_END,
     SYSEX_START,
 )
@@ -134,10 +136,23 @@ def build_program_dump_spec(
         elif start == 4 and size == 4:
             field["contents"] = list(PROGRAM_DUMP_HEADER)
             field["id"] = _force_id("program_dump_header", used_ids, field_id)
-        elif start == NAME_OFFSET and size == NAME_LENGTH:
+        elif start == NAME_OFFSET and size == PROGRAM_NAME_LENGTH:
             field["kind"] = "string"
             field["encoding"] = "ascii_space_padded"
             field["id"] = _force_id("program_name", used_ids, field_id)
+        elif (
+            start == REGISTER_BASIS_BLOB_OFFSET
+            and size == REGISTER_BASIS_BLOB_LENGTH
+        ):
+            field["kind"] = "meta"
+            field["encoding"] = "raw_bytes"
+            field["id"] = _force_id("register_basis_blob", used_ids, field_id)
+        elif start == 93 and size == 1:
+            field["id"] = _force_id("register_page", used_ids, field_id)
+        elif start == 94 and size == 1:
+            field["id"] = _force_id("structure_version", used_ids, field_id)
+        elif start == 95 and size == 1:
+            field["id"] = _force_id("register_slot", used_ids, field_id)
         elif status == "checksum":
             field["id"] = _force_id("checksum", used_ids, field_id)
         elif start == length - 1 and size == 1:
@@ -189,8 +204,13 @@ def build_program_dump_spec(
             "program_dump_header": list(PROGRAM_DUMP_HEADER),
             "program_name": {
                 "offset": NAME_OFFSET,
-                "length": NAME_LENGTH,
+                "length": PROGRAM_NAME_LENGTH,
                 "encoding": "ascii_space_padded",
+            },
+            "register_basis_blob": {
+                "offset": REGISTER_BASIS_BLOB_OFFSET,
+                "length": REGISTER_BASIS_BLOB_LENGTH,
+                "encoding": "raw_bytes",
             },
             "sysex_end": SYSEX_END,
         },
@@ -221,6 +241,9 @@ def build_program_dump_spec(
             ),
             "ascii_space_padded": (
                 "ASCII text, space-padded on the right to a fixed width."
+            ),
+            "raw_bytes": (
+                "Opaque multi-byte region copied as-is (no scalar decode)."
             ),
             "crc16_arc_u16_be_nibbles": (
                 "CRC-16/ARC packed as four high-nibble-first SysEx bytes."

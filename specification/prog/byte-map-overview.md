@@ -17,12 +17,15 @@ Reserved/meta roles (padding, family flag, display @ 146–147, engine/bank clas
 | 0 | 1 | frame | SysEx start (F0) |
 | 1-3 | 3 | frame | manufacturer ID |
 | 4-7 | 4 | frame | program-dump header |
-| 8-87 | 80 | frame | [program name (ASCII)](program-identity.md) |
+| 8-23 | 16 | frame | [program name (ASCII)](program-identity.md) |
+| 24-87 | 64 | frame | register basis blob |
 | 88-89 | 2 | known | [bank index](program-identity.md) (`nibble_hilo`) |
 | 90-91 | 2 | known | [program slot](program-identity.md) (`nibble_hilo`) |
 | 92 | 1 | secondary | edit/generation counter (`raw_u8`) |
-| 93-94 | 2 | known | fixed field (always 8) (`nibble_hilo`) |
-| 95-96 | 2 | known | reserved (always 0) |
+| 93 | 1 | known | register page (`raw_u8`) |
+| 94 | 1 | known | structure version (always 8) (`raw_u8`) |
+| 95 | 1 | known | register slot (`raw_u8`) |
+| 96 | 1 | known | reserved (always 0) |
 | 97 | 1 | known | algorithm/family flag (`raw_u8`) |
 | 98-99 | 2 | secondary | selected menu index (`nibble_hilo`) |
 | 100-101 | 2 | known | [reverb time](bytes/reverb-time.md) (`nibble_hilo`) |
@@ -64,6 +67,9 @@ Reserved/meta roles (padding, family flag, display @ 146–147, engine/bank clas
 |---------|-----------|----------|--------|
 | 88-89 | [bank index](program-identity.md) | `nibble_hilo` | [_presets](program-identity.md) |
 | 90-91 | [program slot](program-identity.md) | `nibble_hilo` | [_presets](program-identity.md) |
+| 93 | register page | `raw_u8` | corpus |
+| 94 | structure version (always 8) | `raw_u8` | corpus |
+| 95 | register slot | `raw_u8` | corpus |
 | 97 | algorithm/family flag | `raw_u8` | corpus |
 | 100-101 | [reverb time](bytes/reverb-time.md) | `nibble_hilo` | series |
 | 102-103 | [size](bytes/size.md) | `nibble_hilo` | series |

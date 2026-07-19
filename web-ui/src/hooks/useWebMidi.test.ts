@@ -117,4 +117,19 @@ describe("useWebMidi lastError", () => {
     expect(probe.current.lastError).toBeNull();
     expect(probe.current.midiLog[0]?.direction).toBe("debug");
   });
+
+  it("clearMidiLog empties the log", () => {
+    act(() => {
+      probe.current.logDebugBytes(new Uint8Array([0xf0, 0xf7]));
+    });
+    act(() => {
+      vi.advanceTimersByTime(500);
+    });
+    expect(probe.current.midiLog).toHaveLength(1);
+
+    act(() => {
+      probe.current.clearMidiLog();
+    });
+    expect(probe.current.midiLog).toHaveLength(0);
+  });
 });

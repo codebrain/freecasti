@@ -35,11 +35,17 @@ seq:
     contents: [0x70, 0x08, 0x01, 0x00]
   - id: program_name
     doc: |
-      Program name (ASCII, space-padded) - confirmed against sysex/_presets/
-      filename preset (bank name is not stored here)
+      Program name (ASCII, space-padded within 16-byte window) - confirmed
+      against sysex/_presets/ filename preset (bank name is not stored here)
     type: str
-    size: 80
+    size: 16
     encoding: ASCII
+  - id: register_basis_blob
+    doc: |
+      Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`;
+      Reg-backed hold-EDIT dumps store a nibble-packed unedited copy of the
+      register basis ...
+    size: 64
   - id: bank_index
     doc: |
       Bank index (`nibble_hilo`) from sysex/_presets/ [Halls=0, Plates=1,
@@ -59,15 +65,26 @@ seq:
       `sysex/prog/menus/` captures)...
       Secondary/edit-UI field — not a primary sound parameter
     type: u1
-  - id: fixed_field_always_8
+  - id: register_page
     doc: |
-      Fixed field (always `00 08` / encoded 8 in this corpus) — likely
-      structure/version; not a sound parameter
-    type: nibble_u8_hilo
+      Register bank page (`raw_u8`): `B0`=`00` … when the dump basis is a user
+      register (see `sysex/prog/edit/registers/`); `00` on
+      factory/parameter-series dumps ...
+    type: u1
+  - id: structure_version
+    doc: |
+      Structure/version constant (`08` in all witnessed program dumps) — not a
+      sound parameter
+    type: u1
+  - id: register_slot
+    doc: |
+      Register slot within page (`0`–`9`) when the dump basis is a user
+      register; `00` on factory/parameter-series dumps in this corpus
+    type: u1
   - id: reserved_always_0
     doc: |
-      Reserved (always `00 00` in this corpus)
-    size: 2
+      Reserved/unknown (always `00` in witnessed captures)
+    type: u1
   - id: algorithm_family_flag
     doc: |
       Algorithm/family flag from corpus presets (Halls all 3; most other

@@ -120,7 +120,10 @@ See [web-ui/README.md](../web-ui/README.md). Skip sync with
 ## Adding preset-identity dumps
 
 1. Dump factory presets into `sysex/prog/presets/` as `<bank>.<preset>.syx`
-2. Ensure offsets 8–87 match the preset name (ASCII, space-padded)
+2. Ensure offsets 8–87 match the preset name (ASCII, space-padded). Display
+   name is 8–23; factory dumps space-pad 24–87. Reg-backed hold-EDIT dumps
+   (basis blob at 24–87, page/slot at 93/95) belong under
+   `sysex/prog/edit/registers/` — not the factory presets folder.
 3. Run `python run.py` — refreshes [program-identity.md](../specification/prog/program-identity.md),
    [presets/](../specification/prog/presets/), [preset-sheet.md](../specification/prog/preset-sheet.md)
 

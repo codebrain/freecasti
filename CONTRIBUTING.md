@@ -87,6 +87,9 @@ conventions in the README.
 
 - Use `<bank>.<preset>.syx`.
 - Offsets 8–87 must match the preset name (ASCII, space-padded to 80 bytes).
+  The display name lives at 8–23; factory dumps space-pad 24–87. Reg-backed
+  hold-EDIT dumps put a basis blob at 24–87 instead — capture those under
+  `sysex/prog/edit/registers/`, not `presets/`.
 
 **System settings** (`sysex/system/<setting>/`):
 

@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Spaces](README.md) (index **5**). Source: `sysex/p
 | Bank | Spaces (index 5) |
 | Program slot | 6 |
 | Name field | `Bath House` (matches filename) |
-| Name bytes 8-87 | match filename preset (ASCII space-padded) |
+| Name region 8-87 | match filename preset (ASCII space-padded) |
 | Dump file | `Spaces.Bath House.syx` |
 
 > **Sheet discrepancies (1 hard):** dump values disagree with the [published preset sheet](../../preset-sheet.md). Highlighted in the Status column below. **SysEx dump is authoritative.**

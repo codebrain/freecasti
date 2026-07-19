@@ -38,12 +38,14 @@ export function PresetSummary({
   activeAb,
   abTooltips,
   onSelectAb,
+  onSwapAb,
 }: {
   programName: string;
   bankName: string | undefined;
   activeAb: AbSide;
   abTooltips: Record<AbSide, string>;
   onSelectAb: (side: AbSide) => void;
+  onSwapAb: () => void;
 }) {
   return (
     <div className="flex items-end justify-between gap-4 px-2 md:px-4">
@@ -55,7 +57,12 @@ export function PresetSummary({
           {bankName ?? "—"}
         </span>
       </div>
-      <AbCompareControls active={activeAb} tooltips={abTooltips} onSelect={onSelectAb} />
+      <AbCompareControls
+        active={activeAb}
+        tooltips={abTooltips}
+        onSelect={onSelectAb}
+        onSwap={onSwapAb}
+      />
     </div>
   );
 }

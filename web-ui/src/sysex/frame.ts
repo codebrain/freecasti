@@ -5,8 +5,15 @@ export const PROGRAM_DUMP_HEADER = [0x70, 0x08, 0x01, 0x00] as const;
 export const SYSTEM_DUMP_HEADER = [0x70, 0x08, 0x02, 0x00] as const;
 
 export const NAME_OFFSET = 8;
-export const NAME_LENGTH = 80;
-export const DATA_OFFSET = NAME_OFFSET + NAME_LENGTH;
+export const PROGRAM_NAME_LENGTH = 16;
+export const REGISTER_BASIS_BLOB_OFFSET = 24;
+export const REGISTER_BASIS_BLOB_LENGTH = 64;
+/** Factory space-padded window (name + trailing spaces through 87). */
+export const NAME_REGION_LENGTH =
+  PROGRAM_NAME_LENGTH + REGISTER_BASIS_BLOB_LENGTH;
+/** @deprecated Prefer PROGRAM_NAME_LENGTH for display name; NAME_REGION_LENGTH for factory window. */
+export const NAME_LENGTH = NAME_REGION_LENGTH;
+export const DATA_OFFSET = NAME_OFFSET + NAME_REGION_LENGTH;
 export const PROGRAM_MESSAGE_LENGTH = 157;
 
 export const SYSTEM_PAYLOAD_OFFSET = 8;

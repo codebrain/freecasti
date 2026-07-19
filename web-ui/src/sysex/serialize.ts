@@ -3,9 +3,9 @@ import type { ProgUiRuntime } from "@/prog/uiState";
 import { applyProgUiBytes, resolveProgUi } from "@/prog/uiState";
 import { encodeAtOffsets } from "./encodings";
 import {
-  NAME_LENGTH,
   NAME_OFFSET,
   PROGRAM_MESSAGE_LENGTH,
+  PROGRAM_NAME_LENGTH,
   SYSTEM_MESSAGE_LENGTH,
   writeProgramDumpChecksum,
   writeSystemDumpChecksum,
@@ -36,10 +36,10 @@ function patchField(
 
 function patchProgramName(buf: Uint8Array, name: string): void {
   const ascii = new TextEncoder().encode(name);
-  const slice = ascii.subarray(0, NAME_LENGTH);
-  buf.fill(0x20, NAME_OFFSET, NAME_OFFSET + NAME_LENGTH);
+  const slice = ascii.subarray(0, PROGRAM_NAME_LENGTH);
+  buf.fill(0x20, NAME_OFFSET, NAME_OFFSET + PROGRAM_NAME_LENGTH);
   buf.set(slice, NAME_OFFSET);
-  for (let i = slice.length; i < NAME_LENGTH; i++) {
+  for (let i = slice.length; i < PROGRAM_NAME_LENGTH; i++) {
     buf[NAME_OFFSET + i] = 0x20;
   }
 }
@@ -58,7 +58,7 @@ export function buildProgramDump(
 
   for (const field of fields) {
     if (field.kind === "checksum" || field.kind === "frame") continue;
-    if (field.id === "program_name") continue;
+    if (field.id === "program_name" || field.id === "register_basis_blob") continue;
     const val = state.encoded[field.id];
     if (val === undefined) continue;
     patchField(buf, field, val);

@@ -51,7 +51,7 @@ def test_every_dump_parses_with_valid_frame_and_checksum():
         assert len(raw) == 157, path
         assert verify_program_dump_checksum(raw), path
         assert is_nibble_payload(raw[DATA_OFFSET:-1]), path
-        # Name field is printable ASCII (space padded).
+        # Name field is printable ASCII on factory/parameter dumps (8–87 spaces).
         assert all(32 <= b < 127 for b in raw[8:88]), path
 
 
@@ -59,9 +59,9 @@ def test_corpus_layout_constant_claims_hold():
     """Every 'reserved'/'fixed' offset claimed in corpus_layout is constant."""
     constants = verify_corpus_constants(SYSEX)
     expected_fixed = {
-        93: 0,
-        94: 8,  # fixed field `00 08`
-        95: 0,
+        93: 0,  # register page (0 on factory corpus)
+        94: 8,  # structure version
+        95: 0,  # register slot (0 on factory corpus)
         96: 0,
         106: 0,
         108: 0,

@@ -151,8 +151,9 @@ Examples: `Halls.Large Hall.syx`, `Plates.Bright Plate.syx`,
 `Halls 2.Large Hall.syx`.
 
 - Split on the **first** `.` — bank left, preset right
-- SysEx offsets **8–87** must equal the preset half as ASCII, space-padded to
-  80 bytes (bank name is **not** stored in the name field)
+- For **factory** presets, SysEx offsets **8–87** must equal the preset half as
+  ASCII, space-padded to 80 bytes (display name is **8–23**; **24–87** is spaces).
+  Bank name is **not** stored in the name field
 - Capture several banks and several slots within one bank (factory order helps)
 - Folders starting with `_` are meta series — not treated as parameters
 
@@ -188,6 +189,19 @@ not menu-navigation dumps.
 **All 18 program parameters are captured** as dedicated series under
 `sysex/prog/parameters/`, plus `sysex/prog/presets/` identity dumps and the sheet compare.
 
+### Register-basis hold-EDIT (`sysex/prog/edit/registers/`)
+
+When a **User Register** is the running program basis, hold **EDIT** and save
+the 157-byte dump. Name is still at **8–23**; **24–87** carries a nibble-packed
+basis blob; **93** = Reg page (B0=0 …); **94** = `08`; **95** = Reg slot 0–9.
+See [registers/README.md](../sysex/prog/edit/registers/README.md).
+
+To capture a page×slot grid:
+
+1. Store a factory preset into the target Reg page/slot.
+2. Load that register so it is the running basis.
+3. Hold **EDIT**; save as `b<page>-…/slot-<n>.syx`.
+
 Optional follow-ups:
 
 - More `sysex/prog/presets/` banks if Bricasti adds firmware banks
@@ -198,7 +212,7 @@ Optional follow-ups:
   is in `m7_system_dump.ksy` and the web UI; offset 25 also moves as a
   secondary field in display-level captures. Optional: register lock and other
   rarely touched SYSTEM knobs
-- Register or Favorite-based PROG dumps (manual: basis slot may be stored in dump)
+- **Favorites**-based PROG dumps; denser Reg pages B2–B4; finish basis-blob map
 - `0.1s.syx` for reverb time if the UI reaches the printed 0.1 s floor
 - Denser mid samples for medium-confidence tables when you need a full decode table
 - Reconcile hard sheet errata (early select / HF crossover on a few Halls) if you re-dump those factory programs

@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Chambers](README.md) (index **3**). Source: `sysex
 | Bank | Chambers (index 3) |
 | Program slot | 18 |
 | Name field | `Stone Chamber` (matches filename) |
-| Name bytes 8-87 | match filename preset (ASCII space-padded) |
+| Name region 8-87 | match filename preset (ASCII space-padded) |
 | Dump file | `Chambers.Stone Chamber.syx` |
 
 > **Not on the published sheet:** this factory dump has no row on the classic [preset sheet PDF](../../preset-sheet.md) (likely a later bank addition). Dump values only below.

@@ -1,4 +1,5 @@
 import "@/styles.css";
+import "@/styles.compat.css";
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { DebugPanel } from "@/components/DebugPanel";
 import { ControlTooltip } from "@/components/ControlTooltip";
@@ -39,6 +40,7 @@ import {
   abSlotSelectorFromState,
   abCompareSlotTooltip,
   patchAbStoreActive,
+  swapAbSlots,
 } from "@/presets/progAbSlot";
 import type { PresetCatalog } from "@/presets/types";
 import { hydrateProgramFromBytes } from "@/sysex/hydrate";
@@ -72,6 +74,7 @@ import {
 import { bootstrapAppState } from "@/app/bootstrap";
 import { resolvePresetSlotOnBankChange } from "@/app/bankChange";
 import { parseMidiReceive } from "@/app/midiReceive";
+import { resolveSendOnChange } from "@/app/sendOnChange";
 import {
   loadActiveTab,
   loadLockedFields,
@@ -276,6 +279,12 @@ export function App() {
     [abStore, recordAction, setActiveProgState],
   );
 
+  const onSwapAb = useCallback(() => {
+    setSelectedFieldId(null);
+    setAbStore((store) => (store ? swapAbSlots(store) : store));
+    recordAction("prog", "swap slots A/B");
+  }, [recordAction]);
+
   const onClearSelection = useCallback(() => {
     setSelectedFieldId(null);
     setActiveProgState((prev) => {
@@ -475,10 +484,9 @@ export function App() {
         banks,
       );
       if (!parsed) return;
+      // Mark the resulting state change as RX-originated so the send-on-change
+      // effect adopts it as a baseline instead of echoing it back to the device.
       suppressSendOnChangeRef.current = true;
-      queueMicrotask(() => {
-        suppressSendOnChangeRef.current = false;
-      });
       if (parsed.family === "prog") {
         recordAction("prog", "MIDI receive (program)");
         setAbStore((store) => {
@@ -580,28 +588,25 @@ export function App() {
   }, [debugOpen]);
 
   useEffect(() => {
-    if (suppressSendOnChangeRef.current) return;
-    if (!progState || !sysState) return;
+    const result = resolveSendOnChange({
+      suppressed: suppressSendOnChangeRef.current,
+      prevProg: prevProgStateForSendRef.current,
+      progState,
+      prevSys: prevSysStateForSendRef.current,
+      sysState,
+      transmit: midi.enabled && midi.sendOnChange,
+      progBytes: sysex.progBytes,
+      sysBytes: sysex.sysBytes,
+    });
 
-    const progChanged =
-      prevProgStateForSendRef.current !== null &&
-      progState !== prevProgStateForSendRef.current;
-    const sysChanged =
-      prevSysStateForSendRef.current !== null &&
-      sysState !== prevSysStateForSendRef.current;
-
-    prevProgStateForSendRef.current = progState;
-    prevSysStateForSendRef.current = sysState;
-
-    const transmit = midi.enabled && midi.sendOnChange;
-    if (progChanged && sysex.progBytes) {
-      if (transmit) midi.sendBytes(sysex.progBytes);
-      else midi.logDebugBytes(sysex.progBytes);
+    prevProgStateForSendRef.current = result.nextPrevProg;
+    prevSysStateForSendRef.current = result.nextPrevSys;
+    if (result.suppressionConsumed) {
+      suppressSendOnChangeRef.current = false;
     }
-    if (sysChanged && sysex.sysBytes) {
-      if (transmit) midi.sendBytes(sysex.sysBytes);
-      else midi.logDebugBytes(sysex.sysBytes);
-    }
+
+    for (const bytes of result.send) midi.sendBytes(bytes);
+    for (const bytes of result.logDebug) midi.logDebugBytes(bytes);
   }, [
     midi.enabled,
     midi.sendOnChange,
@@ -667,6 +672,7 @@ export function App() {
       const label = file instanceof File ? file.name : "import";
       if (result.family === "prog" && result.progState) {
         recordAction("prog", `import ${label}`);
+        setProgTemplate(new Uint8Array(data));
         setAbStore((store) => {
           if (!store) return store;
           return patchActiveSlotWithProgState(
@@ -679,6 +685,7 @@ export function App() {
         setActiveTab("prog");
       } else if (result.sysState) {
         recordAction("system", `import ${label}`);
+        setSysTemplate(new Uint8Array(data));
         setSysState(result.sysState);
         setActiveTab("system");
       }
@@ -701,6 +708,7 @@ export function App() {
         progSpec,
         allProgControls(progSpec),
       );
+      setProgTemplate(new Uint8Array(progBytes));
       setAbStore((store) => {
         if (!store) return store;
         return patchActiveSlotWithProgState(
@@ -712,6 +720,7 @@ export function App() {
       });
       const sysB = sysBytesFromSaved(preset);
       if (sysB) {
+        setSysTemplate(new Uint8Array(sysB));
         setSysState(hydrateSystemFromBytes(sysB, sysControls));
       } else if (preset.sys?.state) {
         setSysState(preset.sys.state);
@@ -899,6 +908,7 @@ export function App() {
                     activeAb={activeAb}
                     abTooltips={abTooltips}
                     onSelectAb={onSelectAb}
+                    onSwapAb={onSwapAb}
                   />
                   <ProgramPanel
                     groups={progGroups}
@@ -977,6 +987,7 @@ export function App() {
         timingDiscrepancies={timingDiscrepancies}
         tempoBpm={tempoBpm}
         midiLog={midi.midiLog}
+        onClearLog={midi.clearMidiLog}
         progSpec={progSpec}
         sysSpec={sysSpec}
         progControls={progControls}

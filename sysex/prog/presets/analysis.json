@@ -9,15 +9,15 @@
     "program_name": {
       "offsets": [
         8,
-        87
+        23
       ],
-      "offset_range": "8-87",
+      "offset_range": "8-23",
       "encoding": "ascii_space_padded",
-      "length": 80,
+      "length": 16,
       "matches_filename_preset": true,
       "bytes_match_count": 222,
       "bytes_mismatch_count": 0,
-      "notes": "ASCII program name only - bank name is not stored in this field. Each dump's bytes[8:88] are checked against the filename preset half, encoded as ASCII and space-padded to 80 bytes."
+      "notes": "ASCII program name (16-byte window). Bank name is not stored here. Factory preset dumps space-pad the remainder through offset 87; Reg-backed hold-EDIT dumps put a register basis blob at 24\u201387 instead. Factory validation still checks bytes[8:88] against the filename preset half, space-padded to 80 bytes."
     },
     "bank_index": {
       "offsets": [
@@ -437,7 +437,7 @@
   "name_mismatches": [],
   "hypothesis": {
     "confidence": "high",
-    "summary": "Program name bytes at offsets 8-87 match filename preset (ASCII space-padded) in 222/222 dumps. Bank index at 88-89 (nibble_hilo); mirrored at 137. Program slot within bank at 90-91 (nibble_hilo)."
+    "summary": "Program name bytes at offsets 8-23 (factory dumps also space-pad through 87) match filename preset in 222/222 dumps. Bank index at 88-89 (nibble_hilo); mirrored at 137. Program slot within bank at 90-91 (nibble_hilo)."
   },
   "dumps": [
     {

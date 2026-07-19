@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Rooms](README.md) (index **2**). Source: `sysex/pr
 | Bank | Rooms (index 2) |
 | Program slot | 30 |
 | Name field | `Studio K` (matches filename) |
-| Name bytes 8-87 | match filename preset (ASCII space-padded) |
+| Name region 8-87 | match filename preset (ASCII space-padded) |
 | Dump file | `Rooms.Studio K.syx` |
 
 > **Not on the published sheet:** this factory dump has no row on the classic [preset sheet PDF](../../preset-sheet.md) (likely a later bank addition). Dump values only below.

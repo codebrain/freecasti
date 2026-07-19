@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Plates](README.md) (index **1**). Source: `sysex/p
 | Bank | Plates (index 1) |
 | Program slot | 18 |
 | Name field | `Crystal Plate` (matches filename) |
-| Name bytes 8-87 | match filename preset (ASCII space-padded) |
+| Name region 8-87 | match filename preset (ASCII space-padded) |
 | Dump file | `Plates.Crystal Plate.syx` |
 
 > **Sheet comparison:** all printable sheet columns match the decoded dump (within tolerance).
