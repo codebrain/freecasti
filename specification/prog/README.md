@@ -103,7 +103,7 @@ See also [parameter-catalog.md](../../docs/parameter-catalog.md).
 5. **[bytes/README.md](bytes/README.md)** - sound parameters and UI/menu fields with manual descriptions; each series also has dump tables and how-to-set notes under **[bytes/](bytes/)**.
 6. **[ui-state.md](ui-state.md)** — full menu browse/edit byte tables.
 7. **[bytes/display.md](bytes/display.md)** — Display (`nibble_hilo` @ 146–147).
-8. **[byte-map-overview.md](byte-map-overview.md)** / **[byte-map.md](byte-map.md)** - consolidated layout, then full detail.
+8. **[byte-map-overview.md](byte-map-overview.md)** / **[byte-map.md](byte-map.md)** - full regions table.
 9. Each **[bytes/](bytes/README.md)** page ends with an **Unseen values** section — documented/possible values not yet witnessed (encoding rows, wire nibbles, display positions).
 10. **[m7_program_dump.ksy](m7_program_dump.ksy)** / **[m7_program_dump.spec.json](m7_program_dump.spec.json)** - Kaitai Struct layout + machine schema for codegen.
 11. **[cross.md](cross.md)** - stable bytes, conflicts, coverage gaps across series.

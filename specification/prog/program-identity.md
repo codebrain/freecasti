@@ -7,7 +7,7 @@ _Generated 2026-07-19. Source folder: `sysex/prog/presets/` (222 dumps named `<b
 
 **Confidence:** high
 
-Program name bytes at offsets 8-23 (factory dumps also space-pad through 87) match filename preset in 222/222 dumps. Bank index at 88-89 (nibble_hilo); mirrored at 137. Program slot within bank at 90-91 (nibble_hilo).
+Program name at offsets 8-21 (14-char editable; pad 22-23; factory dumps also space-pad through 87) match filename preset in 222/222 dumps. Bank index at 88-89 (nibble_hilo); mirrored at 137. Program slot within bank at 90-91 (nibble_hilo).
 
 Decoded parameters: **[presets/](presets/)** (bank pages + [presets.json](presets/presets.json)).
 
@@ -15,7 +15,7 @@ Published-sheet comparison: **[preset-sheet.md](preset-sheet.md)** (8 hard / 3 s
 
 ## Fields
 
-- **Program name** offsets **8-23** (`ascii_space_padded`). Filename check: 222/222 dumps match (mismatch count 0). ASCII program name: 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded. Bank name is not stored here. Factory preset dumps space-pad the remainder through offset 87; Reg-backed hold-EDIT dumps put a register basis blob at 24–87 instead. Factory validation still checks bytes[8:88] against the filename preset half, space-padded to 80 bytes.
+- **Program name** offsets **8-21** (`ascii_space_padded`). Filename check: 222/222 dumps match (mismatch count 0). ASCII program name: 14-character editable label (manual) at offsets 8–21; trailing pad at 22–23 completes the 16-byte wire window. Bank name is not stored here. Factory preset dumps space-pad the remainder through offset 87; Reg-backed hold-EDIT dumps put a register basis blob at 24–87 instead. Factory validation still checks bytes[8:88] against the filename preset half, space-padded to 80 bytes.
 - **Bank index** offsets **88-89** (`nibble_hilo`). Factory/user bank select. Low nibble at offset 89 carries the index in this corpus (offset 88 stayed 00). Offset 137 always equals offset 89.
 - **Program slot** offsets **90-91** (`nibble_hilo`). Slot within the current bank (not a global program number). Halls samples: Large Hall=0, Medium Hall=1, Small Hall=2, Large & Near=3 (factory list order). Rooms uses contiguous slots 0–35 (Long Wood Room at 35).
 

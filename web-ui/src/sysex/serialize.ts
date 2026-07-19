@@ -58,7 +58,7 @@ export function buildProgramDump(
 
   for (const field of fields) {
     if (field.kind === "checksum" || field.kind === "frame") continue;
-    if (field.id === "program_name" || field.id === "register_basis_blob") continue;
+    if (field.id === "program_name" || field.id === "program_name_pad" || field.id === "register_basis_blob") continue;
     const val = state.encoded[field.id];
     if (val === undefined) continue;
     patchField(buf, field, val);

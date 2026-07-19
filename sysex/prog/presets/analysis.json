@@ -9,15 +9,16 @@
     "program_name": {
       "offsets": [
         8,
-        23
+        21
       ],
-      "offset_range": "8-23",
+      "offset_range": "8-21",
       "encoding": "ascii_space_padded",
-      "length": 16,
+      "length": 14,
+      "wire_window_length": 16,
       "matches_filename_preset": true,
       "bytes_match_count": 222,
       "bytes_mismatch_count": 0,
-      "notes": "ASCII program name: 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded. Bank name is not stored here. Factory preset dumps space-pad the remainder through offset 87; Reg-backed hold-EDIT dumps put a register basis blob at 24\u201387 instead. Factory validation still checks bytes[8:88] against the filename preset half, space-padded to 80 bytes."
+      "notes": "ASCII program name: 14-character editable label (manual) at offsets 8\u201321; trailing pad at 22\u201323 completes the 16-byte wire window. Bank name is not stored here. Factory preset dumps space-pad the remainder through offset 87; Reg-backed hold-EDIT dumps put a register basis blob at 24\u201387 instead. Factory validation still checks bytes[8:88] against the filename preset half, space-padded to 80 bytes."
     },
     "bank_index": {
       "offsets": [
@@ -437,7 +438,7 @@
   "name_mismatches": [],
   "hypothesis": {
     "confidence": "high",
-    "summary": "Program name bytes at offsets 8-23 (factory dumps also space-pad through 87) match filename preset in 222/222 dumps. Bank index at 88-89 (nibble_hilo); mirrored at 137. Program slot within bank at 90-91 (nibble_hilo)."
+    "summary": "Program name at offsets 8-21 (14-char editable; pad 22-23; factory dumps also space-pad through 87) match filename preset in 222/222 dumps. Bank index at 88-89 (nibble_hilo); mirrored at 137. Program slot within bank at 90-91 (nibble_hilo)."
   },
   "dumps": [
     {

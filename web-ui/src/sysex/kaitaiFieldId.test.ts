@@ -4,6 +4,7 @@ import { specIdToParserKey } from "@/sysex/kaitaiFieldId";
 describe("specIdToParserKey", () => {
   it("maps snake_case ids to Kaitai JavaScript property names", () => {
     expect(specIdToParserKey("program_name")).toBe("programName");
+    expect(specIdToParserKey("program_name_pad")).toBe("programNamePad");
     expect(specIdToParserKey("register_bank")).toBe("registerBank");
     expect(specIdToParserKey("register")).toBe("register");
     expect(specIdToParserKey("display")).toBe("display");

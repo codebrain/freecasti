@@ -24,6 +24,7 @@ _RUNTIME_FIELD_KEYS = (
 _IDENTITY_FIELD_IDS = frozenset(
     {
         "program_name",
+        "program_name_pad",
         "register_basis_blob",
         "bank_index",
         "program_slot",

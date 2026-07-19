@@ -3,7 +3,7 @@
 
 # Program dump bytes
 
-Documented **program dump** payload fields: the 18 front-panel sound parameters (in menu order) plus UI/menu bytes such as the LCD cursor. Sound-parameter descriptions are from the owner's manual and V2 addendum (hint only — dumps on your unit are authoritative). Each row links to a page with encoding tables when captures exist.
+Documented **program dump** payload fields: the 18 front-panel sound parameters (in menu order), identity/register bytes, and UI/menu bytes such as the LCD cursor. Sound-parameter descriptions are from the owner's manual and V2 addendum (hint only — dumps on your unit are authoritative). Each row links to a page with encoding tables when captures exist.
 
 | Parameter | SysEx (offsets · encoding · confidence) | Description |
 |-----------|----------------------------------------|-------------|
@@ -26,6 +26,10 @@ Documented **program dump** payload fields: the 18 front-panel sound parameters 
 | [Delay Time](delay-time.md) | `134-135` · `nibble_hilo` · high | Delay time for a diffused set of eight voices spread in time (controlled as a single delay). Adds coloration and a late swell to the late reverb. |
 | [Delay Modulation](delay-modulation.md) | `139` · `raw_u8` · high | Modulates the delay voices only (not the reverb), similar in character to reverb Modulation: low settings are slower and more shallow; higher settings are more random and deeper. |
 | [Display](display.md) | `146-147` · `nibble_hilo` · high | LCD cursor / edit-display position in the program dump (not a sound parameter). Captured under `sysex/prog/menus/`. |
+| [Program name](program-name.md) | `8-21` · `ascii_space_padded` · high | 14-character editable ASCII program/register label (manual); space-padded within offsets 8–21. |
+| [Program name pad](program-name-pad.md) | `22-23` · `raw_bytes` · high | Trailing space pad (`20 20`) completing the 16-byte wire name window. |
+| [Register bank](register-bank.md) | `93` · `raw_u8` · high | User Registers Bank (manual B0–B4) when the dump basis is a register; see `sysex/prog/edit/registers/`. |
+| [Register](register.md) | `95` · `raw_u8` · high | User Register number within bank (manual 0–9) when the dump basis is a register. |
 
 _Last exported: 2026-07-19_
 

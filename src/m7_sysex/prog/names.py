@@ -15,6 +15,7 @@ from ..frame import (
     CHECKSUM_NIBBLE_COUNT,
     NAME_LENGTH,
     NAME_OFFSET,
+    PROGRAM_NAME_EDITABLE_LENGTH,
     PROGRAM_NAME_LENGTH,
     parse_sysex,
 )
@@ -401,8 +402,12 @@ def analyze_names_folder(folder: Path) -> dict[str, Any]:
 
     matched = sum(1 for d in dumps if d.get("name_bytes_match"))
     summary_parts = [
-        f"Program name bytes at offsets {NAME_OFFSET}-{NAME_OFFSET + PROGRAM_NAME_LENGTH - 1} "
-        f"(factory dumps also space-pad through {NAME_OFFSET + NAME_LENGTH - 1}) "
+        f"Program name at offsets {NAME_OFFSET}-"
+        f"{NAME_OFFSET + PROGRAM_NAME_EDITABLE_LENGTH - 1} "
+        f"({PROGRAM_NAME_EDITABLE_LENGTH}-char editable; pad "
+        f"{NAME_OFFSET + PROGRAM_NAME_EDITABLE_LENGTH}-"
+        f"{NAME_OFFSET + PROGRAM_NAME_LENGTH - 1}; factory dumps also "
+        f"space-pad through {NAME_OFFSET + NAME_LENGTH - 1}) "
         f"match filename preset in {matched}/{len(dumps)} dumps.",
         f"Bank index at {BANK_WORD_OFFSETS[0]}-{BANK_WORD_OFFSETS[1]} "
         f"(nibble_hilo); mirrored at {BANK_MIRROR_OFFSET}.",
@@ -427,21 +432,29 @@ def analyze_names_folder(folder: Path) -> dict[str, Any]:
         "naming_convention": "<bank name>.<preset name>.syx",
         "fields": {
             "program_name": {
-                "offsets": name_offsets[:1] + [name_offsets[-1]],
-                "offset_range": f"{NAME_OFFSET}-{NAME_OFFSET + PROGRAM_NAME_LENGTH - 1}",
+                "offsets": [
+                    NAME_OFFSET,
+                    NAME_OFFSET + PROGRAM_NAME_EDITABLE_LENGTH - 1,
+                ],
+                "offset_range": (
+                    f"{NAME_OFFSET}-"
+                    f"{NAME_OFFSET + PROGRAM_NAME_EDITABLE_LENGTH - 1}"
+                ),
                 "encoding": "ascii_space_padded",
-                "length": PROGRAM_NAME_LENGTH,
+                "length": PROGRAM_NAME_EDITABLE_LENGTH,
+                "wire_window_length": PROGRAM_NAME_LENGTH,
                 "matches_filename_preset": name_ok,
                 "bytes_match_count": matched,
                 "bytes_mismatch_count": len(name_mismatches),
                 "notes": (
-                    "ASCII program name: 16-byte wire window with 14-character "
-                    "editable label (manual); trailing two bytes space-padded. "
-                    "Bank name is not stored here. Factory preset dumps "
-                    "space-pad the remainder through offset 87; Reg-backed "
-                    "hold-EDIT dumps put a register basis blob at 24–87 "
-                    "instead. Factory validation still checks bytes[8:88] "
-                    "against the filename preset half, space-padded to 80 bytes."
+                    "ASCII program name: 14-character editable label (manual) "
+                    "at offsets 8–21; trailing pad at 22–23 completes the "
+                    "16-byte wire window. Bank name is not stored here. "
+                    "Factory preset dumps space-pad the remainder through "
+                    "offset 87; Reg-backed hold-EDIT dumps put a register "
+                    "basis blob at 24–87 instead. Factory validation still "
+                    "checks bytes[8:88] against the filename preset half, "
+                    "space-padded to 80 bytes."
                 ),
             },
             "bank_index": {

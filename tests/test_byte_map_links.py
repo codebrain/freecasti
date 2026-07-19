@@ -27,6 +27,10 @@ def test_overview_links_parameters_and_identity():
     assert "[delay level](bytes/delay-level.md)" in md
     assert "[bank index](program-identity.md)" in md
     assert "[display](bytes/display.md)" in md
+    assert "[program name (ASCII)](bytes/program-name.md)" in md
+    assert "[program name pad](bytes/program-name-pad.md)" in md
+    assert "[register bank](bytes/register-bank.md)" in md
+    assert "[register](bytes/register.md)" in md
     assert "bytes/display.md)" in md
     assert "[_presets](program-identity.md)" in md
     # Plain names should not remain unlinked in the parameter index.

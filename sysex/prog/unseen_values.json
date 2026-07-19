@@ -5180,7 +5180,7 @@
     {
       "offset": 8,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5211,7 +5211,7 @@
     {
       "offset": 9,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5239,7 +5239,7 @@
     {
       "offset": 10,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5273,7 +5273,7 @@
     {
       "offset": 11,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5308,7 +5308,7 @@
     {
       "offset": 12,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5345,7 +5345,7 @@
     {
       "offset": 13,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5380,7 +5380,7 @@
     {
       "offset": 14,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5425,7 +5425,7 @@
     {
       "offset": 15,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5471,7 +5471,7 @@
     {
       "offset": 16,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5511,7 +5511,7 @@
     {
       "offset": 17,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5547,7 +5547,7 @@
     {
       "offset": 18,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5581,7 +5581,7 @@
     {
       "offset": 19,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5612,7 +5612,7 @@
     {
       "offset": 20,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5636,7 +5636,7 @@
     {
       "offset": 21,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5656,7 +5656,7 @@
     {
       "offset": 22,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name trailing pad (always `0x20` in this corpus; offsets 22\u201323 complete the 16-byte wire name window)",
       "parameters": [],
       "encoding": null,
       "observed_values": [
@@ -5667,7 +5667,7 @@
     {
       "offset": 23,
       "status": "frame",
-      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name trailing pad (always `0x20` in this corpus; offsets 22\u201323 complete the 16-byte wire name window)",
       "parameters": [],
       "encoding": null,
       "observed_values": [

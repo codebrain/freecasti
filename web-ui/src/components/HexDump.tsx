@@ -15,7 +15,6 @@ export function HexDump({
     <HighlightedHex
       data={data}
       highlightOffsets={highlightOffsets}
-      collapseSpaceRuns={false}
       className={`overflow-visible opacity-90 ${className}`}
     />
   );

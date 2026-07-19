@@ -35,12 +35,17 @@ seq:
     contents: [0x70, 0x08, 0x01, 0x00]
   - id: program_name
     doc: |
-      Program name (ASCII): 16-byte wire window with 14-character editable
-      label (manual); trailing two bytes space-padded - confirmed against
-      sysex/_presets/ file...
+      Program name (ASCII, 14-character editable label per manual;
+      space-padded within this field) - confirmed against sysex/_presets/
+      filename preset (bank name i...
     type: str
-    size: 16
+    size: 14
     encoding: ASCII
+  - id: program_name_pad
+    doc: |
+      Program name trailing pad (always `0x20` in this corpus; offsets 22–23
+      complete the 16-byte wire name window)
+    size: 2
   - id: register_basis_blob
     doc: |
       Register basis blob (`raw_bytes`): factory dumps space-pad with `0x20`;

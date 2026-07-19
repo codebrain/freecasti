@@ -66,3 +66,13 @@ def test_export_writes_parameters_readme(tmp_path):
     text = readme.read_text(encoding="utf-8")
     assert "**Bytes**" in text
     assert "Reverb Time" in text
+    assert "Register bank" in text
+    assert "Program name" in text
+    bytes_dir = tmp_path / "sysex-format" / "prog" / "bytes"
+    for name in (
+        "program-name.md",
+        "program-name-pad.md",
+        "register-bank.md",
+        "register.md",
+    ):
+        assert (bytes_dir / name).is_file(), name

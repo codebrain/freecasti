@@ -16,6 +16,7 @@ from ..frame import (
     DATA_OFFSET,
     NAME_OFFSET,
     PROGRAM_DUMP_HEADER,
+    PROGRAM_NAME_EDITABLE_LENGTH,
     PROGRAM_NAME_LENGTH,
     REGISTER_BASIS_BLOB_LENGTH,
     REGISTER_BASIS_BLOB_OFFSET,
@@ -165,8 +166,8 @@ def build_byte_map(
         annotations[i]["hex_source"] = "frame constant"
 
     name_role = (
-        "Program name (ASCII): 16-byte wire window with 14-character editable "
-        "label (manual); trailing two bytes space-padded"
+        "Program name (ASCII, 14-character editable label per manual; "
+        "space-padded within this field)"
     )
     if names and (names.get("fields") or {}).get("program_name", {}).get(
         "matches_filename_preset"
@@ -176,9 +177,26 @@ def build_byte_map(
             "(bank name is not stored here)"
         )
     claim(
-        list(range(NAME_OFFSET, NAME_OFFSET + PROGRAM_NAME_LENGTH)),
+        list(range(NAME_OFFSET, NAME_OFFSET + PROGRAM_NAME_EDITABLE_LENGTH)),
         status="frame",
         role=name_role,
+        example=frame_example,
+        example_source=str(frame_example_path) if frame_example_path else None,
+    )
+    claim(
+        list(
+            range(
+                NAME_OFFSET + PROGRAM_NAME_EDITABLE_LENGTH,
+                NAME_OFFSET + PROGRAM_NAME_LENGTH,
+            )
+        ),
+        status="frame",
+        role=(
+            "Program name trailing pad (always `0x20` in this corpus; "
+            f"offsets {NAME_OFFSET + PROGRAM_NAME_EDITABLE_LENGTH}–"
+            f"{NAME_OFFSET + PROGRAM_NAME_LENGTH - 1} complete the "
+            f"{PROGRAM_NAME_LENGTH}-byte wire name window)"
+        ),
         example=frame_example,
         example_source=str(frame_example_path) if frame_example_path else None,
     )
@@ -462,8 +480,11 @@ _IDENTITY_FIELD_HREFS = {
     "bank index": "program-identity.md",
     "bank index mirror": "program-identity.md",
     "program slot": "program-identity.md",
-    "program name": "program-identity.md",
-    "program name (ASCII)": "program-identity.md",
+    "program name": "bytes/program-name.md",
+    "program name (ASCII)": "bytes/program-name.md",
+    "program name pad": "bytes/program-name-pad.md",
+    "register bank": "bytes/register-bank.md",
+    "register": "bytes/register.md",
     "display": "bytes/display.md",
 }
 
@@ -575,7 +596,7 @@ def _linkify_meaning(text: str, series_params: set[str]) -> str:
 
 
 def render_byte_map_markdown(byte_map: dict[str, Any]) -> str:
-    """Markdown sections: region summary + full per-byte table."""
+    """Markdown region summary for the full program-dump layout."""
     counts = byte_map["counts"]
     series_params = _series_parameter_names(byte_map)
     lines: list[str] = [
@@ -614,30 +635,6 @@ def render_byte_map_markdown(byte_map: dict[str, Any]) -> str:
             f"| {region['offsets']} | {region['length']} | "
             f"{example} | {region['status']} | {meaning} |"
         )
-
-    lines.extend(
-        [
-            "",
-            "### Per-byte map",
-            "",
-            "| Offset | Hex | Source | Status | Meaning |",
-            "|--------|-----|--------|--------|---------|",
-        ]
-    )
-    for cell in byte_map["bytes"]:
-        meaning = cell["role"]
-        if cell.get("parameters") and cell["status"] == "secondary":
-            meaning += (
-                f" (moved in independent series: {', '.join(cell['parameters'])})"
-            )
-        elif cell.get("confidence") and cell["status"] == "known":
-            meaning += f" [{cell['confidence']}]"
-        meaning = _linkify_meaning(meaning, series_params)
-        hex_val = f"`{cell['hex']}`" if cell.get("hex") else "-"
-        source = cell.get("hex_source") or "-"
-        lines.append(
-            f"| {cell['offset']} | {hex_val} | {source} | {cell['status']} | {meaning} |"
-        )
     lines.append("")
     return "\n".join(lines)
 
@@ -657,7 +654,7 @@ def render_byte_map_overview_markdown(byte_map: dict[str, Any]) -> str:
         f"secondary **{counts['secondary']}** · "
         f"unknown **{counts['unknown']}**.",
         "",
-        "Full regions + per-byte table: [byte-map.md](byte-map.md).",
+        "Full regions table: [byte-map.md](byte-map.md).",
         "",
         "Codegen layout: [m7_program_dump.ksy](m7_program_dump.ksy) "
         "([Kaitai Struct](https://kaitai.io/)) · "
@@ -847,6 +844,8 @@ def _overview_label(
         return "program slot", encoding or "nibble_hilo"
     if "register basis" in lowered:
         return "register basis blob", encoding or "raw_bytes"
+    if "trailing pad" in lowered or "name trailing" in lowered:
+        return "program name pad", None
     if "program name" in lowered:
         return "program name", None
     return role.split("(")[0].strip() or "known", encoding
@@ -862,6 +861,8 @@ def _short_frame_label(role: str) -> str:
         return "program-dump header"
     if "register basis" in lowered:
         return "register basis blob"
+    if "trailing pad" in lowered or "name trailing" in lowered:
+        return "program name pad"
     if "program name" in lowered or "space-padded" in lowered:
         return "program name (ASCII)"
     if "sysEx end" in role or "sysex end" in lowered:

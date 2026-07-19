@@ -287,6 +287,15 @@ def export_sysex_format(
             encoding="utf-8",
         )
 
+    from .identity_bytes import IDENTITY_BYTE_PAGES
+
+    for meta in IDENTITY_BYTE_PAGES:
+        render = meta["render"]
+        parameter_page_path(output_dir, meta["folder"]).write_text(
+            render(today=today, nav=_page_nav(depth=1)),
+            encoding="utf-8",
+        )
+
     return overview_path
 
 
@@ -582,7 +591,7 @@ def _render_overview(
             "7. **[bytes/display.md](bytes/display.md)** — "
             "Display (`nibble_hilo` @ 146–147).",
             "8. **[byte-map-overview.md](byte-map-overview.md)** / "
-            "**[byte-map.md](byte-map.md)** - consolidated layout, then full detail.",
+            "**[byte-map.md](byte-map.md)** - full regions table.",
             "9. Each **[bytes/](bytes/README.md)** page ends with an "
             "**Unseen values** section — documented/possible values not yet "
             "witnessed (encoding rows, wire nibbles, display positions).",

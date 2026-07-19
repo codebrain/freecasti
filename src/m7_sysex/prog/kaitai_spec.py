@@ -137,10 +137,17 @@ def build_program_dump_spec(
         elif start == 4 and size == 4:
             field["contents"] = list(PROGRAM_DUMP_HEADER)
             field["id"] = _force_id("program_dump_header", used_ids, field_id)
-        elif start == NAME_OFFSET and size == PROGRAM_NAME_LENGTH:
+        elif start == NAME_OFFSET and size == PROGRAM_NAME_EDITABLE_LENGTH:
             field["kind"] = "string"
             field["encoding"] = "ascii_space_padded"
             field["id"] = _force_id("program_name", used_ids, field_id)
+        elif (
+            start == NAME_OFFSET + PROGRAM_NAME_EDITABLE_LENGTH
+            and size == PROGRAM_NAME_LENGTH - PROGRAM_NAME_EDITABLE_LENGTH
+        ):
+            field["kind"] = "meta"
+            field["encoding"] = "raw_bytes"
+            field["id"] = _force_id("program_name_pad", used_ids, field_id)
         elif (
             start == REGISTER_BASIS_BLOB_OFFSET
             and size == REGISTER_BASIS_BLOB_LENGTH
@@ -205,14 +212,20 @@ def build_program_dump_spec(
             "program_dump_header": list(PROGRAM_DUMP_HEADER),
             "program_name": {
                 "offset": NAME_OFFSET,
-                "length": PROGRAM_NAME_LENGTH,
-                "editable_length": PROGRAM_NAME_EDITABLE_LENGTH,
+                "length": PROGRAM_NAME_EDITABLE_LENGTH,
+                "wire_window_length": PROGRAM_NAME_LENGTH,
                 "encoding": "ascii_space_padded",
                 "doc": (
-                    f"{PROGRAM_NAME_LENGTH}-byte wire window; "
                     f"{PROGRAM_NAME_EDITABLE_LENGTH}-character editable label "
-                    "(manual); trailing two bytes are space pad"
+                    f"(manual) inside a {PROGRAM_NAME_LENGTH}-byte wire window; "
+                    "trailing two bytes are program_name_pad"
                 ),
+            },
+            "program_name_pad": {
+                "offset": NAME_OFFSET + PROGRAM_NAME_EDITABLE_LENGTH,
+                "length": PROGRAM_NAME_LENGTH - PROGRAM_NAME_EDITABLE_LENGTH,
+                "encoding": "raw_bytes",
+                "doc": "Trailing space pad completing the 16-byte wire name window",
             },
             "register_basis_blob": {
                 "offset": REGISTER_BASIS_BLOB_OFFSET,

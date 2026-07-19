@@ -126,12 +126,26 @@ def build_prog_parameters_readme(
             }
         )
 
+    from .identity_bytes import IDENTITY_BYTE_PAGES
+
+    for meta in IDENTITY_BYTE_PAGES:
+        rows.append(
+            {
+                "name": meta["name"],
+                "slug": meta["slug"],
+                "sysex": meta["sysex"],
+                "description": meta["description"],
+                "has_page": True,
+            }
+        )
+
     intro = (
         "Documented **program dump** payload fields: the 18 front-panel sound "
-        "parameters (in menu order) plus UI/menu bytes such as the LCD cursor. "
-        "Sound-parameter descriptions are from the owner's manual and V2 addendum "
-        "(hint only — dumps on your unit are authoritative). Each row links to a "
-        "page with encoding tables when captures exist."
+        "parameters (in menu order), identity/register bytes, and UI/menu bytes "
+        "such as the LCD cursor. Sound-parameter descriptions are from the "
+        "owner's manual and V2 addendum (hint only — dumps on your unit are "
+        "authoritative). Each row links to a page with encoding tables when "
+        "captures exist."
     )
     footer = (
         "Printed ranges and UI labels may differ from this unit's captures "

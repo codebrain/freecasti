@@ -1,24 +1,22 @@
 import { describe, expect, it } from "vitest";
+import { renderToStaticMarkup } from "react-dom/server";
+import { createElement } from "react";
 
-import { tokenizeHexOffsets } from "./HighlightedHex";
+import { HighlightedHex } from "./HighlightedHex";
 
-describe("tokenizeHexOffsets", () => {
-  it("collapses long ASCII space runs", () => {
+describe("HighlightedHex", () => {
+  it("renders every byte including ASCII spaces", () => {
     const data = new Uint8Array([0x41, 0x20, 0x20, 0x20, 0x20, 0x42]);
-    expect(tokenizeHexOffsets(data, [0, 1, 2, 3, 4, 5])).toEqual([
-      { kind: "byte", index: 0 },
-      { kind: "space_run", indices: [1, 2, 3, 4] },
-      { kind: "byte", index: 5 },
-    ]);
-  });
-
-  it("keeps short space runs expanded", () => {
-    const data = new Uint8Array([0x41, 0x20, 0x20, 0x42]);
-    expect(tokenizeHexOffsets(data, [0, 1, 2, 3])).toEqual([
-      { kind: "byte", index: 0 },
-      { kind: "byte", index: 1 },
-      { kind: "byte", index: 2 },
-      { kind: "byte", index: 3 },
-    ]);
+    const html = renderToStaticMarkup(
+      createElement(HighlightedHex, {
+        data,
+        offsets: [0, 1, 2, 3, 4, 5],
+      }),
+    );
+    expect(html).toContain("41");
+    expect(html).toContain("20");
+    expect(html).toContain("42");
+    expect(html).not.toContain("(...)");
+    expect((html.match(/20/g) ?? []).length).toBeGreaterThanOrEqual(4);
   });
 });
