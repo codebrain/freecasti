@@ -10,6 +10,8 @@ Usage:
     python run.py sheet           # compare _presets to sheet JSON
     python run.py sheet --refresh # re-parse PDF into sheet JSON
     python run.py inventory       # preset inventory summary
+    python run.py decode dump.syx # decode one dump to a summary / JSON
+    python run.py encode doc.json out.syx
     python run.py -h
 
 Adds ``src/`` to ``sys.path`` and chdirs to the repo root so default

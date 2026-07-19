@@ -11,7 +11,6 @@ import {
   type ProgAbStore,
 } from "@/presets/progAbSlot";
 import type { PresetCatalog } from "@/presets/types";
-import type { ProgSerializeState } from "@/sysex/serialize";
 import type { StorageLike } from "@/presets/userPresets";
 import {
   loadRestoredProgState,

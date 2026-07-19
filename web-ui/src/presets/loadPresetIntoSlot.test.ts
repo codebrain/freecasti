@@ -99,9 +99,6 @@ function storeWithLockedReverbTime(
 describe("loadPresetIntoSlot", () => {
   it("patchActiveSlotWithFactoryPreset keeps locked fields on catalog preset change", () => {
     const { catalog, banks, map } = fixtureCatalog();
-    const largeHall = catalog.presets.find(
-      (p) => p.bank === "Halls" && p.preset === "Large Hall",
-    )!;
     const smallHall = catalog.presets.find(
       (p) => p.bank === "Halls" && p.preset === "Small Hall",
     )!;

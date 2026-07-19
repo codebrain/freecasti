@@ -7,9 +7,58 @@ import json
 import shutil
 from pathlib import Path
 
+from m7_sysex import frame
 from m7_sysex.prog.algorithms import PROG_ALGORITHM_CONSTRAINTS
 from m7_sysex.prog.menus import hardware_menu_order
 from m7_sysex.prog.register_blob import runtime_reg_blob
+
+# Program-dump UI/edit byte offsets mirrored by web-ui/src/prog/uiState.ts.
+PROG_UI_STATE_OFFSETS = (92, 98, 99, 146, 147)
+
+
+def build_protocol_constants() -> dict:
+    """Single source of truth for protocol constants duplicated in TS.
+
+    Mirrored by ``web-ui/src/sysex/frame.ts`` and ``web-ui/src/prog/uiState.ts``;
+    the vitest ``protocolConstants.test.ts`` asserts the TS copies match.
+    """
+    prog_checksum_start = (
+        frame.PROGRAM_MESSAGE_LENGTH - 1 - frame.CHECKSUM_NIBBLE_COUNT
+    )
+    return {
+        "sysex_start": frame.SYSEX_START,
+        "sysex_end": frame.SYSEX_END,
+        "manufacturer_id": list(frame.BRICASTI_MFR_ID),
+        "program_dump_header": list(frame.PROGRAM_DUMP_HEADER),
+        "system_dump_header": list(frame.SYSTEM_DUMP_HEADER),
+        "name_offset": frame.NAME_OFFSET,
+        "program_name_length": frame.PROGRAM_NAME_LENGTH,
+        "program_name_editable_length": frame.PROGRAM_NAME_EDITABLE_LENGTH,
+        "register_basis_blob_offset": frame.REGISTER_BASIS_BLOB_OFFSET,
+        "register_basis_blob_length": frame.REGISTER_BASIS_BLOB_LENGTH,
+        "name_region_length": frame.NAME_REGION_LENGTH,
+        "data_offset": frame.DATA_OFFSET,
+        "program_message_length": frame.PROGRAM_MESSAGE_LENGTH,
+        "system_payload_offset": frame.SYSTEM_PAYLOAD_OFFSET,
+        "system_message_length": frame.SYSTEM_MESSAGE_LENGTH,
+        "system_checksum_cover_start": frame.SYSTEM_CHECKSUM_COVER_START,
+        "system_checksum_cover_end": frame.SYSTEM_CHECKSUM_COVER_END,
+        "checksum_nibble_count": frame.CHECKSUM_NIBBLE_COUNT,
+        "checksum_cover_start": frame.CHECKSUM_COVER_START,
+        "prog_checksum_offsets": list(
+            range(
+                prog_checksum_start,
+                prog_checksum_start + frame.CHECKSUM_NIBBLE_COUNT,
+            )
+        ),
+        "system_checksum_offsets": list(
+            range(
+                frame.SYSTEM_CHECKSUM_COVER_END,
+                frame.SYSTEM_CHECKSUM_COVER_END + frame.CHECKSUM_NIBBLE_COUNT,
+            )
+        ),
+        "prog_ui_state_offsets": list(PROG_UI_STATE_OFFSETS),
+    }
 
 _RUNTIME_FIELD_KEYS = (
     "id",
@@ -251,6 +300,12 @@ def sync_web_ui_assets(repo_root: Path) -> list[Path]:
     param_manifest_path = gen_dir / "param-manifest.json"
     param_manifest_path.write_text(_compact_json(param_manifest), encoding="utf-8")
     written.append(param_manifest_path)
+
+    protocol_path = gen_dir / "protocol-constants.json"
+    protocol_path.write_text(
+        json.dumps(build_protocol_constants(), indent=2) + "\n", encoding="utf-8"
+    )
+    written.append(protocol_path)
 
     _prune_legacy_public(public)
 

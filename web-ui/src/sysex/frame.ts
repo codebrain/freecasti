@@ -26,6 +26,15 @@ export const SYSTEM_CHECKSUM_COVER_END = 72;
 export const CHECKSUM_NIBBLE_COUNT = 4;
 export const CHECKSUM_COVER_START = NAME_OFFSET;
 
+const checksumOffsets = (start: number): readonly number[] =>
+  Array.from({ length: CHECKSUM_NIBBLE_COUNT }, (_, i) => start + i);
+
+/** Trailing checksum nibble offsets (152–155 for prog, 72–75 for system). */
+export const PROG_CHECKSUM_OFFSETS = checksumOffsets(
+  PROGRAM_MESSAGE_LENGTH - 1 - CHECKSUM_NIBBLE_COUNT,
+);
+export const SYS_CHECKSUM_OFFSETS = checksumOffsets(SYSTEM_CHECKSUM_COVER_END);
+
 export function crc16Arc(data: Uint8Array | number[]): number {
   let crc = 0x0000;
   for (const byte of data) {

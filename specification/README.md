@@ -10,7 +10,7 @@ _Last exported: 2026-07-20_
 
 - [Program dumps](prog/README.md) — 157-byte program dumps, 18 sound parameters, 222 factory presets, byte map, Kaitai spec
 - [System dumps](system/README.md) — 77-byte system / I/O dumps, 8 captured settings
-- [Open questions](open-items.md) — tracked unknowns and follow-ups (8 items)
+- [Open questions](open-items.md) — tracked unknowns and follow-ups (7 items)
 
 ## Coverage
 

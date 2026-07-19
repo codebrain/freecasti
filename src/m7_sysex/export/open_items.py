@@ -22,19 +22,23 @@ PROG_OPEN_ITEMS_CORE: list[str] = [
     ),
     "Semantics of PROG header bytes `70 08 01 00`",
     (
-        "Register basis blob **24–87** is fully decoded — complete 6-bit name "
-        "charset, per-register store counter, all 18 parameters incl. the "
-        "delay block at bits **197–211**; snapshots stored register values; "
-        "offsets **93/95** track the *loaded* register basis (see "
-        "`sysex/prog/edit/registers/README.md`)"
-    ),
-    (
         "**Favorites**-based PROG dumps (bank **119**); Halls 2 subtype EDIT "
         "outlier; reserved offset **96**"
     ),
     (
         "Closed-form mapping for table parameters (see medium-confidence rows "
         "in the parameter index)"
+    ),
+]
+
+# Resolved questions kept for context (not counted as open).
+PROG_RESOLVED_ITEMS: list[str] = [
+    (
+        "Register basis blob **24–87** is fully decoded — complete 6-bit name "
+        "charset, per-register store counter, all 18 parameters incl. the "
+        "delay block at bits **197–211**; snapshots stored register values; "
+        "offsets **93/95** track the *loaded* register basis (see "
+        "`sysex/prog/edit/registers/README.md`)"
     ),
 ]
 
@@ -69,6 +73,9 @@ def render_open_items_markdown(
     lines.extend(["", "## System dumps", ""])
     for i, item in enumerate(SYSTEM_OPEN_ITEMS, start=1):
         lines.append(f"{i}. {item}")
+    lines.extend(["", "## Resolved", ""])
+    for item in PROG_RESOLVED_ITEMS:
+        lines.append(f"- {item}")
     lines.append("")
     return "\n".join(lines)
 

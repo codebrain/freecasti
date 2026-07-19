@@ -29,7 +29,7 @@ export interface ProgUiRuntime {
   by_parameter: Record<string, ProgUiParameterEntry>;
 }
 
-const UI_OFFSETS = ["92", "98", "99", "146", "147"] as const;
+export const UI_OFFSETS = ["92", "98", "99", "146", "147"] as const;
 
 function writeUiMap(buf: Uint8Array, map: ProgUiByteMap): void {
   for (const key of UI_OFFSETS) {

@@ -66,6 +66,11 @@ python -m m7_sysex export
 python run.py analyze sysex
 python run.py analyze "sysex/prog/parameters/predelay"
 
+# Decode any M7 dump to a summary or JSON, rebuild it back to .syx
+python run.py decode "my-dump.syx"
+python run.py decode "my-dump.syx" --json -o decoded.json
+python run.py encode decoded.json rebuilt.syx
+
 # Preset inventory only
 python run.py inventory
 

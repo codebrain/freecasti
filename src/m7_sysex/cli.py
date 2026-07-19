@@ -180,6 +180,42 @@ def main(argv: list[str] | None = None) -> int:
         help="Print report only; do not write preset-sheet.md",
     )
 
+    decode_p = sub.add_parser(
+        "decode",
+        help="Decode one .syx dump (program or system) to JSON / summary",
+    )
+    decode_p.add_argument(
+        "file",
+        type=Path,
+        help="A .syx file holding one or more M7 dumps",
+    )
+    decode_p.add_argument(
+        "--json",
+        action="store_true",
+        help="Print full JSON to stdout instead of the summary",
+    )
+    decode_p.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        help="Also write the decoded JSON document(s) to this path",
+    )
+
+    encode_p = sub.add_parser(
+        "encode",
+        help="Rebuild a .syx dump (checksum recomputed) from decoded JSON",
+    )
+    encode_p.add_argument(
+        "file",
+        type=Path,
+        help="JSON document produced by `m7-sysex decode` (single message)",
+    )
+    encode_p.add_argument(
+        "output",
+        type=Path,
+        help="Destination .syx path",
+    )
+
     inventory_p = sub.add_parser(
         "inventory",
         help="Compare captured presets to V2 addendum factory lists",
@@ -217,6 +253,8 @@ def main(argv: list[str] | None = None) -> int:
         "cross",
         "sheet",
         "inventory",
+        "decode",
+        "encode",
         "-h",
         "--help",
     }:
@@ -232,6 +270,10 @@ def main(argv: list[str] | None = None) -> int:
         return _cmd_sheet(args)
     if args.command == "inventory":
         return _cmd_inventory(args)
+    if args.command == "decode":
+        return _cmd_decode(args)
+    if args.command == "encode":
+        return _cmd_encode(args)
     return _cmd_analyze(args)
 
 
@@ -635,6 +677,91 @@ def _cmd_inventory(args: argparse.Namespace) -> int:
         print(f"overwrote {path}")
         return _finish_doc_generation(sysex)
 
+    return 0
+
+
+def _cmd_decode(args: argparse.Namespace) -> int:
+    from .dump_codec import decode_dump
+    from .frame import iter_sysex_messages
+
+    path = Path(args.file)
+    if not path.is_file():
+        print(f"error: file not found: {path}", file=sys.stderr)
+        return 1
+    try:
+        messages = list(iter_sysex_messages(path.read_bytes()))
+        docs = [decode_dump(msg) for msg in messages]
+    except (ValueError, FileNotFoundError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+    if not docs:
+        print(f"error: no SysEx messages in {path}", file=sys.stderr)
+        return 1
+
+    payload: object = docs[0] if len(docs) == 1 else docs
+    if args.json:
+        print(json.dumps(payload, indent=2))
+    else:
+        for i, doc in enumerate(docs):
+            if len(docs) > 1:
+                print(f"--- message {i + 1}/{len(docs)} ---")
+            _print_decoded_dump(doc)
+
+    if args.output:
+        out = Path(args.output)
+        out.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+        print(f"wrote {out}")
+
+    if not all(doc["checksum_ok"] for doc in docs):
+        return 1
+    return 0
+
+
+def _print_decoded_dump(doc: dict) -> None:
+    kind = doc["kind"]
+    checksum = "OK" if doc["checksum_ok"] else "INVALID"
+    print(f"[{kind}] {doc['format']} ({doc['message_length']} bytes)")
+    if doc.get("program_name"):
+        print(f"  name: {doc['program_name']}")
+    print(f"  checksum: {checksum}")
+    for field_id, entry in doc["fields"].items():
+        if "text" in entry:
+            continue  # name already shown
+        if "encoded" in entry:
+            display = entry.get("display")
+            if display is None and entry.get("value") is not None:
+                display = entry["value"]
+            shown = display if display is not None else f"encoded {entry['encoded']}"
+            print(f"  {entry['label']}: {shown}")
+        elif entry.get("blob_kind") == "register_basis":
+            reg = entry["register"]
+            print(
+                f"  {entry['label']}: register basis "
+                f"(name {reg['name']!r}, store counter {reg['values']['store_counter']})"
+            )
+
+
+def _cmd_encode(args: argparse.Namespace) -> int:
+    from .dump_codec import encode_dump
+
+    path = Path(args.file)
+    if not path.is_file():
+        print(f"error: file not found: {path}", file=sys.stderr)
+        return 1
+    try:
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        if isinstance(doc, list):
+            raise ValueError(
+                "encode expects a single decoded document, not a list"
+            )
+        raw = encode_dump(doc)
+    except (ValueError, KeyError, FileNotFoundError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+    out = Path(args.output)
+    out.write_bytes(raw)
+    print(f"wrote {out} ({len(raw)} bytes)")
     return 0
 
 

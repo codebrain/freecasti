@@ -160,7 +160,6 @@ export function App() {
   const activeSlot = abStore?.[activeAb];
   const progState = activeSlot?.state ?? null;
   const bankIdx = activeSlot?.bankIdx ?? 0;
-  const presetSlot = activeSlot?.presetSlot ?? 0;
 
   const abTooltips = useMemo(
     () =>
@@ -438,7 +437,6 @@ export function App() {
     },
     [
       progControlByField,
-      progState,
       tempoBpm,
       tempoModeFields,
       isProgParamActive,
@@ -596,6 +594,12 @@ export function App() {
     }
   }, [debugOpen]);
 
+  const {
+    enabled: midiEnabled,
+    sendOnChange: midiSendOnChange,
+    sendBytes: midiSendBytes,
+    logDebugBytes: midiLogDebugBytes,
+  } = midi;
   useEffect(() => {
     const result = resolveSendOnChange({
       suppressed: suppressSendOnChangeRef.current,
@@ -603,7 +607,7 @@ export function App() {
       progState,
       prevSys: prevSysStateForSendRef.current,
       sysState,
-      transmit: midi.enabled && midi.sendOnChange,
+      transmit: midiEnabled && midiSendOnChange,
       progBytes: sysex.progBytes,
       sysBytes: sysex.sysBytes,
     });
@@ -614,13 +618,13 @@ export function App() {
       suppressSendOnChangeRef.current = false;
     }
 
-    for (const bytes of result.send) midi.sendBytes(bytes);
-    for (const bytes of result.logDebug) midi.logDebugBytes(bytes);
+    for (const bytes of result.send) midiSendBytes(bytes);
+    for (const bytes of result.logDebug) midiLogDebugBytes(bytes);
   }, [
-    midi.enabled,
-    midi.sendOnChange,
-    midi.sendBytes,
-    midi.logDebugBytes,
+    midiEnabled,
+    midiSendOnChange,
+    midiSendBytes,
+    midiLogDebugBytes,
     progState,
     sysState,
     sysex.progBytes,

@@ -8,7 +8,13 @@ import { HexDump } from "@/components/HexDump";
 import { DumpByteTable } from "@/components/DumpByteTable";
 import { downloadSyx, suggestSyxFilename } from "@/sysex/syxIo";
 import { verifyDump } from "@/sysex/verify";
-import { bytesToHex, NAME_OFFSET, PROGRAM_NAME_LENGTH } from "@/sysex/frame";
+import {
+  bytesToHex,
+  NAME_OFFSET,
+  PROGRAM_NAME_LENGTH,
+  PROG_CHECKSUM_OFFSETS,
+  SYS_CHECKSUM_OFFSETS,
+} from "@/sysex/frame";
 import { detectDumpFamily } from "@/sysex/hydrate";
 import type { ControlDef } from "@/spec/controls";
 import type { DumpSpec, SpecField } from "@/spec/types";
@@ -19,9 +25,6 @@ import {
   payloadValue,
 } from "@/sysex/registerBasisBlob";
 import { formatValueLabel } from "@/spec/labels";
-
-const PROG_CHECKSUM_OFFSETS = [152, 153, 154, 155] as const;
-const SYS_CHECKSUM_OFFSETS = [72, 73, 74, 75] as const;
 
 export interface DumpInspectorProps {
   bytes: Uint8Array;
@@ -175,8 +178,11 @@ export function DumpInspector({
 }: DumpInspectorProps) {
   const family = detectDumpFamily(bytes);
   const dumpSpec = family === "prog" ? progSpec : family === "system" ? sysSpec : null;
-  const dumpControls =
-    family === "prog" ? progControls : family === "system" ? sysControls : [];
+  const dumpControls = useMemo(
+    () =>
+      family === "prog" ? progControls : family === "system" ? sysControls : [],
+    [family, progControls, sysControls],
+  );
 
   const [parseError, setParseError] = useState<string | null>(null);
   const [checksumOk, setChecksumOk] = useState<boolean | null>(null);

@@ -13,6 +13,7 @@ from m7_sysex.export.web_ui import (
     _load_prog_ui_state,
     _load_serialize_skeletons,
     _runtime_bundle,
+    build_protocol_constants,
     sync_web_ui_assets,
 )
 from m7_sysex.prog.algorithms import PROG_ALGORITHM_CONSTRAINTS
@@ -75,6 +76,23 @@ def test_sync_web_ui_assets_writes_runtime_assets(repo_root: Path) -> None:
 
     # Compact JSON (no pretty-print whitespace).
     assert "\n  " not in (public / "m7-runtime.json").read_text(encoding="utf-8")
+
+
+def test_committed_protocol_constants_in_sync(repo_root: Path) -> None:
+    """The committed protocol-constants.json must match m7_sysex.frame."""
+    path = (
+        repo_root / "web-ui" / "src" / "generated" / "protocol-constants.json"
+    )
+    assert path.is_file(), "run `python run.py` to generate protocol-constants.json"
+    committed = json.loads(path.read_text(encoding="utf-8"))
+    assert committed == build_protocol_constants()
+
+
+def test_protocol_constants_checksum_offsets(repo_root: Path) -> None:
+    constants = build_protocol_constants()
+    assert constants["prog_checksum_offsets"] == [152, 153, 154, 155]
+    assert constants["system_checksum_offsets"] == [72, 73, 74, 75]
+    assert constants["prog_ui_state_offsets"] == [92, 98, 99, 146, 147]
 
 
 def test_compress_dist_prunes_legacy_public_mirror_dirs(

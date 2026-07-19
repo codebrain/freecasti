@@ -214,7 +214,9 @@ Optional follow-ups:
   is in `m7_system_dump.ksy` and the web UI; offset 25 also moves as a
   secondary field in display-level captures. Optional: register lock and other
   rarely touched SYSTEM knobs
-- **Favorites**-based PROG dumps; finish basis-blob map
+- **Favorites**-based PROG dumps (bank 119) — the register basis blob
+  itself (offsets 24–87) is fully decoded; see
+  [../specification/prog/bytes/register-basis-blob.md](../specification/prog/bytes/register-basis-blob.md)
 - `0.1s.syx` for reverb time if the UI reaches the printed 0.1 s floor
 - Denser mid samples for medium-confidence tables when you need a full decode table
 - Reconcile hard sheet errata (early select / HF crossover on a few Halls) if you re-dump those factory programs

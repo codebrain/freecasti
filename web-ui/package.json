@@ -11,6 +11,7 @@
     "build": "npm run compile-parsers && vite build && node scripts/compress-dist.mjs",
     "build:analyze": "npm run build && node scripts/report-dist-size.mjs",
     "preview": "vite preview",
+    "lint": "eslint src --max-warnings 0",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -23,10 +24,13 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.0",
+    "eslint": "^9.39.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "happy-dom": "^20.10.6",
     "m7-sysex-compiler": "npm:kaitai-struct-compiler@^0.10.0",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.0",
+    "typescript-eslint": "^8.64.0",
     "vite": "^6.0.0",
     "vitest": "^3.0.0",
     "yaml": "^2.7.0"
