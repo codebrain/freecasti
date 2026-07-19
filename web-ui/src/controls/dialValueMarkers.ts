@@ -118,21 +118,33 @@ function toMarkers(
 }
 
 /**
- * Min/max ring markers from an ordered label list (e.g. tempo divisions).
+ * Min / mid / max ring markers from an ordered label list (e.g. tempo divisions).
+ * Two-step lists stay extremes-only.
  */
 export function dialExtremeMarkers(
   labels: string[],
 ): Pick<DialValueMarker, "pct" | "label">[] {
   if (labels.length < 2) return [];
-  return [
+  const last = labels.length - 1;
+  const out: Pick<DialValueMarker, "pct" | "label">[] = [
     { pct: 0, label: labels[0]! },
-    { pct: 1, label: labels[labels.length - 1]! },
   ];
+  if (labels.length >= 3) {
+    const mid = Math.floor(last / 2);
+    out.push({ pct: mid / last, label: labels[mid]! });
+  }
+  out.push({ pct: 1, label: labels[last]! });
+  return out;
+}
+
+function midpointEntry(entries: MarkerEntry[]): MarkerEntry | null {
+  if (entries.length < 3) return null;
+  return entries[Math.floor((entries.length - 1) / 2)] ?? null;
 }
 
 /**
- * Labeled dial markers. Every multi-step dial gets min/max extremes; uneven
- * numeric tables also get intermediate landmarks.
+ * Labeled dial markers. Every multi-step dial gets min/mid/max when possible;
+ * uneven numeric tables also get additional landmarks.
  */
 export function dialValueMarkersForControl(
   control: ControlDef,
@@ -159,8 +171,8 @@ export function dialValueMarkersForControl(
     hasUnevenNumericGaps(numericValues);
 
   if (!uneven) {
-    // Even / short / non-numeric: extremes only.
-    return toMarkers([first, last], labels.length);
+    const mid = midpointEntry(entries);
+    return toMarkers(mid ? [first, mid, last] : [first, last], labels.length);
   }
 
   const chosen: MarkerEntry[] = [first];

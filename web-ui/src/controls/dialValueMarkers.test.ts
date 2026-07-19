@@ -56,8 +56,16 @@ describe("formatDialMarkerLabel", () => {
 });
 
 describe("dialExtremeMarkers", () => {
-  it("labels first and last only", () => {
+  it("labels first, mid, and last", () => {
     expect(dialExtremeMarkers(["1/32", "1/16", "1/8", "1/4"])).toEqual([
+      { pct: 0, label: "1/32" },
+      { pct: 1 / 3, label: "1/16" },
+      { pct: 1, label: "1/4" },
+    ]);
+  });
+
+  it("stays extremes-only for two labels", () => {
+    expect(dialExtremeMarkers(["1/32", "1/4"])).toEqual([
       { pct: 0, label: "1/32" },
       { pct: 1, label: "1/4" },
     ]);
@@ -70,13 +78,14 @@ describe("dialExtremeMarkers", () => {
 });
 
 describe("dialValueMarkersForControl", () => {
-  it("shows extreme labels for even integer steps", () => {
+  it("shows extreme and midpoint labels for even integer steps", () => {
     const labels = Array.from({ length: 21 }, (_, i) => String(i));
     const markers = dialValueMarkersForControl(
       controlWithLabels(labels, "size"),
     );
     expect(markers).toEqual([
       { index: 0, pct: 0, label: "0" },
+      { index: 10, pct: 0.5, label: "10" },
       { index: 20, pct: 1, label: "20" },
     ]);
   });
@@ -160,8 +169,9 @@ describe("dialValueMarkersForControl", () => {
     expect(byParam.get("reverb time")?.length ?? 0).toBeGreaterThanOrEqual(4);
     expect(byParam.get("reverb time")).toContain("1");
     expect(byParam.get("reverb time")).toContain("10");
-    expect(byParam.get("size")?.length).toBe(2);
+    expect(byParam.get("size")?.length).toBe(3);
     expect(byParam.get("size")?.[0]).toBeTruthy();
+    expect(byParam.get("size")?.[1]).toBeTruthy();
     expect(byParam.get("size")?.at(-1)).toBeTruthy();
   });
 });
