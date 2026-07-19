@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Ambience](README.md) (index **4**). Source: `sysex
 | Bank | Ambience (index 4) |
 | Program slot | 10 |
 | Name field | `Long Ambience` (matches filename) |
-| Name region 8-87 | match filename preset (ASCII space-padded) |
+| Name window 8-87 (name + factory space pad) | match filename preset (ASCII space-padded) |
 | Dump file | `Ambience.Long Ambience.syx` |
 
 > **Sheet comparison:** all printable sheet columns match the decoded dump (within tolerance).

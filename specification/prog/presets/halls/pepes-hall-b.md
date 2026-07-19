@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Halls](README.md) (index **0**). Source: `sysex/pr
 | Bank | Halls (index 0) |
 | Program slot | 28 |
 | Name field | `Pepes Hall B` (matches filename) |
-| Name region 8-87 | match filename preset (ASCII space-padded) |
+| Name window 8-87 (name + factory space pad) | match filename preset (ASCII space-padded) |
 | Dump file | `Halls.Pepes Hall B.syx` |
 
 > **Not on the published sheet:** this factory dump has no row on the classic [preset sheet PDF](../../preset-sheet.md) (likely a later bank addition). Dump values only below.

@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Rooms](README.md) (index **2**). Source: `sysex/pr
 | Bank | Rooms (index 2) |
 | Program slot | 27 |
 | Name field | `Front Room` (matches filename) |
-| Name region 8-87 | match filename preset (ASCII space-padded) |
+| Name window 8-87 (name + factory space pad) | match filename preset (ASCII space-padded) |
 | Dump file | `Rooms.Front Room.syx` |
 
 > **Sheet comparison:** all printable sheet columns match the decoded dump (within tolerance).

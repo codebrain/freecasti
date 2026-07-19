@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Halls](README.md) (index **0**). Source: `sysex/pr
 | Bank | Halls (index 0) |
 | Program slot | 12 |
 | Name field | `Dense Hall` (matches filename) |
-| Name region 8-87 | match filename preset (ASCII space-padded) |
+| Name window 8-87 (name + factory space pad) | match filename preset (ASCII space-padded) |
 | Dump file | `Halls.Dense Hall.syx` |
 
 > **Sheet comparison:** all printable sheet columns match the decoded dump (within tolerance).

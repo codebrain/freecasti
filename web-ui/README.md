@@ -71,7 +71,7 @@ When **Send on change** or **Send** is used on the program tab, outgoing dumps p
 
 - **146–147** — `nibble_hilo` display (`display` in Kaitai): high nibble = page/row, low nibble = column. Patched as separate wire bytes; combined value is `(byte[146] << 4) | byte[147]`.
 - **Parameter select/focus** → browse mode (menu highlighted, byte 92 = `02`).
-- **Single knob/button edit** → edit mode for that parameter’s menu (byte 92 stays `02`, menu index @ 98–99, edit cursor @ 146–147).
+- **Single knob/button edit** → edit mode for that parameter’s menu (byte 92 stays `02`, menu index @ 98–99, edit cursor @ 146–147). Hardware edit captures store byte 92 = `00` while a value is being changed; outbound web-UI dumps deliberately keep the browse marker `02` (`applyProgUiBytes` in `src/prog/uiState.ts`), and the decode path accepts both.
 - **Preset load** or any multi-parameter state replace → idle / **no menu** bytes (`no menu.syx` baseline).
 
 SYSTEM dumps are unchanged (no menu-navigation bytes in SYSTEM captures).

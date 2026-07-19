@@ -36,8 +36,8 @@ seq:
   - id: program_name
     doc: |
       Program name (ASCII, 14-character editable label per manual;
-      space-padded within this field) - confirmed against sysex/_presets/
-      filename preset (bank name i...
+      space-padded within this field) - confirmed against sysex/prog/presets/
+      filename preset (bank na...
     type: str
     size: 14
     encoding: ASCII
@@ -54,17 +54,17 @@ seq:
     size: 64
   - id: bank_index
     doc: |
-      Bank index (`nibble_hilo`) from sysex/_presets/ [Halls=0, Plates=1,
+      Bank index (`nibble_hilo`) from sysex/prog/presets/ [Halls=0, Plates=1,
       Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms
-      2=8, Spaces 2=9, ...
+      2=8, Spaces 2...
       Locked encoding table: 15 known encoded value(s)
     type: bank_index_encoded
   - id: program_slot
     doc: |
-      Program slot within bank (`nibble_hilo`) from sysex/_presets/ (not a
+      Program slot within bank (`nibble_hilo`) from sysex/prog/presets/ (not a
       global program number)
     type: nibble_u8_hilo
-  - id: edit_generation_counter
+  - id: menu_browse_flag
     doc: |
       Menu-browse flag: `00` when no parameter menu is open or while editing a
       value; `02` while a parameter menu is highlighted (see
@@ -259,8 +259,8 @@ seq:
     type: u1
   - id: bank_index_mirror
     doc: |
-      Bank index mirror (equals offset 89) from sysex/_presets/; on hold-EDIT
-      dumps this stays the source bank while 88-89 are Edit index 11
+      Bank index mirror (equals offset 89) from sysex/prog/presets/; on
+      hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11
     type: u1
   - id: reserved_always_0_138
     doc: |

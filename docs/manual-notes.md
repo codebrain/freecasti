@@ -158,8 +158,8 @@ are in `src/m7_sysex/system/catalog.py` and flow into
 primary field (`m7_system_dump.ksy`, web UI, [midi-bank.md](../specification/system/bytes/midi-bank.md)).
 **Display level** captures also move offset **25** as a secondary byte (see
 [display-level.md](../specification/system/bytes/display-level.md)). The
-byte-map export still labels offset 25 as padding until that secondary role is
-fully reconciled.
+byte-map export labels offset 25 as `midi bank` (primary) and notes the
+display-level secondary coupling on the same row.
 
 ## Header and identity fields
 
@@ -192,9 +192,7 @@ Remaining optional work:
    dump back into the unit (distinct from send marker 11).
 2. **Favorites**-based PROG dumps (bank **119**); finish mapping register basis
    blob **24–47** / **56–72**.
-3. **Offset 25 secondary** — reconcile display-level secondary mover vs midi-bank
-   primary in the byte-map export (Kaitai + web UI already model midi bank @ 25).
-4. **SYSTEM** knobs not yet in dedicated series (e.g. register lock) if you
+3. **SYSTEM** knobs not yet in dedicated series (e.g. register lock) if you
    need to edit them over SysEx.
 
 ## References in code

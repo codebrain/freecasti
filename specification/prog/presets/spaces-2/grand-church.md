@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Spaces 2](README.md) (index **9**). Source: `sysex
 | Bank | Spaces 2 (index 9) |
 | Program slot | 8 |
 | Name field | `Grand Church` (matches filename) |
-| Name region 8-87 | match filename preset (ASCII space-padded) |
+| Name window 8-87 (name + factory space pad) | match filename preset (ASCII space-padded) |
 | Dump file | `Spaces 2.Grand Church.syx` |
 
 > **Not on the published sheet:** this factory dump has no row on the classic [preset sheet PDF](../../preset-sheet.md) (likely a later bank addition). Dump values only below.

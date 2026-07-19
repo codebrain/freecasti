@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Halls 2](README.md) (index **6**). Source: `sysex/
 | Bank | Halls 2 (index 6) |
 | Program slot | 10 |
 | Name field | `Concert A` (matches filename) |
-| Name region 8-87 | match filename preset (ASCII space-padded) |
+| Name window 8-87 (name + factory space pad) | match filename preset (ASCII space-padded) |
 | Dump file | `Halls 2.Concert A.syx` |
 
 > **Sheet comparison skipped:** not listed as a separate bank on the classic sheet. See [preset-sheet.md](../../preset-sheet.md). Dump values only below.

@@ -22,7 +22,7 @@ Reserved/meta roles (padding, family flag, display @ 146–147, engine/bank clas
 | 24-87 | 64 | frame | register basis blob |
 | 88-89 | 2 | known | [bank index](program-identity.md) (`nibble_hilo`) |
 | 90-91 | 2 | known | [program slot](program-identity.md) (`nibble_hilo`) |
-| 92 | 1 | secondary | edit/generation counter (`raw_u8`) |
+| 92 | 1 | secondary | menu browse flag (`raw_u8`) |
 | 93 | 1 | known | [register bank](bytes/register-bank.md) (`raw_u8`) |
 | 94 | 1 | known | structure version (always 8) (`raw_u8`) |
 | 95 | 1 | known | [register](bytes/register.md) (`raw_u8`) |

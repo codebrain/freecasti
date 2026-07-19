@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Halls](README.md) (index **0**). Source: `sysex/pr
 | Bank | Halls (index 0) |
 | Program slot | 1 |
 | Name field | `Medium Hall` (matches filename) |
-| Name region 8-87 | match filename preset (ASCII space-padded) |
+| Name window 8-87 (name + factory space pad) | match filename preset (ASCII space-padded) |
 | Dump file | `Halls.Medium Hall.syx` |
 
 > **Sheet discrepancies (2 hard):** dump values disagree with the [published preset sheet](../../preset-sheet.md). Highlighted in the Status column below. **SysEx dump is authoritative.**

@@ -2,7 +2,7 @@
 
 # Cross-series analysis
 
-Cross analysis does not transfer absolute parameter values between folders. Each sysex/<parameter>/ stream remains independent; this pass only looks for stable bytes, recurrent movers, claim conflicts, untouched offsets, and checksum hypotheses across the message corpus.
+Cross analysis does not transfer absolute parameter values between folders. Each sysex/prog/parameters/<parameter>/ stream remains independent; this pass only looks for stable bytes, recurrent movers, claim conflicts, untouched offsets, and checksum hypotheses across the message corpus.
 
 Corpus: **157** messages from **18** independent series (`delay level`, `delay modulation`, `delay time`, `density`, `diffusion`, `early rolloff`, `early select`, `early to reverb mix`, `hf rt crossover`, `hf rt multiply`, `lf rt crossover`, `lf rt multiply`, `modulation`, `predelay`, `reverb time`, `rolloff`, `size`, `vlf cut`).
 
@@ -38,7 +38,7 @@ Many of these are already documented elsewhere â€” program identity (offsets 88â
 
 **Verified:** `CRC-16/ARC` (also CRC-16/IBM, CRC-16/ANSI).
 
-- Cover: offsets 8..151 (80-byte name + payload nibbles as stored)
+- Cover: offsets 8..151 (name window + register-basis blob + payload as stored)
 - Exclude: F0, manufacturer ID, header 70 08 01 00, checksum, F7
 - Poly/init: 0x8005 (reflected 0xA001), init 0x0000, refin=True, refout=True, xorout=0x0000
 - Pack: 16-bit CRC as four high-nibble-first SysEx bytes

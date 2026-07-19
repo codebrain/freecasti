@@ -2,8 +2,9 @@
 
 Two uses:
 
-1. Fallback decoders when a dedicated ``sysex/<parameter>/`` capture series
-   does not exist yet (series analysis always wins once a folder is present).
+1. Fallback decoders when a dedicated ``sysex/prog/parameters/<parameter>/``
+   capture series does not exist yet (series analysis always wins once a
+   folder is present).
 2. Extra ``encoded -> sheet value`` mapping points that densify a sparse
    series table for decoding (series points win on conflict).
 """
@@ -34,9 +35,9 @@ LF_RT_MULTIPLY = {
     "source": "preset_sheet",
     "confidence": "medium",
     "notes": (
-        "Inferred from sysex/_presets/ vs Bricasti preset sheet. Valid for "
-        "labels ≤ 2.0× only - steps are 0.1 above 2.0× (see sysex/lf rt "
-        "multiply/ series)."
+        "Inferred from sysex/prog/presets/ vs Bricasti preset sheet. Valid for "
+        "labels ≤ 2.0× only - steps are 0.1 above 2.0× (see "
+        "sysex/prog/parameters/lf rt multiply/ series)."
     ),
 }
 
@@ -49,7 +50,7 @@ LF_RT_CROSSOVER = {
     "source": "preset_sheet",
     "confidence": "medium",
     "notes": (
-        "Inferred from sysex/_presets/ vs Bricasti preset sheet "
+        "Inferred from sysex/prog/presets/ vs Bricasti preset sheet "
         "(own Hz table, not shared with HF RT crossover). "
         "Confirm with a dedicated capture series."
     ),

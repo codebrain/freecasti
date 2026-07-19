@@ -233,7 +233,8 @@ def program_dump_checksum(raw: bytes) -> bytes:
     Compute the 4 checksum nibbles for an M7 program-dump message.
 
     Covers offsets 8 inclusive through checksum_start exclusive
-    (80-byte name + payload nibbles). Manufacturer ID and header are excluded.
+    (name window + register-basis blob + payload nibbles). Manufacturer ID
+    and header are excluded.
     """
     if len(raw) < DATA_OFFSET + CHECKSUM_NIBBLE_COUNT + 1:
         raise ValueError(f"SysEx too short for checksum: {len(raw)} bytes")

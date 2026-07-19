@@ -1,6 +1,6 @@
 {
   "message_length": 157,
-  "independence_note": "Each sysex/<parameter>/ folder is an independent dump stream. Byte values are never compared across folders; only per-folder conclusions are merged into this layout map. sysex/_presets/ is a separate preset-identity series (bank/program/name). Additional reserved/meta roles come from a corpus scan of all dumps.",
+  "independence_note": "Each sysex/prog/parameters/<parameter>/ folder is an independent dump stream. Byte values are never compared across folders; only per-folder conclusions are merged into this layout map. sysex/prog/presets/ is a separate preset-identity series (bank/program/name). Additional reserved/meta roles come from a corpus scan of all dumps.",
   "counts": {
     "known_or_frame": 154,
     "secondary": 3,
@@ -77,7 +77,7 @@
       "hex": "42",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "B"
     },
@@ -86,7 +86,7 @@
       "hex": "61",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "a"
     },
@@ -95,7 +95,7 @@
       "hex": "73",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "s"
     },
@@ -104,7 +104,7 @@
       "hex": "73",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "s"
     },
@@ -113,7 +113,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -122,7 +122,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -131,7 +131,7 @@
       "hex": "58",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "X"
     },
@@ -140,7 +140,7 @@
       "hex": "58",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "X"
     },
@@ -149,7 +149,7 @@
       "hex": "4C",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": "L"
     },
@@ -158,7 +158,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -167,7 +167,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -176,7 +176,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -185,7 +185,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -194,7 +194,7 @@
       "hex": "20",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": [],
       "ascii": " "
     },
@@ -733,7 +733,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Bank index (`nibble_hilo`) from sysex/_presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/_edit/)",
+      "role": "Bank index (`nibble_hilo`) from sysex/prog/presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/prog/edit/)",
       "parameters": [
         "_presets"
       ],
@@ -745,7 +745,7 @@
       "hex": "04",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Bank index (`nibble_hilo`) from sysex/_presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/_edit/)",
+      "role": "Bank index (`nibble_hilo`) from sysex/prog/presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/prog/edit/)",
       "parameters": [
         "_presets"
       ],
@@ -757,7 +757,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Program slot within bank (`nibble_hilo`) from sysex/_presets/ (not a global program number)",
+      "role": "Program slot within bank (`nibble_hilo`) from sysex/prog/presets/ (not a global program number)",
       "parameters": [
         "_presets"
       ],
@@ -769,7 +769,7 @@
       "hex": "0D",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Program slot within bank (`nibble_hilo`) from sysex/_presets/ (not a global program number)",
+      "role": "Program slot within bank (`nibble_hilo`) from sysex/prog/presets/ (not a global program number)",
       "parameters": [
         "_presets"
       ],
@@ -877,7 +877,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\reverb time\\0.25s.syx",
       "status": "known",
-      "role": "Parameter `reverb time` (from independent series sysex/reverb time/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `reverb time` (from independent series sysex/prog/parameters/reverb time/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "reverb time"
       ],
@@ -889,7 +889,7 @@
       "hex": "01",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\reverb time\\0.25s.syx",
       "status": "known",
-      "role": "Parameter `reverb time` (from independent series sysex/reverb time/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `reverb time` (from independent series sysex/prog/parameters/reverb time/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "reverb time"
       ],
@@ -901,7 +901,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\size\\1.syx",
       "status": "known",
-      "role": "Parameter `size` (from independent series sysex/size/) (nibble_hilo, label = encoded * 1)",
+      "role": "Parameter `size` (from independent series sysex/prog/parameters/size/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
         "size"
       ],
@@ -913,7 +913,7 @@
       "hex": "01",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\size\\1.syx",
       "status": "known",
-      "role": "Parameter `size` (from independent series sysex/size/) (nibble_hilo, label = encoded * 1)",
+      "role": "Parameter `size` (from independent series sysex/prog/parameters/size/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
         "size"
       ],
@@ -925,7 +925,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\predelay\\0ms.syx",
       "status": "known",
-      "role": "Parameter `predelay` (from independent series sysex/predelay/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `predelay` (from independent series sysex/prog/parameters/predelay/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "predelay"
       ],
@@ -937,7 +937,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\predelay\\0ms.syx",
       "status": "known",
-      "role": "Parameter `predelay` (from independent series sysex/predelay/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `predelay` (from independent series sysex/prog/parameters/predelay/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "predelay"
       ],
@@ -960,7 +960,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\diffusion\\low.syx",
       "status": "known",
-      "role": "Parameter `diffusion` (from independent series sysex/diffusion/) (raw_u8, label = encoded * 1)",
+      "role": "Parameter `diffusion` (from independent series sysex/prog/parameters/diffusion/) (raw_u8, label = encoded * 1)",
       "parameters": [
         "diffusion"
       ],
@@ -983,7 +983,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\density\\low.syx",
       "status": "known",
-      "role": "Parameter `density` (from independent series sysex/density/) (raw_u8, label = encoded * 1)",
+      "role": "Parameter `density` (from independent series sysex/prog/parameters/density/) (raw_u8, label = encoded * 1)",
       "parameters": [
         "density"
       ],
@@ -1006,7 +1006,7 @@
       "hex": "01",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\modulation\\low.syx",
       "status": "known",
-      "role": "Parameter `modulation` (from independent series sysex/modulation/) (raw_u8, label = encoded + (-1))",
+      "role": "Parameter `modulation` (from independent series sysex/prog/parameters/modulation/) (raw_u8, label = encoded + (-1))",
       "parameters": [
         "modulation"
       ],
@@ -1018,7 +1018,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\rolloff\\120hz.syx",
       "status": "known",
-      "role": "Parameter `rolloff` (from independent series sysex/rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `rolloff` (from independent series sysex/prog/parameters/rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "rolloff"
       ],
@@ -1030,7 +1030,7 @@
       "hex": "01",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\rolloff\\120hz.syx",
       "status": "known",
-      "role": "Parameter `rolloff` (from independent series sysex/rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `rolloff` (from independent series sysex/prog/parameters/rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "rolloff"
       ],
@@ -1042,7 +1042,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\hf rt multiply\\0.2.syx",
       "status": "known",
-      "role": "Parameter `hf rt multiply` (from independent series sysex/hf rt multiply/) (nibble_hilo, label = encoded * 0.05 + (0.2))",
+      "role": "Parameter `hf rt multiply` (from independent series sysex/prog/parameters/hf rt multiply/) (nibble_hilo, label = encoded * 0.05 + (0.2))",
       "parameters": [
         "hf rt multiply"
       ],
@@ -1054,7 +1054,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\hf rt multiply\\0.2.syx",
       "status": "known",
-      "role": "Parameter `hf rt multiply` (from independent series sysex/hf rt multiply/) (nibble_hilo, label = encoded * 0.05 + (0.2))",
+      "role": "Parameter `hf rt multiply` (from independent series sysex/prog/parameters/hf rt multiply/) (nibble_hilo, label = encoded * 0.05 + (0.2))",
       "parameters": [
         "hf rt multiply"
       ],
@@ -1066,7 +1066,7 @@
       "hex": "01",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\hf rt crossover\\11200hz.syx",
       "status": "known",
-      "role": "Parameter `hf rt crossover` (from independent series sysex/hf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `hf rt crossover` (from independent series sysex/prog/parameters/hf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "hf rt crossover"
       ],
@@ -1078,7 +1078,7 @@
       "hex": "0E",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\hf rt crossover\\11200hz.syx",
       "status": "known",
-      "role": "Parameter `hf rt crossover` (from independent series sysex/hf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `hf rt crossover` (from independent series sysex/prog/parameters/hf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "hf rt crossover"
       ],
@@ -1090,7 +1090,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\lf rt multiply\\0.2.syx",
       "status": "known",
-      "role": "Parameter `lf rt multiply` (from independent series sysex/lf rt multiply/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `lf rt multiply` (from independent series sysex/prog/parameters/lf rt multiply/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "lf rt multiply"
       ],
@@ -1102,7 +1102,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\lf rt multiply\\0.2.syx",
       "status": "known",
-      "role": "Parameter `lf rt multiply` (from independent series sysex/lf rt multiply/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `lf rt multiply` (from independent series sysex/prog/parameters/lf rt multiply/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "lf rt multiply"
       ],
@@ -1114,7 +1114,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\lf rt crossover\\120hz.syx",
       "status": "known",
-      "role": "Parameter `lf rt crossover` (from independent series sysex/lf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `lf rt crossover` (from independent series sysex/prog/parameters/lf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "lf rt crossover"
       ],
@@ -1126,7 +1126,7 @@
       "hex": "01",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\lf rt crossover\\120hz.syx",
       "status": "known",
-      "role": "Parameter `lf rt crossover` (from independent series sysex/lf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `lf rt crossover` (from independent series sysex/prog/parameters/lf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "lf rt crossover"
       ],
@@ -1138,7 +1138,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\vlf cut\\-10db.syx",
       "status": "known",
-      "role": "Parameter `vlf cut` (from independent series sysex/vlf cut/) (nibble_hilo, label = encoded + (-20))",
+      "role": "Parameter `vlf cut` (from independent series sysex/prog/parameters/vlf cut/) (nibble_hilo, label = encoded + (-20))",
       "parameters": [
         "vlf cut"
       ],
@@ -1150,7 +1150,7 @@
       "hex": "0A",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\vlf cut\\-10db.syx",
       "status": "known",
-      "role": "Parameter `vlf cut` (from independent series sysex/vlf cut/) (nibble_hilo, label = encoded + (-20))",
+      "role": "Parameter `vlf cut` (from independent series sysex/prog/parameters/vlf cut/) (nibble_hilo, label = encoded + (-20))",
       "parameters": [
         "vlf cut"
       ],
@@ -1162,7 +1162,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\early to reverb mix\\0.20.syx",
       "status": "known",
-      "role": "Parameter `early to reverb mix` (from independent series sysex/early to reverb mix/) (nibble_hilo, label = encoded * 1)",
+      "role": "Parameter `early to reverb mix` (from independent series sysex/prog/parameters/early to reverb mix/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
         "early to reverb mix"
       ],
@@ -1174,7 +1174,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\early to reverb mix\\0.20.syx",
       "status": "known",
-      "role": "Parameter `early to reverb mix` (from independent series sysex/early to reverb mix/) (nibble_hilo, label = encoded * 1)",
+      "role": "Parameter `early to reverb mix` (from independent series sysex/prog/parameters/early to reverb mix/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
         "early to reverb mix"
       ],
@@ -1186,7 +1186,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\early rolloff\\120hz.syx",
       "status": "known",
-      "role": "Parameter `early rolloff` (from independent series sysex/early rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `early rolloff` (from independent series sysex/prog/parameters/early rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "early rolloff"
       ],
@@ -1198,7 +1198,7 @@
       "hex": "01",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\early rolloff\\120hz.syx",
       "status": "known",
-      "role": "Parameter `early rolloff` (from independent series sysex/early rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `early rolloff` (from independent series sysex/prog/parameters/early rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "early rolloff"
       ],
@@ -1210,7 +1210,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\early select\\0.syx",
       "status": "known",
-      "role": "Parameter `early select` (from independent series sysex/early select/) (nibble_hilo, label = encoded * 1)",
+      "role": "Parameter `early select` (from independent series sysex/prog/parameters/early select/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
         "early select"
       ],
@@ -1222,7 +1222,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\early select\\0.syx",
       "status": "known",
-      "role": "Parameter `early select` (from independent series sysex/early select/) (nibble_hilo, label = encoded * 1)",
+      "role": "Parameter `early select` (from independent series sysex/prog/parameters/early select/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
         "early select"
       ],
@@ -1268,7 +1268,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\delay level\\off.syx",
       "status": "known",
-      "role": "Parameter `delay level` (from independent series sysex/delay level/) (raw_u8, label = encoded + (-21))",
+      "role": "Parameter `delay level` (from independent series sysex/prog/parameters/delay level/) (raw_u8, label = encoded + (-21))",
       "parameters": [
         "delay level"
       ],
@@ -1280,7 +1280,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\delay time\\100ms.syx",
       "status": "known",
-      "role": "Parameter `delay time` (from independent series sysex/delay time/) (nibble_hilo, label = encoded * 8 + (100))",
+      "role": "Parameter `delay time` (from independent series sysex/prog/parameters/delay time/) (nibble_hilo, label = encoded * 8 + (100))",
       "parameters": [
         "delay time"
       ],
@@ -1292,7 +1292,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\delay time\\100ms.syx",
       "status": "known",
-      "role": "Parameter `delay time` (from independent series sysex/delay time/) (nibble_hilo, label = encoded * 8 + (100))",
+      "role": "Parameter `delay time` (from independent series sysex/prog/parameters/delay time/) (nibble_hilo, label = encoded * 8 + (100))",
       "parameters": [
         "delay time"
       ],
@@ -1315,7 +1315,7 @@
       "hex": "04",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Bank index mirror (equals offset 89) from sysex/_presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
+      "role": "Bank index mirror (equals offset 89) from sysex/prog/presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
       "parameters": [
         "_presets"
       ],
@@ -1338,7 +1338,7 @@
       "hex": "01",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\delay modulation\\low.syx",
       "status": "known",
-      "role": "Parameter `delay modulation` (from independent series sysex/delay modulation/) (raw_u8, label = encoded + (-1))",
+      "role": "Parameter `delay modulation` (from independent series sysex/prog/parameters/delay modulation/) (raw_u8, label = encoded + (-1))",
       "parameters": [
         "delay modulation"
       ],
@@ -1559,7 +1559,7 @@
       "length": 14,
       "example_hex": "42 61 73 73 20 20 58 58 ...",
       "status": "frame",
-      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII, 14-character editable label per manual; space-padded within this field) - confirmed against sysex/prog/presets/ filename preset (bank name is not stored here)",
       "parameters": []
     },
     {
@@ -1589,7 +1589,7 @@
       "length": 2,
       "example_hex": "00 04",
       "status": "known",
-      "role": "Bank index (`nibble_hilo`) from sysex/_presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/_edit/)",
+      "role": "Bank index (`nibble_hilo`) from sysex/prog/presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/prog/edit/)",
       "parameters": [
         "_presets"
       ]
@@ -1601,7 +1601,7 @@
       "length": 2,
       "example_hex": "00 0D",
       "status": "known",
-      "role": "Program slot within bank (`nibble_hilo`) from sysex/_presets/ (not a global program number)",
+      "role": "Program slot within bank (`nibble_hilo`) from sysex/prog/presets/ (not a global program number)",
       "parameters": [
         "_presets"
       ]
@@ -1698,7 +1698,7 @@
       "length": 2,
       "example_hex": "00 01",
       "status": "known",
-      "role": "Parameter `reverb time` (from independent series sysex/reverb time/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `reverb time` (from independent series sysex/prog/parameters/reverb time/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "reverb time"
       ]
@@ -1710,7 +1710,7 @@
       "length": 2,
       "example_hex": "00 01",
       "status": "known",
-      "role": "Parameter `size` (from independent series sysex/size/) (nibble_hilo, label = encoded * 1)",
+      "role": "Parameter `size` (from independent series sysex/prog/parameters/size/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
         "size"
       ]
@@ -1722,7 +1722,7 @@
       "length": 2,
       "example_hex": "00 00",
       "status": "known",
-      "role": "Parameter `predelay` (from independent series sysex/predelay/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `predelay` (from independent series sysex/prog/parameters/predelay/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "predelay"
       ]
@@ -1746,7 +1746,7 @@
       "length": 1,
       "example_hex": "00",
       "status": "known",
-      "role": "Parameter `diffusion` (from independent series sysex/diffusion/) (raw_u8, label = encoded * 1)",
+      "role": "Parameter `diffusion` (from independent series sysex/prog/parameters/diffusion/) (raw_u8, label = encoded * 1)",
       "parameters": [
         "diffusion"
       ]
@@ -1770,7 +1770,7 @@
       "length": 1,
       "example_hex": "00",
       "status": "known",
-      "role": "Parameter `density` (from independent series sysex/density/) (raw_u8, label = encoded * 1)",
+      "role": "Parameter `density` (from independent series sysex/prog/parameters/density/) (raw_u8, label = encoded * 1)",
       "parameters": [
         "density"
       ]
@@ -1794,7 +1794,7 @@
       "length": 1,
       "example_hex": "01",
       "status": "known",
-      "role": "Parameter `modulation` (from independent series sysex/modulation/) (raw_u8, label = encoded + (-1))",
+      "role": "Parameter `modulation` (from independent series sysex/prog/parameters/modulation/) (raw_u8, label = encoded + (-1))",
       "parameters": [
         "modulation"
       ]
@@ -1806,7 +1806,7 @@
       "length": 2,
       "example_hex": "00 01",
       "status": "known",
-      "role": "Parameter `rolloff` (from independent series sysex/rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `rolloff` (from independent series sysex/prog/parameters/rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "rolloff"
       ]
@@ -1818,7 +1818,7 @@
       "length": 2,
       "example_hex": "00 00",
       "status": "known",
-      "role": "Parameter `hf rt multiply` (from independent series sysex/hf rt multiply/) (nibble_hilo, label = encoded * 0.05 + (0.2))",
+      "role": "Parameter `hf rt multiply` (from independent series sysex/prog/parameters/hf rt multiply/) (nibble_hilo, label = encoded * 0.05 + (0.2))",
       "parameters": [
         "hf rt multiply"
       ]
@@ -1830,7 +1830,7 @@
       "length": 2,
       "example_hex": "01 0E",
       "status": "known",
-      "role": "Parameter `hf rt crossover` (from independent series sysex/hf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `hf rt crossover` (from independent series sysex/prog/parameters/hf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "hf rt crossover"
       ]
@@ -1842,7 +1842,7 @@
       "length": 2,
       "example_hex": "00 00",
       "status": "known",
-      "role": "Parameter `lf rt multiply` (from independent series sysex/lf rt multiply/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `lf rt multiply` (from independent series sysex/prog/parameters/lf rt multiply/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "lf rt multiply"
       ]
@@ -1854,7 +1854,7 @@
       "length": 2,
       "example_hex": "00 01",
       "status": "known",
-      "role": "Parameter `lf rt crossover` (from independent series sysex/lf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `lf rt crossover` (from independent series sysex/prog/parameters/lf rt crossover/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "lf rt crossover"
       ]
@@ -1866,7 +1866,7 @@
       "length": 2,
       "example_hex": "00 0A",
       "status": "known",
-      "role": "Parameter `vlf cut` (from independent series sysex/vlf cut/) (nibble_hilo, label = encoded + (-20))",
+      "role": "Parameter `vlf cut` (from independent series sysex/prog/parameters/vlf cut/) (nibble_hilo, label = encoded + (-20))",
       "parameters": [
         "vlf cut"
       ]
@@ -1878,7 +1878,7 @@
       "length": 2,
       "example_hex": "00 00",
       "status": "known",
-      "role": "Parameter `early to reverb mix` (from independent series sysex/early to reverb mix/) (nibble_hilo, label = encoded * 1)",
+      "role": "Parameter `early to reverb mix` (from independent series sysex/prog/parameters/early to reverb mix/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
         "early to reverb mix"
       ]
@@ -1890,7 +1890,7 @@
       "length": 2,
       "example_hex": "00 01",
       "status": "known",
-      "role": "Parameter `early rolloff` (from independent series sysex/early rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
+      "role": "Parameter `early rolloff` (from independent series sysex/prog/parameters/early rolloff/) (nibble_hilo, table/index candidate (monotonic 100%))",
       "parameters": [
         "early rolloff"
       ]
@@ -1902,7 +1902,7 @@
       "length": 2,
       "example_hex": "00 00",
       "status": "known",
-      "role": "Parameter `early select` (from independent series sysex/early select/) (nibble_hilo, label = encoded * 1)",
+      "role": "Parameter `early select` (from independent series sysex/prog/parameters/early select/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
         "early select"
       ]
@@ -1938,7 +1938,7 @@
       "length": 1,
       "example_hex": "00",
       "status": "known",
-      "role": "Parameter `delay level` (from independent series sysex/delay level/) (raw_u8, label = encoded + (-21))",
+      "role": "Parameter `delay level` (from independent series sysex/prog/parameters/delay level/) (raw_u8, label = encoded + (-21))",
       "parameters": [
         "delay level"
       ]
@@ -1950,7 +1950,7 @@
       "length": 2,
       "example_hex": "00 00",
       "status": "known",
-      "role": "Parameter `delay time` (from independent series sysex/delay time/) (nibble_hilo, label = encoded * 8 + (100))",
+      "role": "Parameter `delay time` (from independent series sysex/prog/parameters/delay time/) (nibble_hilo, label = encoded * 8 + (100))",
       "parameters": [
         "delay time"
       ]
@@ -1974,7 +1974,7 @@
       "length": 1,
       "example_hex": "04",
       "status": "known",
-      "role": "Bank index mirror (equals offset 89) from sysex/_presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
+      "role": "Bank index mirror (equals offset 89) from sysex/prog/presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
       "parameters": [
         "_presets"
       ]
@@ -1998,7 +1998,7 @@
       "length": 1,
       "example_hex": "01",
       "status": "known",
-      "role": "Parameter `delay modulation` (from independent series sysex/delay modulation/) (raw_u8, label = encoded + (-1))",
+      "role": "Parameter `delay modulation` (from independent series sysex/prog/parameters/delay modulation/) (raw_u8, label = encoded + (-1))",
       "parameters": [
         "delay modulation"
       ]

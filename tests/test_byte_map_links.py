@@ -42,8 +42,8 @@ def test_full_map_links_meaning_cells():
 
     md = render_byte_map_markdown(_byte_map())
     assert "Parameter [`reverb time`](bytes/reverb-time.md)" in md
-    assert "[sysex/reverb time/](bytes/reverb-time.md)" in md
-    assert "[sysex/_presets/](program-identity.md)" in md
+    assert "[sysex/prog/parameters/reverb time/](bytes/reverb-time.md)" in md
+    assert "[sysex/prog/presets/](program-identity.md)" in md
     assert "moved in independent series: [early rolloff](bytes/early-rolloff.md)" in md
     assert "[Halls](presets/halls/)=0" in md
     assert "[Halls 2](presets/halls-2/)=6" in md

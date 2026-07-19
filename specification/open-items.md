@@ -9,9 +9,7 @@ Auto-generated from `src/m7_sysex/export/open_items.py` on each export.
 3. Semantics of PROG header bytes `70 08 01 00`
 4. Full map of register basis blob offsets **24–47** / **56–72** (partial: **50–55** = predelay / reverb time / diffusion / density; see `sysex/prog/edit/registers/`)
 5. **Favorites**-based PROG dumps (bank **119**); Halls 2 subtype EDIT outlier; reserved offset **96**
-6. **Offset 25 coupling** — `midi bank` (primary @ 25) and display-level captures also move offset 25 (secondary)
-7. Closed-form mapping for table parameters (see medium-confidence rows in the parameter index)
-8. Rarely used SYSTEM knobs (e.g. register lock) not yet in dedicated series
+6. Closed-form mapping for table parameters (see medium-confidence rows in the parameter index)
 
 ## System dumps
 

@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Plates 2](README.md) (index **7**). Source: `sysex
 | Bank | Plates 2 (index 7) |
 | Program slot | 11 |
 | Name field | `Fat Plate` (matches filename) |
-| Name region 8-87 | match filename preset (ASCII space-padded) |
+| Name window 8-87 (name + factory space pad) | match filename preset (ASCII space-padded) |
 | Dump file | `Plates 2.Fat Plate.syx` |
 
 > **Not on the published sheet:** this factory dump has no row on the classic [preset sheet PDF](../../preset-sheet.md) (likely a later bank addition). Dump values only below.

@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Chambers](README.md) (index **3**). Source: `sysex
 | Bank | Chambers (index 3) |
 | Program slot | 15 |
 | Name field | `Amb Chamber B` (matches filename) |
-| Name region 8-87 | match filename preset (ASCII space-padded) |
+| Name window 8-87 (name + factory space pad) | match filename preset (ASCII space-padded) |
 | Dump file | `Chambers.Amb Chamber B.syx` |
 
 > **Sheet comparison:** all printable sheet columns match the decoded dump (within tolerance).

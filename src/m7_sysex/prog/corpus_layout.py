@@ -1,8 +1,8 @@
 """Corpus-derived layout hints for bytes that never get a one-parameter series.
 
 Findings from scanning every ``sysex/**/*.syx`` dump (parameter series +
-``_presets``): most former “unknown” payload nibbles are reserved zeros,
-fixed constants, or non-sound meta (family flag / edit generation /
+``prog/presets``): most former “unknown” payload nibbles are reserved zeros,
+fixed constants, or non-sound meta (menu-browse flag / family flag /
 engine/bank-class flag).
 
 These claims are medium-confidence until a targeted capture proves otherwise.

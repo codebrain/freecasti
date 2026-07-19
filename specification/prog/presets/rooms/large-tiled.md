@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Rooms](README.md) (index **2**). Source: `sysex/pr
 | Bank | Rooms (index 2) |
 | Program slot | 11 |
 | Name field | `Large Tiled` (matches filename) |
-| Name region 8-87 | match filename preset (ASCII space-padded) |
+| Name window 8-87 (name + factory space pad) | match filename preset (ASCII space-padded) |
 | Dump file | `Rooms.Large Tiled.syx` |
 
 > **Sheet discrepancies (1 hard):** dump values disagree with the [published preset sheet](../../preset-sheet.md). Highlighted in the Status column below. **SysEx dump is authoritative.**

@@ -1,8 +1,9 @@
 """Build a full SysEx byte map from frame knowledge + independent parameter analyses.
 
-Each sysex/<parameter>/ folder is an independent capture stream (only that
-parameter intentionally varied). Analyses are never cross-compared at the
-dump-byte level - we only merge per-folder conclusions into a layout map.
+Each sysex/prog/parameters/<parameter>/ folder is an independent capture
+stream (only that parameter intentionally varied). Analyses are never
+cross-compared at the dump-byte level - we only merge per-folder conclusions
+into a layout map.
 """
 
 from __future__ import annotations
@@ -173,7 +174,7 @@ def build_byte_map(
         "matches_filename_preset"
     ):
         name_role += (
-            " - confirmed against sysex/_presets/ filename preset "
+            " - confirmed against sysex/prog/presets/ filename preset "
             "(bank name is not stored here)"
         )
     claim(
@@ -256,7 +257,10 @@ def build_byte_map(
         if best and best.get("offsets"):
             enc = best.get("encoding")
             notes = (best.get("notes") or "").split(";", 1)[0].strip()
-            role = f"Parameter `{name}` (from independent series sysex/{name}/)"
+            role = (
+                f"Parameter `{name}` (from independent series "
+                f"sysex/prog/parameters/{name}/)"
+            )
             if enc:
                 role += f" ({enc}"
                 if notes:
@@ -318,11 +322,12 @@ def build_byte_map(
     return {
         "message_length": length,
         "independence_note": (
-            "Each sysex/<parameter>/ folder is an independent dump stream. "
-            "Byte values are never compared across folders; only per-folder "
-            "conclusions are merged into this layout map. "
-            "sysex/_presets/ is a separate preset-identity series (bank/program/name). "
-            "Additional reserved/meta roles come from a corpus scan of all dumps."
+            "Each sysex/prog/parameters/<parameter>/ folder is an independent "
+            "dump stream. Byte values are never compared across folders; only "
+            "per-folder conclusions are merged into this layout map. "
+            "sysex/prog/presets/ is a separate preset-identity series "
+            "(bank/program/name). Additional reserved/meta roles come from a "
+            "corpus scan of all dumps."
         ),
         "counts": {
             "known_or_frame": known,
@@ -375,7 +380,7 @@ def _claim_names_identity(claim, names: dict[str, Any], length: int) -> None:
         list(bank.get("offsets") or [88, 89]),
         status="known",
         role=(
-            "Bank index (`nibble_hilo`) from sysex/_presets/ "
+            "Bank index (`nibble_hilo`) from sysex/prog/presets/ "
             f"[{bank_summary}]"
             + (
                 f"; mirrored at offset {bank.get('mirror_offset', 137)}"
@@ -385,7 +390,7 @@ def _claim_names_identity(claim, names: dict[str, Any], length: int) -> None:
             + (
                 f"; hold EDIT sends use index {EDIT_DUMP_BANK_INDEX} here "
                 "while mirror 137 keeps the source bank "
-                "(see sysex/_edit/)"
+                "(see sysex/prog/edit/)"
             )
         ),
         parameter="_presets",
@@ -398,7 +403,7 @@ def _claim_names_identity(claim, names: dict[str, Any], length: int) -> None:
         list(program.get("offsets") or [90, 91]),
         status="known",
         role=(
-            "Program slot within bank (`nibble_hilo`) from sysex/_presets/ "
+            "Program slot within bank (`nibble_hilo`) from sysex/prog/presets/ "
             "(not a global program number)"
         ),
         parameter="_presets",
@@ -413,7 +418,7 @@ def _claim_names_identity(claim, names: dict[str, Any], length: int) -> None:
             status="known",
             role=(
                 f"Bank index mirror (equals offset {bank['offsets'][1]}) "
-                "from sysex/_presets/; on hold-EDIT dumps this stays the "
+                "from sysex/prog/presets/; on hold-EDIT dumps this stays the "
                 "source bank while 88-89 are Edit index 11"
             ),
             parameter="_presets",
@@ -443,7 +448,7 @@ def _claim_preset_sheet(claim, names: dict[str, Any], length: int) -> None:
         enc = dec.get("encoding")
         kind = dec.get("kind")
         role = (
-            f"Parameter `{name}` (from sysex/_presets/ × preset sheet"
+            f"Parameter `{name}` (from sysex/prog/presets/ × preset sheet"
         )
         if enc and kind:
             role += f"; {enc}, {kind}"
@@ -538,13 +543,16 @@ def _linkify_meaning(text: str, series_params: set[str]) -> str:
     text = re.sub(r"Parameter `([^`]+)`", repl_param_tick, text)
 
     for name in ordered:
-        path = f"sysex/{name}/"
+        path = f"sysex/prog/parameters/{name}/"
         if path in text:
-            text = text.replace(path, f"[sysex/{name}/]({_parameter_page_href(name)})")
+            text = text.replace(
+                path, f"[{path}]({_parameter_page_href(name)})"
+            )
 
-    if "sysex/_presets/" in text:
+    if "sysex/prog/presets/" in text:
         text = text.replace(
-            "sysex/_presets/", "[sysex/_presets/](program-identity.md)"
+            "sysex/prog/presets/",
+            "[sysex/prog/presets/](program-identity.md)",
         )
 
     marker = "moved in independent series: "
@@ -779,10 +787,14 @@ def _overview_label(
     if status == "secondary":
         if "display" in role.lower():
             return "display", encoding or "nibble_hilo"
-        if "edit/generation" in role.lower() or (
-            "_corpus" in params_all and "edit" in role.lower()
-        ):
-            return "edit/generation counter", encoding
+        if "_corpus" in params_all and start is not None and end is not None:
+            # Region may also list series that moved it as a secondary byte;
+            # the corpus claim still owns the short label (e.g. offset 92).
+            corpus_label = overview_label_for_offsets(
+                list(range(int(start), int(end) + 1))
+            )
+            if corpus_label:
+                return corpus_label, encoding
         return "secondary (edit/UI)", encoding
     if status == "unknown":
         return "UNKNOWN", None

@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Plates](README.md) (index **1**). Source: `sysex/p
 | Bank | Plates (index 1) |
 | Program slot | 11 |
 | Name field | `Percussion` (matches filename) |
-| Name region 8-87 | match filename preset (ASCII space-padded) |
+| Name window 8-87 (name + factory space pad) | match filename preset (ASCII space-padded) |
 | Dump file | `Plates.Percussion.syx` |
 
 > **Sheet comparison:** all printable sheet columns match the decoded dump (within tolerance).

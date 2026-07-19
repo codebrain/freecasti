@@ -122,7 +122,7 @@ def main(argv: list[str] | None = None) -> int:
     sheet_p = sub.add_parser(
         "sheet",
         help=(
-            "Compare decoded sysex/_presets/ dumps to Bricasti's published "
+            "Compare decoded sysex/prog/presets/ dumps to Bricasti's published "
             "preset sheet (uses docs/reference/preset_sheet.json)"
         ),
     )

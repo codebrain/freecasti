@@ -1,7 +1,8 @@
 """Decode known sound-parameter values out of a full program-dump message.
 
 Uses per-parameter ``analysis.json`` / export results (offsets, encoding, scale
-or sparse table mapping) to interpret factory/user presets in ``sysex/_presets/``.
+or sparse table mapping) to interpret factory/user presets in
+``sysex/prog/presets/``.
 
 Parameters still missing a dedicated capture series may also be filled from
 ``preset_inferred`` (factory dumps × published preset sheet).

@@ -1,4 +1,4 @@
-"""Compare captured ``sysex/_presets/`` dumps to official V2 addendum lists."""
+"""Compare captured ``sysex/prog/presets/`` dumps to official V2 addendum lists."""
 
 from __future__ import annotations
 

@@ -109,7 +109,7 @@ def test_prog_menu_ui_bytes_match_analysis(kaitai_prog_parser):
     from m7_sysex.prog.menus import analyze_menus_folder
 
     analysis = analyze_menus_folder(prog_menus_root(SYSEX), SYSEX)
-    browse_field = _field("edit_generation_counter")
+    browse_field = _field("menu_browse_flag")
     menu_field = _field("selected_menu_index")
     cursor_field = _field("display")
 

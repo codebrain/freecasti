@@ -219,7 +219,8 @@ def analyze_system_series_folder(folder: Path) -> dict[str, Any]:
             "notes": (
                 "Payload bytes 8-71 are nibble-sized (0x00-0x0F). "
                 "The final four nibbles before F7 are a CRC-16/ARC over offsets "
-                "8-71, packed high-nibble-first. No 80-byte ASCII name field."
+                "8-71, packed high-nibble-first. No program-name / "
+                "register-basis region (payload starts at offset 8)."
             ),
         },
         "changing_offsets": changing,

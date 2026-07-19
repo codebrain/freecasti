@@ -137,7 +137,8 @@ def cross_analyze(
         "kind": "cross_series_meta",
         "disclaimer": (
             "Cross analysis does not transfer absolute parameter values between "
-            "folders. Each sysex/<parameter>/ stream remains independent; this "
+            "folders. Each sysex/prog/parameters/<parameter>/ stream remains "
+            "independent; this "
             "pass only looks for stable bytes, recurrent movers, claim conflicts, "
             "untouched offsets, and checksum hypotheses across the message corpus."
         ),
@@ -470,7 +471,10 @@ def _search_checksum(
                 "refin": True,
                 "refout": True,
                 "xorout": "0x0000",
-                "cover": "offsets 8..151 (80-byte name + payload nibbles as stored)",
+                "cover": (
+                    "offsets 8..151 (name window + register-basis blob + "
+                    "payload as stored)"
+                ),
                 "exclude": "F0, manufacturer ID, header 70 08 01 00, checksum, F7",
                 "pack": "16-bit CRC as four high-nibble-first SysEx bytes",
             }

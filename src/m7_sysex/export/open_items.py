@@ -31,15 +31,8 @@ PROG_OPEN_ITEMS_CORE: list[str] = [
         "outlier; reserved offset **96**"
     ),
     (
-        "**Offset 25 coupling** — `midi bank` (primary @ 25) and display-level "
-        "captures also move offset 25 (secondary)"
-    ),
-    (
         "Closed-form mapping for table parameters (see medium-confidence rows "
         "in the parameter index)"
-    ),
-    (
-        "Rarely used SYSTEM knobs (e.g. register lock) not yet in dedicated series"
     ),
 ]
 

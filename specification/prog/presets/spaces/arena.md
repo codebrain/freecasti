@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Spaces](README.md) (index **5**). Source: `sysex/p
 | Bank | Spaces (index 5) |
 | Program slot | 8 |
 | Name field | `Arena` (matches filename) |
-| Name region 8-87 | match filename preset (ASCII space-padded) |
+| Name window 8-87 (name + factory space pad) | match filename preset (ASCII space-padded) |
 | Dump file | `Spaces.Arena.syx` |
 
 > **Sheet comparison:** all printable sheet columns match the decoded dump (within tolerance).

@@ -1,4 +1,4 @@
-"""Analyze sysex/_presets/ dumps named <bank>.<preset>.
+"""Analyze sysex/prog/presets/ dumps named <bank>.<preset>.
 
 These are not single-parameter series. They confirm the program-name field and
 locate bank / program-slot identity bytes in the payload.

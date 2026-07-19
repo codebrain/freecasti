@@ -14,7 +14,7 @@ _Generated 2026-07-19. Bank: [Chambers](README.md) (index **3**). Source: `sysex
 | Bank | Chambers (index 3) |
 | Program slot | 7 |
 | Name field | `Kick Chamber` (matches filename) |
-| Name region 8-87 | match filename preset (ASCII space-padded) |
+| Name window 8-87 (name + factory space pad) | match filename preset (ASCII space-padded) |
 | Dump file | `Chambers.Kick Chamber.syx` |
 
 > **Sheet discrepancies (1 soft):** dump values disagree with the [published preset sheet](../../preset-sheet.md). Highlighted in the Status column below. **SysEx dump is authoritative.**

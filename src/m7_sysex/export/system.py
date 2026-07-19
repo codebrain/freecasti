@@ -49,7 +49,7 @@ Observed length: **{message_length} bytes** for the captured system dumps.
 | 0 | 1 | `F0` SysEx start |
 | 1-3 | 3 | Manufacturer ID `{mfr}` (Bricasti Design) |
 | 4-7 | 4 | Header `{header}` (**SYSTEM** family; byte 6 is `02` vs `01` on PROG) |
-| 8-71 | 64 | System payload as **nibbles** (`0x00`-`0x0F`) — **no** 80-byte ASCII name |
+| 8-71 | 64 | System payload as **nibbles** (`0x00`-`0x0F`) — **no** program-name / register-basis region |
 | 72-75 | 4 | Checksum: **CRC-16/ARC** over offsets 8-71, packed as four high-nibble-first bytes |
 | 76 | 1 | `F7` SysEx end |
 

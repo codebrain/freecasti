@@ -41,20 +41,23 @@ Observed length: **{message_length} bytes** for the captured program dumps.
 | 0 | 1 | `F0` SysEx start |
 | 1-3 | 3 | Manufacturer ID `{mfr}` (Bricasti Design) |
 | 4-7 | 4 | Header `{header}` (program-dump family; exact semantics TBD) |
-| 8-87 | 80 | Program name, ASCII, space-padded (preset title only) |
+| 8-21 | 14 | Program name, ASCII, space-padded (14-character editable label per manual) — see [bytes/program-name.md](bytes/program-name.md) |
+| 22-23 | 2 | Program name pad (`0x20` in this corpus; completes the 16-byte wire name window) |
+| 24-87 | 64 | Register basis blob: spaces (`0x20`) on factory dumps; nibble-packed unedited register basis on Reg-backed hold-EDIT dumps |
 | 88-89 | 2 | Bank index (`nibble_hilo`) — see [program-identity.md](program-identity.md) |
 | 90-91 | 2 | Program slot within bank (`nibble_hilo`) |
-| 92-151 | 60 | Remaining parameter / state payload as **nibbles** (`0x00`-`0x0F`) |
+| 92-151 | 60 | Parameter / meta / UI-state payload (nibble pairs, raw bytes, and reserved zeros — see [byte-map.md](byte-map.md)) |
 | 152-155 | 4 | Checksum: **CRC-16/ARC** over offsets 8-151, packed as four high-nibble-first bytes |
 | 156 | 1 | `F7` SysEx end |
 
 ```
-F0 | {mfr} | {header} | <80-byte name> | <bank> <slot> <params...> | <4 nibble cs> | F7
+F0 | {mfr} | {header} | <name 8-21> <pad 22-23> <basis blob 24-87> | <bank> <slot> <payload...> | <4 nibble cs> | F7
 ```
 
 ### Notes
 
-- All inspected payload bytes at offsets 88-155 stay within `0x00`-`0x0F`. That strongly suggests the M7 packs each binary byte as two MIDI nibbles rather than using classic 7-bit MIDI packing with MSB bitfields.
+- All inspected payload bytes at offsets 88-155 stay within `0x00`-`0x0F`. That strongly suggests the M7 packs each binary byte as two MIDI nibbles rather than using classic 7-bit MIDI packing with MSB bitfields. Not every payload byte is half of a nibble pair, though: several fields are single `raw_u8` bytes and several offsets are reserved zeros (see [byte-map-overview.md](byte-map-overview.md)).
+- Factory dumps fill offsets 24-87 with spaces, so the whole 8-87 window reads as one long space-padded name there. Reg-backed hold-EDIT captures show 24-87 is really a separate register-basis blob (see `sysex/prog/edit/registers/`).
 - Checksum (152-155): **CRC-16/ARC** over the raw SysEx bytes at offsets 8-151 (name + payload), packed as four high-nibble-first data bytes. Manufacturer ID and header are not covered.
 - Program dumps can include UI / edit-state fields in addition to algorithm parameters (Bricasti documents that a program dump carries the running program, edits, and UI state). Expect a few offsets to move even during a “single parameter” series.
 - Display at **146–147** (`nibble_hilo`): high nibble = page/row, low nibble = column/position. Menu index remains at **98–99**. See [bytes/display.md](bytes/display.md) and [ui-state.md](ui-state.md).
@@ -402,7 +405,7 @@ def _render_overview(
                 )
                 + ".",
                 "",
-                f"- Name field 8-87 matches filename preset ({names.get('dump_count', 0)} dumps).",
+                f"- Name bytes 8-21 (plus factory space padding through 87) match the filename preset ({names.get('dump_count', 0)} dumps).",
                 f"- Bank index 88-89 (`nibble_hilo`): {bank_bits or '(see page)'}.",
                 "- Program slot 90-91 (`nibble_hilo`) within the current bank.",
                 "- Offset 137 mirrors bank index low nibble (89).",
@@ -1016,7 +1019,7 @@ def _render_preset_section(
             f"| Program slot | {dump.get('program_slot')} |",
             f"| Name field | `{dump.get('name_field')}` "
             f"{_name_match_label(dump)} |",
-            f"| Name region 8-87 | {_name_bytes_label(dump)} |",
+            f"| Name window 8-87 (name + factory space pad) | {_name_bytes_label(dump)} |",
             f"| Dump file | `{dump.get('file')}` |",
             "",
         ]
@@ -1146,7 +1149,7 @@ def _render_names_page(
         [
         "## Fields",
         "",
-        f"- **Program name** offsets **{name_field.get('offset_range', '8-87')}** "
+        f"- **Program name** offsets **{name_field.get('offset_range', '8-21')}** "
         f"(`{name_field.get('encoding', 'ascii_space_padded')}`). "
         f"Filename check: "
         f"{name_field.get('bytes_match_count', '?')}/"
