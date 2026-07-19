@@ -15,6 +15,7 @@ from m7_sysex.frame import (
     DATA_OFFSET,
     PROGRAM_DUMP_HEADER,
     is_nibble_payload,
+    iter_sysex_messages,
     parse_sysex,
     verify_program_dump_checksum,
 )
@@ -44,24 +45,26 @@ def test_corpus_is_present():
 
 def test_every_dump_parses_with_valid_frame_and_checksum():
     for path in ALL_DUMPS:
-        raw = path.read_bytes()
-        frame = parse_sysex(raw)
-        assert frame.manufacturer_id == BRICASTI_MFR_ID, path
-        assert frame.header == PROGRAM_DUMP_HEADER, path
-        assert len(raw) == 157, path
-        assert verify_program_dump_checksum(raw), path
-        assert is_nibble_payload(raw[DATA_OFFSET:-1]), path
-        # Name field is printable ASCII on factory/parameter dumps (8–87 spaces).
-        assert all(32 <= b < 127 for b in raw[8:88]), path
+        for raw in iter_sysex_messages(path.read_bytes()):
+            frame = parse_sysex(raw)
+            assert frame.manufacturer_id == BRICASTI_MFR_ID, path
+            assert frame.header == PROGRAM_DUMP_HEADER, path
+            assert len(raw) == 157, path
+            assert verify_program_dump_checksum(raw), path
+            assert is_nibble_payload(raw[DATA_OFFSET:-1]), path
+            # Name field is printable ASCII on factory/parameter dumps (8–87 spaces).
+            assert all(32 <= b < 127 for b in raw[8:88]), path
 
 
 def test_corpus_layout_constant_claims_hold():
     """Every 'reserved'/'fixed' offset claimed in corpus_layout is constant."""
     constants = verify_corpus_constants(SYSEX)
     expected_fixed = {
-        93: 0,  # register page (0 on factory corpus)
+        # register_bank / register (93/95) are 0 on factory corpus; Reg EDIT
+        # dumps live under sysex/prog/edit/ and are excluded from this scan.
+        93: 0,
         94: 8,  # structure version
-        95: 0,  # register slot (0 on factory corpus)
+        95: 0,
         96: 0,
         106: 0,
         108: 0,
@@ -95,10 +98,23 @@ def test_corpus_layout_claims_cover_expected_offsets():
 def test_bank_mirror_and_family_flag_mirror_relations():
     """137 mirrors bank low nibble (89); 145 mirrors family flag (97: 3->0, 4->1)."""
     for path in ALL_DUMPS:
+        for raw in iter_sysex_messages(path.read_bytes()):
+            assert raw[137] == raw[89], path
+            assert raw[97] in (3, 4), path
+            assert raw[145] == {3: 0, 4: 1}[raw[97]], path
+
+
+def test_factory_program_names_fit_14_char_editable_window():
+    """Manual 14-character label; wire window is 16 with trailing space pad."""
+    from m7_sysex.frame import PROGRAM_NAME_EDITABLE_LENGTH, PROGRAM_NAME_LENGTH
+
+    assert PROGRAM_NAME_LENGTH == 16
+    assert PROGRAM_NAME_EDITABLE_LENGTH == 14
+    for path in PRESET_DUMPS:
         raw = path.read_bytes()
-        assert raw[137] == raw[89], path
-        assert raw[97] in (3, 4), path
-        assert raw[145] == {3: 0, 4: 1}[raw[97]], path
+        name = raw[8:24]
+        assert name[14:16] == b"  ", path
+        assert len(name.rstrip(b" ")) <= PROGRAM_NAME_EDITABLE_LENGTH, path
 
 
 def test_preset_bank_indices_match_addendum_table():

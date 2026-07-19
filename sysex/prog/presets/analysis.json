@@ -17,7 +17,7 @@
       "matches_filename_preset": true,
       "bytes_match_count": 222,
       "bytes_mismatch_count": 0,
-      "notes": "ASCII program name (16-byte window). Bank name is not stored here. Factory preset dumps space-pad the remainder through offset 87; Reg-backed hold-EDIT dumps put a register basis blob at 24\u201387 instead. Factory validation still checks bytes[8:88] against the filename preset half, space-padded to 80 bytes."
+      "notes": "ASCII program name: 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded. Bank name is not stored here. Factory preset dumps space-pad the remainder through offset 87; Reg-backed hold-EDIT dumps put a register basis blob at 24\u201387 instead. Factory validation still checks bytes[8:88] against the filename preset half, space-padded to 80 bytes."
     },
     "bank_index": {
       "offsets": [

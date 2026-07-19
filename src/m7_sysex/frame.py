@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterator
 from dataclasses import dataclass
 
 SYSEX_START = 0xF0
@@ -21,8 +22,11 @@ PROGRAM_DUMP_HEADER = bytes((0x70, 0x08, 0x01, 0x00))
 SYSTEM_DUMP_HEADER = bytes((0x70, 0x08, 0x02, 0x00))
 
 NAME_OFFSET = 8
-# Display name window (ASCII, space-padded within 8–23).
+# Wire name window (ASCII, space-padded within 8–23).
 PROGRAM_NAME_LENGTH = 16
+# Manual/UI editable label length (14-character location display); trailing
+# two bytes of the wire window (offsets 22–23) are space pad in this corpus.
+PROGRAM_NAME_EDITABLE_LENGTH = 14
 # Opaque register-basis copy on Reg-backed hold-EDIT dumps; factory dumps
 # fill this region with 0x20 spaces (same as trailing name padding).
 REGISTER_BASIS_BLOB_OFFSET = 24
@@ -69,6 +73,25 @@ class SysexFrame:
     @property
     def length(self) -> int:
         return len(self.raw)
+
+
+def iter_sysex_messages(data: bytes) -> Iterator[bytes]:
+    """Yield each ``F0``…``F7`` SysEx message from a blob (concatenated dumps OK)."""
+    if not data:
+        return
+    i = 0
+    n = len(data)
+    while i < n:
+        if data[i] != SYSEX_START:
+            i += 1
+            continue
+        j = i + 1
+        while j < n and data[j] != SYSEX_END:
+            j += 1
+        if j >= n:
+            raise ValueError(f"truncated SysEx starting at offset {i}")
+        yield data[i : j + 1]
+        i = j + 1
 
 
 def parse_sysex(data: bytes) -> SysexFrame:

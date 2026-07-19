@@ -23,6 +23,7 @@ from ..frame import (
     CHECKSUM_NIBBLE_COUNT,
     NAME_OFFSET,
     PROGRAM_DUMP_HEADER,
+    PROGRAM_NAME_EDITABLE_LENGTH,
     PROGRAM_NAME_LENGTH,
     REGISTER_BASIS_BLOB_LENGTH,
     REGISTER_BASIS_BLOB_OFFSET,
@@ -148,11 +149,11 @@ def build_program_dump_spec(
             field["encoding"] = "raw_bytes"
             field["id"] = _force_id("register_basis_blob", used_ids, field_id)
         elif start == 93 and size == 1:
-            field["id"] = _force_id("register_page", used_ids, field_id)
+            field["id"] = _force_id("register_bank", used_ids, field_id)
         elif start == 94 and size == 1:
             field["id"] = _force_id("structure_version", used_ids, field_id)
         elif start == 95 and size == 1:
-            field["id"] = _force_id("register_slot", used_ids, field_id)
+            field["id"] = _force_id("register", used_ids, field_id)
         elif status == "checksum":
             field["id"] = _force_id("checksum", used_ids, field_id)
         elif start == length - 1 and size == 1:
@@ -205,7 +206,13 @@ def build_program_dump_spec(
             "program_name": {
                 "offset": NAME_OFFSET,
                 "length": PROGRAM_NAME_LENGTH,
+                "editable_length": PROGRAM_NAME_EDITABLE_LENGTH,
                 "encoding": "ascii_space_padded",
+                "doc": (
+                    f"{PROGRAM_NAME_LENGTH}-byte wire window; "
+                    f"{PROGRAM_NAME_EDITABLE_LENGTH}-character editable label "
+                    "(manual); trailing two bytes are space pad"
+                ),
             },
             "register_basis_blob": {
                 "offset": REGISTER_BASIS_BLOB_OFFSET,

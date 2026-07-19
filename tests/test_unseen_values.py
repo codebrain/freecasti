@@ -48,32 +48,23 @@ def test_reverb_time_has_documented_unseen_rows(prog_analysis_bundle):
 
 def test_reserved_offset_reports_unseen_nibbles(prog_analysis_bundle):
     unseen = prog_analysis_bundle["unseen"]
+    # Offset 95 = register (0–9 witnessed via edit/registers fullsweep).
     off95 = next(e for e in unseen["offsets"] if e["offset"] == 95)
-    assert off95["observed_count"] == 1
-    assert off95["unseen_nibble_count"] == 15
-    assert off95["unseen_nibble_values"] == [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-    ]
+    assert off95["observed_count"] == 10
+    assert off95["unseen_nibble_count"] == 6
+    assert off95["unseen_nibble_values"] == ["A", "B", "C", "D", "E", "F"]
+    off93 = next(e for e in unseen["offsets"] if e["offset"] == 93)
+    assert off93["observed_count"] == 5  # register banks B0–B4
 
 
 def test_observed_values_by_offset_covers_corpus():
     observed = observed_values_by_offset(SYSEX)
     assert 95 in observed
-    assert observed[95] == [0]
+    assert observed[95] == list(range(10))
+    assert observed[93] == list(range(5))
+    # Fullsweep witnesses display=164 (`0A 04`).
+    assert 0x0A in observed[146]
+    assert 0x04 in observed[147]
 
 
 def test_export_writes_unseen_sections_per_byte(tmp_path, prog_analysis_bundle):

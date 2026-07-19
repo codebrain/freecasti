@@ -166,20 +166,22 @@ fully reconciled.
 | Bytes | Status |
 |-------|--------|
 | **4–7** `70 08 01 00` | Program-dump family; **not** documented in manuals. Hold **EDIT** uses the same header/length |
-| **8–23** | ASCII program name (16-char window) |
+| **8–23** | Program name: **16-byte** wire window; **14-character** editable label (manual); offsets **22–23** space-padded in this corpus |
 | **24–87** | Factory: space-padded (`0x20`). Reg-backed hold-EDIT: nibble-packed **register basis blob** (unedited basis copy) |
-| **93** | Register bank page (`raw_u8`, B0=`00` …); `00` on factory dumps |
+| **93** | **`register_bank`** — manual Bank (`raw_u8`, B0–B4 = `00`–`04`); `00` on factory dumps |
 | **94** | Constant `08` (structure/version) |
-| **95** | Register slot 0–9 when basis is a register; `00` on factory dumps |
+| **95** | **`register`** — manual Register within bank (`0`–`9`); `00` on factory dumps |
 | **96** | Reserved/unknown (`00` in witnessed captures) |
-| **EDIT** identity | Bank **11** @ 88–89; source factory slot @ 90–91; source bank @ mirror **137**; see `sysex/prog/edit/` and `sysex/prog/edit/registers/` |
+| **EDIT** identity | Program bank **11** @ 88–89; source factory slot @ 90–91; source bank @ mirror **137**; see `sysex/prog/edit/` and `sysex/prog/edit/registers/` |
 | **SYSTEM** layout | 77 bytes, header `70 08 02 00`; **8** settings captured — see [system/](../specification/system/) |
 
-Register-basis hold-EDIT captures (B0×10, B1×2, plus Ambience/NonLin samples)
-are under [`sysex/prog/edit/registers/`](../sysex/prog/edit/registers/). Partial
-blob decode: **50–55** ≈ predelay / reverb time / diffusion / density; remainder
-of **24–47** / **56–72** still open. One Halls 2 capture with atypical meta is
-documented as an outlier, not the primary path.
+Register-basis hold-EDIT captures prove the full **5 Banks × 10 Registers**
+inventory (`fullsweep-rooms-studio-a.syx`), plus earlier B0/B1 Large Hall and
+Ambience/NonLin samples under [`sysex/prog/edit/registers/`](../sysex/prog/edit/registers/).
+LCD `display` (146–147) does **not** encode Bank/Register (fullsweep fixed at
+164). Partial blob decode: **50–55** ≈ predelay / reverb time / diffusion /
+density; remainder of **24–47** / **56–72** still open. One Halls 2 capture with
+atypical meta is documented as an outlier, not the primary path.
 
 ## Suggested captures (from manual + gaps)
 
@@ -188,8 +190,8 @@ Remaining optional work:
 
 1. **EDIT receive path** — confirm MIDI-notes bank **118** when loading an EDIT
    dump back into the unit (distinct from send marker 11).
-2. **Favorites**-based PROG dumps (bank **119**); confirm Reg pages **B2–B4**;
-   finish mapping register basis blob **24–47** / **56–72**.
+2. **Favorites**-based PROG dumps (bank **119**); finish mapping register basis
+   blob **24–47** / **56–72**.
 3. **Offset 25 secondary** — reconcile display-level secondary mover vs midi-bank
    primary in the byte-map export (Kaitai + web UI already model midi bank @ 25).
 4. **SYSTEM** knobs not yet in dedicated series (e.g. register lock) if you

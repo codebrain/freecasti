@@ -6,10 +6,17 @@ import {
   verifyProgramDumpChecksum,
   verifySystemDumpChecksum,
   bytesToHex,
+  PROGRAM_NAME_EDITABLE_LENGTH,
+  PROGRAM_NAME_LENGTH,
 } from "@/sysex/frame";
 import { loadSerializeSkeletons } from "@/test/serializeSkeletons";
 
 describe("frame checksum helpers", () => {
+  it("documents 14-char editable name inside 16-byte wire window", () => {
+    expect(PROGRAM_NAME_LENGTH).toBe(16);
+    expect(PROGRAM_NAME_EDITABLE_LENGTH).toBe(14);
+  });
+
   it("packs u16 values into big-endian nibbles", () => {
     expect(Array.from(packU16BeNibbles(0x1234))).toEqual([0x1, 0x2, 0x3, 0x4]);
   });

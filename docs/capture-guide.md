@@ -192,15 +192,17 @@ not menu-navigation dumps.
 ### Register-basis hold-EDIT (`sysex/prog/edit/registers/`)
 
 When a **User Register** is the running program basis, hold **EDIT** and save
-the 157-byte dump. Name is still at **8–23**; **24–87** carries a nibble-packed
-basis blob; **93** = Reg page (B0=0 …); **94** = `08`; **95** = Reg slot 0–9.
-See [registers/README.md](../sysex/prog/edit/registers/README.md).
+the 157-byte dump. Name is still at **8–23** (16-byte wire / 14-char editable);
+**24–87** carries a nibble-packed basis blob; **93** = `register_bank` (B0–B4);
+**94** = `08`; **95** = `register` (0–9). Exhaustive 5×10 witness:
+`fullsweep-rooms-studio-a.syx`. See
+[registers/README.md](../sysex/prog/edit/registers/README.md).
 
-To capture a page×slot grid:
+To capture a bank×register grid:
 
-1. Store a factory preset into the target Reg page/slot.
+1. Store a factory preset into the target register bank/register.
 2. Load that register so it is the running basis.
-3. Hold **EDIT**; save as `b<page>-…/slot-<n>.syx`.
+3. Hold **EDIT**; save as `b<bank>-…/slot-<n>.syx` (filename `slot-N` = Register N).
 
 Optional follow-ups:
 
@@ -212,7 +214,7 @@ Optional follow-ups:
   is in `m7_system_dump.ksy` and the web UI; offset 25 also moves as a
   secondary field in display-level captures. Optional: register lock and other
   rarely touched SYSTEM knobs
-- **Favorites**-based PROG dumps; denser Reg pages B2–B4; finish basis-blob map
+- **Favorites**-based PROG dumps; finish basis-blob map
 - `0.1s.syx` for reverb time if the UI reaches the printed 0.1 s floor
 - Denser mid samples for medium-confidence tables when you need a full decode table
 - Reconcile hard sheet errata (early select / HF crossover on a few Halls) if you re-dump those factory programs

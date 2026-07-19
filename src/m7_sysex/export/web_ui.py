@@ -28,8 +28,8 @@ _IDENTITY_FIELD_IDS = frozenset(
         "bank_index",
         "program_slot",
         "bank_index_mirror",
-        "register_page",
-        "register_slot",
+        "register_bank",
+        "register",
     }
 )
 

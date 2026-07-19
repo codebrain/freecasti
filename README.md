@@ -31,7 +31,7 @@ The **77-byte system-dump format is fully annotated** as well — see
 | Frame (start, mfr ID, header, name, end) | Solved; validated on **379** PROG corpus dumps + **73** SYSTEM dumps (**452** total) |
 | Checksum | **Solved**: CRC-16/ARC over offsets 8–151, packed as 4 high-nibble-first bytes; verified corpus-wide |
 | Sound parameters | **18 / 18 captured and decodable** from dedicated series; tables densified with hardware UI walks (`provided`) and sheet/preset anchors |
-| Program identity | Solved: name @ 8–23, register basis blob @ 24–87, bank @ 88–89 (mirror 137), slot @ 90–91; Reg page/slot @ 93/95 on register-basis EDIT |
+| Program identity | Solved: name @ 8–23 (16-byte wire / 14-char editable), register basis blob @ 24–87, bank @ 88–89 (mirror 137), slot @ 90–91; `register_bank` / `register` @ 93/95 on register-basis EDIT (5×10) |
 | Meta / reserved bytes | Mapped from a corpus scan (family flag 97/145, engine class 130, fixed fields, padding) — medium confidence |
 | Factory presets | **222 captured** ([presets/](specification/prog/presets/)); see [preset-inventory.md](specification/prog/preset-inventory.md) |
 | Sheet cross-check | 98 classic presets matched; errata in [preset-sheet.md](specification/prog/preset-sheet.md) |

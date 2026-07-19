@@ -5,7 +5,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from ..frame import parse_sysex
+from ..frame import iter_sysex_messages, parse_sysex
+from ..paths import prog_edit_root
 from ..types import is_prog_corpus_dump
 from .display import nibble_hilo
 
@@ -39,20 +40,37 @@ def unseen_nibbles_at(observed: dict[int, list[int]], offset: int) -> list[str]:
 
 
 def observed_values_by_offset(sysex_root: Path) -> dict[int, list[int]]:
-    """Return sorted unique byte values seen at each offset across PROG corpus dumps."""
+    """Return sorted unique byte values seen at each offset across PROG dumps.
+
+    Includes the factory/parameter corpus plus ``sysex/prog/edit/registers/``
+    (multi-message files supported) so register-bank / register / display
+    witnesses from hold-EDIT captures are visible.
+    """
     root = Path(sysex_root)
     if not root.is_dir():
         return {}
     values: dict[int, set[int]] = {}
-    for path in root.rglob("*.syx"):
-        if not is_prog_corpus_dump(path, root):
-            continue
+    paths = {
+        p.resolve()
+        for p in root.rglob("*.syx")
+        if is_prog_corpus_dump(p, root)
+    }
+    registers_root = prog_edit_root(root) / "registers"
+    if registers_root.is_dir():
+        paths.update(p.resolve() for p in registers_root.rglob("*.syx"))
+        paths.update(p.resolve() for p in registers_root.rglob("*.SYX"))
+    for path in sorted(paths):
         try:
-            raw = parse_sysex(path.read_bytes()).raw
+            messages = list(iter_sysex_messages(path.read_bytes()))
         except ValueError:
             continue
-        for off in range(len(raw)):
-            values.setdefault(off, set()).add(raw[off])
+        for message in messages:
+            try:
+                raw = parse_sysex(message).raw
+            except ValueError:
+                continue
+            for off in range(len(raw)):
+                values.setdefault(off, set()).add(raw[off])
     return {off: sorted(s) for off, s in sorted(values.items())}
 
 

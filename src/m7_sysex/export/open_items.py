@@ -27,8 +27,8 @@ PROG_OPEN_ITEMS_CORE: list[str] = [
         "see `sysex/prog/edit/registers/`)"
     ),
     (
-        "**Favorites**-based PROG dumps (bank **119**); confirm Reg pages "
-        "**B2–B4**; Halls 2 subtype EDIT outlier; reserved offset **96**"
+        "**Favorites**-based PROG dumps (bank **119**); Halls 2 subtype EDIT "
+        "outlier; reserved offset **96**"
     ),
     (
         "**Offset 25 coupling** — `midi bank` (primary @ 25) and display-level "

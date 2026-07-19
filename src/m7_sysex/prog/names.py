@@ -66,8 +66,8 @@ NAME_FIELD_ALIASES: dict[str, str] = {
 BANK_WORD_OFFSETS = (88, 89)
 PROGRAM_WORD_OFFSETS = (90, 91)
 BANK_MIRROR_OFFSET = 137
-REGISTER_PAGE_OFFSET = 93
-REGISTER_SLOT_OFFSET = 95
+REGISTER_BANK_OFFSET = 93
+REGISTER_OFFSET = 95
 STRUCTURE_VERSION_OFFSET = 94
 
 
@@ -101,21 +101,21 @@ def program_slot_from_raw(raw: bytes) -> int:
     return nibble_hilo(raw[PROGRAM_WORD_OFFSETS[0]], raw[PROGRAM_WORD_OFFSETS[1]])
 
 
-def register_page_from_raw(raw: bytes) -> int:
-    """Decode register bank page from offset 93 (`raw_u8`; B0=0 …).
+def register_bank_from_raw(raw: bytes) -> int:
+    """Decode register bank from offset 93 (`raw_u8`; manual Bank B0–B4 = 0–4).
 
     Factory/parameter-series dumps keep this at 0. Reg-backed hold-EDIT dumps
-    store the user-register page here (see ``sysex/prog/edit/registers/``).
+    store the user-register bank here (see ``sysex/prog/edit/registers/``).
     """
-    return raw[REGISTER_PAGE_OFFSET]
+    return raw[REGISTER_BANK_OFFSET]
 
 
-def register_slot_from_raw(raw: bytes) -> int:
-    """Decode register slot within page from offset 95 (`raw_u8`; 0–9).
+def register_from_raw(raw: bytes) -> int:
+    """Decode register within bank from offset 95 (`raw_u8`; manual Register 0–9).
 
     Factory dumps keep this at 0. Source factory program slot remains at 90–91.
     """
-    return raw[REGISTER_SLOT_OFFSET]
+    return raw[REGISTER_OFFSET]
 
 
 def expected_bank_index(bank: str) -> int:
@@ -435,12 +435,13 @@ def analyze_names_folder(folder: Path) -> dict[str, Any]:
                 "bytes_match_count": matched,
                 "bytes_mismatch_count": len(name_mismatches),
                 "notes": (
-                    "ASCII program name (16-byte window). Bank name is not stored "
-                    "here. Factory preset dumps space-pad the remainder through "
-                    "offset 87; Reg-backed hold-EDIT dumps put a register basis "
-                    "blob at 24–87 instead. Factory validation still checks "
-                    "bytes[8:88] against the filename preset half, space-padded "
-                    "to 80 bytes."
+                    "ASCII program name: 16-byte wire window with 14-character "
+                    "editable label (manual); trailing two bytes space-padded. "
+                    "Bank name is not stored here. Factory preset dumps "
+                    "space-pad the remainder through offset 87; Reg-backed "
+                    "hold-EDIT dumps put a register basis blob at 24–87 "
+                    "instead. Factory validation still checks bytes[8:88] "
+                    "against the filename preset half, space-padded to 80 bytes."
                 ),
             },
             "bank_index": {

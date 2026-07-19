@@ -164,7 +164,10 @@ def build_byte_map(
         annotations[i]["hex"] = f"{b:02X}"
         annotations[i]["hex_source"] = "frame constant"
 
-    name_role = "Program name (ASCII, space-padded within 16-byte window)"
+    name_role = (
+        "Program name (ASCII): 16-byte wire window with 14-character editable "
+        "label (manual); trailing two bytes space-padded"
+    )
     if names and (names.get("fields") or {}).get("program_name", {}).get(
         "matches_filename_preset"
     ):
@@ -827,10 +830,10 @@ def _overview_label(
             return "reserved (always 0)", encoding
         if "structure/version" in role.lower() or "structure version" in role.lower():
             return "structure version (always 8)", encoding or "raw_u8"
-        if "register bank page" in role.lower() or role.lower().startswith("register page"):
-            return "register page", encoding or "raw_u8"
-        if "register slot" in role.lower():
-            return "register slot", encoding or "raw_u8"
+        if "register bank" in role.lower() or role.lower().startswith("register page"):
+            return "register bank", encoding or "raw_u8"
+        if role.lower() == "register" or "register within bank" in role.lower() or "register slot" in role.lower():
+            return "register", encoding or "raw_u8"
         if "fixed field" in role.lower() or "always `00 08`" in role:
             return "structure version (always 8)", encoding
         if "fixed companion" in role.lower() or "always `02 00`" in role:

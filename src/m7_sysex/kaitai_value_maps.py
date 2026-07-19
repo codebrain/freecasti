@@ -37,6 +37,10 @@ def attach_parameter_value_maps(
 
         if field.get("id") == "bank_index":
             field["value_map"] = build_bank_index_value_map()
+        elif field.get("id") == "register_bank":
+            field["value_map"] = build_register_bank_value_map()
+        elif field.get("id") == "register":
+            field["value_map"] = build_register_value_map()
 
 
 def attach_display_value_map(
@@ -98,6 +102,30 @@ def build_bank_index_value_map() -> dict[str, Any]:
         entries.append({"encoded": idx, "name": name, "label": bank})
     for idx, label in sorted(SPECIAL_BANK_LABELS.items()):
         name = _slug_enum_member(label, idx, used_names)
+        entries.append({"encoded": idx, "name": name, "label": label})
+    return {"enum_id": enum_id, "entries": entries}
+
+
+def build_register_bank_value_map() -> dict[str, Any]:
+    """Manual register Banks B0–B4 (offsets 93 = 0–4)."""
+    enum_id = "register_bank_values"
+    used_names: set[str] = set()
+    entries: list[dict[str, Any]] = []
+    for idx in range(5):
+        label = f"B{idx}"
+        name = _slug_enum_member(label, idx, used_names)
+        entries.append({"encoded": idx, "name": name, "label": label})
+    return {"enum_id": enum_id, "entries": entries}
+
+
+def build_register_value_map() -> dict[str, Any]:
+    """Manual Registers 0–9 within a register bank (offset 95)."""
+    enum_id = "register_values"
+    used_names: set[str] = set()
+    entries: list[dict[str, Any]] = []
+    for idx in range(10):
+        label = str(idx)
+        name = _slug_enum_member(f"reg_{idx}", idx, used_names)
         entries.append({"encoded": idx, "name": name, "label": label})
     return {"enum_id": enum_id, "entries": entries}
 

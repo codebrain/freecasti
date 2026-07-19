@@ -14,8 +14,8 @@ const IDENTITY_NUMERIC_IDS = new Set([
   "bank_index",
   "program_slot",
   "bank_index_mirror",
-  "register_page",
-  "register_slot",
+  "register_bank",
+  "register",
 ]);
 
 function readProgramName(data: Uint8Array): string {

@@ -35,8 +35,9 @@ seq:
     contents: [0x70, 0x08, 0x01, 0x00]
   - id: program_name
     doc: |
-      Program name (ASCII, space-padded within 16-byte window) - confirmed
-      against sysex/_presets/ filename preset (bank name is not stored here)
+      Program name (ASCII): 16-byte wire window with 14-character editable
+      label (manual); trailing two bytes space-padded - confirmed against
+      sysex/_presets/ file...
     type: str
     size: 16
     encoding: ASCII
@@ -65,22 +66,27 @@ seq:
       `sysex/prog/menus/` captures)...
       Secondary/edit-UI field — not a primary sound parameter
     type: u1
-  - id: register_page
+  - id: register_bank
     doc: |
-      Register bank page (`raw_u8`): `B0`=`00` … when the dump basis is a user
-      register (see `sysex/prog/edit/registers/`); `00` on
-      factory/parameter-series dumps ...
+      Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` when the
+      dump basis is a user register (see `sysex/prog/edit/registers/`); `00`
+      on factory/param...
+      Locked encoding table: 5 known encoded value(s)
     type: u1
+    enum: register_bank_values
   - id: structure_version
     doc: |
       Structure/version constant (`08` in all witnessed program dumps) — not a
       sound parameter
     type: u1
-  - id: register_slot
+  - id: register
     doc: |
-      Register slot within page (`0`–`9`) when the dump basis is a user
-      register; `00` on factory/parameter-series dumps in this corpus
+      Register within bank (`raw_u8`, manual Register `0`–`9`) when the dump
+      basis is a user register; `00` on factory/parameter-series dumps in this
+      corpus
+      Locked encoding table: 10 known encoded value(s)
     type: u1
+    enum: register_values
   - id: reserved_always_0
     doc: |
       Reserved/unknown (always `00` in witnessed captures)
@@ -313,6 +319,23 @@ enums:
     118: edit_receive  # Edit (receive)
     119: favorites  # Favorites
     120: registers  # Registers
+  register_bank_values:
+    0: b0  # B0
+    1: b1  # B1
+    2: b2  # B2
+    3: b3  # B3
+    4: b4  # B4
+  register_values:
+    0: reg_0  # 0
+    1: reg_1  # 1
+    2: reg_2  # 2
+    3: reg_3  # 3
+    4: reg_4  # 4
+    5: reg_5  # 5
+    6: reg_6  # 6
+    7: reg_7  # 7
+    8: reg_8  # 8
+    9: reg_9  # 9
   reverb_time_values:
     0: v_0_2  # 0.2
     1: v_0_25  # 0.25

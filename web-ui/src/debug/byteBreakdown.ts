@@ -192,9 +192,13 @@ function describeRegisterBasisBlob(data: Uint8Array): string {
   return "mixed bytes";
 }
 
-function describeRegisterPage(data: Uint8Array): string {
-  const page = data[93]!;
-  return `B${page} (${page})`;
+function describeRegisterBank(data: Uint8Array): string {
+  const bank = data[93]!;
+  return `Bank ${bank} (B${bank})`;
+}
+
+function describeRegister(data: Uint8Array): string {
+  return `Register ${data[95]!}`;
 }
 
 function progSupplementaryRegions(
@@ -218,8 +222,8 @@ function progSupplementaryRegions(
     {
       start: 93,
       end: 93,
-      label: "register page",
-      meaning: describeRegisterPage(data),
+      label: "register bank",
+      meaning: describeRegisterBank(data),
     },
     {
       start: 94,
@@ -230,8 +234,8 @@ function progSupplementaryRegions(
     {
       start: 95,
       end: 95,
-      label: "register slot",
-      meaning: String(data[95]!),
+      label: "register",
+      meaning: describeRegister(data),
     },
     {
       start: 96,

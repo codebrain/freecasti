@@ -6,6 +6,8 @@ export const SYSTEM_DUMP_HEADER = [0x70, 0x08, 0x02, 0x00] as const;
 
 export const NAME_OFFSET = 8;
 export const PROGRAM_NAME_LENGTH = 16;
+/** Manual/UI editable label length (14-character location display). */
+export const PROGRAM_NAME_EDITABLE_LENGTH = 14;
 export const REGISTER_BASIS_BLOB_OFFSET = 24;
 export const REGISTER_BASIS_BLOB_LENGTH = 64;
 /** Factory space-padded window (name + trailing spaces through 87). */

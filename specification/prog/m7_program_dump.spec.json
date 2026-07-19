@@ -23,7 +23,9 @@
     "program_name": {
       "offset": 8,
       "length": 16,
-      "encoding": "ascii_space_padded"
+      "editable_length": 14,
+      "encoding": "ascii_space_padded",
+      "doc": "16-byte wire window; 14-character editable label (manual); trailing two bytes are space pad"
     },
     "register_basis_blob": {
       "offset": 24,
@@ -148,7 +150,7 @@
       "end": 23,
       "size": 16,
       "status": "frame",
-      "role": "Program name (ASCII, space-padded within 16-byte window) - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
+      "role": "Program name (ASCII): 16-byte wire window with 14-character editable label (manual); trailing two bytes space-padded - confirmed against sysex/_presets/ filename preset (bank name is not stored here)",
       "encoding": "ascii_space_padded",
       "kind": "string"
     },
@@ -354,8 +356,8 @@
       "kind": "secondary"
     },
     {
-      "id": "register_page",
-      "label": "register page",
+      "id": "register_bank",
+      "label": "register bank",
       "offsets": [
         93
       ],
@@ -363,9 +365,39 @@
       "end": 93,
       "size": 1,
       "status": "known",
-      "role": "Register bank page (`raw_u8`): `B0`=`00` \u2026 when the dump basis is a user register (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus",
+      "role": "Register bank (`raw_u8`, manual Bank): `B0`\u2013`B4` = `00`\u2013`04` when the dump basis is a user register (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus",
       "encoding": "raw_u8",
-      "kind": "meta"
+      "kind": "meta",
+      "value_map": {
+        "enum_id": "register_bank_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "b0",
+            "label": "B0"
+          },
+          {
+            "encoded": 1,
+            "name": "b1",
+            "label": "B1"
+          },
+          {
+            "encoded": 2,
+            "name": "b2",
+            "label": "B2"
+          },
+          {
+            "encoded": 3,
+            "name": "b3",
+            "label": "B3"
+          },
+          {
+            "encoded": 4,
+            "name": "b4",
+            "label": "B4"
+          }
+        ]
+      }
     },
     {
       "id": "structure_version",
@@ -382,8 +414,8 @@
       "kind": "meta"
     },
     {
-      "id": "register_slot",
-      "label": "register slot",
+      "id": "register",
+      "label": "register",
       "offsets": [
         95
       ],
@@ -391,9 +423,64 @@
       "end": 95,
       "size": 1,
       "status": "known",
-      "role": "Register slot within page (`0`\u2013`9`) when the dump basis is a user register; `00` on factory/parameter-series dumps in this corpus",
+      "role": "Register within bank (`raw_u8`, manual Register `0`\u2013`9`) when the dump basis is a user register; `00` on factory/parameter-series dumps in this corpus",
       "encoding": "raw_u8",
-      "kind": "meta"
+      "kind": "meta",
+      "value_map": {
+        "enum_id": "register_values",
+        "entries": [
+          {
+            "encoded": 0,
+            "name": "reg_0",
+            "label": "0"
+          },
+          {
+            "encoded": 1,
+            "name": "reg_1",
+            "label": "1"
+          },
+          {
+            "encoded": 2,
+            "name": "reg_2",
+            "label": "2"
+          },
+          {
+            "encoded": 3,
+            "name": "reg_3",
+            "label": "3"
+          },
+          {
+            "encoded": 4,
+            "name": "reg_4",
+            "label": "4"
+          },
+          {
+            "encoded": 5,
+            "name": "reg_5",
+            "label": "5"
+          },
+          {
+            "encoded": 6,
+            "name": "reg_6",
+            "label": "6"
+          },
+          {
+            "encoded": 7,
+            "name": "reg_7",
+            "label": "7"
+          },
+          {
+            "encoded": 8,
+            "name": "reg_8",
+            "label": "8"
+          },
+          {
+            "encoded": 9,
+            "name": "reg_9",
+            "label": "9"
+          }
+        ]
+      }
     },
     {
       "id": "reserved_always_0",

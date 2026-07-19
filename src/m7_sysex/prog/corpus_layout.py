@@ -14,7 +14,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable
 
-from ..frame import parse_sysex
+from ..frame import iter_sysex_messages, parse_sysex
 from ..types import is_prog_corpus_dump
 
 
@@ -39,13 +39,14 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "offsets": [93],
         "status": "known",
         "role": (
-            "Register bank page (`raw_u8`): `B0`=`00` … when the dump basis is a "
-            "user register (see `sysex/prog/edit/registers/`); `00` on "
-            "factory/parameter-series dumps in this corpus"
+            "Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` when "
+            "the dump basis is a user register (see "
+            "`sysex/prog/edit/registers/`); `00` on factory/parameter-series "
+            "dumps in this corpus"
         ),
         "encoding": "raw_u8",
         "confidence": "high",
-        "label": "register page",
+        "label": "register bank",
     },
     {
         "offsets": [94],
@@ -62,12 +63,13 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "offsets": [95],
         "status": "known",
         "role": (
-            "Register slot within page (`0`–`9`) when the dump basis is a user "
-            "register; `00` on factory/parameter-series dumps in this corpus"
+            "Register within bank (`raw_u8`, manual Register `0`–`9`) when the "
+            "dump basis is a user register; `00` on factory/parameter-series "
+            "dumps in this corpus"
         ),
         "encoding": "raw_u8",
         "confidence": "high",
-        "label": "register slot",
+        "label": "register",
     },
     {
         "offsets": [96],
@@ -259,11 +261,16 @@ def verify_corpus_constants(sysex_root: Path) -> dict[int, int | None]:
         if not is_prog_corpus_dump(path, root):
             continue
         try:
-            raw = parse_sysex(path.read_bytes()).raw
+            messages = list(iter_sysex_messages(path.read_bytes()))
         except ValueError:
             continue
-        for off in range(len(raw)):
-            values.setdefault(off, set()).add(raw[off])
+        for message in messages:
+            try:
+                raw = parse_sysex(message).raw
+            except ValueError:
+                continue
+            for off in range(len(raw)):
+                values.setdefault(off, set()).add(raw[off])
     return {off: next(iter(s)) if len(s) == 1 else None for off, s in values.items()}
 
 

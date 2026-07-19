@@ -39,9 +39,9 @@ Identified parameter fields (each from its own folder):
 
 - **88-89** - Bank index (`nibble_hilo`) from [sysex/_presets/](program-identity.md) [Halls](presets/halls/)=0, [Plates](presets/plates/)=1, [Rooms](presets/rooms/)=2, [Chambers](presets/chambers/)=3, [Ambience](presets/ambience/)=4, [Spaces](presets/spaces/)=5, [Halls 2](presets/halls-2/)=6, [Plates 2](presets/plates-2/)=7, [Rooms 2](presets/rooms-2/)=8, [Spaces 2](presets/spaces-2/)=9, [NonLin](presets/nonlin/)=10; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/_edit/)
 - **90-91** - Program slot within bank (`nibble_hilo`) from [sysex/_presets/](program-identity.md) (not a global program number)
-- **93** - Register bank page (`raw_u8`): `B0`=`00` … when the dump basis is a user register (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus
+- **93** - Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` when the dump basis is a user register (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus
 - **94** - Structure/version constant (`08` in all witnessed program dumps) — not a sound parameter
-- **95** - Register slot within page (`0`–`9`) when the dump basis is a user register; `00` on factory/parameter-series dumps in this corpus
+- **95** - Register within bank (`raw_u8`, manual Register `0`–`9`) when the dump basis is a user register; `00` on factory/parameter-series dumps in this corpus
 - **96** - Reserved/unknown (always `00` in witnessed captures)
 - **97** - Algorithm/family flag from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). Mirrored at 145 as 0 when 97=3 and 1 when 97=4 — not a clean V1/V2 bit
 - **100-101** - Parameter [`reverb time`](bytes/reverb-time.md) (from independent series [sysex/reverb time/](bytes/reverb-time.md)) (nibble_hilo, table/index candidate (monotonic 100%))
@@ -188,7 +188,7 @@ _Last exported: 2026-07-19_
 2. **EDIT receive** path (MIDI-notes bank **118**) — hold-EDIT *sends* use bank **11** (`sysex/prog/edit/`)
 3. Semantics of PROG header bytes `70 08 01 00`
 4. Full map of register basis blob offsets **24–47** / **56–72** (partial: **50–55** = predelay / reverb time / diffusion / density; see `sysex/prog/edit/registers/`)
-5. **Favorites**-based PROG dumps (bank **119**); confirm Reg pages **B2–B4**; Halls 2 subtype EDIT outlier; reserved offset **96**
+5. **Favorites**-based PROG dumps (bank **119**); Halls 2 subtype EDIT outlier; reserved offset **96**
 6. **Offset 25 coupling** — `midi bank` (primary @ 25) and display-level captures also move offset 25 (secondary)
 7. Closed-form mapping for table parameters (see medium-confidence rows in the parameter index)
 8. Rarely used SYSTEM knobs (e.g. register lock) not yet in dedicated series
