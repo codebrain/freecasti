@@ -15,7 +15,7 @@ interface ParamLabelProps {
   className?: string;
 }
 
-function lockTooltip(locked: boolean, label: string): string {
+export function lockTooltip(locked: boolean, label: string): string {
   return locked
     ? `Unlock ${label} — allow preset changes to this parameter`
     : `Lock ${label} — keep this value when loading a preset`;
@@ -56,7 +56,6 @@ export function ParamLabel({
   disabled = false,
   className = "",
 }: ParamLabelProps) {
-  const showIcons = onToggleTempoMode || onToggleLock;
   const isHero = className.includes("knob-hero-label");
   const typographyClass = isHero ? "knob-hero-label label-caps" : "label-caps";
   const disabledClass = disabled ? "param-label-inactive" : "";
@@ -79,59 +78,59 @@ export function ParamLabel({
         disabled ? "cursor-not-allowed" : ""
       } ${className}`.trim()}
     >
-      <ControlTooltip description={description} suppressed={tooltipSuppressed}>
-        <span className="inline-block max-w-full text-center text-balance">
-          {label}
-        </span>
-      </ControlTooltip>
-      {showIcons && (
+      <div className="flex max-w-full items-center justify-center gap-1">
+        {onToggleTempoMode && (
+          <ControlTooltip
+            description={
+              disabled
+                ? `${label} is not available for this program type`
+                : tempoTooltip(tempoMode, label)
+            }
+          >
+            <button
+              type="button"
+              disabled={disabled}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (!disabled) onToggleTempoMode();
+              }}
+              className={iconClass(tempoMode)}
+              aria-label={tempoMode ? `Tempo mode off for ${label}` : `Tempo mode for ${label}`}
+              aria-pressed={tempoMode}
+            >
+              <MetronomeIcon active={tempoMode && !disabled} />
+            </button>
+          </ControlTooltip>
+        )}
+        <ControlTooltip description={description} suppressed={tooltipSuppressed}>
+          <span className="inline-block max-w-full text-center text-balance">
+            {label}
+          </span>
+        </ControlTooltip>
+      </div>
+      {onToggleLock && (
         <div className="flex items-center justify-center gap-1.5">
-          {onToggleTempoMode && (
-            <ControlTooltip
-              description={
-                disabled
-                  ? `${label} is not available for this program type`
-                  : tempoTooltip(tempoMode, label)
-              }
+          <ControlTooltip
+            description={
+              disabled
+                ? `${label} is not available for this program type`
+                : lockTooltip(locked, label)
+            }
+          >
+            <button
+              type="button"
+              disabled={disabled}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (!disabled) onToggleLock();
+              }}
+              className={iconClass(locked)}
+              aria-label={locked ? `Unlock ${label}` : `Lock ${label}`}
+              aria-pressed={locked}
             >
-              <button
-                type="button"
-                disabled={disabled}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (!disabled) onToggleTempoMode();
-                }}
-                className={iconClass(tempoMode)}
-                aria-label={tempoMode ? `Tempo mode off for ${label}` : `Tempo mode for ${label}`}
-                aria-pressed={tempoMode}
-              >
-                <MetronomeIcon active={tempoMode && !disabled} />
-              </button>
-            </ControlTooltip>
-          )}
-          {onToggleLock && (
-            <ControlTooltip
-              description={
-                disabled
-                  ? `${label} is not available for this program type`
-                  : lockTooltip(locked, label)
-              }
-            >
-              <button
-                type="button"
-                disabled={disabled}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (!disabled) onToggleLock();
-                }}
-                className={iconClass(locked)}
-                aria-label={locked ? `Unlock ${label}` : `Lock ${label}`}
-                aria-pressed={locked}
-              >
-                <PadlockIcon locked={locked && !disabled} />
-              </button>
-            </ControlTooltip>
-          )}
+              <PadlockIcon locked={locked && !disabled} />
+            </button>
+          </ControlTooltip>
         </div>
       )}
     </div>

@@ -22,10 +22,41 @@ function sysexParserResolve(): Plugin {
   };
 }
 
+/**
+ * Dev-server CJS interop. The kaitai runtime (binary-stream.umd.cjs) and the
+ * generated parsers are UMD modules; @rollup/plugin-commonjs converts them in
+ * production builds, but the dev server serves source files as ESM, which
+ * fails with "does not provide an export named 'default'". Wrap them as ESM
+ * when serving.
+ */
+function sysexUmdDevInterop(): Plugin {
+  return {
+    name: "sysex-umd-dev-interop",
+    apply: "serve",
+    transform(code, id) {
+      const file = id.split("?")[0].replace(/\\/g, "/");
+      const isRuntime = file.endsWith("/shims/binary-stream.umd.cjs");
+      const isParser =
+        /\/generated\/sysex-parsers\/[^/]+\.js$/.test(file) &&
+        code.includes("define.amd");
+      if (!isRuntime && !isParser) return null;
+      const prelude = isParser
+        ? 'import __BinaryStream from "../../shims/binary-stream";\n' +
+          "const require = () => __BinaryStream;\n" +
+          "const module = { exports: {} };\n"
+        : "const module = { exports: {} };\n";
+      return {
+        code: `${prelude}${code}\nexport default module.exports;`,
+        map: null,
+      };
+    },
+  };
+}
+
 const base = process.env.VITE_BASE_PATH ?? "./";
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), sysexParserResolve()],
+  plugins: [react(), tailwindcss(), sysexParserResolve(), sysexUmdDevInterop()],
   base,
   resolve: {
     alias: {

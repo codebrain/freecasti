@@ -65,8 +65,6 @@ export function ParamDialControl({
         label={displayLabel}
         description={control.description}
         tooltipSuppressed={dialDragging}
-        locked={locked}
-        onToggleLock={onToggleLock}
         tempoMode={tempoActive}
         onToggleTempoMode={showTempoToggle}
         disabled={disabled}
@@ -83,6 +81,7 @@ export function ParamDialControl({
             featured={featured}
             disabled={disabled}
             locked={locked}
+            onToggleLock={onToggleLock}
             selected={selected}
             valueMarkers={valueMarkers}
             onDraggingChange={setDialDragging}

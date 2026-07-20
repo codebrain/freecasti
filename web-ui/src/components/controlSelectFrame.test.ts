@@ -25,11 +25,12 @@ describe("ControlSelectFrame", () => {
 
     act(() => {
       root.render(
-        createElement(
-          ControlSelectFrame,
-          { selected: false, disabled, onSelect },
-          "child",
-        ),
+        createElement(ControlSelectFrame, {
+          selected: false,
+          disabled,
+          onSelect,
+          children: "child",
+        }),
       );
     });
 

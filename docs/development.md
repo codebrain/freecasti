@@ -108,9 +108,10 @@ Build the static SPA separately:
 ```bash
 cd web-ui
 npm install
-npm run dev       # Vite dev server
-npm run build     # dist/ for deploy
-npm test          # vitest encode/serialize tests
+npm run dev        # Vite dev server
+npm run build      # dist/ for deploy
+npm run typecheck  # tsc --noEmit
+npm test           # vitest encode/serialize tests
 ```
 
 See [web-ui/README.md](../web-ui/README.md). Skip sync with

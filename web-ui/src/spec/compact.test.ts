@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { expandCompactSpec, isCompactSpec } from "@/spec/compact";
+import { expandCompactSpec, isCompactSpec, type CompactSpec } from "@/spec/compact";
 
 describe("expandCompactSpec", () => {
   it("expands tuple value maps and short encodings", () => {
-    const raw = {
+    const raw: CompactSpec = {
       n: 10,
       f: [
         { id: "reverb_time", s: 100, e: "nh", p: "reverb time", m: [[40, "2.2 s"]] },

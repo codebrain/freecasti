@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { expandPresetCatalog } from "@/presets/compact";
+import { expandPresetCatalog, type CompactPresetRow } from "@/presets/compact";
 import { groupPresetsByBank } from "@/presets/catalog";
 import { buildParameterToFieldId } from "@/spec/controls";
 import { PROG_PARAM_ORDER } from "@/spec/param-order";
@@ -32,12 +32,14 @@ export function compactFromFull(presetsFull: FullPresetDump) {
     .map(Number)
     .sort((a, b) => a - b)
     .map((i) => byIndex[i]);
-  const presets = presetsFull.presets.map((entry) => [
-    entry.bank_index,
-    entry.program_slot,
-    entry.name_field,
-    ...PROG_PARAM_ORDER.map((name) => entry.parameters[name].encoded),
-  ]);
+  const presets = presetsFull.presets.map(
+    (entry): CompactPresetRow => [
+      entry.bank_index,
+      entry.program_slot,
+      entry.name_field,
+      ...PROG_PARAM_ORDER.map((name) => entry.parameters[name].encoded),
+    ],
+  );
   return expandPresetCatalog({
     banks,
     params: [...PROG_PARAM_ORDER],

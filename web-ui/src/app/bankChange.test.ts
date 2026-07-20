@@ -13,7 +13,7 @@ const bank: BankInfo = {
       name_field: "Large Hall",
       bank_index: 0,
       program_slot: 0,
-      encoded: [],
+      parameters: {},
     },
     {
       bank: "Halls",
@@ -21,7 +21,7 @@ const bank: BankInfo = {
       name_field: "Small Hall",
       bank_index: 0,
       program_slot: 2,
-      encoded: [],
+      parameters: {},
     },
   ],
 };

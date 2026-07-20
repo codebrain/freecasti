@@ -12,6 +12,7 @@
     "build:analyze": "npm run build && node scripts/report-dist-size.mjs",
     "preview": "vite preview",
     "lint": "eslint src --max-warnings 0",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "bddgen && playwright test",

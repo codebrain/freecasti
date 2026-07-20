@@ -21,6 +21,7 @@ import {
   buildParameterToFieldId,
   buildProgControlGroups,
   buildSystemControls,
+  type ControlDef,
 } from "@/spec/controls";
 import type { DumpSpec } from "@/spec/types";
 import {
@@ -43,7 +44,7 @@ import {
   swapAbSlots,
 } from "@/presets/progAbSlot";
 import type { PresetCatalog } from "@/presets/types";
-import { hydrateProgramFromBytes } from "@/sysex/hydrate";
+import { hydrateProgramFromBytes, hydrateSystemFromBytes } from "@/sysex/hydrate";
 import { importSyxBytes } from "@/sysex/importSyx";
 import type { ProgSerializeState } from "@/sysex/serialize";
 import { readSyxFromFile } from "@/sysex/syxIo";
@@ -775,7 +776,7 @@ export function App() {
     );
   }
 
-  if (!abStore || !sysState || !progSpec) {
+  if (!abStore || !sysState || !progSpec || !progState) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div

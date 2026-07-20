@@ -15,7 +15,7 @@ export async function readSyxFromFile(file: Blob): Promise<Uint8Array> {
   return parseSyxBytes(new Uint8Array(buf));
 }
 
-export function readSyxFromBuffer(buffer: ArrayBuffer | Uint8Array): Uint8Array {
+export function readSyxFromBuffer(buffer: ArrayBufferLike | Uint8Array): Uint8Array {
   const data = buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer);
   return parseSyxBytes(data);
 }
@@ -68,7 +68,11 @@ export function downloadSyx({
   createAnchor = () => document.createElement("a"),
   clickLink = (a) => a.click(),
 }: DownloadSyxOptions): void {
-  const blob = new Blob([bytes], { type: "application/octet-stream" });
+  // Copy so the part is a Uint8Array<ArrayBuffer> (BlobPart rejects
+  // ArrayBufferLike-backed views under TS 5.7 typed-array generics).
+  const blob = new Blob([new Uint8Array(bytes)], {
+    type: "application/octet-stream",
+  });
   const url = createObjectURL(blob);
   const a = createAnchor();
   a.href = url;

@@ -4,6 +4,8 @@ import { groupPresetsByBank, findPreset, presetSelectorStateFromProg, resolvePro
 import type { PresetCatalog } from "./types";
 
 const catalog: PresetCatalog = {
+  generated: "2026-01-01",
+  dump_count: 5,
   presets: [
     {
       bank: "Halls",
@@ -11,7 +13,7 @@ const catalog: PresetCatalog = {
       name_field: "Large Hall",
       bank_index: 0,
       program_slot: 0,
-      encoded: [],
+      parameters: {},
     },
     {
       bank: "Halls",
@@ -19,7 +21,7 @@ const catalog: PresetCatalog = {
       name_field: "Small Hall",
       bank_index: 0,
       program_slot: 1,
-      encoded: [],
+      parameters: {},
     },
     {
       bank: "Halls 2",
@@ -27,7 +29,7 @@ const catalog: PresetCatalog = {
       name_field: "Concert A",
       bank_index: 6,
       program_slot: 0,
-      encoded: [],
+      parameters: {},
     },
     {
       bank: "Ambience",
@@ -35,7 +37,7 @@ const catalog: PresetCatalog = {
       name_field: "Small Ambience",
       bank_index: 4,
       program_slot: 0,
-      encoded: [],
+      parameters: {},
     },
     {
       bank: "NonLin",
@@ -43,7 +45,7 @@ const catalog: PresetCatalog = {
       name_field: "Shimmer",
       bank_index: 10,
       program_slot: 3,
-      encoded: [],
+      parameters: {},
     },
   ],
 };

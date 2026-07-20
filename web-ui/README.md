@@ -94,10 +94,12 @@ payload and blob side by side without overriding.
 
 ```bash
 cd web-ui
-npm test
+npm run typecheck   # tsc --noEmit
+npm test            # vitest
 ```
 
 Vitest covers TypeScript encode/serialize logic aligned with `src/m7_sysex/` in Python.
+CI runs lint, typecheck, vitest, and the Playwright feature tests on every push/PR.
 
 ## Web MIDI
 

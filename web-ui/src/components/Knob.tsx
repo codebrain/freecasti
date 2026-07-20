@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { ControlTooltip } from "@/components/ControlTooltip";
 import { EditableValue } from "@/components/EditableValue";
 import { PadlockIcon } from "@/components/PadlockIcon";
+import { lockTooltip } from "@/components/ParamLabel";
 import { useSimpleMode } from "@/app/renderMode";
 
 function polar(cx: number, cy: number, r: number, deg: number) {
@@ -83,9 +85,79 @@ interface KnobProps {
   selected?: boolean;
   /** Preset lock — show padlock in place of dial face; tick markers remain. */
   locked?: boolean;
+  /** Render a lock toggle at the dial's 6 o'clock gap. */
+  onToggleLock?: () => void;
   /** Labeled landmarks for uneven-gap scales (e.g. reverb time). */
   valueMarkers?: KnobValueMarker[];
   onDraggingChange?: (dragging: boolean) => void;
+}
+
+/**
+ * Padlock toggle sitting in the dial's dead zone at 6 o'clock, centered in
+ * the angular gap between the two extreme-value ticks (±135°).
+ */
+function DialLockToggle({
+  name,
+  left,
+  top,
+  locked,
+  disabled,
+  suppressed,
+  onToggleLock,
+}: {
+  name: string;
+  left: number;
+  top: number;
+  locked: boolean;
+  disabled: boolean;
+  suppressed: boolean;
+  onToggleLock: () => void;
+}) {
+  const stop = (e: React.SyntheticEvent) => e.stopPropagation();
+  return (
+    <div
+      className="absolute z-10"
+      style={{
+        left,
+        top,
+        transform: "translate(-50%, -50%)",
+        pointerEvents: "auto",
+      }}
+      onPointerDown={stop}
+      onMouseDown={stop}
+      onTouchStart={stop}
+      onDoubleClick={stop}
+    >
+      <ControlTooltip
+        description={
+          disabled
+            ? `${name} is not available for this program type`
+            : lockTooltip(locked, name)
+        }
+        suppressed={suppressed}
+      >
+        <button
+          type="button"
+          disabled={disabled}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (!disabled) onToggleLock();
+          }}
+          className={`inline-flex rounded p-0.5 transition-colors ${
+            disabled
+              ? "cursor-not-allowed text-[color:var(--color-label)]"
+              : locked
+                ? "cursor-pointer text-[color:var(--color-led)] shadow-[0_0_8px_oklch(0.62_0.24_27/0.45)]"
+                : "cursor-pointer text-[color:var(--color-label)] opacity-50 hover:opacity-100"
+          }`}
+          aria-label={locked ? `Unlock ${name}` : `Lock ${name}`}
+          aria-pressed={locked}
+        >
+          <PadlockIcon locked={locked && !disabled} />
+        </button>
+      </ControlTooltip>
+    </div>
+  );
 }
 
 /**
@@ -115,6 +187,7 @@ function FullKnob({
   disabled = false,
   selected = false,
   locked = false,
+  onToggleLock,
   valueMarkers = [],
   onDraggingChange,
 }: KnobProps) {
@@ -218,6 +291,12 @@ function FullKnob({
   const markerTickOuter = radius + (featured ? 16 : 11);
   const markerTickInner = radius + (featured ? 5 : 3);
 
+  // 6 o'clock lock toggle sits fully outside the selection ring; grow the
+  // frame if the ring extends past the bottom padding so it never overlaps
+  // the value readout below.
+  const lockTop = frame / 2 + outerRingR + 9;
+  const frameHeight = onToggleLock ? Math.max(frame, lockTop + 10) : frame;
+
   const resolvedDisplay =
     displayValue ?? (format ? format(value) : value.toFixed(0));
 
@@ -237,7 +316,7 @@ function FullKnob({
         className={`relative ${
           interactive ? "touch-none cursor-ns-resize" : locked ? "pointer-events-none" : "cursor-not-allowed pointer-events-none"
         }`}
-        style={{ width: frame, height: frame }}
+        style={{ width: frame, height: frameHeight }}
         onPointerDown={onPointerDown}
         onDoubleClick={onDoubleClick}
       >
@@ -455,6 +534,17 @@ function FullKnob({
           </div>
         </div>
         )}
+        {onToggleLock && (
+          <DialLockToggle
+            name={valueAriaLabel ?? label ?? ""}
+            left={frame / 2}
+            top={lockTop}
+            locked={locked}
+            disabled={disabled}
+            suppressed={dragging}
+            onToggleLock={onToggleLock}
+          />
+        )}
       </div>
       {onValueCommit ? (
         <EditableValue
@@ -507,6 +597,7 @@ function SimpleKnob({
   disabled = false,
   selected = false,
   locked = false,
+  onToggleLock,
   valueMarkers = [],
   onDraggingChange,
 }: KnobProps) {
@@ -594,6 +685,8 @@ function SimpleKnob({
   const markerLabelR = radius + (featured ? 32 : 24);
   const markerTickOuter = radius + (featured ? 16 : 11);
   const markerTickInner = radius + (featured ? 5 : 3);
+  const lockTop = frame / 2 + outerRingR + 9;
+  const frameHeight = onToggleLock ? Math.max(frame, lockTop + 10) : frame;
 
   const stepCount = range > 0 ? Math.floor(range / step) + 1 : 1;
   const maxTicks = featured ? 37 : 25;
@@ -634,7 +727,7 @@ function SimpleKnob({
               ? "pointer-events-none"
               : "cursor-not-allowed pointer-events-none"
         }`}
-        style={{ width: frame, height: frame, touchAction: "none" }}
+        style={{ width: frame, height: frameHeight, touchAction: "none" }}
         onMouseDown={onMouseDown}
         onTouchStart={onTouchStart}
         onDoubleClick={onDoubleClick}
@@ -801,6 +894,17 @@ function SimpleKnob({
               />
             </div>
           </div>
+        )}
+        {onToggleLock && (
+          <DialLockToggle
+            name={valueAriaLabel ?? label ?? ""}
+            left={frame / 2}
+            top={lockTop}
+            locked={locked}
+            disabled={disabled}
+            suppressed={dragging}
+            onToggleLock={onToggleLock}
+          />
         )}
       </div>
       {onValueCommit ? (

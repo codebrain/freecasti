@@ -112,7 +112,7 @@ describe("commitProgIndividualFieldChange", () => {
   });
 
   it("patches menu UI bytes when stepping from browse via keyboard resolution", () => {
-    const panel = { tagName: "DIV" } as EventTarget;
+    const panel = { tagName: "DIV" } as unknown as EventTarget;
     const size = allProgControls(spec).find((c) => c.parameter === "size")!;
     const browseState = {
       ...baseState,

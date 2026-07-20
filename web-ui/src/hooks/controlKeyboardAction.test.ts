@@ -72,7 +72,7 @@ const baseInput = {
 };
 
 describe("resolveControlKeyDown", () => {
-  const panel = { tagName: "DIV" } as EventTarget;
+  const panel = { tagName: "DIV" } as unknown as EventTarget;
 
   it("clears selection on Escape", () => {
     expect(
@@ -196,19 +196,21 @@ describe("shouldClearSelectionOnPointerDown", () => {
   });
 
   it("clears when clicking outside a control", () => {
-    const outside = { closest: () => null };
+    const outside = { closest: () => null } as unknown as EventTarget;
     expect(shouldClearSelectionOnPointerDown(outside, true)).toBe(true);
   });
 
   it("keeps selection when clicking inside a control", () => {
-    const inside = { closest: (sel: string) => (sel === "[data-param-control]" ? {} : null) };
+    const inside = {
+      closest: (sel: string) => (sel === "[data-param-control]" ? {} : null),
+    } as unknown as EventTarget;
     expect(shouldClearSelectionOnPointerDown(inside, true)).toBe(false);
   });
 
   it("keeps selection when clicking a preserve-selection element", () => {
     const preserve = {
       closest: (sel: string) => (sel === "[data-preserve-selection]" ? {} : null),
-    };
+    } as unknown as EventTarget;
     expect(shouldClearSelectionOnPointerDown(preserve, true)).toBe(false);
   });
 });
