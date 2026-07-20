@@ -7,16 +7,6 @@ const repo = path.resolve(
   "../../..",
 );
 
-interface SerializeSkeletonEntry {
-  message_length: number;
-  b64: string;
-}
-
-interface SerializeSkeletonsFile {
-  prog: SerializeSkeletonEntry;
-  system: SerializeSkeletonEntry;
-}
-
 function decodeBase64(b64: string): Uint8Array {
   const bin = atob(b64);
   const out = new Uint8Array(bin.length);
@@ -28,7 +18,7 @@ function decodeBase64(b64: string): Uint8Array {
 
 let cached: { prog: Uint8Array; system: Uint8Array } | null = null;
 
-/** Load committed serialize skeletons from specification/ (no sysex corpus). */
+/** Load the spec-derived serialize skeletons from the runtime bundle. */
 export function loadSerializeSkeletons(): {
   prog: Uint8Array;
   system: Uint8Array;
@@ -36,18 +26,13 @@ export function loadSerializeSkeletons(): {
   if (cached) return cached;
   const raw = JSON.parse(
     fs.readFileSync(
-      path.join(repo, "specification/web_serialize_skeletons.json"),
+      path.join(repo, "web-ui/public/m7-runtime.json"),
       "utf8",
     ),
-  ) as SerializeSkeletonsFile;
-  const prog = decodeBase64(raw.prog.b64);
-  const system = decodeBase64(raw.system.b64);
-  if (prog.length !== raw.prog.message_length) {
-    throw new Error("prog skeleton length mismatch");
-  }
-  if (system.length !== raw.system.message_length) {
-    throw new Error("system skeleton length mismatch");
-  }
-  cached = { prog, system };
+  ) as { tpl: { p: string; s: string } };
+  cached = {
+    prog: decodeBase64(raw.tpl.p),
+    system: decodeBase64(raw.tpl.s),
+  };
   return cached;
 }

@@ -195,21 +195,18 @@ def _compact_preset_catalog(presets: dict) -> dict:
     }
 
 
-def _load_serialize_skeletons(spec_root: Path) -> dict[str, str]:
-    path = spec_root / "web_serialize_skeletons.json"
-    raw = json.loads(path.read_text(encoding="utf-8"))
-    prog = raw["prog"]
-    system = raw["system"]
-    for key, entry in ("prog", prog), ("system", system):
-        b64 = entry.get("b64")
-        length = entry.get("message_length")
-        if not isinstance(b64, str) or not isinstance(length, int):
-            raise ValueError(f"web_serialize_skeletons.json: invalid {key} entry")
-        if len(base64.standard_b64decode(b64)) != length:
-            raise ValueError(
-                f"web_serialize_skeletons.json: {key} b64 length != message_length"
-            )
-    return {"p": prog["b64"], "s": system["b64"]}
+def _serialize_skeletons(prog_spec: dict, system_spec: dict) -> dict[str, str]:
+    """Base64 serialize skeletons synthesized from the committed specs."""
+    from ..dump_codec import build_serialize_skeleton
+
+    return {
+        "p": base64.standard_b64encode(
+            build_serialize_skeleton(prog_spec)
+        ).decode("ascii"),
+        "s": base64.standard_b64encode(
+            build_serialize_skeleton(system_spec)
+        ).decode("ascii"),
+    }
 
 
 def _load_prog_ui_state(repo_root: Path) -> dict | None:
@@ -263,7 +260,6 @@ def sync_web_ui_assets(repo_root: Path) -> list[Path]:
     web_root = repo_root / "web-ui"
     public = web_root / "public"
     spec_root = repo_root / "specification"
-    serialize_skeletons = _load_serialize_skeletons(spec_root)
 
     prog_spec = json.loads(
         (spec_root / "prog" / "m7_program_dump.spec.json").read_text(encoding="utf-8")
@@ -271,6 +267,7 @@ def sync_web_ui_assets(repo_root: Path) -> list[Path]:
     system_spec = json.loads(
         (spec_root / "system" / "m7_system_dump.spec.json").read_text(encoding="utf-8")
     )
+    serialize_skeletons = _serialize_skeletons(prog_spec, system_spec)
     presets_full = json.loads(
         (spec_root / "prog" / "presets" / "presets.json").read_text(encoding="utf-8")
     )

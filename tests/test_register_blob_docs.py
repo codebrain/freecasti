@@ -234,8 +234,8 @@ def test_runtime_bundle_carries_reg_blob_key(tmp_path):
 
     from m7_sysex.export.web_ui import (
         _load_prog_ui_state,
-        _load_serialize_skeletons,
         _runtime_bundle,
+        _serialize_skeletons,
     )
     from m7_sysex.prog.register_blob import runtime_reg_blob
 
@@ -259,7 +259,7 @@ def test_runtime_bundle_carries_reg_blob_key(tmp_path):
         prog_spec,
         system_spec,
         presets_full,
-        serialize_skeletons=_load_serialize_skeletons(spec_dir),
+        serialize_skeletons=_serialize_skeletons(prog_spec, system_spec),
         prog_ui=_load_prog_ui_state(ROOT),
     )
     assert bundle["reg_blob"] == runtime_reg_blob()

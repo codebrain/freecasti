@@ -100,8 +100,7 @@ only; message **encoding** uses [`kaitai_encode.py`](../src/m7_sysex/kaitai_enco
 
 After `python run.py`, export writes:
 
-- `specification/web_serialize_skeletons.json` — base64 program/system serialize skeletons (embedded in runtime bundle)
-- `web-ui/public/m7-runtime.json` — compact prog/system specs, preset catalog, and `tpl` skeletons
+- `web-ui/public/m7-runtime.json` — compact prog/system specs, preset catalog, and `tpl` serialize skeletons (synthesized from the specs — the byte map has no unknown bytes, so no captured template dump is needed)
 - `web-ui/src/generated/param-manifest.json` — parameter descriptions for tooltips
 
 Build the static SPA separately:

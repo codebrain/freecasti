@@ -9,7 +9,6 @@ of a checksum-valid dump is byte-identical.
 
 from __future__ import annotations
 
-import base64
 import json
 from pathlib import Path
 from typing import Any
@@ -181,15 +180,56 @@ def decode_dump(
     return doc
 
 
-def _load_skeleton(kind: str, spec_root: Path | None = None) -> bytearray:
-    root = Path(spec_root) if spec_root is not None else _default_spec_root()
-    path = root / "web_serialize_skeletons.json"
-    raw = json.loads(path.read_text(encoding="utf-8"))
-    entry = raw[kind]
-    skeleton = bytearray(base64.standard_b64decode(entry["b64"]))
-    if len(skeleton) != int(entry["message_length"]):
-        raise ValueError(f"skeleton length mismatch for {kind}")
-    return skeleton
+# Baseline values for fields whose documented rest state is not zero. All
+# other non-frame fields default to encoded 0, which is a valid documented
+# state everywhere (bank 0 / slot 0 = Halls Large Hall identity, engine
+# class 0 = classic banks, panel idle, first encoding step per parameter).
+_SKELETON_DEFAULTS: dict[str, bytes | int] = {
+    "program_name_pad": b"\x20\x20",  # factory space pad
+    "register_basis_blob": b"\x20" * 64,  # factory space pad
+    "favorite_slot": 8,  # not loaded from a favorite
+    "algorithm_family_flag": 3,  # Halls baseline (mirror 145 stays 0)
+    "fixed_always_02_00": b"\x02\x00",  # PROG 131-132 / SYSTEM 19-20
+}
+
+
+def build_serialize_skeleton(spec: dict[str, Any]) -> bytes:
+    """Synthesize a checksum-valid baseline message from a dump spec.
+
+    The byte map has no unknown bytes, so the serialize skeleton is derived
+    from the committed spec instead of a captured template dump: frame
+    ``contents``, factory space padding for the name window and register
+    basis blob, documented rest values (favorite slot ``08``, companion
+    ``02 00``), and zeros everywhere else.
+    """
+    buf = bytearray(int(spec["message_length"]))
+    for field in spec["fields"]:
+        start = int(field["start"])
+        end = int(field["end"])
+        contents = field.get("contents")
+        if contents is not None:
+            buf[start : end + 1] = bytes(contents)
+            continue
+        if field.get("kind") == "string" or field.get("encoding") == "ascii_space_padded":
+            buf[start : end + 1] = b"\x20" * (end - start + 1)
+            continue
+        default = _SKELETON_DEFAULTS.get(field["id"])
+        if default is None:
+            continue
+        if isinstance(default, int):
+            wire = bytes(
+                encode_at_offsets(default, field["encoding"], end - start + 1)
+            )
+        else:
+            wire = default
+        if len(wire) != end - start + 1:
+            raise ValueError(f"skeleton default for {field['id']!r}: bad length")
+        buf[start : end + 1] = wire
+    if bytes(buf[4:8]) == PROGRAM_DUMP_HEADER:
+        write_program_dump_checksum(buf)
+    else:
+        write_system_dump_checksum(buf)
+    return bytes(buf)
 
 
 def _encode_field(
@@ -240,7 +280,7 @@ def _encode_field(
 def encode_dump(doc: dict[str, Any], *, spec_root: Path | None = None) -> bytes:
     """Rebuild a checksum-valid SysEx message from a decoded document.
 
-    Fields absent from ``doc["fields"]`` keep the committed serialize
+    Fields absent from ``doc["fields"]`` keep the spec-derived serialize
     skeleton's bytes, so a minimal document (e.g. just parameter values)
     still produces a well-formed dump.
     """
@@ -248,9 +288,7 @@ def encode_dump(doc: dict[str, Any], *, spec_root: Path | None = None) -> bytes:
     if dump_kind not in _SPEC_FILES:
         raise ValueError(f"document 'kind' must be 'prog' or 'system', got {dump_kind!r}")
     spec = load_dump_spec(dump_kind, spec_root)
-    buf = _load_skeleton(dump_kind, spec_root)
-    if len(buf) != int(spec["message_length"]):
-        raise ValueError("skeleton length != spec message_length")
+    buf = bytearray(build_serialize_skeleton(spec))
 
     fields_doc = doc.get("fields") or {}
     known_ids = {field["id"] for field in spec["fields"]}

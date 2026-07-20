@@ -11,8 +11,8 @@ from m7_sysex.export.web_ui import (
     _compact_preset_catalog,
     _compact_runtime_spec,
     _load_prog_ui_state,
-    _load_serialize_skeletons,
     _runtime_bundle,
+    _serialize_skeletons,
     build_protocol_constants,
     sync_web_ui_assets,
 )
@@ -45,7 +45,7 @@ def test_sync_web_ui_assets_writes_runtime_assets(repo_root: Path) -> None:
         prog_spec,
         system_spec,
         presets_full,
-        serialize_skeletons=_load_serialize_skeletons(spec),
+        serialize_skeletons=_serialize_skeletons(prog_spec, system_spec),
         prog_ui=_load_prog_ui_state(repo_root),
     )
     assert runtime == expected

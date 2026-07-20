@@ -47,6 +47,24 @@ def test_full_map_links_meaning_cells():
     assert "moved in independent series: [early rolloff](bytes/early-rolloff.md)" in md
     assert "[Halls](presets/halls/)=0" in md
     assert "[Halls 2](presets/halls-2/)=6" in md
+    # Identity/meta regions with a dedicated bytes/ page link to it.
+    assert "[bank index](bytes/bank-index.md)" in md
+    assert "[program slot](bytes/program-slot.md)" in md
+    assert "[panel mode flag](bytes/panel-mode-flag.md)" in md
+    assert "[register bank](bytes/register-bank.md)" in md
+    assert "[favorite slot (8 = none)](bytes/favorite-slot.md)" in md
+    assert "[register](bytes/register.md)" in md
+    assert "[algorithm/family flag](bytes/algorithm-family-flag.md)" in md
+    assert "[selected menu index](bytes/selected-menu-index.md)" in md
+    assert "[engine/bank-class flag](bytes/engine-bank-class-flag.md)" in md
+    assert "[bank index mirror](bytes/bank-index.md)" in md
+    assert "[family-flag mirror](bytes/algorithm-family-flag.md)" in md
+    assert "[display](bytes/display.md)" in md
+    assert "[program name (ASCII)](bytes/program-name.md)" in md
+    assert "[program name pad](bytes/program-name-pad.md)" in md
+    assert (
+        "[bytes/register-basis-blob.md](bytes/register-basis-blob.md)" in md
+    )
 
 
 def _system_byte_map():

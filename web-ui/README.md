@@ -6,8 +6,7 @@ Browser control surface for the Bricasti M7 reverb. Edits program (157-byte) and
 
 | Output | Purpose |
 |--------|---------|
-| `public/m7-runtime.json` | Compact prog/system specs + preset catalog + `prog_ui` menu table (loaded at runtime) |
-| `specification/web_serialize_skeletons.json` | Serialize skeleton bytes (embedded in runtime bundle as `tpl`) |
+| `public/m7-runtime.json` | Compact prog/system specs + preset catalog + `prog_ui` menu table + `tpl` serialize skeletons (loaded at runtime; skeletons are synthesized from the specs) |
 | `src/generated/param-manifest.json` | Parameter descriptions for control tooltips |
 | `src/generated/sysex-parsers/` | SysEx dump parsers (also rebuilt by `npm run compile-parsers`) |
 

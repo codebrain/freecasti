@@ -5,6 +5,7 @@ import { loadSerializeSkeletons } from "@/test/serializeSkeletons";
 import { loadRuntimeFixture } from "@/test/runtimeFixtures";
 import { loadPresetCatalogFixture } from "@/test/presetFixtures";
 import { readSysexDump } from "@/test/corpusSysex";
+import { writeProgramDumpChecksum } from "@/sysex/frame";
 import type { RegBlobLayout } from "@/sysex/registerBasisBlob";
 
 describe("parseMidiReceive", () => {
@@ -16,8 +17,13 @@ describe("parseMidiReceive", () => {
   const regBlob = runtime.regBlob as RegBlobLayout;
 
   it("hydrates program dumps with bank selector indices", () => {
+    // The spec-derived skeleton has a blank (space-padded) name; give the
+    // incoming dump a real one.
+    const dump = new Uint8Array(skeletons.prog);
+    dump.set(new TextEncoder().encode("Skeleton Test"), 8);
+    writeProgramDumpChecksum(dump);
     const parsed = parseMidiReceive(
-      skeletons.prog,
+      dump,
       runtime.prog,
       progControls,
       sysControls,
@@ -25,7 +31,7 @@ describe("parseMidiReceive", () => {
     );
     expect(parsed?.family).toBe("prog");
     if (parsed?.family === "prog") {
-      expect(parsed.state.programName.length).toBeGreaterThan(0);
+      expect(parsed.state.programName).toBe("Skeleton Test");
       expect(parsed.state.ui).toEqual({ mode: "idle" });
       expect(parsed.bankIdx).toBeGreaterThanOrEqual(0);
     }

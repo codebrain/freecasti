@@ -40,7 +40,16 @@ describe("buildByteBreakdown", () => {
   });
 
   it("decodes program name and menu UI state", () => {
-    const rows = buildByteBreakdown(runtime.templates.prog, runtime.prog, "prog", {
+    // Spec-derived template is blank/idle; stage a name and an edit-mode
+    // UI state (menu 3 = diffusion, display 41) like a hardware capture.
+    const dump = new Uint8Array(runtime.templates.prog);
+    dump.set(new TextEncoder().encode("Large Church"), 8);
+    dump[92] = 0x00;
+    dump[98] = 0x00;
+    dump[99] = 0x03;
+    dump[146] = 0x02;
+    dump[147] = 0x09;
+    const rows = buildByteBreakdown(dump, runtime.prog, "prog", {
       controls: progControls,
       progUi: runtime.progUi,
     });

@@ -649,6 +649,14 @@ def render_byte_map_markdown(byte_map: dict[str, Any]) -> str:
         if example != "-":
             example = f"`{example}`"
         meaning = _linkify_meaning(region["role"], series_params)
+        label, _encoding = _overview_label(region, byte_map)
+        href = _IDENTITY_FIELD_HREFS.get(label)
+        if href and f"]({href})" not in meaning:
+            if href in meaning:
+                # Role text mentions the page as plain text; make it a link.
+                meaning = meaning.replace(href, f"[{href}]({href})")
+            else:
+                meaning += f" — see [{label}]({href})"
         lines.append(
             f"| {region['offsets']} | {region['length']} | "
             f"{example} | {region['status']} | {meaning} |"
