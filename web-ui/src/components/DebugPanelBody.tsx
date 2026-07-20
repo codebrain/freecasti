@@ -149,14 +149,7 @@ function MidiLogList({
                 </span>
                 <span
                   className={
-                    entry.direction === "rx" && entry.echoValidation === "match"
-                      ? "text-green-400"
-                      : entry.direction === "rx" &&
-                          entry.echoValidation === "mismatch"
-                        ? "text-red-400"
-                        : entry.direction === "debug"
-                          ? "text-zinc-500"
-                          : undefined
+                    entry.direction === "debug" ? "text-zinc-500" : undefined
                   }
                 >
                   {entry.summary}

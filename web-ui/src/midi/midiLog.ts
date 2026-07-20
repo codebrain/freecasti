@@ -3,17 +3,12 @@ import { NAME_OFFSET, PROGRAM_NAME_LENGTH, SYSEX_END, SYSEX_START } from "@/syse
 
 export type MidiLogDirection = "tx" | "rx" | "debug";
 
-export type MidiEchoValidation = "match" | "mismatch";
-
 export interface MidiLogEntry {
   id: string;
   at: number;
   direction: MidiLogDirection;
   bytes: Uint8Array;
   summary: string;
-  /** Set when an RX message is the device echo of a recent TX. */
-  echoValidation?: MidiEchoValidation;
-  echoDiffCount?: number;
 }
 
 export const MIDI_LOG_MAX = 10;
@@ -30,34 +25,18 @@ function readProgramName(data: Uint8Array): string | null {
   return name || null;
 }
 
-export function summarizeMidiSysex(
-  bytes: Uint8Array,
-  options: {
-    echoValidation?: MidiEchoValidation;
-    echoDiffCount?: number;
-  } = {},
-): string {
+export function summarizeMidiSysex(bytes: Uint8Array): string {
   const family = detectDumpFamily(bytes);
-  let base: string;
   if (family === "prog") {
     const name = readProgramName(bytes);
-    base = name
+    return name
       ? `program ${bytes.length} B · ${name}`
       : `program ${bytes.length} B`;
-  } else if (family === "system") {
-    base = `system ${bytes.length} B`;
-  } else {
-    base = `sysex ${bytes.length} B`;
   }
-
-  if (options.echoValidation === "match") {
-    return `${base} · echo match`;
+  if (family === "system") {
+    return `system ${bytes.length} B`;
   }
-  if (options.echoValidation === "mismatch") {
-    const n = options.echoDiffCount ?? 0;
-    return `${base} · echo mismatch (${n} B)`;
-  }
-  return base;
+  return `sysex ${bytes.length} B`;
 }
 
 export function prependMidiLog(
@@ -70,8 +49,6 @@ export function prependMidiLog(
 
 export interface MidiLogEntryOptions {
   at?: number;
-  echoValidation?: MidiEchoValidation;
-  echoDiffCount?: number;
 }
 
 export function createMidiLogEntry(
@@ -85,11 +62,6 @@ export function createMidiLogEntry(
     at,
     direction,
     bytes: new Uint8Array(bytes),
-    summary: summarizeMidiSysex(bytes, {
-      echoValidation: options.echoValidation,
-      echoDiffCount: options.echoDiffCount,
-    }),
-    echoValidation: options.echoValidation,
-    echoDiffCount: options.echoDiffCount,
+    summary: summarizeMidiSysex(bytes),
   };
 }

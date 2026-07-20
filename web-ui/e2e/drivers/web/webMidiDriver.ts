@@ -98,18 +98,4 @@ export class WebMidiDriver implements MidiDriver {
       .toBeGreaterThanOrEqual(count);
     return this.sentMessages();
   }
-
-  async lastReceiveWasEcho(): Promise<boolean> {
-    // The echo classification is surfaced to the user in the debug panel's
-    // MIDI log; open it (if needed) and inspect the newest entry.
-    const openButton = this.page.getByRole("button", { name: "Open debug panel" });
-    if (await openButton.isVisible()) {
-      await openButton.click();
-    }
-    const panel = this.page.locator('aside[aria-label="Debug panel"]');
-    const newest = panel.locator("li").first();
-    await expect(newest).toBeVisible();
-    const text = (await newest.textContent()) ?? "";
-    return text.includes("RX") && text.includes("echo match");
-  }
 }

@@ -44,7 +44,7 @@ export function SendOnChangeControl({
     }
   };
 
-  const tooltip = `Automatically send SysEx when you edit — throttled to at most once every ${throttleMs} ms. Device echoes are validated against the last TX and shown in the debug panel.`;
+  const tooltip = `Automatically send SysEx when you edit — throttled to at most once every ${throttleMs} ms. Dumps received from the device update the editor but are never sent back.`;
 
   return (
     <ControlTooltip description={tooltip}>

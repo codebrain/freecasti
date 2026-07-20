@@ -1,10 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import {
-  classifyRxAgainstPendingTx,
-  pendingTxEchoFromBytes,
-  type PendingTxEcho,
-} from "@/midi/txEcho";
 import { createSysexSendThrottle } from "@/midi/sysexThrottle";
 import { readStoredSendOnChangeThrottleMs } from "@/midi/sendOnChangeThrottle";
 import { MIDI_ERROR_DISMISS_MS } from "@/midi/midiErrorToast";
@@ -91,24 +86,13 @@ export function useWebMidi(
   const [midiLog, setMidiLog] = useState<MidiLogEntry[]>([]);
   const onReceiveRef = useRef(onReceive);
   onReceiveRef.current = onReceive;
-  const pendingTxEchoRef = useRef<PendingTxEcho | null>(null);
   const throttleRef = useRef<ReturnType<typeof createSysexSendThrottle> | null>(null);
 
   const pushMidiLog = useCallback(
-    (
-      direction: "tx" | "rx" | "debug",
-      bytes: Uint8Array,
-      options: {
-        echoValidation?: "match" | "mismatch";
-        echoDiffCount?: number;
-      } = {},
-    ) => {
+    (direction: "tx" | "rx" | "debug", bytes: Uint8Array) => {
       if (!isMidiSysex(bytes)) return;
       setMidiLog((prev) =>
-        prependMidiLog(
-          prev,
-          createMidiLogEntry(direction, bytes, options),
-        ),
+        prependMidiLog(prev, createMidiLogEntry(direction, bytes)),
       );
     },
     [],
@@ -141,7 +125,6 @@ export function useWebMidi(
       }
       try {
         output.send(bytes);
-        pendingTxEchoRef.current = pendingTxEchoFromBytes(bytes);
         pushMidiLog("tx", bytes);
         setLastSendAt(Date.now());
         setLastError(null);
@@ -175,7 +158,6 @@ export function useWebMidi(
       /* ignore */
     }
     if (!on) {
-      pendingTxEchoRef.current = null;
       setAccess(null);
       setOutputs([]);
       setInputs([]);
@@ -213,21 +195,12 @@ export function useWebMidi(
     const input = access.inputs.get(selectedInputId);
     if (!input) return;
 
+    // Every received dump is adopted into the editor state. The receive
+    // handler marks the resulting update as RX-originated so send-on-change
+    // never transmits it back (see resolveSendOnChange).
     const handler = (ev: MIDIMessageEvent) => {
       if (!ev.data) return;
       const data = new Uint8Array(ev.data);
-      const classification = classifyRxAgainstPendingTx(
-        data,
-        pendingTxEchoRef.current,
-      );
-      if (classification.kind === "echo") {
-        pendingTxEchoRef.current = null;
-        pushMidiLog("rx", data, {
-          echoValidation: classification.validation,
-          echoDiffCount: classification.diffCount,
-        });
-        return;
-      }
       pushMidiLog("rx", data);
       onReceiveRef.current?.(data);
     };

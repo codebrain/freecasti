@@ -26,10 +26,4 @@ export interface MidiDriver {
   clearSentMessages(): Promise<void>;
   /** Wait until the device has received at least `count` messages. */
   waitForSentCount(count: number, timeoutMs?: number): Promise<Uint8Array[]>;
-
-  /**
-   * Whether the editor classified the most recently received message as an
-   * echo of its own transmission (rather than an external change).
-   */
-  lastReceiveWasEcho(): Promise<boolean>;
 }
