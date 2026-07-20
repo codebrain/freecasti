@@ -210,6 +210,23 @@ export function App() {
     [activeProgramBankIndex, algorithmConstraints],
   );
 
+  /** Factory values of the loaded preset (double-click reset targets). */
+  const presetDefaults = useMemo(() => {
+    if (!catalog || !progState) return null;
+    const bankIndex = progState.encoded.bank_index ?? 0;
+    const slot = progState.encoded.program_slot ?? 0;
+    const entry = catalog.presets.find(
+      (p) => p.bank_index === bankIndex && p.program_slot === slot,
+    );
+    if (!entry) return null;
+    const defaults: Record<string, number> = {};
+    for (const [parameter, encoded] of Object.entries(entry.parameters)) {
+      const fieldId = paramToField.get(parameter);
+      if (fieldId !== undefined) defaults[fieldId] = encoded;
+    }
+    return defaults;
+  }, [catalog, progState, paramToField]);
+
   const progControlByField = useMemo(() => {
     const map = new Map<string, ControlDef>();
     if (!progSpec) return map;
@@ -482,6 +499,7 @@ export function App() {
         allProgControls(progSpec),
         sysControls,
         banks,
+        regBlob,
       );
       if (!parsed) return;
       // Mark the resulting state change as RX-originated so the send-on-change
@@ -506,7 +524,7 @@ export function App() {
         setActiveTab("system");
       }
     },
-    [progSpec, sysSpec, sysControls, banks, recordAction],
+    [progSpec, sysSpec, sysControls, banks, regBlob, recordAction],
   );
 
   const midi = useWebMidi(handleMidiReceive);
@@ -809,6 +827,7 @@ export function App() {
                 <ControlTooltip description="MIDI output port for sending SysEx to the device.">
                   <select
                     className={toolbarSelectClass}
+                    aria-label="MIDI output port"
                     value={midi.selectedOutputId}
                     onChange={(e) => midi.setSelectedOutputId(e.target.value)}
                     disabled={!midi.enabled}
@@ -824,6 +843,7 @@ export function App() {
                 <ControlTooltip description="MIDI input port for receiving program and system dumps from the device.">
                   <select
                     className={toolbarSelectClass}
+                    aria-label="MIDI input port"
                     value={midi.selectedInputId}
                     onChange={(e) => midi.setSelectedInputId(e.target.value)}
                     disabled={!midi.enabled}
@@ -932,6 +952,7 @@ export function App() {
                     onSelectField={onSelectProgField}
                     lockedFieldIds={lockedFieldIds}
                     onToggleFieldLock={toggleFieldLock}
+                    presetDefaults={presetDefaults}
                     tempoBpm={tempoBpm}
                     tempoModeFields={tempoModeFields}
                     onToggleTempoMode={toggleTempoMode}
@@ -951,6 +972,7 @@ export function App() {
                 onSelectField={onSelectProgField}
                 lockedFieldIds={lockedFieldIds}
                 onToggleFieldLock={toggleFieldLock}
+                presetDefaults={presetDefaults}
                 tempoBpm={tempoBpm}
                 tempoModeFields={tempoModeFields}
                 onToggleTempoMode={toggleTempoMode}

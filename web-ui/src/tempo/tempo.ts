@@ -1,4 +1,5 @@
 import type { ControlDef } from "@/spec/controls";
+import { formatValueLabel } from "@/spec/labels";
 
 /** Program parameters with musically meaningful time values. */
 export const TEMPO_PARAMETERS = new Set([
@@ -368,7 +369,7 @@ export function computeTimingDiscrepancies(
       division: formatDivisionLabel(div.name),
       idealMs: div.ms,
       actualMs,
-      actualLabel: entry?.label ?? String(enc),
+      actualLabel: formatValueLabel(entry?.label ?? String(enc), control.parameter),
       deltaMs,
     });
   }

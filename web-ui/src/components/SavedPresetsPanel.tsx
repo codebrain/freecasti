@@ -131,6 +131,7 @@ export function SavedPresetsPanel({
         </button>
         <select
           className="rounded-lg border border-[oklch(0.28_0.012_252)] bg-[oklch(0.1_0.008_252)] px-2 py-1.5 text-xs min-w-[140px] font-led shadow-[inset_0_2px_5px_oklch(0_0_0/0.4)]"
+          aria-label="Saved presets"
           value={selectedId}
           onChange={(e) => setSelectedId(e.target.value)}
         >

@@ -55,6 +55,8 @@ export function ParamButtonControl({
 
   return (
     <div
+      data-testid="param-control"
+      data-param={control.parameter ?? control.fieldId}
       className={`flex w-full flex-col items-center gap-2 ${
         disabled ? "cursor-not-allowed" : ""
       }`}

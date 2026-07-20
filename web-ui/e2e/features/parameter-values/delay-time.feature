@@ -1,0 +1,125 @@
+# GENERATED FILE — do not edit by hand.
+# Regenerate with: npm run gen:value-features (web-ui)
+# @slow: walking a whole value table needs more than the default timeout.
+@core @parameter-values @slow
+Feature: Allowable values for "delay time"
+  The device supports a fixed table of 113 steps for
+  "delay time". The editor must offer exactly these values, in this
+  order, and nothing else.
+
+  Scenario: Every value the editor may offer for "delay time"
+    Given the editor is started
+    Then the only values available for "delay time" are:
+      | 100 ms |
+      | 108 ms |
+      | 116 ms |
+      | 124 ms |
+      | 132 ms |
+      | 140 ms |
+      | 148 ms |
+      | 156 ms |
+      | 164 ms |
+      | 172 ms |
+      | 180 ms |
+      | 188 ms |
+      | 196 ms |
+      | 204 ms |
+      | 212 ms |
+      | 220 ms |
+      | 228 ms |
+      | 236 ms |
+      | 244 ms |
+      | 252 ms |
+      | 260 ms |
+      | 268 ms |
+      | 276 ms |
+      | 284 ms |
+      | 292 ms |
+      | 300 ms |
+      | 308 ms |
+      | 316 ms |
+      | 324 ms |
+      | 332 ms |
+      | 340 ms |
+      | 348 ms |
+      | 356 ms |
+      | 364 ms |
+      | 372 ms |
+      | 380 ms |
+      | 388 ms |
+      | 396 ms |
+      | 404 ms |
+      | 412 ms |
+      | 420 ms |
+      | 428 ms |
+      | 436 ms |
+      | 444 ms |
+      | 452 ms |
+      | 460 ms |
+      | 468 ms |
+      | 476 ms |
+      | 484 ms |
+      | 492 ms |
+      | 500 ms |
+      | 508 ms |
+      | 516 ms |
+      | 524 ms |
+      | 532 ms |
+      | 540 ms |
+      | 548 ms |
+      | 556 ms |
+      | 564 ms |
+      | 572 ms |
+      | 580 ms |
+      | 588 ms |
+      | 596 ms |
+      | 604 ms |
+      | 612 ms |
+      | 620 ms |
+      | 628 ms |
+      | 636 ms |
+      | 644 ms |
+      | 652 ms |
+      | 660 ms |
+      | 668 ms |
+      | 676 ms |
+      | 684 ms |
+      | 692 ms |
+      | 700 ms |
+      | 708 ms |
+      | 716 ms |
+      | 724 ms |
+      | 732 ms |
+      | 740 ms |
+      | 748 ms |
+      | 756 ms |
+      | 764 ms |
+      | 772 ms |
+      | 780 ms |
+      | 788 ms |
+      | 796 ms |
+      | 804 ms |
+      | 812 ms |
+      | 820 ms |
+      | 828 ms |
+      | 836 ms |
+      | 844 ms |
+      | 852 ms |
+      | 860 ms |
+      | 868 ms |
+      | 876 ms |
+      | 884 ms |
+      | 892 ms |
+      | 900 ms |
+      | 908 ms |
+      | 916 ms |
+      | 924 ms |
+      | 932 ms |
+      | 940 ms |
+      | 948 ms |
+      | 956 ms |
+      | 964 ms |
+      | 972 ms |
+      | 980 ms |
+      | 988 ms |
+      | 996 ms |

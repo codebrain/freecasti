@@ -82,6 +82,9 @@ export function formatValueLabel(
   if (!label) return label;
   // Numeric / unit values (times, dB, Hz, etc.)
   if (/^-?\d/.test(label)) {
+    // The spec writes some time tables as `mSec`; the UI always says `ms`.
+    const msec = label.match(/^(-?[\d.]+)\s*mSec$/i);
+    if (msec) return `${msec[1]} ms`;
     if (parameter === EARLY_LATE_MIX_PARAMETER) {
       const mix = formatEarlyLateMixLabel(label);
       if (mix) return mix;

@@ -139,7 +139,7 @@ export function HelpDialog({ open, onClose }: HelpDialogProps) {
               </li>
               <li>
                 <strong>Drag a dial</strong> up/down, scroll the mouse wheel, or double-click to
-                reset to the first step.
+                reset to the loaded preset&apos;s value (mid-range when no preset value exists).
               </li>
               <li>
                 <strong>Padlock</strong> — Locked parameters keep their values when you change

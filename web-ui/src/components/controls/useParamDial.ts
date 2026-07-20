@@ -18,6 +18,7 @@ interface UseParamDialOptions {
   onChange: (encoded: number) => void;
   onSelect?: () => void;
   label?: string;
+  defaultEncoded?: number;
   tempoBpm?: number;
   tempoMode?: boolean;
   onToggleTempoMode?: () => void;
@@ -31,6 +32,7 @@ export function useParamDial({
   onChange,
   onSelect,
   label,
+  defaultEncoded,
   tempoBpm = 120,
   tempoMode = false,
   onToggleTempoMode,
@@ -53,6 +55,14 @@ export function useParamDial({
     ? tempoStepIndexForEncoded(control, encoded, tempoBpm)
     : idx;
   const stepMax = tempoActive ? Math.max(0, tempoSteps.length - 1) : max;
+
+  /** Loaded preset's factory value in the dial's current index space. */
+  const defaultStepIdx =
+    defaultEncoded === undefined
+      ? undefined
+      : tempoActive
+        ? tempoStepIndexForEncoded(control, defaultEncoded, tempoBpm)
+        : control.entryIndex(defaultEncoded);
 
   const valueMarkers = useMemo(() => {
     if (tempoActive) {
@@ -164,6 +174,7 @@ export function useParamDial({
     idx,
     stepIdx,
     stepMax,
+    defaultStepIdx,
     max,
     valueMarkers,
     dialRef,

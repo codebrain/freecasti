@@ -76,6 +76,21 @@ When **Send on change** or **Send** is used on the program tab, outgoing dumps p
 
 SYSTEM dumps are unchanged (no menu-navigation bytes in SYSTEM captures).
 
+## MIDI receive (register basis)
+
+Incoming program dumps hydrate the active A/B slot from the live payload bytes
+(100–139). If the dump carries a **register basis frame** — offsets **24–87**
+nibble-packed instead of the factory `0x20` space pad — the stored register
+settings win: the blob's parameter values (reverb time, size, predelay, the
+delay block, …) and register name replace the payload values, since the
+payload tracks the edit buffer and may hold unstored edits. See
+[register-basis-blob.md](../specification/prog/bytes/register-basis-blob.md)
+for the blob layout (shipped at runtime as `reg_blob` in `m7-runtime.json`).
+
+This applies to the Web MIDI receive path only (`applyRegisterBasis` in
+`src/app/midiReceive.ts`); `.syx` file import and the dump inspector show the
+payload and blob side by side without overriding.
+
 ## Tests
 
 ```bash

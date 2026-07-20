@@ -13,13 +13,16 @@
     "preview": "vite preview",
     "lint": "eslint src --max-warnings 0",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:e2e": "bddgen && playwright test",
+    "gen:value-features": "vite-node e2e/generate-value-features.ts"
   },
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/vite": "^4.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
@@ -28,6 +31,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "happy-dom": "^20.10.6",
     "m7-sysex-compiler": "npm:kaitai-struct-compiler@^0.10.0",
+    "playwright-bdd": "^9.2.0",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.0",
     "typescript-eslint": "^8.64.0",

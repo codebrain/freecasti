@@ -454,6 +454,12 @@ def render_register_basis_blob_page(*, today: str, nav: str = "") -> str:
             "factory program) read `0/0`, while "
             "`charset-b1s1-rt5s-stored.syx` reads `1/0` because B1 R0 was "
             "the active basis at dump time.",
+            "- **Consumers should prefer the blob over the payload when it "
+            "is present.** The web UI does this on MIDI receive: when an "
+            "incoming program dump carries a register basis frame, the "
+            "stored blob values (and register name) replace the live "
+            "payload bytes, so unstored edit-buffer values are not adopted "
+            "(`applyRegisterBasis` in `web-ui/src/app/midiReceive.ts`).",
             "",
             "## Witness captures",
             "",

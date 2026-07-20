@@ -5,6 +5,8 @@ export interface ParamWidgetControlProps {
   control: ControlDef;
   encoded: number;
   onChange: (encoded: number) => void;
+  /** Factory value of the loaded preset; double-click resets the dial to it. */
+  defaultEncoded?: number;
   size?: number;
   label?: string;
   featured?: boolean;

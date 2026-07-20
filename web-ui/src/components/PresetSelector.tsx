@@ -50,10 +50,16 @@ export function PresetSummary({
   return (
     <div className="flex items-end justify-between gap-4 px-2 md:px-4">
       <div className="flex min-w-0 flex-wrap items-end gap-x-3 gap-y-1">
-        <h2 className="led-text min-w-0 break-words text-2xl leading-none md:text-3xl">
+        <h2
+          data-testid="program-name"
+          className="led-text min-w-0 break-words text-2xl leading-none md:text-3xl"
+        >
           {programName}
         </h2>
-        <span className="shrink-0 pb-0.5 font-led text-xs tracking-wide opacity-60 md:text-sm">
+        <span
+          data-testid="program-bank"
+          className="shrink-0 pb-0.5 font-led text-xs tracking-wide opacity-60 md:text-sm"
+        >
           {bankName ?? "—"}
         </span>
       </div>

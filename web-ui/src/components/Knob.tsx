@@ -74,6 +74,8 @@ interface KnobProps {
   displayValue?: string;
   onValueCommit?: (draft: string) => void;
   valueAriaLabel?: string;
+  /** Value double-click resets to; defaults to the middle of the range. */
+  defaultValue?: number;
   /** Larger hero styling — same palette, more presence (e.g. reverb time). */
   featured?: boolean;
   disabled?: boolean;
@@ -108,6 +110,7 @@ function FullKnob({
   displayValue,
   onValueCommit,
   valueAriaLabel,
+  defaultValue,
   featured = false,
   disabled = false,
   selected = false,
@@ -166,8 +169,8 @@ function FullKnob({
 
   const onDoubleClick = () => {
     if (!interactive) return;
-    const midpoint = min + range / 2;
-    onChange(Math.round(midpoint / step) * step);
+    const target = defaultValue ?? min + range / 2;
+    onChange(Math.max(min, Math.min(max, Math.round(target / step) * step)));
   };
 
   const tickStroke = featured ? 2.4 : 1.6;
@@ -230,6 +233,7 @@ function FullKnob({
         </div>
       )}
       <div
+        data-testid="knob-dial"
         className={`relative ${
           interactive ? "touch-none cursor-ns-resize" : locked ? "pointer-events-none" : "cursor-not-allowed pointer-events-none"
         }`}
@@ -498,6 +502,7 @@ function SimpleKnob({
   displayValue,
   onValueCommit,
   valueAriaLabel,
+  defaultValue,
   featured = false,
   disabled = false,
   selected = false,
@@ -573,8 +578,8 @@ function SimpleKnob({
 
   const onDoubleClick = () => {
     if (!interactive) return;
-    const midpoint = min + range / 2;
-    onChange(Math.round(midpoint / step) * step);
+    const target = defaultValue ?? min + range / 2;
+    onChange(Math.max(min, Math.min(max, Math.round(target / step) * step)));
   };
 
   const tickStroke = featured ? 2.4 : 1.6;
@@ -621,6 +626,7 @@ function SimpleKnob({
         </div>
       )}
       <div
+        data-testid="knob-dial"
         className={`relative ${
           interactive
             ? "cursor-ns-resize"

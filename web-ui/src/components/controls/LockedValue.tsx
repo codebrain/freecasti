@@ -30,7 +30,9 @@ export function LockedValue({
         }
         style={{ width: iconSize, height: iconSize }}
       />
-      <span className={valueClass}>{valueLabel}</span>
+      <span data-testid="param-value" className={valueClass}>
+        {valueLabel}
+      </span>
     </div>
   );
 }

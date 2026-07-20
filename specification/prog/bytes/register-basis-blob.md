@@ -75,6 +75,7 @@ Bits 96–100 (wire offsets 48–49) increment each time the register slot is ov
 - **The blob snapshots the stored register values (not the factory source), delay block included.** After storing a program with reverb time edited to 5.0 s and the delay block engaged (`samples/charset-b1s1-rt5s-stored.syx`), the blob's reverb-time field reads encoded 76 (5.0 s, not the factory 10) and bits 197–211 carry delay level 15 / time 11 / mod 6, exactly matching the payload.
 - **Zero delay tail with delay in the payload** (`samples/rooms-studio-a-b1s1-delay-edit.syx`) means the store happened *before* the delay was dialed in: the delay lived only in the edit buffer, not in the stored register.
 - **Register identity at offsets 93/95 = the register currently loaded as the running basis** ([register bank](register-bank.md) / [register](register.md)). A store alone does **not** update them: the delay-edit and rename captures (stored to B1 R1 while the basis remained the factory program) read `0/0`, while `charset-b1s1-rt5s-stored.syx` reads `1/0` because B1 R0 was the active basis at dump time.
+- **Consumers should prefer the blob over the payload when it is present.** The web UI does this on MIDI receive: when an incoming program dump carries a register basis frame, the stored blob values (and register name) replace the live payload bytes, so unstored edit-buffer values are not adopted (`applyRegisterBasis` in `web-ui/src/app/midiReceive.ts`).
 
 ## Witness captures
 

@@ -11,6 +11,7 @@ export function ParamDialControl({
   control,
   encoded,
   onChange,
+  defaultEncoded,
   size = 58,
   label,
   featured = false,
@@ -29,6 +30,7 @@ export function ParamDialControl({
     idx,
     stepIdx,
     stepMax,
+    defaultStepIdx,
     max,
     valueMarkers,
     dialRef,
@@ -44,6 +46,7 @@ export function ParamDialControl({
     onChange,
     onSelect,
     label,
+    defaultEncoded,
     tempoBpm,
     tempoMode,
     onToggleTempoMode,
@@ -54,6 +57,8 @@ export function ParamDialControl({
   return (
     <div
       ref={dialRef}
+      data-testid="param-control"
+      data-param={control.parameter ?? control.fieldId}
       className={`flex flex-col items-center gap-0.5 ${disabled ? "cursor-not-allowed" : ""}`}
     >
       <ParamLabel
@@ -72,6 +77,7 @@ export function ParamDialControl({
             value={tempoActive ? stepIdx : idx}
             min={0}
             max={Math.max(0, tempoActive ? stepMax : max)}
+            defaultValue={defaultStepIdx}
             step={1}
             size={size}
             featured={featured}

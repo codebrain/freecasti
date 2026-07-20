@@ -38,6 +38,9 @@ interface ProgramPanelProps {
 
   onToggleFieldLock?: (fieldId: string) => void;
 
+  /** Field → factory value of the loaded preset (double-click reset target). */
+  presetDefaults?: Record<string, number> | null;
+
   tempoBpm?: number;
 
   tempoModeFields?: ReadonlySet<string>;
@@ -70,6 +73,8 @@ export function ProgramPanel({
   lockedFieldIds = new Set(),
 
   onToggleFieldLock,
+
+  presetDefaults = null,
 
   tempoBpm = 120,
 
@@ -172,6 +177,8 @@ export function ProgramPanel({
 
           onChange={(enc) => setField(c.fieldId, enc)}
 
+          defaultEncoded={presetDefaults?.[c.fieldId]}
+
           size={size}
 
           label={options?.label?.(c)}
@@ -227,6 +234,8 @@ export function ProgramPanel({
               }
 
               onChange={(enc) => setField(reverbTime.fieldId, enc)}
+
+              defaultEncoded={presetDefaults?.[reverbTime.fieldId]}
 
               size={112}
 

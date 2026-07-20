@@ -57,6 +57,7 @@ export function EditableValue({
   if (disabled && inactive) {
     return (
       <div
+        data-testid="param-value"
         className={`tabular-nums min-h-[1.25rem] rounded-md border border-transparent px-1 control-value-inactive ${typography} ${className}`.trim()}
       >
         {displayValue}
@@ -67,6 +68,7 @@ export function EditableValue({
   if (disabled) {
     return (
       <div
+        data-testid="param-value"
         className={`tabular-nums min-h-[1.25rem] rounded-md border border-transparent px-1 led-text ${typography} ${className}`.trim()}
       >
         {displayValue}
@@ -78,6 +80,7 @@ export function EditableValue({
     return (
       <button
         type="button"
+        data-testid="param-value"
         className={`tabular-nums min-h-[1.25rem] led-text cursor-text rounded-md border border-transparent px-1 transition-[background,box-shadow] duration-200 hover:bg-[oklch(0.62_0.24_27/0.1)] hover:shadow-[0_0_16px_oklch(0.62_0.24_27/0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--color-primary)] ${typography} ${className}`.trim()}
         aria-label={ariaLabel ? `Edit ${ariaLabel}` : "Edit value"}
         title="Click to type a value"
@@ -95,6 +98,7 @@ export function EditableValue({
   return (
     <input
       ref={inputRef}
+      data-testid="param-value-input"
       type="text"
       autoComplete="off"
       autoCorrect="off"
