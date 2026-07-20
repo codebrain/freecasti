@@ -21,7 +21,7 @@ From Bricasti MIDI notes (all are **channel-less** SysEx):
 
 | Dump | Send | Contents | This repo |
 |------|------|----------|-----------|
-| **Program** | Hold **PROG** | Running program + edits + **UI state**; may include register/favorite basis | **`sysex/prog/parameters/`** (series) and **`sysex/prog/presets/`** (identity) |
+| **Program** | Hold **PROG** | Running program + edits + **UI state**; may include register/favorite basis | **`sysex/prog/parameters/`** (series), **`sysex/prog/presets/`** (identity), **`sysex/prog/favorites/`** (favorite-loaded) |
 | **Edit buffer** | Hold **EDIT** | Same **157-byte** program-dump frame/header as PROG; bank word **88–89 = 11**, slot often **0**, mirror **137** keeps the source bank | **`sysex/prog/edit/`** |
 | **System** | Hold **SYSTEM** | I/O, routing, dry/wet, register lock, etc. (not sound parameters) | **`sysex/system/`** — see [../specification/system/](../specification/system/) |
 
@@ -53,7 +53,7 @@ Factory/user bank select at SysEx offsets **88–89** (`nibble_hilo`); mirrored 
 | 10 | NonLin | Non-linear (AMS-style) | **2** |
 | **11** | **Edit (hold EDIT send)** | Same engine as source program | (source) |
 | 118 | Edit (receive) | Ephemeral bank created when an EDIT dump is *received* | — |
-| 119 | Favorites | Front-panel favorites 1–4 | — |
+| 119 | Favorites | Front-panel favorites 1–4 — **receive-side only**: favorite-loaded PROG *sends* carry the source bank/slot at 88–91 plus a favorite-slot marker at offset **94** (see `sysex/prog/favorites/`) | — |
 | 120 | Registers | User registers (5×10) | — |
 
 On hold-**EDIT** sends, offsets **88–89** are always index **11**, while offset
@@ -84,9 +84,10 @@ Offset **130** selects engine/bank class in this corpus:
 | 1 | `* 2`: Halls 2, Plates 2, Rooms 2, Spaces 2 |
 | 2 | NonLin |
 
-Parameter-series dumps also show **1** because they were captured from **Large
-Church** (Halls 2). Companion **131–132** is always `02 00` here — see
-[byte-map-overview.md](../specification/prog/byte-map-overview.md).
+Most parameter-series dumps show **1** because they were captured from **Large
+Church** (Halls 2); the **LF RT multiply/crossover** series show **0** (captured
+from Large Hall, classic Halls). Companion **131–132** is always `02 00` here —
+see [byte-map-overview.md](../specification/prog/byte-map-overview.md).
 
 ### Program slots (Rooms)
 
@@ -169,11 +170,26 @@ display-level secondary coupling on the same row.
 | **8–23** | Program name: **16-byte** wire window; **14-character** editable label (manual); offsets **22–23** space-padded in this corpus |
 | **24–87** | Factory: space-padded (`0x20`). Reg-backed hold-EDIT: bit-packed **register basis blob** — 6-bit-packed register name + all stored parameter values + source bank + store counter (fully decoded; see the generated [register-basis-blob.md](../specification/prog/bytes/register-basis-blob.md)) |
 | **93** | **`register_bank`** — manual Bank (`raw_u8`, B0–B4 = `00`–`04`) of the register *loaded as the running basis* (a store alone doesn't update it); `00` on factory dumps |
-| **94** | Constant `08` (structure/version) |
+| **94** | **`favorite_slot`** — `(slot-1)*2` (`00`/`02`/`04`/`06`) when the running program was loaded from front-panel favorite 1–4 (PROG frames; persists across edits); `08` = not from a favorite (all factory/series and hold-EDIT dumps — previously misread as a structure/version constant) |
 | **95** | **`register`** — manual Register within bank (`0`–`9`) of the *loaded* register basis; `00` on factory dumps |
 | **96** | Reserved/unknown (`00` in witnessed captures) |
 | **EDIT** identity | Program bank **11** @ 88–89; source factory slot @ 90–91; source bank @ mirror **137**; see `sysex/prog/edit/` and `sysex/prog/edit/registers/` |
 | **SYSTEM** layout | 77 bytes, header `70 08 02 00`; **8** settings captured — see [system/](../specification/system/) |
+
+### Favorites (front-panel shortcuts 1–4)
+
+Decoded from the `sysex/prog/favorites/` session (Deep Ambience + Nonlin C):
+
+- **Sends never use bank 119** — a favorite-loaded hold-PROG dump carries the
+  **source program identity** at 88–91; the favorite slot is at offset **94**
+  and the favorites-screen state at offset **92** (`08` while displayed).
+- Saving to a favorite writes a full **register basis blob** (24–87) with the
+  store-generation counter always **0**; re-saves do not increment it.
+- Offsets **93/95** stay register-only — a favorite basis never updates them.
+- **Auto-commit:** holding PROG while the favorites screen is displayed
+  (92 = `08`) silently commits pending edits into the favorite slot. Waiting,
+  a brief PROG press, and hold-PROG from other screens do not commit; the
+  commit persists across a favorite reload.
 
 Register-basis hold-EDIT captures prove the full **5 Banks × 10 Registers**
 inventory (`fullsweep-rooms-studio-a.syx`), plus earlier B0/B1 Large Hall and
@@ -200,10 +216,12 @@ All 18 sound parameters and **8** SYSTEM settings now have dedicated series.
 Remaining optional work:
 
 1. **EDIT receive path** — confirm MIDI-notes bank **118** when loading an EDIT
-   dump back into the unit (distinct from send marker 11).
-2. **Favorites**-based PROG dumps (bank **119**). (Register blob mapping is
-   complete: offsets **93/95** track the *loaded* register basis, not store
-   targets; the blob snapshots stored values incl. the delay block.)
+   dump back into the unit (distinct from send marker 11); same question for
+   **Favorites receive** (bank **119** — sends are decoded, see
+   `sysex/prog/favorites/`).
+2. **Favorites follow-ups** — one more commit-rule confirmation (hold-PROG
+   from the favorites screen with a pending edit) and power-cycle persistence
+   of an auto-committed favorite.
 3. **SYSTEM** knobs not yet in dedicated series (e.g. register lock) if you
    need to edit them over SysEx.
 

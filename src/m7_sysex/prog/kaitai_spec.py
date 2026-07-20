@@ -158,7 +158,7 @@ def build_program_dump_spec(
         elif start == 93 and size == 1:
             field["id"] = _force_id("register_bank", used_ids, field_id)
         elif start == 94 and size == 1:
-            field["id"] = _force_id("structure_version", used_ids, field_id)
+            field["id"] = _force_id("favorite_slot", used_ids, field_id)
         elif start == 95 and size == 1:
             field["id"] = _force_id("register", used_ids, field_id)
         elif status == "checksum":

@@ -183,7 +183,7 @@ describe("prog UI sysex diff", () => {
       controls: allProgControls(runtime.prog),
       progUi,
     });
-    expect(rows.find((r) => r.label === "menu browse flag")?.meaning).toBe(
+    expect(rows.find((r) => r.label === "panel mode flag")?.meaning).toBe(
       "menu highlighted",
     );
     const menuRow = rows.find((r) => r.label === "selected menu index");
@@ -193,7 +193,7 @@ describe("prog UI sysex diff", () => {
     expect(cursorRow?.meaning).toBe("29 — browse: size (1)");
   });
 
-  it("decodes edit mode on menu browse flag row", () => {
+  it("decodes edit mode on panel mode flag row", () => {
     const size = allProgControls(spec).find((c) => c.parameter === "size")!;
     const nextEncoded =
       size.entries.find((e) => e.encoded !== baseState.encoded[size.fieldId])
@@ -212,7 +212,7 @@ describe("prog UI sysex diff", () => {
       controls: allProgControls(runtime.prog),
       progUi,
     });
-    const flagRow = rows.find((r) => r.label === "menu browse flag");
+    const flagRow = rows.find((r) => r.label === "panel mode flag");
     expect(flagRow?.meaning).toBe("value edit");
     const menuRow = rows.find((r) => r.label === "selected menu index");
     expect(menuRow?.meaning).toContain("editing");
@@ -232,7 +232,7 @@ describe("prog UI sysex diff", () => {
       controls: allProgControls(runtime.prog),
       progUi,
     });
-    expect(rows.find((r) => r.label === "menu browse flag")?.meaning).toBe(
+    expect(rows.find((r) => r.label === "panel mode flag")?.meaning).toBe(
       "idle",
     );
     expect(

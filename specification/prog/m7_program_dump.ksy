@@ -64,11 +64,11 @@ seq:
       Program slot within bank (`nibble_hilo`) from sysex/prog/presets/ (not a
       global program number)
     type: nibble_u8_hilo
-  - id: menu_browse_flag
+  - id: panel_mode_flag
     doc: |
-      Menu-browse flag: `00` when no parameter menu is open or while editing a
+      Panel-mode flag: `00` when no parameter menu is open or while editing a
       value; `02` while a parameter menu is highlighted (see
-      `sysex/prog/menus/` captures)...
+      `sysex/prog/menus/` captures);...
       Secondary/edit-UI field — not a primary sound parameter
     type: u1
   - id: register_bank
@@ -79,10 +79,11 @@ seq:
       Locked encoding table: 5 known encoded value(s)
     type: u1
     enum: register_bank_values
-  - id: structure_version
+  - id: favorite_slot
     doc: |
-      Structure/version constant (`08` in all witnessed program dumps) — not a
-      sound parameter
+      Favorite-source slot: `(slot - 1) * 2` (`00`/`02`/`04`/`06` = favorites
+      1–4) when the running program was loaded from a front-panel favorite
+      (PROG frames onl...
     type: u1
   - id: register
     doc: |
@@ -230,8 +231,8 @@ seq:
   - id: engine_bank_class_flag
     doc: |
       Engine/bank-class flag: 0 on classic banks (Halls…Spaces), 1 on `* 2`
-      banks (Halls 2…Spaces 2), 2 on NonLin. Parameter-series dumps also show
-      1 because they ...
+      banks (Halls 2…Spaces 2), 2 on NonLin. Most parameter-series dumps show
+      1 (captured fro...
     type: u1
   - id: fixed_always_02_00
     doc: |

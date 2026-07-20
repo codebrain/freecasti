@@ -18,16 +18,21 @@ def _prog_open_items_with_unseen_link(bytes_link: str) -> list[str]:
 PROG_OPEN_ITEMS_CORE: list[str] = [
     (
         "**EDIT receive** path (MIDI-notes bank **118**) — hold-EDIT *sends* use "
-        "bank **11** (`sysex/prog/edit/`)"
+        "bank **11** (`sysex/prog/edit/`); **Favorites receive** (MIDI-notes "
+        "bank **119**) also unconfirmed — favorites *sends* carry the source "
+        "identity instead (`sysex/prog/favorites/`)"
     ),
     "Semantics of PROG header bytes `70 08 01 00`",
-    (
-        "**Favorites**-based PROG dumps (bank **119**); Halls 2 subtype EDIT "
-        "outlier; reserved offset **96**"
-    ),
+    "Halls 2 subtype EDIT outlier; reserved offset **96**",
     (
         "Closed-form mapping for table parameters (see medium-confidence rows "
         "in the parameter index)"
+    ),
+    (
+        "**Favorites follow-ups** — one more commit-rule confirmation "
+        "(hold-PROG from the favorites screen with a pending edit) and "
+        "power-cycle persistence of an auto-committed favorite "
+        "(`sysex/prog/favorites/README.md`)"
     ),
 ]
 
@@ -39,6 +44,15 @@ PROG_RESOLVED_ITEMS: list[str] = [
         "delay block at bits **197–211**; snapshots stored register values; "
         "offsets **93/95** track the *loaded* register basis (see "
         "`sysex/prog/edit/registers/README.md`)"
+    ),
+    (
+        "**Favorites**-based PROG dumps are decoded — sends carry the source "
+        "program identity at **88–91** (never bank 119); offset **94** is the "
+        "favorite-source slot (`(slot-1)*2`, `08` = none), offset **92** is a "
+        "panel-mode flag (`08` = favorites screen); favorite saves write the "
+        "register basis blob with store counter 0 and auto-commit edits on "
+        "hold-PROG from the favorites screen (see "
+        "`sysex/prog/favorites/README.md`)"
     ),
 ]
 

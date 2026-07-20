@@ -25,7 +25,7 @@ def test_overview_links_parameters_and_identity():
     md = render_byte_map_overview_markdown(_byte_map())
     assert "[reverb time](bytes/reverb-time.md)" in md
     assert "[delay level](bytes/delay-level.md)" in md
-    assert "[bank index](program-identity.md)" in md
+    assert "[bank index](bytes/bank-index.md)" in md
     assert "[display](bytes/display.md)" in md
     assert "[program name (ASCII)](bytes/program-name.md)" in md
     assert "[program name pad](bytes/program-name-pad.md)" in md

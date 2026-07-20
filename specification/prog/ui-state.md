@@ -13,7 +13,7 @@ Baseline from `no menu.syx` — use when loading a preset or changing multiple p
 
 | Offset | Value | Role |
 |--------|------:|------|
-| 92 | `00` | menu browse flag (`00` = idle) |
+| 92 | `00` | panel mode flag (`00` = idle; `08` = favorites screen, see `sysex/prog/favorites/`) |
 | 98–99 | `00 00` | menu index (`00` = none) |
 | 146–147 | `01 0C` | display (`nibble_hilo` = 28; page=1, pos=12) |
 

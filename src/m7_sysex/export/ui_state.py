@@ -41,7 +41,8 @@ def render_ui_state_markdown(
         "",
         "| Offset | Value | Role |",
         "|--------|------:|------|",
-        f"| 92 | `{idle['92']:02X}` | menu browse flag (`00` = idle) |",
+        f"| 92 | `{idle['92']:02X}` | panel mode flag (`00` = idle; "
+        f"`08` = favorites screen, see `sysex/prog/favorites/`) |",
         f"| 98–99 | `{idle['98']:02X} {idle['99']:02X}` | menu index (`00` = none) |",
         (
             f"| 146–147 | {_fmt_cursor_bytes(idle['146'], idle['147'])} | "

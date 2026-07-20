@@ -155,6 +155,8 @@ function describeMenuBrowse(
   data: Uint8Array,
   progUi: ProgUiRuntime | null,
 ): string {
+  const byte = data[92]!;
+  if (byte === 8) return "favorites screen";
   if (progUi) {
     const ui = decodeProgUiFromBytes(data, progUi);
     if (ui.mode === "idle") return "idle";
@@ -162,9 +164,15 @@ function describeMenuBrowse(
     if (ui.mode === "browse") return "menu highlighted";
   }
 
-  const byte = data[92]!;
   if (byte === 2) return "menu highlighted";
   if (byte === 0) return "idle or value edit";
+  return `flag ${byte}`;
+}
+
+function describeFavoriteSlot(data: Uint8Array): string {
+  const byte = data[94]!;
+  if (byte === 8) return "not from a favorite";
+  if (byte % 2 === 0 && byte <= 6) return `favorite ${byte / 2 + 1}`;
   return `flag ${byte}`;
 }
 
@@ -290,7 +298,7 @@ function progSupplementaryRegions(
     {
       start: 92,
       end: 92,
-      label: "menu browse flag",
+      label: "panel mode flag",
       meaning: describeMenuBrowse(data, progUi),
     },
     {
@@ -302,8 +310,8 @@ function progSupplementaryRegions(
     {
       start: 94,
       end: 94,
-      label: "structure version",
-      meaning: String(data[94]!),
+      label: "favorite slot",
+      meaning: describeFavoriteSlot(data),
     },
     {
       start: 95,

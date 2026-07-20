@@ -67,7 +67,7 @@ Decoded factory values are also checked against Bricasti’s published sheet
 | Bank index | 88–89 | `nibble_hilo` — full table in [manual-notes.md](manual-notes.md) |
 | Program slot | 90–91 | Slot within bank (factory list order); on Reg EDIT this stays the *source factory* slot |
 | Register page | 93 | Reg bank page (B0=0 …); `0` on factory dumps |
-| Structure version | 94 | Constant `08` |
+| Favorite slot | 94 | `(slot-1)*2` for favorites 1–4 on favorite-loaded PROG frames; `08` = not from a favorite (`sysex/prog/favorites/`) |
 | Register slot | 95 | Reg slot 0–9; `0` on factory dumps |
 | Bank mirror | 137 | Equals offset 89 (source bank on hold-EDIT) |
 | Algorithm/family flag | 97 / 145 | Halls≈3 / most others≈4; not a clean V1/V2 bit — see manual-notes |
@@ -165,6 +165,8 @@ affine map (`label = a×encoded + b`).
    ([preset-sheet.md](../specification/prog/preset-sheet.md)); dumps win on hard
    disagreements.
 6. Do not treat third-party controller UIs as a source of byte offsets.
-7. Optional: EDIT receive confirmation, Favorites-based dumps, full register
-   basis-blob map, and rarely used SYSTEM knobs (e.g. register lock) per
-   [manual-notes.md](manual-notes.md).
+7. Optional: EDIT/Favorites *receive* confirmation and rarely used SYSTEM
+   knobs (e.g. register lock) per [manual-notes.md](manual-notes.md).
+   (Favorites-based sends and the register basis blob are fully decoded —
+   `sysex/prog/favorites/` and
+   [register-basis-blob.md](../specification/prog/bytes/register-basis-blob.md).)

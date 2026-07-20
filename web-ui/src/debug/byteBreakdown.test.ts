@@ -18,7 +18,7 @@ describe("buildByteBreakdown", () => {
       for (const off of row.offsets) covered.add(off);
     }
     expect(covered.size).toBe(runtime.templates.prog.length);
-    expect(rows.some((row) => row.label === "menu browse flag")).toBe(true);
+    expect(rows.some((row) => row.label === "panel mode flag")).toBe(true);
     expect(rows.some((row) => row.label === "reverb time")).toBe(true);
     expect(rows.some((row) => row.label === "Checksum")).toBe(true);
   });

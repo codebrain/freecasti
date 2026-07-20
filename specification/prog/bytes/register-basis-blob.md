@@ -3,7 +3,7 @@
 
 # Register basis blob
 
-_Generated 2026-07-20. Register hold-EDIT captures under `sysex/prog/edit/registers/` (fullsweep + witness samples). Layout table generated from `REGISTER_BLOB_FIELDS` in `m7_sysex.prog.register_blob`._
+_Generated 2026-07-20. Register hold-EDIT captures under `sysex/prog/edit/registers/` (fullsweep + witness samples) plus favorites captures under `sysex/prog/favorites/`. Layout table generated from `REGISTER_BLOB_FIELDS` in `m7_sysex.prog.register_blob`._
 
 ## SysEx summary
 
@@ -15,7 +15,7 @@ _Generated 2026-07-20. Register hold-EDIT captures under `sysex/prog/edit/regist
 
 ## Description
 
-On Reg-backed hold-EDIT dumps, offsets **24–87** hold a snapshot of the register as it was **stored**. Read the low nibble of each byte (4 bits per byte, MSB first) as a 256-bit stream; the fields below were verified against every register-basis frame in the corpus (each matches the corresponding live payload field unless the register has unstored edits). The blob is untouched by live edits: payload bytes 100–139 track the edit buffer, the blob keeps the stored values (witness: `samples/charset-b1s1-rt5s-unstored-edit.syx`, where reverb time reads 5.0 s in the payload but the stored 1.0 s here). Factory and parameter-series dumps space-pad this region (`0x20`), so check for nibble bytes before decoding.
+On Reg-backed hold-EDIT dumps, offsets **24–87** hold a snapshot of the register as it was **stored**. Read the low nibble of each byte (4 bits per byte, MSB first) as a 256-bit stream; the fields below were verified against every register-basis frame in the corpus (each matches the corresponding live payload field unless the register has unstored edits). For **register** bases the blob is untouched by live edits: payload bytes 100–139 track the edit buffer, the blob keeps the stored values (witness: `samples/charset-b1s1-rt5s-unstored-edit.syx`, where reverb time reads 5.0 s in the payload but the stored 1.0 s here). **Favorite** saves write the same blob layout (store counter always 0) and auto-commit pending edits on hold-PROG from the favorites screen — see the Favorites section below. Factory and parameter-series dumps space-pad this region (`0x20`), so check for nibble bytes before decoding.
 
 ## Bit layout
 
@@ -37,13 +37,13 @@ Bits count from the first nibble (offset 24 low nibble = bits 0–3). Field widt
 | 144–149 | 6 | early to reverb mix | [early to reverb mix](early-to-reverb-mix.md) @ 124–125 |  |
 | 150–154 | 5 | vlf cut | [vlf cut](vlf-cut.md) @ 122–123 |  |
 | 155–159 | 5 | early select | [early select](early-select.md) @ 128–129 |  |
-| 160–161 | 2 | engine/bank-class flag | engine/bank-class flag @ 130 | 0 classic banks, 1 on `* 2` banks, 2 NonLin (same as payload 130) |
+| 160–161 | 2 | engine/bank-class flag | [engine/bank-class flag](engine-bank-class-flag.md) @ 130 | 0 classic banks, 1 on `* 2` banks, 2 NonLin (same as payload 130) |
 | 162–168 | 7 | early rolloff | [early rolloff](early-rolloff.md) @ 126–127 |  |
 | 169–175 | 7 | rolloff | [rolloff](rolloff.md) @ 112–113 |  |
 | 176–181 | 6 | size | [size](size.md) @ 102–103 |  |
 | 182–186 | 5 | hf rt multiply | [hf rt multiply](hf-rt-multiply.md) @ 114–115 |  |
 | 187–191 | 5 | lf rt crossover | [lf rt crossover](lf-rt-crossover.md) @ 120–121 |  |
-| 192–196 | 5 | source factory bank | [bank index mirror](../program-identity.md) @ 137 | Factory bank the register was stored from (same as payload 137) |
+| 192–196 | 5 | source factory bank | [bank index mirror](bank-index.md) @ 137 | Factory bank the register was stored from (same as payload 137) |
 | 197–200 | 4 | delay level | [delay level](delay-level.md) @ 133 | V2 delay block; located by samples/charset-b1s1-rt5s-stored.syx (reads 15) |
 | 201–207 | 7 | delay time | [delay time](delay-time.md) @ 134–135 | V2 delay block; stored capture reads 11 |
 | 208–211 | 4 | delay modulation | [delay modulation](delay-modulation.md) @ 139 | V2 delay block; stored capture reads 6 |
@@ -75,7 +75,15 @@ Bits 96–100 (wire offsets 48–49) increment each time the register slot is ov
 - **The blob snapshots the stored register values (not the factory source), delay block included.** After storing a program with reverb time edited to 5.0 s and the delay block engaged (`samples/charset-b1s1-rt5s-stored.syx`), the blob's reverb-time field reads encoded 76 (5.0 s, not the factory 10) and bits 197–211 carry delay level 15 / time 11 / mod 6, exactly matching the payload.
 - **Zero delay tail with delay in the payload** (`samples/rooms-studio-a-b1s1-delay-edit.syx`) means the store happened *before* the delay was dialed in: the delay lived only in the edit buffer, not in the stored register.
 - **Register identity at offsets 93/95 = the register currently loaded as the running basis** ([register bank](register-bank.md) / [register](register.md)). A store alone does **not** update them: the delay-edit and rename captures (stored to B1 R1 while the basis remained the factory program) read `0/0`, while `charset-b1s1-rt5s-stored.syx` reads `1/0` because B1 R0 was the active basis at dump time.
-- **Consumers should prefer the blob over the payload when it is present.** The web UI does this on MIDI receive: when an incoming program dump carries a register basis frame, the stored blob values (and register name) replace the live payload bytes, so unstored edit-buffer values are not adopted (`applyRegisterBasis` in `web-ui/src/app/midiReceive.ts`).
+- **Consumers should prefer the blob over the payload when it is present.** The web UI does this on MIDI receive: when an incoming program dump carries a register basis frame, the stored blob values (and register name) replace the live payload bytes, so unstored edit-buffer values are not adopted (`applyRegisterBasis` in `web-ui/src/app/midiReceive.ts`). This stays safe for favorite bases: the blob converges on the committed slot values.
+
+## Favorites carve-out
+
+Front-panel **favorite** slots (`sysex/prog/favorites/`) reuse this blob layout with different lifecycle rules:
+
+- A favorite save writes a full blob snapshot with the store-generation counter always **0** (re-saves do not increment it — favorites do not participate in the per-slot counter).
+- Unstored edits stay payload-only per frame, but the favorite slot **auto-commits the edit buffer** (blob included) when a hold-PROG dump is taken while the favorites screen is displayed (offset 92 = `08`); waiting, a brief PROG press, and hold-PROG from other screens do not commit (witnesses: `nonlin-c/13-rt075-favscreen-hold-prog-commit.syx` vs captures 18/21).
+- Offsets **93/95** stay register-only: a favorite basis does not update them. The favorite source is flagged at offset **94** instead ([favorite slot](favorite-slot.md)).
 
 ## Witness captures
 

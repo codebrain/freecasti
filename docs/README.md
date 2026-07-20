@@ -8,8 +8,9 @@ specifications live under [specification/](../specification/) at the repo root.
 | [capture-guide.md](capture-guide.md) | How to capture `.syx` dumps (PROG / EDIT / SYSTEM) |
 | [encoding-sources.md](encoding-sources.md) | Encoding-map Source: dump vs provided vs preset |
 | [parameter-catalog.md](parameter-catalog.md) | Printed hints vs this unit’s dump findings |
-| [manual-notes.md](manual-notes.md) | Bricasti manual/MIDI context (algorithms, banks, dump types); Reg EDIT identity (name 8–23, basis blob 24–87, register bank/register 93/95) |
+| [manual-notes.md](manual-notes.md) | Bricasti manual/MIDI context (algorithms, banks, dump types); Reg EDIT identity (name 8–23, basis blob 24–87, register bank/register 93/95); favorites behavior (offsets 92/94, auto-commit) |
 | [rolloff-slopes.md](rolloff-slopes.md) | Rolloff / Early Rolloff filter-order (dB/octave) analysis |
+| [kaitai-encode.md](kaitai-encode.md) | Building / serializing SysEx messages (Kaitai is decode-only) |
 | [development.md](development.md) | Setup, CLI, tests, package map |
 | [reference/preset_sheet.json](reference/preset_sheet.json) | Parsed Bricasti preset sheet (sheet compare source) |
 | [reference/provided_labels.json](reference/provided_labels.json) | Hardware UI walks (15 entries: 14 program + output level; encoding-map `provided` witnesses) |

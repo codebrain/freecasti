@@ -10,6 +10,7 @@ SPECIFICATION_DIR = "specification"
 PROG_PARAMETERS_DIR = "parameters"
 PROG_PRESETS_DIR = "presets"
 PROG_EDIT_DIR = "edit"
+PROG_FAVORITES_DIR = "favorites"
 PROG_FULL_SWEEP_DIR = "full sweep"
 PROG_MENUS_DIR = "menus"
 SYSTEM_MENUS_DIR = "menus"
@@ -37,6 +38,10 @@ def prog_presets_root(sysex_root: Path) -> Path:
 
 def prog_edit_root(sysex_root: Path) -> Path:
     return prog_root(sysex_root) / PROG_EDIT_DIR
+
+
+def prog_favorites_root(sysex_root: Path) -> Path:
+    return prog_root(sysex_root) / PROG_FAVORITES_DIR
 
 
 def prog_full_sweep_root(sysex_root: Path) -> Path:

@@ -69,7 +69,10 @@ PROGRAM_WORD_OFFSETS = (90, 91)
 BANK_MIRROR_OFFSET = 137
 REGISTER_BANK_OFFSET = 93
 REGISTER_OFFSET = 95
-STRUCTURE_VERSION_OFFSET = 94
+# Favorite-source slot: (slot - 1) * 2 for favorites 1-4 on PROG frames;
+# 8 = not loaded from a favorite (see sysex/prog/favorites/).
+FAVORITE_SLOT_OFFSET = 94
+FAVORITE_SLOT_NONE = 8
 
 
 def bank_map_sorted_by_index(

@@ -492,7 +492,7 @@ def _render_overview(
             if r.get("status") == "secondary"
             and any(
                 key in (r.get("role") or "").lower()
-                for key in ("menu browse", "menu index")
+                for key in ("menu browse", "panel-mode", "menu index")
             )
         ]
         if secondary_ui:

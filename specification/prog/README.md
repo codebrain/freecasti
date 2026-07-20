@@ -40,7 +40,7 @@ Identified parameter fields (each from its own folder):
 - **88-89** - Bank index (`nibble_hilo`) from [sysex/prog/presets/](program-identity.md) [Halls](presets/halls/)=0, [Plates](presets/plates/)=1, [Rooms](presets/rooms/)=2, [Chambers](presets/chambers/)=3, [Ambience](presets/ambience/)=4, [Spaces](presets/spaces/)=5, [Halls 2](presets/halls-2/)=6, [Plates 2](presets/plates-2/)=7, [Rooms 2](presets/rooms-2/)=8, [Spaces 2](presets/spaces-2/)=9, [NonLin](presets/nonlin/)=10; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/prog/edit/)
 - **90-91** - Program slot within bank (`nibble_hilo`) from [sysex/prog/presets/](program-identity.md) (not a global program number)
 - **93** - Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` of the register currently **loaded as the running basis** (see `sysex/prog/edit/registers/`); a store alone does not update it (witnessed `00` after storing to B1 R1 with a factory basis); `00` on factory/parameter-series dumps in this corpus
-- **94** - Structure/version constant (`08` in all witnessed program dumps) — not a sound parameter
+- **94** - Favorite-source slot: `(slot - 1) * 2` (`00`/`02`/`04`/`06` = favorites 1–4) when the running program was loaded from a front-panel favorite (PROG frames only; persists across edits and panel-mode changes — see `sysex/prog/favorites/`); `08` otherwise (all factory/parameter-series and hold-EDIT dumps) — not a sound parameter
 - **95** - Register within bank (`raw_u8`, manual Register `0`–`9`) of the register currently **loaded as the running basis**; a store alone does not update it (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus
 - **96** - Reserved/unknown (always `00` in witnessed captures)
 - **97** - Algorithm/family flag from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). Mirrored at 145 as 0 when 97=3 and 1 when 97=4 — not a clean V1/V2 bit
@@ -62,7 +62,7 @@ Identified parameter fields (each from its own folder):
 - **124-125** - Parameter [`early to reverb mix`](bytes/early-to-reverb-mix.md) (from independent series [sysex/prog/parameters/early to reverb mix/](bytes/early-to-reverb-mix.md)) (nibble_hilo, label = encoded * 1)
 - **126-127** - Parameter [`early rolloff`](bytes/early-rolloff.md) (from independent series [sysex/prog/parameters/early rolloff/](bytes/early-rolloff.md)) (nibble_hilo, table/index candidate (monotonic 100%))
 - **128-129** - Parameter [`early select`](bytes/early-select.md) (from independent series [sysex/prog/parameters/early select/](bytes/early-select.md)) (nibble_hilo, label = encoded * 1)
-- **130** - Engine/bank-class flag: 0 on classic banks (Halls…Spaces), 1 on `* 2` banks (Halls 2…Spaces 2), 2 on NonLin. Parameter-series dumps also show 1 because they were captured from Large Church (Halls 2)
+- **130** - Engine/bank-class flag: 0 on classic banks (Halls…Spaces), 1 on `* 2` banks (Halls 2…Spaces 2), 2 on NonLin. Most parameter-series dumps show 1 (captured from Large Church, Halls 2); the LF RT multiply/crossover series show 0 (Large Hall)
 - **131-132** - Fixed companion to offset 130 (always `02 00` in this corpus)
 - **133** - Parameter [`delay level`](bytes/delay-level.md) (from independent series [sysex/prog/parameters/delay level/](bytes/delay-level.md)) (raw_u8, label = encoded + (-21))
 - **134-135** - Parameter [`delay time`](bytes/delay-time.md) (from independent series [sysex/prog/parameters/delay time/](bytes/delay-time.md)) (nibble_hilo, label = encoded * 8 + (100))
@@ -77,6 +77,7 @@ Identified parameter fields (each from its own folder):
 
 Secondary UI / edit-state fields:
 
+- **92** - Panel-mode flag: `00` when no parameter menu is open or while editing a value; `02` while a parameter menu is highlighted (see `sysex/prog/menus/` captures); `08` while the front-panel **favorites** screen is shown (see `sysex/prog/favorites/`). Hold-PROG while this reads `08` commits pending edits into the favorite slot (moved in independent series: [early rolloff](bytes/early-rolloff.md), _corpus)
 - **98-99** - Selected front-panel menu index (`nibble_hilo`, 0–17) when a parameter menu is open; `00 00` when idle. Hardware menu order matches `PROGRAM_PARAMETERS` in catalog. Offset 92 disambiguates idle vs Reverb Time (both may show index 0) (moved in independent series: _corpus)
 
 ### Parameter reverse-engineering
@@ -188,10 +189,11 @@ _Last exported: 2026-07-20_
 ## Open questions
 
 1. **Unseen / undocumented values** — documented or otherwise possible values not yet witnessed on the wire are tracked per field in the **Unseen values** section of each [bytes/](bytes/README.md) page
-2. **EDIT receive** path (MIDI-notes bank **118**) — hold-EDIT *sends* use bank **11** (`sysex/prog/edit/`)
+2. **EDIT receive** path (MIDI-notes bank **118**) — hold-EDIT *sends* use bank **11** (`sysex/prog/edit/`); **Favorites receive** (MIDI-notes bank **119**) also unconfirmed — favorites *sends* carry the source identity instead (`sysex/prog/favorites/`)
 3. Semantics of PROG header bytes `70 08 01 00`
-4. **Favorites**-based PROG dumps (bank **119**); Halls 2 subtype EDIT outlier; reserved offset **96**
+4. Halls 2 subtype EDIT outlier; reserved offset **96**
 5. Closed-form mapping for table parameters (see medium-confidence rows in the parameter index)
+6. **Favorites follow-ups** — one more commit-rule confirmation (hold-PROG from the favorites screen with a pending edit) and power-cycle persistence of an auto-committed favorite (`sysex/prog/favorites/README.md`)
 
 See [manual-notes.md](../../docs/manual-notes.md) for Bricasti manual/MIDI context (bank table, algorithms, dump types).
 

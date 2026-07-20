@@ -134,7 +134,7 @@ Sparse series used as anchors (plus secondary/checksum bytes that moved with thi
 - **How to set:**
   1. Use the per-dump mapping table in encoding_hypotheses until a closed-form scale is confirmed
   2. recompute trailing checksum: CRC-16/ARC over bytes[8:152], pack as four high-nibble-first SysEx bytes at offsets 152-155
-- **Secondary offsets:** 147 (display low nibble), 92 (menu browse flag) (edit/UI state, not the parameter word).
+- **Secondary offsets:** 147 (display low nibble), 92 (panel mode flag) (edit/UI state, not the parameter word).
 - **Checksum nibbles:** 152-155 (CRC-16/ARC over offsets 8-151, packed high-nibble-first).
 
 

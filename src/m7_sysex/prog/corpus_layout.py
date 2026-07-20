@@ -2,8 +2,9 @@
 
 Findings from scanning every ``sysex/**/*.syx`` dump (parameter series +
 ``prog/presets``): most former “unknown” payload nibbles are reserved zeros,
-fixed constants, or non-sound meta (menu-browse flag / family flag /
-engine/bank-class flag).
+fixed constants, or non-sound meta (panel-mode flag / family flag /
+engine/bank-class flag). Favorites semantics for offsets 92/94 come from the
+``sysex/prog/favorites/`` session (excluded from this corpus scan).
 
 These claims are medium-confidence until a targeted capture proves otherwise.
 Series sound-parameter claims always win on conflict.
@@ -27,13 +28,16 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "offsets": [92],
         "status": "secondary",
         "role": (
-            "Menu-browse flag: `00` when no parameter menu is open or while "
+            "Panel-mode flag: `00` when no parameter menu is open or while "
             "editing a value; `02` while a parameter menu is highlighted "
-            "(see `sysex/prog/menus/` captures)"
+            "(see `sysex/prog/menus/` captures); `08` while the front-panel "
+            "**favorites** screen is shown (see `sysex/prog/favorites/`). "
+            "Hold-PROG while this reads `08` commits pending edits into the "
+            "favorite slot"
         ),
         "encoding": "raw_u8",
         "confidence": "high",
-        "label": "menu browse flag",
+        "label": "panel mode flag",
     },
     {
         "offsets": [93],
@@ -53,12 +57,16 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "offsets": [94],
         "status": "known",
         "role": (
-            "Structure/version constant (`08` in all witnessed program dumps) — "
+            "Favorite-source slot: `(slot - 1) * 2` (`00`/`02`/`04`/`06` = "
+            "favorites 1–4) when the running program was loaded from a "
+            "front-panel favorite (PROG frames only; persists across edits "
+            "and panel-mode changes — see `sysex/prog/favorites/`); `08` "
+            "otherwise (all factory/parameter-series and hold-EDIT dumps) — "
             "not a sound parameter"
         ),
         "encoding": "raw_u8",
         "confidence": "high",
-        "label": "structure version (always 8)",
+        "label": "favorite slot (8 = none)",
     },
     {
         "offsets": [95],
@@ -135,9 +143,9 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "status": "known",
         "role": (
             "Engine/bank-class flag: 0 on classic banks (Halls…Spaces), 1 on "
-            "`* 2` banks (Halls 2…Spaces 2), 2 on NonLin. Parameter-series "
-            "dumps also show 1 because they were captured from Large Church "
-            "(Halls 2)"
+            "`* 2` banks (Halls 2…Spaces 2), 2 on NonLin. Most parameter-"
+            "series dumps show 1 (captured from Large Church, Halls 2); the "
+            "LF RT multiply/crossover series show 0 (Large Hall)"
         ),
         "encoding": "raw_u8",
         "confidence": "medium",
@@ -231,8 +239,10 @@ def claim_corpus_layout(
         if sysex_root is not None and spec.get("label", "").startswith("reserved"):
             if any(verified.get(o) not in (None, 0) for o in offsets):
                 continue
-        if sysex_root is not None and "always 8" in (spec.get("label") or ""):
-            # Offset 94 must stay 08 across the factory corpus.
+        if sysex_root is not None and spec["offsets"] == [94]:
+            # Offset 94 must stay 08 across the factory corpus (favorite
+            # frames with slot codes live outside the corpus scan, under
+            # sysex/prog/favorites/).
             if verified.get(94) not in (None, 8):
                 continue
         if sysex_root is not None and "always 02 00" in (spec.get("label") or ""):

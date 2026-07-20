@@ -44,7 +44,7 @@ def describe_secondary_offsets(offsets: list[int]) -> str:
         remaining = [o for o in remaining if o not in (98, 99)]
     for off in remaining:
         if off == 92:
-            parts.append("92 (menu browse flag)")
+            parts.append("92 (panel mode flag)")
         else:
             parts.append(str(off))
     return ", ".join(parts) if parts else "-"

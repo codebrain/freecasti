@@ -11,7 +11,7 @@ is **5 Banks × 10 Registers** (e.g. BANK 0, REG 0). On the wire:
 | 8–23 | Program name: **16-byte** wire window; **14-character** editable label (manual); trailing two bytes space-padded |
 | 24–87 | Register basis blob (nibble-packed; not name spaces) |
 | 93 | **`register_bank`** — manual Bank (`B0`–`B4` = `00`–`04`) |
-| 94 | Constant `08` |
+| 94 | `08` on all hold-EDIT frames (= favorite slot "none"; favorite-loaded PROG dumps carry slot codes here — see `../../favorites/`) |
 | 95 | **`register`** — manual Register within bank (`0`–`9`) |
 | 137 | Source factory program-bank mirror |
 

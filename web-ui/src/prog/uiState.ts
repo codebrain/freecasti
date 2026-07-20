@@ -31,6 +31,12 @@ export interface ProgUiRuntime {
 
 export const UI_OFFSETS = ["92", "98", "99", "146", "147"] as const;
 
+/**
+ * Offset 92 panel-mode value while the front-panel favorites screen is
+ * displayed (see sysex/prog/favorites/). Not a parameter menu state.
+ */
+export const FAVORITES_SCREEN_FLAG = 8;
+
 function writeUiMap(buf: Uint8Array, map: ProgUiByteMap): void {
   for (const key of UI_OFFSETS) {
     buf[Number(key)] = map[key];
@@ -86,6 +92,10 @@ export function decodeProgUiFromBytes(
   data: Uint8Array,
   progUi: ProgUiRuntime,
 ): ProgUiState {
+  if (data[92] === FAVORITES_SCREEN_FLAG) {
+    // Favorites screen: no parameter menu open.
+    return { mode: "idle" };
+  }
   const idle = progUi.idle;
   if (
     data[92] === idle["92"] &&

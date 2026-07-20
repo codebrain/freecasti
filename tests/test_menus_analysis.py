@@ -87,7 +87,7 @@ def test_ui_state_markdown_edit_table_sorted_by_menu_index():
 def test_corpus_layout_labels_menu_ui():
     labels = {tuple(c["offsets"]): c for c in CORPUS_LAYOUT_CLAIMS}
     assert labels[(98, 99)]["label"] == "selected menu index"
-    assert labels[(92,)]["label"] == "menu browse flag"
+    assert labels[(92,)]["label"] == "panel mode flag"
     assert labels[(146, 147)]["label"] == "display"
     assert labels[(146, 147)]["status"] == "known"
 

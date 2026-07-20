@@ -12,6 +12,7 @@ from ..frame import (
     REGISTER_BASIS_BLOB_OFFSET,
 )
 from ..kaitai_value_maps import (
+    build_bank_index_value_map,
     build_register_bank_value_map,
     build_register_value_map,
 )
@@ -278,6 +279,348 @@ def render_register_page(*, today: str, nav: str = "") -> str:
     )
 
 
+def render_bank_index_page(*, today: str, nav: str = "") -> str:
+    value_map = build_bank_index_value_map()
+    rows = []
+    for entry in value_map["entries"]:
+        enc = int(entry["encoded"])
+        rows.append(f"| {entry['label']} | `{enc:02X}` | {enc} | dump/manual |")
+    return _page_shell(
+        nav=nav,
+        title="Bank index",
+        today=today,
+        source_line=(
+            "Factory presets under `sysex/prog/presets/` (222 dumps), "
+            "hold-EDIT captures, and the Bricasti MIDI app notes bank table."
+        ),
+        offsets="88–89 (mirror at 137)",
+        encoding="nibble_hilo",
+        confidence="high",
+        role=(
+            "Program bank of the running program (`nibble_hilo`); hold-EDIT "
+            "sends always use **11** here while mirror **137** keeps the "
+            "source bank"
+        ),
+        description=(
+            "Offsets **88–89** carry the program bank as a `nibble_hilo` "
+            "word (high nibble at 88). Factory banks are 0–10 in preset-list "
+            "order; the MIDI app notes add receive-side banks 118–120. "
+            "Offset **137** mirrors the bank's low nibble and, on hold-EDIT "
+            "sends (bank word = 11), still carries the **source** bank. "
+            "Favorite-loaded PROG dumps carry the source program's bank here "
+            "— never the Favorites bank 119 (see "
+            "[favorite slot](favorite-slot.md)). Full identity walkthrough: "
+            "[program identity](../program-identity.md)."
+        ),
+        body_sections=[
+            "## Encoding map",
+            "",
+            "| Bank | Bytes 88–89 (low nibble) | Decoded | Source |",
+            "|------|--------------------------|--------:|--------|",
+            *rows,
+            "",
+            "## Notes",
+            "",
+            "- Banks 118–120 are **receive-side** (MIDI app notes): they "
+            "never appear at 88–89 in dumps sent by the unit.",
+            "- Mirror **137** equals the bank low nibble on PROG frames and "
+            "the source bank on hold-EDIT frames (`sysex/prog/edit/`).",
+            "",
+        ],
+    )
+
+
+def render_program_slot_page(*, today: str, nav: str = "") -> str:
+    return _page_shell(
+        nav=nav,
+        title="Program slot",
+        today=today,
+        source_line=(
+            "Factory presets under `sysex/prog/presets/` (222 dumps, all "
+            "banks/slots)."
+        ),
+        offsets="90–91",
+        encoding="nibble_hilo",
+        confidence="high",
+        role=(
+            "Program slot within the bank (`nibble_hilo`, preset-list "
+            "order); stays the *source factory* slot on hold-EDIT dumps"
+        ),
+        description=(
+            "Offsets **90–91** carry the program's slot within its bank as "
+            "a `nibble_hilo` word (high nibble at 90), counting from 0 in "
+            "factory preset-list order. Hold-EDIT dumps keep the source "
+            "program's slot even though the bank word switches to 11; "
+            "favorite-loaded PROG dumps carry the source program's slot "
+            "(see [favorite slot](favorite-slot.md)). Register identity "
+            "lives elsewhere ([register bank](register-bank.md) / "
+            "[register](register.md)). Per-bank slot tables: "
+            "[program identity](../program-identity.md) and "
+            "[preset inventory](../preset-inventory.md)."
+        ),
+        body_sections=[
+            "## Notes",
+            "",
+            "- Most banks use contiguous slots from 0; **Rooms** runs 0–35 "
+            "on this unit (more than the published sheet).",
+            "- Not a MIDI program-change number — program changes use the "
+            "bank-select mapping in the MIDI app notes.",
+            "",
+        ],
+    )
+
+
+def render_panel_mode_flag_page(*, today: str, nav: str = "") -> str:
+    return _page_shell(
+        nav=nav,
+        title="Panel mode flag",
+        today=today,
+        source_line=(
+            "Menu-navigation captures under `sysex/prog/menus/` and the "
+            "favorites session under `sysex/prog/favorites/`."
+        ),
+        offsets="92",
+        encoding="raw_u8",
+        confidence="high",
+        role=(
+            "Front-panel screen state at dump time: `00` idle / value edit, "
+            "`02` parameter menu highlighted, `08` favorites screen shown"
+        ),
+        description=(
+            "Offset **92** reflects what the front panel was showing when "
+            "the dump was taken — UI state, not a program property. `00` = "
+            "program screen (idle or while a value is being edited); `02` = "
+            "a parameter menu is highlighted (pair with "
+            "[selected menu index](selected-menu-index.md) at 98–99 and "
+            "[display](display.md) at 146–147); `08` = the favorites screen "
+            "is shown. Holding PROG while this reads `08` **commits pending "
+            "edits into the favorite slot** (see `sysex/prog/favorites/`)."
+        ),
+        body_sections=[
+            "## Encoding map",
+            "",
+            "| Value | Meaning | Witness |",
+            "|-------|---------|---------|",
+            "| `00` | Idle / value edit on the program screen | "
+            "`sysex/prog/menus/no menu.syx` |",
+            "| `02` | Parameter menu highlighted | `sysex/prog/menus/` "
+            "(one capture per menu) |",
+            "| `08` | Favorites screen shown | `sysex/prog/favorites/` "
+            "(hold-PROG from the favorites screen) |",
+            "",
+            "## Notes",
+            "",
+            "- Not persistent: leaving the favorites screen drops this back "
+            "to `00`/`02` while [favorite slot](favorite-slot.md) at 94 "
+            "keeps the favorite marker.",
+            "- Disambiguates Reverb Time (menu index 0) from idle at 98–99.",
+            "- Full idle/browse/edit byte tables: [ui-state.md](../ui-state.md).",
+            "",
+        ],
+    )
+
+
+def render_selected_menu_index_page(*, today: str, nav: str = "") -> str:
+    from ..catalog import PROGRAM_PARAMETERS
+    from .nav import parameter_slug
+
+    rows = []
+    for index, entry in enumerate(PROGRAM_PARAMETERS):
+        folder = entry["folder_hint"]
+        rows.append(
+            f"| {index} | [{entry['name']}]({parameter_slug(folder)}.md) |"
+        )
+    return _page_shell(
+        nav=nav,
+        title="Selected menu index",
+        today=today,
+        source_line=(
+            "Menu-navigation captures under `sysex/prog/menus/` (one "
+            "capture per highlighted menu)."
+        ),
+        offsets="98–99",
+        encoding="nibble_hilo",
+        confidence="high",
+        role=(
+            "Front-panel menu position (`nibble_hilo`, 0–17) while a "
+            "parameter menu is open; `00 00` when idle"
+        ),
+        description=(
+            "Offsets **98–99** carry the highlighted front-panel menu as a "
+            "`nibble_hilo` index matching the hardware menu order (identical "
+            "to the catalog order below). UI state, not a program property. "
+            "Reverb Time is index 0, so an idle dump and a Reverb-Time-"
+            "highlighted dump both read `00 00` here — disambiguate with "
+            "[panel mode flag](panel-mode-flag.md) at 92 (`02` = menu open)."
+        ),
+        body_sections=[
+            "## Menu order",
+            "",
+            "| Index | Menu (parameter) |",
+            "|------:|------------------|",
+            *rows,
+            "",
+            "## Notes",
+            "",
+            "- The LCD cursor position is separate: [display](display.md) "
+            "at 146–147.",
+            "- Full idle/browse/edit byte tables: [ui-state.md](../ui-state.md).",
+            "",
+        ],
+    )
+
+
+def render_algorithm_family_flag_page(*, today: str, nav: str = "") -> str:
+    return _page_shell(
+        nav=nav,
+        title="Algorithm/family flag",
+        today=today,
+        source_line=(
+            "Corpus scan of all factory presets under `sysex/prog/presets/`."
+        ),
+        offsets="97 (mirror at 145)",
+        encoding="raw_u8",
+        confidence="medium",
+        role=(
+            "Algorithm/family flag from the factory corpus: Halls all `3`; "
+            "most other presets `4`, with a few bank-leading exceptions "
+            "also `3`"
+        ),
+        description=(
+            "Offset **97** groups presets into two families: every Halls "
+            "preset reads `3`; most other presets read `4`, with a few "
+            "bank-leading exceptions also at `3` (Chambers Large Chamber, "
+            "Plates Bright Plate, Rooms Studio A, Halls 2 Large Hall). "
+            "Offset **145** mirrors it as `0` when 97 = `3` and `1` when "
+            "97 = `4`. It is **not** a clean V1/V2 algorithm bit — the "
+            "engine class lives at "
+            "[engine/bank-class flag](engine-bank-class-flag.md) (offset "
+            "130). Not a user parameter; no capture series moves it."
+        ),
+        body_sections=[
+            "## Encoding map",
+            "",
+            "| Offset 97 | Mirror 145 | Presets |",
+            "|-----------|-----------:|---------|",
+            "| `3` | `0` | All Halls; Chambers Large Chamber, Plates Bright "
+            "Plate, Rooms Studio A, Halls 2 Large Hall |",
+            "| `4` | `1` | All other factory presets in this corpus |",
+            "",
+            "## Notes",
+            "",
+            "- Background and manual context: "
+            "[manual-notes.md](../../../docs/manual-notes.md).",
+            "",
+        ],
+    )
+
+
+def render_engine_bank_class_flag_page(*, today: str, nav: str = "") -> str:
+    return _page_shell(
+        nav=nav,
+        title="Engine/bank-class flag",
+        today=today,
+        source_line=(
+            "Corpus scan of all factory presets under `sysex/prog/presets/`."
+        ),
+        offsets="130 (companion 131–132)",
+        encoding="raw_u8",
+        confidence="medium",
+        role=(
+            "Engine/bank class: `0` classic V1 banks, `1` the V2 `* 2` "
+            "banks, `2` NonLin"
+        ),
+        description=(
+            "Offset **130** selects the engine/bank class of the running "
+            "program: `0` on the classic banks (Halls…Spaces, V1 "
+            "algorithm), `1` on the `* 2` banks (Halls 2…Spaces 2, V2 "
+            "algorithm), `2` on NonLin. Most parameter-series dumps read "
+            "`1` (captured from Large Church, Halls 2); the LF RT "
+            "multiply/crossover series read `0` (Large Hall). The "
+            "companion bytes **131–132** are fixed at `02 00` across this "
+            "corpus. Distinct from the "
+            "[algorithm/family flag](algorithm-family-flag.md) at 97/145."
+        ),
+        body_sections=[
+            "## Encoding map",
+            "",
+            "| Value | Banks | Algorithm |",
+            "|------:|-------|-----------|",
+            "| `0` | Halls, Plates, Rooms, Chambers, Ambience, Spaces | V1 |",
+            "| `1` | Halls 2, Plates 2, Rooms 2, Spaces 2 | V2 |",
+            "| `2` | NonLin | Non-linear (AMS-style) |",
+            "",
+            "## Notes",
+            "",
+            "- Bank identity itself is at [bank index](bank-index.md) "
+            "(88–89 / mirror 137).",
+            "- Manual context (V1 vs V2, NonLin engine): "
+            "[manual-notes.md](../../../docs/manual-notes.md).",
+            "",
+        ],
+    )
+
+
+def render_favorite_slot_page(*, today: str, nav: str = "") -> str:
+    rows = [
+        f"| Favorite {slot} | `{(slot - 1) * 2:02X}` | {(slot - 1) * 2} | dump |"
+        for slot in (1, 2, 3, 4)
+    ]
+    rows.append("| not from a favorite | `08` | 8 | dump (entire factory corpus) |")
+    return _page_shell(
+        nav=nav,
+        title="Favorite slot",
+        today=today,
+        source_line=(
+            "Favorites captures under `sysex/prog/favorites/` "
+            "(Deep Ambience and Nonlin C sessions)."
+        ),
+        offsets="94",
+        encoding="raw_u8",
+        confidence="high",
+        role=(
+            "Favorite-source slot: `(slot - 1) * 2` for favorites 1–4 on "
+            "PROG frames; `08` = not loaded from a favorite"
+        ),
+        description=(
+            "When the running program was loaded from one of the four "
+            "front-panel **favorite** shortcut slots, hold-PROG dumps carry "
+            "the source slot at offset **94** as `(slot - 1) * 2` "
+            "(`00`/`02`/`04`/`06`). The marker **persists across edits and "
+            "panel-mode changes** — it survives dirtying the program and "
+            "leaving the favorites screen. Every other witnessed program "
+            "dump (factory presets, parameter series, register bases, and "
+            "all hold-EDIT frames, which always use bank word 11) reads "
+            "`08`, previously misread as a structure/version constant. "
+            "Favorite-loaded PROG dumps otherwise carry the **source "
+            "program identity** at 88–91 (never the MIDI-notes Favorites "
+            "bank 119, which applies to receive only). The favorites "
+            "**screen** state is flagged separately at offset 92 "
+            "(panel-mode flag, `08` = favorites screen displayed)."
+        ),
+        body_sections=[
+            "## Encoding map",
+            "",
+            "Witness sources: favorite-loaded hold-PROG dumps "
+            "(`sysex/prog/favorites/`), all four slots.",
+            "",
+            "| Label | Offset 94 | Decoded | Source |",
+            "|-------|-----------|--------:|--------|",
+            *rows,
+            "",
+            "## Notes",
+            "",
+            "- Hold-EDIT dumps always read `08` here regardless of basis; "
+            "the favorite marker appears on PROG frames only.",
+            "- Favorites auto-commit pending edits on hold-PROG from the "
+            "favorites screen — see "
+            "[register basis blob](register-basis-blob.md) (Favorites "
+            "carve-out) and `sysex/prog/favorites/README.md`.",
+            "",
+        ],
+    )
+
+
 # Blob fields whose payload twin is a sound-parameter page under bytes/.
 _BLOB_PARAM_PAGE_LABELS = {
     "predelay",
@@ -314,9 +657,9 @@ def _blob_payload_cell(field: Any) -> str:
     if field.label in _BLOB_PARAM_PAGE_LABELS:
         return f"[{field.label}]({parameter_slug(field.label)}.md) @ {off_txt}"
     if field.id == "source_bank":
-        return f"[bank index mirror](../program-identity.md) @ {off_txt}"
+        return f"[bank index mirror](bank-index.md) @ {off_txt}"
     if field.id == "engine_class":
-        return f"engine/bank-class flag @ {off_txt}"
+        return f"[engine/bank-class flag](engine-bank-class-flag.md) @ {off_txt}"
     return off_txt
 
 
@@ -367,7 +710,8 @@ def render_register_basis_blob_page(*, today: str, nav: str = "") -> str:
         today=today,
         source_line=(
             "Register hold-EDIT captures under "
-            "`sysex/prog/edit/registers/` (fullsweep + witness samples). "
+            "`sysex/prog/edit/registers/` (fullsweep + witness samples) "
+            "plus favorites captures under `sysex/prog/favorites/`. "
             "Layout table generated from `REGISTER_BLOB_FIELDS` in "
             "`m7_sysex.prog.register_blob`."
         ),
@@ -386,13 +730,16 @@ def render_register_basis_blob_page(*, today: str, nav: str = "") -> str:
             f"MSB first) as a {BLOB_BIT_LENGTH}-bit stream; the fields below "
             "were verified against every register-basis frame in the corpus "
             "(each matches the corresponding live payload field unless the "
-            "register has unstored edits). The blob is untouched by live "
-            "edits: payload bytes 100–139 track the edit buffer, the blob "
-            "keeps the stored values (witness: "
+            "register has unstored edits). For **register** bases the blob "
+            "is untouched by live edits: payload bytes 100–139 track the "
+            "edit buffer, the blob keeps the stored values (witness: "
             "`samples/charset-b1s1-rt5s-unstored-edit.syx`, where reverb "
             "time reads 5.0 s in the payload but the stored 1.0 s here). "
-            "Factory and parameter-series dumps space-pad this region "
-            "(`0x20`), so check for nibble bytes before decoding."
+            "**Favorite** saves write the same blob layout (store counter "
+            "always 0) and auto-commit pending edits on hold-PROG from the "
+            "favorites screen — see the Favorites section below. Factory "
+            "and parameter-series dumps space-pad this region (`0x20`), so "
+            "check for nibble bytes before decoding."
         ),
         body_sections=[
             "## Bit layout",
@@ -459,7 +806,29 @@ def render_register_basis_blob_page(*, today: str, nav: str = "") -> str:
             "incoming program dump carries a register basis frame, the "
             "stored blob values (and register name) replace the live "
             "payload bytes, so unstored edit-buffer values are not adopted "
-            "(`applyRegisterBasis` in `web-ui/src/app/midiReceive.ts`).",
+            "(`applyRegisterBasis` in `web-ui/src/app/midiReceive.ts`). "
+            "This stays safe for favorite bases: the blob converges on the "
+            "committed slot values.",
+            "",
+            "## Favorites carve-out",
+            "",
+            "Front-panel **favorite** slots (`sysex/prog/favorites/`) reuse "
+            "this blob layout with different lifecycle rules:",
+            "",
+            "- A favorite save writes a full blob snapshot with the "
+            "store-generation counter always **0** (re-saves do not "
+            "increment it — favorites do not participate in the per-slot "
+            "counter).",
+            "- Unstored edits stay payload-only per frame, but the favorite "
+            "slot **auto-commits the edit buffer** (blob included) when a "
+            "hold-PROG dump is taken while the favorites screen is "
+            "displayed (offset 92 = `08`); waiting, a brief PROG press, and "
+            "hold-PROG from other screens do not commit (witnesses: "
+            "`nonlin-c/13-rt075-favscreen-hold-prog-commit.syx` vs "
+            "captures 18/21).",
+            "- Offsets **93/95** stay register-only: a favorite basis does "
+            "not update them. The favorite source is flagged at offset "
+            "**94** instead ([favorite slot](favorite-slot.md)).",
             "",
             "## Witness captures",
             "",
@@ -481,6 +850,73 @@ def render_register_basis_blob_page(*, today: str, nav: str = "") -> str:
 
 
 IDENTITY_BYTE_PAGES: tuple[dict[str, Any], ...] = (
+    {
+        "name": "Bank index",
+        "folder": "bank index",
+        "slug": "bank-index",
+        "sysex": "`88-89` · `nibble_hilo` · high",
+        "description": (
+            "Program bank of the running program (mirror at 137); hold-EDIT "
+            "sends use 11 here while the mirror keeps the source bank."
+        ),
+        "render": render_bank_index_page,
+    },
+    {
+        "name": "Program slot",
+        "folder": "program slot",
+        "slug": "program-slot",
+        "sysex": "`90-91` · `nibble_hilo` · high",
+        "description": (
+            "Program slot within the bank (preset-list order, from 0); "
+            "stays the source factory slot on hold-EDIT dumps."
+        ),
+        "render": render_program_slot_page,
+    },
+    {
+        "name": "Panel mode flag",
+        "folder": "panel mode flag",
+        "slug": "panel-mode-flag",
+        "sysex": "`92` · `raw_u8` · high",
+        "description": (
+            "Front-panel screen state: `00` idle/value edit, `02` menu "
+            "highlighted, `08` favorites screen shown (UI state, not a "
+            "program property)."
+        ),
+        "render": render_panel_mode_flag_page,
+    },
+    {
+        "name": "Selected menu index",
+        "folder": "selected menu index",
+        "slug": "selected-menu-index",
+        "sysex": "`98-99` · `nibble_hilo` · high",
+        "description": (
+            "Highlighted front-panel menu (0–17, hardware menu order) while "
+            "a parameter menu is open; `00 00` when idle."
+        ),
+        "render": render_selected_menu_index_page,
+    },
+    {
+        "name": "Algorithm/family flag",
+        "folder": "algorithm family flag",
+        "slug": "algorithm-family-flag",
+        "sysex": "`97` · `raw_u8` · medium",
+        "description": (
+            "Corpus family flag (Halls all 3; most others 4), mirrored at "
+            "145 — not a clean V1/V2 bit."
+        ),
+        "render": render_algorithm_family_flag_page,
+    },
+    {
+        "name": "Engine/bank-class flag",
+        "folder": "engine bank class flag",
+        "slug": "engine-bank-class-flag",
+        "sysex": "`130` · `raw_u8` · medium",
+        "description": (
+            "Engine/bank class: 0 classic V1 banks, 1 the V2 `* 2` banks, "
+            "2 NonLin; companion 131–132 fixed at `02 00`."
+        ),
+        "render": render_engine_bank_class_flag_page,
+    },
     {
         "name": "Program name",
         "folder": "program name",
@@ -536,5 +972,16 @@ IDENTITY_BYTE_PAGES: tuple[dict[str, Any], ...] = (
             "basis is a register."
         ),
         "render": render_register_page,
+    },
+    {
+        "name": "Favorite slot",
+        "folder": "favorite slot",
+        "slug": "favorite-slot",
+        "sysex": "`94` · `raw_u8` · high",
+        "description": (
+            "Favorite-source slot (`(slot-1)*2` for favorites 1–4 on PROG "
+            "frames; `08` = none); see `sysex/prog/favorites/`."
+        ),
+        "render": render_favorite_slot_page,
     },
 )

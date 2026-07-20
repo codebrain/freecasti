@@ -22,9 +22,14 @@ Official overview:
 | Edit buffer dump | Hold **EDIT** briefly | Same 157-byte frame as PROG; bank **88–89 = 11**, mirror **137** = source bank — keep under `sysex/prog/edit/` |
 | System dump | Hold **SYSTEM** briefly | I/O / system config only — not program parameters |
 
+**Favorites caution:** holding **PROG** while the favorites screen is displayed
+(offset 92 = `08`) silently **commits pending edits into the favorite slot** —
+see [Favorites captures](#favorites-captures-sysexprogfavorites) below.
+
 Program dumps include UI/edit state (Bricasti MIDI notes) — expect offsets **146–147**
 as one **`nibble_hilo` display** field (high nibble = page/row, low = column), plus **92**
-and **98–99** for menu browse/edit, even in single-parameter series.
+(panel-mode flag) and **98–99** (menu index) for menu browse/edit, even in
+single-parameter series.
 
 This repo expects **program dumps** for parameter series and `sysex/prog/presets/`.
 EDIT captures go in `sysex/prog/edit/` (excluded from the PROG corpus scan). See
@@ -50,7 +55,7 @@ SysEx offsets **88–89** / mirror **137** use these factory bank indices (from
 | 10 | NonLin |
 | **11** | **Edit** (hold **EDIT** send — bank word only; mirror 137 stays source bank) |
 | 118 | Edit (ephemeral on *receive*, per MIDI notes) |
-| 119 | Favorites |
+| 119 | Favorites (*receive only* — favorite-loaded PROG sends carry the source bank here, with the favorite slot at offset **94**; see `sysex/prog/favorites/`) |
 | 120 | Registers |
 
 Filename convention stays `<bank name>.<preset name>.syx` (e.g. `NonLin.NonLin A.syx`).
@@ -184,6 +189,24 @@ The analyzer writes `sysex/prog/menus/analysis.json` and
 `sysex/system/menus/` captures). Register lock still needs value-change series,
 not menu-navigation dumps.
 
+## Favorites captures (`sysex/prog/favorites/`)
+
+Front-panel favorites (the four shortcut buttons) are decoded from the session
+in [sysex/prog/favorites/README.md](../sysex/prog/favorites/README.md):
+
+- Save the running program to a favorite, then hold **EDIT** — a standard
+  bank-11 edit frame whose basis blob snapshots the favorite slot (store
+  counter always 0).
+- Load a favorite, then hold **PROG** — the dump carries the **source
+  program's** bank/slot at 88–91 plus favorite markers: offset **94** =
+  `(slot − 1) × 2` and offset **92** = `08` while the favorites screen shows.
+- **Caution:** hold-PROG from the favorites screen commits pending edits into
+  the favorite slot. Capture edit-buffer state with hold-EDIT first if you
+  need the uncommitted values.
+- These dumps are **excluded from the PROG corpus scan** (94 ≠ 8 / 92 = 8
+  would break the factory-corpus constants) — keep them out of
+  `sysex/prog/presets/` and `sysex/prog/parameters/`.
+
 ## Suggested captures (remaining)
 
 **All 18 program parameters are captured** as dedicated series under
@@ -207,16 +230,14 @@ To capture a bank×register grid:
 Optional follow-ups:
 
 - More `sysex/prog/presets/` banks if Bricasti adds firmware banks
-- **EDIT receive** confirmation (MIDI-notes bank 118) — send marker **11** is documented from `sysex/prog/edit/`
+- **EDIT receive** confirmation (MIDI-notes bank 118) — send marker **11** is documented from `sysex/prog/edit/`; same for **Favorites receive** (bank 119 — sends decoded in `sysex/prog/favorites/`)
+- **Favorites follow-ups** — re-confirm the auto-commit rule (hold PROG from the favorites screen with a pending edit) and power-cycle persistence of an auto-committed favorite
 - **SYSTEM** follow-up series under `sysex/system/` — **8** settings captured
   (audio format/routing, dry/wet gain, display level, MIDI channel/bank, output
   level); see [../specification/system/](../specification/system/). **MIDI bank**
   is in `m7_system_dump.ksy` and the web UI; offset 25 also moves as a
   secondary field in display-level captures. Optional: register lock and other
   rarely touched SYSTEM knobs
-- **Favorites**-based PROG dumps (bank 119) — the register basis blob
-  itself (offsets 24–87) is fully decoded; see
-  [../specification/prog/bytes/register-basis-blob.md](../specification/prog/bytes/register-basis-blob.md)
 - `0.1s.syx` for reverb time if the UI reaches the printed 0.1 s floor
 - Denser mid samples for medium-confidence tables when you need a full decode table
 - Reconcile hard sheet errata (early select / HF crossover on a few Halls) if you re-dump those factory programs

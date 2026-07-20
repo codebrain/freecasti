@@ -6709,7 +6709,7 @@
     {
       "offset": 92,
       "status": "secondary",
-      "role": "Menu-browse flag: `00` when no parameter menu is open or while editing a value; `02` while a parameter menu is highlighted (see `sysex/prog/menus/` captures)",
+      "role": "Panel-mode flag: `00` when no parameter menu is open or while editing a value; `02` while a parameter menu is highlighted (see `sysex/prog/menus/` captures); `08` while the front-panel **favorites** screen is shown (see `sysex/prog/favorites/`). Hold-PROG while this reads `08` commits pending edits into the favorite slot",
       "parameters": [
         "early rolloff",
         "_corpus"
@@ -6772,7 +6772,7 @@
     {
       "offset": 94,
       "status": "known",
-      "role": "Structure/version constant (`08` in all witnessed program dumps) \u2014 not a sound parameter",
+      "role": "Favorite-source slot: `(slot - 1) * 2` (`00`/`02`/`04`/`06` = favorites 1\u20134) when the running program was loaded from a front-panel favorite (PROG frames only; persists across edits and panel-mode changes \u2014 see `sysex/prog/favorites/`); `08` otherwise (all factory/parameter-series and hold-EDIT dumps) \u2014 not a sound parameter",
       "parameters": [
         "_corpus"
       ],
@@ -7876,7 +7876,7 @@
     {
       "offset": 130,
       "status": "known",
-      "role": "Engine/bank-class flag: 0 on classic banks (Halls\u2026Spaces), 1 on `* 2` banks (Halls 2\u2026Spaces 2), 2 on NonLin. Parameter-series dumps also show 1 because they were captured from Large Church (Halls 2)",
+      "role": "Engine/bank-class flag: 0 on classic banks (Halls\u2026Spaces), 1 on `* 2` banks (Halls 2\u2026Spaces 2), 2 on NonLin. Most parameter-series dumps show 1 (captured from Large Church, Halls 2); the LF RT multiply/crossover series show 0 (Large Hall)",
       "parameters": [
         "_corpus"
       ],

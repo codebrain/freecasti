@@ -69,16 +69,22 @@ only; message **encoding** uses [`kaitai_encode.py`](../src/m7_sysex/kaitai_enco
 | `tests/test_encodings.py` | Nibble/MIDI-14 primitives, fitting |
 | `tests/test_encoding_table.py` | Encoding-map table export |
 | `tests/test_corpus.py` | Every committed `.syx` under `sysex/prog/` + `sysex/system/` |
+| `tests/test_doc_claims.py` | Factual claims in hand-written docs (counts, offsets, ranges) |
 | `tests/test_system.py` | SYSTEM series analysis |
 | `tests/test_menus_analysis.py` | PROG menu-navigation (`sysex/prog/menus/`) UI-state analysis |
 | `tests/test_decode_preset.py` | Full preset decode vs published sheet |
 | `tests/test_analyze.py` | Label parsing, encoding fits, preset validation |
+| `tests/test_dump_codec.py` | Decode/encode CLI round trips (`run.py decode` / `encode`) |
 | `tests/test_edit_dumps.py` | Hold-EDIT buffer dumps (`sysex/prog/edit/`) |
+| `tests/test_favorites.py` | Favorites session (`sysex/prog/favorites/`): slot codes, panel-mode flag, auto-commit |
 | `tests/test_kaitai_spec.py` | PROG + SYSTEM Kaitai / `.spec.json` |
 | `tests/test_kaitai_encode.py` | Parse → serialize encode round-trips ([details](kaitai-encode.md)) |
 | `tests/test_kaitai_roundtrip.py` | Per-field wire extract vs raw (decode-side layout) |
 | `tests/test_kaitai_validation.py` | Kaitai `.spec.json` field validation |
 | `tests/test_prog_algorithms.py` | Algorithm / family-flag corpus checks |
+| `tests/test_register_blob.py` | Register basis blob decode (24–87): charset, counter, delay block |
+| `tests/test_register_blob_docs.py` | Generated register-blob doc page (layout table, links) |
+| `tests/test_register_edit_dumps.py` | Register hold-EDIT dumps (`sysex/prog/edit/registers/`) |
 | `tests/test_types.py` | Dump-family registry paths |
 | `tests/test_presets_json.py` | `prog/presets/presets.json` export |
 | `tests/test_parameters_readme.py` | Generated parameter index pages |
@@ -87,6 +93,7 @@ only; message **encoding** uses [`kaitai_encode.py`](../src/m7_sysex/kaitai_enco
 | `tests/test_doc_table_links.py` | Doc table link integrity |
 | `tests/test_markdown_links.py` | Relative links in README / docs / specification (also run after export) |
 | `tests/test_parameter_description.py` | Parameter description blocks |
+| `tests/test_unseen_values.py` | Unseen-value / gap reporting in encoding maps |
 | `tests/test_web_ui_sync.py` | `web-ui/public/m7-runtime.json` + `param-manifest.json` after export sync |
 
 ## Web UI
@@ -153,6 +160,9 @@ Top-level modules (`analyze.py`, `byte_map.py`, …) are thin re-exports into
 
 - Each `sysex/prog/parameters/<name>/` folder is an independent capture stream.
 - EDIT buffer dumps share the PROG frame; keep under `sysex/prog/edit/`.
+- Favorites captures share the PROG frame but carry non-corpus identity bytes
+  (offsets 92/94); keep under `sysex/prog/favorites/` (excluded from the
+  corpus scan like `edit/` and `menus/`).
 - SYSTEM dumps are separate (77 bytes); keep under `sysex/system/`.
 - Generated docs: `specification/prog/` and `specification/system/`.
 - Machine specs: `m7_program_dump.*` and `m7_system_dump.*` (Kaitai + JSON).

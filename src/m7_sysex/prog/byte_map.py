@@ -485,15 +485,21 @@ def _series_parameter_names(byte_map: dict[str, Any]) -> set[str]:
 
 
 _IDENTITY_FIELD_HREFS = {
-    "bank index": "program-identity.md",
-    "bank index mirror": "program-identity.md",
-    "program slot": "program-identity.md",
+    "bank index": "bytes/bank-index.md",
+    "bank index mirror": "bytes/bank-index.md",
+    "program slot": "bytes/program-slot.md",
     "program name": "bytes/program-name.md",
     "program name (ASCII)": "bytes/program-name.md",
     "program name pad": "bytes/program-name-pad.md",
     "register bank": "bytes/register-bank.md",
     "register": "bytes/register.md",
     "register basis blob": "bytes/register-basis-blob.md",
+    "favorite slot (8 = none)": "bytes/favorite-slot.md",
+    "panel mode flag": "bytes/panel-mode-flag.md",
+    "selected menu index": "bytes/selected-menu-index.md",
+    "algorithm/family flag": "bytes/algorithm-family-flag.md",
+    "family-flag mirror": "bytes/algorithm-family-flag.md",
+    "engine/bank-class flag": "bytes/engine-bank-class-flag.md",
     "display": "bytes/display.md",
 }
 
@@ -745,7 +751,9 @@ def render_byte_map_overview_markdown(byte_map: dict[str, Any]) -> str:
                 "",
                 f"Edit/UI state (not a sound parameter): {offs}",
                 "",
-                "See [ui-state.md](ui-state.md) and "
+                "See [panel mode flag](bytes/panel-mode-flag.md), "
+                "[selected menu index](bytes/selected-menu-index.md), "
+                "[ui-state.md](ui-state.md), and "
                 "[bytes/display.md](bytes/display.md) for menu captures.",
                 "",
             ]
@@ -789,7 +797,7 @@ def _overview_label(
     if status == "checksum":
         return "checksum (CRC-16/ARC)", encoding
     if status == "secondary":
-        if "display" in role.lower():
+        if role.lower().startswith("display"):
             return "display", encoding or "nibble_hilo"
         if "_corpus" in params_all and start is not None and end is not None:
             # Region may also list series that moved it as a secondary byte;
@@ -815,7 +823,7 @@ def _overview_label(
         )
         if corpus_label:
             return corpus_label, encoding
-        if "display" in role.lower():
+        if role.lower().startswith("display"):
             return "display", encoding or "nibble_hilo"
     if "_corpus" in params_all:
         corpus_label = overview_label_for_offsets(
@@ -841,14 +849,14 @@ def _overview_label(
             return "reserved padding", encoding
         if "reserved" in role.lower():
             return "reserved (always 0)", encoding
-        if "structure/version" in role.lower() or "structure version" in role.lower():
-            return "structure version (always 8)", encoding or "raw_u8"
+        if "favorite-source slot" in role.lower() or "favorite slot" in role.lower():
+            return "favorite slot (8 = none)", encoding or "raw_u8"
         if "register bank" in role.lower() or role.lower().startswith("register page"):
             return "register bank", encoding or "raw_u8"
         if role.lower() == "register" or "register within bank" in role.lower() or "register slot" in role.lower():
             return "register", encoding or "raw_u8"
         if "fixed field" in role.lower() or "always `00 08`" in role:
-            return "structure version (always 8)", encoding
+            return "favorite slot (8 = none)", encoding
         if "fixed companion" in role.lower() or "always `02 00`" in role:
             return "fixed (always 02 00)", encoding
     lowered = role.lower()

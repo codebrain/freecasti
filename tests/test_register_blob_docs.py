@@ -90,7 +90,7 @@ def test_blob_page_links_payload_twins(blob_page: str):
     assert "[program name](program-name.md)" in blob_page
     assert "[reverb time](reverb-time.md)" in blob_page
     assert "[delay level](delay-level.md)" in blob_page
-    assert "[bank index mirror](../program-identity.md)" in blob_page
+    assert "[bank index mirror](bank-index.md)" in blob_page
 
 
 def test_blob_page_documents_93_95_loaded_basis(blob_page: str):

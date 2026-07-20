@@ -20,6 +20,7 @@ from .paths import (
     LEGACY_SYSTEM_DIR,
     PROG_DIR,
     PROG_EDIT_DIR,
+    PROG_FAVORITES_DIR,
     PROG_FULL_SWEEP_DIR,
     PROG_MENUS_DIR,
     PROG_PARAMETERS_DIR,
@@ -76,6 +77,7 @@ def is_prog_corpus_relative(rel: Path) -> bool:
             return False
         if parts[1] in (
             PROG_EDIT_DIR,
+            PROG_FAVORITES_DIR,
             PROG_FULL_SWEEP_DIR,
             PROG_MENUS_DIR,
             LEGACY_EDIT_DIR,
