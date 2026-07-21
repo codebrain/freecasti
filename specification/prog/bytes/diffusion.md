@@ -7,8 +7,8 @@ _Generated 2026-07-21. Source folder: `sysex/prog/parameters/diffusion/`._
 
 ## SysEx summary
 
-- **Offsets:** 107
-- **Encoding:** `raw_u8`
+- **Offsets:** 106-107
+- **Encoding:** `nibble_hilo`
 - **Confidence:** high
 - **Range:** Observed range 0 ... 10
 - **Layout:** [byte map overview](../byte-map-overview.md) · [full map](../byte-map.md)
@@ -23,19 +23,19 @@ _Source: [Bricasti M7 Owner's Manual — Reverb Parameters](https://www.bricasti
 
 Witness sources: [encoding sources](../../../docs/encoding-sources.md) (`dump`, `provided`, `inferred`, preset links).
 
-| Encoded | Offset 107 | Label | Source |
-| --- | --- | --- | --- |
-| 0 | `00` | Low | dump, provided, [1](../presets/ambience/heavy-ambience.md), [2](../presets/nonlin/nonlin-a.md), [3](../presets/nonlin/nonlin-b.md), [4](../presets/nonlin/nonlin-c.md), [5](../presets/nonlin/nonlin-d.md), +4 more |
-| 1 | `01` | 1 | dump, provided, [1](../presets/plates/large-plate.md), [2](../presets/plates/london-plate.md) |
-| 2 | `02` | 2 | dump, provided, [1](../presets/ambience/clear-ambience.md), [2](../presets/ambience/large-and-dark.md), [3](../presets/ambience/long-ambience.md), [4](../presets/ambience/medium-and-dark.md), [5](../presets/ambience/small-and-dark.md), +6 more |
-| 3 | `03` | 3 | dump, provided, [1](../presets/ambience/bass-xxl.md), [2](../presets/ambience/deep-ambience.md), [3](../presets/ambience/large-and-bright.md), [4](../presets/ambience/large-ambience.md), [5](../presets/ambience/small-and-bright.md), +23 more |
-| 4 | `04` | 4 | dump, provided, [1](../presets/chambers/snare-chamber.md), [2](../presets/plates/echo-plate.md), [3](../presets/rooms/center-room.md), [4](../presets/rooms/deep-stone.md), [5](../presets/rooms/glass-room.md), +5 more |
-| 5 | `05` | 5 | dump, provided, [1](../presets/chambers/a-and-m-chamber.md), [2](../presets/chambers/cd-chamber.md), [3](../presets/chambers/kick-chamber.md), [4](../presets/chambers/large-chamber.md), [5](../presets/chambers/medium-chamber.md), +17 more |
-| 6 | `06` | 6 | dump, provided, [1](../presets/chambers/large-and-bright.md), [2](../presets/halls/berliner-hall.md), [3](../presets/halls/boston-hall-a.md), [4](../presets/halls/large-and-dark.md), [5](../presets/halls/medium-and-near.md), +5 more |
-| 7 | `07` | 7 | provided, [1](../presets/chambers/amb-chamber-a.md), [2](../presets/chambers/amb-chamber-b.md), [3](../presets/chambers/deep-chamber.md), [4](../presets/halls/amsterdam-hall.md), [5](../presets/halls/chicago-hall.md), +5 more |
-| 8 | `08` | 8 | provided, [1](../presets/halls/vienna-hall.md), [2](../presets/spaces/cinema-room.md) |
-| 9 | `09` | 9 | dump, provided, [1](../presets/spaces/bath-house.md) |
-| 10 | `0A` | High | dump, provided, [1](../presets/ambience/percussion-air.md) |
+| `nibble_hilo` | Offset 106 | Offset 107 | Label | Source |
+| --- | --- | --- | --- | --- |
+| 0 | `00` | `00` | Low | dump, provided, [1](../presets/ambience/heavy-ambience.md), [2](../presets/nonlin/nonlin-a.md), [3](../presets/nonlin/nonlin-b.md), [4](../presets/nonlin/nonlin-c.md), [5](../presets/nonlin/nonlin-d.md), +4 more |
+| 1 | `00` | `01` | 1 | dump, provided, [1](../presets/plates/large-plate.md), [2](../presets/plates/london-plate.md) |
+| 2 | `00` | `02` | 2 | dump, provided, [1](../presets/ambience/clear-ambience.md), [2](../presets/ambience/large-and-dark.md), [3](../presets/ambience/long-ambience.md), [4](../presets/ambience/medium-and-dark.md), [5](../presets/ambience/small-and-dark.md), +6 more |
+| 3 | `00` | `03` | 3 | dump, provided, [1](../presets/ambience/bass-xxl.md), [2](../presets/ambience/deep-ambience.md), [3](../presets/ambience/large-and-bright.md), [4](../presets/ambience/large-ambience.md), [5](../presets/ambience/small-and-bright.md), +23 more |
+| 4 | `00` | `04` | 4 | dump, provided, [1](../presets/chambers/snare-chamber.md), [2](../presets/plates/echo-plate.md), [3](../presets/rooms/center-room.md), [4](../presets/rooms/deep-stone.md), [5](../presets/rooms/glass-room.md), +5 more |
+| 5 | `00` | `05` | 5 | dump, provided, [1](../presets/chambers/a-and-m-chamber.md), [2](../presets/chambers/cd-chamber.md), [3](../presets/chambers/kick-chamber.md), [4](../presets/chambers/large-chamber.md), [5](../presets/chambers/medium-chamber.md), +17 more |
+| 6 | `00` | `06` | 6 | dump, provided, [1](../presets/chambers/large-and-bright.md), [2](../presets/halls/berliner-hall.md), [3](../presets/halls/boston-hall-a.md), [4](../presets/halls/large-and-dark.md), [5](../presets/halls/medium-and-near.md), +5 more |
+| 7 | `00` | `07` | 7 | provided, [1](../presets/chambers/amb-chamber-a.md), [2](../presets/chambers/amb-chamber-b.md), [3](../presets/chambers/deep-chamber.md), [4](../presets/halls/amsterdam-hall.md), [5](../presets/halls/chicago-hall.md), +5 more |
+| 8 | `00` | `08` | 8 | provided, [1](../presets/halls/vienna-hall.md), [2](../presets/spaces/cinema-room.md) |
+| 9 | `00` | `09` | 9 | dump, provided, [1](../presets/spaces/bath-house.md) |
+| 10 | `00` | `0A` | High | dump, provided, [1](../presets/ambience/percussion-air.md) |
 
 ### Preset witnesses
 
@@ -53,24 +53,24 @@ Factory presets that witness encoded steps with more than 5 matches (collapsed i
 
 Sparse series used as anchors (plus secondary/checksum bytes that moved with this capture stream):
 
-| Label | Offset 107 | Encoded | Display 146–147 | display `nibble_hilo` | Checksum 152-155 | Source |
-| --- | --- | --- | --- | --- | --- | --- |
-| low (0) | `00` | 0 | `02 09` | 41 | `0F` `06` `05` `09` | dump |
-| 1 | `01` | 1 | `02 0A` | 42 | `0A` `06` `08` `0C` | dump |
-| 2 | `02` | 2 | `02 0B` | 43 | `09` `07` `00` `02` | dump |
-| 3 | `03` | 3 | `02 0C` | 44 | `00` `07` `02` `06` | dump |
-| 4 | `04` | 4 | `02 0D` | 45 | `03` `04` `0E` `0F` | dump |
-| 5 | `05` | 5 | `02 0F` | 47 | `0A` `04` `00` `07` | dump |
-| 6 | `06` | 6 | `03 00` | 48 | `08` `05` `0E` `01` | dump |
-| 9 | `09` | 9 | `03 01` | 49 | `0B` `02` `0A` `06` | dump |
-| high (10) | `0A` | 10 | `03 02` | 50 | `04` `03` `05` `01` | dump |
+| Label | Offset 106 | Offset 107 | `nibble_hilo` | Display 146–147 | display `nibble_hilo` | Checksum 152-155 | Source |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| low (0) | `??` | `00` | 0 | `02 09` | 41 | `0F` `06` `05` `09` | dump |
+| 1 | `??` | `01` | 1 | `02 0A` | 42 | `0A` `06` `08` `0C` | dump |
+| 2 | `??` | `02` | 2 | `02 0B` | 43 | `09` `07` `00` `02` | dump |
+| 3 | `??` | `03` | 3 | `02 0C` | 44 | `00` `07` `02` `06` | dump |
+| 4 | `??` | `04` | 4 | `02 0D` | 45 | `03` `04` `0E` `0F` | dump |
+| 5 | `??` | `05` | 5 | `02 0F` | 47 | `0A` `04` `00` `07` | dump |
+| 6 | `??` | `06` | 6 | `03 00` | 48 | `08` `05` `0E` `01` | dump |
+| 9 | `??` | `09` | 9 | `03 01` | 49 | `0B` `02` `0A` `06` | dump |
+| high (10) | `??` | `0A` | 10 | `03 02` | 50 | `04` `03` `05` `01` | dump |
 
 ## Interpretation
 
-- **Primary field:** offsets **107**, encoding `raw_u8` (identity).
+- **Primary field:** offsets **106-107**, encoding `nibble_hilo` (identity).
 - **Confidence:** high (7/7 dumps matched, 100%).
 - **Catalog hint (Bricasti):** Diffusion - printed 1 ... 9 [differs_from_hint] - hint only; dumps win.
-- **Catalog notes:** Manual UI: Low 1 - 9 High. Captured hardware series also show 0...10. SysEx stores an absolute encoded value @ 107.
+- **Catalog notes:** Manual UI: Low 1 - 9 High. Captured hardware series also show 0...10. SysEx stores an absolute encoded value @ 106-107 (`nibble_hilo`).
 - **Catalog note:** Observed min 0 is below printed manual 1 (unit/firmware variance; dump is authoritative)
 - **Catalog note:** Observed max 10 is above printed manual 9 (unit/firmware variance; dump is authoritative)
 - **Range:** Observed range 0 ... 10.
@@ -79,8 +79,9 @@ Sparse series used as anchors (plus secondary/checksum bytes that moved with thi
 - **Sampling:** extremes, adjacents, 5 sample mid(s) (not every step).
 - **How to set:**
   1. encoded = desired_label
-  2. byte[offset0] = encoded & 0x0F  # M7 payload nibbles are 0x00-0x0F
-  3. recompute trailing checksum: CRC-16/ARC over bytes[8:152], pack as four high-nibble-first SysEx bytes at offsets 152-155
+  2. byte[offset0] = (encoded >> 4) & 0x0F
+  3. byte[offset1] = encoded & 0x0F
+  4. recompute trailing checksum: CRC-16/ARC over bytes[8:152], pack as four high-nibble-first SysEx bytes at offsets 152-155
 - **Secondary offsets:** 146–147 (`nibble_hilo` display) (edit/UI state, not the parameter word).
 - **Checksum nibbles:** 152-155 (CRC-16/ARC over offsets 8-151, packed high-nibble-first).
 
@@ -94,7 +95,7 @@ Documented in the spec (encoding map / manual) but not yet witnessed in a commit
   - encoded **7** → 7 (provided, preset)
   - encoded **8** → 8 (provided, preset)
 - **Documented gaps (no row at all):** none between documented min/max.
-- **Wire nibbles never observed (`0`–`F`):** offset 107: `B` `C` `D` `E` `F`
+- **Wire nibbles never observed (`0`–`F`):** offset 106 (high): `1` `2` `3` `4` `5` `6` `7` `8` `9` `A` `B` `C` `D` `E` `F`; offset 107 (low): `B` `C` `D` `E` `F`
 
 ## Other parameters
 

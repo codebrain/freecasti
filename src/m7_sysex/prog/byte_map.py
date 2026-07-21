@@ -376,7 +376,11 @@ def _claim_names_identity(claim, names: dict[str, Any], length: int) -> None:
     program = fields.get("program_slot") or {}
 
     bank_map = bank.get("map") or {}
-    from .names import EDIT_DUMP_BANK_INDEX, format_bank_map_by_index
+    from .names import (
+        BANK_MIRROR_OFFSETS,
+        EDIT_DUMP_BANK_INDEX,
+        format_bank_map_by_index,
+    )
 
     bank_summary = format_bank_map_by_index(bank_map)
     claim(
@@ -386,13 +390,15 @@ def _claim_names_identity(claim, names: dict[str, Any], length: int) -> None:
             "Bank index (`nibble_hilo`) from sysex/prog/presets/ "
             f"[{bank_summary}]"
             + (
-                f"; mirrored at offset {bank.get('mirror_offset', 137)}"
+                f"; mirrored at offsets {BANK_MIRROR_OFFSETS[0]}–"
+                f"{BANK_MIRROR_OFFSETS[1]} (`nibble_hilo`)"
                 if bank.get("mirror_matches")
                 else ""
             )
             + (
                 f"; hold EDIT sends use index {EDIT_DUMP_BANK_INDEX} here "
-                "while mirror 137 keeps the source bank "
+                f"while mirror {BANK_MIRROR_OFFSETS[0]}–"
+                f"{BANK_MIRROR_OFFSETS[1]} keep the source bank "
                 "(see sysex/prog/edit/)"
             )
         ),
@@ -415,18 +421,26 @@ def _claim_names_identity(claim, names: dict[str, Any], length: int) -> None:
         example=example,
         example_source=str(example_path) if example_path else None,
     )
-    if bank.get("mirror_offset") is not None and bank.get("mirror_matches"):
+    if bank.get("mirror_matches") and (
+        bank.get("mirror_offsets") or bank.get("mirror_offset") is not None
+    ):
+        mirror_offs = list(
+            bank.get("mirror_offsets")
+            or [136, int(bank["mirror_offset"])]
+        )
         claim(
-            [int(bank["mirror_offset"])],
+            mirror_offs,
             status="known",
             role=(
-                f"Bank index mirror (equals offset {bank['offsets'][1]}) "
+                f"Bank index mirror (`nibble_hilo`, equals bank word at "
+                f"{(bank.get('offsets') or [88, 89])[0]}–"
+                f"{(bank.get('offsets') or [88, 89])[1]}) "
                 "from sysex/prog/presets/; on hold-EDIT dumps this stays the "
                 "source bank while 88-89 are Edit index 11"
             ),
             parameter="_presets",
             confidence=conf,
-            encoding="raw_u8",
+            encoding="nibble_hilo",
             example=example,
             example_source=str(example_path) if example_path else None,
         )
@@ -865,11 +879,13 @@ def _overview_label(
             return "register", encoding or "raw_u8"
         if "fixed field" in role.lower() or "always `00 08`" in role:
             return "favorite slot (8 = none)", encoding
-        if "fixed companion" in role.lower() or "always `02 00`" in role:
-            return "fixed (always 02 00)", encoding
+        if "fixed companion" in role.lower() or "always `02`" in role:
+            if "02 00" in role:
+                return "fixed (always 02 00)", encoding
+            return "fixed (always 02)", encoding
     lowered = role.lower()
     if "bank index mirror" in lowered:
-        return "bank index mirror", encoding or "raw_u8"
+        return "bank index mirror", encoding or "nibble_hilo"
     if "bank index" in lowered:
         return "bank index", encoding or "nibble_hilo"
     if "program slot" in lowered:

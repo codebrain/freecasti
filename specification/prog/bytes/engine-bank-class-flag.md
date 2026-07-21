@@ -7,7 +7,7 @@ _Generated 2026-07-21. Corpus scan of all factory presets under `sysex/prog/pres
 
 ## SysEx summary
 
-- **Offsets:** 130 (companion 131–132)
+- **Offsets:** 130 (companion 131)
 - **Encoding:** `raw_u8`
 - **Confidence:** medium
 - **Role:** Engine/bank class: `0` classic V1 banks, `1` the V2 `* 2` banks, `2` NonLin
@@ -15,7 +15,7 @@ _Generated 2026-07-21. Corpus scan of all factory presets under `sysex/prog/pres
 
 ## Description
 
-Offset **130** selects the engine/bank class of the running program: `0` on the classic banks (Halls…Spaces, V1 algorithm), `1` on the `* 2` banks (Halls 2…Spaces 2, V2 algorithm), `2` on NonLin. Most parameter-series dumps read `1` (captured from Large Church, Halls 2); the LF RT multiply/crossover series read `0` (Large Hall). The companion bytes **131–132** are fixed at `02 00` across this corpus. Distinct from the [algorithm/family flag](algorithm-family-flag.md) at 97/145.
+Offset **130** selects the engine/bank class of the running program: `0` on the classic banks (Halls…Spaces, V1 algorithm), `1` on the `* 2` banks (Halls 2…Spaces 2, V2 algorithm), `2` on NonLin. Most parameter-series dumps read `1` (captured from Large Church, Halls 2); the LF RT multiply/crossover series read `0` (Large Hall). The companion byte at **131** is always `02` in this corpus (offset **132** is the high nibble of delay level). Distinct from the [algorithm/family flag](algorithm-family-flag.md) at 96–97/145.
 
 ## Encoding map
 
@@ -27,7 +27,7 @@ Offset **130** selects the engine/bank class of the running program: `0` on the 
 
 ## Notes
 
-- Bank identity itself is at [bank index](bank-index.md) (88–89 / mirror 137).
+- Bank identity itself is at [bank index](bank-index.md) (88–89 / mirror 136–137).
 - Manual context (V1 vs V2, NonLin engine): [manual-notes.md](../../../docs/manual-notes.md).
 
 ## Related

@@ -714,7 +714,7 @@
             "bit_offset": 120,
             "bit_width": 4,
             "enum": "diffusion_values",
-            "doc": "Stored diffusion (bits 120-123); equals live payload field diffusion @ 107 unless the register has unstored edits"
+            "doc": "Stored diffusion (bits 120-123); equals live payload field diffusion @ 106-107 unless the register has unstored edits"
           },
           {
             "id": "density",
@@ -722,7 +722,7 @@
             "bit_offset": 124,
             "bit_width": 4,
             "enum": "density_values",
-            "doc": "Stored density (bits 124-127); equals live payload field density @ 109 unless the register has unstored edits"
+            "doc": "Stored density (bits 124-127); equals live payload field density @ 108-109 unless the register has unstored edits"
           },
           {
             "id": "hf_rt_crossover",
@@ -746,7 +746,7 @@
             "bit_offset": 140,
             "bit_width": 4,
             "enum": "modulation_values",
-            "doc": "Stored modulation (bits 140-143); equals live payload field modulation @ 111 unless the register has unstored edits"
+            "doc": "Stored modulation (bits 140-143); equals live payload field modulation @ 110-111 unless the register has unstored edits"
           },
           {
             "id": "early_to_reverb_mix",
@@ -824,7 +824,7 @@
             "value": "((((data[48] & 0x0f) << 4) | (data[49] & 0x0f)) >> 3)",
             "bit_offset": 192,
             "bit_width": 5,
-            "doc": "Stored source factory bank (bits 192-196); equals live payload field bank_index_mirror @ 137 unless the register has unstored edits. Factory bank the register was stored from (same as payload 137)"
+            "doc": "Stored source factory bank (bits 192-196); equals live payload field bank_index_mirror @ 136-137 unless the register has unstored edits. Factory bank the register was stored from (same as payload 136\u2013137)"
           },
           {
             "id": "delay_level",
@@ -832,7 +832,7 @@
             "bit_offset": 197,
             "bit_width": 4,
             "enum": "delay_level_values",
-            "doc": "Stored delay level (bits 197-200); equals live payload field delay_level @ 133 unless the register has unstored edits. V2 delay block; located by samples/charset-b1s1-rt5s-stored.syx (reads 15). Zero when the register was stored without delay"
+            "doc": "Stored delay level (bits 197-200); equals live payload field delay_level @ 132-133 unless the register has unstored edits. V2 delay block; located by samples/charset-b1s1-rt5s-stored.syx (reads 15). Zero when the register was stored without delay"
           },
           {
             "id": "delay_time",
@@ -848,7 +848,7 @@
             "bit_offset": 208,
             "bit_width": 4,
             "enum": "delay_modulation_values",
-            "doc": "Stored delay modulation (bits 208-211); equals live payload field delay_modulation @ 139 unless the register has unstored edits. V2 delay block; stored capture reads 6"
+            "doc": "Stored delay modulation (bits 208-211); equals live payload field delay_modulation @ 138-139 unless the register has unstored edits. V2 delay block; stored capture reads 6"
           },
           {
             "id": "tail_is_zero",
@@ -933,6 +933,7 @@
             "bit_width": 4,
             "payload_field": "diffusion",
             "payload_offsets": [
+              106,
               107
             ]
           },
@@ -943,6 +944,7 @@
             "bit_width": 4,
             "payload_field": "density",
             "payload_offsets": [
+              108,
               109
             ]
           },
@@ -975,6 +977,7 @@
             "bit_width": 4,
             "payload_field": "modulation",
             "payload_offsets": [
+              110,
               111
             ]
           },
@@ -1083,6 +1086,7 @@
             "bit_width": 5,
             "payload_field": "bank_index_mirror",
             "payload_offsets": [
+              136,
               137
             ]
           },
@@ -1093,6 +1097,7 @@
             "bit_width": 4,
             "payload_field": "delay_level",
             "payload_offsets": [
+              132,
               133
             ]
           },
@@ -1114,6 +1119,7 @@
             "bit_width": 4,
             "payload_field": "delay_modulation",
             "payload_offsets": [
+              138,
               139
             ]
           },
@@ -1139,7 +1145,7 @@
       "end": 89,
       "size": 2,
       "status": "known",
-      "role": "Bank index (`nibble_hilo`) from sysex/prog/presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/prog/edit/)",
+      "role": "Bank index (`nibble_hilo`) from sysex/prog/presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offsets 136\u2013137 (`nibble_hilo`); hold EDIT sends use index 11 here while mirror 136\u2013137 keep the source bank (see sysex/prog/edit/)",
       "encoding": "nibble_hilo",
       "kind": "meta",
       "value_map": {
@@ -1380,31 +1386,18 @@
       }
     },
     {
-      "id": "reserved_always_0",
-      "label": "reserved (always 0)",
-      "offsets": [
-        96
-      ],
-      "start": 96,
-      "end": 96,
-      "size": 1,
-      "status": "known",
-      "role": "Reserved/unknown (always `00` in witnessed captures)",
-      "encoding": null,
-      "kind": "meta"
-    },
-    {
       "id": "algorithm_family_flag",
       "label": "algorithm/family flag",
       "offsets": [
+        96,
         97
       ],
-      "start": 97,
+      "start": 96,
       "end": 97,
-      "size": 1,
+      "size": 2,
       "status": "known",
-      "role": "Algorithm/family flag from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). Mirrored at 145 as 0 when 97=3 and 1 when 97=4 \u2014 not a clean V1/V2 bit",
-      "encoding": "raw_u8",
+      "role": "Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 145 as 0 when value=3 and 1 when value=4 \u2014 not a clean V1/V2 bit",
+      "encoding": "nibble_hilo",
       "kind": "meta"
     },
     {
@@ -2769,31 +2762,18 @@
       }
     },
     {
-      "id": "reserved_padding",
-      "label": "reserved padding",
-      "offsets": [
-        106
-      ],
-      "start": 106,
-      "end": 106,
-      "size": 1,
-      "status": "known",
-      "role": "Reserved padding (always 0) between predelay and diffusion",
-      "encoding": null,
-      "kind": "meta"
-    },
-    {
       "id": "diffusion",
       "label": "diffusion",
       "offsets": [
+        106,
         107
       ],
-      "start": 107,
+      "start": 106,
       "end": 107,
-      "size": 1,
+      "size": 2,
       "status": "known",
-      "role": "Parameter `diffusion` (from independent series sysex/prog/parameters/diffusion/) (raw_u8, label = encoded * 1)",
-      "encoding": "raw_u8",
+      "role": "Parameter `diffusion` (from independent series sysex/prog/parameters/diffusion/) (nibble_hilo, label = encoded * 1)",
+      "encoding": "nibble_hilo",
       "parameter": "diffusion",
       "description": "Sets initial diffusion of the reverb. Displayed and controlled as a percentage change from the initial value defined by the preset.",
       "kind": "affine",
@@ -2863,31 +2843,18 @@
       }
     },
     {
-      "id": "reserved_padding_108",
-      "label": "reserved padding",
-      "offsets": [
-        108
-      ],
-      "start": 108,
-      "end": 108,
-      "size": 1,
-      "status": "known",
-      "role": "Reserved padding (always 0) between diffusion and density",
-      "encoding": null,
-      "kind": "meta"
-    },
-    {
       "id": "density",
       "label": "density",
       "offsets": [
+        108,
         109
       ],
-      "start": 109,
+      "start": 108,
       "end": 109,
-      "size": 1,
+      "size": 2,
       "status": "known",
-      "role": "Parameter `density` (from independent series sysex/prog/parameters/density/) (raw_u8, label = encoded * 1)",
-      "encoding": "raw_u8",
+      "role": "Parameter `density` (from independent series sysex/prog/parameters/density/) (nibble_hilo, label = encoded * 1)",
+      "encoding": "nibble_hilo",
       "parameter": "density",
       "description": "Sets how the echo density builds up over time.",
       "kind": "affine",
@@ -2957,31 +2924,18 @@
       }
     },
     {
-      "id": "reserved_padding_110",
-      "label": "reserved padding",
-      "offsets": [
-        110
-      ],
-      "start": 110,
-      "end": 110,
-      "size": 1,
-      "status": "known",
-      "role": "Reserved padding (always 0) between density and modulation",
-      "encoding": null,
-      "kind": "meta"
-    },
-    {
       "id": "modulation",
       "label": "modulation",
       "offsets": [
+        110,
         111
       ],
-      "start": 111,
+      "start": 110,
       "end": 111,
-      "size": 1,
+      "size": 2,
       "status": "known",
-      "role": "Parameter `modulation` (from independent series sysex/prog/parameters/modulation/) (raw_u8, label = encoded + (-1))",
-      "encoding": "raw_u8",
+      "role": "Parameter `modulation` (from independent series sysex/prog/parameters/modulation/) (nibble_hilo, label = encoded + (-1))",
+      "encoding": "nibble_hilo",
       "parameter": "modulation",
       "description": "Controls the amount of modulation and pitch variation in the later part of the reverberant field.",
       "kind": "affine",
@@ -5169,17 +5123,16 @@
       "kind": "meta"
     },
     {
-      "id": "fixed_always_02_00",
-      "label": "fixed (always 02 00)",
+      "id": "fixed_always_02",
+      "label": "fixed (always 02)",
       "offsets": [
-        131,
-        132
+        131
       ],
       "start": 131,
-      "end": 132,
-      "size": 2,
+      "end": 131,
+      "size": 1,
       "status": "known",
-      "role": "Fixed companion to offset 130 (always `02 00` in this corpus)",
+      "role": "Fixed companion to offset 130 (always `02` in this corpus)",
       "encoding": null,
       "kind": "meta"
     },
@@ -5187,14 +5140,15 @@
       "id": "delay_level",
       "label": "delay level",
       "offsets": [
+        132,
         133
       ],
-      "start": 133,
+      "start": 132,
       "end": 133,
-      "size": 1,
+      "size": 2,
       "status": "known",
-      "role": "Parameter `delay level` (from independent series sysex/prog/parameters/delay level/) (raw_u8, label = encoded + (-21))",
-      "encoding": "raw_u8",
+      "role": "Parameter `delay level` (from independent series sysex/prog/parameters/delay level/) (nibble_hilo, label = encoded + (-21))",
+      "encoding": "nibble_hilo",
       "parameter": "delay level",
       "unit": "db",
       "description": "Level of the delayed input injected into the start of the late reverb (not the early reverb). The delayed sound is the original input signal, delayed, diffused, and band-limited by Rolloff.",
@@ -5882,59 +5836,33 @@
       }
     },
     {
-      "id": "reserved_always_0_136",
-      "label": "reserved (always 0)",
-      "offsets": [
-        136
-      ],
-      "start": 136,
-      "end": 136,
-      "size": 1,
-      "status": "known",
-      "role": "Reserved (always 0) between delay time and bank-index mirror",
-      "encoding": null,
-      "kind": "meta"
-    },
-    {
       "id": "bank_index_mirror",
       "label": "bank index mirror",
       "offsets": [
+        136,
         137
       ],
-      "start": 137,
+      "start": 136,
       "end": 137,
-      "size": 1,
+      "size": 2,
       "status": "known",
-      "role": "Bank index mirror (equals offset 89) from sysex/prog/presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
-      "encoding": "raw_u8",
-      "kind": "meta"
-    },
-    {
-      "id": "reserved_always_0_138",
-      "label": "reserved (always 0)",
-      "offsets": [
-        138
-      ],
-      "start": 138,
-      "end": 138,
-      "size": 1,
-      "status": "known",
-      "role": "Reserved (always 0) between bank-index mirror and delay modulation",
-      "encoding": null,
+      "role": "Bank index mirror (`nibble_hilo`, equals bank word at 88\u201389) from sysex/prog/presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
+      "encoding": "nibble_hilo",
       "kind": "meta"
     },
     {
       "id": "delay_modulation",
       "label": "delay modulation",
       "offsets": [
+        138,
         139
       ],
-      "start": 139,
+      "start": 138,
       "end": 139,
-      "size": 1,
+      "size": 2,
       "status": "known",
-      "role": "Parameter `delay modulation` (from independent series sysex/prog/parameters/delay modulation/) (raw_u8, label = encoded + (-1))",
-      "encoding": "raw_u8",
+      "role": "Parameter `delay modulation` (from independent series sysex/prog/parameters/delay modulation/) (nibble_hilo, label = encoded + (-1))",
+      "encoding": "nibble_hilo",
       "parameter": "delay modulation",
       "description": "Modulates the delay voices only (not the reverb), similar in character to reverb Modulation: low settings are slower and more shallow; higher settings are more random and deeper.",
       "kind": "affine",
@@ -6009,7 +5937,7 @@
       }
     },
     {
-      "id": "reserved_always_0_140",
+      "id": "reserved_always_0",
       "label": "reserved (always 0)",
       "offsets": [
         140,
@@ -6036,7 +5964,7 @@
       "end": 145,
       "size": 1,
       "status": "known",
-      "role": "Mirror of algorithm/family flag at 97 (145=0 when 97=3; 145=1 when 97=4 in this corpus)",
+      "role": "Mirror of algorithm/family flag at 96\u201397 (145=0 when value=3; 145=1 when value=4 in this corpus)",
       "encoding": "raw_u8",
       "kind": "meta"
     },
@@ -6289,7 +6217,7 @@
     }
   ],
   "sources": {
-    "byte_map_regions": 47,
+    "byte_map_regions": 41,
     "parameter_series": 18,
     "has_presets": true
   }

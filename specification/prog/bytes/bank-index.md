@@ -7,15 +7,15 @@ _Generated 2026-07-21. Factory presets under `sysex/prog/presets/` (222 dumps), 
 
 ## SysEx summary
 
-- **Offsets:** 88–89 (mirror at 137)
+- **Offsets:** 88–89 (mirror at 136–137)
 - **Encoding:** `nibble_hilo`
 - **Confidence:** high
-- **Role:** Program bank of the running program (`nibble_hilo`); hold-EDIT sends always use **11** here while mirror **137** keeps the source bank
+- **Role:** Program bank of the running program (`nibble_hilo`); hold-EDIT sends always use **11** here while mirror **136–137** keep the source bank
 - **Layout:** [byte map overview](../byte-map-overview.md) · [full map](../byte-map.md)
 
 ## Description
 
-Offsets **88–89** carry the program bank as a `nibble_hilo` word (high nibble at 88). Factory banks are 0–10 in preset-list order; the MIDI app notes add receive-side banks 118–120. Offset **137** mirrors the bank's low nibble and, on hold-EDIT sends (bank word = 11), still carries the **source** bank. Favorite-loaded PROG dumps carry the source program's bank here — never the Favorites bank 119 (see [favorite slot](favorite-slot.md)). Full identity walkthrough: [program identity](../program-identity.md).
+Offsets **88–89** carry the program bank as a `nibble_hilo` word (high nibble at 88). Factory banks are 0–10 in preset-list order; the MIDI app notes add receive-side banks 118–120. Offsets **136–137** mirror the bank as `nibble_hilo` and, on hold-EDIT sends (bank word = 11), still carry the **source** bank. Favorite-loaded PROG dumps carry the source program's bank here — never the Favorites bank 119 (see [favorite slot](favorite-slot.md)). Full identity walkthrough: [program identity](../program-identity.md).
 
 ## Encoding map
 
@@ -40,7 +40,7 @@ Offsets **88–89** carry the program bank as a `nibble_hilo` word (high nibble 
 ## Notes
 
 - Banks 118–120 are **receive-side** (MIDI app notes): they never appear at 88–89 in dumps sent by the unit.
-- Mirror **137** equals the bank low nibble on PROG frames and the source bank on hold-EDIT frames (`sysex/prog/edit/`).
+- Mirror **136–137** (`nibble_hilo`) equals the bank word on PROG frames and the source bank on hold-EDIT frames (`sysex/prog/edit/`).
 
 ## Related
 

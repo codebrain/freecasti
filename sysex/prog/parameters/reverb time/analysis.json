@@ -654,6 +654,128 @@
       "monotonic_score": 0.9743589743589743
     },
     {
+      "encoding": "nibble_hilo",
+      "offsets": [
+        99,
+        100
+      ],
+      "score": 0.07692307692307693,
+      "matched": 1,
+      "total": 13,
+      "scale": 1.0,
+      "offset": 4.0,
+      "mapping": [
+        {
+          "label": 0.2,
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ]
+        },
+        {
+          "label": 0.25,
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ]
+        },
+        {
+          "label": 0.3,
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ]
+        },
+        {
+          "label": 0.8,
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ]
+        },
+        {
+          "label": 1.3,
+          "encoded": 1,
+          "raw_bytes": [
+            "00",
+            "01"
+          ]
+        },
+        {
+          "label": 2.2,
+          "encoded": 2,
+          "raw_bytes": [
+            "00",
+            "02"
+          ]
+        },
+        {
+          "label": 3.5,
+          "encoded": 3,
+          "raw_bytes": [
+            "00",
+            "03"
+          ]
+        },
+        {
+          "label": 6.8,
+          "encoded": 5,
+          "raw_bytes": [
+            "00",
+            "05"
+          ]
+        },
+        {
+          "label": 10.0,
+          "encoded": 6,
+          "raw_bytes": [
+            "00",
+            "06"
+          ]
+        },
+        {
+          "label": 16.5,
+          "encoded": 7,
+          "raw_bytes": [
+            "00",
+            "07"
+          ]
+        },
+        {
+          "label": 23.0,
+          "encoded": 8,
+          "raw_bytes": [
+            "00",
+            "08"
+          ]
+        },
+        {
+          "label": 29.0,
+          "encoded": 8,
+          "raw_bytes": [
+            "00",
+            "08"
+          ]
+        },
+        {
+          "label": 30.0,
+          "encoded": 8,
+          "raw_bytes": [
+            "00",
+            "08"
+          ]
+        }
+      ],
+      "notes": "label = encoded + (4); least-squares hint only (not used for endpoint unit conversion): label ~= 3.05837*encoded + -1.76552 (r^2=0.8494)",
+      "r_squared": 0.8493664157092791,
+      "exact": true,
+      "monotonic_score": 0.8846153846153846
+    },
+    {
       "encoding": "raw_u8",
       "offsets": [
         100

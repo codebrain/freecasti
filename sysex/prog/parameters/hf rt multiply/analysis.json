@@ -1258,6 +1258,104 @@
       "monotonic_score": 0.5111111111111111
     },
     {
+      "encoding": "nibble_hilo",
+      "offsets": [
+        145,
+        146
+      ],
+      "score": 0.1,
+      "matched": 1,
+      "total": 10,
+      "scale": 1.0,
+      "offset": -5.0,
+      "mapping": [
+        {
+          "label": 0.2,
+          "encoded": 5,
+          "raw_bytes": [
+            "00",
+            "05"
+          ]
+        },
+        {
+          "label": 0.25,
+          "encoded": 5,
+          "raw_bytes": [
+            "00",
+            "05"
+          ]
+        },
+        {
+          "label": 0.3,
+          "encoded": 5,
+          "raw_bytes": [
+            "00",
+            "05"
+          ]
+        },
+        {
+          "label": 0.35,
+          "encoded": 6,
+          "raw_bytes": [
+            "00",
+            "06"
+          ]
+        },
+        {
+          "label": 0.4,
+          "encoded": 6,
+          "raw_bytes": [
+            "00",
+            "06"
+          ]
+        },
+        {
+          "label": 0.45,
+          "encoded": 6,
+          "raw_bytes": [
+            "00",
+            "06"
+          ]
+        },
+        {
+          "label": 0.5,
+          "encoded": 6,
+          "raw_bytes": [
+            "00",
+            "06"
+          ]
+        },
+        {
+          "label": 0.55,
+          "encoded": 6,
+          "raw_bytes": [
+            "00",
+            "06"
+          ]
+        },
+        {
+          "label": 0.95,
+          "encoded": 6,
+          "raw_bytes": [
+            "00",
+            "06"
+          ]
+        },
+        {
+          "label": 1.0,
+          "encoded": 6,
+          "raw_bytes": [
+            "00",
+            "06"
+          ]
+        }
+      ],
+      "notes": "label = encoded + (-5); least-squares hint only (not used for endpoint unit conversion): label ~= 0.35*encoded + -1.5 (r^2=0.3771)",
+      "r_squared": 0.3770611945767681,
+      "exact": true,
+      "monotonic_score": 0.4666666666666667
+    },
+    {
       "encoding": "raw_u8",
       "offsets": [
         146

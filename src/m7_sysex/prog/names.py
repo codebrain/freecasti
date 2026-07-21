@@ -41,7 +41,7 @@ HINT_BANK_INDEX: dict[str, int] = {
 
 # Non-factory bank indices.
 # Hold **EDIT** sends a 157-byte program-dump frame with bank word 88-89 = 11;
-# offset 137 still mirrors the *source* factory/user bank (not 11).
+# offsets 136-137 still mirror the *source* factory/user bank (not 11).
 # Indices 118-120 are from the Bricasti MIDI app notes (program-change /
 # receive targets); 118 is the ephemeral Edit bank created on *receive*.
 EDIT_DUMP_BANK_INDEX = 11
@@ -66,7 +66,8 @@ NAME_FIELD_ALIASES: dict[str, str] = {
 
 BANK_WORD_OFFSETS = (88, 89)
 PROGRAM_WORD_OFFSETS = (90, 91)
-BANK_MIRROR_OFFSET = 137
+BANK_MIRROR_OFFSETS = (136, 137)
+BANK_MIRROR_OFFSET = BANK_MIRROR_OFFSETS[1]  # low nibble; high at 136 is always 0
 REGISTER_BANK_OFFSET = 93
 REGISTER_OFFSET = 95
 # Favorite-source slot: (slot - 1) * 2 for favorites 1-4 on PROG frames;
@@ -148,17 +149,19 @@ def is_edit_buffer_dump(raw: bytes) -> bool:
 
 
 def edit_source_bank_index(raw: bytes) -> int:
-    """Source bank from mirror offset 137 on an EDIT dump (banks 0-15).
+    """Source bank from mirror offsets 136–137 on an EDIT dump (banks 0-15).
 
-    On hold-EDIT sends the bank word (88-89) is 11, but offset 137 still
-    carries the low nibble of the program's original factory/user bank.
+    On hold-EDIT sends the bank word (88-89) is 11, but 136–137 still
+    carry the program's original factory/user bank as ``nibble_hilo``.
     """
+    from ..encodings import nibble_hilo
+
     if not is_edit_buffer_dump(raw):
         raise ValueError(
             f"not an EDIT dump (bank index {bank_index_from_raw(raw)}, "
             f"expected {EDIT_DUMP_BANK_INDEX})"
         )
-    return raw[BANK_MIRROR_OFFSET] & 0x0F
+    return nibble_hilo(raw[BANK_MIRROR_OFFSETS[0]], raw[BANK_MIRROR_OFFSETS[1]])
 
 
 def validate_preset_dump(
@@ -168,7 +171,7 @@ def validate_preset_dump(
     """Validate ``<bank>.<preset>.syx`` against name and bank identity bytes.
 
     Raises ``PresetDumpError`` when the filename stem disagrees with offsets
-    8-87 (factory name region), 88-89 (bank index), or 137 (bank mirror). Returns an
+    8-87 (factory name region), 88-89 (bank index), or 136–137 (bank mirror). Returns an
     identity dict on success (same fields used in ``analyze_names_folder``).
     """
     path = Path(path)
@@ -209,13 +212,16 @@ def validate_preset_dump(
             f"{bank!r} expects index {expected_index}"
         )
 
-    bank_lo = raw[BANK_WORD_OFFSETS[1]]
-    mirror = raw[BANK_MIRROR_OFFSET]
-    if mirror != bank_lo:
+    from ..encodings import nibble_hilo
+
+    bank_word = nibble_hilo(raw[BANK_WORD_OFFSETS[0]], raw[BANK_WORD_OFFSETS[1]])
+    mirror = nibble_hilo(raw[BANK_MIRROR_OFFSETS[0]], raw[BANK_MIRROR_OFFSETS[1]])
+    if mirror != bank_word:
         raise PresetDumpError(
-            f"{path.name}: bank mirror offset {BANK_MIRROR_OFFSET} "
-            f"({mirror:02X}) != bank low nibble offset {BANK_WORD_OFFSETS[1]} "
-            f"({bank_lo:02X})"
+            f"{path.name}: bank mirror offsets "
+            f"{BANK_MIRROR_OFFSETS[0]}–{BANK_MIRROR_OFFSETS[1]} "
+            f"({mirror}) != bank word "
+            f"{BANK_WORD_OFFSETS[0]}–{BANK_WORD_OFFSETS[1]} ({bank_word})"
         )
 
     return {
@@ -233,7 +239,8 @@ def validate_preset_dump(
             "89": f"{raw[BANK_WORD_OFFSETS[1]]:02X}",
             "90": f"{raw[PROGRAM_WORD_OFFSETS[0]]:02X}",
             "91": f"{raw[PROGRAM_WORD_OFFSETS[1]]:02X}",
-            str(BANK_MIRROR_OFFSET): f"{mirror:02X}",
+            str(BANK_MIRROR_OFFSETS[0]): f"{raw[BANK_MIRROR_OFFSETS[0]]:02X}",
+            str(BANK_MIRROR_OFFSETS[1]): f"{raw[BANK_MIRROR_OFFSETS[1]]:02X}",
         },
         "bank_mirror": mirror,
         "bank_mirror_matches": True,
@@ -385,7 +392,7 @@ def analyze_names_folder(folder: Path) -> dict[str, Any]:
     identity_offsets = sorted(
         set(BANK_WORD_OFFSETS)
         | set(PROGRAM_WORD_OFFSETS)
-        | {BANK_MIRROR_OFFSET}
+        | set(BANK_MIRROR_OFFSETS)
     )
     sound_offsets = [
         off
@@ -413,7 +420,8 @@ def analyze_names_folder(folder: Path) -> dict[str, Any]:
         f"space-pad through {NAME_OFFSET + NAME_LENGTH - 1}) "
         f"match filename preset in {matched}/{len(dumps)} dumps.",
         f"Bank index at {BANK_WORD_OFFSETS[0]}-{BANK_WORD_OFFSETS[1]} "
-        f"(nibble_hilo); mirrored at {BANK_MIRROR_OFFSET}.",
+        f"(nibble_hilo); mirrored at {BANK_MIRROR_OFFSETS[0]}-"
+        f"{BANK_MIRROR_OFFSETS[1]}.",
         f"Program slot within bank at {PROGRAM_WORD_OFFSETS[0]}-{PROGRAM_WORD_OFFSETS[1]} "
         f"(nibble_hilo).",
     ]
@@ -463,14 +471,16 @@ def analyze_names_folder(folder: Path) -> dict[str, Any]:
             "bank_index": {
                 "offsets": list(BANK_WORD_OFFSETS),
                 "encoding": "nibble_hilo",
+                "mirror_offsets": list(BANK_MIRROR_OFFSETS),
                 "mirror_offset": BANK_MIRROR_OFFSET,
                 "mirror_matches": mirror_ok,
                 "map": bank_map["map"],
                 "consistent": bank_map["consistent"],
                 "notes": (
                     "Factory/user bank select. Low nibble at offset 89 carries the "
-                    f"index in this corpus (offset 88 stayed 00). Offset "
-                    f"{BANK_MIRROR_OFFSET} always equals offset 89."
+                    f"index in this corpus (offset 88 stayed 00). Offsets "
+                    f"{BANK_MIRROR_OFFSETS[0]}–{BANK_MIRROR_OFFSETS[1]} "
+                    "(`nibble_hilo`) always equal this bank index."
                 ),
             },
             "program_slot": {

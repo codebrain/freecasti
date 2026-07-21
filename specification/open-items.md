@@ -7,7 +7,7 @@ Auto-generated from `src/m7_sysex/export/open_items.py` on each export.
 1. **Unseen / undocumented values** — documented or otherwise possible values not yet witnessed on the wire are tracked per field in the **Unseen values** section of each [bytes/](prog/bytes/README.md) page
 2. **EDIT receive** path (MIDI-notes bank **118**) — hold-EDIT *sends* use bank **11** (`sysex/prog/edit/`); **Favorites receive** (MIDI-notes bank **119**) also unconfirmed — favorites *sends* carry the source identity instead (`sysex/prog/favorites/`)
 3. Semantics of PROG header bytes `70 08 01 00`
-4. Halls 2 subtype EDIT outlier; reserved offset **96**
+4. Halls 2 subtype EDIT outlier
 5. Closed-form mapping for table parameters (see medium-confidence rows in the parameter index)
 6. **Favorites follow-ups** — one more commit-rule confirmation (hold-PROG from the favorites screen with a pending edit) and power-cycle persistence of an auto-committed favorite (`sysex/prog/favorites/README.md`)
 

@@ -170,15 +170,10 @@
     97,
     98,
     99,
-    106,
-    108,
-    110,
     130,
     131,
-    132,
     136,
     137,
-    138,
     140,
     141,
     142,
@@ -201,6 +196,7 @@
         155
       ],
       "primary_offsets": [
+        132,
         133
       ],
       "secondary_offsets": [
@@ -220,6 +216,7 @@
         155
       ],
       "primary_offsets": [
+        138,
         139
       ],
       "secondary_offsets": [
@@ -259,6 +256,7 @@
         155
       ],
       "primary_offsets": [
+        108,
         109
       ],
       "secondary_offsets": [
@@ -278,6 +276,7 @@
         155
       ],
       "primary_offsets": [
+        106,
         107
       ],
       "secondary_offsets": [
@@ -447,6 +446,7 @@
         155
       ],
       "primary_offsets": [
+        110,
         111
       ],
       "secondary_offsets": [

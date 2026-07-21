@@ -7,7 +7,7 @@ _Generated 2026-07-21. Source folder: `sysex/prog/presets/` (222 dumps named `<b
 
 **Confidence:** high
 
-Program name at offsets 8-21 (14-char editable; pad 22-23; factory dumps also space-pad through 87) match filename preset in 222/222 dumps. Bank index at 88-89 (nibble_hilo); mirrored at 137. Program slot within bank at 90-91 (nibble_hilo).
+Program name at offsets 8-21 (14-char editable; pad 22-23; factory dumps also space-pad through 87) match filename preset in 222/222 dumps. Bank index at 88-89 (nibble_hilo); mirrored at 136-137. Program slot within bank at 90-91 (nibble_hilo).
 
 Decoded parameters: **[presets/](presets/)** (bank pages + [presets.json](presets/presets.json)).
 
@@ -16,24 +16,24 @@ Published-sheet comparison: **[preset-sheet.md](preset-sheet.md)** (8 hard / 3 s
 ## Fields
 
 - **Program name** offsets **8-21** (`ascii_space_padded`). Filename check: 222/222 dumps match (mismatch count 0). ASCII program name: 14-character editable label (manual) at offsets 8–21; trailing pad at 22–23 completes the 16-byte wire window. Bank name is not stored here. Factory preset dumps space-pad the remainder through offset 87; Reg-backed hold-EDIT dumps put a register basis blob at 24–87 instead. Factory validation still checks bytes[8:88] against the filename preset half, space-padded to 80 bytes.
-- **Bank index** offsets **88-89** (`nibble_hilo`). Factory/user bank select. Low nibble at offset 89 carries the index in this corpus (offset 88 stayed 00). Offset 137 always equals offset 89.
+- **Bank index** offsets **88-89** (`nibble_hilo`). Factory/user bank select. Low nibble at offset 89 carries the index in this corpus (offset 88 stayed 00). Offsets 136–137 (`nibble_hilo`) always equal this bank index.
 - **Program slot** offsets **90-91** (`nibble_hilo`). Slot within the current bank (not a global program number). Halls samples: Large Hall=0, Medium Hall=1, Small Hall=2, Large & Near=3 (factory list order). Rooms uses contiguous slots 0–35 (Long Wood Room at 35).
 
 ## Bank index map
 
-| Bank | Encoded | Bytes 88-89 | Mirror 137 | Presets |
-|------|--------:|-------------|------------|---------|
-| [Halls](presets/halls/) | 0 | `00` `00` | `00` | 32 |
-| [Plates](presets/plates/) | 1 | `00` `01` | `01` | 24 |
-| [Rooms](presets/rooms/) | 2 | `00` `02` | `02` | 36 |
-| [Chambers](presets/chambers/) | 3 | `00` `03` | `03` | 22 |
-| [Ambience](presets/ambience/) | 4 | `00` `04` | `04` | 15 |
-| [Spaces](presets/spaces/) | 5 | `00` `05` | `05` | 19 |
-| [Halls 2](presets/halls-2/) | 6 | `00` `06` | `06` | 14 |
-| [Plates 2](presets/plates-2/) | 7 | `00` `07` | `07` | 14 |
-| [Rooms 2](presets/rooms-2/) | 8 | `00` `08` | `08` | 22 |
-| [Spaces 2](presets/spaces-2/) | 9 | `00` `09` | `09` | 20 |
-| [NonLin](presets/nonlin/) | 10 | `00` `0A` | `0A` | 4 |
+| Bank | Encoded | Bytes 88-89 | Mirror 136-137 | Presets |
+|------|--------:|-------------|---------------|---------|
+| [Halls](presets/halls/) | 0 | `00` `00` | `00` `00` | 32 |
+| [Plates](presets/plates/) | 1 | `00` `01` | `00` `01` | 24 |
+| [Rooms](presets/rooms/) | 2 | `00` `02` | `00` `02` | 36 |
+| [Chambers](presets/chambers/) | 3 | `00` `03` | `00` `03` | 22 |
+| [Ambience](presets/ambience/) | 4 | `00` `04` | `00` `04` | 15 |
+| [Spaces](presets/spaces/) | 5 | `00` `05` | `00` `05` | 19 |
+| [Halls 2](presets/halls-2/) | 6 | `00` `06` | `00` `06` | 14 |
+| [Plates 2](presets/plates-2/) | 7 | `00` `07` | `00` `07` | 14 |
+| [Rooms 2](presets/rooms-2/) | 8 | `00` `08` | `00` `08` | 22 |
+| [Spaces 2](presets/spaces-2/) | 9 | `00` `09` | `00` `09` | 20 |
+| [NonLin](presets/nonlin/) | 10 | `00` `0A` | `00` `0A` | 4 |
 
 ## Captured presets
 
@@ -777,9 +777,9 @@ Decoded from each dump using the densified encoding map (series, `provided` UI w
 | [reverb time](bytes/reverb-time.md) | 100-101 | `nibble_hilo` | table |
 | [size](bytes/size.md) | 102-103 | `nibble_hilo` | affine |
 | [predelay](bytes/predelay.md) | 104-105 | `nibble_hilo` | table |
-| [diffusion](bytes/diffusion.md) | 107 | `raw_u8` | affine |
-| [density](bytes/density.md) | 109 | `raw_u8` | affine |
-| [modulation](bytes/modulation.md) | 111 | `raw_u8` | affine |
+| [diffusion](bytes/diffusion.md) | 106-107 | `nibble_hilo` | affine |
+| [density](bytes/density.md) | 108-109 | `nibble_hilo` | affine |
+| [modulation](bytes/modulation.md) | 110-111 | `nibble_hilo` | affine |
 | [rolloff](bytes/rolloff.md) | 112-113 | `nibble_hilo` | table |
 | [hf rt multiply](bytes/hf-rt-multiply.md) | 114-115 | `nibble_hilo` | affine |
 | [hf rt crossover](bytes/hf-rt-crossover.md) | 116-117 | `nibble_hilo` | table |
@@ -789,9 +789,9 @@ Decoded from each dump using the densified encoding map (series, `provided` UI w
 | [early to reverb mix](bytes/early-to-reverb-mix.md) | 124-125 | `nibble_hilo` | affine |
 | [early rolloff](bytes/early-rolloff.md) | 126-127 | `nibble_hilo` | table |
 | [early select](bytes/early-select.md) | 128-129 | `nibble_hilo` | affine |
-| [delay level](bytes/delay-level.md) | 133 | `raw_u8` | affine |
+| [delay level](bytes/delay-level.md) | 132-133 | `nibble_hilo` | affine |
 | [delay time](bytes/delay-time.md) | 134-135 | `nibble_hilo` | affine |
-| [delay modulation](bytes/delay-modulation.md) | 139 | `raw_u8` | affine |
+| [delay modulation](bytes/delay-modulation.md) | 138-139 | `nibble_hilo` | affine |
 
 
 _Last exported: 2026-07-21_

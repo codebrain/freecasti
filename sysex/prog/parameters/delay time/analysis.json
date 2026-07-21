@@ -581,6 +581,104 @@
       "monotonic_score": 0.9333333333333333
     },
     {
+      "encoding": "nibble_hilo",
+      "offsets": [
+        133,
+        134
+      ],
+      "score": 0.0,
+      "matched": 0,
+      "total": 10,
+      "scale": 1.0,
+      "offset": 0.0,
+      "mapping": [
+        {
+          "label": 100.0,
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ]
+        },
+        {
+          "label": 108.0,
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ]
+        },
+        {
+          "label": 116.0,
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ]
+        },
+        {
+          "label": 164.0,
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ]
+        },
+        {
+          "label": 284.0,
+          "encoded": 1,
+          "raw_bytes": [
+            "00",
+            "01"
+          ]
+        },
+        {
+          "label": 372.0,
+          "encoded": 2,
+          "raw_bytes": [
+            "00",
+            "02"
+          ]
+        },
+        {
+          "label": 492.0,
+          "encoded": 3,
+          "raw_bytes": [
+            "00",
+            "03"
+          ]
+        },
+        {
+          "label": 724.0,
+          "encoded": 4,
+          "raw_bytes": [
+            "00",
+            "04"
+          ]
+        },
+        {
+          "label": 988.0,
+          "encoded": 6,
+          "raw_bytes": [
+            "00",
+            "06"
+          ]
+        },
+        {
+          "label": 996.0,
+          "encoded": 7,
+          "raw_bytes": [
+            "00",
+            "07"
+          ]
+        }
+      ],
+      "notes": "label = encoded * 1; least-squares hint only (not used for endpoint unit conversion): label ~= 133.797*encoded + 126.667 (r^2=0.9852)",
+      "r_squared": 0.9851748392461361,
+      "exact": true,
+      "monotonic_score": 0.8666666666666667
+    },
+    {
       "encoding": "raw_u8",
       "offsets": [
         134

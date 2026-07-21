@@ -1205,9 +1205,10 @@
         "monotonic_nondecreasing": true,
         "const_display_minus_encoded": false,
         "offsets": [
+          106,
           107
         ],
-        "encoding": "raw_u8",
+        "encoding": "nibble_hilo",
         "sample": {
           "stem": "4",
           "hi": 2,
@@ -1237,9 +1238,10 @@
         "monotonic_nondecreasing": true,
         "const_display_minus_encoded": false,
         "offsets": [
+          108,
           109
         ],
-        "encoding": "raw_u8",
+        "encoding": "nibble_hilo",
         "sample": {
           "stem": "3",
           "hi": 3,
@@ -1270,9 +1272,10 @@
         "monotonic_nondecreasing": true,
         "const_display_minus_encoded": false,
         "offsets": [
+          110,
           111
         ],
-        "encoding": "raw_u8",
+        "encoding": "nibble_hilo",
         "sample": {
           "stem": "2",
           "hi": 4,
@@ -1627,9 +1630,10 @@
         "monotonic_nondecreasing": false,
         "const_display_minus_encoded": false,
         "offsets": [
+          132,
           133
         ],
-        "encoding": "raw_u8",
+        "encoding": "nibble_hilo",
         "sample": {
           "stem": "-13db",
           "hi": 10,
@@ -1695,9 +1699,10 @@
         "monotonic_nondecreasing": true,
         "const_display_minus_encoded": false,
         "offsets": [
+          138,
           139
         ],
-        "encoding": "raw_u8",
+        "encoding": "nibble_hilo",
         "sample": {
           "stem": "2",
           "hi": 11,

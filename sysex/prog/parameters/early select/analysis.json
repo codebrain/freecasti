@@ -872,6 +872,88 @@
       "monotonic_score": 0.9285714285714286
     },
     {
+      "encoding": "nibble_hilo",
+      "offsets": [
+        145,
+        146
+      ],
+      "score": 0.125,
+      "matched": 1,
+      "total": 8,
+      "scale": 1.0,
+      "offset": -8.0,
+      "mapping": [
+        {
+          "label": 0.0,
+          "encoded": 9,
+          "raw_bytes": [
+            "00",
+            "09"
+          ]
+        },
+        {
+          "label": 1.0,
+          "encoded": 9,
+          "raw_bytes": [
+            "00",
+            "09"
+          ]
+        },
+        {
+          "label": 2.0,
+          "encoded": 9,
+          "raw_bytes": [
+            "00",
+            "09"
+          ]
+        },
+        {
+          "label": 8.0,
+          "encoded": 9,
+          "raw_bytes": [
+            "00",
+            "09"
+          ]
+        },
+        {
+          "label": 14.0,
+          "encoded": 10,
+          "raw_bytes": [
+            "00",
+            "0A"
+          ]
+        },
+        {
+          "label": 25.0,
+          "encoded": 10,
+          "raw_bytes": [
+            "00",
+            "0A"
+          ]
+        },
+        {
+          "label": 30.0,
+          "encoded": 10,
+          "raw_bytes": [
+            "00",
+            "0A"
+          ]
+        },
+        {
+          "label": 31.0,
+          "encoded": 10,
+          "raw_bytes": [
+            "00",
+            "0A"
+          ]
+        }
+      ],
+      "notes": "label = encoded + (-8); least-squares hint only (not used for endpoint unit conversion): label ~= 22.25*encoded + -197.5 (r^2=0.8177)",
+      "r_squared": 0.8176938164550429,
+      "exact": true,
+      "monotonic_score": 0.5714285714285714
+    },
+    {
       "encoding": "raw_u8",
       "offsets": [
         146

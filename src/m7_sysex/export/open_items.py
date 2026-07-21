@@ -23,7 +23,7 @@ PROG_OPEN_ITEMS_CORE: list[str] = [
         "identity instead (`sysex/prog/favorites/`)"
     ),
     "Semantics of PROG header bytes `70 08 01 00`",
-    "Halls 2 subtype EDIT outlier; reserved offset **96**",
+    "Halls 2 subtype EDIT outlier",
     (
         "Closed-form mapping for table parameters (see medium-confidence rows "
         "in the parameter index)"

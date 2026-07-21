@@ -19,7 +19,7 @@ Official overview:
 | Dump | How to send | Use for this project |
 |------|-------------|----------------------|
 | **Program dump** | Hold **PROG** briefly | **Preferred** — full running program + edits + UI state |
-| Edit buffer dump | Hold **EDIT** briefly | Same 157-byte frame as PROG; bank **88–89 = 11**, mirror **137** = source bank — keep under `sysex/prog/edit/` |
+| Edit buffer dump | Hold **EDIT** briefly | Same 157-byte frame as PROG; bank **88–89 = 11**, mirror **136–137** = source bank — keep under `sysex/prog/edit/` |
 | System dump | Hold **SYSTEM** briefly | I/O / system config only — not program parameters |
 
 **Favorites caution:** holding **PROG** while the favorites screen is displayed
@@ -38,7 +38,7 @@ EDIT captures go in `sysex/prog/edit/` (excluded from the PROG corpus scan). See
 
 ## Bank index (for `sysex/prog/presets/` naming)
 
-SysEx offsets **88–89** / mirror **137** use these factory bank indices (from
+SysEx offsets **88–89** / mirror **136–137** use these factory bank indices (from
 [Bricasti MIDI app notes](https://www.bricasti.com/images/Midi_app_note.pdf)):
 
 | Index | Bank |
@@ -54,7 +54,7 @@ SysEx offsets **88–89** / mirror **137** use these factory bank indices (from
 | 8 | Rooms 2 |
 | 9 | Spaces 2 |
 | 10 | NonLin |
-| **11** | **Edit** (hold **EDIT** send — bank word only; mirror 137 stays source bank) |
+| **11** | **Edit** (hold **EDIT** send — bank word only; mirror 136–137 stays source bank) |
 | 118 | Edit (ephemeral on *receive*, per MIDI notes) |
 | 119 | Favorites (*receive only* — favorite-loaded PROG sends carry the source bank here, with the favorite slot at offset **94**; see `sysex/prog/favorites/`) |
 | 120 | Registers |
@@ -242,7 +242,7 @@ Optional follow-ups:
 - `0.1s.syx` for reverb time if the UI reaches the printed 0.1 s floor
 - Denser mid samples for medium-confidence tables when you need a full decode table
 - **Display edit-band sweeps** (optional): every discrete UI step for 2–3
-  parameters with different encodings (e.g. diffusion `raw_u8`, reverb time
+  parameters with different encodings (e.g. diffusion `nibble_hilo`, reverb time
   `nibble_hilo`, early select) while holding edit (`92 = 00`). Goal: test
   whether 146–147 increments once per step vs digit/cursor cell vs string-pool
   ID — see [bytes/display.md](../specification/prog/bytes/display.md)

@@ -26,18 +26,14 @@ Reserved/meta roles (padding, family flag, display @ 146–147, engine/bank clas
 | 93 | 1 | known | [register bank](bytes/register-bank.md) (`raw_u8`) |
 | 94 | 1 | known | [favorite slot (8 = none)](bytes/favorite-slot.md) (`raw_u8`) |
 | 95 | 1 | known | [register](bytes/register.md) (`raw_u8`) |
-| 96 | 1 | known | reserved (always 0) |
-| 97 | 1 | known | [algorithm/family flag](bytes/algorithm-family-flag.md) (`raw_u8`) |
+| 96-97 | 2 | known | [algorithm/family flag](bytes/algorithm-family-flag.md) (`nibble_hilo`) |
 | 98-99 | 2 | secondary | [selected menu index](bytes/selected-menu-index.md) (`nibble_hilo`) |
 | 100-101 | 2 | known | [reverb time](bytes/reverb-time.md) (`nibble_hilo`) |
 | 102-103 | 2 | known | [size](bytes/size.md) (`nibble_hilo`) |
 | 104-105 | 2 | known | [predelay](bytes/predelay.md) (`nibble_hilo`) |
-| 106 | 1 | known | reserved padding |
-| 107 | 1 | known | [diffusion](bytes/diffusion.md) (`raw_u8`) |
-| 108 | 1 | known | reserved padding |
-| 109 | 1 | known | [density](bytes/density.md) (`raw_u8`) |
-| 110 | 1 | known | reserved padding |
-| 111 | 1 | known | [modulation](bytes/modulation.md) (`raw_u8`) |
+| 106-107 | 2 | known | [diffusion](bytes/diffusion.md) (`nibble_hilo`) |
+| 108-109 | 2 | known | [density](bytes/density.md) (`nibble_hilo`) |
+| 110-111 | 2 | known | [modulation](bytes/modulation.md) (`nibble_hilo`) |
 | 112-113 | 2 | known | [rolloff](bytes/rolloff.md) (`nibble_hilo`) |
 | 114-115 | 2 | known | [hf rt multiply](bytes/hf-rt-multiply.md) (`nibble_hilo`) |
 | 116-117 | 2 | known | [hf rt crossover](bytes/hf-rt-crossover.md) (`nibble_hilo`) |
@@ -48,13 +44,11 @@ Reserved/meta roles (padding, family flag, display @ 146–147, engine/bank clas
 | 126-127 | 2 | known | [early rolloff](bytes/early-rolloff.md) (`nibble_hilo`) |
 | 128-129 | 2 | known | [early select](bytes/early-select.md) (`nibble_hilo`) |
 | 130 | 1 | known | [engine/bank-class flag](bytes/engine-bank-class-flag.md) (`raw_u8`) |
-| 131-132 | 2 | known | fixed (always 02 00) |
-| 133 | 1 | known | [delay level](bytes/delay-level.md) (`raw_u8`) |
+| 131 | 1 | known | fixed (always 02) |
+| 132-133 | 2 | known | [delay level](bytes/delay-level.md) (`nibble_hilo`) |
 | 134-135 | 2 | known | [delay time](bytes/delay-time.md) (`nibble_hilo`) |
-| 136 | 1 | known | reserved (always 0) |
-| 137 | 1 | known | [bank index mirror](bytes/bank-index.md) (`raw_u8`) |
-| 138 | 1 | known | reserved (always 0) |
-| 139 | 1 | known | [delay modulation](bytes/delay-modulation.md) (`raw_u8`) |
+| 136-137 | 2 | known | [bank index mirror](bytes/bank-index.md) (`nibble_hilo`) |
+| 138-139 | 2 | known | [delay modulation](bytes/delay-modulation.md) (`nibble_hilo`) |
 | 140-144 | 5 | known | reserved (always 0) |
 | 145 | 1 | known | [family-flag mirror](bytes/algorithm-family-flag.md) (`raw_u8`) |
 | 146-147 | 2 | known | [display](bytes/display.md) (`nibble_hilo`) |
@@ -71,13 +65,13 @@ Reserved/meta roles (padding, family flag, display @ 146–147, engine/bank clas
 | 93 | [register bank](bytes/register-bank.md) | `raw_u8` | corpus |
 | 94 | [favorite slot (8 = none)](bytes/favorite-slot.md) | `raw_u8` | corpus |
 | 95 | [register](bytes/register.md) | `raw_u8` | corpus |
-| 97 | [algorithm/family flag](bytes/algorithm-family-flag.md) | `raw_u8` | corpus |
+| 96-97 | [algorithm/family flag](bytes/algorithm-family-flag.md) | `nibble_hilo` | corpus |
 | 100-101 | [reverb time](bytes/reverb-time.md) | `nibble_hilo` | series |
 | 102-103 | [size](bytes/size.md) | `nibble_hilo` | series |
 | 104-105 | [predelay](bytes/predelay.md) | `nibble_hilo` | series |
-| 107 | [diffusion](bytes/diffusion.md) | `raw_u8` | series |
-| 109 | [density](bytes/density.md) | `raw_u8` | series |
-| 111 | [modulation](bytes/modulation.md) | `raw_u8` | series |
+| 106-107 | [diffusion](bytes/diffusion.md) | `nibble_hilo` | series |
+| 108-109 | [density](bytes/density.md) | `nibble_hilo` | series |
+| 110-111 | [modulation](bytes/modulation.md) | `nibble_hilo` | series |
 | 112-113 | [rolloff](bytes/rolloff.md) | `nibble_hilo` | series |
 | 114-115 | [hf rt multiply](bytes/hf-rt-multiply.md) | `nibble_hilo` | series |
 | 116-117 | [hf rt crossover](bytes/hf-rt-crossover.md) | `nibble_hilo` | series |
@@ -88,10 +82,10 @@ Reserved/meta roles (padding, family flag, display @ 146–147, engine/bank clas
 | 126-127 | [early rolloff](bytes/early-rolloff.md) | `nibble_hilo` | series |
 | 128-129 | [early select](bytes/early-select.md) | `nibble_hilo` | series |
 | 130 | [engine/bank-class flag](bytes/engine-bank-class-flag.md) | `raw_u8` | corpus |
-| 133 | [delay level](bytes/delay-level.md) | `raw_u8` | series |
+| 132-133 | [delay level](bytes/delay-level.md) | `nibble_hilo` | series |
 | 134-135 | [delay time](bytes/delay-time.md) | `nibble_hilo` | series |
-| 137 | [bank index mirror](bytes/bank-index.md) | `raw_u8` | [_presets](program-identity.md) |
-| 139 | [delay modulation](bytes/delay-modulation.md) | `raw_u8` | series |
+| 136-137 | [bank index mirror](bytes/bank-index.md) | `nibble_hilo` | [_presets](program-identity.md) |
+| 138-139 | [delay modulation](bytes/delay-modulation.md) | `nibble_hilo` | series |
 | 145 | [family-flag mirror](bytes/algorithm-family-flag.md) | `raw_u8` | corpus |
 | 146-147 | [display](bytes/display.md) | `nibble_hilo` | [_menus](bytes/display.md) |
 

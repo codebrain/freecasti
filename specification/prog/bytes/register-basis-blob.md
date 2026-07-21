@@ -29,11 +29,11 @@ Bits count from the first nibble (offset 24 low nibble = bits 0–3). Field widt
 | 101–103 | 3 | constant 001 | — | Constant 1 in every witnessed register capture |
 | 104–111 | 8 | predelay | [predelay](predelay.md) @ 104–105 |  |
 | 112–119 | 8 | reverb time | [reverb time](reverb-time.md) @ 100–101 |  |
-| 120–123 | 4 | diffusion | [diffusion](diffusion.md) @ 107 |  |
-| 124–127 | 4 | density | [density](density.md) @ 109 |  |
+| 120–123 | 4 | diffusion | [diffusion](diffusion.md) @ 106–107 |  |
+| 124–127 | 4 | density | [density](density.md) @ 108–109 |  |
 | 128–133 | 6 | hf rt crossover | [hf rt crossover](hf-rt-crossover.md) @ 116–117 |  |
 | 134–139 | 6 | lf rt multiply | [lf rt multiply](lf-rt-multiply.md) @ 118–119 |  |
-| 140–143 | 4 | modulation | [modulation](modulation.md) @ 111 |  |
+| 140–143 | 4 | modulation | [modulation](modulation.md) @ 110–111 |  |
 | 144–149 | 6 | early to reverb mix | [early to reverb mix](early-to-reverb-mix.md) @ 124–125 |  |
 | 150–154 | 5 | vlf cut | [vlf cut](vlf-cut.md) @ 122–123 |  |
 | 155–159 | 5 | early select | [early select](early-select.md) @ 128–129 |  |
@@ -43,10 +43,10 @@ Bits count from the first nibble (offset 24 low nibble = bits 0–3). Field widt
 | 176–181 | 6 | size | [size](size.md) @ 102–103 |  |
 | 182–186 | 5 | hf rt multiply | [hf rt multiply](hf-rt-multiply.md) @ 114–115 |  |
 | 187–191 | 5 | lf rt crossover | [lf rt crossover](lf-rt-crossover.md) @ 120–121 |  |
-| 192–196 | 5 | source factory bank | [bank index mirror](bank-index.md) @ 137 | Factory bank the register was stored from (same as payload 137) |
-| 197–200 | 4 | delay level | [delay level](delay-level.md) @ 133 | V2 delay block; located by samples/charset-b1s1-rt5s-stored.syx (reads 15) |
+| 192–196 | 5 | source factory bank | [bank index mirror](bank-index.md) @ 136–137 | Factory bank the register was stored from (same as payload 136–137) |
+| 197–200 | 4 | delay level | [delay level](delay-level.md) @ 132–133 | V2 delay block; located by samples/charset-b1s1-rt5s-stored.syx (reads 15) |
 | 201–207 | 7 | delay time | [delay time](delay-time.md) @ 134–135 | V2 delay block; stored capture reads 11 |
-| 208–211 | 4 | delay modulation | [delay modulation](delay-modulation.md) @ 139 | V2 delay block; stored capture reads 6 |
+| 208–211 | 4 | delay modulation | [delay modulation](delay-modulation.md) @ 138–139 | V2 delay block; stored capture reads 6 |
 | 212–255 | 44 | zero tail | — | Always 0 in witnessed captures |
 
 ## Name charset (6-bit)

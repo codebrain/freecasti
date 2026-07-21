@@ -28,9 +28,9 @@ No primary-offset conflicts between series.
 
 ### Untouched in parameter series
 
-**30** payload offsets never changed in any independent `sysex/prog/parameters/<name>/` capture series:
+**25** payload offsets never changed in any independent `sysex/prog/parameters/<name>/` capture series:
 
-`88-91`, `93-99`, `106`, `108`, `110`, `130-132`, `136-138`, `140-145`, `148-151`
+`88-91`, `93-99`, `130-131`, `136-137`, `140-145`, `148-151`
 
 Many of these are already documented elsewhere — program identity (offsets 88–91), fixed/reserved fields, and corpus-derived meta — see [byte-map-overview.md](byte-map-overview.md). This list means no dedicated single-parameter series has moved them yet, not that the byte map is unknown.
 

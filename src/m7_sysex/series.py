@@ -80,6 +80,29 @@ def contiguous_pairs(offsets: list[int]) -> list[tuple[int, int]]:
     return pairs
 
 
+def leading_zero_nibble_pairs(
+    blobs: list[bytes],
+    param_candidate_offsets: list[int],
+    *,
+    payload_start: int,
+) -> list[tuple[int, int]]:
+    """``(off-1, off)`` where ``off`` changes and ``off-1`` is constant zero.
+
+    Captures pad+value layout used by single-nibble sound/meta fields
+    (diffusion, density, modulation, delay level/modulation, etc.): the high
+    nibble wire byte stays ``00`` while only the low nibble moves.
+    """
+    changing = set(param_candidate_offsets)
+    pairs: list[tuple[int, int]] = []
+    for off in param_candidate_offsets:
+        hi = off - 1
+        if hi < payload_start or hi in changing:
+            continue
+        if all(blob[hi] == 0 for blob in blobs):
+            pairs.append((hi, off))
+    return pairs
+
+
 def resolve_value_range(
     parsed: list[dict[str, Any]],
     best: dict[str, Any] | None,

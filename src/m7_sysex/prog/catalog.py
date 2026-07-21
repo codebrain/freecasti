@@ -97,7 +97,8 @@ PROGRAM_PARAMETERS: list[dict[str, Any]] = [
         "description_url": M7_MANUAL_URL,
         "notes": (
             "Manual UI: Low 1 - 9 High. Captured hardware series also show "
-            "0...10. SysEx stores an absolute encoded value @ 107."
+            "0...10. SysEx stores an absolute encoded value @ 106-107 "
+            "(`nibble_hilo`)."
         ),
         "folder_hint": "diffusion",
     },

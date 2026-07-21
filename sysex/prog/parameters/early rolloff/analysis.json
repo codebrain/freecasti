@@ -681,6 +681,72 @@
       "monotonic_score": 0.6
     },
     {
+      "encoding": "nibble_hilo",
+      "offsets": [
+        125,
+        126
+      ],
+      "score": 0.0,
+      "matched": 0,
+      "total": 6,
+      "scale": 1.0,
+      "offset": 0.0,
+      "mapping": [
+        {
+          "label": 80.0,
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ]
+        },
+        {
+          "label": 120.0,
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ]
+        },
+        {
+          "label": 280.0,
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ]
+        },
+        {
+          "label": 480.0,
+          "encoded": 0,
+          "raw_bytes": [
+            "00",
+            "00"
+          ]
+        },
+        {
+          "label": 13600.0,
+          "encoded": 3,
+          "raw_bytes": [
+            "00",
+            "03"
+          ]
+        },
+        {
+          "label": 22000.0,
+          "encoded": 4,
+          "raw_bytes": [
+            "00",
+            "04"
+          ]
+        }
+      ],
+      "notes": "label = encoded * 1; least-squares hint only (not used for endpoint unit conversion): label ~= 5117.62*encoded + 122.772 (r^2=0.9873)",
+      "r_squared": 0.9873440412529823,
+      "exact": true,
+      "monotonic_score": 0.6
+    },
+    {
       "encoding": "raw_u8",
       "offsets": [
         126

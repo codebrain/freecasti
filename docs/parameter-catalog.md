@@ -30,9 +30,9 @@ docs in [../specification/](../specification/).
 | Reverb Time | 0.1 – 30 s | 0.2 – 30 s, **table** @ 100–101 | `reverb time` |
 | Size | Small 1 – 24 Large | Small…Large = **0…30** identity @ 102–103 | `size` |
 | Pre Delay | 0 – 500 ms | 0 – 500 ms, **table** @ 104–105 | `predelay` |
-| Diffusion | Low 1 – 9 High | **0…10** identity @ 107 | `diffusion` |
-| Density | Low 1 – 9 High | **0…10** identity @ 109 | `density` |
-| Modulation | Off, Low 1 – 9 High | off + **0…10** (`enc−1`) @ 111 | `modulation` |
+| Diffusion | Low 1 – 9 High | **0…10** identity `nibble_hilo` @ 106–107 | `diffusion` |
+| Density | Low 1 – 9 High | **0…10** identity `nibble_hilo` @ 108–109 | `density` |
+| Modulation | Off, Low 1 – 9 High | off + **0…10** (`enc−1`) `nibble_hilo` @ 110–111 | `modulation` |
 | Rolloff | 80 Hz – 28 kHz | 80 – 22000 Hz (+`full`), **table** @ 112–113 | `rolloff` |
 | HF RT Multiply | 0.2 – 1.0 | `0.05×enc+0.2` @ 114–115 | `hf rt multiply` |
 | HF RT Crossover | 200 Hz – 16 kHz | **table** @ 116–117 | `hf rt crossover` |
@@ -42,9 +42,9 @@ docs in [../specification/](../specification/).
 | Early/Reverb Mix | 0/20 … 20/20 … 20/0 | balance positions **0…40** @ 124–125; dumps named `A.B` (= `A/B`) | `early to reverb mix` |
 | Early Rolloff | 80 Hz – 20 kHz | 80 – 22000 Hz, **table** @ 126–127 | `early rolloff` |
 | Early Select | 0 – 20 | **0…31** identity @ 128–129 | `early select` |
-| Delay Level | Off, or −20 – −6 dB | off + −20…−6 (`enc−21`) @ 133 | `delay level` |
+| Delay Level | Off, or −20 – −6 dB | off + −20…−6 (`enc−21`) `nibble_hilo` @ 132–133 | `delay level` |
 | Delay Time | 100 ms – 1 s | 100 – **996** ms (`8×enc+100`) @ 134–135 | `delay time` |
-| Delay Modulation | Off, Low 1 – 9 High | off + **0…10** (`enc−1`) @ 139 | `delay modulation` |
+| Delay Modulation | Off, Low 1 – 9 High | off + **0…10** (`enc−1`) `nibble_hilo` @ 138–139 | `delay modulation` |
 
 When a capture exceeds the printed range, keep the dump labels — update
 `observed_*` in `catalog.py` if the wider span is confirmed on this unit.
@@ -69,9 +69,9 @@ Decoded factory values are also checked against Bricasti’s published sheet
 | Register page | 93 | Reg bank page (B0=0 …); `0` on factory dumps |
 | Favorite slot | 94 | `(slot-1)*2` for favorites 1–4 on favorite-loaded PROG frames; `08` = not from a favorite (`sysex/prog/favorites/`) |
 | Register slot | 95 | Reg slot 0–9; `0` on factory dumps |
-| Bank mirror | 137 | Equals offset 89 (source bank on hold-EDIT) |
-| Algorithm/family flag | 97 / 145 | Halls≈3 / most others≈4; not a clean V1/V2 bit — see manual-notes |
-| Engine/bank-class flag | 130 | `0` classic, `1` `* 2`, `2` NonLin |
+| Bank mirror | 136–137 | `nibble_hilo`; equals bank word 88–89 (source bank on hold-EDIT) |
+| Algorithm/family flag | 96–97 / 145 | `nibble_hilo` (96 always `00`); Halls≈3 / most others≈4; not a clean V1/V2 bit — see manual-notes |
+| Engine/bank-class flag | 130 | `0` classic, `1` `* 2`, `2` NonLin; companion 131 = `02` |
 
 ## Algorithms (manual context)
 
@@ -122,8 +122,9 @@ has shown −20. Delay Level uses discrete **off** below −20.
 ### Diffusion (UI vs dump)
 
 The owner’s manual describes diffusion as a **percentage change from the preset’s
-built-in initial value**. SysEx stores a raw encoded value @ 107 — treat dumps as
-absolute; UI semantics may be relative to the factory preset base.
+built-in initial value**. SysEx stores an absolute encoded value as
+`nibble_hilo` @ 106–107 — treat dumps as absolute; UI semantics may be relative
+to the factory preset base.
 
 ### HF/LF RT multiply
 

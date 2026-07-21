@@ -118,9 +118,9 @@ REGISTER_BLOB_FIELDS: tuple[RegisterBlobField, ...] = (
         "reverb_time", "reverb time", 112, 8, "reverb_time", (100, 101)
     ),
     RegisterBlobField(
-        "diffusion", "diffusion", 120, 4, "diffusion", (107,)
+        "diffusion", "diffusion", 120, 4, "diffusion", (106, 107)
     ),
-    RegisterBlobField("density", "density", 124, 4, "density", (109,)),
+    RegisterBlobField("density", "density", 124, 4, "density", (108, 109)),
     RegisterBlobField(
         "hf_rt_crossover",
         "hf rt crossover",
@@ -138,7 +138,7 @@ REGISTER_BLOB_FIELDS: tuple[RegisterBlobField, ...] = (
         (118, 119),
     ),
     RegisterBlobField(
-        "modulation", "modulation", 140, 4, "modulation", (111,)
+        "modulation", "modulation", 140, 4, "modulation", (110, 111)
     ),
     RegisterBlobField(
         "early_to_reverb_mix",
@@ -193,8 +193,8 @@ REGISTER_BLOB_FIELDS: tuple[RegisterBlobField, ...] = (
         192,
         5,
         "bank_index_mirror",
-        (137,),
-        "Factory bank the register was stored from (same as payload 137)",
+        (136, 137),
+        "Factory bank the register was stored from (same as payload 136–137)",
     ),
     RegisterBlobField(
         "delay_level",
@@ -202,7 +202,7 @@ REGISTER_BLOB_FIELDS: tuple[RegisterBlobField, ...] = (
         197,
         4,
         "delay_level",
-        (133,),
+        (132, 133),
         "V2 delay block; located by samples/charset-b1s1-rt5s-stored.syx "
         "(reads 15). Zero when the register was stored without delay",
     ),
@@ -221,7 +221,7 @@ REGISTER_BLOB_FIELDS: tuple[RegisterBlobField, ...] = (
         208,
         4,
         "delay_modulation",
-        (139,),
+        (138, 139),
         "V2 delay block; stored capture reads 6",
     ),
     RegisterBlobField(

@@ -200,7 +200,7 @@ def render_register_bank_page(*, today: str, nav: str = "") -> str:
             "read `00`, while `charset-b1s1-rt5s-stored.syx` reads `01` "
             "because B1 R0 was the active basis at dump time. Factory and "
             "parameter-series dumps keep this at `00`. Distinct from factory "
-            "**program bank** at 88–89 / mirror 137. Pair with "
+            "**program bank** at 88–89 / mirror 136–137. Pair with "
             "[register](register.md) at offset 95."
         ),
         body_sections=[
@@ -273,7 +273,8 @@ def render_register_page(*, today: str, nav: str = "") -> str:
             "",
             "- Filename convention in the corpus: `b0-…/slot-3.syx` means "
             "Bank 0, Register 3.",
-            "- Reserved offset **96** stays `00` in witnessed captures.",
+            "- Offsets **96–97** (`nibble_hilo` algorithm/family flag) sit "
+            "immediately after this byte; high nibble at 96 stays `00`.",
             "",
         ],
     )
@@ -293,22 +294,22 @@ def render_bank_index_page(*, today: str, nav: str = "") -> str:
             "Factory presets under `sysex/prog/presets/` (222 dumps), "
             "hold-EDIT captures, and the Bricasti MIDI app notes bank table."
         ),
-        offsets="88–89 (mirror at 137)",
+        offsets="88–89 (mirror at 136–137)",
         encoding="nibble_hilo",
         confidence="high",
         role=(
             "Program bank of the running program (`nibble_hilo`); hold-EDIT "
-            "sends always use **11** here while mirror **137** keeps the "
+            "sends always use **11** here while mirror **136–137** keep the "
             "source bank"
         ),
         description=(
             "Offsets **88–89** carry the program bank as a `nibble_hilo` "
             "word (high nibble at 88). Factory banks are 0–10 in preset-list "
             "order; the MIDI app notes add receive-side banks 118–120. "
-            "Offset **137** mirrors the bank's low nibble and, on hold-EDIT "
-            "sends (bank word = 11), still carries the **source** bank. "
-            "Favorite-loaded PROG dumps carry the source program's bank here "
-            "— never the Favorites bank 119 (see "
+            "Offsets **136–137** mirror the bank as `nibble_hilo` and, on "
+            "hold-EDIT sends (bank word = 11), still carry the **source** "
+            "bank. Favorite-loaded PROG dumps carry the source program's "
+            "bank here — never the Favorites bank 119 (see "
             "[favorite slot](favorite-slot.md)). Full identity walkthrough: "
             "[program identity](../program-identity.md)."
         ),
@@ -323,8 +324,9 @@ def render_bank_index_page(*, today: str, nav: str = "") -> str:
             "",
             "- Banks 118–120 are **receive-side** (MIDI app notes): they "
             "never appear at 88–89 in dumps sent by the unit.",
-            "- Mirror **137** equals the bank low nibble on PROG frames and "
-            "the source bank on hold-EDIT frames (`sysex/prog/edit/`).",
+            "- Mirror **136–137** (`nibble_hilo`) equals the bank word on "
+            "PROG frames and the source bank on hold-EDIT frames "
+            "(`sysex/prog/edit/`).",
             "",
         ],
     )
@@ -478,8 +480,8 @@ def render_algorithm_family_flag_page(*, today: str, nav: str = "") -> str:
         source_line=(
             "Corpus scan of all factory presets under `sysex/prog/presets/`."
         ),
-        offsets="97 (mirror at 145)",
-        encoding="raw_u8",
+        offsets="96–97 (mirror at 145)",
+        encoding="nibble_hilo",
         confidence="medium",
         role=(
             "Algorithm/family flag from the factory corpus: Halls all `3`; "
@@ -487,24 +489,26 @@ def render_algorithm_family_flag_page(*, today: str, nav: str = "") -> str:
             "also `3`"
         ),
         description=(
-            "Offset **97** groups presets into two families: every Halls "
-            "preset reads `3`; most other presets read `4`, with a few "
+            "Offsets **96–97** (`nibble_hilo`; high nibble at 96 always "
+            "`00`) group presets into two families: every Halls preset "
+            "reads `3`; most other presets read `4`, with a few "
             "bank-leading exceptions also at `3` (Chambers Large Chamber, "
             "Plates Bright Plate, Rooms Studio A, Halls 2 Large Hall). "
-            "Offset **145** mirrors it as `0` when 97 = `3` and `1` when "
-            "97 = `4`. It is **not** a clean V1/V2 algorithm bit — the "
-            "engine class lives at "
+            "Offset **145** mirrors it as `0` when the value is `3` and "
+            "`1` when the value is `4`. It is **not** a clean V1/V2 "
+            "algorithm bit — the engine class lives at "
             "[engine/bank-class flag](engine-bank-class-flag.md) (offset "
             "130). Not a user parameter; no capture series moves it."
         ),
         body_sections=[
             "## Encoding map",
             "",
-            "| Offset 97 | Mirror 145 | Presets |",
-            "|-----------|-----------:|---------|",
-            "| `3` | `0` | All Halls; Chambers Large Chamber, Plates Bright "
-            "Plate, Rooms Studio A, Halls 2 Large Hall |",
-            "| `4` | `1` | All other factory presets in this corpus |",
+            "| `nibble_hilo` | Offset 96 | Offset 97 | Mirror 145 | Presets |",
+            "|--------------:|----------|----------|-----------:|---------|",
+            "| 3 | `00` | `03` | `0` | All Halls; Chambers Large Chamber, "
+            "Plates Bright Plate, Rooms Studio A, Halls 2 Large Hall |",
+            "| 4 | `00` | `04` | `1` | All other factory presets in this "
+            "corpus |",
             "",
             "## Notes",
             "",
@@ -523,7 +527,7 @@ def render_engine_bank_class_flag_page(*, today: str, nav: str = "") -> str:
         source_line=(
             "Corpus scan of all factory presets under `sysex/prog/presets/`."
         ),
-        offsets="130 (companion 131–132)",
+        offsets="130 (companion 131)",
         encoding="raw_u8",
         confidence="medium",
         role=(
@@ -537,9 +541,10 @@ def render_engine_bank_class_flag_page(*, today: str, nav: str = "") -> str:
             "algorithm), `2` on NonLin. Most parameter-series dumps read "
             "`1` (captured from Large Church, Halls 2); the LF RT "
             "multiply/crossover series read `0` (Large Hall). The "
-            "companion bytes **131–132** are fixed at `02 00` across this "
-            "corpus. Distinct from the "
-            "[algorithm/family flag](algorithm-family-flag.md) at 97/145."
+            "companion byte at **131** is always `02` in this corpus "
+            "(offset **132** is the high nibble of delay level). Distinct "
+            "from the "
+            "[algorithm/family flag](algorithm-family-flag.md) at 96–97/145."
         ),
         body_sections=[
             "## Encoding map",
@@ -553,7 +558,7 @@ def render_engine_bank_class_flag_page(*, today: str, nav: str = "") -> str:
             "## Notes",
             "",
             "- Bank identity itself is at [bank index](bank-index.md) "
-            "(88–89 / mirror 137).",
+            "(88–89 / mirror 136–137).",
             "- Manual context (V1 vs V2, NonLin engine): "
             "[manual-notes.md](../../../docs/manual-notes.md).",
             "",
@@ -856,8 +861,9 @@ IDENTITY_BYTE_PAGES: tuple[dict[str, Any], ...] = (
         "slug": "bank-index",
         "sysex": "`88-89` · `nibble_hilo` · high",
         "description": (
-            "Program bank of the running program (mirror at 137); hold-EDIT "
-            "sends use 11 here while the mirror keeps the source bank."
+            "Program bank of the running program (mirror at 136–137); "
+            "hold-EDIT sends use 11 here while the mirror keeps the source "
+            "bank."
         ),
         "render": render_bank_index_page,
     },
@@ -899,7 +905,7 @@ IDENTITY_BYTE_PAGES: tuple[dict[str, Any], ...] = (
         "name": "Algorithm/family flag",
         "folder": "algorithm family flag",
         "slug": "algorithm-family-flag",
-        "sysex": "`97` · `raw_u8` · medium",
+        "sysex": "`96-97` · `nibble_hilo` · medium",
         "description": (
             "Corpus family flag (Halls all 3; most others 4), mirrored at "
             "145 — not a clean V1/V2 bit."
@@ -913,7 +919,7 @@ IDENTITY_BYTE_PAGES: tuple[dict[str, Any], ...] = (
         "sysex": "`130` · `raw_u8` · medium",
         "description": (
             "Engine/bank class: 0 classic V1 banks, 1 the V2 `* 2` banks, "
-            "2 NonLin; companion 131–132 fixed at `02 00`."
+            "2 NonLin; companion 131 fixed at `02`."
         ),
         "render": render_engine_bank_class_flag_page,
     },

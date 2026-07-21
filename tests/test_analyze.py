@@ -43,8 +43,8 @@ def test_parse_full_as_high():
 def test_diffusion_identity_and_range():
     result = analyze_parameter_folder(PARAMS / "diffusion")
     best = result["best_encoding"]
-    assert best["encoding"] == "raw_u8"
-    assert best["offsets"] == [107]
+    assert best["encoding"] == "nibble_hilo"
+    assert best["offsets"] == [106, 107]
     assert best["score"] == 1.0
     assert result["hypothesis"]["confidence"] == "high"
     value_range = result["value_range"]
@@ -398,9 +398,12 @@ def test_corpus_layout_claims_in_byte_map():
     by_off = {b["offset"]: b for b in byte_map["bytes"]}
 
     assert by_off[106]["status"] == "known"
-    assert "padding" in by_off[106]["role"].lower()
+    assert "diffusion" in by_off[106]["role"].lower()
     assert by_off[97]["status"] == "known"
     assert "family" in by_off[97]["role"].lower()
+    assert by_off[96]["status"] == "known"
+    assert "family" in by_off[96]["role"].lower()
+    assert by_off[96].get("encoding") == "nibble_hilo"
     assert by_off[145]["status"] == "known"
     assert by_off[98]["status"] == "secondary"
     assert by_off[99]["status"] == "secondary"

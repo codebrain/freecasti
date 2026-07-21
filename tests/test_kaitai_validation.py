@@ -52,12 +52,13 @@ def test_kaitai_valid_enum_fields_resolve_to_enum_members(kaitai_prog_parser):
 def test_kaitai_unknown_enum_encoding_returns_raw_int(kaitai_prog_parser):
     """Kaitai Python returns bare ints for out-of-table u1 enums (documented)."""
     raw = bytearray(DIFFUSION_LOW.read_bytes())
-    raw[107] = 0x63
+    raw[106] = 0x0
+    raw[107] = 0x0B  # 11 — outside diffusion 0…10 value map
     parsed = kaitai_prog_parser.from_bytes(bytes(raw))
     diffusion = next(f for f in PROG_FIELDS if f["id"] == "diffusion")
     value = field_parsed_value(parsed, diffusion)
     assert isinstance(value, int)
-    assert value == 0x63
+    assert value == 0x0B
 
 
 def test_kaitai_unknown_nibble_enum_returns_raw_int(kaitai_prog_parser):

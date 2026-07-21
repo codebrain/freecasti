@@ -22,7 +22,7 @@ From Bricasti MIDI notes (all are **channel-less** SysEx):
 | Dump | Send | Contents | This repo |
 |------|------|----------|-----------|
 | **Program** | Hold **PROG** | Running program + edits + **UI state**; may include register/favorite basis | **`sysex/prog/parameters/`** (series), **`sysex/prog/presets/`** (identity), **`sysex/prog/favorites/`** (favorite-loaded) |
-| **Edit buffer** | Hold **EDIT** | Same **157-byte** program-dump frame/header as PROG; bank word **88–89 = 11**, slot often **0**, mirror **137** keeps the source bank | **`sysex/prog/edit/`** |
+| **Edit buffer** | Hold **EDIT** | Same **157-byte** program-dump frame/header as PROG; bank word **88–89 = 11**, slot often **0**, mirror **136–137** keeps the source bank | **`sysex/prog/edit/`** |
 | **System** | Hold **SYSTEM** | I/O, routing, dry/wet, register lock, etc. (not sound parameters) | **`sysex/system/`** — see [../specification/system/](../specification/system/) |
 
 Program dumps explicitly carry UI/edit state — consistent with secondary movers at
@@ -36,7 +36,7 @@ in hold-EDIT captures.
 ## Bank index (MIDI + dumps)
 
 Factory/user bank select at SysEx offsets **88–89** (`nibble_hilo`); mirrored at
-**137**. Confirmed against [program-identity.md](../specification/prog/program-identity.md).
+**136–137** (`nibble_hilo`). Confirmed against [program-identity.md](../specification/prog/program-identity.md).
 
 | Index | Bank | Algorithm (manual) | Offset 130 (engine class) |
 |------:|------|--------------------|---------------------------|
@@ -56,23 +56,24 @@ Factory/user bank select at SysEx offsets **88–89** (`nibble_hilo`); mirrored 
 | 119 | Favorites | Front-panel favorites 1–4 — **receive-side only**: favorite-loaded PROG *sends* carry the source bank/slot at 88–91 plus a favorite-slot marker at offset **94** (see `sysex/prog/favorites/`) | — |
 | 120 | Registers | User registers (5×10) | — |
 
-On hold-**EDIT** sends, offsets **88–89** are always index **11**, while offset
-**137** still equals the source bank’s low nibble (Rooms→2, Ambience→4, …).
+On hold-**EDIT** sends, offsets **88–89** are always index **11**, while
+**136–137** still equal the source bank as `nibble_hilo` (Rooms→2, Ambience→4, …).
 Do not treat 11 as a factory bank in `prog/presets/` validation.
 
 MIDI **program change** bank selects use the same indices (see MIDI app notes).
 
 ## Algorithms and byte-map hints
 
-### V1 vs V2 (offset 97)
+### V1 vs V2 (offsets 96–97)
 
 V2 addendum: classic banks use the **V1** reverb algorithm; **Halls 2 / Plates 2 /
 Rooms 2 / Spaces 2** use the **V2** algorithm (same parameter set, different
-character). Offset **97** (mirrored at **145**) is a **family / algorithm flag**,
-not a user parameter and **not** a clean V1/V2 bit: Halls dumps are all **3**;
-most other banks are **4**, with a few bank-leading presets also **3**
-(Chambers Large Chamber, Plates Bright Plate, Rooms Studio A, Halls 2 Large
-Hall). Mirror: **145=0** when **97=3**, **145=1** when **97=4**.
+character). Offsets **96–97** (`nibble_hilo`; high nibble at 96 always `00`,
+mirrored at **145**) are a **family / algorithm flag**, not a user parameter and
+**not** a clean V1/V2 bit: Halls dumps are all **3**; most other banks are **4**,
+with a few bank-leading presets also **3** (Chambers Large Chamber, Plates Bright
+Plate, Rooms Studio A, Halls 2 Large Hall). Mirror: **145=0** when value **3**,
+**145=1** when value **4**.
 
 ### Engine/bank-class flag (offset 130)
 
@@ -86,7 +87,8 @@ Offset **130** selects engine/bank class in this corpus:
 
 Most parameter-series dumps show **1** because they were captured from **Large
 Church** (Halls 2); the **LF RT multiply/crossover** series show **0** (captured
-from Large Hall, classic Halls). Companion **131–132** is always `02 00` here —
+from Large Hall, classic Halls). Companion **131** is always `02` here (offset
+**132** is the high nibble of delay level) —
 see [byte-map-overview.md](../specification/prog/byte-map-overview.md).
 
 ### Program slots (Rooms)
@@ -117,21 +119,22 @@ Base manual lists **0–20**. V2 addendum adds **21–31** as larger early-refle
 variants (same early engine as V1). This unit’s captures use **0–31** at offsets
 **128–129**.
 
-### Delay block (V2+, offsets 133–139)
+### Delay block (V2+, offsets 132–139)
 
 Added in firmware V2 on **all** presets (V1 and V2 algorithms):
 
-- **Delay Level** — off or −20…−6 dB
-- **Delay Time** — 100 ms…1 s (eight diffused voices into late reverb)
-- **Delay Modulation** — off, low…high
+- **Delay Level** — off or −20…−6 dB (`nibble_hilo` @ 132–133)
+- **Delay Time** — 100 ms…1 s (eight diffused voices into late reverb; @ 134–135)
+- **Delay Modulation** — off, low…high (`nibble_hilo` @ 138–139)
 
-Requires V2 firmware.
+Requires V2 firmware. Bank-index mirror sits between delay time and delay
+modulation at **136–137**.
 
 ## Parameter semantics (manual vs SysEx)
 
 | Parameter | Manual note | SysEx note |
 |-----------|-------------|------------|
-| Diffusion | “Percentage change from the **preset’s initial value**” | Stored as raw identity @ 107 in dumps — likely absolute encoding, UI-relative |
+| Diffusion | “Percentage change from the **preset’s initial value**” | Stored as identity `nibble_hilo` @ 106–107 — likely absolute encoding, UI-relative |
 | HF / LF RT multiply | Scaling of **Reverb Time** | HF: `0.05×enc+0.2` confirmed; LF @ 118–119: 0.05 steps ≤ 2.0×, then 0.1 steps to 4.0× (captured) |
 | Early/Reverb Mix | Two 0–20 ranges (early vs late) | Balance path **0…40** @ 124–125 (`A/B` UI; dumps named `A.B`) |
 | VLF Cut | 0…−18 dB | This unit to **−20** @ 122–123 |
@@ -172,8 +175,8 @@ display-level secondary coupling on the same row.
 | **93** | **`register_bank`** — manual Bank (`raw_u8`, B0–B4 = `00`–`04`) of the register *loaded as the running basis* (a store alone doesn't update it); `00` on factory dumps |
 | **94** | **`favorite_slot`** — `(slot-1)*2` (`00`/`02`/`04`/`06`) when the running program was loaded from front-panel favorite 1–4 (PROG frames; persists across edits); `08` = not from a favorite (all factory/series and hold-EDIT dumps — previously misread as a structure/version constant) |
 | **95** | **`register`** — manual Register within bank (`0`–`9`) of the *loaded* register basis; `00` on factory dumps |
-| **96** | Reserved/unknown (`00` in witnessed captures) |
-| **EDIT** identity | Program bank **11** @ 88–89; source factory slot @ 90–91; source bank @ mirror **137**; see `sysex/prog/edit/` and `sysex/prog/edit/registers/` |
+| **96–97** | Algorithm/family flag (`nibble_hilo`; high nibble at 96 always `00`); mirrored at **145** |
+| **EDIT** identity | Program bank **11** @ 88–89; source factory slot @ 90–91; source bank @ mirror **136–137**; see `sysex/prog/edit/` and `sysex/prog/edit/registers/` |
 | **SYSTEM** layout | 77 bytes, header `70 08 02 00`; **8** settings captured — see [system/](../specification/system/) |
 
 ### Favorites (front-panel shortcuts 1–4)
@@ -229,6 +232,6 @@ Remaining optional work:
 
 - Bank hints: `HINT_BANK_INDEX` / `EDIT_DUMP_BANK_INDEX` in `src/m7_sysex/prog/names.py`
 - Printed ranges: `src/m7_sysex/prog/catalog.py`
-- Corpus meta bytes (97 / 130 / reserved): `src/m7_sysex/prog/corpus_layout.py`
+- Corpus meta bytes (96–97 family flag / 130 engine class / reserved): `src/m7_sysex/prog/corpus_layout.py`
 - SYSTEM hints: `src/m7_sysex/system/catalog.py`
 - Name alias (`NonLin` → `Nonlin`): `check_name_bytes()` in `prog/names.py`

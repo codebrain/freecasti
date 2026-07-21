@@ -120,6 +120,7 @@
           "file": "-20db.syx",
           "encoded": 1,
           "raw_bytes": [
+            "00",
             "01"
           ],
           "label": -20,
@@ -129,6 +130,7 @@
           "file": "-19db.syx",
           "encoded": 2,
           "raw_bytes": [
+            "00",
             "02"
           ],
           "label": -19,
@@ -138,6 +140,7 @@
           "file": "-7db.syx",
           "encoded": 14,
           "raw_bytes": [
+            "00",
             "0E"
           ],
           "label": -7,
@@ -147,6 +150,7 @@
           "file": "-6db.syx",
           "encoded": 15,
           "raw_bytes": [
+            "00",
             "0F"
           ],
           "label": -6,
@@ -185,6 +189,7 @@
       "endpoint": "off",
       "encoded_value": 0,
       "raw_bytes": [
+        "00",
         "00"
       ],
       "note": "discrete off (not converted through the mid-value scale)"
@@ -199,6 +204,7 @@
           "file": "-20db.syx",
           "encoded": 1,
           "raw_bytes": [
+            "00",
             "01"
           ],
           "label": -20,
@@ -208,6 +214,7 @@
           "file": "-19db.syx",
           "encoded": 2,
           "raw_bytes": [
+            "00",
             "02"
           ],
           "label": -19,
@@ -217,6 +224,7 @@
           "file": "-7db.syx",
           "encoded": 14,
           "raw_bytes": [
+            "00",
             "0E"
           ],
           "label": -7,
@@ -226,6 +234,7 @@
           "file": "-6db.syx",
           "encoded": 15,
           "raw_bytes": [
+            "00",
             "0F"
           ],
           "label": -6,
@@ -286,6 +295,64 @@
     "agreement": "match"
   },
   "encoding_hypotheses": [
+    {
+      "encoding": "nibble_hilo",
+      "offsets": [
+        132,
+        133
+      ],
+      "score": 1.0,
+      "matched": 5,
+      "total": 5,
+      "scale": 1.0,
+      "offset": -21.0,
+      "mapping": [
+        {
+          "label": -20.0,
+          "encoded": 1,
+          "raw_bytes": [
+            "00",
+            "01"
+          ]
+        },
+        {
+          "label": -19.0,
+          "encoded": 2,
+          "raw_bytes": [
+            "00",
+            "02"
+          ]
+        },
+        {
+          "label": -13.0,
+          "encoded": 8,
+          "raw_bytes": [
+            "00",
+            "08"
+          ]
+        },
+        {
+          "label": -7.0,
+          "encoded": 14,
+          "raw_bytes": [
+            "00",
+            "0E"
+          ]
+        },
+        {
+          "label": -6.0,
+          "encoded": 15,
+          "raw_bytes": [
+            "00",
+            "0F"
+          ]
+        }
+      ],
+      "notes": "label = encoded + (-21); from agreeing extreme<->adjacent edge slopes",
+      "r_squared": null,
+      "exact": true,
+      "monotonic_score": 1.0
+    },
     {
       "encoding": "raw_u8",
       "offsets": [
@@ -392,8 +459,9 @@
     }
   ],
   "best_encoding": {
-    "encoding": "raw_u8",
+    "encoding": "nibble_hilo",
     "offsets": [
+      132,
       133
     ],
     "score": 1.0,
@@ -406,6 +474,7 @@
         "label": -20.0,
         "encoded": 1,
         "raw_bytes": [
+          "00",
           "01"
         ]
       },
@@ -413,6 +482,7 @@
         "label": -19.0,
         "encoded": 2,
         "raw_bytes": [
+          "00",
           "02"
         ]
       },
@@ -420,6 +490,7 @@
         "label": -13.0,
         "encoded": 8,
         "raw_bytes": [
+          "00",
           "08"
         ]
       },
@@ -427,6 +498,7 @@
         "label": -7.0,
         "encoded": 14,
         "raw_bytes": [
+          "00",
           "0E"
         ]
       },
@@ -434,6 +506,7 @@
         "label": -6.0,
         "encoded": 15,
         "raw_bytes": [
+          "00",
           "0F"
         ]
       }
@@ -444,19 +517,21 @@
     "monotonic_score": 1.0
   },
   "hypothesis": {
-    "summary": "Parameter 'delay level' appears at SysEx offset(s) [133]. using encoding 'raw_u8'. (label = encoded + (-21)). off encoded=0; range -20 ... -6 dB. extreme<->adjacent edge slopes agree (dlabel/denc~=1). Offsets [152, 153, 154, 155] also change and are treated as checksum nibbles. Additional non-checksum offsets 147 (display low nibble) also change (edit/UI state, not the parameter word). All post-name payload bytes are nibble-sized (0x00-0x0F).",
+    "summary": "Parameter 'delay level' appears at SysEx offset(s) [132, 133]. using encoding 'nibble_hilo'. (label = encoded + (-21)). off encoded=0; range -20 ... -6 dB. extreme<->adjacent edge slopes agree (dlabel/denc~=1). Offsets [152, 153, 154, 155] also change and are treated as checksum nibbles. Additional non-checksum offsets 147 (display low nibble) also change (edit/UI state, not the parameter word). All post-name payload bytes are nibble-sized (0x00-0x0F).",
     "confidence": "high",
     "match_rate": 1.0,
     "how_to_set": {
       "offsets": [
+        132,
         133
       ],
-      "encoding": "raw_u8",
+      "encoding": "nibble_hilo",
       "scale": 1.0,
       "offset": -21.0,
       "encode_steps": [
         "encoded = desired_label - (-21)",
-        "byte[offset0] = encoded & 0x0F  # M7 payload nibbles are 0x00-0x0F",
+        "byte[offset0] = (encoded >> 4) & 0x0F",
+        "byte[offset1] = encoded & 0x0F",
         "recompute trailing checksum: CRC-16/ARC over bytes[8:152], pack as four high-nibble-first SysEx bytes at offsets 152-155"
       ],
       "notes": "label = encoded + (-21); from agreeing extreme<->adjacent edge slopes"
@@ -487,11 +562,13 @@
         "155": "0D"
       },
       "decoded_parameter": {
-        "encoding": "raw_u8",
+        "encoding": "nibble_hilo",
         "offsets": [
+          132,
           133
         ],
         "raw_bytes": [
+          "00",
           "00"
         ],
         "encoded_value": 0,
@@ -522,11 +599,13 @@
         "155": "04"
       },
       "decoded_parameter": {
-        "encoding": "raw_u8",
+        "encoding": "nibble_hilo",
         "offsets": [
+          132,
           133
         ],
         "raw_bytes": [
+          "00",
           "01"
         ],
         "encoded_value": 1,
@@ -557,11 +636,13 @@
         "155": "0D"
       },
       "decoded_parameter": {
-        "encoding": "raw_u8",
+        "encoding": "nibble_hilo",
         "offsets": [
+          132,
           133
         ],
         "raw_bytes": [
+          "00",
           "02"
         ],
         "encoded_value": 2,
@@ -592,11 +673,13 @@
         "155": "0F"
       },
       "decoded_parameter": {
-        "encoding": "raw_u8",
+        "encoding": "nibble_hilo",
         "offsets": [
+          132,
           133
         ],
         "raw_bytes": [
+          "00",
           "08"
         ],
         "encoded_value": 8,
@@ -627,11 +710,13 @@
         "155": "0E"
       },
       "decoded_parameter": {
-        "encoding": "raw_u8",
+        "encoding": "nibble_hilo",
         "offsets": [
+          132,
           133
         ],
         "raw_bytes": [
+          "00",
           "0E"
         ],
         "encoded_value": 14,
@@ -662,11 +747,13 @@
         "155": "0E"
       },
       "decoded_parameter": {
-        "encoding": "raw_u8",
+        "encoding": "nibble_hilo",
         "offsets": [
+          132,
           133
         ],
         "raw_bytes": [
+          "00",
           "0F"
         ],
         "encoded_value": 15,

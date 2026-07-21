@@ -83,22 +83,15 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "label": "register",
     },
     {
-        "offsets": [96],
-        "status": "known",
-        "role": "Reserved/unknown (always `00` in witnessed captures)",
-        "encoding": None,
-        "confidence": "medium",
-        "label": "reserved (always 0)",
-    },
-    {
-        "offsets": [97],
+        "offsets": [96, 97],
         "status": "known",
         "role": (
-            "Algorithm/family flag from corpus presets (Halls all 3; most other "
-            "presets 4, with a few bank-leading exceptions also 3). Mirrored at "
-            "145 as 0 when 97=3 and 1 when 97=4 — not a clean V1/V2 bit"
+            "Algorithm/family flag (`nibble_hilo`) from corpus presets "
+            "(Halls all 3; most other presets 4, with a few bank-leading "
+            "exceptions also 3). High nibble at 96 is always 0. Mirrored at "
+            "145 as 0 when value=3 and 1 when value=4 — not a clean V1/V2 bit"
         ),
-        "encoding": "raw_u8",
+        "encoding": "nibble_hilo",
         "confidence": "medium",
         "label": "algorithm/family flag",
     },
@@ -116,30 +109,6 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "label": "selected menu index",
     },
     {
-        "offsets": [106],
-        "status": "known",
-        "role": "Reserved padding (always 0) between predelay and diffusion",
-        "encoding": None,
-        "confidence": "medium",
-        "label": "reserved padding",
-    },
-    {
-        "offsets": [108],
-        "status": "known",
-        "role": "Reserved padding (always 0) between diffusion and density",
-        "encoding": None,
-        "confidence": "medium",
-        "label": "reserved padding",
-    },
-    {
-        "offsets": [110],
-        "status": "known",
-        "role": "Reserved padding (always 0) between density and modulation",
-        "encoding": None,
-        "confidence": "medium",
-        "label": "reserved padding",
-    },
-    {
         "offsets": [130],
         "status": "known",
         "role": (
@@ -153,28 +122,12 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "label": "engine/bank-class flag",
     },
     {
-        "offsets": [131, 132],
+        "offsets": [131],
         "status": "known",
-        "role": "Fixed companion to offset 130 (always `02 00` in this corpus)",
+        "role": "Fixed companion to offset 130 (always `02` in this corpus)",
         "encoding": None,
         "confidence": "medium",
-        "label": "fixed (always 02 00)",
-    },
-    {
-        "offsets": [136],
-        "status": "known",
-        "role": "Reserved (always 0) between delay time and bank-index mirror",
-        "encoding": None,
-        "confidence": "medium",
-        "label": "reserved (always 0)",
-    },
-    {
-        "offsets": [138],
-        "status": "known",
-        "role": "Reserved (always 0) between bank-index mirror and delay modulation",
-        "encoding": None,
-        "confidence": "medium",
-        "label": "reserved (always 0)",
+        "label": "fixed (always 02)",
     },
     {
         "offsets": [140, 141, 142, 143, 144],
@@ -188,8 +141,8 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "offsets": [145],
         "status": "known",
         "role": (
-            "Mirror of algorithm/family flag at 97 "
-            "(145=0 when 97=3; 145=1 when 97=4 in this corpus)"
+            "Mirror of algorithm/family flag at 96–97 "
+            "(145=0 when value=3; 145=1 when value=4 in this corpus)"
         ),
         "encoding": "raw_u8",
         "confidence": "medium",
@@ -240,8 +193,8 @@ def claim_corpus_layout(
             # sysex/prog/favorites/).
             if verified.get(94) not in (None, 8):
                 continue
-        if sysex_root is not None and "always 02 00" in (spec.get("label") or ""):
-            if verified.get(131) not in (None, 2) or verified.get(132) not in (None, 0):
+        if sysex_root is not None and "always 02" in (spec.get("label") or ""):
+            if verified.get(131) not in (None, 2):
                 continue
 
         claim(

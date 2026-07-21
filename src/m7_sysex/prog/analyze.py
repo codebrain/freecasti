@@ -32,6 +32,7 @@ from ..series import (
     fit_to_dict,
     group_regions,
     infer_label_from_encoded,
+    leading_zero_nibble_pairs,
     resolve_value_range,
     secondary_offsets,
     write_analysis,
@@ -94,9 +95,15 @@ def analyze_parameter_folder(folder: Path) -> dict[str, Any]:
     ]
 
     if numeric_dumps and param_candidate_offsets:
-        # Prefer contiguous pairs within param candidates.
+        # Prefer contiguous pairs within param candidates, plus pad+value
+        # pairs where the preceding wire byte is a constant zero nibble.
         pair_offsets = contiguous_pairs(param_candidate_offsets)
-        tried: set[tuple[int, ...]] = set()
+        pad_pairs = leading_zero_nibble_pairs(
+            [p["raw"] for p in parsed],
+            param_candidate_offsets,
+            payload_start=payload_start,
+        )
+        tried: set[tuple[str, tuple[int, ...]]] = set()
 
         for pair in pair_offsets:
             for encoding in ("nibble_hilo", "nibble_lohi", "midi14_be", "midi14_le"):
@@ -106,6 +113,14 @@ def analyze_parameter_folder(folder: Path) -> dict[str, Any]:
                 tried.add(key)
                 fit = fit_numeric_encoding(numeric_dumps, pair, encoding)
                 encoding_results.append(fit_to_dict(fit))
+
+        for pair in pad_pairs:
+            key = ("nibble_hilo", pair)
+            if key in tried:
+                continue
+            tried.add(key)
+            fit = fit_numeric_encoding(numeric_dumps, pair, "nibble_hilo")
+            encoding_results.append(fit_to_dict(fit))
 
         for off in param_candidate_offsets:
             fit = fit_numeric_encoding(numeric_dumps, (off,), "raw_u8")

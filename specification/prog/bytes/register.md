@@ -37,7 +37,7 @@ Witness sources: register-basis hold-EDIT dumps (`sysex/prog/edit/registers/`).
 ## Notes
 
 - Filename convention in the corpus: `b0-…/slot-3.syx` means Bank 0, Register 3.
-- Reserved offset **96** stays `00` in witnessed captures.
+- Offsets **96–97** (`nibble_hilo` algorithm/family flag) sit immediately after this byte; high nibble at 96 stays `00`.
 
 ## Related
 

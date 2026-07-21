@@ -271,8 +271,17 @@ def encoded_int_from_field(parsed: Any, field: dict[str, Any]) -> int:
 
 
 def field_parsed_value(parsed: Any, field: dict[str, Any]) -> Any:
-    """Return the parsed field value (enum member or nibble wrapper)."""
-    return getattr(parsed, field["id"])
+    """Return the parsed semantic value (enum member or bare int).
+
+    Single-byte enum fields are returned directly. ``nibble_hilo`` wrappers
+    expose the mapped value on ``.value`` (enum when in-table, else int).
+    """
+    val = getattr(parsed, field["id"])
+    if isinstance(val, Enum):
+        return val
+    if hasattr(val, "hi_nibble") and hasattr(val, "value"):
+        return val.value
+    return val
 
 
 def assert_message_roundtrip(

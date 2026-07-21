@@ -15,7 +15,7 @@ _Generated 2026-07-21. Register hold-EDIT captures under `sysex/prog/edit/regist
 
 ## Description
 
-When a **User Register** is loaded as the running program basis, offset **93** stores the register **Bank** (owner's manual: 5 Banks of 10 Registers). Witnessed exhaustively as `00`–`04` in `fullsweep-rooms-studio-a.syx`. A **store alone does not update it**: the delay-edit and rename captures (stored to B1 R1 while the basis remained the factory program) read `00`, while `charset-b1s1-rt5s-stored.syx` reads `01` because B1 R0 was the active basis at dump time. Factory and parameter-series dumps keep this at `00`. Distinct from factory **program bank** at 88–89 / mirror 137. Pair with [register](register.md) at offset 95.
+When a **User Register** is loaded as the running program basis, offset **93** stores the register **Bank** (owner's manual: 5 Banks of 10 Registers). Witnessed exhaustively as `00`–`04` in `fullsweep-rooms-studio-a.syx`. A **store alone does not update it**: the delay-edit and rename captures (stored to B1 R1 while the basis remained the factory program) read `00`, while `charset-b1s1-rt5s-stored.syx` reads `01` because B1 R0 was the active basis at dump time. Factory and parameter-series dumps keep this at `00`. Distinct from factory **program bank** at 88–89 / mirror 136–137. Pair with [register](register.md) at offset 95.
 
 ## Encoding map
 

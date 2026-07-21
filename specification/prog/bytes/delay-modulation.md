@@ -7,8 +7,8 @@ _Generated 2026-07-21. Source folder: `sysex/prog/parameters/delay modulation/`.
 
 ## SysEx summary
 
-- **Offsets:** 139
-- **Encoding:** `raw_u8`
+- **Offsets:** 138-139
+- **Encoding:** `nibble_hilo`
 - **Confidence:** high
 - **Range:** off encoded=0; range 0 ... 10
 - **Layout:** [byte map overview](../byte-map-overview.md) · [full map](../byte-map.md)
@@ -25,38 +25,38 @@ _Source: [Bricasti M7 V2 Manual Addendum](https://www.bricasti.com/images/M7_V2_
 
 Witness sources: [encoding sources](../../../docs/encoding-sources.md) (`dump`, `provided`, `inferred`, preset links).
 
-| Encoded | Offset 139 | Label | Source |
-| --- | --- | --- | --- |
-| 0 | `00` | off | dump, inferred |
-| 1 | `01` | 0 | dump, [1](../presets/halls/reflect-hall-b.md), [2](../presets/plates/repro-plate.md), [3](../presets/plates-2/vocal-plate-b.md), [4](../presets/spaces-2/cathedral.md) |
-| 2 | `02` | 1 | dump, [1](../presets/chambers/tiled-chamber.md), [2](../presets/rooms-2/wide-room.md), [3](../presets/spaces/reflect-chapel.md) |
-| 3 | `03` | 2 | dump, [1](../presets/chambers/stone-chamber.md), [2](../presets/halls/pepes-hall-b.md) |
-| 4 | `04` | 3 | [1](../presets/plates-2/fat-plate.md), [2](../presets/spaces-2/dark-warm-room.md), [3](../presets/spaces-2/oak-ballroom.md), [4](../presets/spaces-2/shimmering-sky.md) |
-| 5 | `05` | 4 | [1](../presets/chambers/fat-chamber.md), [2](../presets/rooms-2/guitar-room.md), [3](../presets/spaces-2/ice-house.md) |
-| 6 | `06` | 5 | [1](../presets/plates-2/vocal-shimmer.md) |
-| 7 | `07` | 6 | [1](../presets/rooms-2/lush-room.md), [2](../presets/spaces/reflect-church.md) |
-| 8 | `08` | 7 | dump, [1](../presets/halls-2/live-hall.md), [2](../presets/spaces-2/live-room.md) |
-| 9 | `09` | 8 | [1](../presets/rooms-2/vocal-chamber.md) |
-| 10 | `0A` | 9 | dump |
-| 11 | `0B` | 10 | dump |
+| `nibble_hilo` | Offset 138 | Offset 139 | Label | Source |
+| --- | --- | --- | --- | --- |
+| 0 | `00` | `00` | off | dump, inferred |
+| 1 | `00` | `01` | 0 | dump, [1](../presets/halls/reflect-hall-b.md), [2](../presets/plates/repro-plate.md), [3](../presets/plates-2/vocal-plate-b.md), [4](../presets/spaces-2/cathedral.md) |
+| 2 | `00` | `02` | 1 | dump, [1](../presets/chambers/tiled-chamber.md), [2](../presets/rooms-2/wide-room.md), [3](../presets/spaces/reflect-chapel.md) |
+| 3 | `00` | `03` | 2 | dump, [1](../presets/chambers/stone-chamber.md), [2](../presets/halls/pepes-hall-b.md) |
+| 4 | `00` | `04` | 3 | [1](../presets/plates-2/fat-plate.md), [2](../presets/spaces-2/dark-warm-room.md), [3](../presets/spaces-2/oak-ballroom.md), [4](../presets/spaces-2/shimmering-sky.md) |
+| 5 | `00` | `05` | 4 | [1](../presets/chambers/fat-chamber.md), [2](../presets/rooms-2/guitar-room.md), [3](../presets/spaces-2/ice-house.md) |
+| 6 | `00` | `06` | 5 | [1](../presets/plates-2/vocal-shimmer.md) |
+| 7 | `00` | `07` | 6 | [1](../presets/rooms-2/lush-room.md), [2](../presets/spaces/reflect-church.md) |
+| 8 | `00` | `08` | 7 | dump, [1](../presets/halls-2/live-hall.md), [2](../presets/spaces-2/live-room.md) |
+| 9 | `00` | `09` | 8 | [1](../presets/rooms-2/vocal-chamber.md) |
+| 10 | `00` | `0A` | 9 | dump |
+| 11 | `00` | `0B` | 10 | dump |
 
 ### Captured dumps
 
 Sparse series used as anchors (plus secondary/checksum bytes that moved with this capture stream):
 
-| Label | Offset 139 | Encoded | Display 146–147 | display `nibble_hilo` | Checksum 152-155 | Source |
-| --- | --- | --- | --- | --- | --- | --- |
-| off (-1) | `00` | 0 | `0B 0A` | 186 | `06` `00` `0E` `05` | dump |
-| low (0) | `01` | 1 | `0B 0B` | 187 | `02` `01` `0D` `0A` | dump |
-| 1 | `02` | 2 | `0B 0D` | 189 | `0E` `02` `05` `07` | dump |
-| 2 | `03` | 3 | `0B 0E` | 190 | `06` `03` `01` `01` | dump |
-| 7 | `08` | 8 | `0B 0E` | 190 | `0E` `08` `00` `0B` | dump |
-| 9 | `0A` | 10 | `0B 0F` | 191 | `06` `0A` `03` `01` | dump |
-| high (10) | `0B` | 11 | `0C 00` | 192 | `05` `0D` `06` `06` | dump |
+| Label | Offset 138 | Offset 139 | `nibble_hilo` | Display 146–147 | display `nibble_hilo` | Checksum 152-155 | Source |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| off (-1) | `??` | `00` | 0 | `0B 0A` | 186 | `06` `00` `0E` `05` | dump |
+| low (0) | `??` | `01` | 1 | `0B 0B` | 187 | `02` `01` `0D` `0A` | dump |
+| 1 | `??` | `02` | 2 | `0B 0D` | 189 | `0E` `02` `05` `07` | dump |
+| 2 | `??` | `03` | 3 | `0B 0E` | 190 | `06` `03` `01` `01` | dump |
+| 7 | `??` | `08` | 8 | `0B 0E` | 190 | `0E` `08` `00` `0B` | dump |
+| 9 | `??` | `0A` | 10 | `0B 0F` | 191 | `06` `0A` `03` `01` | dump |
+| high (10) | `??` | `0B` | 11 | `0C 00` | 192 | `05` `0D` `06` `06` | dump |
 
 ## Interpretation
 
-- **Primary field:** offsets **139**, encoding `raw_u8` (encoded + (-1)).
+- **Primary field:** offsets **138-139**, encoding `nibble_hilo` (encoded + (-1)).
 - **Confidence:** high (4/4 dumps matched, 100%).
 - **Catalog hint (Bricasti):** Delay Modulation - printed 1 ... 9 [differs_from_hint] - hint only; dumps win.
 - **Catalog notes:** Off, Low 1 - 9 High (same shape as reverb Modulation). V2 addendum parameter.
@@ -69,8 +69,9 @@ Sparse series used as anchors (plus secondary/checksum bytes that moved with thi
 - **Sampling:** extremes, adjacents, 2 sample mid(s) (not every step).
 - **How to set:**
   1. encoded = desired_label - (-1)
-  2. byte[offset0] = encoded & 0x0F  # M7 payload nibbles are 0x00-0x0F
-  3. recompute trailing checksum: CRC-16/ARC over bytes[8:152], pack as four high-nibble-first SysEx bytes at offsets 152-155
+  2. byte[offset0] = (encoded >> 4) & 0x0F
+  3. byte[offset1] = encoded & 0x0F
+  4. recompute trailing checksum: CRC-16/ARC over bytes[8:152], pack as four high-nibble-first SysEx bytes at offsets 152-155
 - **Secondary offsets:** 146–147 (`nibble_hilo` display) (edit/UI state, not the parameter word).
 - **Checksum nibbles:** 152-155 (CRC-16/ARC over offsets 8-151, packed high-nibble-first).
 
@@ -87,7 +88,7 @@ Documented in the spec (encoding map / manual) but not yet witnessed in a commit
   - encoded **7** → 6 (preset)
   - encoded **9** → 8 (preset)
 - **Documented gaps (no row at all):** none between documented min/max.
-- **Wire nibbles never observed (`0`–`F`):** offset 139: `C` `D` `E` `F`
+- **Wire nibbles never observed (`0`–`F`):** offset 138 (high): `1` `2` `3` `4` `5` `6` `7` `8` `9` `A` `B` `C` `D` `E` `F`; offset 139 (low): `C` `D` `E` `F`
 
 ## Other parameters
 

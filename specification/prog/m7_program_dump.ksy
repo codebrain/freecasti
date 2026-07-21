@@ -93,16 +93,12 @@ seq:
       Locked encoding table: 10 known encoded value(s)
     type: u1
     enum: register_values
-  - id: reserved_always_0
-    doc: |
-      Reserved/unknown (always `00` in witnessed captures)
-    type: u1
   - id: algorithm_family_flag
     doc: |
-      Algorithm/family flag from corpus presets (Halls all 3; most other
-      presets 4, with a few bank-leading exceptions also 3). Mirrored at 145
-      as 0 when 97=3 and ...
-    type: u1
+      Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3;
+      most other presets 4, with a few bank-leading exceptions also 3). High
+      nibble at 96 i...
+    type: nibble_u8_hilo
   - id: selected_menu_index
     doc: |
       Selected front-panel menu index (`nibble_hilo`, 0–17) when a parameter
@@ -130,41 +126,26 @@ seq:
       Parameter series: sysex/prog/parameters/predelay/
       Locked encoding table: 86 known encoded value(s)
     type: predelay_encoded
-  - id: reserved_padding
-    doc: |
-      Reserved padding (always 0) between predelay and diffusion
-    type: u1
   - id: diffusion
     doc: |
       Sets initial diffusion of the reverb. Displayed and controlled as a
       percentage change from the initial value defined by the preset.
       Parameter series: sysex/prog/parameters/diffusion/
       Locked encoding table: 11 known encoded value(s)
-    type: u1
-    enum: diffusion_values
-  - id: reserved_padding_108
-    doc: |
-      Reserved padding (always 0) between diffusion and density
-    type: u1
+    type: diffusion_encoded
   - id: density
     doc: |
       Sets how the echo density builds up over time.
       Parameter series: sysex/prog/parameters/density/
       Locked encoding table: 11 known encoded value(s)
-    type: u1
-    enum: density_values
-  - id: reserved_padding_110
-    doc: |
-      Reserved padding (always 0) between density and modulation
-    type: u1
+    type: density_encoded
   - id: modulation
     doc: |
       Controls the amount of modulation and pitch variation in the later part
       of the reverberant field.
       Parameter series: sysex/prog/parameters/modulation/
       Locked encoding table: 12 known encoded value(s)
-    type: u1
-    enum: modulation_values
+    type: modulation_encoded
   - id: rolloff
     doc: |
       Low pass filter applied to the overall output of the reverb.
@@ -234,10 +215,10 @@ seq:
       banks (Halls 2…Spaces 2), 2 on NonLin. Most parameter-series dumps show
       1 (captured fro...
     type: u1
-  - id: fixed_always_02_00
+  - id: fixed_always_02
     doc: |
-      Fixed companion to offset 130 (always `02 00` in this corpus)
-    size: 2
+      Fixed companion to offset 130 (always `02` in this corpus)
+    type: u1
   - id: delay_level
     doc: |
       Level of the delayed input injected into the start of the late reverb
@@ -245,8 +226,7 @@ seq:
       delayed, diffused, and band-limited by Rolloff.
       Parameter series: sysex/prog/parameters/delay level/
       Locked encoding table: 16 known encoded value(s)
-    type: u1
-    enum: delay_level_values
+    type: delay_level_encoded
   - id: delay_time
     doc: |
       Delay time for a diffused set of eight voices spread in time (controlled
@@ -254,19 +234,12 @@ seq:
       Parameter series: sysex/prog/parameters/delay time/
       Locked encoding table: 113 known encoded value(s)
     type: delay_time_encoded
-  - id: reserved_always_0_136
-    doc: |
-      Reserved (always 0) between delay time and bank-index mirror
-    type: u1
   - id: bank_index_mirror
     doc: |
-      Bank index mirror (equals offset 89) from sysex/prog/presets/; on
-      hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11
-    type: u1
-  - id: reserved_always_0_138
-    doc: |
-      Reserved (always 0) between bank-index mirror and delay modulation
-    type: u1
+      Bank index mirror (`nibble_hilo`, equals bank word at 88–89) from
+      sysex/prog/presets/; on hold-EDIT dumps this stays the source bank while
+      88-89 are Edit ind...
+    type: nibble_u8_hilo
   - id: delay_modulation
     doc: |
       Modulates the delay voices only (not the reverb), similar in character
@@ -274,16 +247,15 @@ seq:
       settings are more random and deeper.
       Parameter series: sysex/prog/parameters/delay modulation/
       Locked encoding table: 12 known encoded value(s)
-    type: u1
-    enum: delay_modulation_values
-  - id: reserved_always_0_140
+    type: delay_modulation_encoded
+  - id: reserved_always_0
     doc: |
       Reserved block (always 0 in this corpus)
     size: 5
   - id: family_flag_mirror
     doc: |
-      Mirror of algorithm/family flag at 97 (145=0 when 97=3; 145=1 when 97=4
-      in this corpus)
+      Mirror of algorithm/family flag at 96–97 (145=0 when value=3; 145=1 when
+      value=4 in this corpus)
     type: u1
   - id: display
     doc: |
@@ -1338,6 +1310,60 @@ types:
         value: (hi_nibble << 4) | lo_nibble
         enum: predelay_values
 
+  diffusion_encoded:
+    doc: |
+      Two SysEx data bytes (each 0x00-0x0F); decoded value is a
+      member of diffusion_values.
+    seq:
+      - id: hi_nibble
+        type: u1
+        valid:
+          max: 15
+      - id: lo_nibble
+        type: u1
+        valid:
+          max: 15
+    instances:
+      value:
+        value: (hi_nibble << 4) | lo_nibble
+        enum: diffusion_values
+
+  density_encoded:
+    doc: |
+      Two SysEx data bytes (each 0x00-0x0F); decoded value is a
+      member of density_values.
+    seq:
+      - id: hi_nibble
+        type: u1
+        valid:
+          max: 15
+      - id: lo_nibble
+        type: u1
+        valid:
+          max: 15
+    instances:
+      value:
+        value: (hi_nibble << 4) | lo_nibble
+        enum: density_values
+
+  modulation_encoded:
+    doc: |
+      Two SysEx data bytes (each 0x00-0x0F); decoded value is a
+      member of modulation_values.
+    seq:
+      - id: hi_nibble
+        type: u1
+        valid:
+          max: 15
+      - id: lo_nibble
+        type: u1
+        valid:
+          max: 15
+    instances:
+      value:
+        value: (hi_nibble << 4) | lo_nibble
+        enum: modulation_values
+
   rolloff_encoded:
     doc: |
       Two SysEx data bytes (each 0x00-0x0F); decoded value is a
@@ -1500,6 +1526,24 @@ types:
         value: (hi_nibble << 4) | lo_nibble
         enum: early_select_values
 
+  delay_level_encoded:
+    doc: |
+      Two SysEx data bytes (each 0x00-0x0F); decoded value is a
+      member of delay_level_values.
+    seq:
+      - id: hi_nibble
+        type: u1
+        valid:
+          max: 15
+      - id: lo_nibble
+        type: u1
+        valid:
+          max: 15
+    instances:
+      value:
+        value: (hi_nibble << 4) | lo_nibble
+        enum: delay_level_values
+
   delay_time_encoded:
     doc: |
       Two SysEx data bytes (each 0x00-0x0F); decoded value is a
@@ -1517,6 +1561,24 @@ types:
       value:
         value: (hi_nibble << 4) | lo_nibble
         enum: delay_time_values
+
+  delay_modulation_encoded:
+    doc: |
+      Two SysEx data bytes (each 0x00-0x0F); decoded value is a
+      member of delay_modulation_values.
+    seq:
+      - id: hi_nibble
+        type: u1
+        valid:
+          max: 15
+      - id: lo_nibble
+        type: u1
+        valid:
+          max: 15
+    instances:
+      value:
+        value: (hi_nibble << 4) | lo_nibble
+        enum: delay_modulation_values
 
   display_encoded:
     doc: |
@@ -1693,13 +1755,13 @@ types:
       diffusion:
         doc: |
           Stored diffusion (bits 120-123); equals live payload field
-          diffusion @ 107 unless the register has unstored edits
+          diffusion @ 106-107 unless the register has unstored edits
         value: "(data[30] & 0x0f)"
         enum: diffusion_values
       density:
         doc: |
           Stored density (bits 124-127); equals live payload field density @
-          109 unless the register has unstored edits
+          108-109 unless the register has unstored edits
         value: "(data[31] & 0x0f)"
         enum: density_values
       hf_rt_crossover:
@@ -1717,7 +1779,7 @@ types:
       modulation:
         doc: |
           Stored modulation (bits 140-143); equals live payload field
-          modulation @ 111 unless the register has unstored edits
+          modulation @ 110-111 unless the register has unstored edits
         value: "(data[35] & 0x0f)"
         enum: modulation_values
       early_to_reverb_mix:
@@ -1779,16 +1841,16 @@ types:
       source_bank:
         doc: |
           Stored source factory bank (bits 192-196); equals live payload
-          field bank_index_mirror @ 137 unless the register has unstored
+          field bank_index_mirror @ 136-137 unless the register has unstored
           edits. Factory bank the register was stored from (same as payload
-          137)
+          136–137)
         value: "((((data[48] & 0x0f) << 4) | (data[49] & 0x0f)) >> 3)"
       delay_level:
         doc: |
           Stored delay level (bits 197-200); equals live payload field
-          delay_level @ 133 unless the register has unstored edits. V2 delay
-          block; located by samples/charset-b1s1-rt5s-stored.syx (reads 15).
-          Zero when the register was stored without delay
+          delay_level @ 132-133 unless the register has unstored edits. V2
+          delay block; located by samples/charset-b1s1-rt5s-stored.syx
+          (reads 15). Zero when the register was stored without delay
         value: "((((data[49] & 0x0f) << 4) | (data[50] & 0x0f)) >> 3) & 0xf"
         enum: delay_level_values
       delay_time:
@@ -1801,8 +1863,8 @@ types:
       delay_modulation:
         doc: |
           Stored delay modulation (bits 208-211); equals live payload field
-          delay_modulation @ 139 unless the register has unstored edits. V2
-          delay block; stored capture reads 6
+          delay_modulation @ 138-139 unless the register has unstored edits.
+          V2 delay block; stored capture reads 6
         value: "(data[52] & 0x0f)"
         enum: delay_modulation_values
       tail_is_zero:

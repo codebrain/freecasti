@@ -65,14 +65,14 @@ def test_corpus_layout_constant_claims_hold():
         93: 0,
         94: 8,  # structure version
         95: 0,
-        96: 0,
-        106: 0,
-        108: 0,
-        110: 0,
+        96: 0,  # high nibble of algorithm/family flag
+        106: 0,  # high nibble of diffusion
+        108: 0,  # high nibble of density
+        110: 0,  # high nibble of modulation
         131: 2,
-        132: 0,  # fixed companion `02 00`
-        136: 0,
-        138: 0,
+        132: 0,  # high nibble of delay level
+        136: 0,  # high nibble of bank-index mirror
+        138: 0,  # high nibble of delay modulation
         140: 0,
         141: 0,
         142: 0,
@@ -90,8 +90,8 @@ def test_corpus_layout_constant_claims_hold():
 def test_corpus_layout_claims_cover_expected_offsets():
     claimed = sorted(o for spec in CORPUS_LAYOUT_CLAIMS for o in spec["offsets"])
     assert claimed == [
-        92, 93, 94, 95, 96, 97, 98, 99, 106, 108, 110, 130, 131, 132,
-        136, 138, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151,
+        92, 93, 94, 95, 96, 97, 98, 99, 130, 131,
+        140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151,
     ]
 
 

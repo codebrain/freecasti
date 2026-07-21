@@ -63,7 +63,7 @@ F0 | {mfr} | {header} | <name 8-21> <pad 22-23> <basis blob 24-87> | <bank> <slo
 - Display at **146–147** (`nibble_hilo`): UI focus code — browse = menu-row highlight; edit = value-focus band that moves with the shown value (not a fixed anchor). Menu index remains at **98–99**. See [bytes/display.md](bytes/display.md) and [ui-state.md](ui-state.md).
 - **Independence:** each `sysex/prog/parameters/<parameter>/` folder is its own capture stream. Do not assume dumps from different folders share the same values for other parameters. Meta folder `sysex/prog/presets/` holds whole-preset dumps named `<bank>.<preset>` for identity fields.
 - Edit-buffer dumps (hold **EDIT**) share the PROG header/length (157 bytes);
-  bank word **88-89 = 11** while mirror **137** keeps the source bank. Keep them
+  bank word **88-89 = 11** while mirror **136-137** keep the source bank. Keep them
   under `sysex/prog/edit/` — do not mix into parameter-series folders.
 - Capture convention: wherever possible include usable **extremes**, the
   **adjacent-to-extreme** settings, and a **sparse sample of mids** (optional `off`).
@@ -408,7 +408,7 @@ def _render_overview(
                 f"- Name bytes 8-21 (plus factory space padding through 87) match the filename preset ({names.get('dump_count', 0)} dumps).",
                 f"- Bank index 88-89 (`nibble_hilo`): {bank_bits or '(see page)'}.",
                 "- Program slot 90-91 (`nibble_hilo`) within the current bank.",
-                "- Offset 137 mirrors bank index low nibble (89).",
+                "- Offsets 136-137 mirror bank index (`nibble_hilo`).",
                 "",
             ]
         )
@@ -1192,8 +1192,8 @@ def _render_names_page(
         [
             "## Bank index map",
             "",
-            "| Bank | Encoded | Bytes 88-89 | Mirror 137 | Presets |",
-            "|------|--------:|-------------|------------|---------|",
+            "| Bank | Encoded | Bytes 88-89 | Mirror 136-137 | Presets |",
+            "|------|--------:|-------------|---------------|---------|",
         ]
     )
 
@@ -1208,11 +1208,12 @@ def _render_names_page(
         d0 = dumps[0] if dumps else {}
         b88 = (d0.get("bytes") or {}).get("88", "??")
         b89 = (d0.get("bytes") or {}).get("89", "??")
-        mir = (d0.get("bytes") or {}).get("137", "??")
+        mir136 = (d0.get("bytes") or {}).get("136", "00")
+        mir137 = (d0.get("bytes") or {}).get("137", "??")
         bank_slug, _ = preset_slugs(bank_name, (dumps[0]["preset"] if dumps else "x"))
         lines.append(
             f"| [{bank_name}](presets/{bank_slug}/) | {idx} | `{b88}` `{b89}` | "
-            f"`{mir}` | {len(dumps)} |"
+            f"`{mir136}` `{mir137}` | {len(dumps)} |"
         )
 
     sorted_dumps = sorted(

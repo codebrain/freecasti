@@ -111,9 +111,9 @@ CATALOG_OFFSETS = {
     "reverb time": ([100, 101], "nibble_hilo"),
     "size": ([102, 103], "nibble_hilo"),
     "predelay": ([104, 105], "nibble_hilo"),
-    "diffusion": ([107], "raw_u8"),
-    "density": ([109], "raw_u8"),
-    "modulation": ([111], "raw_u8"),
+    "diffusion": ([106, 107], "nibble_hilo"),
+    "density": ([108, 109], "nibble_hilo"),
+    "modulation": ([110, 111], "nibble_hilo"),
     "rolloff": ([112, 113], "nibble_hilo"),
     "hf rt multiply": ([114, 115], "nibble_hilo"),
     "hf rt crossover": ([116, 117], "nibble_hilo"),
@@ -123,9 +123,9 @@ CATALOG_OFFSETS = {
     "early to reverb mix": ([124, 125], "nibble_hilo"),
     "early rolloff": ([126, 127], "nibble_hilo"),
     "early select": ([128, 129], "nibble_hilo"),
-    "delay level": ([133], "raw_u8"),
+    "delay level": ([132, 133], "nibble_hilo"),
     "delay time": ([134, 135], "nibble_hilo"),
-    "delay modulation": ([139], "raw_u8"),
+    "delay modulation": ([138, 139], "nibble_hilo"),
 }
 
 # Affine claims: folder -> (scale, offset). `label = scale * encoded + offset`.

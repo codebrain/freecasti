@@ -733,7 +733,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Bank index (`nibble_hilo`) from sysex/prog/presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/prog/edit/)",
+      "role": "Bank index (`nibble_hilo`) from sysex/prog/presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offsets 136\u2013137 (`nibble_hilo`); hold EDIT sends use index 11 here while mirror 136\u2013137 keep the source bank (see sysex/prog/edit/)",
       "parameters": [
         "_presets"
       ],
@@ -745,7 +745,7 @@
       "hex": "04",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Bank index (`nibble_hilo`) from sysex/prog/presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/prog/edit/)",
+      "role": "Bank index (`nibble_hilo`) from sysex/prog/presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offsets 136\u2013137 (`nibble_hilo`); hold EDIT sends use index 11 here while mirror 136\u2013137 keep the source bank (see sysex/prog/edit/)",
       "parameters": [
         "_presets"
       ],
@@ -830,23 +830,24 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Reserved/unknown (always `00` in witnessed captures)",
+      "role": "Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 145 as 0 when value=3 and 1 when value=4 \u2014 not a clean V1/V2 bit",
       "parameters": [
         "_corpus"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 97,
       "hex": "04",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Algorithm/family flag from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). Mirrored at 145 as 0 when 97=3 and 1 when 97=4 \u2014 not a clean V1/V2 bit",
+      "role": "Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 145 as 0 when value=3 and 1 when value=4 \u2014 not a clean V1/V2 bit",
       "parameters": [
         "_corpus"
       ],
       "confidence": "medium",
-      "encoding": "raw_u8"
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 98,
@@ -947,71 +948,74 @@
     {
       "offset": 106,
       "hex": "00",
-      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\diffusion\\low.syx",
       "status": "known",
-      "role": "Reserved padding (always 0) between predelay and diffusion",
+      "role": "Parameter `diffusion` (from independent series sysex/prog/parameters/diffusion/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
-        "_corpus"
+        "diffusion"
       ],
-      "confidence": "medium"
+      "confidence": "high",
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 107,
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\diffusion\\low.syx",
       "status": "known",
-      "role": "Parameter `diffusion` (from independent series sysex/prog/parameters/diffusion/) (raw_u8, label = encoded * 1)",
+      "role": "Parameter `diffusion` (from independent series sysex/prog/parameters/diffusion/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
         "diffusion"
       ],
       "confidence": "high",
-      "encoding": "raw_u8"
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 108,
       "hex": "00",
-      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\density\\low.syx",
       "status": "known",
-      "role": "Reserved padding (always 0) between diffusion and density",
+      "role": "Parameter `density` (from independent series sysex/prog/parameters/density/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
-        "_corpus"
+        "density"
       ],
-      "confidence": "medium"
+      "confidence": "high",
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 109,
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\density\\low.syx",
       "status": "known",
-      "role": "Parameter `density` (from independent series sysex/prog/parameters/density/) (raw_u8, label = encoded * 1)",
+      "role": "Parameter `density` (from independent series sysex/prog/parameters/density/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
         "density"
       ],
       "confidence": "high",
-      "encoding": "raw_u8"
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 110,
       "hex": "00",
-      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\modulation\\low.syx",
       "status": "known",
-      "role": "Reserved padding (always 0) between density and modulation",
+      "role": "Parameter `modulation` (from independent series sysex/prog/parameters/modulation/) (nibble_hilo, label = encoded + (-1))",
       "parameters": [
-        "_corpus"
+        "modulation"
       ],
-      "confidence": "medium"
+      "confidence": "high",
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 111,
       "hex": "01",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\modulation\\low.syx",
       "status": "known",
-      "role": "Parameter `modulation` (from independent series sysex/prog/parameters/modulation/) (raw_u8, label = encoded + (-1))",
+      "role": "Parameter `modulation` (from independent series sysex/prog/parameters/modulation/) (nibble_hilo, label = encoded + (-1))",
       "parameters": [
         "modulation"
       ],
       "confidence": "high",
-      "encoding": "raw_u8"
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 112,
@@ -1246,7 +1250,7 @@
       "hex": "02",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Fixed companion to offset 130 (always `02 00` in this corpus)",
+      "role": "Fixed companion to offset 130 (always `02` in this corpus)",
       "parameters": [
         "_corpus"
       ],
@@ -1255,25 +1259,26 @@
     {
       "offset": 132,
       "hex": "00",
-      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\delay level\\off.syx",
       "status": "known",
-      "role": "Fixed companion to offset 130 (always `02 00` in this corpus)",
+      "role": "Parameter `delay level` (from independent series sysex/prog/parameters/delay level/) (nibble_hilo, label = encoded + (-21))",
       "parameters": [
-        "_corpus"
+        "delay level"
       ],
-      "confidence": "medium"
+      "confidence": "high",
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 133,
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\delay level\\off.syx",
       "status": "known",
-      "role": "Parameter `delay level` (from independent series sysex/prog/parameters/delay level/) (raw_u8, label = encoded + (-21))",
+      "role": "Parameter `delay level` (from independent series sysex/prog/parameters/delay level/) (nibble_hilo, label = encoded + (-21))",
       "parameters": [
         "delay level"
       ],
       "confidence": "high",
-      "encoding": "raw_u8"
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 134,
@@ -1304,46 +1309,48 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Reserved (always 0) between delay time and bank-index mirror",
+      "role": "Bank index mirror (`nibble_hilo`, equals bank word at 88\u201389) from sysex/prog/presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
       "parameters": [
-        "_corpus"
+        "_presets"
       ],
-      "confidence": "medium"
+      "confidence": "high",
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 137,
       "hex": "04",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Bank index mirror (equals offset 89) from sysex/prog/presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
+      "role": "Bank index mirror (`nibble_hilo`, equals bank word at 88\u201389) from sysex/prog/presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
       "parameters": [
         "_presets"
       ],
       "confidence": "high",
-      "encoding": "raw_u8"
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 138,
       "hex": "00",
-      "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
+      "hex_source": "C:\\m7\\sysex\\prog\\parameters\\delay modulation\\low.syx",
       "status": "known",
-      "role": "Reserved (always 0) between bank-index mirror and delay modulation",
+      "role": "Parameter `delay modulation` (from independent series sysex/prog/parameters/delay modulation/) (nibble_hilo, label = encoded + (-1))",
       "parameters": [
-        "_corpus"
+        "delay modulation"
       ],
-      "confidence": "medium"
+      "confidence": "high",
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 139,
       "hex": "01",
       "hex_source": "C:\\m7\\sysex\\prog\\parameters\\delay modulation\\low.syx",
       "status": "known",
-      "role": "Parameter `delay modulation` (from independent series sysex/prog/parameters/delay modulation/) (raw_u8, label = encoded + (-1))",
+      "role": "Parameter `delay modulation` (from independent series sysex/prog/parameters/delay modulation/) (nibble_hilo, label = encoded + (-1))",
       "parameters": [
         "delay modulation"
       ],
       "confidence": "high",
-      "encoding": "raw_u8"
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 140,
@@ -1405,7 +1412,7 @@
       "hex": "01",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Mirror of algorithm/family flag at 97 (145=0 when 97=3; 145=1 when 97=4 in this corpus)",
+      "role": "Mirror of algorithm/family flag at 96\u201397 (145=0 when value=3; 145=1 when value=4 in this corpus)",
       "parameters": [
         "_corpus"
       ],
@@ -1589,7 +1596,7 @@
       "length": 2,
       "example_hex": "00 04",
       "status": "known",
-      "role": "Bank index (`nibble_hilo`) from sysex/prog/presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offset 137; hold EDIT sends use index 11 here while mirror 137 keeps the source bank (see sysex/prog/edit/)",
+      "role": "Bank index (`nibble_hilo`) from sysex/prog/presets/ [Halls=0, Plates=1, Rooms=2, Chambers=3, Ambience=4, Spaces=5, Halls 2=6, Plates 2=7, Rooms 2=8, Spaces 2=9, NonLin=10]; mirrored at offsets 136\u2013137 (`nibble_hilo`); hold EDIT sends use index 11 here while mirror 136\u2013137 keep the source bank (see sysex/prog/edit/)",
       "parameters": [
         "_presets"
       ]
@@ -1657,24 +1664,12 @@
     },
     {
       "start": 96,
-      "end": 96,
-      "offsets": "96",
-      "length": 1,
-      "example_hex": "00",
-      "status": "known",
-      "role": "Reserved/unknown (always `00` in witnessed captures)",
-      "parameters": [
-        "_corpus"
-      ]
-    },
-    {
-      "start": 97,
       "end": 97,
-      "offsets": "97",
-      "length": 1,
-      "example_hex": "04",
+      "offsets": "96-97",
+      "length": 2,
+      "example_hex": "00 04",
       "status": "known",
-      "role": "Algorithm/family flag from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). Mirrored at 145 as 0 when 97=3 and 1 when 97=4 \u2014 not a clean V1/V2 bit",
+      "role": "Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 145 as 0 when value=3 and 1 when value=4 \u2014 not a clean V1/V2 bit",
       "parameters": [
         "_corpus"
       ]
@@ -1729,72 +1724,36 @@
     },
     {
       "start": 106,
-      "end": 106,
-      "offsets": "106",
-      "length": 1,
-      "example_hex": "00",
-      "status": "known",
-      "role": "Reserved padding (always 0) between predelay and diffusion",
-      "parameters": [
-        "_corpus"
-      ]
-    },
-    {
-      "start": 107,
       "end": 107,
-      "offsets": "107",
-      "length": 1,
-      "example_hex": "00",
+      "offsets": "106-107",
+      "length": 2,
+      "example_hex": "00 00",
       "status": "known",
-      "role": "Parameter `diffusion` (from independent series sysex/prog/parameters/diffusion/) (raw_u8, label = encoded * 1)",
+      "role": "Parameter `diffusion` (from independent series sysex/prog/parameters/diffusion/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
         "diffusion"
       ]
     },
     {
       "start": 108,
-      "end": 108,
-      "offsets": "108",
-      "length": 1,
-      "example_hex": "00",
-      "status": "known",
-      "role": "Reserved padding (always 0) between diffusion and density",
-      "parameters": [
-        "_corpus"
-      ]
-    },
-    {
-      "start": 109,
       "end": 109,
-      "offsets": "109",
-      "length": 1,
-      "example_hex": "00",
+      "offsets": "108-109",
+      "length": 2,
+      "example_hex": "00 00",
       "status": "known",
-      "role": "Parameter `density` (from independent series sysex/prog/parameters/density/) (raw_u8, label = encoded * 1)",
+      "role": "Parameter `density` (from independent series sysex/prog/parameters/density/) (nibble_hilo, label = encoded * 1)",
       "parameters": [
         "density"
       ]
     },
     {
       "start": 110,
-      "end": 110,
-      "offsets": "110",
-      "length": 1,
-      "example_hex": "00",
-      "status": "known",
-      "role": "Reserved padding (always 0) between density and modulation",
-      "parameters": [
-        "_corpus"
-      ]
-    },
-    {
-      "start": 111,
       "end": 111,
-      "offsets": "111",
-      "length": 1,
-      "example_hex": "01",
+      "offsets": "110-111",
+      "length": 2,
+      "example_hex": "00 01",
       "status": "known",
-      "role": "Parameter `modulation` (from independent series sysex/prog/parameters/modulation/) (raw_u8, label = encoded + (-1))",
+      "role": "Parameter `modulation` (from independent series sysex/prog/parameters/modulation/) (nibble_hilo, label = encoded + (-1))",
       "parameters": [
         "modulation"
       ]
@@ -1921,24 +1880,24 @@
     },
     {
       "start": 131,
-      "end": 132,
-      "offsets": "131-132",
-      "length": 2,
-      "example_hex": "02 00",
+      "end": 131,
+      "offsets": "131",
+      "length": 1,
+      "example_hex": "02",
       "status": "known",
-      "role": "Fixed companion to offset 130 (always `02 00` in this corpus)",
+      "role": "Fixed companion to offset 130 (always `02` in this corpus)",
       "parameters": [
         "_corpus"
       ]
     },
     {
-      "start": 133,
+      "start": 132,
       "end": 133,
-      "offsets": "133",
-      "length": 1,
-      "example_hex": "00",
+      "offsets": "132-133",
+      "length": 2,
+      "example_hex": "00 00",
       "status": "known",
-      "role": "Parameter `delay level` (from independent series sysex/prog/parameters/delay level/) (raw_u8, label = encoded + (-21))",
+      "role": "Parameter `delay level` (from independent series sysex/prog/parameters/delay level/) (nibble_hilo, label = encoded + (-21))",
       "parameters": [
         "delay level"
       ]
@@ -1957,48 +1916,24 @@
     },
     {
       "start": 136,
-      "end": 136,
-      "offsets": "136",
-      "length": 1,
-      "example_hex": "00",
-      "status": "known",
-      "role": "Reserved (always 0) between delay time and bank-index mirror",
-      "parameters": [
-        "_corpus"
-      ]
-    },
-    {
-      "start": 137,
       "end": 137,
-      "offsets": "137",
-      "length": 1,
-      "example_hex": "04",
+      "offsets": "136-137",
+      "length": 2,
+      "example_hex": "00 04",
       "status": "known",
-      "role": "Bank index mirror (equals offset 89) from sysex/prog/presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
+      "role": "Bank index mirror (`nibble_hilo`, equals bank word at 88\u201389) from sysex/prog/presets/; on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11",
       "parameters": [
         "_presets"
       ]
     },
     {
       "start": 138,
-      "end": 138,
-      "offsets": "138",
-      "length": 1,
-      "example_hex": "00",
-      "status": "known",
-      "role": "Reserved (always 0) between bank-index mirror and delay modulation",
-      "parameters": [
-        "_corpus"
-      ]
-    },
-    {
-      "start": 139,
       "end": 139,
-      "offsets": "139",
-      "length": 1,
-      "example_hex": "01",
+      "offsets": "138-139",
+      "length": 2,
+      "example_hex": "00 01",
       "status": "known",
-      "role": "Parameter `delay modulation` (from independent series sysex/prog/parameters/delay modulation/) (raw_u8, label = encoded + (-1))",
+      "role": "Parameter `delay modulation` (from independent series sysex/prog/parameters/delay modulation/) (nibble_hilo, label = encoded + (-1))",
       "parameters": [
         "delay modulation"
       ]
@@ -2022,7 +1957,7 @@
       "length": 1,
       "example_hex": "01",
       "status": "known",
-      "role": "Mirror of algorithm/family flag at 97 (145=0 when 97=3; 145=1 when 97=4 in this corpus)",
+      "role": "Mirror of algorithm/family flag at 96\u201397 (145=0 when value=3; 145=1 when value=4 in this corpus)",
       "parameters": [
         "_corpus"
       ]
@@ -2107,14 +2042,7 @@
     },
     {
       "offsets": [
-        96
-      ],
-      "status": "known",
-      "label": "reserved (always 0)",
-      "confidence": "medium"
-    },
-    {
-      "offsets": [
+        96,
         97
       ],
       "status": "known",
@@ -2132,30 +2060,6 @@
     },
     {
       "offsets": [
-        106
-      ],
-      "status": "known",
-      "label": "reserved padding",
-      "confidence": "medium"
-    },
-    {
-      "offsets": [
-        108
-      ],
-      "status": "known",
-      "label": "reserved padding",
-      "confidence": "medium"
-    },
-    {
-      "offsets": [
-        110
-      ],
-      "status": "known",
-      "label": "reserved padding",
-      "confidence": "medium"
-    },
-    {
-      "offsets": [
         130
       ],
       "status": "known",
@@ -2164,27 +2068,10 @@
     },
     {
       "offsets": [
-        131,
-        132
+        131
       ],
       "status": "known",
-      "label": "fixed (always 02 00)",
-      "confidence": "medium"
-    },
-    {
-      "offsets": [
-        136
-      ],
-      "status": "known",
-      "label": "reserved (always 0)",
-      "confidence": "medium"
-    },
-    {
-      "offsets": [
-        138
-      ],
-      "status": "known",
-      "label": "reserved (always 0)",
+      "label": "fixed (always 02)",
       "confidence": "medium"
     },
     {

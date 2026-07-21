@@ -34,9 +34,9 @@ Machine-readable dump list: [presets.json](../presets.json).
 | [reverb time](../../bytes/reverb-time.md) | 100-101 | `nibble_hilo` | table |
 | [size](../../bytes/size.md) | 102-103 | `nibble_hilo` | affine |
 | [predelay](../../bytes/predelay.md) | 104-105 | `nibble_hilo` | table |
-| [diffusion](../../bytes/diffusion.md) | 107 | `raw_u8` | affine |
-| [density](../../bytes/density.md) | 109 | `raw_u8` | affine |
-| [modulation](../../bytes/modulation.md) | 111 | `raw_u8` | affine |
+| [diffusion](../../bytes/diffusion.md) | 106-107 | `nibble_hilo` | affine |
+| [density](../../bytes/density.md) | 108-109 | `nibble_hilo` | affine |
+| [modulation](../../bytes/modulation.md) | 110-111 | `nibble_hilo` | affine |
 | [rolloff](../../bytes/rolloff.md) | 112-113 | `nibble_hilo` | table |
 | [hf rt multiply](../../bytes/hf-rt-multiply.md) | 114-115 | `nibble_hilo` | affine |
 | [hf rt crossover](../../bytes/hf-rt-crossover.md) | 116-117 | `nibble_hilo` | table |
@@ -46,9 +46,9 @@ Machine-readable dump list: [presets.json](../presets.json).
 | [early to reverb mix](../../bytes/early-to-reverb-mix.md) | 124-125 | `nibble_hilo` | affine |
 | [early rolloff](../../bytes/early-rolloff.md) | 126-127 | `nibble_hilo` | table |
 | [early select](../../bytes/early-select.md) | 128-129 | `nibble_hilo` | affine |
-| [delay level](../../bytes/delay-level.md) | 133 | `raw_u8` | affine |
+| [delay level](../../bytes/delay-level.md) | 132-133 | `nibble_hilo` | affine |
 | [delay time](../../bytes/delay-time.md) | 134-135 | `nibble_hilo` | affine |
-| [delay modulation](../../bytes/delay-modulation.md) | 139 | `raw_u8` | affine |
+| [delay modulation](../../bytes/delay-modulation.md) | 138-139 | `nibble_hilo` | affine |
 
 [All presets](../) · [Program identity](../../program-identity.md)
 
