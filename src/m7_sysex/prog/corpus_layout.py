@@ -17,6 +17,7 @@ from typing import Any, Callable
 
 from ..frame import iter_sysex_messages, parse_sysex
 from ..types import is_prog_corpus_dump
+from .display_corpus import DISPLAY_ROLE
 
 
 # Re-export for backward compatibility.
@@ -197,13 +198,7 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
     {
         "offsets": [146, 147],
         "status": "known",
-        "role": (
-            "Display (`nibble_hilo`): high nibble = page/row while browsing "
-            "(`92=02`) or edit anchor while changing a value (`92=00`); low "
-            "nibble = position within the menu page, or value-display position "
-            "while editing. Documented in bytes/display.md from "
-            "`sysex/prog/menus/` captures"
-        ),
+        "role": DISPLAY_ROLE,
         "encoding": "nibble_hilo",
         "confidence": "high",
         "label": "display",

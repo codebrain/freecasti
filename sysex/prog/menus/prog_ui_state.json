@@ -40,6 +40,23 @@
         "92": 0,
         "146": 12,
         "147": 4
+      },
+      "edit_band": {
+        "min": 194,
+        "max": 207,
+        "unique": 11,
+        "dumps": 13,
+        "monotonic": true,
+        "hi_nibbles": [
+          12
+        ],
+        "sample": {
+          "stem": "3.5s",
+          "hi": 12,
+          "lo": 10,
+          "display": 202,
+          "encoded": 61
+        }
       }
     },
     "size": {
@@ -55,6 +72,23 @@
         "92": 0,
         "146": 13,
         "147": 2
+      },
+      "edit_band": {
+        "min": 209,
+        "max": 215,
+        "unique": 7,
+        "dumps": 8,
+        "monotonic": true,
+        "hi_nibbles": [
+          13
+        ],
+        "sample": {
+          "stem": "15",
+          "hi": 13,
+          "lo": 5,
+          "display": 213,
+          "encoded": 15
+        }
       }
     },
     "predelay": {
@@ -70,6 +104,23 @@
         "92": 0,
         "146": 2,
         "147": 2
+      },
+      "edit_band": {
+        "min": 34,
+        "max": 39,
+        "unique": 5,
+        "dumps": 6,
+        "monotonic": true,
+        "hi_nibbles": [
+          2
+        ],
+        "sample": {
+          "stem": "100ms",
+          "hi": 2,
+          "lo": 6,
+          "display": 38,
+          "encoded": 35
+        }
       }
     },
     "diffusion": {
@@ -85,6 +136,24 @@
         "92": 0,
         "146": 2,
         "147": 9
+      },
+      "edit_band": {
+        "min": 41,
+        "max": 50,
+        "unique": 9,
+        "dumps": 9,
+        "monotonic": true,
+        "hi_nibbles": [
+          2,
+          3
+        ],
+        "sample": {
+          "stem": "4",
+          "hi": 2,
+          "lo": 13,
+          "display": 45,
+          "encoded": 4
+        }
       }
     },
     "density": {
@@ -100,6 +169,23 @@
         "92": 0,
         "146": 3,
         "147": 7
+      },
+      "edit_band": {
+        "min": 55,
+        "max": 61,
+        "unique": 6,
+        "dumps": 7,
+        "monotonic": true,
+        "hi_nibbles": [
+          3
+        ],
+        "sample": {
+          "stem": "3",
+          "hi": 3,
+          "lo": 10,
+          "display": 58,
+          "encoded": 3
+        }
       }
     },
     "modulation": {
@@ -115,6 +201,23 @@
         "92": 0,
         "146": 4,
         "147": 6
+      },
+      "edit_band": {
+        "min": 69,
+        "max": 75,
+        "unique": 7,
+        "dumps": 7,
+        "monotonic": true,
+        "hi_nibbles": [
+          4
+        ],
+        "sample": {
+          "stem": "2",
+          "hi": 4,
+          "lo": 8,
+          "display": 72,
+          "encoded": 3
+        }
       }
     },
     "rolloff": {
@@ -130,6 +233,24 @@
         "92": 0,
         "146": 4,
         "147": 14
+      },
+      "edit_band": {
+        "min": 77,
+        "max": 90,
+        "unique": 11,
+        "dumps": 12,
+        "monotonic": true,
+        "hi_nibbles": [
+          4,
+          5
+        ],
+        "sample": {
+          "stem": "3200hz",
+          "hi": 5,
+          "lo": 4,
+          "display": 84,
+          "encoded": 22
+        }
       }
     },
     "hf rt multiply": {
@@ -145,6 +266,24 @@
         "92": 0,
         "146": 6,
         "147": 5
+      },
+      "edit_band": {
+        "min": 92,
+        "max": 101,
+        "unique": 9,
+        "dumps": 10,
+        "monotonic": true,
+        "hi_nibbles": [
+          5,
+          6
+        ],
+        "sample": {
+          "stem": "0.45",
+          "hi": 6,
+          "lo": 2,
+          "display": 98,
+          "encoded": 5
+        }
       }
     },
     "hf rt crossover": {
@@ -160,6 +299,24 @@
         "92": 0,
         "146": 7,
         "147": 3
+      },
+      "edit_band": {
+        "min": 104,
+        "max": 117,
+        "unique": 10,
+        "dumps": 10,
+        "monotonic": true,
+        "hi_nibbles": [
+          6,
+          7
+        ],
+        "sample": {
+          "stem": "6400hz",
+          "hi": 6,
+          "lo": 15,
+          "display": 111,
+          "encoded": 24
+        }
       }
     },
     "lf rt multiply": {
@@ -175,6 +332,24 @@
         "92": 0,
         "146": 11,
         "147": 15
+      },
+      "edit_band": {
+        "min": 191,
+        "max": 197,
+        "unique": 7,
+        "dumps": 8,
+        "monotonic": true,
+        "hi_nibbles": [
+          11,
+          12
+        ],
+        "sample": {
+          "stem": "2.6",
+          "hi": 12,
+          "lo": 2,
+          "display": 194,
+          "encoded": 42
+        }
       }
     },
     "lf rt crossover": {
@@ -190,6 +365,23 @@
         "92": 0,
         "146": 12,
         "147": 7
+      },
+      "edit_band": {
+        "min": 199,
+        "max": 205,
+        "unique": 7,
+        "dumps": 8,
+        "monotonic": true,
+        "hi_nibbles": [
+          12
+        ],
+        "sample": {
+          "stem": "720hz",
+          "hi": 12,
+          "lo": 10,
+          "display": 202,
+          "encoded": 12
+        }
       }
     },
     "vlf cut": {
@@ -205,6 +397,24 @@
         "92": 0,
         "146": 7,
         "147": 12
+      },
+      "edit_band": {
+        "min": 120,
+        "max": 128,
+        "unique": 9,
+        "dumps": 9,
+        "monotonic": true,
+        "hi_nibbles": [
+          7,
+          8
+        ],
+        "sample": {
+          "stem": "-10db",
+          "hi": 7,
+          "lo": 12,
+          "display": 124,
+          "encoded": 10
+        }
       }
     },
     "early to reverb mix": {
@@ -220,6 +430,23 @@
         "92": 0,
         "146": 8,
         "147": 3
+      },
+      "edit_band": {
+        "min": 131,
+        "max": 140,
+        "unique": 10,
+        "dumps": 12,
+        "monotonic": true,
+        "hi_nibbles": [
+          8
+        ],
+        "sample": {
+          "stem": "20.19",
+          "hi": 8,
+          "lo": 8,
+          "display": 136,
+          "encoded": 21
+        }
       }
     },
     "early rolloff": {
@@ -235,6 +462,23 @@
         "92": 0,
         "146": 9,
         "147": 2
+      },
+      "edit_band": {
+        "min": 146,
+        "max": 153,
+        "unique": 5,
+        "dumps": 5,
+        "monotonic": true,
+        "hi_nibbles": [
+          9
+        ],
+        "sample": {
+          "stem": "13600hz",
+          "hi": 9,
+          "lo": 7,
+          "display": 151,
+          "encoded": 48
+        }
       }
     },
     "early select": {
@@ -250,6 +494,24 @@
         "92": 0,
         "146": 9,
         "147": 12
+      },
+      "edit_band": {
+        "min": 155,
+        "max": 163,
+        "unique": 8,
+        "dumps": 8,
+        "monotonic": true,
+        "hi_nibbles": [
+          9,
+          10
+        ],
+        "sample": {
+          "stem": "14",
+          "hi": 10,
+          "lo": 0,
+          "display": 160,
+          "encoded": 14
+        }
       }
     },
     "delay level": {
@@ -265,6 +527,23 @@
         "92": 0,
         "146": 10,
         "147": 5
+      },
+      "edit_band": {
+        "min": 165,
+        "max": 171,
+        "unique": 6,
+        "dumps": 6,
+        "monotonic": false,
+        "hi_nibbles": [
+          10
+        ],
+        "sample": {
+          "stem": "-13db",
+          "hi": 10,
+          "lo": 9,
+          "display": 169,
+          "encoded": 8
+        }
       }
     },
     "delay time": {
@@ -280,6 +559,23 @@
         "92": 0,
         "146": 11,
         "147": 0
+      },
+      "edit_band": {
+        "min": 176,
+        "max": 183,
+        "unique": 8,
+        "dumps": 10,
+        "monotonic": true,
+        "hi_nibbles": [
+          11
+        ],
+        "sample": {
+          "stem": "372ms",
+          "hi": 11,
+          "lo": 5,
+          "display": 181,
+          "encoded": 34
+        }
       }
     },
     "delay modulation": {
@@ -295,6 +591,24 @@
         "92": 0,
         "146": 11,
         "147": 11
+      },
+      "edit_band": {
+        "min": 186,
+        "max": 192,
+        "unique": 6,
+        "dumps": 7,
+        "monotonic": true,
+        "hi_nibbles": [
+          11,
+          12
+        ],
+        "sample": {
+          "stem": "2",
+          "hi": 11,
+          "lo": 14,
+          "display": 190,
+          "encoded": 3
+        }
       }
     }
   }

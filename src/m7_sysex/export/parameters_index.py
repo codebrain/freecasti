@@ -119,8 +119,10 @@ def build_prog_parameters_readme(
                 "slug": "display",
                 "sysex": "`146-147` · `nibble_hilo` · high",
                 "description": (
-                    "LCD cursor / edit-display position in the program dump "
-                    "(not a sound parameter). Captured under `sysex/prog/menus/`."
+                    "Front-panel UI focus code in the program dump (not a "
+                    "sound parameter): browse = menu-row highlight; edit = "
+                    "value-focus band. Captured under `sysex/prog/menus/` + "
+                    "parameter series."
                 ),
                 "has_page": True,
             }

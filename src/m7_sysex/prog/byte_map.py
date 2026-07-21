@@ -967,12 +967,9 @@ def _normalize_display_region(
     """Unify offsets 146-147 as one known `nibble_hilo` display field."""
     if len(annotations) <= 147:
         return
-    role = (
-        "Display (`nibble_hilo`): high nibble = page/row while browsing "
-        "(`92=02`) or edit anchor while changing a value (`92=00`); low "
-        "nibble = position within the menu page, or value-display position "
-        "while editing. From `sysex/prog/menus/` captures"
-    )
+    from .display_corpus import DISPLAY_ROLE
+
+    role = DISPLAY_ROLE
     example_bytes: bytes | None = None
     example_source: str | None = None
     if sysex_root is not None:

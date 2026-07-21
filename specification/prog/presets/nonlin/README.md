@@ -3,7 +3,7 @@
 
 # NonLin
 
-_Generated 2026-07-20. Bank index **10** (4 captured presets)._
+_Generated 2026-07-21. Bank index **10** (4 captured presets)._
 
 Machine-readable dump list: [presets.json](../presets.json).
 
@@ -41,4 +41,4 @@ Machine-readable dump list: [presets.json](../presets.json).
 
 [All presets](../) · [Program identity](../../program-identity.md)
 
-_Last exported: 2026-07-20_
+_Last exported: 2026-07-21_

@@ -3,7 +3,7 @@
 
 # Favorite slot
 
-_Generated 2026-07-20. Favorites captures under `sysex/prog/favorites/` (Deep Ambience and Nonlin C sessions)._
+_Generated 2026-07-21. Favorites captures under `sysex/prog/favorites/` (Deep Ambience and Nonlin C sessions)._
 
 ## SysEx summary
 
@@ -40,4 +40,4 @@ Witness sources: favorite-loaded hold-PROG dumps (`sysex/prog/favorites/`), all 
 - [Register captures](../../../sysex/prog/edit/registers/README.md) — hold-EDIT register corpus
 - [Owner’s manual notes](../../../docs/manual-notes.md)
 
-_Last exported: 2026-07-20_
+_Last exported: 2026-07-21_

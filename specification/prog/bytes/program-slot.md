@@ -3,7 +3,7 @@
 
 # Program slot
 
-_Generated 2026-07-20. Factory presets under `sysex/prog/presets/` (222 dumps, all banks/slots)._
+_Generated 2026-07-21. Factory presets under `sysex/prog/presets/` (222 dumps, all banks/slots)._
 
 ## SysEx summary
 
@@ -28,4 +28,4 @@ Offsets **90–91** carry the program's slot within its bank as a `nibble_hilo` 
 - [Register captures](../../../sysex/prog/edit/registers/README.md) — hold-EDIT register corpus
 - [Owner’s manual notes](../../../docs/manual-notes.md)
 
-_Last exported: 2026-07-20_
+_Last exported: 2026-07-21_

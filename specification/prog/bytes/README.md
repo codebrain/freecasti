@@ -25,7 +25,7 @@ Documented **program dump** payload fields: the 18 front-panel sound parameters 
 | [Delay Level](delay-level.md) | `133` · `raw_u8` · high | Level of the delayed input injected into the start of the late reverb (not the early reverb). The delayed sound is the original input signal, delayed, diffused, and band-limited by Rolloff. |
 | [Delay Time](delay-time.md) | `134-135` · `nibble_hilo` · high | Delay time for a diffused set of eight voices spread in time (controlled as a single delay). Adds coloration and a late swell to the late reverb. |
 | [Delay Modulation](delay-modulation.md) | `139` · `raw_u8` · high | Modulates the delay voices only (not the reverb), similar in character to reverb Modulation: low settings are slower and more shallow; higher settings are more random and deeper. |
-| [Display](display.md) | `146-147` · `nibble_hilo` · high | LCD cursor / edit-display position in the program dump (not a sound parameter). Captured under `sysex/prog/menus/`. |
+| [Display](display.md) | `146-147` · `nibble_hilo` · high | Front-panel UI focus code in the program dump (not a sound parameter): browse = menu-row highlight; edit = value-focus band. Captured under `sysex/prog/menus/` + parameter series. |
 | [Bank index](bank-index.md) | `88-89` · `nibble_hilo` · high | Program bank of the running program (mirror at 137); hold-EDIT sends use 11 here while the mirror keeps the source bank. |
 | [Program slot](program-slot.md) | `90-91` · `nibble_hilo` · high | Program slot within the bank (preset-list order, from 0); stays the source factory slot on hold-EDIT dumps. |
 | [Panel mode flag](panel-mode-flag.md) | `92` · `raw_u8` · high | Front-panel screen state: `00` idle/value edit, `02` menu highlighted, `08` favorites screen shown (UI state, not a program property). |
@@ -39,6 +39,6 @@ Documented **program dump** payload fields: the 18 front-panel sound parameters 
 | [Register](register.md) | `95` · `raw_u8` · high | User Register number within bank (manual 0–9) when the dump basis is a register. |
 | [Favorite slot](favorite-slot.md) | `94` · `raw_u8` · high | Favorite-source slot (`(slot-1)*2` for favorites 1–4 on PROG frames; `08` = none); see `sysex/prog/favorites/`. |
 
-_Last exported: 2026-07-20_
+_Last exported: 2026-07-21_
 
 Printed ranges and UI labels may differ from this unit's captures (for example Early Select 0–31 vs manual 0–20). See [parameter-catalog.md](../../../docs/parameter-catalog.md) for capture hints, [encoding sources](../../../docs/encoding-sources.md) for witness types, and [../README.md](../README.md) for the program-dump overview.

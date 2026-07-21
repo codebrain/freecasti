@@ -5,9 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-import pytest
-
-from m7_sysex.paths import prog_menus_root, resolve_sysex_root
+from m7_sysex.paths import prog_menus_root
 from m7_sysex.prog.menus import analyze_menus_folder, hardware_menu_order
 from m7_sysex.prog.corpus_layout import CORPUS_LAYOUT_CLAIMS
 from m7_sysex.types import is_prog_corpus_dump
@@ -82,6 +80,22 @@ def test_ui_state_markdown_edit_table_sorted_by_menu_index():
     assert indices == list(range(18))
     assert rows[0].startswith("| 0 | reverb time |")
     assert rows[-1].startswith("| 17 | delay modulation |")
+    assert "Band" in section
+    assert "value-focus" in body
+
+
+def test_display_corpus_browse_and_edit_bands():
+    analysis = analyze_menus_folder(prog_menus_root(SYSEX), SYSEX)
+    corpus = analysis["display_corpus"]
+    assert corpus["browse"]["all_match"] is True
+    assert any(h["id"] == "fixed_edit_anchor" and h["verdict"] == "rejected"
+               for h in corpus["hypotheses"])
+    assert any(h["id"] == "edit_value_focus_band" and h["verdict"] == "working"
+               for h in corpus["hypotheses"])
+    size_band = analysis["prog_ui"]["by_parameter"]["size"]["edit_band"]
+    assert size_band["min"] <= size_band["max"]
+    assert size_band["unique"] >= 1
+    assert "edit_band" in analysis["prog_ui"]["by_parameter"]["diffusion"]
 
 
 def test_corpus_layout_labels_menu_ui():
@@ -90,6 +104,9 @@ def test_corpus_layout_labels_menu_ui():
     assert labels[(92,)]["label"] == "panel mode flag"
     assert labels[(146, 147)]["label"] == "display"
     assert labels[(146, 147)]["status"] == "known"
+    assert "edit anchor while" not in labels[(146, 147)]["role"]
+    assert "value-focus" in labels[(146, 147)]["role"]
+    assert "not a fixed edit anchor" in labels[(146, 147)]["role"]
 
 
 def test_display_region_is_known_in_byte_map():
@@ -109,6 +126,9 @@ def test_display_region_is_known_in_byte_map():
     )
     assert region["status"] == "known"
     assert "_menus" in region["parameters"]
+    assert "edit anchor while" not in region["role"]
+    assert "value-focus" in region["role"]
+    assert "not a fixed edit anchor" in region["role"]
 
 
 def test_cross_recurrent_secondary_excludes_display():
@@ -131,12 +151,18 @@ def test_display_parameter_page_export():
     assert "146–147" in body
     assert "`nibble_hilo`" in body
     assert "browse: size" in body
-    # Browse and edit tables are sorted by decoded `nibble_hilo`.
-    browse_section = body.split("### Edit mode witnesses")[0]
+    assert "edit anchor while" not in body.lower()
+    assert "not a fixed" in body.lower()
+    assert "### Edit mode bands" in body
+    assert "### Hypothesis ranking" in body
+    assert "value-focus" in body.lower()
+    # Browse table sorted by decoded `nibble_hilo`.
+    browse_section = body.split("### Edit mode bands")[0]
     assert browse_section.index("browse: size") < browse_section.index(
         "browse: reverb time"
     )
-    edit_section = body.split("### Edit mode witnesses", 1)[1]
+    # Edit bands sorted by band minimum (predelay before reverb time).
+    edit_section = body.split("### Edit mode bands", 1)[1]
     assert edit_section.index("| 2 | predelay |") < edit_section.index(
         "| 0 | reverb time |"
     )

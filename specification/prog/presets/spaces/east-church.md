@@ -3,7 +3,7 @@
 
 # East Church
 
-_Generated 2026-07-20. Bank: [Spaces](README.md) (index **5**). Source: `sysex/prog/presets/Spaces.East Church.syx`._
+_Generated 2026-07-21. Bank: [Spaces](README.md) (index **5**). Source: `sysex/prog/presets/Spaces.East Church.syx`._
 
 [All presets](../../README.md) · [Spaces bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -66,4 +66,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Reflect Chapel](reflect-chapel.md)
 - [Reflect Church](reflect-church.md)
 
-_Last exported: 2026-07-20_
+_Last exported: 2026-07-21_

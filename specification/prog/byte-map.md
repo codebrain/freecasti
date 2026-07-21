@@ -61,10 +61,10 @@ Example hex for a known parameter comes only from that parameter’s own folder.
 | 139 | 1 | `01` | known | Parameter [`delay modulation`](bytes/delay-modulation.md) (from independent series [sysex/prog/parameters/delay modulation/](bytes/delay-modulation.md)) (raw_u8, label = encoded + (-1)) |
 | 140-144 | 5 | `00 00 00 00 00` | known | Reserved block (always 0 in this corpus) |
 | 145 | 1 | `01` | known | Mirror of algorithm/family flag at 97 (145=0 when 97=3; 145=1 when 97=4 in this corpus) — see [family-flag mirror](bytes/algorithm-family-flag.md) |
-| 146-147 | 2 | `03 0D` | known | Display (`nibble_hilo`): high nibble = page/row while browsing (`92=02`) or edit anchor while changing a value (`92=00`); low nibble = position within the menu page, or value-display position while editing. From `sysex/prog/menus/` captures — see [display](bytes/display.md) |
+| 146-147 | 2 | `03 0D` | known | Display (`nibble_hilo`): front-panel UI focus code (not a sound parameter). Browse (`92=02`): menu-row highlight (`menu_index+28` for indices 1–17; reverb time → 46). Edit (`92=00`): value-focus code in a parameter-specific band that advances as the shown value changes (not a fixed edit anchor). From `sysex/prog/menus/` + parameter series — see [display](bytes/display.md) |
 | 148-151 | 4 | `00 00 00 00` | known | Reserved (always 0) immediately before checksum nibbles |
 | 152-155 | 4 | - | checksum | Checksum: CRC-16/ARC over offsets 8-151 (name + payload), packed as four high-nibble-first SysEx bytes (per-dump; recompute after edits - do not copy across parameter series) |
 | 156 | 1 | `F7` | frame | SysEx end (F7) |
 
 
-_Last exported: 2026-07-20_
+_Last exported: 2026-07-21_

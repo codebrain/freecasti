@@ -3,7 +3,7 @@
 
 # Algorithm/family flag
 
-_Generated 2026-07-20. Corpus scan of all factory presets under `sysex/prog/presets/`._
+_Generated 2026-07-21. Corpus scan of all factory presets under `sysex/prog/presets/`._
 
 ## SysEx summary
 
@@ -34,4 +34,4 @@ Offset **97** groups presets into two families: every Halls preset reads `3`; mo
 - [Register captures](../../../sysex/prog/edit/registers/README.md) — hold-EDIT register corpus
 - [Owner’s manual notes](../../../docs/manual-notes.md)
 
-_Last exported: 2026-07-20_
+_Last exported: 2026-07-21_

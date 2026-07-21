@@ -102,4 +102,4 @@ Edit/UI state (not a sound parameter): `92`, `98-99`
 See [panel mode flag](bytes/panel-mode-flag.md), [selected menu index](bytes/selected-menu-index.md), [ui-state.md](ui-state.md), and [bytes/display.md](bytes/display.md) for menu captures.
 
 
-_Last exported: 2026-07-20_
+_Last exported: 2026-07-21_

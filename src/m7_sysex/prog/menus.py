@@ -132,7 +132,7 @@ def analyze_menus_folder(menus_root: Path, sysex_root: Path) -> dict[str, Any]:
         "by_parameter": by_parameter,
     }
 
-    return {
+    analysis: dict[str, Any] = {
         "kind": "prog_menu_navigation",
         "folder": str(menus_root.resolve()),
         "capture_count": len(captures),
@@ -141,6 +141,9 @@ def analyze_menus_folder(menus_root: Path, sysex_root: Path) -> dict[str, Any]:
         "captures": captures,
         "prog_ui": prog_ui,
     }
+    from .display_corpus import attach_display_corpus
+
+    return attach_display_corpus(analysis, sysex_root)
 
 
 def write_menus_analysis(analysis: dict[str, Any], menus_root: Path) -> list[Path]:

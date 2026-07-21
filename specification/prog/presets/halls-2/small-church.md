@@ -3,7 +3,7 @@
 
 # Small Church
 
-_Generated 2026-07-20. Bank: [Halls 2](README.md) (index **6**). Source: `sysex/prog/presets/Halls 2.Small Church.syx`._
+_Generated 2026-07-21. Bank: [Halls 2](README.md) (index **6**). Source: `sysex/prog/presets/Halls 2.Small Church.syx`._
 
 [All presets](../../README.md) · [Halls 2 bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -61,4 +61,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Live Hall](live-hall.md)
 - [Koncert Piano](koncert-piano.md)
 
-_Last exported: 2026-07-20_
+_Last exported: 2026-07-21_

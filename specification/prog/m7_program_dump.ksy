@@ -287,9 +287,9 @@ seq:
     type: u1
   - id: display
     doc: |
-      Display (`nibble_hilo`): high nibble = page/row while browsing (`92=02`)
-      or edit anchor while changing a value (`92=00`); low nibble = position
-      within the me...
+      Display (`nibble_hilo`): front-panel UI focus code (not a sound
+      parameter). Browse (`92=02`): menu-row highlight (`menu_index+28` for
+      indices 1–17; reverb ti...
       Capture series: sysex/prog/menus/
       Locked encoding table: 35 known encoded value(s)
     type: display_encoded

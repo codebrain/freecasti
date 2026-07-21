@@ -27,7 +27,8 @@ Official overview:
 see [Favorites captures](#favorites-captures-sysexprogfavorites) below.
 
 Program dumps include UI/edit state (Bricasti MIDI notes) — expect offsets **146–147**
-as one **`nibble_hilo` display** field (high nibble = page/row, low = column), plus **92**
+as one **`nibble_hilo` display** field (browse = menu-row highlight; edit = value-focus
+band that moves with the shown value), plus **92**
 (panel-mode flag) and **98–99** (menu index) for menu browse/edit, even in
 single-parameter series.
 
@@ -240,6 +241,11 @@ Optional follow-ups:
   rarely touched SYSTEM knobs
 - `0.1s.syx` for reverb time if the UI reaches the printed 0.1 s floor
 - Denser mid samples for medium-confidence tables when you need a full decode table
+- **Display edit-band sweeps** (optional): every discrete UI step for 2–3
+  parameters with different encodings (e.g. diffusion `raw_u8`, reverb time
+  `nibble_hilo`, early select) while holding edit (`92 = 00`). Goal: test
+  whether 146–147 increments once per step vs digit/cursor cell vs string-pool
+  ID — see [bytes/display.md](../specification/prog/bytes/display.md)
 - Reconcile hard sheet errata (early select / HF crossover on a few Halls) if you re-dump those factory programs
 - Hardware UI value walks (no SysEx) in
   [reference/provided_labels.json](reference/provided_labels.json) — see

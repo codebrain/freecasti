@@ -3,7 +3,7 @@
 
 # Delay Level
 
-_Generated 2026-07-20. Source folder: `sysex/prog/parameters/delay level/`._
+_Generated 2026-07-21. Source folder: `sysex/prog/parameters/delay level/`._
 
 ## SysEx summary
 

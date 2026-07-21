@@ -68,7 +68,7 @@ Tooltips use manual descriptions from `param-manifest.json` (sourced from `src/m
 
 When **Send on change** or **Send** is used on the program tab, outgoing dumps patch UI bytes at offsets **92**, **98–99**, and **146–147** from `prog_ui` in `m7-runtime.json`:
 
-- **146–147** — `nibble_hilo` display (`display` in Kaitai): high nibble = page/row, low nibble = column. Patched as separate wire bytes; combined value is `(byte[146] << 4) | byte[147]`.
+- **146–147** — `nibble_hilo` display (`display` in Kaitai): UI focus code (browse = menu-row highlight; edit = value-focus band). Patched as separate wire bytes; combined value is `(byte[146] << 4) | byte[147]`.
 - **Parameter select/focus** → browse mode (menu highlighted, byte 92 = `02`).
 - **Single knob/button edit** → edit mode for that parameter’s menu (byte 92 stays `02`, menu index @ 98–99, edit cursor @ 146–147). Hardware edit captures store byte 92 = `00` while a value is being changed; outbound web-UI dumps deliberately keep the browse marker `02` (`applyProgUiBytes` in `src/prog/uiState.ts`), and the decode path accepts both.
 - **Preset load** or any multi-parameter state replace → idle / **no menu** bytes (`no menu.syx` baseline).

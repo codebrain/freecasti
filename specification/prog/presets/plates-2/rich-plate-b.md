@@ -3,7 +3,7 @@
 
 # Rich Plate B
 
-_Generated 2026-07-20. Bank: [Plates 2](README.md) (index **7**). Source: `sysex/prog/presets/Plates 2.Rich Plate B.syx`._
+_Generated 2026-07-21. Bank: [Plates 2](README.md) (index **7**). Source: `sysex/prog/presets/Plates 2.Rich Plate B.syx`._
 
 [All presets](../../README.md) · [Plates 2 bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -61,4 +61,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Alpha Plate](alpha-plate.md)
 - [Vocal Shimmer](vocal-shimmer.md)
 
-_Last exported: 2026-07-20_
+_Last exported: 2026-07-21_

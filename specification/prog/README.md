@@ -8,7 +8,7 @@ Community reverse-engineered specification from labeled hardware captures in thi
 
 ## Overview
 
-_Snapshot from export on 2026-07-20._
+_Snapshot from export on 2026-07-21._
 
 Each `sysex/prog/parameters/<parameter>/` folder is an **independent** dump stream (only that parameter intentionally varied). Folders are never byte-compared against each other - other parameters may differ between series. Meta folder `sysex/prog/presets/` captures whole presets as `<bank>.<preset>.syx` for program-identity fields.
 
@@ -72,7 +72,7 @@ Identified parameter fields (each from its own folder):
 - **139** - Parameter [`delay modulation`](bytes/delay-modulation.md) (from independent series [sysex/prog/parameters/delay modulation/](bytes/delay-modulation.md)) (raw_u8, label = encoded + (-1))
 - **140-144** - Reserved block (always 0 in this corpus)
 - **145** - Mirror of algorithm/family flag at 97 (145=0 when 97=3; 145=1 when 97=4 in this corpus)
-- **146-147** - Display (`nibble_hilo`): high nibble = page/row while browsing (`92=02`) or edit anchor while changing a value (`92=00`); low nibble = position within the menu page, or value-display position while editing. From `sysex/prog/menus/` captures
+- **146-147** - Display (`nibble_hilo`): front-panel UI focus code (not a sound parameter). Browse (`92=02`): menu-row highlight (`menu_index+28` for indices 1–17; reverb time → 46). Edit (`92=00`): value-focus code in a parameter-specific band that advances as the shown value changes (not a fixed edit anchor). From `sysex/prog/menus/` + parameter series
 - **148-151** - Reserved (always 0) immediately before checksum nibbles
 
 Secondary UI / edit-state fields:
@@ -137,7 +137,7 @@ F0 | 00 62 63 | 70 08 01 00 | <name 8-21> <pad 22-23> <basis blob 24-87> | <bank
 - Factory dumps fill offsets 24-87 with spaces, so the whole 8-87 window reads as one long space-padded name there. Reg-backed hold-EDIT captures show 24-87 is really a separate register-basis blob — a fully decoded bit-packed snapshot of the stored register ([bytes/register-basis-blob.md](bytes/register-basis-blob.md), captures under `sysex/prog/edit/registers/`).
 - Checksum (152-155): **CRC-16/ARC** over the raw SysEx bytes at offsets 8-151 (name + payload), packed as four high-nibble-first data bytes. Manufacturer ID and header are not covered.
 - Program dumps can include UI / edit-state fields in addition to algorithm parameters (Bricasti documents that a program dump carries the running program, edits, and UI state). Expect a few offsets to move even during a “single parameter” series.
-- Display at **146–147** (`nibble_hilo`): high nibble = page/row, low nibble = column/position. Menu index remains at **98–99**. See [bytes/display.md](bytes/display.md) and [ui-state.md](ui-state.md).
+- Display at **146–147** (`nibble_hilo`): UI focus code — browse = menu-row highlight; edit = value-focus band that moves with the shown value (not a fixed anchor). Menu index remains at **98–99**. See [bytes/display.md](bytes/display.md) and [ui-state.md](ui-state.md).
 - **Independence:** each `sysex/prog/parameters/<parameter>/` folder is its own capture stream. Do not assume dumps from different folders share the same values for other parameters. Meta folder `sysex/prog/presets/` holds whole-preset dumps named `<bank>.<preset>` for identity fields.
 - Edit-buffer dumps (hold **EDIT**) share the PROG header/length (157 bytes);
   bank word **88-89 = 11** while mirror **137** keeps the source bank. Keep them
@@ -185,7 +185,7 @@ The analyzer scores both against filename labels.
 
 Index of documented dump fields: [bytes/README.md](bytes/README.md).
 
-_Last exported: 2026-07-20_
+_Last exported: 2026-07-21_
 ## Open questions
 
 1. **Unseen / undocumented values** — documented or otherwise possible values not yet witnessed on the wire are tracked per field in the **Unseen values** section of each [bytes/](bytes/README.md) page

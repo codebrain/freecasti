@@ -77,7 +77,7 @@ Index with descriptions: [bytes/README.md](bytes/README.md).
 - **Wet gain:** offsets 8–9 (`nibble_hilo`); Off/Full are discrete; numbered settings are 0.5 dB steps from −60 dB to 0 dB (Full).
 - **Dry gain:** offsets 10–11 (`nibble_hilo`); Off/Full are discrete; numbered settings are 0.5 dB steps from −60 dB to 0 dB (Full).
 
-_Last exported: 2026-07-20_
+_Last exported: 2026-07-21_
 ## Open questions
 
 1. **Offset 25 coupling** — `midi bank` primary @ 25; display-level series also moves offset 25 (secondary)
