@@ -216,9 +216,8 @@
 @utility led-text {
   color: var(--color-led);
   text-shadow:
-    0 0 6px oklch(0.72 0.27 27 / 0.95),
-    0 0 18px oklch(0.64 0.245 27 / 0.55),
-    0 0 36px oklch(0.62 0.24 27 / 0.2);
+    0 0 3px oklch(0.72 0.27 27 / 0.45),
+    0 0 10px oklch(0.64 0.245 27 / 0.22);
   font-family: var(--font-led);
   letter-spacing: 0.06em;
 }
@@ -265,8 +264,8 @@
   padding-left: 0.3em;
   text-align: center;
   text-shadow:
-    0 0 10px oklch(0.72 0.27 27 / 0.8),
-    0 0 28px oklch(0.64 0.245 27 / 0.4);
+    0 0 4px oklch(0.72 0.27 27 / 0.35),
+    0 0 12px oklch(0.64 0.245 27 / 0.15);
 }
 
 @utility knob-hero-label-muted {
