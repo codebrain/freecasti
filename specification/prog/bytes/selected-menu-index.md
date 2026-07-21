@@ -3,7 +3,7 @@
 
 # Selected menu index
 
-_Generated 2026-07-21. Menu-navigation captures under `sysex/prog/menus/` (one capture per highlighted menu)._
+_Generated 2026-07-22. Menu-navigation captures under `sysex/prog/menus/` (one capture per highlighted menu)._
 
 ## SysEx summary
 
@@ -51,4 +51,4 @@ Offsets **98–99** carry the highlighted front-panel menu as a `nibble_hilo` in
 - [Register captures](../../../sysex/prog/edit/registers/README.md) — hold-EDIT register corpus
 - [Owner’s manual notes](../../../docs/manual-notes.md)
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

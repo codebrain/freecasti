@@ -70,7 +70,7 @@ Decoded factory values are also checked against Bricasti’s published sheet
 | Favorite slot | 94 | `(slot-1)*2` for favorites 1–4 on favorite-loaded PROG frames; `08` = not from a favorite (`sysex/prog/favorites/`) |
 | Register slot | 95 | Reg slot 0–9; `0` on factory dumps |
 | Bank mirror | 136–137 | `nibble_hilo`; equals bank word 88–89 (source bank on hold-EDIT) |
-| Algorithm/family flag | 96–97 / 145 | `nibble_hilo` (96 always `00`); Halls≈3 / most others≈4; not a clean V1/V2 bit — see manual-notes |
+| Algorithm/family flag | 96–97 / 144–145 | `nibble_hilo` (96 and 144 always `00`); Halls≈3 / most others≈4; not a clean V1/V2 bit — see manual-notes |
 | Engine/bank-class flag | 130 | `0` classic, `1` `* 2`, `2` NonLin; companion 131 = `02` |
 
 ## Algorithms (manual context)

@@ -3,7 +3,7 @@
 
 # Saint Gerold
 
-_Generated 2026-07-21. Bank: [Halls](README.md) (index **0**). Source: `sysex/prog/presets/Halls.Saint Gerold.syx`._
+_Generated 2026-07-22. Bank: [Halls](README.md) (index **0**). Source: `sysex/prog/presets/Halls.Saint Gerold.syx`._
 
 [All presets](../../README.md) · [Halls bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -79,4 +79,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Reflect Hall B](reflect-hall-b.md)
 - [Piano Hall](piano-hall.md)
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

@@ -3,7 +3,7 @@
 
 # Early Rolloff
 
-_Generated 2026-07-21. Source folder: `sysex/prog/parameters/early rolloff/`._
+_Generated 2026-07-22. Source folder: `sysex/prog/parameters/early rolloff/`._
 
 ## SysEx summary
 

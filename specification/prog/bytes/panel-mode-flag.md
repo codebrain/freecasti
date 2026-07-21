@@ -3,7 +3,7 @@
 
 # Panel mode flag
 
-_Generated 2026-07-21. Menu-navigation captures under `sysex/prog/menus/` and the favorites session under `sysex/prog/favorites/`._
+_Generated 2026-07-22. Menu-navigation captures under `sysex/prog/menus/` and the favorites session under `sysex/prog/favorites/`._
 
 ## SysEx summary
 
@@ -37,4 +37,4 @@ Offset **92** reflects what the front panel was showing when the dump was taken 
 - [Register captures](../../../sysex/prog/edit/registers/README.md) — hold-EDIT register corpus
 - [Owner’s manual notes](../../../docs/manual-notes.md)
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

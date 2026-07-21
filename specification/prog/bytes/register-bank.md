@@ -3,7 +3,7 @@
 
 # Register bank
 
-_Generated 2026-07-21. Register hold-EDIT captures under `sysex/prog/edit/registers/` (including `fullsweep-rooms-studio-a.syx`)._
+_Generated 2026-07-22. Register hold-EDIT captures under `sysex/prog/edit/registers/` (including `fullsweep-rooms-studio-a.syx`)._
 
 ## SysEx summary
 
@@ -40,4 +40,4 @@ Witness sources: register-basis hold-EDIT dumps (`sysex/prog/edit/registers/`).
 - [Register captures](../../../sysex/prog/edit/registers/README.md) — hold-EDIT register corpus
 - [Owner’s manual notes](../../../docs/manual-notes.md)
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

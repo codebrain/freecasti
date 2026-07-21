@@ -3,7 +3,7 @@
 
 # Bank index
 
-_Generated 2026-07-21. Factory presets under `sysex/prog/presets/` (222 dumps), hold-EDIT captures, and the Bricasti MIDI app notes bank table._
+_Generated 2026-07-22. Factory presets under `sysex/prog/presets/` (222 dumps), hold-EDIT captures, and the Bricasti MIDI app notes bank table._
 
 ## SysEx summary
 
@@ -48,4 +48,4 @@ Offsets **88–89** carry the program bank as a `nibble_hilo` word (high nibble 
 - [Register captures](../../../sysex/prog/edit/registers/README.md) — hold-EDIT register corpus
 - [Owner’s manual notes](../../../docs/manual-notes.md)
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

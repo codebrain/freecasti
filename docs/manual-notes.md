@@ -64,16 +64,17 @@ MIDI **program change** bank selects use the same indices (see MIDI app notes).
 
 ## Algorithms and byte-map hints
 
-### V1 vs V2 (offsets 96–97)
+### V1 vs V2 (offsets 96–97 / 144–145)
 
 V2 addendum: classic banks use the **V1** reverb algorithm; **Halls 2 / Plates 2 /
 Rooms 2 / Spaces 2** use the **V2** algorithm (same parameter set, different
 character). Offsets **96–97** (`nibble_hilo`; high nibble at 96 always `00`,
-mirrored at **145**) are a **family / algorithm flag**, not a user parameter and
+mirrored at **144–145**) are a **family / algorithm flag**, not a user parameter and
 **not** a clean V1/V2 bit: Halls dumps are all **3**; most other banks are **4**,
 with a few bank-leading presets also **3** (Chambers Large Chamber, Plates Bright
-Plate, Rooms Studio A, Halls 2 Large Hall). Mirror: **145=0** when value **3**,
-**145=1** when value **4**.
+Plate, Rooms Studio A, Halls 2 Large Hall). Mirror: **144–145 = 0** when value **3**,
+**144–145 = 1** when value **4** (factory/parameter corpus; live dumps may also
+show mirror value **2**).
 
 ### Engine/bank-class flag (offset 130)
 
@@ -175,7 +176,7 @@ display-level secondary coupling on the same row.
 | **93** | **`register_bank`** — manual Bank (`raw_u8`, B0–B4 = `00`–`04`) of the register *loaded as the running basis* (a store alone doesn't update it); `00` on factory dumps |
 | **94** | **`favorite_slot`** — `(slot-1)*2` (`00`/`02`/`04`/`06`) when the running program was loaded from front-panel favorite 1–4 (PROG frames; persists across edits); `08` = not from a favorite (all factory/series and hold-EDIT dumps — previously misread as a structure/version constant) |
 | **95** | **`register`** — manual Register within bank (`0`–`9`) of the *loaded* register basis; `00` on factory dumps |
-| **96–97** | Algorithm/family flag (`nibble_hilo`; high nibble at 96 always `00`); mirrored at **145** |
+| **96–97** | Algorithm/family flag (`nibble_hilo`; high nibble at 96 always `00`); mirrored at **144–145** |
 | **EDIT** identity | Program bank **11** @ 88–89; source factory slot @ 90–91; source bank @ mirror **136–137**; see `sysex/prog/edit/` and `sysex/prog/edit/registers/` |
 | **SYSTEM** layout | 77 bytes, header `70 08 02 00`; **8** settings captured — see [system/](../specification/system/) |
 
@@ -232,6 +233,6 @@ Remaining optional work:
 
 - Bank hints: `HINT_BANK_INDEX` / `EDIT_DUMP_BANK_INDEX` in `src/m7_sysex/prog/names.py`
 - Printed ranges: `src/m7_sysex/prog/catalog.py`
-- Corpus meta bytes (96–97 family flag / 130 engine class / reserved): `src/m7_sysex/prog/corpus_layout.py`
+- Corpus meta bytes (96–97/144–145 family flag / 130 engine class / reserved): `src/m7_sysex/prog/corpus_layout.py`
 - SYSTEM hints: `src/m7_sysex/system/catalog.py`
 - Name alias (`NonLin` → `Nonlin`): `check_name_bytes()` in `prog/names.py`

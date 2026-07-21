@@ -89,7 +89,8 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
             "Algorithm/family flag (`nibble_hilo`) from corpus presets "
             "(Halls all 3; most other presets 4, with a few bank-leading "
             "exceptions also 3). High nibble at 96 is always 0. Mirrored at "
-            "145 as 0 when value=3 and 1 when value=4 — not a clean V1/V2 bit"
+            "144–145 as 0 when value=3 and 1 when value=4 — not a clean "
+            "V1/V2 bit"
         ),
         "encoding": "nibble_hilo",
         "confidence": "medium",
@@ -130,7 +131,7 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "label": "fixed (always 02)",
     },
     {
-        "offsets": [140, 141, 142, 143, 144],
+        "offsets": [140, 141, 142, 143],
         "status": "known",
         "role": "Reserved block (always 0 in this corpus)",
         "encoding": None,
@@ -138,13 +139,14 @@ CORPUS_LAYOUT_CLAIMS: tuple[dict[str, Any], ...] = (
         "label": "reserved (always 0)",
     },
     {
-        "offsets": [145],
+        "offsets": [144, 145],
         "status": "known",
         "role": (
-            "Mirror of algorithm/family flag at 96–97 "
-            "(145=0 when value=3; 145=1 when value=4 in this corpus)"
+            "Mirror of algorithm/family flag at 96–97 (`nibble_hilo`; "
+            "high nibble at 144 always 0). Value 0 when flag=3, 1 when "
+            "flag=4 in factory/parameter corpus; live dumps may also show 2"
         ),
-        "encoding": "raw_u8",
+        "encoding": "nibble_hilo",
         "confidence": "medium",
         "label": "family-flag mirror",
     },

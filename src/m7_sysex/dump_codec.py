@@ -188,7 +188,7 @@ _SKELETON_DEFAULTS: dict[str, bytes | int] = {
     "program_name_pad": b"\x20\x20",  # factory space pad
     "register_basis_blob": b"\x20" * 64,  # factory space pad
     "favorite_slot": 8,  # not loaded from a favorite
-    "algorithm_family_flag": 3,  # Halls baseline (mirror 145 stays 0)
+    "algorithm_family_flag": 3,  # Halls baseline (mirror 144–145 stays 0)
     "fixed_always_02_00": b"\x02\x00",  # PROG 131-132 / SYSTEM 19-20
 }
 

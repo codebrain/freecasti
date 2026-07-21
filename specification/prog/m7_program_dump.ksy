@@ -251,12 +251,13 @@ seq:
   - id: reserved_always_0
     doc: |
       Reserved block (always 0 in this corpus)
-    size: 5
+    size: 4
   - id: family_flag_mirror
     doc: |
-      Mirror of algorithm/family flag at 96–97 (145=0 when value=3; 145=1 when
-      value=4 in this corpus)
-    type: u1
+      Mirror of algorithm/family flag at 96–97 (`nibble_hilo`; high nibble at
+      144 always 0). Value 0 when flag=3, 1 when flag=4 in factory/parameter
+      corpus; live d...
+    type: nibble_u8_hilo
   - id: display
     doc: |
       Display (`nibble_hilo`): front-panel UI focus code (not a sound

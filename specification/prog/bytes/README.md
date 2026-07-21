@@ -30,7 +30,7 @@ Documented **program dump** payload fields: the 18 front-panel sound parameters 
 | [Program slot](program-slot.md) | `90-91` · `nibble_hilo` · high | Program slot within the bank (preset-list order, from 0); stays the source factory slot on hold-EDIT dumps. |
 | [Panel mode flag](panel-mode-flag.md) | `92` · `raw_u8` · high | Front-panel screen state: `00` idle/value edit, `02` menu highlighted, `08` favorites screen shown (UI state, not a program property). |
 | [Selected menu index](selected-menu-index.md) | `98-99` · `nibble_hilo` · high | Highlighted front-panel menu (0–17, hardware menu order) while a parameter menu is open; `00 00` when idle. |
-| [Algorithm/family flag](algorithm-family-flag.md) | `96-97` · `nibble_hilo` · medium | Corpus family flag (Halls all 3; most others 4), mirrored at 145 — not a clean V1/V2 bit. |
+| [Algorithm/family flag](algorithm-family-flag.md) | `96-97` · `nibble_hilo` · medium | Corpus family flag (Halls all 3; most others 4), mirrored at 144–145 — not a clean V1/V2 bit. |
 | [Engine/bank-class flag](engine-bank-class-flag.md) | `130` · `raw_u8` · medium | Engine/bank class: 0 classic V1 banks, 1 the V2 `* 2` banks, 2 NonLin; companion 131 fixed at `02`. |
 | [Program name](program-name.md) | `8-21` · `ascii_space_padded` · high | 14-character editable ASCII program/register label (manual); space-padded within offsets 8–21. |
 | [Program name pad](program-name-pad.md) | `22-23` · `raw_bytes` · high | Trailing space pad (`20 20`) completing the 16-byte wire name window. |
@@ -39,6 +39,6 @@ Documented **program dump** payload fields: the 18 front-panel sound parameters 
 | [Register](register.md) | `95` · `raw_u8` · high | User Register number within bank (manual 0–9) when the dump basis is a register. |
 | [Favorite slot](favorite-slot.md) | `94` · `raw_u8` · high | Favorite-source slot (`(slot-1)*2` for favorites 1–4 on PROG frames; `08` = none); see `sysex/prog/favorites/`. |
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_
 
 Printed ranges and UI labels may differ from this unit's captures (for example Early Select 0–31 vs manual 0–20). See [parameter-catalog.md](../../../docs/parameter-catalog.md) for capture hints, [encoding sources](../../../docs/encoding-sources.md) for witness types, and [../README.md](../README.md) for the program-dump overview.

@@ -3,7 +3,7 @@
 
 # Register basis blob
 
-_Generated 2026-07-21. Register hold-EDIT captures under `sysex/prog/edit/registers/` (fullsweep + witness samples) plus favorites captures under `sysex/prog/favorites/`. Layout table generated from `REGISTER_BLOB_FIELDS` in `m7_sysex.prog.register_blob`._
+_Generated 2026-07-22. Register hold-EDIT captures under `sysex/prog/edit/registers/` (fullsweep + witness samples) plus favorites captures under `sysex/prog/favorites/`. Layout table generated from `REGISTER_BLOB_FIELDS` in `m7_sysex.prog.register_blob`._
 
 ## SysEx summary
 
@@ -101,4 +101,4 @@ All under `sysex/prog/edit/registers/`:
 - [Register captures](../../../sysex/prog/edit/registers/README.md) — hold-EDIT register corpus
 - [Owner’s manual notes](../../../docs/manual-notes.md)
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

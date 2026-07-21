@@ -321,21 +321,27 @@ function progSupplementaryRegions(
     },
     {
       start: 96,
-      end: 96,
-      label: "reserved",
-      meaning: "always 0",
-    },
-    {
-      start: 97,
       end: 97,
       label: "algorithm/family flag",
-      meaning: String(data[97]!),
+      meaning: String((data[96]! << 4) | data[97]!),
     },
     {
       start: 98,
       end: 99,
       label: "selected menu index",
       meaning: describeMenuIndex(data, progUi),
+    },
+    {
+      start: 140,
+      end: 143,
+      label: "reserved",
+      meaning: "always 0",
+    },
+    {
+      start: 144,
+      end: 145,
+      label: "family-flag mirror",
+      meaning: String((data[144]! << 4) | data[145]!),
     },
     {
       start: 146,

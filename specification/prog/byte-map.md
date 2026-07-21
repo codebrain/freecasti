@@ -30,7 +30,7 @@ Example hex for a known parameter comes only from that parameter’s own folder.
 | 93 | 1 | `00` | known | Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` of the register currently **loaded as the running basis** (see `sysex/prog/edit/registers/`); a store alone does not update it (witnessed `00` after storing to B1 R1 with a factory basis); `00` on factory/parameter-series dumps in this corpus — see [register bank](bytes/register-bank.md) |
 | 94 | 1 | `08` | known | Favorite-source slot: `(slot - 1) * 2` (`00`/`02`/`04`/`06` = favorites 1–4) when the running program was loaded from a front-panel favorite (PROG frames only; persists across edits and panel-mode changes — see `sysex/prog/favorites/`); `08` otherwise (all factory/parameter-series and hold-EDIT dumps) — not a sound parameter — see [favorite slot (8 = none)](bytes/favorite-slot.md) |
 | 95 | 1 | `00` | known | Register within bank (`raw_u8`, manual Register `0`–`9`) of the register currently **loaded as the running basis**; a store alone does not update it (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus — see [register](bytes/register.md) |
-| 96-97 | 2 | `00 04` | known | Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 145 as 0 when value=3 and 1 when value=4 — not a clean V1/V2 bit — see [algorithm/family flag](bytes/algorithm-family-flag.md) |
+| 96-97 | 2 | `00 04` | known | Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 144–145 as 0 when value=3 and 1 when value=4 — not a clean V1/V2 bit — see [algorithm/family flag](bytes/algorithm-family-flag.md) |
 | 98-99 | 2 | `00 01` | secondary | Selected front-panel menu index (`nibble_hilo`, 0–17) when a parameter menu is open; `00 00` when idle. Hardware menu order matches `PROGRAM_PARAMETERS` in catalog. Offset 92 disambiguates idle vs Reverb Time (both may show index 0) (moved in independent series: _corpus) — see [selected menu index](bytes/selected-menu-index.md) |
 | 100-101 | 2 | `00 01` | known | Parameter [`reverb time`](bytes/reverb-time.md) (from independent series [sysex/prog/parameters/reverb time/](bytes/reverb-time.md)) (nibble_hilo, table/index candidate (monotonic 100%)) |
 | 102-103 | 2 | `00 01` | known | Parameter [`size`](bytes/size.md) (from independent series [sysex/prog/parameters/size/](bytes/size.md)) (nibble_hilo, label = encoded * 1) |
@@ -53,12 +53,12 @@ Example hex for a known parameter comes only from that parameter’s own folder.
 | 134-135 | 2 | `00 00` | known | Parameter [`delay time`](bytes/delay-time.md) (from independent series [sysex/prog/parameters/delay time/](bytes/delay-time.md)) (nibble_hilo, label = encoded * 8 + (100)) |
 | 136-137 | 2 | `00 04` | known | Bank index mirror (`nibble_hilo`, equals bank word at 88–89) from [sysex/prog/presets/](program-identity.md); on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11 — see [bank index mirror](bytes/bank-index.md) |
 | 138-139 | 2 | `00 01` | known | Parameter [`delay modulation`](bytes/delay-modulation.md) (from independent series [sysex/prog/parameters/delay modulation/](bytes/delay-modulation.md)) (nibble_hilo, label = encoded + (-1)) |
-| 140-144 | 5 | `00 00 00 00 00` | known | Reserved block (always 0 in this corpus) |
-| 145 | 1 | `01` | known | Mirror of algorithm/family flag at 96–97 (145=0 when value=3; 145=1 when value=4 in this corpus) — see [family-flag mirror](bytes/algorithm-family-flag.md) |
+| 140-143 | 4 | `00 00 00 00` | known | Reserved block (always 0 in this corpus) |
+| 144-145 | 2 | `00 01` | known | Mirror of algorithm/family flag at 96–97 (`nibble_hilo`; high nibble at 144 always 0). Value 0 when flag=3, 1 when flag=4 in factory/parameter corpus; live dumps may also show 2 — see [family-flag mirror](bytes/algorithm-family-flag.md) |
 | 146-147 | 2 | `03 0D` | known | Display (`nibble_hilo`): front-panel UI focus code (not a sound parameter). Browse (`92=02`): menu-row highlight (`menu_index+28` for indices 1–17; reverb time → 46). Edit (`92=00`): value-focus code in a parameter-specific band that advances as the shown value changes (not a fixed edit anchor). From `sysex/prog/menus/` + parameter series — see [display](bytes/display.md) |
 | 148-151 | 4 | `00 00 00 00` | known | Reserved (always 0) immediately before checksum nibbles |
 | 152-155 | 4 | - | checksum | Checksum: CRC-16/ARC over offsets 8-151 (name + payload), packed as four high-nibble-first SysEx bytes (per-dump; recompute after edits - do not copy across parameter series) |
 | 156 | 1 | `F7` | frame | SysEx end (F7) |
 
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

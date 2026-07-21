@@ -3,7 +3,7 @@
 
 # Display
 
-_Generated 2026-07-21. Source folder: `sysex/prog/menus/` (19 captures) + edit bands from `sysex/prog/parameters/`._
+_Generated 2026-07-22. Source folder: `sysex/prog/menus/` (19 captures) + edit bands from `sysex/prog/parameters/`._
 
 ## SysEx summary
 
@@ -124,4 +124,4 @@ Same display code witnessed under multiple parameters while editing (use 98–99
 - [Byte map overview](../byte-map-overview.md)
 - [Capture guide](../../../docs/capture-guide.md)
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

@@ -830,7 +830,7 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 145 as 0 when value=3 and 1 when value=4 \u2014 not a clean V1/V2 bit",
+      "role": "Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 144\u2013145 as 0 when value=3 and 1 when value=4 \u2014 not a clean V1/V2 bit",
       "parameters": [
         "_corpus"
       ],
@@ -842,7 +842,7 @@
       "hex": "04",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 145 as 0 when value=3 and 1 when value=4 \u2014 not a clean V1/V2 bit",
+      "role": "Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 144\u2013145 as 0 when value=3 and 1 when value=4 \u2014 not a clean V1/V2 bit",
       "parameters": [
         "_corpus"
       ],
@@ -1401,23 +1401,24 @@
       "hex": "00",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Reserved block (always 0 in this corpus)",
+      "role": "Mirror of algorithm/family flag at 96\u201397 (`nibble_hilo`; high nibble at 144 always 0). Value 0 when flag=3, 1 when flag=4 in factory/parameter corpus; live dumps may also show 2",
       "parameters": [
         "_corpus"
       ],
-      "confidence": "medium"
+      "confidence": "medium",
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 145,
       "hex": "01",
       "hex_source": "C:\\m7\\sysex\\prog\\presets\\Ambience.Bass  XXL.syx",
       "status": "known",
-      "role": "Mirror of algorithm/family flag at 96\u201397 (145=0 when value=3; 145=1 when value=4 in this corpus)",
+      "role": "Mirror of algorithm/family flag at 96\u201397 (`nibble_hilo`; high nibble at 144 always 0). Value 0 when flag=3, 1 when flag=4 in factory/parameter corpus; live dumps may also show 2",
       "parameters": [
         "_corpus"
       ],
       "confidence": "medium",
-      "encoding": "raw_u8"
+      "encoding": "nibble_hilo"
     },
     {
       "offset": 146,
@@ -1669,7 +1670,7 @@
       "length": 2,
       "example_hex": "00 04",
       "status": "known",
-      "role": "Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 145 as 0 when value=3 and 1 when value=4 \u2014 not a clean V1/V2 bit",
+      "role": "Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 144\u2013145 as 0 when value=3 and 1 when value=4 \u2014 not a clean V1/V2 bit",
       "parameters": [
         "_corpus"
       ]
@@ -1940,10 +1941,10 @@
     },
     {
       "start": 140,
-      "end": 144,
-      "offsets": "140-144",
-      "length": 5,
-      "example_hex": "00 00 00 00 00",
+      "end": 143,
+      "offsets": "140-143",
+      "length": 4,
+      "example_hex": "00 00 00 00",
       "status": "known",
       "role": "Reserved block (always 0 in this corpus)",
       "parameters": [
@@ -1951,13 +1952,13 @@
       ]
     },
     {
-      "start": 145,
+      "start": 144,
       "end": 145,
-      "offsets": "145",
-      "length": 1,
-      "example_hex": "01",
+      "offsets": "144-145",
+      "length": 2,
+      "example_hex": "00 01",
       "status": "known",
-      "role": "Mirror of algorithm/family flag at 96\u201397 (145=0 when value=3; 145=1 when value=4 in this corpus)",
+      "role": "Mirror of algorithm/family flag at 96\u201397 (`nibble_hilo`; high nibble at 144 always 0). Value 0 when flag=3, 1 when flag=4 in factory/parameter corpus; live dumps may also show 2",
       "parameters": [
         "_corpus"
       ]
@@ -2079,8 +2080,7 @@
         140,
         141,
         142,
-        143,
-        144
+        143
       ],
       "status": "known",
       "label": "reserved (always 0)",
@@ -2088,6 +2088,7 @@
     },
     {
       "offsets": [
+        144,
         145
       ],
       "status": "known",

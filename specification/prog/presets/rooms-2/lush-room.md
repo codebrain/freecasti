@@ -3,7 +3,7 @@
 
 # Lush Room
 
-_Generated 2026-07-21. Bank: [Rooms 2](README.md) (index **8**). Source: `sysex/prog/presets/Rooms 2.Lush Room.syx`._
+_Generated 2026-07-22. Bank: [Rooms 2](README.md) (index **8**). Source: `sysex/prog/presets/Rooms 2.Lush Room.syx`._
 
 [All presets](../../README.md) · [Rooms 2 bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -69,4 +69,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Wide Room](wide-room.md)
 - **Lush Room** (this page)
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

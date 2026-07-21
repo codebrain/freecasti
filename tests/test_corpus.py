@@ -77,7 +77,7 @@ def test_corpus_layout_constant_claims_hold():
         141: 0,
         142: 0,
         143: 0,
-        144: 0,
+        144: 0,  # high nibble of family-flag mirror
         148: 0,
         149: 0,
         150: 0,
@@ -96,7 +96,7 @@ def test_corpus_layout_claims_cover_expected_offsets():
 
 
 def test_bank_mirror_and_family_flag_mirror_relations():
-    """137 mirrors bank low nibble (89); 145 mirrors family flag (97: 3->0, 4->1)."""
+    """137 mirrors bank low (89); 144–145 mirrors family flag (97: 3→0, 4→1)."""
     for path in ALL_DUMPS:
         for raw in iter_sysex_messages(path.read_bytes()):
             assert raw[137] == raw[89], path

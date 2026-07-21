@@ -1396,7 +1396,7 @@
       "end": 97,
       "size": 2,
       "status": "known",
-      "role": "Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 145 as 0 when value=3 and 1 when value=4 \u2014 not a clean V1/V2 bit",
+      "role": "Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 144\u2013145 as 0 when value=3 and 1 when value=4 \u2014 not a clean V1/V2 bit",
       "encoding": "nibble_hilo",
       "kind": "meta"
     },
@@ -5943,12 +5943,11 @@
         140,
         141,
         142,
-        143,
-        144
+        143
       ],
       "start": 140,
-      "end": 144,
-      "size": 5,
+      "end": 143,
+      "size": 4,
       "status": "known",
       "role": "Reserved block (always 0 in this corpus)",
       "encoding": null,
@@ -5958,14 +5957,15 @@
       "id": "family_flag_mirror",
       "label": "family-flag mirror",
       "offsets": [
+        144,
         145
       ],
-      "start": 145,
+      "start": 144,
       "end": 145,
-      "size": 1,
+      "size": 2,
       "status": "known",
-      "role": "Mirror of algorithm/family flag at 96\u201397 (145=0 when value=3; 145=1 when value=4 in this corpus)",
-      "encoding": "raw_u8",
+      "role": "Mirror of algorithm/family flag at 96\u201397 (`nibble_hilo`; high nibble at 144 always 0). Value 0 when flag=3, 1 when flag=4 in factory/parameter corpus; live dumps may also show 2",
+      "encoding": "nibble_hilo",
       "kind": "meta"
     },
     {

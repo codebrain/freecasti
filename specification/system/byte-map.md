@@ -38,4 +38,4 @@ Coverage: **77** known/frame/checksum, **0** secondary, **0** unknown (of 77).
 | 76 | 1 | `F7` | frame | SysEx end (F7) |
 
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

@@ -480,7 +480,7 @@ def render_algorithm_family_flag_page(*, today: str, nav: str = "") -> str:
         source_line=(
             "Corpus scan of all factory presets under `sysex/prog/presets/`."
         ),
-        offsets="96–97 (mirror at 145)",
+        offsets="96–97 (mirror at 144–145)",
         encoding="nibble_hilo",
         confidence="medium",
         role=(
@@ -494,21 +494,25 @@ def render_algorithm_family_flag_page(*, today: str, nav: str = "") -> str:
             "reads `3`; most other presets read `4`, with a few "
             "bank-leading exceptions also at `3` (Chambers Large Chamber, "
             "Plates Bright Plate, Rooms Studio A, Halls 2 Large Hall). "
-            "Offset **145** mirrors it as `0` when the value is `3` and "
-            "`1` when the value is `4`. It is **not** a clean V1/V2 "
-            "algorithm bit — the engine class lives at "
+            "Offsets **144–145** mirror it as `nibble_hilo` (`0` when the "
+            "value is `3`, `1` when the value is `4` in factory/parameter "
+            "dumps; live dumps may also show `2`). It is **not** a clean "
+            "V1/V2 algorithm bit — the engine class lives at "
             "[engine/bank-class flag](engine-bank-class-flag.md) (offset "
             "130). Not a user parameter; no capture series moves it."
         ),
         body_sections=[
             "## Encoding map",
             "",
-            "| `nibble_hilo` | Offset 96 | Offset 97 | Mirror 145 | Presets |",
-            "|--------------:|----------|----------|-----------:|---------|",
-            "| 3 | `00` | `03` | `0` | All Halls; Chambers Large Chamber, "
-            "Plates Bright Plate, Rooms Studio A, Halls 2 Large Hall |",
-            "| 4 | `00` | `04` | `1` | All other factory presets in this "
-            "corpus |",
+            "| Flag `nibble_hilo` | 96 | 97 | Mirror `nibble_hilo` | "
+            "144 | 145 | Presets |",
+            "|-------------------:|----|----|--------------------:|"
+            "-----|-----|---------|",
+            "| 3 | `00` | `03` | 0 | `00` | `00` | All Halls; Chambers "
+            "Large Chamber, Plates Bright Plate, Rooms Studio A, Halls 2 "
+            "Large Hall |",
+            "| 4 | `00` | `04` | 1 | `00` | `01` | All other factory "
+            "presets in this corpus |",
             "",
             "## Notes",
             "",
@@ -544,7 +548,8 @@ def render_engine_bank_class_flag_page(*, today: str, nav: str = "") -> str:
             "companion byte at **131** is always `02` in this corpus "
             "(offset **132** is the high nibble of delay level). Distinct "
             "from the "
-            "[algorithm/family flag](algorithm-family-flag.md) at 96–97/145."
+            "[algorithm/family flag](algorithm-family-flag.md) at "
+            "96–97/144–145."
         ),
         body_sections=[
             "## Encoding map",
@@ -908,7 +913,7 @@ IDENTITY_BYTE_PAGES: tuple[dict[str, Any], ...] = (
         "sysex": "`96-97` · `nibble_hilo` · medium",
         "description": (
             "Corpus family flag (Halls all 3; most others 4), mirrored at "
-            "145 — not a clean V1/V2 bit."
+            "144–145 — not a clean V1/V2 bit."
         ),
         "render": render_algorithm_family_flag_page,
     },

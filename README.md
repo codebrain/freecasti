@@ -33,7 +33,7 @@ The **77-byte system-dump format is fully annotated** as well — see
 | Sound parameters | **18 / 18 captured and decodable** from dedicated series; tables densified with hardware UI walks (`provided`) and sheet/preset anchors |
 | Program identity | Solved: name @ 8–23 (16-byte wire / 14-char editable), register basis blob @ 24–87, bank @ 88–89 (mirror 136–137), slot @ 90–91; `register_bank` / `register` @ 93/95 on register-basis EDIT (5×10) |
 | Favorites | Decoded from `sysex/prog/favorites/`: source identity @ 88–91 (never bank 119 on send), favorite slot @ 94, panel-mode flag @ 92 (`08` = favorites screen), blob store counter 0, auto-commit on hold-PROG from the favorites screen |
-| Meta / reserved bytes | Mapped from a corpus scan (family flag 96–97/145, engine class 130, fixed fields, padding) — medium confidence |
+| Meta / reserved bytes | Mapped from a corpus scan (family flag 96–97/144–145, engine class 130, fixed fields, padding) — medium confidence |
 | Factory presets | **222 captured** ([presets/](specification/prog/presets/)); see [preset-inventory.md](specification/prog/preset-inventory.md) |
 | Sheet cross-check | 98 classic presets matched; errata in [preset-sheet.md](specification/prog/preset-sheet.md) |
 | Hardware UI walks | **15** parameters in [provided_labels.json](docs/reference/provided_labels.json) (14 program + output level) |

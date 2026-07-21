@@ -3,7 +3,7 @@
 
 # Early/Reverb Mix
 
-_Generated 2026-07-21. Source folder: `sysex/prog/parameters/early to reverb mix/`._
+_Generated 2026-07-22. Source folder: `sysex/prog/parameters/early to reverb mix/`._
 
 ## SysEx summary
 

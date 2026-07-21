@@ -81,4 +81,4 @@ Some edit-mode display codes appear under more than one parameter (discriminate 
 - [Display](bytes/display.md) — browse map, edit bands, hypotheses
 - [Capture guide](../../docs/capture-guide.md) — how to record menu dumps
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

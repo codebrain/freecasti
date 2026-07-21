@@ -3,7 +3,7 @@
 
 # Diffusion
 
-_Generated 2026-07-21. Source folder: `sysex/prog/parameters/diffusion/`._
+_Generated 2026-07-22. Source folder: `sysex/prog/parameters/diffusion/`._
 
 ## SysEx summary
 

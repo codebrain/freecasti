@@ -8,7 +8,7 @@ Community reverse-engineered specification from labeled hardware captures in thi
 
 ## Overview
 
-_Snapshot from export on 2026-07-21._
+_Snapshot from export on 2026-07-22._
 
 Each `sysex/prog/parameters/<parameter>/` folder is an **independent** dump stream (only that parameter intentionally varied). Folders are never byte-compared against each other - other parameters may differ between series. Meta folder `sysex/prog/presets/` captures whole presets as `<bank>.<preset>.syx` for program-identity fields.
 
@@ -42,7 +42,7 @@ Identified parameter fields (each from its own folder):
 - **93** - Register bank (`raw_u8`, manual Bank): `B0`–`B4` = `00`–`04` of the register currently **loaded as the running basis** (see `sysex/prog/edit/registers/`); a store alone does not update it (witnessed `00` after storing to B1 R1 with a factory basis); `00` on factory/parameter-series dumps in this corpus
 - **94** - Favorite-source slot: `(slot - 1) * 2` (`00`/`02`/`04`/`06` = favorites 1–4) when the running program was loaded from a front-panel favorite (PROG frames only; persists across edits and panel-mode changes — see `sysex/prog/favorites/`); `08` otherwise (all factory/parameter-series and hold-EDIT dumps) — not a sound parameter
 - **95** - Register within bank (`raw_u8`, manual Register `0`–`9`) of the register currently **loaded as the running basis**; a store alone does not update it (see `sysex/prog/edit/registers/`); `00` on factory/parameter-series dumps in this corpus
-- **96-97** - Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 145 as 0 when value=3 and 1 when value=4 — not a clean V1/V2 bit
+- **96-97** - Algorithm/family flag (`nibble_hilo`) from corpus presets (Halls all 3; most other presets 4, with a few bank-leading exceptions also 3). High nibble at 96 is always 0. Mirrored at 144–145 as 0 when value=3 and 1 when value=4 — not a clean V1/V2 bit
 - **100-101** - Parameter [`reverb time`](bytes/reverb-time.md) (from independent series [sysex/prog/parameters/reverb time/](bytes/reverb-time.md)) (nibble_hilo, table/index candidate (monotonic 100%))
 - **102-103** - Parameter [`size`](bytes/size.md) (from independent series [sysex/prog/parameters/size/](bytes/size.md)) (nibble_hilo, label = encoded * 1)
 - **104-105** - Parameter [`predelay`](bytes/predelay.md) (from independent series [sysex/prog/parameters/predelay/](bytes/predelay.md)) (nibble_hilo, table/index candidate (monotonic 100%))
@@ -64,8 +64,8 @@ Identified parameter fields (each from its own folder):
 - **134-135** - Parameter [`delay time`](bytes/delay-time.md) (from independent series [sysex/prog/parameters/delay time/](bytes/delay-time.md)) (nibble_hilo, label = encoded * 8 + (100))
 - **136-137** - Bank index mirror (`nibble_hilo`, equals bank word at 88–89) from [sysex/prog/presets/](program-identity.md); on hold-EDIT dumps this stays the source bank while 88-89 are Edit index 11
 - **138-139** - Parameter [`delay modulation`](bytes/delay-modulation.md) (from independent series [sysex/prog/parameters/delay modulation/](bytes/delay-modulation.md)) (nibble_hilo, label = encoded + (-1))
-- **140-144** - Reserved block (always 0 in this corpus)
-- **145** - Mirror of algorithm/family flag at 96–97 (145=0 when value=3; 145=1 when value=4 in this corpus)
+- **140-143** - Reserved block (always 0 in this corpus)
+- **144-145** - Mirror of algorithm/family flag at 96–97 (`nibble_hilo`; high nibble at 144 always 0). Value 0 when flag=3, 1 when flag=4 in factory/parameter corpus; live dumps may also show 2
 - **146-147** - Display (`nibble_hilo`): front-panel UI focus code (not a sound parameter). Browse (`92=02`): menu-row highlight (`menu_index+28` for indices 1–17; reverb time → 46). Edit (`92=00`): value-focus code in a parameter-specific band that advances as the shown value changes (not a fixed edit anchor). From `sysex/prog/menus/` + parameter series
 - **148-151** - Reserved (always 0) immediately before checksum nibbles
 
@@ -179,7 +179,7 @@ The analyzer scores both against filename labels.
 
 Index of documented dump fields: [bytes/README.md](bytes/README.md).
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_
 ## Open questions
 
 1. **Unseen / undocumented values** — documented or otherwise possible values not yet witnessed on the wire are tracked per field in the **Unseen values** section of each [bytes/](bytes/README.md) page

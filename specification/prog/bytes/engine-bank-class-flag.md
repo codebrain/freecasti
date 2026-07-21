@@ -3,7 +3,7 @@
 
 # Engine/bank-class flag
 
-_Generated 2026-07-21. Corpus scan of all factory presets under `sysex/prog/presets/`._
+_Generated 2026-07-22. Corpus scan of all factory presets under `sysex/prog/presets/`._
 
 ## SysEx summary
 
@@ -15,7 +15,7 @@ _Generated 2026-07-21. Corpus scan of all factory presets under `sysex/prog/pres
 
 ## Description
 
-Offset **130** selects the engine/bank class of the running program: `0` on the classic banks (Halls…Spaces, V1 algorithm), `1` on the `* 2` banks (Halls 2…Spaces 2, V2 algorithm), `2` on NonLin. Most parameter-series dumps read `1` (captured from Large Church, Halls 2); the LF RT multiply/crossover series read `0` (Large Hall). The companion byte at **131** is always `02` in this corpus (offset **132** is the high nibble of delay level). Distinct from the [algorithm/family flag](algorithm-family-flag.md) at 96–97/145.
+Offset **130** selects the engine/bank class of the running program: `0` on the classic banks (Halls…Spaces, V1 algorithm), `1` on the `* 2` banks (Halls 2…Spaces 2, V2 algorithm), `2` on NonLin. Most parameter-series dumps read `1` (captured from Large Church, Halls 2); the LF RT multiply/crossover series read `0` (Large Hall). The companion byte at **131** is always `02` in this corpus (offset **132** is the high nibble of delay level). Distinct from the [algorithm/family flag](algorithm-family-flag.md) at 96–97/144–145.
 
 ## Encoding map
 
@@ -36,4 +36,4 @@ Offset **130** selects the engine/bank class of the running program: `0` on the 
 - [Register captures](../../../sysex/prog/edit/registers/README.md) — hold-EDIT register corpus
 - [Owner’s manual notes](../../../docs/manual-notes.md)
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

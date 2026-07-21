@@ -3,7 +3,7 @@
 
 # Program identity
 
-_Generated 2026-07-21. Source folder: `sysex/prog/presets/` (222 dumps named `<bank name>.<preset name>.syx`)._
+_Generated 2026-07-22. Source folder: `sysex/prog/presets/` (222 dumps named `<bank name>.<preset name>.syx`)._
 
 **Confidence:** high
 
@@ -794,4 +794,4 @@ Decoded from each dump using the densified encoding map (series, `provided` UI w
 | [delay modulation](bytes/delay-modulation.md) | 138-139 | `nibble_hilo` | affine |
 
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

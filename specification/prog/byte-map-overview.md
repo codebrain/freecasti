@@ -49,8 +49,8 @@ Reserved/meta roles (padding, family flag, display @ 146–147, engine/bank clas
 | 134-135 | 2 | known | [delay time](bytes/delay-time.md) (`nibble_hilo`) |
 | 136-137 | 2 | known | [bank index mirror](bytes/bank-index.md) (`nibble_hilo`) |
 | 138-139 | 2 | known | [delay modulation](bytes/delay-modulation.md) (`nibble_hilo`) |
-| 140-144 | 5 | known | reserved (always 0) |
-| 145 | 1 | known | [family-flag mirror](bytes/algorithm-family-flag.md) (`raw_u8`) |
+| 140-143 | 4 | known | reserved (always 0) |
+| 144-145 | 2 | known | [family-flag mirror](bytes/algorithm-family-flag.md) (`nibble_hilo`) |
 | 146-147 | 2 | known | [display](bytes/display.md) (`nibble_hilo`) |
 | 148-151 | 4 | known | reserved (always 0) |
 | 152-155 | 4 | checksum | checksum (CRC-16/ARC) |
@@ -86,7 +86,7 @@ Reserved/meta roles (padding, family flag, display @ 146–147, engine/bank clas
 | 134-135 | [delay time](bytes/delay-time.md) | `nibble_hilo` | series |
 | 136-137 | [bank index mirror](bytes/bank-index.md) | `nibble_hilo` | [_presets](program-identity.md) |
 | 138-139 | [delay modulation](bytes/delay-modulation.md) | `nibble_hilo` | series |
-| 145 | [family-flag mirror](bytes/algorithm-family-flag.md) | `raw_u8` | corpus |
+| 144-145 | [family-flag mirror](bytes/algorithm-family-flag.md) | `nibble_hilo` | corpus |
 | 146-147 | [display](bytes/display.md) | `nibble_hilo` | [_menus](bytes/display.md) |
 
 ### Secondary
@@ -96,4 +96,4 @@ Edit/UI state (not a sound parameter): `92`, `98-99`
 See [panel mode flag](bytes/panel-mode-flag.md), [selected menu index](bytes/selected-menu-index.md), [ui-state.md](ui-state.md), and [bytes/display.md](bytes/display.md) for menu captures.
 
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_

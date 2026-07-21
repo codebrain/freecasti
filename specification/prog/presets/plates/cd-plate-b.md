@@ -3,7 +3,7 @@
 
 # CD Plate B
 
-_Generated 2026-07-21. Bank: [Plates](README.md) (index **1**). Source: `sysex/prog/presets/Plates.CD Plate B.syx`._
+_Generated 2026-07-22. Bank: [Plates](README.md) (index **1**). Source: `sysex/prog/presets/Plates.CD Plate B.syx`._
 
 [All presets](../../README.md) · [Plates bank](README.md) · [Program identity](../../program-identity.md)
 
@@ -71,4 +71,4 @@ Decoded from independent `sysex/prog/parameters/<parameter>/` series. `Dump` is 
 - [Vocal Plate B](vocal-plate-b.md)
 - [Repro Plate](repro-plate.md)
 
-_Last exported: 2026-07-21_
+_Last exported: 2026-07-22_
